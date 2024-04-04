@@ -316,11 +316,20 @@ const char *board_fit_get_additionnal_images(int index, const char *type)
 
 static int probe_daughtercards(void)
 {
-	char mac_addr[DAUGHTER_CARD_NO_OF_MAC_ADDR][TI_EEPROM_HDR_ETH_ALEN];
+	char mac_addr[DAUGHTER_CARD_NO_OF_MAC_ADDR][TI_EEPROM_HDR_ETH_ALEN]
+	= {{0x02,0x0A,0xC2,0x1d,0x00,0x01},
+		{0x02,0x0A,0xC2,0x1d,0x00,0x02},
+		{0x02,0x0A,0xC2,0x1d,0x00,0x03},
+		{0x02,0x0A,0xC2,0x1d,0x00,0x04},
+		{0x02,0x0A,0xC2,0x1d,0x00,0x05},
+		{0x02,0x0A,0xC2,0x1d,0x00,0x06},
+		{0x02,0x0A,0xC2,0x1d,0x00,0x07},
+		{0x02,0x0A,0xC2,0x1d,0x00,0x08}};
+		
 	bool eeprom_read_success;
 	struct ti_am6_eeprom ep;
 	u8 previous_i2c_addr;
-	u8 mac_addr_cnt;
+	u8 mac_addr_cnt = 8;
 	int i;
 	int ret;
 
@@ -335,6 +344,7 @@ static int probe_daughtercards(void)
 		/* Obtain card-specific I2C address */
 		u8 i2c_addr = ext_cards[i].i2c_addr;
 
+#if 0
 		/* Read card EEPROM if not already read previously */
 		if (i2c_addr != previous_i2c_addr) {
 			/* Store I2C address so we can avoid reading twice */
@@ -358,6 +368,17 @@ static int probe_daughtercards(void)
 			/* EEPROM read successful, okay to further process. */
 			eeprom_read_success = true;
 		}
+#else
+		// only to detect j7X_BASE and GESI, QSGMII  
+		if(i == 0 || i == 2 || i == 3)
+		{
+			strcpy(ep.name, ext_cards[i].card_name);
+			strcpy(ep.version, "00");
+			eeprom_read_success = true;
+		}
+		else
+			eeprom_read_success = false;
+#endif
 
 		/* Only continue processing if EEPROM data was read */
 		if (!eeprom_read_success)
