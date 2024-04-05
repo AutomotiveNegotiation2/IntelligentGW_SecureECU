@@ -26,6 +26,13 @@
          </generated_project_files>
          <pins_profile>
             <processor_version>13.0.2</processor_version>
+            <pin_labels>
+               <pin_label pin_num="N6" pin_signal="GPIO_LPSR_00" label="CAN3_TX/U42[1]" identifier="CAN3_TX;CAN_TX"/>
+               <pin_label pin_num="R6" pin_signal="GPIO_LPSR_01" label="CAN3_RX/U42[4]" identifier="CAN3_RX;CAN_RX"/>
+               <pin_label pin_num="N13" pin_signal="GPIO_AD_06" label="USB_OTG2_OC/U18[A2]/J9[10]/AUD_INT" identifier="CANFD_TX"/>
+               <pin_label pin_num="T17" pin_signal="GPIO_AD_07" label="USB_OTG2_PWR/WL_DEV_WAKE/U354[10]/J10[2]" identifier="CANFD_RX"/>
+               <pin_label pin_num="N14" pin_signal="GPIO_AD_14" label="SPDIF_EXT_CLK/CAN_STBY/J9[16]" identifier="CAN_FD_STBY"/>
+            </pin_labels>
             <power_domains/>
          </pins_profile>
          <functions_list>
@@ -38,11 +45,6 @@
                </options>
                <dependencies>
                   <dependency resourceType="Peripheral" resourceId="LPUART1" description="Peripheral LPUART1 is not initialized" problem_level="1" source="Pins:BOARD_InitPins">
-                     <feature name="initialized" evaluation="equal">
-                        <data>true</data>
-                     </feature>
-                  </dependency>
-                  <dependency resourceType="Peripheral" resourceId="CAN3" description="Peripheral CAN3 is not initialized" problem_level="1" source="Pins:BOARD_InitPins">
                      <feature name="initialized" evaluation="equal">
                         <data>true</data>
                      </feature>
@@ -79,8 +81,46 @@
                         <pin_feature name="slew_rate" value="Slow"/>
                      </pin_features>
                   </pin>
+               </pins>
+            </function>
+            <function name="BOARD_InitCanPins">
+               <description>Configures pin routing and optionally pin electrical features.</description>
+               <options>
+                  <callFromInitBoot>true</callFromInitBoot>
+                  <coreID>cm7</coreID>
+                  <enableClock>true</enableClock>
+               </options>
+               <dependencies>
+                  <dependency resourceType="Peripheral" resourceId="CAN3" description="Peripheral CAN3 is not initialized" problem_level="1" source="Pins:BOARD_InitCanPins">
+                     <feature name="initialized" evaluation="equal">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+                  <dependency resourceType="Peripheral" resourceId="CAN1" description="Peripheral CAN1 is not initialized" problem_level="1" source="Pins:BOARD_InitCanPins">
+                     <feature name="initialized" evaluation="equal">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+                  <dependency resourceType="SWComponent" resourceId="platform.drivers.common" description="Pins initialization requires the COMMON Driver in the project." problem_level="2" source="Pins:BOARD_InitCanPins">
+                     <feature name="enabled" evaluation="equal" configuration="cm7">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+                  <dependency resourceType="SWComponent" resourceId="platform.drivers.iomuxc" description="Pins initialization requires the IOMUXC Driver in the project." problem_level="2" source="Pins:BOARD_InitCanPins">
+                     <feature name="enabled" evaluation="equal" configuration="cm7">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+                  <dependency resourceType="SWComponent" resourceId="platform.drivers.igpio" description="Pins initialization requires the IGPIO Driver in the project." problem_level="2" source="Pins:BOARD_InitCanPins">
+                     <feature name="enabled" evaluation="equal" configuration="cm7">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+               </dependencies>
+               <pins>
                   <pin peripheral="CAN3" signal="RX" pin_num="R6" pin_signal="GPIO_LPSR_01">
                      <pin_features>
+                        <pin_feature name="identifier" value="CAN_RX"/>
                         <pin_feature name="software_input_on" value="Enable"/>
                         <pin_feature name="pull_up_down_config" value="Pull_Down"/>
                         <pin_feature name="pull_keeper_select" value="Keeper"/>
@@ -91,12 +131,40 @@
                   </pin>
                   <pin peripheral="CAN3" signal="TX" pin_num="N6" pin_signal="GPIO_LPSR_00">
                      <pin_features>
+                        <pin_feature name="identifier" value="CAN_TX"/>
                         <pin_feature name="software_input_on" value="Enable"/>
                         <pin_feature name="pull_up_down_config" value="Pull_Down"/>
                         <pin_feature name="pull_keeper_select" value="Keeper"/>
                         <pin_feature name="open_drain" value="Disable"/>
                         <pin_feature name="drive_strength" value="High"/>
                         <pin_feature name="slew_rate" value="Slow"/>
+                     </pin_features>
+                  </pin>
+                  <pin peripheral="CAN1" signal="RX" pin_num="T17" pin_signal="GPIO_AD_07">
+                     <pin_features>
+                        <pin_feature name="software_input_on" value="Enable"/>
+                        <pin_feature name="pull_up_down_config" value="Pull_Down"/>
+                        <pin_feature name="pull_keeper_select" value="Keeper"/>
+                        <pin_feature name="open_drain" value="Disable"/>
+                        <pin_feature name="drive_strength" value="High"/>
+                        <pin_feature name="slew_rate" value="Slow"/>
+                     </pin_features>
+                  </pin>
+                  <pin peripheral="CAN1" signal="TX" pin_num="N13" pin_signal="GPIO_AD_06">
+                     <pin_features>
+                        <pin_feature name="software_input_on" value="Enable"/>
+                        <pin_feature name="pull_up_down_config" value="Pull_Down"/>
+                        <pin_feature name="pull_keeper_select" value="Keeper"/>
+                        <pin_feature name="open_drain" value="Disable"/>
+                        <pin_feature name="drive_strength" value="High"/>
+                        <pin_feature name="slew_rate" value="Slow"/>
+                     </pin_features>
+                  </pin>
+                  <pin peripheral="GPIO9" signal="gpio_io, 13" pin_num="N14" pin_signal="GPIO_AD_14">
+                     <pin_features>
+                        <pin_feature name="direction" value="OUTPUT"/>
+                        <pin_feature name="gpio_init_state" value="true"/>
+                        <pin_feature name="pull_up_down_config" value="Pull_Down"/>
                      </pin_features>
                   </pin>
                </pins>
@@ -310,11 +378,11 @@
                   <clock_output id="SAI3_MCLK3.outFreq" value="24 MHz" locked="false" accuracy=""/>
                   <clock_output id="SAI4_CLK_ROOT.outFreq" value="24 MHz" locked="false" accuracy=""/>
                   <clock_output id="SAI4_MCLK1.outFreq" value="24 MHz" locked="false" accuracy=""/>
-                  <clock_output id="SEMC_CLK_ROOT.outFreq" value="4752/29 MHz" locked="false" accuracy=""/>
+                  <clock_output id="SEMC_CLK_ROOT.outFreq" value="3168/19 MHz" locked="false" accuracy=""/>
                   <clock_output id="SPDIF_CLK_ROOT.outFreq" value="24 MHz" locked="false" accuracy=""/>
                   <clock_output id="SYS_PLL2_CLK.outFreq" value="528 MHz" locked="false" accuracy=""/>
                   <clock_output id="SYS_PLL2_PFD0_CLK.outFreq" value="352 MHz" locked="false" accuracy=""/>
-                  <clock_output id="SYS_PLL2_PFD1_CLK.outFreq" value="9504/29 MHz" locked="false" accuracy=""/>
+                  <clock_output id="SYS_PLL2_PFD1_CLK.outFreq" value="9504/19 MHz" locked="false" accuracy=""/>
                   <clock_output id="SYS_PLL2_PFD2_CLK.outFreq" value="396 MHz" locked="false" accuracy=""/>
                   <clock_output id="SYS_PLL2_PFD3_CLK.outFreq" value="297 MHz" locked="false" accuracy=""/>
                   <clock_output id="SYS_PLL3_CLK.outFreq" value="480 MHz" locked="false" accuracy=""/>
@@ -339,7 +407,7 @@
                   <setting id="ANADIG_PLL.SYS_PLL2.denom" value="268435455" locked="false"/>
                   <setting id="ANADIG_PLL.SYS_PLL2.div" value="22" locked="false"/>
                   <setting id="ANADIG_PLL.SYS_PLL2.num" value="0" locked="false"/>
-                  <setting id="ANADIG_PLL.SYS_PLL2_PFD1_DIV.scale" value="29" locked="true"/>
+                  <setting id="ANADIG_PLL.SYS_PLL2_PFD1_DIV.scale" value="19" locked="true"/>
                   <setting id="ANADIG_PLL.SYS_PLL2_PFD1_MUL.scale" value="18" locked="true"/>
                   <setting id="ANADIG_PLL.SYS_PLL2_SS_DIV.scale" value="268435455" locked="false"/>
                   <setting id="ANADIG_PLL.SYS_PLL3_PFD0_DIV.scale" value="22" locked="false"/>
@@ -363,7 +431,7 @@
                   <setting id="CCM.CLOCK_ROOT26.MUX.sel" value="ANADIG_PLL.SYS_PLL2_CLK" locked="false"/>
                   <setting id="CCM.CLOCK_ROOT3.DIV.scale" value="3" locked="false"/>
                   <setting id="CCM.CLOCK_ROOT3.MUX.sel" value="ANADIG_PLL.SYS_PLL3_CLK" locked="false"/>
-                  <setting id="CCM.CLOCK_ROOT4.DIV.scale" value="2" locked="true"/>
+                  <setting id="CCM.CLOCK_ROOT4.DIV.scale" value="3" locked="true"/>
                   <setting id="CCM.CLOCK_ROOT4.MUX.sel" value="ANADIG_PLL.SYS_PLL2_PFD1_CLK" locked="false"/>
                   <setting id="CCM.CLOCK_ROOT6.DIV.scale" value="4" locked="false"/>
                   <setting id="CCM.CLOCK_ROOT6.MUX.sel" value="ANADIG_PLL.SYS_PLL2_CLK" locked="false"/>

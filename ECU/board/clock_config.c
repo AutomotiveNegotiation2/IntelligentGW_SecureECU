@@ -173,11 +173,11 @@ outputs:
 - {id: SAI3_MCLK3.outFreq, value: 24 MHz}
 - {id: SAI4_CLK_ROOT.outFreq, value: 24 MHz}
 - {id: SAI4_MCLK1.outFreq, value: 24 MHz}
-- {id: SEMC_CLK_ROOT.outFreq, value: 4752/29 MHz}
+- {id: SEMC_CLK_ROOT.outFreq, value: 3168/19 MHz}
 - {id: SPDIF_CLK_ROOT.outFreq, value: 24 MHz}
 - {id: SYS_PLL2_CLK.outFreq, value: 528 MHz}
 - {id: SYS_PLL2_PFD0_CLK.outFreq, value: 352 MHz}
-- {id: SYS_PLL2_PFD1_CLK.outFreq, value: 9504/29 MHz}
+- {id: SYS_PLL2_PFD1_CLK.outFreq, value: 9504/19 MHz}
 - {id: SYS_PLL2_PFD2_CLK.outFreq, value: 396 MHz}
 - {id: SYS_PLL2_PFD3_CLK.outFreq, value: 297 MHz}
 - {id: SYS_PLL3_CLK.outFreq, value: 480 MHz}
@@ -201,7 +201,7 @@ settings:
 - {id: ANADIG_PLL.SYS_PLL2.denom, value: '268435455'}
 - {id: ANADIG_PLL.SYS_PLL2.div, value: '22'}
 - {id: ANADIG_PLL.SYS_PLL2.num, value: '0'}
-- {id: ANADIG_PLL.SYS_PLL2_PFD1_DIV.scale, value: '29', locked: true}
+- {id: ANADIG_PLL.SYS_PLL2_PFD1_DIV.scale, value: '19', locked: true}
 - {id: ANADIG_PLL.SYS_PLL2_PFD1_MUL.scale, value: '18', locked: true}
 - {id: ANADIG_PLL.SYS_PLL2_SS_DIV.scale, value: '268435455'}
 - {id: ANADIG_PLL.SYS_PLL3_PFD0_DIV.scale, value: '22'}
@@ -225,7 +225,7 @@ settings:
 - {id: CCM.CLOCK_ROOT26.MUX.sel, value: ANADIG_PLL.SYS_PLL2_CLK}
 - {id: CCM.CLOCK_ROOT3.DIV.scale, value: '3'}
 - {id: CCM.CLOCK_ROOT3.MUX.sel, value: ANADIG_PLL.SYS_PLL3_CLK}
-- {id: CCM.CLOCK_ROOT4.DIV.scale, value: '2', locked: true}
+- {id: CCM.CLOCK_ROOT4.DIV.scale, value: '3', locked: true}
 - {id: CCM.CLOCK_ROOT4.MUX.sel, value: ANADIG_PLL.SYS_PLL2_PFD1_CLK}
 - {id: CCM.CLOCK_ROOT6.DIV.scale, value: '4'}
 - {id: CCM.CLOCK_ROOT6.MUX.sel, value: ANADIG_PLL.SYS_PLL2_CLK}
@@ -390,7 +390,7 @@ void BOARD_BootClockRUN(void)
     CLOCK_InitPfd(kCLOCK_PllSys2, kCLOCK_Pfd0, 27);
 
     /* Init System Pll2 pfd1. */
-    CLOCK_InitPfd(kCLOCK_PllSys2, kCLOCK_Pfd1, 29);
+    CLOCK_InitPfd(kCLOCK_PllSys2, kCLOCK_Pfd1, 19);
 
     /* Init System Pll2 pfd2. */
     CLOCK_InitPfd(kCLOCK_PllSys2, kCLOCK_Pfd2, 24);
@@ -450,7 +450,7 @@ void BOARD_BootClockRUN(void)
     /* Configure SEMC using SYS_PLL2_PFD1_CLK */
 #ifndef SKIP_SEMC_INIT
     rootCfg.mux = kCLOCK_SEMC_ClockRoot_MuxSysPll2Pfd1;
-    rootCfg.div = 2;
+    rootCfg.div = 3;
     CLOCK_SetRootClock(kCLOCK_Root_Semc, &rootCfg);
 #endif
 

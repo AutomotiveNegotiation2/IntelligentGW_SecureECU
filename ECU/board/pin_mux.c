@@ -12,11 +12,18 @@ package_id: MIMXRT1176DVMAA
 mcu_data: ksdk2_0
 processor_version: 13.0.2
 board: MIMXRT1170-EVK
+pin_labels:
+- {pin_num: N6, pin_signal: GPIO_LPSR_00, label: 'CAN3_TX/U42[1]', identifier: CAN3_TX;CAN_TX}
+- {pin_num: R6, pin_signal: GPIO_LPSR_01, label: 'CAN3_RX/U42[4]', identifier: CAN3_RX;CAN_RX}
+- {pin_num: N13, pin_signal: GPIO_AD_06, label: 'USB_OTG2_OC/U18[A2]/J9[10]/AUD_INT', identifier: CANFD_TX}
+- {pin_num: T17, pin_signal: GPIO_AD_07, label: 'USB_OTG2_PWR/WL_DEV_WAKE/U354[10]/J10[2]', identifier: CANFD_RX}
+- {pin_num: N14, pin_signal: GPIO_AD_14, label: 'SPDIF_EXT_CLK/CAN_STBY/J9[16]', identifier: CAN_FD_STBY}
  * BE CAREFUL MODIFYING THIS COMMENT - IT IS YAML SETTINGS FOR TOOLS ***********
  */
 
 #include "fsl_common.h"
 #include "fsl_iomuxc.h"
+#include "fsl_gpio.h"
 #include "pin_mux.h"
 
 /* FUNCTION ************************************************************************************************************
@@ -27,6 +34,7 @@ board: MIMXRT1170-EVK
  * END ****************************************************************************************************************/
 void BOARD_InitBootPins(void) {
     BOARD_InitPins();
+    BOARD_InitCanPins();
 }
 
 /*
@@ -38,10 +46,6 @@ BOARD_InitPins:
     open_drain: Disable, drive_strength: High, slew_rate: Slow}
   - {pin_num: L13, peripheral: LPUART1, signal: TXD, pin_signal: GPIO_AD_24, software_input_on: Disable, pull_up_down_config: Pull_Down, pull_keeper_select: Pull,
     open_drain: Disable, drive_strength: High, slew_rate: Slow}
-  - {pin_num: R6, peripheral: CAN3, signal: RX, pin_signal: GPIO_LPSR_01, software_input_on: Enable, pull_up_down_config: Pull_Down, pull_keeper_select: Keeper, open_drain: Disable,
-    drive_strength: High, slew_rate: Slow}
-  - {pin_num: N6, peripheral: CAN3, signal: TX, pin_signal: GPIO_LPSR_00, software_input_on: Enable, pull_up_down_config: Pull_Down, pull_keeper_select: Keeper, open_drain: Disable,
-    drive_strength: High, slew_rate: Slow}
  * BE CAREFUL MODIFYING THIS COMMENT - IT IS YAML SETTINGS FOR TOOLS ***********
  */
 
@@ -53,7 +57,6 @@ BOARD_InitPins:
  * END ****************************************************************************************************************/
 void BOARD_InitPins(void) {
   CLOCK_EnableClock(kCLOCK_Iomuxc);           /* LPCG on: LPCG is ON. */
-  CLOCK_EnableClock(kCLOCK_Iomuxc_Lpsr);      /* LPCG on: LPCG is ON. */
 
   IOMUXC_SetPinMux(
       IOMUXC_GPIO_AD_24_LPUART1_TXD,          /* GPIO_AD_24 is configured as LPUART1_TXD */
@@ -61,12 +64,6 @@ void BOARD_InitPins(void) {
   IOMUXC_SetPinMux(
       IOMUXC_GPIO_AD_25_LPUART1_RXD,          /* GPIO_AD_25 is configured as LPUART1_RXD */
       0U);                                    /* Software Input On Field: Input Path is determined by functionality */
-  IOMUXC_SetPinMux(
-      IOMUXC_GPIO_LPSR_00_FLEXCAN3_TX,        /* GPIO_LPSR_00 is configured as FLEXCAN3_TX */
-      1U);                                    /* Software Input On Field: Force input path of pad GPIO_LPSR_00 */
-  IOMUXC_SetPinMux(
-      IOMUXC_GPIO_LPSR_01_FLEXCAN3_RX,        /* GPIO_LPSR_01 is configured as FLEXCAN3_RX */
-      1U);                                    /* Software Input On Field: Force input path of pad GPIO_LPSR_01 */
   IOMUXC_SetPinConfig(
       IOMUXC_GPIO_AD_24_LPUART1_TXD,          /* GPIO_AD_24 PAD functional properties : */
       0x06U);                                 /* Slew Rate Field: Slow Slew Rate
@@ -78,6 +75,87 @@ void BOARD_InitPins(void) {
                                                  Domain write protection lock: Neither of DWP bits is locked */
   IOMUXC_SetPinConfig(
       IOMUXC_GPIO_AD_25_LPUART1_RXD,          /* GPIO_AD_25 PAD functional properties : */
+      0x06U);                                 /* Slew Rate Field: Slow Slew Rate
+                                                 Drive Strength Field: high drive strength
+                                                 Pull / Keep Select Field: Pull Enable
+                                                 Pull Up / Down Config. Field: Weak pull down
+                                                 Open Drain Field: Disabled
+                                                 Domain write protection: Both cores are allowed
+                                                 Domain write protection lock: Neither of DWP bits is locked */
+}
+
+
+/*
+ * TEXT BELOW IS USED AS SETTING FOR TOOLS *************************************
+BOARD_InitCanPins:
+- options: {callFromInitBoot: 'true', coreID: cm7, enableClock: 'true'}
+- pin_list:
+  - {pin_num: R6, peripheral: CAN3, signal: RX, pin_signal: GPIO_LPSR_01, identifier: CAN_RX, software_input_on: Enable, pull_up_down_config: Pull_Down, pull_keeper_select: Keeper,
+    open_drain: Disable, drive_strength: High, slew_rate: Slow}
+  - {pin_num: N6, peripheral: CAN3, signal: TX, pin_signal: GPIO_LPSR_00, identifier: CAN_TX, software_input_on: Enable, pull_up_down_config: Pull_Down, pull_keeper_select: Keeper,
+    open_drain: Disable, drive_strength: High, slew_rate: Slow}
+  - {pin_num: T17, peripheral: CAN1, signal: RX, pin_signal: GPIO_AD_07, software_input_on: Enable, pull_up_down_config: Pull_Down, pull_keeper_select: Keeper, open_drain: Disable,
+    drive_strength: High, slew_rate: Slow}
+  - {pin_num: N13, peripheral: CAN1, signal: TX, pin_signal: GPIO_AD_06, software_input_on: Enable, pull_up_down_config: Pull_Down, pull_keeper_select: Keeper, open_drain: Disable,
+    drive_strength: High, slew_rate: Slow}
+  - {pin_num: N14, peripheral: GPIO9, signal: 'gpio_io, 13', pin_signal: GPIO_AD_14, direction: OUTPUT, gpio_init_state: 'true', pull_up_down_config: Pull_Down}
+ * BE CAREFUL MODIFYING THIS COMMENT - IT IS YAML SETTINGS FOR TOOLS ***********
+ */
+
+/* FUNCTION ************************************************************************************************************
+ *
+ * Function Name : BOARD_InitCanPins, assigned for the Cortex-M7F core.
+ * Description   : Configures pin routing and optionally pin electrical features.
+ *
+ * END ****************************************************************************************************************/
+void BOARD_InitCanPins(void) {
+  CLOCK_EnableClock(kCLOCK_Iomuxc);           /* LPCG on: LPCG is ON. */
+  CLOCK_EnableClock(kCLOCK_Iomuxc_Lpsr);      /* LPCG on: LPCG is ON. */
+
+  /* GPIO configuration of CAN_FD_STBY on GPIO_AD_14 (pin N14) */
+  gpio_pin_config_t CAN_FD_STBY_config = {
+      .direction = kGPIO_DigitalOutput,
+      .outputLogic = 1U,
+      .interruptMode = kGPIO_NoIntmode
+  };
+  /* Initialize GPIO functionality on GPIO_AD_14 (pin N14) */
+  GPIO_PinInit(GPIO9, 13U, &CAN_FD_STBY_config);
+
+  IOMUXC_SetPinMux(
+      IOMUXC_GPIO_AD_06_FLEXCAN1_TX,          /* GPIO_AD_06 is configured as FLEXCAN1_TX */
+      1U);                                    /* Software Input On Field: Force input path of pad GPIO_AD_06 */
+  IOMUXC_SetPinMux(
+      IOMUXC_GPIO_AD_07_FLEXCAN1_RX,          /* GPIO_AD_07 is configured as FLEXCAN1_RX */
+      1U);                                    /* Software Input On Field: Force input path of pad GPIO_AD_07 */
+  IOMUXC_SetPinMux(
+      IOMUXC_GPIO_AD_14_GPIO9_IO13,           /* GPIO_AD_14 is configured as GPIO9_IO13 */
+      0U);                                    /* Software Input On Field: Input Path is determined by functionality */
+  IOMUXC_SetPinMux(
+      IOMUXC_GPIO_LPSR_00_FLEXCAN3_TX,        /* GPIO_LPSR_00 is configured as FLEXCAN3_TX */
+      1U);                                    /* Software Input On Field: Force input path of pad GPIO_LPSR_00 */
+  IOMUXC_SetPinMux(
+      IOMUXC_GPIO_LPSR_01_FLEXCAN3_RX,        /* GPIO_LPSR_01 is configured as FLEXCAN3_RX */
+      1U);                                    /* Software Input On Field: Force input path of pad GPIO_LPSR_01 */
+  IOMUXC_SetPinConfig(
+      IOMUXC_GPIO_AD_06_FLEXCAN1_TX,          /* GPIO_AD_06 PAD functional properties : */
+      0x02U);                                 /* Slew Rate Field: Slow Slew Rate
+                                                 Drive Strength Field: high drive strength
+                                                 Pull / Keep Select Field: Pull Disable, Highz
+                                                 Pull Up / Down Config. Field: Weak pull down
+                                                 Open Drain Field: Disabled
+                                                 Domain write protection: Both cores are allowed
+                                                 Domain write protection lock: Neither of DWP bits is locked */
+  IOMUXC_SetPinConfig(
+      IOMUXC_GPIO_AD_07_FLEXCAN1_RX,          /* GPIO_AD_07 PAD functional properties : */
+      0x02U);                                 /* Slew Rate Field: Slow Slew Rate
+                                                 Drive Strength Field: high drive strength
+                                                 Pull / Keep Select Field: Pull Disable, Highz
+                                                 Pull Up / Down Config. Field: Weak pull down
+                                                 Open Drain Field: Disabled
+                                                 Domain write protection: Both cores are allowed
+                                                 Domain write protection lock: Neither of DWP bits is locked */
+  IOMUXC_SetPinConfig(
+      IOMUXC_GPIO_AD_14_GPIO9_IO13,           /* GPIO_AD_14 PAD functional properties : */
       0x06U);                                 /* Slew Rate Field: Slow Slew Rate
                                                  Drive Strength Field: high drive strength
                                                  Pull / Keep Select Field: Pull Enable
