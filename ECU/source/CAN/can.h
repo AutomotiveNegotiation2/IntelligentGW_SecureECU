@@ -36,6 +36,7 @@ typedef struct {
 
 #pragma pack(pop)
 
+uint32_t CAN_GetConfigAddr(can_inst_t instance);
 void CAN_Init(can_inst_t instance);
 int32_t CAN_Transmit(can_inst_t instance, uint32_t id);
 void CAN_ReceiveStart(can_inst_t instance);

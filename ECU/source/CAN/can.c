@@ -19,7 +19,6 @@ static FLEXCAN_CALLBACK(flexcan_1_callback);
 static void FLEXCAN_CalculateClock(can_config_t * config, flexcan_config_t * flexcanConfig, uint32_t clock);
 static void FLEXCAN_ConfigTxMsg(can_config_t * config);
 static void FLEXCAN_ConfigRxMsg(can_config_t * config);
-//static int32_t CAN_Receive(CAN_MSG_FUNC_ptr * rxmsg, flexcan_frame_t * frame, uint8_t MB);
 static int32_t CAN_Receive(uint32_t instance, uint32_t buffIdx, flexcan_mb_transfer_t *xfer);
 
 can_config_t can_config[CAN_CH_MAX] = {
@@ -64,20 +63,17 @@ can_config_t can_config[CAN_CH_MAX] = {
 	}	
 };
 
-static void ApplCan_Init(CAN_MSG_FUNC_ptr * msg);
-
 static FLEXCAN_CALLBACK(flexcan_3_callback)
 {
 	uint32_t instance;
 	can_config_t * config;
 
 	instance = FLEXCAN_GetInstance(base);
-	config = &can_config[instance];
+	config = (can_config_t *)CAN_GetConfigAddr(instance);
 	
     switch (status)
     {
         case kStatus_FLEXCAN_RxIdle:
-			//CAN_Receive(config->msgRx, handle->mbFrameBuf[result], result);
 			CAN_Receive(instance, result, &rxXfer);
             break;
 
@@ -99,12 +95,11 @@ static FLEXCAN_CALLBACK(flexcan_1_callback)
 	can_config_t * config;
 
 	instance = FLEXCAN_GetInstance(base);
-	config = &can_config[instance];
+	config = (can_config_t *)CAN_GetConfigAddr(instance);
 	
     switch (status)
     {
         case kStatus_FLEXCAN_RxIdle:
-			//CAN_Receive(config->msgRx, handle->mbFrameBuf[result], result);
 			CAN_Receive(instance, result, &rxXfer);
             break;
 
@@ -120,18 +115,13 @@ static FLEXCAN_CALLBACK(flexcan_1_callback)
     }
 }
 
-
 void CAN_Init(can_inst_t instance)
 {
 	can_config_t * config;
 	flexcan_config_t flexcanConfig;
 	uint32_t calculated_can_clk;
 
-	if ((instance != CAN_CH_3) && (instance != CAN_CH_1))
-	{
-		SYSINFO_PRINTF("[%s] CAN Instance Error ...\r\n", __func__);
-		assert(0);
-	}
+	config = (can_config_t *)CAN_GetConfigAddr(instance);
 
 	/*Clock setting for FLEXCAN*/
 	clock_root_config_t rootCfg = {0};
@@ -139,11 +129,7 @@ void CAN_Init(can_inst_t instance)
 	rootCfg.div 				= FLEXCAN_CLOCK_SOURCE_DIVIDER;
 	CLOCK_SetRootClock(can_clk[instance], &rootCfg);
 
-	config = &can_config[instance];
-
 	memset(&config->fCanHandle, 0, sizeof(flexcan_handle_t));
-
-	ApplCan_Init(config->msgTx);
 
 	FLEXCAN_GetDefaultConfig(&flexcanConfig);
 	
@@ -169,29 +155,6 @@ void CAN_Init(can_inst_t instance)
 	FLEXCAN_ConfigTxMsg(config);
 }
 
-static void ApplCan_Init(CAN_MSG_FUNC_ptr * msg)
-{
-	uint8_t i;
-
-	for (i=0; i<msg->NoOfMsg; i++)
-	{
-#if 0
-		if (msg->attr[i] == CAN_TX_ATTR_PERIODIC)
-		{
-			//*(msg->stimerId+i) = msg->stimerId[0] + i;
-			msg->stimerId[i] = msg->stimerId[0] + i;
-		}
-		else
-		{
-			//*(msg->stimerId+i) = 0;
-			msg->stimerId[i] = 0;
-		}
-#endif
-		//*(msg->stimer_state+i) = CAN_TX_PERI_FUNC_STOP;
-		msg->stimer_state[i] = CAN_TX_PERI_FUNC_STOP;
-	}
-}
-
 static void FLEXCAN_ConfigRxMsg(can_config_t * config)
 {
 	uint8_t i;
@@ -199,7 +162,7 @@ static void FLEXCAN_ConfigRxMsg(can_config_t * config)
 
 	if (config == NULL)
 	{
-		SYSINFO_PRINTF("[%s] CAN Instance Error ...\r\n", __func__);
+		SYSINFO_PRINTF("[%s] register memory is not assigned normally ...\r\n", __func__);
 		assert(0);
 	}
 
@@ -222,7 +185,7 @@ static void FLEXCAN_ConfigTxMsg(can_config_t * config)
 
 	if (config == NULL)
 	{
-		SYSINFO_PRINTF("[%s] CAN Instance Error ...\r\n", __func__);
+		SYSINFO_PRINTF("[%s] register memory is not assigned normally ...\r\n", __func__);
 		assert(0);
 	}
 
@@ -273,13 +236,7 @@ int32_t CAN_Transmit(can_inst_t instance, uint32_t id)
 	uint8_t i;
 	can_config_t * config;
 
-	if ((instance != CAN_CH_1) && (instance != CAN_CH_3))
-	{
-		SYSINFO_PRINTF("[%s] CAN Instance Error ...\r\n", __func__);
-		assert(0);
-	}
-
-	config = &can_config[instance];
+	config = (can_config_t *)CAN_GetConfigAddr(instance);
 	
 	for (i=0; i<config->msgTx->NoOfMsg; i++)
 	{
@@ -292,11 +249,9 @@ int32_t CAN_Transmit(can_inst_t instance, uint32_t id)
 	if (i >= config->msgTx->NoOfMsg)
 	{
 		SYSINFO_PRINTF("[%s] CAN ID[0x%X] is not matched.\n", __func__, id);
-		//return E_ID;
 		assert(0);
 	}
 
-	//txXfer.mbIdx = *(config->msgTx->mbox+i);
 	txXfer.mbIdx = config->msgTx->mbox[i];
 
 	if (config->fdEnable)
@@ -334,13 +289,7 @@ void CAN_ReceiveStart(can_inst_t instance)
 	uint8_t i;
 	can_config_t * config;
 	
-	if ((instance != CAN_CH_1) && (instance != CAN_CH_3))
-	{
-		SYSINFO_PRINTF("[%s] CAN Instance Error ...\r\n", __func__);
-		assert(0);
-	}
-
-	config = &can_config[instance];
+	config = (can_config_t *)CAN_GetConfigAddr(instance);
 
 	memset(&rxXfer, 0, sizeof(flexcan_mb_transfer_t));
 
@@ -367,23 +316,13 @@ void CAN_ReceiveStart(can_inst_t instance)
 	}
 }
 
-#if 0
-static int32_t CAN_Receive(CAN_MSG_FUNC_ptr * rxmsg, flexcan_frame_t * frame, uint8_t MB)
-#else
 static int32_t CAN_Receive(uint32_t instance, uint32_t buffIdx, flexcan_mb_transfer_t *xfer)
-#endif
 {
 	uint8_t i, data[64];
 	can_config_t * config;
 	status_t result;
 	
-	if ((instance != CAN_CH_1) && (instance != CAN_CH_3))
-	{
-		//SYSINFO_PRINTF("[%s] Memory[0x%08x 0x%08x] is not assigned\r\n", __func__, rxmsg, frame);
-		assert(0);
-	}
-
-	config = &can_config[instance];
+	config = (can_config_t *)CAN_GetConfigAddr(instance);
 
 	for (i=0; i<config->msgRx->NoOfMsg; i++) 
 	{
@@ -455,6 +394,17 @@ static int32_t CAN_Receive(uint32_t instance, uint32_t buffIdx, flexcan_mb_trans
 	(config->msgRx->rCallback[i])(config->msgRx->data[i], config->msgRx->dlc[i]);
 
 	return 0;
+}
+
+uint32_t CAN_GetConfigAddr(can_inst_t instance)
+{
+	if ((instance != CAN_CH_3) && (instance != CAN_CH_1))
+	{
+		SYSINFO_PRINTF("[%s] CAN Instance Error ...\r\n", __func__);
+		assert(0);
+	}
+
+	return (uint32_t)(&can_config[instance]);
 }
 
 void CAN3_TX_Test(void)

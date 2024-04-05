@@ -2,7 +2,7 @@
 #include "Includes.h"
 
 static void CanTransOperationMode(can_inst_t instance, can_trans_opmode_t opmode);
-static void CAN_ACC_ON_Init(void);
+static void CAN_ACC_ON_Init(can_inst_t instance);
 static inline uint8_t CanPowerIsEnabled(void);
 static void RUN_CAN_ACC_ON(void);
 static void RUN_CAN_ACC_OFF(void);
@@ -68,7 +68,8 @@ static void RUN_CAN_ACC_ON(void)
 			CanTransOperationMode(CAN_CH_3, CAN_TRANS_OPMODE_STANDBY);
 			CanTransOperationMode(CAN_CH_1, CAN_TRANS_OPMODE_STANDBY);
 			
-			CAN_ACC_ON_Init();
+			CAN_ACC_ON_Init(CAN_CH_3);	// CAN
+			CAN_ACC_ON_Init(CAN_CH_1);	// CANFD
 			
 			GlobalPocSeq.LSeq.B.SEQ_CAN = LO_SEQ_01;
 			break;
@@ -144,9 +145,19 @@ static void RUN_CAN_ACC_OFF(void)
 	}
 }
 
-static void CAN_ACC_ON_Init(void)
+static void CAN_ACC_ON_Init(can_inst_t instance)
 {
+	can_config_t * config;
 
+	if ((instance != CAN_CH_3) && (instance != CAN_CH_1))
+	{
+		SYSINFO_PRINTF("[%s] CAN Instance Error ...\r\n", __func__);
+		assert(0);
+	}
+
+	config = (can_config_t *)CAN_GetConfigAddr(instance);
+
+	memset(config->msgTx->stimer_state, CAN_TX_PERI_FUNC_STOP, config->msgTx->NoOfMsg);
 }
 
 static inline uint8_t CanPowerIsEnabled(void)
