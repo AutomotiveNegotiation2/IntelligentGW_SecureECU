@@ -64,6 +64,7 @@ static void RUN_CAN_ACC_ON(void)
 			/* STANDBY MODE */
 			KillSoftTimer(STIMER_CAN3_TX_TEST);
 			KillSoftTimer(STIMER_CAN1_TX_TEST);
+
 			BOARD_InitCanPins();
 			CanTransOperationMode(CAN_CH_3, CAN_TRANS_OPMODE_STANDBY);
 			CanTransOperationMode(CAN_CH_1, CAN_TRANS_OPMODE_STANDBY);
@@ -80,7 +81,7 @@ static void RUN_CAN_ACC_ON(void)
 				SYSINFO_PRINTF("[%s] Wait until PWR_STS_PERI_PWR_5V_3P3V is enabled ...\r\n", __func__);
 				return;
 			}
-
+			
 			CAN_Init(CAN_CH_3);	// CAN
 			CAN_Init(CAN_CH_1);	// CANFD
 			

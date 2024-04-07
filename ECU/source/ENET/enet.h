@@ -11,7 +11,6 @@
 extern struct netif netif;
 extern ip4_addr_t netif_ipaddr, netif_netmask, netif_gw;
 
-void enet_init(void);
 void BOARD_InitModuleClock(void);
 void IOMUXC_SelectENETClock(void);
 void Enet_100M_Mdio_Init(void);

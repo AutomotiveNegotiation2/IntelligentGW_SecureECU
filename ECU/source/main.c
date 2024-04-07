@@ -55,6 +55,4 @@ static void main_init(void)
 
 	/* Initialize softtimer */
 	SoftTimerInit();
-
-	//enet_init();
 }
