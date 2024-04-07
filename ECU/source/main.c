@@ -41,6 +41,7 @@ int main(void)
 		GlobalSequence();
 		
 		CanMain();
+		EnetMain();
 	}
 }
 
@@ -54,4 +55,6 @@ static void main_init(void)
 
 	/* Initialize softtimer */
 	SoftTimerInit();
+
+	//enet_init();
 }
