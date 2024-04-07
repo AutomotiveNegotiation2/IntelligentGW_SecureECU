@@ -5,7 +5,6 @@
 
 static char McuVer[20] = "M0.001_20230628T";
 
-
 static void main_init(void);
 
 static void SystemInfo(void)
