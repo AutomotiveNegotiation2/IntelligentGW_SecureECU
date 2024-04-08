@@ -165,7 +165,11 @@ void Ioctrl_KeyOp(void)
 		memset(&keyCtrl, 0, sizeof(key_detect_ctrl_t));
 		//ApplTxECU1_Blind_Zone_Alert_Status_TxComfirmation();	// CAN
 		//ApplTxECU2_V2V_Warning_TxComfirmation();	// CANFD
+#if (CAN3toCAN_EN == ON)
 		ApplTxECU1_SystemPowerMode_TxComfirmation();	// CAN
+#elif (CAN1toCANFD_EN == ON)
+		ApplTxECU2_V2V_Warning_TxComfirmation();	// CANFD
+#endif
 	}
 	else
 	{

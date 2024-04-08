@@ -46,6 +46,17 @@ void BOARD_InitBootPins(void);
 #define BOARD_INITPINS_USER_BUTTON_GPIO_PIN                                   0U   /*!< GPIO pin number */
 #define BOARD_INITPINS_USER_BUTTON_GPIO_PIN_MASK                      (1U << 0U)   /*!< GPIO pin mask */
 
+/* GPIO_AD_14 (coord N14), SPDIF_EXT_CLK/CAN_STBY/J9[16] */
+/* Routed pin properties */
+#define BOARD_INITPINS_CAN_FD_STBY_PERIPHERAL                              GPIO9   /*!< Peripheral name */
+#define BOARD_INITPINS_CAN_FD_STBY_SIGNAL                                gpio_io   /*!< Signal name */
+#define BOARD_INITPINS_CAN_FD_STBY_CHANNEL                                   13U   /*!< Signal channel */
+
+/* Symbols to be used with GPIO driver */
+#define BOARD_INITPINS_CAN_FD_STBY_GPIO                                    GPIO9   /*!< GPIO peripheral base pointer */
+#define BOARD_INITPINS_CAN_FD_STBY_GPIO_PIN                                  13U   /*!< GPIO pin number */
+#define BOARD_INITPINS_CAN_FD_STBY_GPIO_PIN_MASK                     (1U << 13U)   /*!< GPIO pin mask */
+
 /*!
  * @brief Configures pin routing and optionally pin electrical features.
  *
@@ -62,32 +73,27 @@ void BOARD_InitPins(void);                    /* Function assigned for the Corte
 #define BOARD_INITCANPINS_CAN_TX_PERIPHERAL                                 CAN3   /*!< Peripheral name */
 #define BOARD_INITCANPINS_CAN_TX_SIGNAL                                       TX   /*!< Signal name */
 
-/* GPIO_AD_07 (coord T17), USB_OTG2_PWR/WL_DEV_WAKE/U354[10]/J10[2] */
-/* Routed pin properties */
-#define BOARD_INITCANPINS_CANFD_RX_PERIPHERAL                               CAN1   /*!< Peripheral name */
-#define BOARD_INITCANPINS_CANFD_RX_SIGNAL                                     RX   /*!< Signal name */
-
-/* GPIO_AD_06 (coord N13), USB_OTG2_OC/U18[A2]/J9[10]/AUD_INT */
-/* Routed pin properties */
-#define BOARD_INITCANPINS_CANFD_TX_PERIPHERAL                               CAN1   /*!< Peripheral name */
-#define BOARD_INITCANPINS_CANFD_TX_SIGNAL                                     TX   /*!< Signal name */
-
-/* GPIO_AD_14 (coord N14), SPDIF_EXT_CLK/CAN_STBY/J9[16] */
-/* Routed pin properties */
-#define BOARD_INITCANPINS_CAN_FD_STBY_PERIPHERAL                           GPIO9   /*!< Peripheral name */
-#define BOARD_INITCANPINS_CAN_FD_STBY_SIGNAL                             gpio_io   /*!< Signal name */
-#define BOARD_INITCANPINS_CAN_FD_STBY_CHANNEL                                13U   /*!< Signal channel */
-
-/* Symbols to be used with GPIO driver */
-#define BOARD_INITCANPINS_CAN_FD_STBY_GPIO                                 GPIO9   /*!< GPIO peripheral base pointer */
-#define BOARD_INITCANPINS_CAN_FD_STBY_GPIO_PIN                               13U   /*!< GPIO pin number */
-#define BOARD_INITCANPINS_CAN_FD_STBY_GPIO_PIN_MASK                  (1U << 13U)   /*!< GPIO pin mask */
-
 /*!
  * @brief Configures pin routing and optionally pin electrical features.
  *
  */
 void BOARD_InitCanPins(void);                 /* Function assigned for the Cortex-M7F */
+
+/* GPIO_AD_07 (coord T17), USB_OTG2_PWR/WL_DEV_WAKE/U354[10]/J10[2] */
+/* Routed pin properties */
+#define BOARD_INITCANFDPINS_CANFD_RX_PERIPHERAL                             CAN1   /*!< Peripheral name */
+#define BOARD_INITCANFDPINS_CANFD_RX_SIGNAL                                   RX   /*!< Signal name */
+
+/* GPIO_AD_06 (coord N13), USB_OTG2_OC/U18[A2]/J9[10]/AUD_INT */
+/* Routed pin properties */
+#define BOARD_INITCANFDPINS_CANFD_TX_PERIPHERAL                             CAN1   /*!< Peripheral name */
+#define BOARD_INITCANFDPINS_CANFD_TX_SIGNAL                                   TX   /*!< Signal name */
+
+/*!
+ * @brief Configures pin routing and optionally pin electrical features.
+ *
+ */
+void BOARD_InitCanFdPins(void);               /* Function assigned for the Cortex-M7F */
 
 /* GPIO_AD_32 (coord K16), ENET_MDC/U7[12]/SD1_CD_B/J15[9] */
 /* Routed pin properties */

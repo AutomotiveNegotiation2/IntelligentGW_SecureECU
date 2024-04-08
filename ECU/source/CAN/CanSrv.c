@@ -35,16 +35,26 @@ canTransFnCallback CanFnCtrl[CAN_CH_MAX] = {
 		.Normal		= NULL,
 	},
 	{
+#if (CAN1toCANFD_EN == ON)
 		.Standby	= CAN1_TRANS_TO_STANDBY_MODE,
 		.Normal		= CAN1_TRANS_TO_NORMAL_MODE,
+#else
+		.Standby	= NULL,
+		.Normal 	= NULL,
+#endif
 	},
 	{
 		.Standby	= NULL,
 		.Normal		= NULL,
 	},
 	{
+#if (CAN3toCAN_EN == ON)
 		.Standby	= CAN3_TRANS_TO_STANDBY_MODE,
 		.Normal		= CAN3_TRANS_TO_NORMAL_MODE,
+#else
+		.Standby	= NULL,
+		.Normal 	= NULL,
+#endif
 	},
 };
 
@@ -96,13 +106,17 @@ static void RUN_CAN_UP_ACC_ON(void)
 			KillSoftTimer(STIMER_CAN3_TX_TEST);
 			KillSoftTimer(STIMER_CAN1_TX_TEST);
 
+#if (CAN3toCAN_EN == ON)
 			BOARD_InitCanPins();
 			CanTransOperationMode(CAN_CH_3, CAN_TRANS_OPMODE_STANDBY);
-			CanTransOperationMode(CAN_CH_1, CAN_TRANS_OPMODE_STANDBY);
-
 			CAN_ACC_ON_Init(CAN_CH_3);	// CAN
+#endif
+#if (CAN1toCANFD_EN == ON)
+			BOARD_InitCanFdPins();
+			CanTransOperationMode(CAN_CH_1, CAN_TRANS_OPMODE_STANDBY);
 			CAN_ACC_ON_Init(CAN_CH_1);	// CANFD
-			
+#endif
+
 			GlobalPocSeq.LSeq.B.SEQ_CAN = LO_SEQ_01;
 			break;
 
@@ -113,17 +127,25 @@ static void RUN_CAN_UP_ACC_ON(void)
 				return;
 			}
 			
+#if (CAN3toCAN_EN == ON)			
 			CAN_Init(CAN_CH_3);	// CAN
+#endif
+#if (CAN1toCANFD_EN == ON)
 			CAN_Init(CAN_CH_1);	// CANFD
+#endif
 			
 			GlobalPocSeq.LSeq.B.SEQ_CAN = LO_SEQ_02;
 			break;
 
 		case LO_SEQ_02:
+#if (CAN3toCAN_EN == ON)
 			CAN_ReceiveStart(CAN_CH_3);	// CAN
-			CAN_ReceiveStart(CAN_CH_1);	// CANFD
 			CanTransOperationMode(CAN_CH_3, CAN_TRANS_OPMODE_NORMAL);
+#endif
+#if (CAN1toCANFD_EN == ON)
+			CAN_ReceiveStart(CAN_CH_1);	// CANFD
 			CanTransOperationMode(CAN_CH_1, CAN_TRANS_OPMODE_NORMAL);
+#endif
 			
 			GlobalPocSeq.LSeq.B.SEQ_CAN = LO_SEQ_03;
 			break;

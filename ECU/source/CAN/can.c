@@ -26,6 +26,7 @@ can_config_t can_config[CAN_CH_MAX] = {
 		.base		= NULL,
 	},
 	{
+#if (CAN1toCANFD_EN == ON)
 		.base		= CAN1,
 		.baudRate	= 1000000U,
 		.baudRateFD	= 2000000U,
@@ -41,11 +42,15 @@ can_config_t can_config[CAN_CH_MAX] = {
 		.callback	= flexcan_3_callback,
 		.msgRx		= &Can1_rxmsg,
 		.msgTx		= &Can1_txmsg,
+#else
+		.base		= NULL,
+#endif
 	},
 	{
 		.base		= NULL,
 	},
 	{
+#if (CAN3toCAN_EN == ON)
 		.base		= CAN3,
 		.baudRate	= 500000U,
 		.baudRateFD	= (uint32_t)NULL,
@@ -60,6 +65,9 @@ can_config_t can_config[CAN_CH_MAX] = {
 		.callback	= flexcan_3_callback,
 		.msgRx		= &Can3_rxmsg,
 		.msgTx		= &Can3_txmsg,
+#else
+		.base		= NULL,
+#endif
 	}	
 };
 

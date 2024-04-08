@@ -17,6 +17,13 @@ typedef enum {
 	DEBUG_LEVEL3,
 } DEBUG_LEVEL_t;
 
+#define	CAN3toCAN_EN	ON
+#define	CAN1toCANFD_EN	OFF
+
+#if ((CAN3toCAN_EN == OFF) && (CAN1toCANFD_EN == OFF))
+#error CAN function more than one channel must be activated
+#endif
+
 #if (DEBUG_SYS == ON)
 #define	SYSINFO_PRINTF		PRINTF
 #else

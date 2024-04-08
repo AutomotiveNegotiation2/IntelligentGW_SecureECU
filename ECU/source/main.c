@@ -18,8 +18,15 @@ static void SystemInfo(void)
 	SYSINFO_PRINTF("***                                                     ***\r\n");
 	SYSINFO_PRINTF("***                                                     ***\r\n");
 	SYSINFO_PRINTF("*** Core Clock = %dHz                            ***\r\n", freq);
-	SYSINFO_PRINTF("*** CPU wakeup source = 0x%x...                          ***\r\n", SRC->SRSR);
+	//SYSINFO_PRINTF("*** CPU wakeup source = 0x%x...                      ***\r\n", SRC->SRSR);
 	SYSINFO_PRINTF("***                                                     ***\r\n");
+#if ((CAN3toCAN_EN == ON) && (CAN1toCANFD_EN == ON))
+	SYSINFO_PRINTF("*** CAN / CANFD NETWORK OPERATION                       ***\r\n");
+#elif (CAN3toCAN_EN == ON) 
+	SYSINFO_PRINTF("*** CAN NETWORK OPERATION                               ***\r\n");
+#elif (CAN1toCANFD_EN == ON)
+	SYSINFO_PRINTF("*** CANFD NETWORK OPERATION                             ***\r\n");
+#endif
 	SYSINFO_PRINTF("***                                                     ***\r\n");
 	SYSINFO_PRINTF("***********************************************************\r\n");
 	SYSINFO_PRINTF("\r\n");

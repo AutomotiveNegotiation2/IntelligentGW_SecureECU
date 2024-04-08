@@ -1,9 +1,21 @@
 #include "Includes.h"
 
+#if ((CAN3toCAN_EN == ON) && (CAN1toCANFD_EN == ON))
 #define	USED_CAN_CHANNEL_NO	2
 
-ilMsgCtrl_t ilMsgCtrl;
 can_inst_t ilCanChannel[USED_CAN_CHANNEL_NO] = {CAN_CH_3, CAN_CH_1};	// {CAN, CANFD}
+#else
+#define	USED_CAN_CHANNEL_NO	1
+
+#if (CAN3toCAN_EN == ON)
+can_inst_t ilCanChannel[USED_CAN_CHANNEL_NO] = {CAN_CH_3};	// {CAN}
+#else
+can_inst_t ilCanChannel[USED_CAN_CHANNEL_NO] = {CAN_CH_1};	// {CANFD}
+#endif
+
+#endif
+
+ilMsgCtrl_t ilMsgCtrl;
 
 #if (DEBUG_CAN == ON)
 void ilMsgTxLog(can_instance_t inst, uint32_t id, uint8_t dlc, uint8_t * data);
