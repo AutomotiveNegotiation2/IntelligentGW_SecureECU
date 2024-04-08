@@ -81,6 +81,8 @@
 #endif
 
 static bool	bEnetTMRING, bEnetLinkUp;
+static bool bUdpTest = FALSE;
+
 long EnetLinkUpCnt;
 #if BOARD_NETWORK_USE_1G_ENET_PORT
 static bool	bEnet1GLinkUp;
@@ -168,6 +170,7 @@ void RUN_ENET_100M_UP_ACC_ON(void)
 			KillSoftTimer(STIMER_ENET_100M);
 			KillSoftTimer(STIMER_ENET_100M_LINKUP);
 			KillSoftTimer(STIMER_ENET_100M_TCP_TEST);
+			KillSoftTimer(STIMER_ENET_100M_UDP_TEST);
 #if BOARD_NETWORK_USE_1G_ENET_PORT
 			KillSoftTimer(STIMER_ENET_1G_LINKUP);
 			KillSoftTimer(STIMER_ENET_1G_TCP_TEST);
@@ -237,6 +240,20 @@ void RUN_ENET_100M_UP_ACC_ON(void)
 #endif
 			bEnetLinkUp = FALSE;
 			EnetLinkUpCnt = 0;
+
+#if defined (APP_PING)
+			ping_init(&netif_gw);
+#elif defined (APP_UDP)
+			create_udp_socket();
+			bUdpTest = FALSE;
+			//SetSoftTimer(STIMER_ENET_100M_UDP_TEST, 1000, Enet_UdpCallback);
+#elif defined (APP_TCP)
+			tcp_client_init();
+			//SetSoftTimer(STIMER_ENET_100M_TCP_TEST, 10000, Enet_TcpCallback);
+#else
+
+#endif
+			
 			SetSoftTimer(STIMER_ENET_100M_LINKUP, 10, Enet_WaitLinkUp);
 #if BOARD_NETWORK_USE_1G_ENET_PORT
 			//bEnet1GLinkUp = FALSE;
@@ -340,6 +357,8 @@ void Enet_WaitLinkUp(void)
 	{
 		if (++EnetLinkUpCnt > 500)
 		{
+			KillSoftTimer(STIMER_ENET_100M_UDP_TEST);
+			bUdpTest = FALSE;
 			ENETINFO_PRINTF("PHY[100M] Auto-negotiation failed. Please check the cable connection and link partner setting.\r\n");
 			EnetLinkUpCnt = 0;
 		}
@@ -347,17 +366,12 @@ void Enet_WaitLinkUp(void)
 	else
 	{
 		bEnetLinkUp = TRUE;
-#if defined (APP_PING)
-		ping_init(&netif_gw);
-#elif defined (APP_UDP)
-		create_udp_socket();
-		SetSoftTimer(STIMER_ENET_100M_UDP_TEST, 1000, Enet_UdpCallback);
-#elif defined (APP_TCP)
-		tcp_client_init();
-		SetSoftTimer(STIMER_ENET_100M_TCP_TEST, 10000, Enet_TcpCallback);
-#else
 
-#endif
+		if (bUdpTest == FALSE)
+		{
+			SetSoftTimer(STIMER_ENET_100M_UDP_TEST, 1000, Enet_UdpCallback);
+			bUdpTest = TRUE;
+		}
 
 #if BOARD_NETWORK_USE_1G_ENET_PORT
 		Enet1G_IPADDR_Config();
@@ -379,7 +393,8 @@ void Enet_WaitLinkUp(void)
 	           ((u8_t *)&netif_gw)[2], ((u8_t *)&netif_gw)[3]);
 	    PRINTF("************************************************\r\n");
 #endif
-		KillSoftTimer(STIMER_ENET_100M_LINKUP);
+
+		//KillSoftTimer(STIMER_ENET_100M_LINKUP);
 	}
 }
 
