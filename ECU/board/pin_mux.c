@@ -201,7 +201,7 @@ BOARD_InitEnetPins:
   - {pin_num: D6, peripheral: ENET, signal: 'enet_rdata, 01', pin_signal: GPIO_DISP_B2_07}
   - {pin_num: B5, peripheral: ENET, signal: enet_rx_en, pin_signal: GPIO_DISP_B2_08}
   - {pin_num: D8, peripheral: ENET, signal: enet_rx_er, pin_signal: GPIO_DISP_B2_09}
-  - {pin_num: K13, peripheral: GPIO9, signal: 'gpio_io, 19', pin_signal: GPIO_AD_20, direction: OUTPUT, pull_up_down_config: Pull_Up}
+  - {pin_num: K13, peripheral: GPIO9, signal: 'gpio_io, 19', pin_signal: GPIO_AD_20, direction: OUTPUT}
  * BE CAREFUL MODIFYING THIS COMMENT - IT IS YAML SETTINGS FOR TOOLS ***********
  */
 
@@ -263,15 +263,6 @@ void BOARD_InitEnetPins(void) {
     (~(IOMUXC_GPR_GPR4_ENET_REF_CLK_DIR_MASK))) /* Mask bits to zero which are setting */
       | IOMUXC_GPR_GPR4_ENET_REF_CLK_DIR(0x01U) /* ENET_REF_CLK direction control: 0x01U */
     );
-  IOMUXC_SetPinConfig(
-      IOMUXC_GPIO_AD_20_GPIO9_IO19,           /* GPIO_AD_20 PAD functional properties : */
-      0x0EU);                                 /* Slew Rate Field: Slow Slew Rate
-                                                 Drive Strength Field: high drive strength
-                                                 Pull / Keep Select Field: Pull Enable
-                                                 Pull Up / Down Config. Field: Weak pull up
-                                                 Open Drain Field: Disabled
-                                                 Domain write protection: Both cores are allowed
-                                                 Domain write protection lock: Neither of DWP bits is locked */
   IOMUXC_SetPinConfig(
       IOMUXC_GPIO_DISP_B2_05_ENET_REF_CLK,    /* GPIO_DISP_B2_05 PAD functional properties : */
       0x03U);                                 /* Slew Rate Field: Fast Slew Rate

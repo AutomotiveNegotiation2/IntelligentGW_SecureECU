@@ -84,6 +84,12 @@ void sys_check_core_locking(void);
 #define MEM_ALIGNMENT 4
 #endif
 
+#if 0
+#ifndef MEMP_MEM_MALLOC
+#define	MEMP_MEM_MALLOC	1
+#endif
+#endif
+
 /**
  * MEM_SIZE: the size of the heap memory. If the application will send
  * a lot of data that needs to be copied, this should be set high.
@@ -184,7 +190,12 @@ void sys_check_core_locking(void);
 #ifndef LWIP_ICMP
 #define LWIP_ICMP 1
 #endif
-
+#if 0
+/* ---------- IGMP options ---------- */
+#ifndef LWIP_IGMP
+#define LWIP_IGMP 1
+#endif
+#endif
 /* ---------- RAW options ---------- */
 #if !defined LWIP_RAW
 #define LWIP_RAW 1

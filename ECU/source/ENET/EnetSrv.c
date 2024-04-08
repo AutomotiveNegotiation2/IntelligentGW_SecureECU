@@ -3,6 +3,13 @@
 
 #include "Includes.h"
 
+#include "udpClientRAW.h"
+#include "tcpClientRAW.h"
+
+//#define	APP_PING
+//#define	APP_UDP
+#define	APP_TCP
+
 #define	ENET_100M_RESET_ENABLE	GPIO_WritePinOutput(BOARD_INITENETPINS_ENET_RST_GPIO, BOARD_INITENETPINS_ENET_RST_GPIO_PIN, 0);
 #define	ENET_100M_RESET_DISABLE	GPIO_WritePinOutput(BOARD_INITENETPINS_ENET_RST_GPIO, BOARD_INITENETPINS_ENET_RST_GPIO_PIN, 1);
 
@@ -47,7 +54,7 @@
 #define configGW_ADDR2 0
 #endif
 #ifndef configGW_ADDR3
-#define configGW_ADDR3 100
+#define configGW_ADDR3 254
 #endif
 
 static bool	bEnetTMRING, bEnetLinkUp;
@@ -59,6 +66,25 @@ void RUN_ENET_100M_ACC_ON(void);
 void SetEnetSEQ(void);
 void Enet_IPADDR_Config(void);
 void Enet_WaitLinkUp(void);
+
+#if defined (APP_UDP)
+void Enet_UdpCallback(void)
+{
+	HAL_TIM_PeriodUdpElapsedCallback();
+	SYSINFO_PRINTF("UDP Callback is called.\r\n", __func__);
+}
+#endif
+
+#if defined (APP_TCP)
+bool TcpSendEnable = FALSE;
+void Enet_TcpCallback(void)
+{
+	HAL_TIM_PeriodTcpElapsedCallback();
+	SYSINFO_PRINTF("TCP Callback is called.\r\n");
+	KillSoftTimer(STIMER_ENET_100M_TCP_TEST);
+	SetSoftTimer(STIMER_ENET_100M_TCP_TEST, 1000, Enet_TcpCallback);
+}
+#endif
 
 void EnetSrv(void)
 {
@@ -98,6 +124,7 @@ void RUN_ENET_100M_UP_ACC_ON(void)
 		case LO_SEQ_START:
 			KillSoftTimer(STIMER_ENET_100M);
 			KillSoftTimer(STIMER_ENET_100M_LINKUP);
+			KillSoftTimer(STIMER_ENET_100M_UDP_TEST);
 			bEnetTMRING = OFF;
 			BOARD_InitModuleClock();
 			IOMUXC_SelectENETClock();
@@ -151,7 +178,7 @@ void RUN_ENET_100M_UP_ACC_ON(void)
 		default:
 			GlobalPocSeq.LSeq.B.SEQ_ENET_100M = LO_SEQ_START;
 			// error
-			SYSINFO_PRINTF("[%s] ENET_100M Sequence Error\n", __func__);
+			SYSINFO_PRINTF("[%s] ENET_100M Sequence Error\r\n", __func__);
 			break;
 	}
 }
@@ -224,7 +251,18 @@ void Enet_WaitLinkUp(void)
 	else
 	{
 		bEnetLinkUp = TRUE;
+#if defined (APP_PING)
 		ping_init(&netif_gw);
+#elif defined (APP_UDP)
+		create_udp_socket();
+		SetSoftTimer(STIMER_ENET_100M_UDP_TEST, 1000, Enet_UdpCallback);
+#elif defined (APP_TCP)
+		tcp_client_init();
+		SetSoftTimer(STIMER_ENET_100M_TCP_TEST, 10000, Enet_TcpCallback);
+		//tcpecho_raw_init();
+#else
+
+#endif
 
 #if 0
 		PRINTF("\r\n************************************************\r\n");

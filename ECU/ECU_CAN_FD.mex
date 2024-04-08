@@ -220,7 +220,6 @@
                   <pin peripheral="GPIO9" signal="gpio_io, 19" pin_num="K13" pin_signal="GPIO_AD_20">
                      <pin_features>
                         <pin_feature name="direction" value="OUTPUT"/>
-                        <pin_feature name="pull_up_down_config" value="Pull_Up"/>
                      </pin_features>
                   </pin>
                </pins>
