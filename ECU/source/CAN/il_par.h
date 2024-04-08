@@ -143,6 +143,10 @@ uint8_t IlGetRxECU1_ClockDaySig(void);
 uint8_t IlGetRxECU1_ClockHourSig(void);
 uint8_t IlGetRxECU1_ClockMinuteSig(void);
 uint8_t IlGetRxECU1_ClockSecondSig(void);
+bool IlGetECU1_SystemPowerModeValiditySig(void);
+void IlSetECU1_SystemPowerModeValiditySig(uint8_t * msgdata);
+uint8_t IlGetECU1_SystemPowerModeSig(void);
+void IlSetECU1_SystemPowerModeSig(uint8_t * msgdata);
 
 uint8_t IlGetECU2_VehicleToVehicleWarningDirectionSig(void);
 void IlSetECU2_VehicleToVehicleWarningDirectionSig(uint8_t * msgdata);

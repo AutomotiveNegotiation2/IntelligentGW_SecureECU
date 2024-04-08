@@ -81,7 +81,7 @@ uint32_t CanTxId1[CAN1_NO_OF_TX_OBJECT] =
 
 uint8_t CanTxDLC1[CAN1_NO_OF_TX_OBJECT] =
 {
-	6,
+	7,
 	1,
 	8,
 	8,
@@ -311,8 +311,7 @@ uint8_t CanTxAttr2[CAN3_NO_OF_TX_OBJECT] =
 
 uint16_t CanTxAttrTime2[CAN3_NO_OF_TX_OBJECT] =
 {
-	50,
-	//500,
+	100,
 	0,
 	0,
 	100,
@@ -409,7 +408,7 @@ uint32_t CanRxId2[CAN3_NO_OF_RX_OBJECT] =
 
 uint8_t CanRxDLC2[CAN3_NO_OF_RX_OBJECT] =
 {
-	 5,
+	 7,
 	 3,
 	 1,
 	 3,

@@ -4,6 +4,17 @@
 #define	CAN_TASK_10MS_TIME			10
 #define	QUEUE_CAN_RX_BUFFER_SIZE	128
 
+#if (DEBUG_CAN == ON)
+#define	CANAPP_DEBUG 	OFF
+#endif
+
+#if (CANAPP_DEBUG == ON)
+#define	CANAPPINFO_PRINTF	PRINTF
+#else 
+#define	CANAPPINFO_PRINTF
+#endif
+
+
 can_timer_t CanTimer;
 
 static QUEUE CanRx2MsgQueue;
@@ -98,7 +109,7 @@ static void RUN_CAN_UP_ACC_ON(void)
 		case LO_SEQ_01:
 			if (CanPowerIsEnabled() != TRUE)
 			{
-				SYSINFO_PRINTF("[%s] Wait until PWR_STS_PERI_PWR_5V_3P3V is enabled ...\r\n", __func__);
+				CANINFO_PRINTF("[%s] Wait until PWR_STS_PERI_PWR_5V_3P3V is enabled ...\r\n", __func__);
 				return;
 			}
 			
@@ -137,7 +148,7 @@ static void RUN_CAN_UP_ACC_ON(void)
 		default:
 			GlobalPocSeq.LSeq.B.SEQ_CAN = LO_SEQ_START;
 			// error
-			SYSINFO_PRINTF("[%s] CAN Sequence Error\n", __func__);
+			CANINFO_PRINTF("[%s] CAN Sequence Error\n", __func__);
 			break;
 	}
 }
@@ -164,7 +175,7 @@ static void RUN_CAN_DN_ACC_OFF(void)
 		default:
 			GlobalPocSeq.LSeq.B.SEQ_CAN = LO_SEQ_START;
 			// error
-			SYSINFO_PRINTF("[%s] CAN Sequence Error\n", __func__);
+			CANINFO_PRINTF("[%s] CAN Sequence Error\n", __func__);
 			break;
 	}
 }
@@ -175,7 +186,7 @@ static void CAN_ACC_ON_Init(can_inst_t instance)
 
 	if ((instance != CAN_CH_3) && (instance != CAN_CH_1))
 	{
-		SYSINFO_PRINTF("[%s] CAN Instance Error ...\r\n", __func__);
+		CANINFO_PRINTF("[%s] CAN Instance Error ...\r\n", __func__);
 		assert(0);
 	}
 
@@ -211,12 +222,12 @@ static void CanTransOperationMode(can_inst_t instance, can_trans_opmode_t opmode
 	{
 		case CAN_TRANS_OPMODE_STANDBY:
 			ctrl->Standby();
-			SYSINFO_PRINTF("[%s] CAN_%d_TRANS_OPMODE_STANDBY Operation ...\r\n", __func__, instance);
+			CANINFO_PRINTF("[%s] CAN_%d_TRANS_OPMODE_STANDBY Operation ...\r\n", __func__, instance);
 			break;
 
 		case CAN_TRANS_OPMODE_NORMAL:
 			ctrl->Normal();
-			SYSINFO_PRINTF("[%s] CAN_%d_TRANS_OPMODE_NORMAL Operation ...\r\n", __func__, instance);
+			CANINFO_PRINTF("[%s] CAN_%d_TRANS_OPMODE_NORMAL Operation ...\r\n", __func__, instance);
 			break;
 
 		default:
@@ -242,12 +253,12 @@ void QueuePushCanDataforRx2(uint8_t inst, uint32_t id, uint8_t dlc, uint8_t * da
 	memcpy(msgbuf.data, data, dlc);
 
 #if 0
-	SYSINFO_PRINTF("\r\n[PUSH] CAN_CH=%d ID=0x%x, DLC=%d DATA=", msgbuf.inst, msgbuf.id, msgbuf.dlc);
+	CANINFO_PRINTF("\r\n[PUSH] CAN_CH=%d ID=0x%x, DLC=%d DATA=", msgbuf.inst, msgbuf.id, msgbuf.dlc);
 	for (uint8_t i=0; i<msgbuf.dlc; i++)
 	{
-		SYSINFO_PRINTF("0x%x ", msgbuf.data[i]);
+		CANINFO_PRINTF("0x%x ", msgbuf.data[i]);
 	}
-	SYSINFO_PRINTF("\r\n");
+	CANINFO_PRINTF("\r\n");
 #endif
 
 	Queue_PushBuffer(&CanRx2MsgQueue, (void *)&msgbuf);
@@ -257,15 +268,25 @@ void QueuePushCanDataforRx2(uint8_t inst, uint32_t id, uint8_t dlc, uint8_t * da
 void QueuePopCanDataforRx2(void)
 {
 	queue_can_rx_buf_t msgbuf;
+	char buf[10]={0, };
 	
 	if (Queue_PopBuffer(&CanRx2MsgQueue, (void *)&msgbuf) == QUEUE_BUFFER_STS_DONE)
 	{
-		SYSINFO_PRINTF("[POP] CAN_CH=%d ID=0x%x, DLC=%d DATA=", msgbuf.inst, msgbuf.id, msgbuf.dlc);
+		if (msgbuf.inst == CAN_CH_3)
+		{
+			sprintf(buf, "CAN");
+		}
+		else if (msgbuf.inst == CAN_CH_1)
+		{
+			sprintf(buf, "CANFD");
+		}
+
+		CANINFO_PRINTF("[RX] %05s ID=0x%X, DLC=%d DATA=", buf, msgbuf.id, msgbuf.dlc);
 		for (uint8_t i=0; i<msgbuf.dlc; i++)
 		{
-			SYSINFO_PRINTF("0x%x ", msgbuf.data[i]);
+			CANINFO_PRINTF("0x%x ", msgbuf.data[i]);
 		}
-		SYSINFO_PRINTF("\r\n");
+		CANINFO_PRINTF("\r\n");
 	}
 }
 
@@ -312,9 +333,7 @@ void ApplRxECU1_VehicleToVehicleWarningDirectionSigIndication(void)
 
 	temp = IlGetRxECU1_VehicleToVehicleWarningDirectionSig();
 
-#if 1
-	SYSINFO_PRINTF("[ROUTED V2V Warning] VehicleToVehicleWarningDirectionSig = 0x%x\r\n", temp);
-#endif
+	CANAPPINFO_PRINTF("[ROUTED V2V Warning] VehicleToVehicleWarningDirectionSig = 0x%x\r\n", temp);
 }
 
 void ApplRxECU1_VehicleToVehicleWarningIndicationRequestSigIndication(void)
@@ -323,9 +342,7 @@ void ApplRxECU1_VehicleToVehicleWarningIndicationRequestSigIndication(void)
 	
 	temp = IlGetRxECU1_VehicleToVehicleWarningIndicationRequestSig();	
 
-#if 1
-	SYSINFO_PRINTF("[ROUTED V2V Warning] VehicleToVehicleWarningIndicationRequestSig = 0x%x\r\n", temp);
-#endif
+	CANAPPINFO_PRINTF("[ROUTED V2V Warning] VehicleToVehicleWarningIndicationRequestSig = 0x%x\r\n", temp);
 }
 
 void ApplRxECU1_PedestrianFriendlyAlertSoundGenerationEnableSigIndication(void)
@@ -334,9 +351,7 @@ void ApplRxECU1_PedestrianFriendlyAlertSoundGenerationEnableSigIndication(void)
 	
 	temp = IlGetRxECU1_PedestrianFriendlyAlertSoundGenerationEnableSig();
 	
-#if 1
-	SYSINFO_PRINTF("[ROUTED Pedestrain Friendly Alert Status] PedestrianFriendlyAlertSoundGenerationEnableSig = 0x%x\r\n", temp);
-#endif
+	CANAPPINFO_PRINTF("[ROUTED Pedestrain Friendly Alert Status] PedestrianFriendlyAlertSoundGenerationEnableSig = 0x%x\r\n", temp);
 }
 
 void ApplRxECU1_PedestrianFriendlyAlertForwardSoundSigIndication(void)
@@ -345,9 +360,7 @@ void ApplRxECU1_PedestrianFriendlyAlertForwardSoundSigIndication(void)
 	
 	temp = IlGetRxECU1_PedestrianFriendlyAlertForwardSoundSig();
 	
-#if 1
-	SYSINFO_PRINTF("[ROUTED Pedestrain Friendly Alert Status] PedestrianFriendlyAlertForwardSoundSig = 0x%x\r\n", temp);
-#endif
+	CANAPPINFO_PRINTF("[ROUTED Pedestrain Friendly Alert Status] PedestrianFriendlyAlertForwardSoundSig = 0x%x\r\n", temp);
 }
 
 void ApplRxECU1_PedestrianFriendlyAlertReverseSoundSigIndication(void)
@@ -356,9 +369,7 @@ void ApplRxECU1_PedestrianFriendlyAlertReverseSoundSigIndication(void)
 	
 	temp = IlGetRxECU1_PedestrianFriendlyAlertReverseSoundSig();
 	
-#if 1
-	SYSINFO_PRINTF("[ROUTED Pedestrain Friendly Alert Status] PedestrianFriendlyAlertReverseSoundSig = 0x%x\r\n", temp);
-#endif
+	CANAPPINFO_PRINTF("[ROUTED Pedestrain Friendly Alert Status] PedestrianFriendlyAlertReverseSoundSig = 0x%x\r\n", temp);
 }
 
 void ApplRxECU1_PedestrianFriendlyAlertCrossoverSpeedSigIndication(void)
@@ -367,9 +378,7 @@ void ApplRxECU1_PedestrianFriendlyAlertCrossoverSpeedSigIndication(void)
 		
 	temp = IlGetRxECU1_PedestrianFriendlyAlertCrossoverSpeedSig();
 		
-#if 1
-	SYSINFO_PRINTF("[ROUTED Pedestrain Friendly Alert Status] PedestrianFriendlyAlertCrossoverSpeedSig = 0x%x\r\n", temp);
-#endif
+	CANAPPINFO_PRINTF("[ROUTED Pedestrain Friendly Alert Status] PedestrianFriendlyAlertCrossoverSpeedSig = 0x%x\r\n", temp);
 }
 
 void ApplRxECU1_PedestrianFriendlyAlertSystemStatusSigIndication()
@@ -378,9 +387,7 @@ void ApplRxECU1_PedestrianFriendlyAlertSystemStatusSigIndication()
 		
 	temp = IlGetRxECU1_PedestrianFriendlyAlertSystemStatusSig();
 		
-#if 1
-	SYSINFO_PRINTF("[ROUTED Pedestrain Friendly Alert Status] PedestrianFriendlyAlertSystemStatusSig = 0x%x\r\n", temp);
-#endif
+	CANAPPINFO_PRINTF("[ROUTED Pedestrain Friendly Alert Status] PedestrianFriendlyAlertSystemStatusSig = 0x%x\r\n", temp);
 }
 
 void ApplRxECU1_DrowsinessLevelSigIndication(void)
@@ -389,9 +396,7 @@ void ApplRxECU1_DrowsinessLevelSigIndication(void)
 		
 	temp = IlGetRxECU1_DrowsinessLevelSig();
 		
-#if 1
-	SYSINFO_PRINTF("[ROUTED Drive Status] DrowsinessLevelSig = 0x%x\r\n", temp);
-#endif
+	CANAPPINFO_PRINTF("[ROUTED Drive Status] DrowsinessLevelSig = 0x%x\r\n", temp);
 }
 
 void ApplRxECU1_DistractionLevelSigIndication(void)
@@ -400,9 +405,7 @@ void ApplRxECU1_DistractionLevelSigIndication(void)
 		
 	temp = IlGetRxECU1_DistractionLevelSig();
 		
-#if 1
-	SYSINFO_PRINTF("[ROUTED Drive Status] DistractionLevelSig = 0x%x\r\n", temp);
-#endif
+	CANAPPINFO_PRINTF("[ROUTED Drive Status] DistractionLevelSig = 0x%x\r\n", temp);
 }
 
 void ApplRxECU1_HandsOnLevelSigIndication(void)
@@ -411,9 +414,7 @@ void ApplRxECU1_HandsOnLevelSigIndication(void)
 		
 	temp = IlGetRxECU1_HandsOnLevelSig();
 		
-#if 1
-	SYSINFO_PRINTF("[ROUTED Drive Status] HandsOnLevelSig = 0x%x\r\n", temp);
-#endif
+	CANAPPINFO_PRINTF("[ROUTED Drive Status] HandsOnLevelSig = 0x%x\r\n", temp);
 }
 
 void ApplRxECU1_ClockYearSigIndication(void)
@@ -422,9 +423,7 @@ void ApplRxECU1_ClockYearSigIndication(void)
 		
 	temp = IlGetRxECU1_ClockYearSig();
 		
-#if 1
-	SYSINFO_PRINTF("[ROUTED Clock] ClockYearSig = 0x%x\r\n", temp);
-#endif
+	CANAPPINFO_PRINTF("[ROUTED Clock] ClockYearSig = 0x%x\r\n", temp);
 }
 
 void ApplRxECU1_ClockMonthSigIndication(void)
@@ -433,9 +432,7 @@ void ApplRxECU1_ClockMonthSigIndication(void)
 		
 	temp = IlGetRxECU1_ClockMonthSig();
 		
-#if 1
-	SYSINFO_PRINTF("[ROUTED Clock] ClockMonthSig = 0x%x\r\n", temp);
-#endif
+	CANAPPINFO_PRINTF("[ROUTED Clock] ClockMonthSig = 0x%x\r\n", temp);
 }
 
 void ApplRxECU1_ClockDaySigIndication(void)
@@ -444,9 +441,7 @@ void ApplRxECU1_ClockDaySigIndication(void)
 		
 	temp = IlGetRxECU1_ClockDaySig();
 		
-#if 1
-	SYSINFO_PRINTF("[ROUTED Clock] ClockDaySig = 0x%x\r\n", temp);
-#endif
+	CANAPPINFO_PRINTF("[ROUTED Clock] ClockDaySig = 0x%x\r\n", temp);
 }
 
 void ApplRxECU1_ClockHourSigIndication()
@@ -455,9 +450,7 @@ void ApplRxECU1_ClockHourSigIndication()
 		
 	temp = IlGetRxECU1_ClockHourSig();
 		
-#if 1
-	SYSINFO_PRINTF("[ROUTED Clock] ClockHourSig = 0x%x\r\n", temp);
-#endif
+	CANAPPINFO_PRINTF("[ROUTED Clock] ClockHourSig = 0x%x\r\n", temp);
 }
 
 void ApplRxECU1_ClockMinuteSigIndication(void)
@@ -466,9 +459,7 @@ void ApplRxECU1_ClockMinuteSigIndication(void)
 		
 	temp = IlGetRxECU1_ClockMinuteSig();
 		
-#if 1
-	SYSINFO_PRINTF("[ROUTED Clock] ClockMInuteSig = 0x%x\r\n", temp);
-#endif
+	CANAPPINFO_PRINTF("[ROUTED Clock] ClockMInuteSig = 0x%x\r\n", temp);
 }
 
 void ApplRxECU1_ClockSecondSigIndication(void)
@@ -477,9 +468,7 @@ void ApplRxECU1_ClockSecondSigIndication(void)
 		
 	temp = IlGetRxECU1_ClockSecondSig();
 		
-#if 1
-	SYSINFO_PRINTF("[ROUTED Clock] ClockSecondSig = 0x%x\r\n", temp);
-#endif
+	CANAPPINFO_PRINTF("[ROUTED Clock] ClockSecondSig = 0x%x\r\n", temp);
 }
 
 void ApplRxECU2_SystemPowerModeValiditySigIndication(void)
@@ -488,9 +477,7 @@ void ApplRxECU2_SystemPowerModeValiditySigIndication(void)
 		
 	temp = (uint8_t)IlGetRxECU2_SystemPowerModeValiditySig();
 		
-#if 1
-	SYSINFO_PRINTF("[ROUTED System Power Mode] SystemPowerModeValiditySig = 0x%x\r\n", temp);
-#endif
+	CANAPPINFO_PRINTF("[ROUTED System Power Mode] SystemPowerModeValiditySig = 0x%x\r\n", temp);
 }
 
 void ApplRxECU2_SystemPowerModeSigIndication(void)
@@ -499,9 +486,7 @@ void ApplRxECU2_SystemPowerModeSigIndication(void)
 		
 	temp = IlGetRxECU2_SystemPowerModeSig();
 		
-#if 1
-	SYSINFO_PRINTF("[ROUTED System Power Mode] SystemPowerModeSig = 0x%x\r\n", temp);
-#endif
+	CANAPPINFO_PRINTF("[ROUTED System Power Mode] SystemPowerModeSig = 0x%x\r\n", temp);
 }
 
 void ApplRxECU2_LeftLaneChangeThreatSigIndication(void)
@@ -510,9 +495,7 @@ void ApplRxECU2_LeftLaneChangeThreatSigIndication(void)
 		
 	temp = (uint8_t) IlGetRxECU2_LeftLaneChangeThreatSig();
 		
-#if 1
-	SYSINFO_PRINTF("[ROUTED Blind_Zone_Alert_Status] LeftLaneChangeThreatSig = 0x%x\r\n", temp);
-#endif
+	CANAPPINFO_PRINTF("[ROUTED Blind_Zone_Alert_Status] LeftLaneChangeThreatSig = 0x%x\r\n", temp);
 }
 
 void ApplRxECU2_SlideBlindZoneAlertTempUnavailableIndiOnSigIndication(void)
@@ -521,9 +504,7 @@ void ApplRxECU2_SlideBlindZoneAlertTempUnavailableIndiOnSigIndication(void)
 		
 	temp = (uint8_t) IlGetRxECU2_SlideBlindZoneAlertTempUnavailableIndiOnSig();
 		
-#if 1
-	SYSINFO_PRINTF("[ROUTED Blind_Zone_Alert_Status] SlideBlindZoneAlertTempUnavailableIndiOnSig = 0x%x\r\n", temp);
-#endif
+	CANAPPINFO_PRINTF("[ROUTED Blind_Zone_Alert_Status] SlideBlindZoneAlertTempUnavailableIndiOnSig = 0x%x\r\n", temp);
 }
 
 void ApplRxECU2_SlideBlindZoneAlertSystemServiceIndiOnSigIndication(void)
@@ -532,9 +513,7 @@ void ApplRxECU2_SlideBlindZoneAlertSystemServiceIndiOnSigIndication(void)
 		
 	temp = (uint8_t) IlGetRxECU2_SlideBlindZoneAlertSystemServiceIndiOnSig();
 		
-#if 1
-	SYSINFO_PRINTF("[ROUTED Blind_Zone_Alert_Status] SlideBlindZoneAlertSystemServiceIndiOnSig = 0x%x\r\n", temp);
-#endif
+	CANAPPINFO_PRINTF("[ROUTED Blind_Zone_Alert_Status] SlideBlindZoneAlertSystemServiceIndiOnSig = 0x%x\r\n", temp);
 }
 
 void ApplRxECU2_SlideBlindZoneAlertSystemOffIndiOnSigIndication(void)
@@ -543,9 +522,7 @@ void ApplRxECU2_SlideBlindZoneAlertSystemOffIndiOnSigIndication(void)
 		
 	temp = (uint8_t) IlGetRxECU2_SlideBlindZoneAlertSystemOffIndiOnSig();
 		
-#if 1
-	SYSINFO_PRINTF("[ROUTED Blind_Zone_Alert_Status] SlideBlindZoneAlertSystemOffIndiOnSig = 0x%x\r\n", temp);
-#endif
+	CANAPPINFO_PRINTF("[ROUTED Blind_Zone_Alert_Status] SlideBlindZoneAlertSystemOffIndiOnSig = 0x%x\r\n", temp);
 }
 
 void ApplRxECU2_SlideBlindZoneAlertSystemCleanIndiOnSigIndication(void)
@@ -554,9 +531,7 @@ void ApplRxECU2_SlideBlindZoneAlertSystemCleanIndiOnSigIndication(void)
 		
 	temp = (uint8_t) IlGetRxECU2_SlideBlindZoneAlertSystemCleanIndiOnSig();
 		
-#if 1
-	SYSINFO_PRINTF("[ROUTED Blind_Zone_Alert_Status] SlideBlindZoneAlertSystemCleanIndiOnSig = 0x%x\r\n", temp);
-#endif
+	CANAPPINFO_PRINTF("[ROUTED Blind_Zone_Alert_Status] SlideBlindZoneAlertSystemCleanIndiOnSig = 0x%x\r\n", temp);
 }
 
 void ApplRxECU2_LeftLaneChangeApproachSpeedSigIndication(void)
@@ -565,9 +540,7 @@ void ApplRxECU2_LeftLaneChangeApproachSpeedSigIndication(void)
 		
 	temp = IlGetRxECU2_LeftLaneChangeApproachSpeedSig();
 		
-#if 1
-	SYSINFO_PRINTF("[ROUTED Blind_Zone_Alert_Status] LeftLaneChangeApproachSpeedSig = 0x%x\r\n", temp);
-#endif
+	CANAPPINFO_PRINTF("[ROUTED Blind_Zone_Alert_Status] LeftLaneChangeApproachSpeedSig = 0x%x\r\n", temp);
 }
 
 void ApplRxECU2_DrowsinessLevelSigIndication(void)
@@ -576,9 +549,7 @@ void ApplRxECU2_DrowsinessLevelSigIndication(void)
 		
 	temp = IlGetRxECU2_DrowsinessLevelSig();
 		
-#if 1
-	SYSINFO_PRINTF("[ROUTED Drive Status] DrowsinessLevelSig = 0x%x\r\n", temp);
-#endif
+	CANAPPINFO_PRINTF("[ROUTED Drive Status] DrowsinessLevelSig = 0x%x\r\n", temp);
 }
 
 void ApplRxECU2_DistractionLevelSigIndication(void)
@@ -587,9 +558,7 @@ void ApplRxECU2_DistractionLevelSigIndication(void)
 		
 	temp = IlGetRxECU2_DistractionLevelSig();
 		
-#if 1
-	SYSINFO_PRINTF("[ROUTED Drive Status] DistractionLevelSig = 0x%x\r\n", temp);
-#endif
+	CANAPPINFO_PRINTF("[ROUTED Drive Status] DistractionLevelSig = 0x%x\r\n", temp);
 }
 
 void ApplRxECU2_HandsOnLevelSigIndication(void)
@@ -598,9 +567,7 @@ void ApplRxECU2_HandsOnLevelSigIndication(void)
 		
 	temp = IlGetRxECU2_HandsOnLevelSig();
 		
-#if 1
-	SYSINFO_PRINTF("[ROUTED Drive Status] HandsOnLevelSig = 0x%x\r\n", temp);
-#endif
+	CANAPPINFO_PRINTF("[ROUTED Drive Status] HandsOnLevelSig = 0x%x\r\n", temp);
 }
 
 void ApplRxECU2_PedestrianFriendlyAlertSoundGenerationEnableSigIndication(void)
@@ -609,9 +576,7 @@ void ApplRxECU2_PedestrianFriendlyAlertSoundGenerationEnableSigIndication(void)
 	
 	temp = IlGetRxECU2_PedestrianFriendlyAlertSoundGenerationEnableSig();
 	
-#if 1
-	SYSINFO_PRINTF("[ROUTED Pedestrain Friendly Alert Status] PedestrianFriendlyAlertSoundGenerationEnableSig = 0x%x\r\n", temp);
-#endif
+	CANAPPINFO_PRINTF("[ROUTED Pedestrain Friendly Alert Status] PedestrianFriendlyAlertSoundGenerationEnableSig = 0x%x\r\n", temp);
 }
 
 void ApplRxECU2_PedestrianFriendlyAlertForwardSoundSigIndication(void)
@@ -620,9 +585,7 @@ void ApplRxECU2_PedestrianFriendlyAlertForwardSoundSigIndication(void)
 	
 	temp = IlGetRxECU2_PedestrianFriendlyAlertForwardSoundSig();
 	
-#if 1
-	SYSINFO_PRINTF("[ROUTED Pedestrain Friendly Alert Status] PedestrianFriendlyAlertForwardSoundSig = 0x%x\r\n", temp);
-#endif
+	CANAPPINFO_PRINTF("[ROUTED Pedestrain Friendly Alert Status] PedestrianFriendlyAlertForwardSoundSig = 0x%x\r\n", temp);
 }
 
 void ApplRxECU2_PedestrianFriendlyAlertReverseSoundSigIndication(void)
@@ -631,9 +594,7 @@ void ApplRxECU2_PedestrianFriendlyAlertReverseSoundSigIndication(void)
 	
 	temp = IlGetRxECU2_PedestrianFriendlyAlertReverseSoundSig();
 	
-#if 1
-	SYSINFO_PRINTF("[ROUTED Pedestrain Friendly Alert Status] PedestrianFriendlyAlertReverseSoundSig = 0x%x\r\n", temp);
-#endif
+	CANAPPINFO_PRINTF("[ROUTED Pedestrain Friendly Alert Status] PedestrianFriendlyAlertReverseSoundSig = 0x%x\r\n", temp);
 }
 
 void ApplRxECU2_PedestrianFriendlyAlertCrossoverSpeedSigIndication(void)
@@ -642,9 +603,7 @@ void ApplRxECU2_PedestrianFriendlyAlertCrossoverSpeedSigIndication(void)
 		
 	temp = IlGetRxECU2_PedestrianFriendlyAlertCrossoverSpeedSig();
 		
-#if 1
-	SYSINFO_PRINTF("[ROUTED Pedestrain Friendly Alert Status] PedestrianFriendlyAlertCrossoverSpeedSig = 0x%x\r\n", temp);
-#endif
+	CANAPPINFO_PRINTF("[ROUTED Pedestrain Friendly Alert Status] PedestrianFriendlyAlertCrossoverSpeedSig = 0x%x\r\n", temp);
 }
 
 void ApplRxECU2_PedestrianFriendlyAlertSystemStatusSigIndication()
@@ -653,9 +612,7 @@ void ApplRxECU2_PedestrianFriendlyAlertSystemStatusSigIndication()
 		
 	temp = IlGetRxECU2_PedestrianFriendlyAlertSystemStatusSig();
 		
-#if 1
-	SYSINFO_PRINTF("[ROUTED Pedestrain Friendly Alert Status] PedestrianFriendlyAlertSystemStatusSig = 0x%x\r\n", temp);
-#endif
+	CANAPPINFO_PRINTF("[ROUTED Pedestrain Friendly Alert Status] PedestrianFriendlyAlertSystemStatusSig = 0x%x\r\n", temp);
 }
 
 void ApplRx1BCS_VehSpdSigIndication(void)
@@ -996,6 +953,30 @@ void ApplTxECU1_Blind_Zone_Alert_Status_TxComfirmation(void)
 	}
 	
 	IlSetECU1_SlideBlindZoneAlertSystemCleanIndiOnSig(&sig);
+}
+
+void ApplTxECU1_SystemPowerMode_TxComfirmation(void)
+{
+	uint8_t sig;
+
+	if (IlGetECU1_SystemPowerModeValiditySig() == INVALID)
+	{
+		sig = VALID;
+		IlSetECU1_SystemPowerModeValiditySig(&sig);
+	}
+
+	sig = IlGetECU1_SystemPowerModeSig();
+
+	if (sig < CRANK_REQUEST)
+	{
+		sig++;
+	}
+	else
+	{
+		sig = KEY_OFF;
+	}
+	
+	IlSetECU1_SystemPowerModeSig(&sig);
 }
 
 void ApplTxECU2_V2V_Warning_TxComfirmation(void)

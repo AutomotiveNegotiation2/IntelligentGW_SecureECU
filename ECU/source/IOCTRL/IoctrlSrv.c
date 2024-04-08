@@ -69,7 +69,7 @@ void RUN_IOCTRL_DN_ACC_OFF(void)
 		default:
 			GlobalPocSeq.LSeq.B.SEQ_IOCTRL = LO_SEQ_START;
 			// error
-			SYSINFO_PRINTF("[%s] IOCTRL Sequence Error\n", __func__);
+			IOCTRLINFO_PRINTF("[%s] IOCTRL Sequence Error\n", __func__);
 			break;
 	}
 }
@@ -85,6 +85,8 @@ void RUN_IOCTRL_UP_ACC_ON(void)
 			break;
 
 		case LO_SEQ_01:
+			InitRTC();
+			
 			GlobalPocSeq.LSeq.B.SEQ_IOCTRL = LO_SEQ_02;
 			break;
 
@@ -101,7 +103,7 @@ void RUN_IOCTRL_UP_ACC_ON(void)
 		default:
 			GlobalPocSeq.LSeq.B.SEQ_IOCTRL = LO_SEQ_START;
 			// error
-			SYSINFO_PRINTF("[%s] IOCTRL Sequence Error\n", __func__);
+			IOCTRLINFO_PRINTF("[%s] IOCTRL Sequence Error\n", __func__);
 			break;
 	}
 }
@@ -162,7 +164,8 @@ void Ioctrl_KeyOp(void)
 	{
 		memset(&keyCtrl, 0, sizeof(key_detect_ctrl_t));
 		//ApplTxECU1_Blind_Zone_Alert_Status_TxComfirmation();	// CAN
-		ApplTxECU2_V2V_Warning_TxComfirmation();	// CANFD
+		//ApplTxECU2_V2V_Warning_TxComfirmation();	// CANFD
+		ApplTxECU1_SystemPowerMode_TxComfirmation();	// CAN
 	}
 	else
 	{

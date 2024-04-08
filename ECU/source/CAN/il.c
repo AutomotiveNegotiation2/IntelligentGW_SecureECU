@@ -5,6 +5,10 @@
 ilMsgCtrl_t ilMsgCtrl;
 can_inst_t ilCanChannel[USED_CAN_CHANNEL_NO] = {CAN_CH_3, CAN_CH_1};	// {CAN, CANFD}
 
+#if (DEBUG_CAN == ON)
+void ilMsgTxLog(can_instance_t inst, uint32_t id, uint8_t dlc, uint8_t * data);
+#endif
+
 void ilTxTask(void)
 {
 	uint8_t i, cnt;
@@ -17,7 +21,7 @@ void ilTxTask(void)
 			config = (can_config_t *) CAN_GetConfigAddr((can_inst_t)ilCanChannel[i]);
 			if (config->base == NULL)
 			{
-				SYSINFO_PRINTF("[%s] CAN Instance Error ...\r\n", __func__);
+				ENETINFO_PRINTF("[%s] CAN Instance Error ...\r\n", __func__);
 				assert(0);
 			}
 
@@ -44,8 +48,35 @@ void ilTxTask(void)
 				}
 			}
 		}
-	}	
+	}
 }
+
+#if (DEBUG_CAN == ON)
+void ilMsgTxLog(can_instance_t inst, uint32_t id, uint8_t dlc, uint8_t * data)
+{
+	uint8_t buf[10]={0,};
+	
+	if (inst == CAN_CH_3)
+	{
+		sprintf(buf, "CAN");
+	}
+	else if (inst == CAN_CH_1)
+	{
+		sprintf(buf, "CANFD");
+	}
+	else
+	{
+		sprintf(buf, "INVAL");
+	}
+
+	CANINFO_PRINTF("[TX] %05s ID=0x%x, DLC=%d DATA=", buf, id, dlc);
+	for (uint8_t i=0; i<dlc; i++)
+	{
+		CANINFO_PRINTF("0x%x ", data[i]);
+	}
+	CANINFO_PRINTF("\r\n");
+}
+#endif
 
 bool ilGetFirstCanOpStatus(void)
 {

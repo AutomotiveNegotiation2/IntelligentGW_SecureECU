@@ -103,7 +103,7 @@ void Enet1G_WaitLinkUp(void);
 void Enet_UdpCallback(void)
 {
 	HAL_TIM_PeriodUdpElapsedCallback();
-	SYSINFO_PRINTF("UDP Callback is called.\r\n", __func__);
+	ENETINFO_PRINTF("UDP Callback is called.\r\n", __func__);
 }
 #endif
 
@@ -112,7 +112,7 @@ bool TcpSendEnable = FALSE;
 void Enet_TcpCallback(void)
 {
 	HAL_TIM_PeriodTcpElapsedCallback();
-	SYSINFO_PRINTF("[ENET100M] TCP Callback is called.\r\n");
+	ENETINFO_PRINTF("[ENET100M] TCP Callback is called.\r\n");
 	KillSoftTimer(STIMER_ENET_100M_TCP_TEST);
 	SetSoftTimer(STIMER_ENET_100M_TCP_TEST, 1000, Enet_TcpCallback);
 }
@@ -121,7 +121,7 @@ void Enet_TcpCallback(void)
 void Enet1G_TcpCallback(void)
 {
 	HAL_TIM_PeriodTcp1GElapsedCallback();
-	SYSINFO_PRINTF("[ENET1G] TCP Callback is called.\r\n");
+	ENETINFO_PRINTF("[ENET1G] TCP Callback is called.\r\n");
 	KillSoftTimer(STIMER_ENET_1G_TCP_TEST);
 	SetSoftTimer(STIMER_ENET_1G_TCP_TEST, 1000, Enet1G_TcpCallback);
 }
@@ -252,7 +252,7 @@ void RUN_ENET_100M_UP_ACC_ON(void)
 		default:
 			GlobalPocSeq.LSeq.B.SEQ_ENET_100M = LO_SEQ_START;
 			// error
-			SYSINFO_PRINTF("[%s] ENET_100M Sequence Error\r\n", __func__);
+			ENETINFO_PRINTF("[%s] ENET_100M Sequence Error\r\n", __func__);
 			break;
 	}
 }
@@ -279,7 +279,7 @@ void RUN_ENET_100M_DN_ACC_OFF(void)
 		default:
 			GlobalPocSeq.LSeq.B.SEQ_ENET_100M = LO_SEQ_START;
 			// error
-			SYSINFO_PRINTF("[%s] ENET_100M Sequence Error\n", __func__);
+			ENETINFO_PRINTF("[%s] ENET_100M Sequence Error\n", __func__);
 			break;
 	}
 }
@@ -340,7 +340,7 @@ void Enet_WaitLinkUp(void)
 	{
 		if (++EnetLinkUpCnt > 500)
 		{
-			PRINTF("PHY[100M] Auto-negotiation failed. Please check the cable connection and link partner setting.\r\n");
+			ENETINFO_PRINTF("PHY[100M] Auto-negotiation failed. Please check the cable connection and link partner setting.\r\n");
 			EnetLinkUpCnt = 0;
 		}
 	}
@@ -393,7 +393,7 @@ void Enet1G_WaitLinkUp(void)
 	{
 		if (++Enet1GLinkUpCnt > 500)
 		{
-			PRINTF("PHY[1G] Auto-negotiation failed. Please check the cable connection and link partner setting.\r\n");
+			ENETINFO_PRINTF("PHY[1G] Auto-negotiation failed. Please check the cable connection and link partner setting.\r\n");
 			Enet1GLinkUpCnt = 0;
 		}
 	}

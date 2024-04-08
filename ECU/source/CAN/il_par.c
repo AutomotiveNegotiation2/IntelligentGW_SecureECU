@@ -32,7 +32,7 @@ void ilMsg_Register_Callback_Fn(can_inst_t instance, uint32_t id)
 
 	if (i >= config->msgTx->NoOfMsg)
 	{
-		SYSINFO_PRINTF("[%s] CAN ID[0x%X] is not matched.\n", __func__, id);
+		ENETINFO_PRINTF("[%s] CAN ID[0x%X] is not matched.\n", __func__, id);
 		assert(0);
 	}
 	
@@ -434,9 +434,10 @@ uint8_t IlGetECU2_Clock_YearSig(void)
 	return ECU2_Clock_Tx0.Clock.Year;
 }
 
-void IlSetECU2_Clock_YearSig(uint8_t * msgdata)
+void IlSetECU2_Clock_YearSig(uint16_t * msgdata)
 {
-	ECU2_Clock_Tx0.Clock.Year = msgdata[0];
+	//ECU2_Clock_Tx0.Clock.Year = msgdata[0];
+	ECU2_Clock_Tx0.Clock.Year = *msgdata;
 
 	// CANFD Transmit ON
 	if (ilGetFirstCanOpStatus() != ON)
@@ -516,7 +517,7 @@ void IlSetECU2_Clock_SecondSig(uint8_t * msgdata)
 static void ilMsgECU2_Clock_Tx_Send(void)
 {
 	uint8_t data;
-	
+#if 0
 	// for initial value
 	data = 0x23;
 	IlSetECU2_Clock_YearSig(&data);
@@ -531,6 +532,26 @@ static void ilMsgECU2_Clock_Tx_Send(void)
 	IlSetECU2_Clock_MinuteSig(&data);
 	data = 0x38;
 	IlSetECU2_Clock_SecondSig(&data);
+#else
+	snvs_hp_rtc_datetime_t rtcDate;
+
+	/* Get date time */
+	SNVS_HP_RTC_GetDatetime(SNVS, &rtcDate);
+
+	data = rtcDate.year;
+	IlSetECU2_Clock_YearSig(&rtcDate.year);
+	data = rtcDate.month;
+	IlSetECU2_Clock_MonthSig(&rtcDate.month);
+	data = rtcDate.day;
+	IlSetECU2_Clock_DaySig(&rtcDate.day);
+
+	data = rtcDate.hour;
+	IlSetECU2_Clock_HourSig(&rtcDate.hour);
+	data = rtcDate.minute;
+	IlSetECU2_Clock_MinuteSig(&rtcDate.minute);
+	data = rtcDate.second;
+	IlSetECU2_Clock_SecondSig(&rtcDate.second);
+#endif
 
 	if (ilGetFirstCanOpStatus() != ON)
 		CAN_SetTxFlagForMsgUpdate(CAN_CH_1, Can1_txmsg.id[0]);
@@ -749,10 +770,10 @@ static void ilMsgECU1_System_Power_Mode_Tx_Send(void)
 	uint8_t data;
 	
 	// for initial value
-	data = 1;
+	data = IlGetECU1_SystemPowerModeValiditySig();
 	IlSetECU1_SystemPowerModeValiditySig(&data);
 
-	data = 0x00;
+	data = IlGetECU1_SystemPowerModeSig();
 	IlSetECU1_SystemPowerModeSig(&data);
 
 	if (ilGetFirstCanOpStatus() != ON)

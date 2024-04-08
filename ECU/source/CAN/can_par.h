@@ -165,7 +165,7 @@ typedef union _c_Drive_Status_bufTag
 
 typedef struct _c_Clock_msgTypeTag
 {
-	uint8_t Year	: 8;
+	uint16_t Year	: 16;
 	uint8_t Month	: 8;
 	uint8_t Day		: 8;
 	uint8_t Hour	: 8;
@@ -175,7 +175,7 @@ typedef struct _c_Clock_msgTypeTag
 
 typedef union _c_Clock_bufTag
 {
-	uint8_t _c[3];
+	uint8_t _c[7];
 	_c_Clock_msgType Clock;
 } _c_Clock_buf;
 

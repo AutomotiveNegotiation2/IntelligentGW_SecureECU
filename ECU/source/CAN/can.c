@@ -162,7 +162,7 @@ static void FLEXCAN_ConfigRxMsg(can_config_t * config)
 
 	if (config == NULL)
 	{
-		SYSINFO_PRINTF("[%s] register memory is not assigned normally ...\r\n", __func__);
+		CANINFO_PRINTF("[%s] register memory is not assigned normally ...\r\n", __func__);
 		assert(0);
 	}
 
@@ -185,7 +185,7 @@ static void FLEXCAN_ConfigTxMsg(can_config_t * config)
 
 	if (config == NULL)
 	{
-		SYSINFO_PRINTF("[%s] register memory is not assigned normally ...\r\n", __func__);
+		CANINFO_PRINTF("[%s] register memory is not assigned normally ...\r\n", __func__);
 		assert(0);
 	}
 
@@ -213,7 +213,7 @@ static void FLEXCAN_CalculateClock(can_config_t * config, flexcan_config_t * fle
 	    }
 	    else
 	    {
-	        SYSINFO_PRINTF("No found Improved Timing Configuration. Just used default configuration\r\n\r\n");
+	        CANINFO_PRINTF("No found Improved Timing Configuration. Just used default configuration\r\n\r\n");
 	    }
 	}
 	else
@@ -225,7 +225,7 @@ static void FLEXCAN_CalculateClock(can_config_t * config, flexcan_config_t * fle
 	    }
 	    else
 	    {
-	        SYSINFO_PRINTF("No found Improved Timing Configuration. Just used default configuration\r\n\r\n");
+	        CANINFO_PRINTF("No found Improved Timing Configuration. Just used default configuration\r\n\r\n");
 	    }
 	}
 #endif
@@ -248,7 +248,7 @@ int32_t CAN_Transmit(can_inst_t instance, uint32_t id)
 
 	if (i >= config->msgTx->NoOfMsg)
 	{
-		SYSINFO_PRINTF("[%s] CAN ID[0x%X] is not matched.\n", __func__, id);
+		CANINFO_PRINTF("[%s] CAN ID[0x%X] is not matched.\n", __func__, id);
 		assert(0);
 	}
 
@@ -365,7 +365,7 @@ static int32_t CAN_Receive(uint32_t instance, uint32_t buffIdx, flexcan_mb_trans
 	if (i >= config->msgRx->NoOfMsg)
 	{
 		// error
-		//SYSINFO_PRINTF("[%s] mailbox id is over maximum rx message.\r\n", __func__, rxmsg, frame);
+		//CANINFO_PRINTF("[%s] mailbox id is over maximum rx message.\r\n", __func__, rxmsg, frame);
 		assert(0);
 	}
 
@@ -415,7 +415,7 @@ static int32_t CAN_Receive(uint32_t instance, uint32_t buffIdx, flexcan_mb_trans
 	}
 
 #if 0
-	SYSINFO_PRINTF("[%s] length=0x%X, data=0x%X 0x%X 0x%X 0x%X 0x%X 0x%X 0x%X 0x%X\r\n", __func__, 
+	CANINFO_PRINTF("[%s] length=0x%X, data=0x%X 0x%X 0x%X 0x%X 0x%X 0x%X 0x%X 0x%X\r\n", __func__, 
 		frame->length, frame->dataByte0, frame->dataByte1, frame->dataByte2, frame->dataByte3, 
 		frame->dataByte4, frame->dataByte5, frame->dataByte6, frame->dataByte7);
 #endif
@@ -432,7 +432,7 @@ uint32_t CAN_GetConfigAddr(can_inst_t instance)
 {
 	if ((instance != CAN_CH_3) && (instance != CAN_CH_1))
 	{
-		SYSINFO_PRINTF("[%s] CAN Instance Error ...\r\n", __func__);
+		CANINFO_PRINTF("[%s] CAN Instance Error ...\r\n", __func__);
 		assert(0);
 	}
 

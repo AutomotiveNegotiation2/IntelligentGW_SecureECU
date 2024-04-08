@@ -55,7 +55,7 @@ void RUN_APP_DN_ACC_OFF(void)
 		default:
 			GlobalPocSeq.LSeq.B.SEQ_APP = LO_SEQ_START;
 			// error
-			SYSINFO_PRINTF("[%s] APP Sequence Error\n", __func__);
+			APPINFO_PRINTF("[%s] APP Sequence Error\n", __func__);
 			break;
 	}
 }
@@ -82,7 +82,7 @@ void RUN_APP_UP_ACC_ON(void)
 		default:
 			GlobalPocSeq.LSeq.B.SEQ_APP = LO_SEQ_START;
 			// error
-			SYSINFO_PRINTF("[%s] APP Sequence Error\n", __func__);
+			APPINFO_PRINTF("[%s] APP Sequence Error\n", __func__);
 			break;
 	}
 }

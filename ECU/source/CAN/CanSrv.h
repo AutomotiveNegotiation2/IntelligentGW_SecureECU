@@ -4,6 +4,18 @@
 #include "fsl_gpio.h"
 #include "pin_mux.h"
 
+enum {
+	KEY_OFF = 0,
+	ACCESSORY,
+	RUN,
+	CRANK_REQUEST,
+};
+
+enum {
+	INVALID = 0,
+	VALID,
+};
+
 #pragma pack(push, 4)
 
 typedef void (*FuncCanTransCallback)(void);
@@ -59,6 +71,8 @@ void QueuePushCanDataforRx2(uint8_t inst, uint32_t id, uint8_t dlc, uint8_t * da
 void QueuePopCanDataforRx2(void);
 
 void ApplTxECU1_Blind_Zone_Alert_Status_TxComfirmation(void);
+void ApplTxECU1_SystemPowerMode_TxComfirmation(void);
+
 void ApplTxECU2_V2V_Warning_TxComfirmation(void);
 
 #endif /* _CANSRV_H_ */

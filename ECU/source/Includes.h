@@ -1,6 +1,8 @@
 #ifndef _INCLUDES_H_
 #define	_INCLUDES_H_
 
+#include <stdio.h>
+
 #include "board.h"
 
 #include "typedef.h"
@@ -28,5 +30,7 @@
 #include "ioctrl.h"
 #include "IoctrlMain.h"
 #include "IoctrlSrv.h"
+
+#include "rtc.h"
 
 #endif /* _INCLUDES_H_ */

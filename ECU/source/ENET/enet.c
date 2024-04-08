@@ -104,7 +104,7 @@ void BOARD_ENETFlexibleConfigure(enet_config_t *config)
 		config->miiMode = kENET_RgmiiMode;
 #endif
 	else
-		SYSINFO_PRINTF("[%s] netif address isn't valid. \r\n", __func__);
+		ENETINFO_PRINTF("[%s] netif address isn't valid. \r\n", __func__);
 }
 
 static void MDIO_Init(void)
