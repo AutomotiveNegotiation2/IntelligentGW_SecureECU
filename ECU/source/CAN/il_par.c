@@ -3,6 +3,12 @@
 void CAN_SetTxFlagForMsgUpdate(can_inst_t canChannel, uint32_t msgId);
 void ilMsg_Register_Callback_Fn(can_inst_t instance, uint32_t id);
 
+static void ilMsgECU2_Clock_Tx_Send(void);
+static void ilMsgECU2_V2V_Warning_Send(void);
+
+static void ilMsgECU1_System_Power_Mode_Tx_Send(void);
+static void	ilMsgECU1_Blind_Zone_Alert_Status_Tx_Send(void);
+
 void ilMsgNACU_Diag_Tx1_Send(void);
 void ilMsgNACU_Diag_Tx2_Send(void);
 void ilMsgNACU_Diag_Tx3_Send(void);
@@ -46,8 +52,8 @@ void ilMsg_Register_Callback_Fn(can_inst_t instance, uint32_t id)
  *******************************************************************************/
 FuncCanTxCallback CanTxFuncList1[CAN1_NO_OF_TX_OBJECT] =
 {
-	ilMsgNACU_Diag_Tx1_Send,
-	ilMsgNACU_Diag_Tx2_Send,
+	ilMsgECU2_Clock_Tx_Send,
+	ilMsgECU2_V2V_Warning_Send,
 	ilMsgNACU_Diag_Tx3_Send,
 	ilMsgNACU_Diag_Tx4_Send,
 	ilMsgNACU_Diag_Tx5_Send
@@ -423,29 +429,178 @@ void CAN_SetTxFlagForMsgUpdate(can_inst_t canChannel, uint32_t msgId)
 	}
 }
 
-bool IlGetECU1_SystemPowerModeValidity_Sig(void)
+uint8_t IlGetECU2_Clock_YearSig(void)
 {
-	return ECU1_System_Power_Mode_Tx.System_Power_Mode.SystemPowerModeValidity;
+	return ECU2_Clock_Tx0.Clock.Year;
 }
 
-void IlSetECU1_SystemPowerModeValidity_Sig(uint8_t * msgdata)
+void IlSetECU2_Clock_YearSig(uint8_t * msgdata)
+{
+	ECU2_Clock_Tx0.Clock.Year = msgdata[0];
+
+	// CANFD Transmit ON
+	if (ilGetFirstCanOpStatus() != ON)
+		CAN_SetTxFlagForMsgUpdate(CAN_CH_1, Can1_txmsg.id[0]);
+}
+
+uint8_t IlGetECU2_Clock_MonthSig(void)
+{
+	return ECU2_Clock_Tx0.Clock.Month;
+}
+
+void IlSetECU2_Clock_MonthSig(uint8_t * msgdata)
+{
+	ECU2_Clock_Tx0.Clock.Month = msgdata[0];
+
+	// CANFD Transmit ON
+	if (ilGetFirstCanOpStatus() != ON)
+		CAN_SetTxFlagForMsgUpdate(CAN_CH_1, Can1_txmsg.id[0]);
+}
+
+uint8_t IlGetECU2_Clock_DaySig(void)
+{
+	return ECU2_Clock_Tx0.Clock.Day;
+}
+
+void IlSetECU2_Clock_DaySig(uint8_t * msgdata)
+{
+	ECU2_Clock_Tx0.Clock.Day = msgdata[0];
+
+	// CANFD Transmit ON
+	if (ilGetFirstCanOpStatus() != ON)
+		CAN_SetTxFlagForMsgUpdate(CAN_CH_1, Can1_txmsg.id[0]);
+}
+
+uint8_t IlGetECU2_Clock_HourSig(void)
+{
+	return ECU2_Clock_Tx0.Clock.Hour;
+}
+
+void IlSetECU2_Clock_HourSig(uint8_t * msgdata)
+{
+	ECU2_Clock_Tx0.Clock.Hour = msgdata[0];
+
+	// CANFD Transmit ON
+	if (ilGetFirstCanOpStatus() != ON)
+		CAN_SetTxFlagForMsgUpdate(CAN_CH_1, Can1_txmsg.id[0]);
+}
+
+uint8_t IlGetECU2_Clock_MinuteSig(void)
+{
+	return ECU2_Clock_Tx0.Clock.Minute;
+}
+
+void IlSetECU2_Clock_MinuteSig(uint8_t * msgdata)
+{
+	ECU2_Clock_Tx0.Clock.Minute = msgdata[0];
+
+	// CANFD Transmit ON
+	if (ilGetFirstCanOpStatus() != ON)
+		CAN_SetTxFlagForMsgUpdate(CAN_CH_1, Can1_txmsg.id[0]);
+}
+
+uint8_t IlGetECU2_Clock_SecondSig(void)
+{
+	return ECU2_Clock_Tx0.Clock.Second;
+}
+
+void IlSetECU2_Clock_SecondSig(uint8_t * msgdata)
+{
+	ECU2_Clock_Tx0.Clock.Second = msgdata[0];
+
+	// CANFD Transmit ON
+	if (ilGetFirstCanOpStatus() != ON)
+		CAN_SetTxFlagForMsgUpdate(CAN_CH_1, Can1_txmsg.id[0]);
+}
+
+static void ilMsgECU2_Clock_Tx_Send(void)
+{
+	uint8_t data;
+	
+	// for initial value
+	data = 0x23;
+	IlSetECU2_Clock_YearSig(&data);
+	data = 0x08;
+	IlSetECU2_Clock_MonthSig(&data);
+	data = 0x17;
+	IlSetECU2_Clock_DaySig(&data);
+
+	data = 0x09;
+	IlSetECU2_Clock_HourSig(&data);
+	data = 0x27;
+	IlSetECU2_Clock_MinuteSig(&data);
+	data = 0x38;
+	IlSetECU2_Clock_SecondSig(&data);
+
+	if (ilGetFirstCanOpStatus() != ON)
+		CAN_SetTxFlagForMsgUpdate(CAN_CH_1, Can1_txmsg.id[0]);
+}
+
+uint8_t IlGetECU2_VehicleToVehicleWarningDirectionSig(void)
+{
+	return ECU2_V2V_Warning_Tx1.V2V_Warning.VehcileToVehicleWarningDirection;
+}
+
+void IlSetECU2_VehicleToVehicleWarningDirectionSig(uint8_t * msgdata)
+{
+	ECU2_V2V_Warning_Tx1.V2V_Warning.VehcileToVehicleWarningDirection = msgdata[0];
+
+	// CANFD Transmit ON
+	if (ilGetFirstCanOpStatus() != ON)
+		CAN_SetTxFlagForMsgUpdate(CAN_CH_1, Can1_txmsg.id[1]);
+}
+
+uint8_t IlGetECU2_VehicleToVehicleWarningIndicationRequestSig(void)
+{
+	return ECU2_V2V_Warning_Tx1.V2V_Warning.VehcileToVehicleWarningIndicationRequest;
+}
+
+void IlSetECU2_VehicleToVehicleWarningIndicationRequestSig(uint8_t * msgdata)
+{
+	ECU2_V2V_Warning_Tx1.V2V_Warning.VehcileToVehicleWarningIndicationRequest = msgdata[0];
+
+	// CANFD Transmit ON
+	if (ilGetFirstCanOpStatus() != ON)
+		CAN_SetTxFlagForMsgUpdate(CAN_CH_1, Can1_txmsg.id[1]);
+}
+
+static void ilMsgECU2_V2V_Warning_Send(void)
+{
+	uint8_t data;
+	
+	// for initial value
+	data = 0x02;
+	IlSetECU2_VehicleToVehicleWarningDirectionSig(&data);
+	data = 0x08;
+	IlSetECU2_VehicleToVehicleWarningIndicationRequestSig(&data);
+
+	if (ilGetFirstCanOpStatus() != ON)
+		CAN_SetTxFlagForMsgUpdate(CAN_CH_1, Can1_txmsg.id[1]);
+}
+
+bool IlGetECU1_SystemPowerModeValiditySig(void)
+{
+	return ECU1_System_Power_Mode_Tx0.System_Power_Mode.SystemPowerModeValidity;
+}
+
+void IlSetECU1_SystemPowerModeValiditySig(uint8_t * msgdata)
 {
 	if (msgdata[0] == 0x01)
-		ECU1_System_Power_Mode_Tx.System_Power_Mode.SystemPowerModeValidity = 1;
+		ECU1_System_Power_Mode_Tx0.System_Power_Mode.SystemPowerModeValidity = 1;
 	else
-		ECU1_System_Power_Mode_Tx.System_Power_Mode.SystemPowerModeValidity = 0;
+		ECU1_System_Power_Mode_Tx0.System_Power_Mode.SystemPowerModeValidity = 0;
 
 	// CAN Transmit ON
 	if (ilGetFirstCanOpStatus() != ON)
 		CAN_SetTxFlagForMsgUpdate(CAN_CH_3, Can3_txmsg.id[0]);
 }
 
-uint8_t IlGetECU1_SystemPowerMode_Sig(void)
+uint8_t IlGetECU1_SystemPowerModeSig(void)
 {
-	return ECU1_System_Power_Mode_Tx.System_Power_Mode.SystemPowerMode;
+	return ECU1_System_Power_Mode_Tx0.System_Power_Mode.SystemPowerMode;
 }
 
-void IlSetECU1_SystemPowerMode_Sig(uint8_t * msgdata)
+void IlSetECU1_SystemPowerModeSig(uint8_t * msgdata)
 {
 	if (msgdata[0] > 0x03)
 	{
@@ -453,7 +608,7 @@ void IlSetECU1_SystemPowerMode_Sig(uint8_t * msgdata)
 	}
 	else
 	{
-		ECU1_System_Power_Mode_Tx.System_Power_Mode.SystemPowerMode = msgdata[0];
+		ECU1_System_Power_Mode_Tx0.System_Power_Mode.SystemPowerMode = msgdata[0];
 	}
 
 	// CAN Transmit ON
@@ -461,134 +616,134 @@ void IlSetECU1_SystemPowerMode_Sig(uint8_t * msgdata)
 		CAN_SetTxFlagForMsgUpdate(CAN_CH_3, Can3_txmsg.id[0]);
 }
 
-void ilMsgECU1_System_Power_Mode_Tx_Send(void)
+static void ilMsgECU1_System_Power_Mode_Tx_Send(void)
 {
 	uint8_t data;
 	
 	// for initial value
 	data = 1;
-	IlSetECU1_SystemPowerModeValidity_Sig(&data);
+	IlSetECU1_SystemPowerModeValiditySig(&data);
 
 	data = 0x00;
-	IlSetECU1_SystemPowerMode_Sig(&data);
+	IlSetECU1_SystemPowerModeSig(&data);
 
 	if (ilGetFirstCanOpStatus() != ON)
 		CAN_SetTxFlagForMsgUpdate(CAN_CH_3, Can3_txmsg.id[0]);
 }
 
-bool IlGetECU1_LeftLaneChangeThreat_Sig(void)
+bool IlGetECU1_LeftLaneChangeThreatSig(void)
 {
-	return ECU1_Blind_Zone_Alert_Status_Tx.Blind_Zone_Alert_Status.LeftLaneChangeThreat;
+	return ECU1_Blind_Zone_Alert_Status_Tx1.Blind_Zone_Alert_Status.LeftLaneChangeThreat;
 }
 
-void IlSetECU1_LeftLaneChangeThreat_Sig(uint8_t * msgdata)	
-{
-	if (msgdata[0] == 0x01)
-		ECU1_Blind_Zone_Alert_Status_Tx.Blind_Zone_Alert_Status.LeftLaneChangeThreat = 1;
-	else
-		ECU1_Blind_Zone_Alert_Status_Tx.Blind_Zone_Alert_Status.LeftLaneChangeThreat = 0;
-
-	// CAN Transmit ON
-	if (ilGetFirstCanOpStatus() != ON)
-		CAN_SetTxFlagForMsgUpdate(CAN_CH_3, Can3_txmsg.id[1]);
-}
-
-bool IlGetECU1_SlideBlindZoneAlertTempUnavailableIndiOn_Sig(void)
-{
-	return ECU1_Blind_Zone_Alert_Status_Tx.Blind_Zone_Alert_Status.SlideBlindZoneAlertTempUnavailableIndiOn;
-}
-
-void IlSetECU1_SlideBlindZoneAlertTempUnavailableIndiOn_Sig(uint8_t * msgdata)
+void IlSetECU1_LeftLaneChangeThreatSig(uint8_t * msgdata)	
 {
 	if (msgdata[0] == 0x01)
-		ECU1_Blind_Zone_Alert_Status_Tx.Blind_Zone_Alert_Status.SlideBlindZoneAlertTempUnavailableIndiOn = 1;
+		ECU1_Blind_Zone_Alert_Status_Tx1.Blind_Zone_Alert_Status.LeftLaneChangeThreat = 1;
 	else
-		ECU1_Blind_Zone_Alert_Status_Tx.Blind_Zone_Alert_Status.SlideBlindZoneAlertTempUnavailableIndiOn = 0;
+		ECU1_Blind_Zone_Alert_Status_Tx1.Blind_Zone_Alert_Status.LeftLaneChangeThreat = 0;
 
 	// CAN Transmit ON
 	if (ilGetFirstCanOpStatus() != ON)
 		CAN_SetTxFlagForMsgUpdate(CAN_CH_3, Can3_txmsg.id[1]);
 }
 
-bool IlGetECU1_SlideBlindZoneAlertSystemServiceIndiOn_Sig(void)
+bool IlGetECU1_SlideBlindZoneAlertTempUnavailableIndiOnSig(void)
 {
-	return ECU1_Blind_Zone_Alert_Status_Tx.Blind_Zone_Alert_Status.SlideBlindZoneAlertSystemServiceIndiOn;
+	return ECU1_Blind_Zone_Alert_Status_Tx1.Blind_Zone_Alert_Status.SlideBlindZoneAlertTempUnavailableIndiOn;
 }
 
-void IlSetECU1_SlideBlindZoneAlertSystemServiceIndiOn_Sig(uint8_t * msgdata)
+void IlSetECU1_SlideBlindZoneAlertTempUnavailableIndiOnSig(uint8_t * msgdata)
 {
 	if (msgdata[0] == 0x01)
-		ECU1_Blind_Zone_Alert_Status_Tx.Blind_Zone_Alert_Status.SlideBlindZoneAlertSystemServiceIndiOn = 1;
+		ECU1_Blind_Zone_Alert_Status_Tx1.Blind_Zone_Alert_Status.SlideBlindZoneAlertTempUnavailableIndiOn = 1;
 	else
-		ECU1_Blind_Zone_Alert_Status_Tx.Blind_Zone_Alert_Status.SlideBlindZoneAlertSystemServiceIndiOn = 0;
+		ECU1_Blind_Zone_Alert_Status_Tx1.Blind_Zone_Alert_Status.SlideBlindZoneAlertTempUnavailableIndiOn = 0;
 
 	// CAN Transmit ON
 	if (ilGetFirstCanOpStatus() != ON)
 		CAN_SetTxFlagForMsgUpdate(CAN_CH_3, Can3_txmsg.id[1]);
 }
 
-bool IlGetECU1_SlideBlindZoneAlertSystemOffIndiOn_Sig(void)
+bool IlGetECU1_SlideBlindZoneAlertSystemServiceIndiOnSig(void)
 {
-	return ECU1_Blind_Zone_Alert_Status_Tx.Blind_Zone_Alert_Status.SlideBlindZoneAlertSystemOffIndiOn;
+	return ECU1_Blind_Zone_Alert_Status_Tx1.Blind_Zone_Alert_Status.SlideBlindZoneAlertSystemServiceIndiOn;
 }
 
-void IlSetECU1_SlideBlindZoneAlertSystemOffIndiOn_Sig(uint8_t * msgdata)
+void IlSetECU1_SlideBlindZoneAlertSystemServiceIndiOnSig(uint8_t * msgdata)
 {
 	if (msgdata[0] == 0x01)
-		ECU1_Blind_Zone_Alert_Status_Tx.Blind_Zone_Alert_Status.SlideBlindZoneAlertSystemOffIndiOn = 1;
+		ECU1_Blind_Zone_Alert_Status_Tx1.Blind_Zone_Alert_Status.SlideBlindZoneAlertSystemServiceIndiOn = 1;
 	else
-		ECU1_Blind_Zone_Alert_Status_Tx.Blind_Zone_Alert_Status.SlideBlindZoneAlertSystemOffIndiOn = 0;
+		ECU1_Blind_Zone_Alert_Status_Tx1.Blind_Zone_Alert_Status.SlideBlindZoneAlertSystemServiceIndiOn = 0;
 
 	// CAN Transmit ON
 	if (ilGetFirstCanOpStatus() != ON)
 		CAN_SetTxFlagForMsgUpdate(CAN_CH_3, Can3_txmsg.id[1]);
 }
 
-bool IlGetECU1_SlideBlindZoneAlertSystemCleanIndiOn_Sig(void)
+bool IlGetECU1_SlideBlindZoneAlertSystemOffIndiOnSig(void)
 {
-	return ECU1_Blind_Zone_Alert_Status_Tx.Blind_Zone_Alert_Status.SlideBlindZoneAlertSystemCleanIndiOn;
+	return ECU1_Blind_Zone_Alert_Status_Tx1.Blind_Zone_Alert_Status.SlideBlindZoneAlertSystemOffIndiOn;
 }
 
-void IlSetECU1_SlideBlindZoneAlertSystemCleanIndiOn_Sig(uint8_t * msgdata)
+void IlSetECU1_SlideBlindZoneAlertSystemOffIndiOnSig(uint8_t * msgdata)
 {
 	if (msgdata[0] == 0x01)
-		ECU1_Blind_Zone_Alert_Status_Tx.Blind_Zone_Alert_Status.SlideBlindZoneAlertSystemCleanIndiOn = 1;
+		ECU1_Blind_Zone_Alert_Status_Tx1.Blind_Zone_Alert_Status.SlideBlindZoneAlertSystemOffIndiOn = 1;
 	else
-		ECU1_Blind_Zone_Alert_Status_Tx.Blind_Zone_Alert_Status.SlideBlindZoneAlertSystemCleanIndiOn = 0;
+		ECU1_Blind_Zone_Alert_Status_Tx1.Blind_Zone_Alert_Status.SlideBlindZoneAlertSystemOffIndiOn = 0;
 
 	// CAN Transmit ON
 	if (ilGetFirstCanOpStatus() != ON)
 		CAN_SetTxFlagForMsgUpdate(CAN_CH_3, Can3_txmsg.id[1]);
 }
 
-uint8_t IlGetECU1_LeftLaneChangeApproachSpeed_Sig(void)
+bool IlGetECU1_SlideBlindZoneAlertSystemCleanIndiOnSig(void)
 {
-	return ECU1_Blind_Zone_Alert_Status_Tx.Blind_Zone_Alert_Status.LeftLaneChangeApproachSpeed;
+	return ECU1_Blind_Zone_Alert_Status_Tx1.Blind_Zone_Alert_Status.SlideBlindZoneAlertSystemCleanIndiOn;
 }
 
-void IlSetECU1_LeftLaneChangeApproachSpeed_Sig(uint8_t * msgdata)
+void IlSetECU1_SlideBlindZoneAlertSystemCleanIndiOnSig(uint8_t * msgdata)
 {
-	ECU1_Blind_Zone_Alert_Status_Tx.Blind_Zone_Alert_Status.LeftLaneChangeApproachSpeed = msgdata[0];
+	if (msgdata[0] == 0x01)
+		ECU1_Blind_Zone_Alert_Status_Tx1.Blind_Zone_Alert_Status.SlideBlindZoneAlertSystemCleanIndiOn = 1;
+	else
+		ECU1_Blind_Zone_Alert_Status_Tx1.Blind_Zone_Alert_Status.SlideBlindZoneAlertSystemCleanIndiOn = 0;
 
 	// CAN Transmit ON
 	if (ilGetFirstCanOpStatus() != ON)
 		CAN_SetTxFlagForMsgUpdate(CAN_CH_3, Can3_txmsg.id[1]);
 }
 
-void ilMsgECU1_Blind_Zone_Alert_Status_Tx_Send(void)
+uint8_t IlGetECU1_LeftLaneChangeApproachSpeedSig(void)
+{
+	return ECU1_Blind_Zone_Alert_Status_Tx1.Blind_Zone_Alert_Status.LeftLaneChangeApproachSpeed;
+}
+
+void IlSetECU1_LeftLaneChangeApproachSpeedSig(uint8_t * msgdata)
+{
+	ECU1_Blind_Zone_Alert_Status_Tx1.Blind_Zone_Alert_Status.LeftLaneChangeApproachSpeed = msgdata[0];
+
+	// CAN Transmit ON
+	if (ilGetFirstCanOpStatus() != ON)
+		CAN_SetTxFlagForMsgUpdate(CAN_CH_3, Can3_txmsg.id[1]);
+}
+
+static void ilMsgECU1_Blind_Zone_Alert_Status_Tx_Send(void)
 {
 	uint8_t data;
 	
 	// for initial value
 	data = 1;
-	IlSetECU1_LeftLaneChangeThreat_Sig(&data);
-	IlSetECU1_SlideBlindZoneAlertTempUnavailableIndiOn_Sig(&data);
-	IlSetECU1_SlideBlindZoneAlertSystemOffIndiOn_Sig(&data);
+	IlSetECU1_LeftLaneChangeThreatSig(&data);
+	IlSetECU1_SlideBlindZoneAlertTempUnavailableIndiOnSig(&data);
+	IlSetECU1_SlideBlindZoneAlertSystemOffIndiOnSig(&data);
 	data = 0;
-	IlSetECU1_SlideBlindZoneAlertSystemServiceIndiOn_Sig(&data);
-	IlSetECU1_SlideBlindZoneAlertSystemCleanIndiOn_Sig(&data);
+	IlSetECU1_SlideBlindZoneAlertSystemServiceIndiOnSig(&data);
+	IlSetECU1_SlideBlindZoneAlertSystemCleanIndiOnSig(&data);
 	data = 217;
-	IlSetECU1_LeftLaneChangeApproachSpeed_Sig(&data);
+	IlSetECU1_LeftLaneChangeApproachSpeedSig(&data);
 
 	if (ilGetFirstCanOpStatus() != ON)
 		CAN_SetTxFlagForMsgUpdate(CAN_CH_3, Can3_txmsg.id[1]);
@@ -653,9 +808,7 @@ void ilMsgNACU2_Diag_Tx5_Send(void)
 
 FuncCanTxCallback CanTxFuncList2[CAN3_NO_OF_TX_OBJECT] =
 {
-	//ilMsgNACU2_Diag_Tx1_Send,
 	ilMsgECU1_System_Power_Mode_Tx_Send,
-	//ilMsgNACU2_Diag_Tx2_Send,
 	ilMsgECU1_Blind_Zone_Alert_Status_Tx_Send,
 	ilMsgNACU2_Diag_Tx3_Send,
 	ilMsgNACU2_Diag_Tx4_Send,

@@ -59,5 +59,6 @@ void QueuePushCanDataforRx2(uint8_t inst, uint32_t id, uint8_t dlc, uint8_t * da
 void QueuePopCanDataforRx2(void);
 
 void ApplTxECU1_Blind_Zone_Alert_Status_TxComfirmation(void);
+void ApplTxECU2_V2V_Warning_TxComfirmation(void);
 
 #endif /* _CANSRV_H_ */

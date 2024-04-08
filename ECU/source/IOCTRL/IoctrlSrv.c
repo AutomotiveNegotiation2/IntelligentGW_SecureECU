@@ -161,7 +161,8 @@ void Ioctrl_KeyOp(void)
 	else if (keyCtrl.keyReleasedOnFlag == ON)
 	{
 		memset(&keyCtrl, 0, sizeof(key_detect_ctrl_t));
-		ApplTxECU1_Blind_Zone_Alert_Status_TxComfirmation();
+		//ApplTxECU1_Blind_Zone_Alert_Status_TxComfirmation();	// CAN
+		ApplTxECU2_V2V_Warning_TxComfirmation();	// CANFD
 	}
 	else
 	{

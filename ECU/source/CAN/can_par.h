@@ -294,8 +294,11 @@ extern _c_BCM_BCAN_2_buf NACU2_BCM_BCAN_2_Rx2;
 extern _c_BCM_BCAN_2_buf NACU2_BCM_BCAN_2_Rx3;
 extern _c_BCM_BCAN_2_buf NACU2_BCM_BCAN_2_Rx4;
 
-extern _c_System_Power_Mode_buf ECU1_System_Power_Mode_Tx;
-extern _c_Blind_Zone_Alert_Status_buf ECU1_Blind_Zone_Alert_Status_Tx;
+extern _c_Clock_buf ECU2_Clock_Tx0;
+extern _c_V2V_Warning_buf ECU2_V2V_Warning_Tx1;
+
+extern _c_System_Power_Mode_buf ECU1_System_Power_Mode_Tx0;
+extern _c_Blind_Zone_Alert_Status_buf ECU1_Blind_Zone_Alert_Status_Tx1;
 extern _c_V2V_Warning_buf ECU1_ROUTED_V2V_Warning_Rx2;
 extern _c_Pedestrain_Friendly_Alert_Status_buf ECU1_ROUTED_Pedestrain_Friendly_Alert_Status_Rx3;
 extern _c_Drive_Status_buf ECU1_ROUTED_Drive_Status_Rx1;

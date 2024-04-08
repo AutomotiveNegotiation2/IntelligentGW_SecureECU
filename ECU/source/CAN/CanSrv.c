@@ -810,7 +810,7 @@ void ApplTxECU1_Blind_Zone_Alert_Status_TxComfirmation(void)
 {
 	uint8_t sig;
 
-	if (IlGetECU1_SlideBlindZoneAlertSystemCleanIndiOn_Sig() == ON)
+	if (IlGetECU1_SlideBlindZoneAlertSystemCleanIndiOnSig() == ON)
 	{
 		sig = OFF;
 	}
@@ -819,6 +819,33 @@ void ApplTxECU1_Blind_Zone_Alert_Status_TxComfirmation(void)
 		sig = ON;
 	}
 	
-	IlSetECU1_SlideBlindZoneAlertSystemCleanIndiOn_Sig(&sig);
+	IlSetECU1_SlideBlindZoneAlertSystemCleanIndiOnSig(&sig);
+}
+
+void ApplTxECU2_V2V_Warning_TxComfirmation(void)
+{
+	uint8_t sig;
+
+	sig = IlGetECU2_VehicleToVehicleWarningDirectionSig();
+	if (++sig < 0x08)
+	{
+		IlSetECU2_VehicleToVehicleWarningDirectionSig(&sig);
+	}
+	else
+	{
+		sig = 0;
+		IlSetECU2_VehicleToVehicleWarningDirectionSig(&sig);
+	}
+
+	sig = IlGetECU2_VehicleToVehicleWarningIndicationRequestSig();
+	if (++sig < 0x11)
+	{
+		IlSetECU2_VehicleToVehicleWarningIndicationRequestSig(&sig);
+	}
+	else
+	{
+		sig = 0;
+		IlSetECU2_VehicleToVehicleWarningIndicationRequestSig(&sig);
+	}
 }
 

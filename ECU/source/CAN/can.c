@@ -233,7 +233,7 @@ static void FLEXCAN_CalculateClock(can_config_t * config, flexcan_config_t * fle
 
 int32_t CAN_Transmit(can_inst_t instance, uint32_t id)
 {
-	uint8_t i;
+	uint8_t i, dlc;
 	can_config_t * config;
 
 	config = (can_config_t *)CAN_GetConfigAddr(instance);
@@ -256,9 +256,24 @@ int32_t CAN_Transmit(can_inst_t instance, uint32_t id)
 
 	if (config->fdEnable)
 	{
+		uint8_t len;
+		
 		txXfer.framefd = &config->framefd;
 		txXfer.framefd->id = FLEXCAN_ID_STD(id);
 		txXfer.framefd->length = config->msgTx->dlc[i];
+		dlc = config->msgTx->dlc[i];
+
+		len = (uint8_t)(dlc/4);
+		if (dlc%4)
+			len += 1;
+
+		for (uint8_t j=0; j<len; j++)
+		{
+			txXfer.framefd->dataWord[j] = (uint32_t)(config->msgTx->data[i][j*4])<<24;
+			txXfer.framefd->dataWord[j] += (uint32_t)(config->msgTx->data[i][j*4+1])<<16;
+			txXfer.framefd->dataWord[j] += (uint32_t)(config->msgTx->data[i][j*4+2])<<8;
+			txXfer.framefd->dataWord[j] += (uint32_t)(config->msgTx->data[i][j*4+3]);
+		}
 
 		(void)FLEXCAN_TransferFDSendNonBlocking(config->base, &config->fCanHandle, &txXfer);
 	}
@@ -267,18 +282,19 @@ int32_t CAN_Transmit(can_inst_t instance, uint32_t id)
 		txXfer.frame = &config->frame;
 		txXfer.frame->id = FLEXCAN_ID_STD(id);
 		txXfer.frame->length = config->msgTx->dlc[i];
+		dlc = config->msgTx->dlc[i];
 
 		txXfer.frame->dataByte0 = config->msgTx->data[i][0];
 		txXfer.frame->dataByte1 = config->msgTx->data[i][1];
 		txXfer.frame->dataByte2 = config->msgTx->data[i][2];
 		txXfer.frame->dataByte3 = config->msgTx->data[i][3];
 
-		if (txXfer.frame->length > 4)
+		if (dlc > 4)
 		{
 			txXfer.frame->dataByte4 = config->msgTx->data[i][4];
-			txXfer.frame->dataByte5 = config->msgTx->data[i][5];;
-			txXfer.frame->dataByte6 = config->msgTx->data[i][6];;
-			txXfer.frame->dataByte7 = config->msgTx->data[i][7];;
+			txXfer.frame->dataByte5 = config->msgTx->data[i][5];
+			txXfer.frame->dataByte6 = config->msgTx->data[i][6];
+			txXfer.frame->dataByte7 = config->msgTx->data[i][7];
 		}
 
 		FLEXCAN_TransferSendNonBlocking(config->base, &config->fCanHandle, &txXfer);
