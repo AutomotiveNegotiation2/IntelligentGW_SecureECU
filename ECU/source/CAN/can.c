@@ -378,7 +378,7 @@ static int32_t CAN_Receive(uint32_t instance, uint32_t buffIdx, flexcan_mb_trans
 		result = FLEXCAN_TransferFDReceiveNonBlocking(config->base, &config->fCanHandle, xfer);
 
 		dlc = config->framefd.length;
-		id = config->framefd.id & 0x1FFFFFFFU;
+		id = (config->framefd.id >> CAN_ID_STD_SHIFT) & 0x1FFFFFFFU;
 
 		len = (uint8_t)(dlc/4);
 		if (dlc%4)

@@ -149,10 +149,10 @@ void ApplCanMsg_NACU_Diag_Tx1_Set(uint8_t * data)
 
 FuncCanRxCallback CanRxFuncList1[CAN1_NO_OF_RX_OBJECT] =
 {
-	IlMsgBCM_TCU_BCS_Rx1Indication,
-	IlMsgBCM_TCU_BCS_Rx2Indication,
-	IlMsgBCM_TCU_BCS_Rx3Indication,
-	IlMsgBCM_TCU_BCS_Rx4Indication,
+	IlMsgECU2_ROUTED_System_Power_Mode_Rx0Indication,
+	IlMsgECU2_ROUTED_Blind_Zone_Alert_Status_Rx1Indication,
+	IlMsgECU2_ROUTED_Drive_Status_Rx2Indication,
+	IlMsgECU2_ROUTED_Pedestrain_Friendly_Alert_Status_Rx3Indication,
 	IlMsgBCM_BCAN_1_Rx1Indication,
 	IlMsgBCM_BCAN_1_Rx2Indication,
 	IlMsgBCM_BCAN_1_Rx3Indication,
@@ -576,6 +576,134 @@ static void ilMsgECU2_V2V_Warning_Send(void)
 
 	if (ilGetFirstCanOpStatus() != ON)
 		CAN_SetTxFlagForMsgUpdate(CAN_CH_1, Can1_txmsg.id[1]);
+}
+
+bool IlGetRxECU2_SystemPowerModeValiditySig(void)
+{
+	return ECU2_ROUTED_System_Power_Mode_Rx0.System_Power_Mode.SystemPowerModeValidity;
+}
+
+uint8_t IlGetRxECU2_SystemPowerModeSig(void)
+{
+	return ECU2_ROUTED_System_Power_Mode_Rx0.System_Power_Mode.SystemPowerMode;
+}
+
+void IlMsgECU2_ROUTED_System_Power_Mode_Rx0Indication(uint8_t * data, uint8_t dlc)
+{
+	uint8_t buf[8];
+
+	memcpy(buf, data, dlc);
+	
+	ApplRxECU2_SystemPowerModeValiditySigIndication();
+	ApplRxECU2_SystemPowerModeSigIndication();
+}
+
+bool IlGetRxECU2_LeftLaneChangeThreatSig(void)
+{
+	return ECU2_ROUTED_Blind_Zone_Alert_Status_Rx1.Blind_Zone_Alert_Status.LeftLaneChangeThreat;
+}
+
+bool IlGetRxECU2_SlideBlindZoneAlertTempUnavailableIndiOnSig(void)
+{
+	return ECU2_ROUTED_Blind_Zone_Alert_Status_Rx1.Blind_Zone_Alert_Status.SlideBlindZoneAlertTempUnavailableIndiOn;
+}
+
+bool IlGetRxECU2_SlideBlindZoneAlertSystemServiceIndiOnSig(void)
+{
+	return ECU2_ROUTED_Blind_Zone_Alert_Status_Rx1.Blind_Zone_Alert_Status.SlideBlindZoneAlertSystemServiceIndiOn;
+}
+
+bool IlGetRxECU2_SlideBlindZoneAlertSystemOffIndiOnSig(void)
+{
+	return ECU2_ROUTED_Blind_Zone_Alert_Status_Rx1.Blind_Zone_Alert_Status.SlideBlindZoneAlertSystemOffIndiOn;
+}
+
+bool IlGetRxECU2_SlideBlindZoneAlertSystemCleanIndiOnSig(void)
+{
+	return ECU2_ROUTED_Blind_Zone_Alert_Status_Rx1.Blind_Zone_Alert_Status.SlideBlindZoneAlertSystemCleanIndiOn;
+}
+
+uint8_t IlGetRxECU2_LeftLaneChangeApproachSpeedSig(void)
+{
+	return ECU2_ROUTED_Blind_Zone_Alert_Status_Rx1.Blind_Zone_Alert_Status.LeftLaneChangeApproachSpeed;
+}
+
+void IlMsgECU2_ROUTED_Blind_Zone_Alert_Status_Rx1Indication(uint8_t * data, uint8_t dlc)
+{
+	uint8_t buf[8];
+
+	memcpy(buf, data, dlc);
+	
+	ApplRxECU2_LeftLaneChangeThreatSigIndication();
+	ApplRxECU2_SlideBlindZoneAlertTempUnavailableIndiOnSigIndication();
+	ApplRxECU2_SlideBlindZoneAlertSystemServiceIndiOnSigIndication();
+	ApplRxECU2_SlideBlindZoneAlertSystemOffIndiOnSigIndication();
+	ApplRxECU2_SlideBlindZoneAlertSystemCleanIndiOnSigIndication();
+	ApplRxECU2_LeftLaneChangeApproachSpeedSigIndication();
+}
+
+uint8_t IlGetRxECU2_DrowsinessLevelSig(void)
+{
+	return ECU2_ROUTED_Drive_Status_Rx2.Drive_Status.DrowsinessLevel;
+}
+
+uint8_t IlGetRxECU2_DistractionLevelSig(void)
+{
+	return ECU2_ROUTED_Drive_Status_Rx2.Drive_Status.DistractionLevel;
+}
+
+uint8_t IlGetRxECU2_HandsOnLevelSig(void)
+{
+	return ECU2_ROUTED_Drive_Status_Rx2.Drive_Status.HandsOnLevel;
+}
+
+void IlMsgECU2_ROUTED_Drive_Status_Rx2Indication(uint8_t * data, uint8_t dlc)
+{
+	uint8_t buf[8];
+
+	memcpy(buf, data, dlc);
+
+	ApplRxECU2_DrowsinessLevelSigIndication();
+	ApplRxECU2_DistractionLevelSigIndication();
+	ApplRxECU2_HandsOnLevelSigIndication();
+}
+
+bool IlGetRxECU2_PedestrianFriendlyAlertSoundGenerationEnableSig(void)
+{
+	return ECU2_ROUTED_Pedestrain_Friendly_Alert_Status_Rx3.Pedestrain_Friendly_Alert_Status.PedestrianFriendlyAlertSoundGenerationEnable;
+}
+
+uint8_t IlGetRxECU2_PedestrianFriendlyAlertForwardSoundSig(void)
+{
+	return ECU2_ROUTED_Pedestrain_Friendly_Alert_Status_Rx3.Pedestrain_Friendly_Alert_Status.PedestrianFriendlyAlertForwardSound;
+}
+
+uint8_t IlGetRxECU2_PedestrianFriendlyAlertReverseSoundSig(void)
+{
+	return ECU2_ROUTED_Pedestrain_Friendly_Alert_Status_Rx3.Pedestrain_Friendly_Alert_Status.PedestrianFriendlyAlertReverseSound;
+}
+
+uint8_t IlGetRxECU2_PedestrianFriendlyAlertCrossoverSpeedSig(void)
+{
+	return ECU2_ROUTED_Pedestrain_Friendly_Alert_Status_Rx3.Pedestrain_Friendly_Alert_Status.PedestrianFriendlyAlertCrossoverSpeed;
+}
+
+uint8_t IlGetRxECU2_PedestrianFriendlyAlertSystemStatusSig(void)
+{
+	return ECU2_ROUTED_Pedestrain_Friendly_Alert_Status_Rx3.Pedestrain_Friendly_Alert_Status.PedestrianFriendlyAlertSystemStatus;
+}
+
+void IlMsgECU2_ROUTED_Pedestrain_Friendly_Alert_Status_Rx3Indication(uint8_t * data, uint8_t dlc)
+{
+	uint8_t buf[8];
+
+	memcpy(buf, data, dlc);
+	
+	ApplRxECU2_PedestrianFriendlyAlertSoundGenerationEnableSigIndication();
+	ApplRxECU2_PedestrianFriendlyAlertForwardSoundSigIndication();
+	ApplRxECU2_PedestrianFriendlyAlertReverseSoundSigIndication();
+	ApplRxECU2_PedestrianFriendlyAlertCrossoverSpeedSigIndication();
+	ApplRxECU2_PedestrianFriendlyAlertSystemStatusSigIndication();
 }
 
 bool IlGetECU1_SystemPowerModeValiditySig(void)

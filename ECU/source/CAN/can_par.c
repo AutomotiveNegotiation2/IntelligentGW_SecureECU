@@ -5,6 +5,10 @@
 
 _c_Clock_buf ECU2_Clock_Tx0;
 _c_V2V_Warning_buf ECU2_V2V_Warning_Tx1;
+_c_System_Power_Mode_buf ECU2_ROUTED_System_Power_Mode_Rx0;
+_c_Blind_Zone_Alert_Status_buf ECU2_ROUTED_Blind_Zone_Alert_Status_Rx1;
+_c_Drive_Status_buf ECU2_ROUTED_Drive_Status_Rx2;
+_c_Pedestrain_Friendly_Alert_Status_buf ECU2_ROUTED_Pedestrain_Friendly_Alert_Status_Rx3;
 
 _c_NACU_Diag_Tx_buf NACU_Diag_Tx1;
 _c_NACU_Diag_Tx_buf NACU_Diag_Tx2;
@@ -181,10 +185,10 @@ uint8_t CanRxMbox1[CAN1_NO_OF_RX_OBJECT] =
 
 uint32_t CanRxId1[CAN1_NO_OF_RX_OBJECT] =
 {
-	0x530u,
-	0x531u,
-	0x532u,
-	0x533u,
+	0x10Au,
+	0x11Au,
+	0x12Au,
+	0x13Au,
 	0x534u,
 	0x535u,
 	0x536u,
@@ -201,10 +205,10 @@ uint32_t CanRxId1[CAN1_NO_OF_RX_OBJECT] =
 
 uint8_t CanRxDLC1[CAN1_NO_OF_RX_OBJECT] =
 {
-	5,
-	5,
-	5,
-	5,
+	1,
+	2,
+	3,
+	3,
 	4,
 	4,
 	4,
@@ -219,13 +223,12 @@ uint8_t CanRxDLC1[CAN1_NO_OF_RX_OBJECT] =
 	2,
 };
 
-
 uint8_t * CanRxDataPtr1[CAN1_NO_OF_RX_OBJECT] =
 {
-	(uint8_t *) NACU_BCM_TCU_BCS_Rx1._c,
-	(uint8_t *) NACU_BCM_TCU_BCS_Rx2._c,
-	(uint8_t *) NACU_BCM_TCU_BCS_Rx3._c,
-	(uint8_t *) NACU_BCM_TCU_BCS_Rx4._c,
+	(uint8_t *) ECU2_ROUTED_System_Power_Mode_Rx0._c,
+	(uint8_t *) ECU2_ROUTED_Blind_Zone_Alert_Status_Rx1._c,
+	(uint8_t *) ECU2_ROUTED_Drive_Status_Rx2._c,
+	(uint8_t *) ECU2_ROUTED_Pedestrain_Friendly_Alert_Status_Rx3._c,
 	(uint8_t *) NACU_BCM_BCAN_1_Rx1._c,
 	(uint8_t *) NACU_BCM_BCAN_1_Rx2._c,
 	(uint8_t *) NACU_BCM_BCAN_1_Rx3._c,

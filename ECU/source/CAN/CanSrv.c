@@ -471,7 +471,7 @@ void ApplRxECU1_ClockMinuteSigIndication(void)
 #endif
 }
 
-void ApplRxECU1_ClockSecondSigIndication()
+void ApplRxECU1_ClockSecondSigIndication(void)
 {
 	uint8_t temp;
 		
@@ -479,6 +479,182 @@ void ApplRxECU1_ClockSecondSigIndication()
 		
 #if 1
 	SYSINFO_PRINTF("[ROUTED Clock] ClockSecondSig = 0x%x\r\n", temp);
+#endif
+}
+
+void ApplRxECU2_SystemPowerModeValiditySigIndication(void)
+{
+	uint8_t temp;
+		
+	temp = (uint8_t)IlGetRxECU2_SystemPowerModeValiditySig();
+		
+#if 1
+	SYSINFO_PRINTF("[ROUTED System Power Mode] SystemPowerModeValiditySig = 0x%x\r\n", temp);
+#endif
+}
+
+void ApplRxECU2_SystemPowerModeSigIndication(void)
+{
+	uint8_t temp;
+		
+	temp = IlGetRxECU2_SystemPowerModeSig();
+		
+#if 1
+	SYSINFO_PRINTF("[ROUTED System Power Mode] SystemPowerModeSig = 0x%x\r\n", temp);
+#endif
+}
+
+void ApplRxECU2_LeftLaneChangeThreatSigIndication(void)
+{
+	uint8_t temp;
+		
+	temp = (uint8_t) IlGetRxECU2_LeftLaneChangeThreatSig();
+		
+#if 1
+	SYSINFO_PRINTF("[ROUTED Blind_Zone_Alert_Status] LeftLaneChangeThreatSig = 0x%x\r\n", temp);
+#endif
+}
+
+void ApplRxECU2_SlideBlindZoneAlertTempUnavailableIndiOnSigIndication(void)
+{
+	uint8_t temp;
+		
+	temp = (uint8_t) IlGetRxECU2_SlideBlindZoneAlertTempUnavailableIndiOnSig();
+		
+#if 1
+	SYSINFO_PRINTF("[ROUTED Blind_Zone_Alert_Status] SlideBlindZoneAlertTempUnavailableIndiOnSig = 0x%x\r\n", temp);
+#endif
+}
+
+void ApplRxECU2_SlideBlindZoneAlertSystemServiceIndiOnSigIndication(void)
+{
+	uint8_t temp;
+		
+	temp = (uint8_t) IlGetRxECU2_SlideBlindZoneAlertSystemServiceIndiOnSig();
+		
+#if 1
+	SYSINFO_PRINTF("[ROUTED Blind_Zone_Alert_Status] SlideBlindZoneAlertSystemServiceIndiOnSig = 0x%x\r\n", temp);
+#endif
+}
+
+void ApplRxECU2_SlideBlindZoneAlertSystemOffIndiOnSigIndication(void)
+{
+	uint8_t temp;
+		
+	temp = (uint8_t) IlGetRxECU2_SlideBlindZoneAlertSystemOffIndiOnSig();
+		
+#if 1
+	SYSINFO_PRINTF("[ROUTED Blind_Zone_Alert_Status] SlideBlindZoneAlertSystemOffIndiOnSig = 0x%x\r\n", temp);
+#endif
+}
+
+void ApplRxECU2_SlideBlindZoneAlertSystemCleanIndiOnSigIndication(void)
+{
+	uint8_t temp;
+		
+	temp = (uint8_t) IlGetRxECU2_SlideBlindZoneAlertSystemCleanIndiOnSig();
+		
+#if 1
+	SYSINFO_PRINTF("[ROUTED Blind_Zone_Alert_Status] SlideBlindZoneAlertSystemCleanIndiOnSig = 0x%x\r\n", temp);
+#endif
+}
+
+void ApplRxECU2_LeftLaneChangeApproachSpeedSigIndication(void)
+{
+	uint8_t temp;
+		
+	temp = IlGetRxECU2_LeftLaneChangeApproachSpeedSig();
+		
+#if 1
+	SYSINFO_PRINTF("[ROUTED Blind_Zone_Alert_Status] LeftLaneChangeApproachSpeedSig = 0x%x\r\n", temp);
+#endif
+}
+
+void ApplRxECU2_DrowsinessLevelSigIndication(void)
+{
+	uint8_t temp;
+		
+	temp = IlGetRxECU2_DrowsinessLevelSig();
+		
+#if 1
+	SYSINFO_PRINTF("[ROUTED Drive Status] DrowsinessLevelSig = 0x%x\r\n", temp);
+#endif
+}
+
+void ApplRxECU2_DistractionLevelSigIndication(void)
+{
+	uint8_t temp;
+		
+	temp = IlGetRxECU2_DistractionLevelSig();
+		
+#if 1
+	SYSINFO_PRINTF("[ROUTED Drive Status] DistractionLevelSig = 0x%x\r\n", temp);
+#endif
+}
+
+void ApplRxECU2_HandsOnLevelSigIndication(void)
+{
+	uint8_t temp;
+		
+	temp = IlGetRxECU2_HandsOnLevelSig();
+		
+#if 1
+	SYSINFO_PRINTF("[ROUTED Drive Status] HandsOnLevelSig = 0x%x\r\n", temp);
+#endif
+}
+
+void ApplRxECU2_PedestrianFriendlyAlertSoundGenerationEnableSigIndication(void)
+{
+	uint8_t temp;
+	
+	temp = IlGetRxECU2_PedestrianFriendlyAlertSoundGenerationEnableSig();
+	
+#if 1
+	SYSINFO_PRINTF("[ROUTED Pedestrain Friendly Alert Status] PedestrianFriendlyAlertSoundGenerationEnableSig = 0x%x\r\n", temp);
+#endif
+}
+
+void ApplRxECU2_PedestrianFriendlyAlertForwardSoundSigIndication(void)
+{
+	uint8_t temp;
+	
+	temp = IlGetRxECU2_PedestrianFriendlyAlertForwardSoundSig();
+	
+#if 1
+	SYSINFO_PRINTF("[ROUTED Pedestrain Friendly Alert Status] PedestrianFriendlyAlertForwardSoundSig = 0x%x\r\n", temp);
+#endif
+}
+
+void ApplRxECU2_PedestrianFriendlyAlertReverseSoundSigIndication(void)
+{
+	uint8_t temp;
+	
+	temp = IlGetRxECU2_PedestrianFriendlyAlertReverseSoundSig();
+	
+#if 1
+	SYSINFO_PRINTF("[ROUTED Pedestrain Friendly Alert Status] PedestrianFriendlyAlertReverseSoundSig = 0x%x\r\n", temp);
+#endif
+}
+
+void ApplRxECU2_PedestrianFriendlyAlertCrossoverSpeedSigIndication(void)
+{
+	uint8_t temp;
+		
+	temp = IlGetRxECU2_PedestrianFriendlyAlertCrossoverSpeedSig();
+		
+#if 1
+	SYSINFO_PRINTF("[ROUTED Pedestrain Friendly Alert Status] PedestrianFriendlyAlertCrossoverSpeedSig = 0x%x\r\n", temp);
+#endif
+}
+
+void ApplRxECU2_PedestrianFriendlyAlertSystemStatusSigIndication()
+{
+	uint8_t temp;
+		
+	temp = IlGetRxECU2_PedestrianFriendlyAlertSystemStatusSig();
+		
+#if 1
+	SYSINFO_PRINTF("[ROUTED Pedestrain Friendly Alert Status] PedestrianFriendlyAlertSystemStatusSig = 0x%x\r\n", temp);
 #endif
 }
 
