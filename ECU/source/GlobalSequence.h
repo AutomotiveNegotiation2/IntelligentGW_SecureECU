@@ -58,11 +58,12 @@ typedef union
 	struct TagLocalProc    
 	{
 		//uint32_t SEQ_POWER  :4;
-		//uint32_t SEQ_IOCTRL	:4;
 		//uint32_t SEQ_IDLE	:4;
      	uint32_t SEQ_CAN    :4;
 		uint32_t SEQ_ENET_100M	:4;
-		uint32_t SEQ_RES	:28;	// reserved
+		uint32_t SEQ_APP	:4;
+		uint32_t SEQ_IOCTRL	:4;
+		uint32_t SEQ_RES	:16;	// reserved
 	} B;
 } LOCAL_PROC_SEQ;
 

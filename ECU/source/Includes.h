@@ -17,4 +17,12 @@
 #include "EnetMain.h"
 #include "EnetSrv.h"
 
+#include "App.h"
+#include "AppMain.h"
+#include "AppSrv.h"
+
+#include "ioctrl.h"
+#include "IoctrlMain.h"
+#include "IoctrlSrv.h"
+
 #endif /* _INCLUDES_H_ */

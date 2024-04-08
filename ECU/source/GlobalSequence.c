@@ -7,7 +7,7 @@ uint32_t gLO_ALL_FINISH;
 
 void GlobalSequence_Init(void)
 {
-	gLO_ALL_FINISH = 0x000000FF;
+	gLO_ALL_FINISH = 0x0000FFFF;
 
 	GlobalSeqSwitch(GB_SEQ_UP_ACC_OFF);
 	gFlagSystemActive = FALSE;

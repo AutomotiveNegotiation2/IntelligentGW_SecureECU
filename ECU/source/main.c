@@ -42,6 +42,8 @@ int main(void)
 		
 		CanMain();
 		EnetMain();
+		AppMain();
+		IoctrlMain();
 	}
 }
 

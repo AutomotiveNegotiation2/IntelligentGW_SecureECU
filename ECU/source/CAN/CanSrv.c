@@ -4,8 +4,8 @@
 static void CanTransOperationMode(can_inst_t instance, can_trans_opmode_t opmode);
 static void CAN_ACC_ON_Init(can_inst_t instance);
 static inline uint8_t CanPowerIsEnabled(void);
-static void RUN_CAN_ACC_ON(void);
-static void RUN_CAN_ACC_OFF(void);
+static void RUN_CAN_UP_ACC_ON(void);
+static void RUN_CAN_DN_ACC_OFF(void);
 
 canTransFnCallback CanFnCtrl[CAN_CH_MAX] = {
 	{
@@ -41,11 +41,11 @@ void CanSrv(void)
 			break;
 
 		case GB_SEQ_DN_ACC_OFF:
-			RUN_CAN_ACC_OFF();
+			RUN_CAN_DN_ACC_OFF();
 			break;
 
 		case GB_SEQ_UP_ACC_ON:
-			RUN_CAN_ACC_ON();
+			RUN_CAN_UP_ACC_ON();
 			break;
 
 		case GB_SEQ_ACC_ON:
@@ -56,7 +56,7 @@ void CanSrv(void)
 	}
 }
 
-static void RUN_CAN_ACC_ON(void)
+static void RUN_CAN_UP_ACC_ON(void)
 {
 	switch(GlobalPocSeq.LSeq.B.SEQ_CAN)
 	{
@@ -119,7 +119,7 @@ static void RUN_CAN_ACC_ON(void)
 	}
 }
 
-static void RUN_CAN_ACC_OFF(void)
+static void RUN_CAN_DN_ACC_OFF(void)
 {
 	switch(GlobalPocSeq.LSeq.B.SEQ_CAN)
 	{
