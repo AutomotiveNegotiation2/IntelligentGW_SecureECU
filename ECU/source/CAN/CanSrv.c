@@ -1028,3 +1028,27 @@ void ApplTxECU2_V2V_Warning_TxComfirmation(void)
 	}
 }
 
+void ApplTxECU2_Clock_TxComfirmation(void)
+{
+	uint8_t sig;
+
+	sig = IlGetECU2_Clock_YearSig();
+	IlSetECU2_Clock_YearSig(&sig);
+
+	sig = IlGetECU2_Clock_MonthSig();
+	IlSetECU2_Clock_MonthSig(&sig);
+
+	sig = IlGetECU2_Clock_DaySig();
+	IlSetECU2_Clock_DaySig(&sig);
+
+	sig = IlGetECU2_Clock_HourSig();
+	IlSetECU2_Clock_HourSig(&sig);
+
+	sig = IlGetECU2_Clock_MinuteSig();
+	IlSetECU2_Clock_MinuteSig(&sig);
+
+	sig = IlGetECU2_Clock_SecondSig();
+	IlSetECU2_Clock_SecondSig(&sig);
+}
+
+

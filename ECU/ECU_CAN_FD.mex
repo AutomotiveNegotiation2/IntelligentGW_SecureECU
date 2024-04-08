@@ -34,6 +34,16 @@
                <pin_label pin_num="T17" pin_signal="GPIO_AD_07" label="USB_OTG2_PWR/WL_DEV_WAKE/U354[10]/J10[2]" identifier="CANFD_RX"/>
                <pin_label pin_num="N14" pin_signal="GPIO_AD_14" label="SPDIF_EXT_CLK/CAN_STBY/J9[16]" identifier="CAN_FD_STBY"/>
                <pin_label pin_num="K13" pin_signal="GPIO_AD_20" label="SAI1_RXD[0]/J9[7]/J50[20]/J61[1]/BT_PCM_RXD/U16[10]/U355[18]" identifier="ENET_RST"/>
+               <pin_label pin_num="R10" pin_signal="GPIO_SNVS_00" label="J42[3]" identifier="LED_RED_D1"/>
+               <pin_label pin_num="P10" pin_signal="GPIO_SNVS_01" label="J42[4]" identifier="LED_GREEN_D1"/>
+               <pin_label pin_num="L9" pin_signal="GPIO_SNVS_02" label="J42[5]" identifier="LED_RED_D2"/>
+               <pin_label pin_num="M10" pin_signal="GPIO_SNVS_03" label="J42[6]" identifier="LED_GREEN_D2"/>
+               <pin_label pin_num="N10" pin_signal="GPIO_SNVS_04" label="J42[7]" identifier="LED_RED_D3"/>
+               <pin_label pin_num="P9" pin_signal="GPIO_SNVS_05" label="J42[8]" identifier="LED_GREEN_D3"/>
+               <pin_label pin_num="M9" pin_signal="GPIO_SNVS_06" label="J42[9]" identifier="LED_RED_D4"/>
+               <pin_label pin_num="R9" pin_signal="GPIO_SNVS_07" label="J42[10]" identifier="LED_GREEN_D4"/>
+               <pin_label pin_num="N9" pin_signal="GPIO_SNVS_08" label="J42[11]" identifier="LED_RED_D5"/>
+               <pin_label pin_num="R11" pin_signal="GPIO_SNVS_09" label="J42[12]" identifier="LED_GREEN_D5"/>
             </pin_labels>
             <power_domains/>
          </pins_profile>
@@ -106,7 +116,7 @@
             <function name="BOARD_InitCanPins">
                <description>Configures pin routing and optionally pin electrical features.</description>
                <options>
-                  <callFromInitBoot>true</callFromInitBoot>
+                  <callFromInitBoot>false</callFromInitBoot>
                   <coreID>cm7</coreID>
                   <enableClock>true</enableClock>
                </options>
@@ -155,7 +165,7 @@
             <function name="BOARD_InitCanFdPins">
                <description>Configures pin routing and optionally pin electrical features.</description>
                <options>
-                  <callFromInitBoot>true</callFromInitBoot>
+                  <callFromInitBoot>false</callFromInitBoot>
                   <coreID>cm7</coreID>
                   <enableClock>true</enableClock>
                </options>
@@ -303,6 +313,117 @@
                   </pin>
                   <pin peripheral="ENET_1G" signal="enet_mdc" pin_num="U2" pin_signal="GPIO_EMC_B2_19"/>
                   <pin peripheral="ENET_1G" signal="enet_mdio" pin_num="R3" pin_signal="GPIO_EMC_B2_20"/>
+               </pins>
+            </function>
+            <function name="BOARD_InitFuncIoPins">
+               <description>Configures pin routing and optionally pin electrical features.</description>
+               <options>
+                  <callFromInitBoot>false</callFromInitBoot>
+                  <coreID>cm7</coreID>
+                  <enableClock>true</enableClock>
+               </options>
+               <dependencies>
+                  <dependency resourceType="SWComponent" resourceId="platform.drivers.common" description="Pins initialization requires the COMMON Driver in the project." problem_level="2" source="Pins:BOARD_InitFuncIoPins">
+                     <feature name="enabled" evaluation="equal" configuration="cm7">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+                  <dependency resourceType="SWComponent" resourceId="platform.drivers.iomuxc" description="Pins initialization requires the IOMUXC Driver in the project." problem_level="2" source="Pins:BOARD_InitFuncIoPins">
+                     <feature name="enabled" evaluation="equal" configuration="cm7">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+                  <dependency resourceType="SWComponent" resourceId="platform.drivers.igpio" description="Pins initialization requires the IGPIO Driver in the project." problem_level="2" source="Pins:BOARD_InitFuncIoPins">
+                     <feature name="enabled" evaluation="equal" configuration="cm7">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+               </dependencies>
+               <pins>
+                  <pin peripheral="GPIO10" signal="gpio_io, 09" pin_num="J15" pin_signal="GPIO_SD_B2_00">
+                     <pin_features>
+                        <pin_feature name="direction" value="INPUT"/>
+                        <pin_feature name="software_input_on" value="Enable"/>
+                     </pin_features>
+                  </pin>
+                  <pin peripheral="GPIO10" signal="gpio_io, 10" pin_num="J14" pin_signal="GPIO_SD_B2_01">
+                     <pin_features>
+                        <pin_feature name="direction" value="INPUT"/>
+                        <pin_feature name="software_input_on" value="Enable"/>
+                     </pin_features>
+                  </pin>
+                  <pin peripheral="GPIO10" signal="gpio_io, 11" pin_num="H13" pin_signal="GPIO_SD_B2_02">
+                     <pin_features>
+                        <pin_feature name="direction" value="INPUT"/>
+                        <pin_feature name="software_input_on" value="Enable"/>
+                     </pin_features>
+                  </pin>
+                  <pin peripheral="GPIO10" signal="gpio_io, 12" pin_num="E15" pin_signal="GPIO_SD_B2_03">
+                     <pin_features>
+                        <pin_feature name="direction" value="INPUT"/>
+                        <pin_feature name="software_input_on" value="Enable"/>
+                     </pin_features>
+                  </pin>
+                  <pin peripheral="GPIO13" signal="gpio_io, 03" pin_num="R10" pin_signal="GPIO_SNVS_00">
+                     <pin_features>
+                        <pin_feature name="direction" value="OUTPUT"/>
+                        <pin_feature name="gpio_init_state" value="true"/>
+                     </pin_features>
+                  </pin>
+                  <pin peripheral="GPIO13" signal="gpio_io, 04" pin_num="P10" pin_signal="GPIO_SNVS_01">
+                     <pin_features>
+                        <pin_feature name="direction" value="OUTPUT"/>
+                        <pin_feature name="gpio_init_state" value="true"/>
+                     </pin_features>
+                  </pin>
+                  <pin peripheral="GPIO13" signal="gpio_io, 05" pin_num="L9" pin_signal="GPIO_SNVS_02">
+                     <pin_features>
+                        <pin_feature name="direction" value="OUTPUT"/>
+                        <pin_feature name="gpio_init_state" value="true"/>
+                     </pin_features>
+                  </pin>
+                  <pin peripheral="GPIO13" signal="gpio_io, 06" pin_num="M10" pin_signal="GPIO_SNVS_03">
+                     <pin_features>
+                        <pin_feature name="direction" value="OUTPUT"/>
+                        <pin_feature name="gpio_init_state" value="true"/>
+                     </pin_features>
+                  </pin>
+                  <pin peripheral="GPIO13" signal="gpio_io, 07" pin_num="N10" pin_signal="GPIO_SNVS_04">
+                     <pin_features>
+                        <pin_feature name="direction" value="OUTPUT"/>
+                        <pin_feature name="gpio_init_state" value="true"/>
+                     </pin_features>
+                  </pin>
+                  <pin peripheral="GPIO13" signal="gpio_io, 08" pin_num="P9" pin_signal="GPIO_SNVS_05">
+                     <pin_features>
+                        <pin_feature name="direction" value="OUTPUT"/>
+                        <pin_feature name="gpio_init_state" value="true"/>
+                     </pin_features>
+                  </pin>
+                  <pin peripheral="GPIO13" signal="gpio_io, 09" pin_num="M9" pin_signal="GPIO_SNVS_06">
+                     <pin_features>
+                        <pin_feature name="direction" value="OUTPUT"/>
+                        <pin_feature name="gpio_init_state" value="true"/>
+                     </pin_features>
+                  </pin>
+                  <pin peripheral="GPIO13" signal="gpio_io, 10" pin_num="R9" pin_signal="GPIO_SNVS_07">
+                     <pin_features>
+                        <pin_feature name="direction" value="OUTPUT"/>
+                        <pin_feature name="gpio_init_state" value="true"/>
+                     </pin_features>
+                  </pin>
+                  <pin peripheral="GPIO13" signal="gpio_io, 11" pin_num="N9" pin_signal="GPIO_SNVS_08">
+                     <pin_features>
+                        <pin_feature name="direction" value="OUTPUT"/>
+                        <pin_feature name="gpio_init_state" value="true"/>
+                     </pin_features>
+                  </pin>
+                  <pin peripheral="GPIO13" signal="gpio_io, 12" pin_num="R11" pin_signal="GPIO_SNVS_09">
+                     <pin_features>
+                        <pin_feature name="direction" value="OUTPUT"/>
+                        <pin_feature name="gpio_init_state" value="true"/>
+                     </pin_features>
+                  </pin>
                </pins>
             </function>
          </functions_list>

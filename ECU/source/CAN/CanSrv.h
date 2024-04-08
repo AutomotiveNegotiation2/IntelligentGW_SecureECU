@@ -74,5 +74,6 @@ void ApplTxECU1_Blind_Zone_Alert_Status_TxComfirmation(void);
 void ApplTxECU1_SystemPowerMode_TxComfirmation(void);
 
 void ApplTxECU2_V2V_Warning_TxComfirmation(void);
+void ApplTxECU2_Clock_TxComfirmation(void);
 
 #endif /* _CANSRV_H_ */

@@ -261,6 +261,166 @@ void BOARD_InitEnetPins(void);                /* Function assigned for the Corte
  */
 void BOARD_InitEnet1GPins(void);              /* Function assigned for the Cortex-M7F */
 
+/* GPIO_SD_B2_00 (coord J15), FlexSPI_B_D3/U21[E1] */
+/* Routed pin properties */
+#define BOARD_INITFUNCIOPINS_FlexSPI_B_D3_PERIPHERAL                      GPIO10   /*!< Peripheral name */
+#define BOARD_INITFUNCIOPINS_FlexSPI_B_D3_SIGNAL                         gpio_io   /*!< Signal name */
+#define BOARD_INITFUNCIOPINS_FlexSPI_B_D3_CHANNEL                             9U   /*!< Signal channel */
+
+/* Symbols to be used with GPIO driver */
+#define BOARD_INITFUNCIOPINS_FlexSPI_B_D3_GPIO                            GPIO10   /*!< GPIO peripheral base pointer */
+#define BOARD_INITFUNCIOPINS_FlexSPI_B_D3_GPIO_PIN                            9U   /*!< GPIO pin number */
+#define BOARD_INITFUNCIOPINS_FlexSPI_B_D3_GPIO_PIN_MASK               (1U << 9U)   /*!< GPIO pin mask */
+
+/* GPIO_SD_B2_01 (coord J14), FlexSPI_B_D2/U21[E2] */
+/* Routed pin properties */
+#define BOARD_INITFUNCIOPINS_FlexSPI_B_D2_PERIPHERAL                      GPIO10   /*!< Peripheral name */
+#define BOARD_INITFUNCIOPINS_FlexSPI_B_D2_SIGNAL                         gpio_io   /*!< Signal name */
+#define BOARD_INITFUNCIOPINS_FlexSPI_B_D2_CHANNEL                            10U   /*!< Signal channel */
+
+/* Symbols to be used with GPIO driver */
+#define BOARD_INITFUNCIOPINS_FlexSPI_B_D2_GPIO                            GPIO10   /*!< GPIO peripheral base pointer */
+#define BOARD_INITFUNCIOPINS_FlexSPI_B_D2_GPIO_PIN                           10U   /*!< GPIO pin number */
+#define BOARD_INITFUNCIOPINS_FlexSPI_B_D2_GPIO_PIN_MASK              (1U << 10U)   /*!< GPIO pin mask */
+
+/* GPIO_SD_B2_02 (coord H13), FlexSPI_B_D1/U21[E3] */
+/* Routed pin properties */
+#define BOARD_INITFUNCIOPINS_FlexSPI_B_D1_PERIPHERAL                      GPIO10   /*!< Peripheral name */
+#define BOARD_INITFUNCIOPINS_FlexSPI_B_D1_SIGNAL                         gpio_io   /*!< Signal name */
+#define BOARD_INITFUNCIOPINS_FlexSPI_B_D1_CHANNEL                            11U   /*!< Signal channel */
+
+/* Symbols to be used with GPIO driver */
+#define BOARD_INITFUNCIOPINS_FlexSPI_B_D1_GPIO                            GPIO10   /*!< GPIO peripheral base pointer */
+#define BOARD_INITFUNCIOPINS_FlexSPI_B_D1_GPIO_PIN                           11U   /*!< GPIO pin number */
+#define BOARD_INITFUNCIOPINS_FlexSPI_B_D1_GPIO_PIN_MASK              (1U << 11U)   /*!< GPIO pin mask */
+
+/* GPIO_SD_B2_03 (coord E15), FlexSPI_B_D0/U21[D5] */
+/* Routed pin properties */
+#define BOARD_INITFUNCIOPINS_FlexSPI_B_D0_PERIPHERAL                      GPIO10   /*!< Peripheral name */
+#define BOARD_INITFUNCIOPINS_FlexSPI_B_D0_SIGNAL                         gpio_io   /*!< Signal name */
+#define BOARD_INITFUNCIOPINS_FlexSPI_B_D0_CHANNEL                            12U   /*!< Signal channel */
+
+/* Symbols to be used with GPIO driver */
+#define BOARD_INITFUNCIOPINS_FlexSPI_B_D0_GPIO                            GPIO10   /*!< GPIO peripheral base pointer */
+#define BOARD_INITFUNCIOPINS_FlexSPI_B_D0_GPIO_PIN                           12U   /*!< GPIO pin number */
+#define BOARD_INITFUNCIOPINS_FlexSPI_B_D0_GPIO_PIN_MASK              (1U << 12U)   /*!< GPIO pin mask */
+
+/* GPIO_SNVS_00 (coord R10), J42[3] */
+/* Routed pin properties */
+#define BOARD_INITFUNCIOPINS_LED_RED_D1_PERIPHERAL                        GPIO13   /*!< Peripheral name */
+#define BOARD_INITFUNCIOPINS_LED_RED_D1_SIGNAL                           gpio_io   /*!< Signal name */
+#define BOARD_INITFUNCIOPINS_LED_RED_D1_CHANNEL                               3U   /*!< Signal channel */
+
+/* Symbols to be used with GPIO driver */
+#define BOARD_INITFUNCIOPINS_LED_RED_D1_GPIO                              GPIO13   /*!< GPIO peripheral base pointer */
+#define BOARD_INITFUNCIOPINS_LED_RED_D1_GPIO_PIN                              3U   /*!< GPIO pin number */
+#define BOARD_INITFUNCIOPINS_LED_RED_D1_GPIO_PIN_MASK                 (1U << 3U)   /*!< GPIO pin mask */
+
+/* GPIO_SNVS_01 (coord P10), J42[4] */
+/* Routed pin properties */
+#define BOARD_INITFUNCIOPINS_LED_GREEN_D1_PERIPHERAL                      GPIO13   /*!< Peripheral name */
+#define BOARD_INITFUNCIOPINS_LED_GREEN_D1_SIGNAL                         gpio_io   /*!< Signal name */
+#define BOARD_INITFUNCIOPINS_LED_GREEN_D1_CHANNEL                             4U   /*!< Signal channel */
+
+/* Symbols to be used with GPIO driver */
+#define BOARD_INITFUNCIOPINS_LED_GREEN_D1_GPIO                            GPIO13   /*!< GPIO peripheral base pointer */
+#define BOARD_INITFUNCIOPINS_LED_GREEN_D1_GPIO_PIN                            4U   /*!< GPIO pin number */
+#define BOARD_INITFUNCIOPINS_LED_GREEN_D1_GPIO_PIN_MASK               (1U << 4U)   /*!< GPIO pin mask */
+
+/* GPIO_SNVS_02 (coord L9), J42[5] */
+/* Routed pin properties */
+#define BOARD_INITFUNCIOPINS_LED_RED_D2_PERIPHERAL                        GPIO13   /*!< Peripheral name */
+#define BOARD_INITFUNCIOPINS_LED_RED_D2_SIGNAL                           gpio_io   /*!< Signal name */
+#define BOARD_INITFUNCIOPINS_LED_RED_D2_CHANNEL                               5U   /*!< Signal channel */
+
+/* Symbols to be used with GPIO driver */
+#define BOARD_INITFUNCIOPINS_LED_RED_D2_GPIO                              GPIO13   /*!< GPIO peripheral base pointer */
+#define BOARD_INITFUNCIOPINS_LED_RED_D2_GPIO_PIN                              5U   /*!< GPIO pin number */
+#define BOARD_INITFUNCIOPINS_LED_RED_D2_GPIO_PIN_MASK                 (1U << 5U)   /*!< GPIO pin mask */
+
+/* GPIO_SNVS_03 (coord M10), J42[6] */
+/* Routed pin properties */
+#define BOARD_INITFUNCIOPINS_LED_GREEN_D2_PERIPHERAL                      GPIO13   /*!< Peripheral name */
+#define BOARD_INITFUNCIOPINS_LED_GREEN_D2_SIGNAL                         gpio_io   /*!< Signal name */
+#define BOARD_INITFUNCIOPINS_LED_GREEN_D2_CHANNEL                             6U   /*!< Signal channel */
+
+/* Symbols to be used with GPIO driver */
+#define BOARD_INITFUNCIOPINS_LED_GREEN_D2_GPIO                            GPIO13   /*!< GPIO peripheral base pointer */
+#define BOARD_INITFUNCIOPINS_LED_GREEN_D2_GPIO_PIN                            6U   /*!< GPIO pin number */
+#define BOARD_INITFUNCIOPINS_LED_GREEN_D2_GPIO_PIN_MASK               (1U << 6U)   /*!< GPIO pin mask */
+
+/* GPIO_SNVS_04 (coord N10), J42[7] */
+/* Routed pin properties */
+#define BOARD_INITFUNCIOPINS_LED_RED_D3_PERIPHERAL                        GPIO13   /*!< Peripheral name */
+#define BOARD_INITFUNCIOPINS_LED_RED_D3_SIGNAL                           gpio_io   /*!< Signal name */
+#define BOARD_INITFUNCIOPINS_LED_RED_D3_CHANNEL                               7U   /*!< Signal channel */
+
+/* Symbols to be used with GPIO driver */
+#define BOARD_INITFUNCIOPINS_LED_RED_D3_GPIO                              GPIO13   /*!< GPIO peripheral base pointer */
+#define BOARD_INITFUNCIOPINS_LED_RED_D3_GPIO_PIN                              7U   /*!< GPIO pin number */
+#define BOARD_INITFUNCIOPINS_LED_RED_D3_GPIO_PIN_MASK                 (1U << 7U)   /*!< GPIO pin mask */
+
+/* GPIO_SNVS_05 (coord P9), J42[8] */
+/* Routed pin properties */
+#define BOARD_INITFUNCIOPINS_LED_GREEN_D3_PERIPHERAL                      GPIO13   /*!< Peripheral name */
+#define BOARD_INITFUNCIOPINS_LED_GREEN_D3_SIGNAL                         gpio_io   /*!< Signal name */
+#define BOARD_INITFUNCIOPINS_LED_GREEN_D3_CHANNEL                             8U   /*!< Signal channel */
+
+/* Symbols to be used with GPIO driver */
+#define BOARD_INITFUNCIOPINS_LED_GREEN_D3_GPIO                            GPIO13   /*!< GPIO peripheral base pointer */
+#define BOARD_INITFUNCIOPINS_LED_GREEN_D3_GPIO_PIN                            8U   /*!< GPIO pin number */
+#define BOARD_INITFUNCIOPINS_LED_GREEN_D3_GPIO_PIN_MASK               (1U << 8U)   /*!< GPIO pin mask */
+
+/* GPIO_SNVS_06 (coord M9), J42[9] */
+/* Routed pin properties */
+#define BOARD_INITFUNCIOPINS_LED_RED_D4_PERIPHERAL                        GPIO13   /*!< Peripheral name */
+#define BOARD_INITFUNCIOPINS_LED_RED_D4_SIGNAL                           gpio_io   /*!< Signal name */
+#define BOARD_INITFUNCIOPINS_LED_RED_D4_CHANNEL                               9U   /*!< Signal channel */
+
+/* Symbols to be used with GPIO driver */
+#define BOARD_INITFUNCIOPINS_LED_RED_D4_GPIO                              GPIO13   /*!< GPIO peripheral base pointer */
+#define BOARD_INITFUNCIOPINS_LED_RED_D4_GPIO_PIN                              9U   /*!< GPIO pin number */
+#define BOARD_INITFUNCIOPINS_LED_RED_D4_GPIO_PIN_MASK                 (1U << 9U)   /*!< GPIO pin mask */
+
+/* GPIO_SNVS_07 (coord R9), J42[10] */
+/* Routed pin properties */
+#define BOARD_INITFUNCIOPINS_LED_GREEN_D4_PERIPHERAL                      GPIO13   /*!< Peripheral name */
+#define BOARD_INITFUNCIOPINS_LED_GREEN_D4_SIGNAL                         gpio_io   /*!< Signal name */
+#define BOARD_INITFUNCIOPINS_LED_GREEN_D4_CHANNEL                            10U   /*!< Signal channel */
+
+/* Symbols to be used with GPIO driver */
+#define BOARD_INITFUNCIOPINS_LED_GREEN_D4_GPIO                            GPIO13   /*!< GPIO peripheral base pointer */
+#define BOARD_INITFUNCIOPINS_LED_GREEN_D4_GPIO_PIN                           10U   /*!< GPIO pin number */
+#define BOARD_INITFUNCIOPINS_LED_GREEN_D4_GPIO_PIN_MASK              (1U << 10U)   /*!< GPIO pin mask */
+
+/* GPIO_SNVS_08 (coord N9), J42[11] */
+/* Routed pin properties */
+#define BOARD_INITFUNCIOPINS_LED_RED_D5_PERIPHERAL                        GPIO13   /*!< Peripheral name */
+#define BOARD_INITFUNCIOPINS_LED_RED_D5_SIGNAL                           gpio_io   /*!< Signal name */
+#define BOARD_INITFUNCIOPINS_LED_RED_D5_CHANNEL                              11U   /*!< Signal channel */
+
+/* Symbols to be used with GPIO driver */
+#define BOARD_INITFUNCIOPINS_LED_RED_D5_GPIO                              GPIO13   /*!< GPIO peripheral base pointer */
+#define BOARD_INITFUNCIOPINS_LED_RED_D5_GPIO_PIN                             11U   /*!< GPIO pin number */
+#define BOARD_INITFUNCIOPINS_LED_RED_D5_GPIO_PIN_MASK                (1U << 11U)   /*!< GPIO pin mask */
+
+/* GPIO_SNVS_09 (coord R11), J42[12] */
+/* Routed pin properties */
+#define BOARD_INITFUNCIOPINS_LED_GREEN_D5_PERIPHERAL                      GPIO13   /*!< Peripheral name */
+#define BOARD_INITFUNCIOPINS_LED_GREEN_D5_SIGNAL                         gpio_io   /*!< Signal name */
+#define BOARD_INITFUNCIOPINS_LED_GREEN_D5_CHANNEL                            12U   /*!< Signal channel */
+
+/* Symbols to be used with GPIO driver */
+#define BOARD_INITFUNCIOPINS_LED_GREEN_D5_GPIO                            GPIO13   /*!< GPIO peripheral base pointer */
+#define BOARD_INITFUNCIOPINS_LED_GREEN_D5_GPIO_PIN                           12U   /*!< GPIO pin number */
+#define BOARD_INITFUNCIOPINS_LED_GREEN_D5_GPIO_PIN_MASK              (1U << 12U)   /*!< GPIO pin mask */
+
+/*!
+ * @brief Configures pin routing and optionally pin electrical features.
+ *
+ */
+void BOARD_InitFuncIoPins(void);              /* Function assigned for the Cortex-M7F */
+
 #if defined(__cplusplus)
 }
 #endif
