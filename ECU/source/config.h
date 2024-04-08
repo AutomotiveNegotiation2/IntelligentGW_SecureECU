@@ -6,8 +6,8 @@
 
 #define	DEBUG_SYS		ON
 #define	DEBUG_CAN		OFF
-#define	DEBUG_ENET		ON
-#define	DEBUG_APP		OFF
+#define	DEBUG_ENET		OFF
+#define	DEBUG_APP		ON
 #define	DEBUG_IOCTRL	OFF
 
 typedef enum {
@@ -19,6 +19,7 @@ typedef enum {
 
 #define	CAN3toCAN_EN	ON
 #define	CAN1toCANFD_EN	OFF
+#define	LIGHTING_GRILL_INSTALLED	ON
 
 #if ((CAN3toCAN_EN == OFF) && (CAN1toCANFD_EN == OFF))
 #error CAN function more than one channel must be activated

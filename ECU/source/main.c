@@ -65,4 +65,18 @@ static void main_init(void)
 	SoftTimerInit();
 
 	ApplCan_InitBuf();
+
+#if 0
+	BOARD_InitFuncLightingGrillPins();
+	lightingGrill_Init();
+#if 1
+	lightingGrill_OpStart(OP_LED_TURN_RIGHT, 5);
+	lightingGrill_OpSeq();
+#else
+	for (int i=0; i<5; i++)
+	{
+		turn_right_sig();
+	}
+#endif
+#endif
 }

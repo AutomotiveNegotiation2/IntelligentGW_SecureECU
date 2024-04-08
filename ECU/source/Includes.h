@@ -33,4 +33,6 @@
 
 #include "rtc.h"
 
+#include "elmos_led.h"
+
 #endif /* _INCLUDES_H_ */

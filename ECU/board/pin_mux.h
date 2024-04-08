@@ -421,6 +421,54 @@ void BOARD_InitEnet1GPins(void);              /* Function assigned for the Corte
  */
 void BOARD_InitFuncIoPins(void);              /* Function assigned for the Cortex-M7F */
 
+/* GPIO_AD_15 (coord M14), SPDIF_IN/U43[4]/BT_RST#/U16[14]/J54[54] */
+/* Routed pin properties */
+#define BOARD_INITFUNCLIGHTINGGRILLPINS_SPDIF_IN_PERIPHERAL             LPUART10   /*!< Peripheral name */
+#define BOARD_INITFUNCLIGHTINGGRILLPINS_SPDIF_IN_SIGNAL                      TXD   /*!< Signal name */
+
+/* GPIO_AD_16 (coord N17), SPDIF_OUT/WIFI_RST_B/U354[3] */
+/* Routed pin properties */
+#define BOARD_INITFUNCLIGHTINGGRILLPINS_SPDIF_OUT_PERIPHERAL            LPUART10   /*!< Peripheral name */
+#define BOARD_INITFUNCLIGHTINGGRILLPINS_SPDIF_OUT_SIGNAL                     RXD   /*!< Signal name */
+
+/* GPIO_LPSR_08 (coord U8), DMIC_CLK/U41[1]/U44[1]/J50[18] */
+/* Routed pin properties */
+#define BOARD_INITFUNCLIGHTINGGRILLPINS_DMIC_CLK_PERIPHERAL             LPUART11   /*!< Peripheral name */
+#define BOARD_INITFUNCLIGHTINGGRILLPINS_DMIC_CLK_SIGNAL                      TXD   /*!< Signal name */
+
+/* GPIO_LPSR_09 (coord P5), DMIC_DATA0/U41[5]/J50[20]/LPSPI6_CS0/J26[11] */
+/* Routed pin properties */
+#define BOARD_INITFUNCLIGHTINGGRILLPINS_DMIC_DATA0_PERIPHERAL           LPUART11   /*!< Peripheral name */
+#define BOARD_INITFUNCLIGHTINGGRILLPINS_DMIC_DATA0_SIGNAL                    RXD   /*!< Signal name */
+
+/* GPIO_AD_21 (coord K14), SAI1_TXD[0]/J9[9]/J62[1]/BT_PCM_TXD/U16[9]/U354[6] */
+/* Routed pin properties */
+#define BOARD_INITFUNCLIGHTINGGRILLPINS_WHITE_LED_PERIPHERAL               GPIO9   /*!< Peripheral name */
+#define BOARD_INITFUNCLIGHTINGGRILLPINS_WHITE_LED_SIGNAL                 gpio_io   /*!< Signal name */
+#define BOARD_INITFUNCLIGHTINGGRILLPINS_WHITE_LED_CHANNEL                    20U   /*!< Signal channel */
+
+/* Symbols to be used with GPIO driver */
+#define BOARD_INITFUNCLIGHTINGGRILLPINS_WHITE_LED_GPIO                     GPIO9   /*!< GPIO peripheral base pointer */
+#define BOARD_INITFUNCLIGHTINGGRILLPINS_WHITE_LED_GPIO_PIN                   20U   /*!< GPIO pin number */
+#define BOARD_INITFUNCLIGHTINGGRILLPINS_WHITE_LED_GPIO_PIN_MASK      (1U << 20U)   /*!< GPIO pin mask */
+
+/* GPIO_AD_27 (coord N16), BT_HOST_WAKE/U16[38]/BT_WAKE_B_3V3/J54[20] */
+/* Routed pin properties */
+#define BOARD_INITFUNCLIGHTINGGRILLPINS_YELLOW_LED_PERIPHERAL              GPIO9   /*!< Peripheral name */
+#define BOARD_INITFUNCLIGHTINGGRILLPINS_YELLOW_LED_SIGNAL                gpio_io   /*!< Signal name */
+#define BOARD_INITFUNCLIGHTINGGRILLPINS_YELLOW_LED_CHANNEL                   26U   /*!< Signal channel */
+
+/* Symbols to be used with GPIO driver */
+#define BOARD_INITFUNCLIGHTINGGRILLPINS_YELLOW_LED_GPIO                    GPIO9   /*!< GPIO peripheral base pointer */
+#define BOARD_INITFUNCLIGHTINGGRILLPINS_YELLOW_LED_GPIO_PIN                  26U   /*!< GPIO pin number */
+#define BOARD_INITFUNCLIGHTINGGRILLPINS_YELLOW_LED_GPIO_PIN_MASK     (1U << 26U)   /*!< GPIO pin mask */
+
+/*!
+ * @brief Configures pin routing and optionally pin electrical features.
+ *
+ */
+void BOARD_InitFuncLightingGrillPins(void);   /* Function assigned for the Cortex-M7F */
+
 #if defined(__cplusplus)
 }
 #endif

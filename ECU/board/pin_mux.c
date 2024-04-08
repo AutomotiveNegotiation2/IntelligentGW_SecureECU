@@ -15,11 +15,14 @@ board: MIMXRT1170-EVK
 pin_labels:
 - {pin_num: N6, pin_signal: GPIO_LPSR_00, label: 'CAN3_TX/U42[1]', identifier: CAN3_TX;CAN_TX}
 - {pin_num: R6, pin_signal: GPIO_LPSR_01, label: 'CAN3_RX/U42[4]', identifier: CAN3_RX;CAN_RX}
+- {pin_num: E8, pin_signal: GPIO_DISP_B2_00, label: 'BT_CFG[6]', identifier: CAN_STB}
 - {pin_num: A5, pin_signal: GPIO_DISP_B2_13, label: 'INT1_COMBO/BT_UART_RTS/U16[4]/U354[5]/ETHPHY_RST_B/U10[12]', identifier: BT_UART_RTS;ENET_1G_RST}
 - {pin_num: N13, pin_signal: GPIO_AD_06, label: 'USB_OTG2_OC/U18[A2]/J9[10]/AUD_INT', identifier: CANFD_TX}
 - {pin_num: T17, pin_signal: GPIO_AD_07, label: 'USB_OTG2_PWR/WL_DEV_WAKE/U354[10]/J10[2]', identifier: CANFD_RX}
 - {pin_num: N14, pin_signal: GPIO_AD_14, label: 'SPDIF_EXT_CLK/CAN_STBY/J9[16]', identifier: CAN_FD_STBY}
 - {pin_num: K13, pin_signal: GPIO_AD_20, label: 'SAI1_RXD[0]/J9[7]/J50[20]/J61[1]/BT_PCM_RXD/U16[10]/U355[18]', identifier: ENET_RST}
+- {pin_num: K14, pin_signal: GPIO_AD_21, label: 'SAI1_TXD[0]/J9[9]/J62[1]/BT_PCM_TXD/U16[9]/U354[6]', identifier: BT_PCM_TXD;WHITE_LED;WLED}
+- {pin_num: N16, pin_signal: GPIO_AD_27, label: 'BT_HOST_WAKE/U16[38]/BT_WAKE_B_3V3/J54[20]', identifier: BT_WAKE_B_3V3;YELLOW_LED}
 - {pin_num: R10, pin_signal: GPIO_SNVS_00, label: 'J42[3]', identifier: LED_RED_D1}
 - {pin_num: P10, pin_signal: GPIO_SNVS_01, label: 'J42[4]', identifier: LED_GREEN_D1}
 - {pin_num: L9, pin_signal: GPIO_SNVS_02, label: 'J42[5]', identifier: LED_RED_D2}
@@ -693,6 +696,87 @@ void BOARD_InitFuncIoPins(void) {
                                                  Pull / Keep Select Field: Pull Enable
                                                  Pull Up / Down Config. Field: Weak pull down
                                                  Open Drain SNVS Field: Disabled
+                                                 Domain write protection: Both cores are allowed
+                                                 Domain write protection lock: Neither of DWP bits is locked */
+}
+
+
+/*
+ * TEXT BELOW IS USED AS SETTING FOR TOOLS *************************************
+BOARD_InitFuncLightingGrillPins:
+- options: {callFromInitBoot: 'false', coreID: cm7, enableClock: 'true'}
+- pin_list:
+  - {pin_num: M14, peripheral: LPUART10, signal: TXD, pin_signal: GPIO_AD_15, pull_keeper_select: no_init}
+  - {pin_num: N17, peripheral: LPUART10, signal: RXD, pin_signal: GPIO_AD_16, pull_keeper_select: no_init}
+  - {pin_num: U8, peripheral: LPUART11, signal: TXD, pin_signal: GPIO_LPSR_08, pull_keeper_select: no_init}
+  - {pin_num: P5, peripheral: LPUART11, signal: RXD, pin_signal: GPIO_LPSR_09, pull_keeper_select: no_init}
+  - {pin_num: K14, peripheral: GPIO9, signal: 'gpio_io, 20', pin_signal: GPIO_AD_21, identifier: WHITE_LED, direction: OUTPUT, gpio_init_state: 'true', pull_up_down_config: Pull_Down}
+  - {pin_num: N16, peripheral: GPIO9, signal: 'gpio_io, 26', pin_signal: GPIO_AD_27, identifier: YELLOW_LED, direction: OUTPUT, gpio_init_state: 'true', pull_up_down_config: Pull_Down}
+ * BE CAREFUL MODIFYING THIS COMMENT - IT IS YAML SETTINGS FOR TOOLS ***********
+ */
+
+/* FUNCTION ************************************************************************************************************
+ *
+ * Function Name : BOARD_InitFuncLightingGrillPins, assigned for the Cortex-M7F core.
+ * Description   : Configures pin routing and optionally pin electrical features.
+ *
+ * END ****************************************************************************************************************/
+void BOARD_InitFuncLightingGrillPins(void) {
+  CLOCK_EnableClock(kCLOCK_Iomuxc);           /* LPCG on: LPCG is ON. */
+  CLOCK_EnableClock(kCLOCK_Iomuxc_Lpsr);      /* LPCG on: LPCG is ON. */
+
+  /* GPIO configuration of WHITE_LED on GPIO_AD_21 (pin K14) */
+  gpio_pin_config_t WHITE_LED_config = {
+      .direction = kGPIO_DigitalOutput,
+      .outputLogic = 1U,
+      .interruptMode = kGPIO_NoIntmode
+  };
+  /* Initialize GPIO functionality on GPIO_AD_21 (pin K14) */
+  GPIO_PinInit(GPIO9, 20U, &WHITE_LED_config);
+
+  /* GPIO configuration of YELLOW_LED on GPIO_AD_27 (pin N16) */
+  gpio_pin_config_t YELLOW_LED_config = {
+      .direction = kGPIO_DigitalOutput,
+      .outputLogic = 1U,
+      .interruptMode = kGPIO_NoIntmode
+  };
+  /* Initialize GPIO functionality on GPIO_AD_27 (pin N16) */
+  GPIO_PinInit(GPIO9, 26U, &YELLOW_LED_config);
+
+  IOMUXC_SetPinMux(
+      IOMUXC_GPIO_AD_15_LPUART10_TXD,         /* GPIO_AD_15 is configured as LPUART10_TXD */
+      0U);                                    /* Software Input On Field: Input Path is determined by functionality */
+  IOMUXC_SetPinMux(
+      IOMUXC_GPIO_AD_16_LPUART10_RXD,         /* GPIO_AD_16 is configured as LPUART10_RXD */
+      0U);                                    /* Software Input On Field: Input Path is determined by functionality */
+  IOMUXC_SetPinMux(
+      IOMUXC_GPIO_AD_21_GPIO9_IO20,           /* GPIO_AD_21 is configured as GPIO9_IO20 */
+      0U);                                    /* Software Input On Field: Input Path is determined by functionality */
+  IOMUXC_SetPinMux(
+      IOMUXC_GPIO_AD_27_GPIO9_IO26,           /* GPIO_AD_27 is configured as GPIO9_IO26 */
+      0U);                                    /* Software Input On Field: Input Path is determined by functionality */
+  IOMUXC_SetPinMux(
+      IOMUXC_GPIO_LPSR_08_LPUART11_TXD,       /* GPIO_LPSR_08 is configured as LPUART11_TXD */
+      0U);                                    /* Software Input On Field: Input Path is determined by functionality */
+  IOMUXC_SetPinMux(
+      IOMUXC_GPIO_LPSR_09_LPUART11_RXD,       /* GPIO_LPSR_09 is configured as LPUART11_RXD */
+      0U);                                    /* Software Input On Field: Input Path is determined by functionality */
+  IOMUXC_SetPinConfig(
+      IOMUXC_GPIO_AD_21_GPIO9_IO20,           /* GPIO_AD_21 PAD functional properties : */
+      0x06U);                                 /* Slew Rate Field: Slow Slew Rate
+                                                 Drive Strength Field: high drive strength
+                                                 Pull / Keep Select Field: Pull Enable
+                                                 Pull Up / Down Config. Field: Weak pull down
+                                                 Open Drain Field: Disabled
+                                                 Domain write protection: Both cores are allowed
+                                                 Domain write protection lock: Neither of DWP bits is locked */
+  IOMUXC_SetPinConfig(
+      IOMUXC_GPIO_AD_27_GPIO9_IO26,           /* GPIO_AD_27 PAD functional properties : */
+      0x06U);                                 /* Slew Rate Field: Slow Slew Rate
+                                                 Drive Strength Field: high drive strength
+                                                 Pull / Keep Select Field: Pull Enable
+                                                 Pull Up / Down Config. Field: Weak pull down
+                                                 Open Drain Field: Disabled
                                                  Domain write protection: Both cores are allowed
                                                  Domain write protection lock: Neither of DWP bits is locked */
 }

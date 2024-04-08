@@ -1,3 +1,4 @@
+#include "pin_mux.h"
 #include "Includes.h"
 
 void RUN_APP_DN_ACC_OFF(void);
@@ -65,14 +66,25 @@ void RUN_APP_UP_ACC_ON(void)
 	switch(GlobalPocSeq.LSeq.B.SEQ_APP)
 	{
 		case LO_SEQ_START:
+			KillSoftTimer(STIMER_IOCTRL_LIGHTING_GRILL_LED_OP);
+			
 			GlobalPocSeq.LSeq.B.SEQ_APP = LO_SEQ_01;
 			break;
 
 		case LO_SEQ_01:
+			BOARD_InitFuncLightingGrillPins();
+			lightingGrill_Init();
+			
 			GlobalPocSeq.LSeq.B.SEQ_APP = LO_SEQ_02;
 			break;
 
 		case LO_SEQ_02:
+			lightingGrill_OpStart(OP_LED_EMERGENCY, 5);
+			
+			GlobalPocSeq.LSeq.B.SEQ_APP = LO_SEQ_03;
+			break;
+
+		case LO_SEQ_03:
 			GlobalPocSeq.LSeq.B.SEQ_APP = LO_SEQ_FINISH;
 			break;
 
