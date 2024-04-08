@@ -1030,25 +1030,26 @@ void ApplTxECU2_V2V_Warning_TxComfirmation(void)
 
 void ApplTxECU2_Clock_TxComfirmation(void)
 {
-	uint8_t sig;
+	uint16_t sig16;
+	uint8_t sig08;
 
-	sig = IlGetECU2_Clock_YearSig();
-	IlSetECU2_Clock_YearSig(&sig);
+	sig16 = IlGetECU2_Clock_YearSig();
+	IlSetECU2_Clock_YearSig(&sig16);
 
-	sig = IlGetECU2_Clock_MonthSig();
-	IlSetECU2_Clock_MonthSig(&sig);
+	sig08 = IlGetECU2_Clock_MonthSig();
+	IlSetECU2_Clock_MonthSig(&sig08);
 
-	sig = IlGetECU2_Clock_DaySig();
-	IlSetECU2_Clock_DaySig(&sig);
+	sig08 = IlGetECU2_Clock_DaySig();
+	IlSetECU2_Clock_DaySig(&sig08);
 
-	sig = IlGetECU2_Clock_HourSig();
-	IlSetECU2_Clock_HourSig(&sig);
+	sig08 = IlGetECU2_Clock_HourSig();
+	IlSetECU2_Clock_HourSig(&sig08);
 
-	sig = IlGetECU2_Clock_MinuteSig();
-	IlSetECU2_Clock_MinuteSig(&sig);
+	sig08 = IlGetECU2_Clock_MinuteSig();
+	IlSetECU2_Clock_MinuteSig(&sig08);
 
-	sig = IlGetECU2_Clock_SecondSig();
-	IlSetECU2_Clock_SecondSig(&sig);
+	sig08 = IlGetECU2_Clock_SecondSig();
+	IlSetECU2_Clock_SecondSig(&sig08);
 }
 
 

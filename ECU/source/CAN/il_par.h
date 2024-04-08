@@ -177,6 +177,20 @@ uint8_t IlGetRxECU2_PedestrianFriendlyAlertCrossoverSpeedSig(void);
 uint8_t IlGetRxECU2_PedestrianFriendlyAlertSystemStatusSig(void);
 void IlMsgECU2_ROUTED_Pedestrain_Friendly_Alert_Status_Rx3Indication(uint8_t * data, uint8_t dlc);
 
+uint16_t IlGetECU2_Clock_YearSig(void);
+uint8_t IlGetECU2_Clock_MonthSig(void);
+uint8_t IlGetECU2_Clock_DaySig(void);
+uint8_t IlGetECU2_Clock_HourSig(void);
+uint8_t IlGetECU2_Clock_MinuteSig(void);
+uint8_t IlGetECU2_Clock_SecondSig(void);
+
+void IlSetECU2_Clock_YearSig(uint16_t * msgdata);
+void IlSetECU2_Clock_MonthSig(uint8_t * msgdata);
+void IlSetECU2_Clock_DaySig(uint8_t * msgdata);
+void IlSetECU2_Clock_HourSig(uint8_t * msgdata);
+void IlSetECU2_Clock_MinuteSig(uint8_t * msgdata);
+void IlSetECU2_Clock_SecondSig(uint8_t * msgdata);
+
 void IlMsgECU1_ROUTED_V2V_Warning_Rx2Indication(uint8_t * data, uint8_t dlc);
 void IlMsgECU1_ROUTED_Pedestrain_Friendly_Alert_Status_Rx3Indication(uint8_t * data, uint8_t dlc);
 void IlMsgECU1_ROUTED_Drive_Status_Rx1Indication(uint8_t * data, uint8_t dlc);

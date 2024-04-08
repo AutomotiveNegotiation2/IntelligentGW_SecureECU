@@ -429,7 +429,7 @@ void CAN_SetTxFlagForMsgUpdate(can_inst_t canChannel, uint32_t msgId)
 	}
 }
 
-uint8_t IlGetECU2_Clock_YearSig(void)
+uint16_t IlGetECU2_Clock_YearSig(void)
 {
 	return ECU2_Clock_Tx0.Clock.Year;
 }

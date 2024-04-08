@@ -3,19 +3,11 @@
 #define	KEY_PRESSED		1
 #define	KEY_RELEASED	0
 
-#if 0
-#define	ReadCBdBtnKey()		GPIO_PinRead(BOARD_INITPINS_USER_BUTTON_GPIO, BOARD_INITPINS_USER_BUTTON_GPIO_PIN) == 0 ? KEY_PRESSED : KEY_RELEASED
-#define	ReadFBdSw01BtnKey()	GPIO_PinRead(BOARD_INITFUNCIOPINS_FlexSPI_B_D3_GPIO, BOARD_INITFUNCIOPINS_FlexSPI_B_D3_GPIO_PIN) == 0 ? KEY_PRESSED : KEY_RELEASED
-#define	ReadFBdSw02BtnKey()	GPIO_PinRead(BOARD_INITFUNCIOPINS_FlexSPI_B_D2_GPIO, BOARD_INITFUNCIOPINS_FlexSPI_B_D2_GPIO_PIN) == 0 ? KEY_PRESSED : KEY_RELEASED
-#define	ReadFBdSw03BtnKey()	GPIO_PinRead(BOARD_INITFUNCIOPINS_FlexSPI_B_D1_GPIO, BOARD_INITFUNCIOPINS_FlexSPI_B_D1_GPIO_PIN) == 0 ? KEY_PRESSED : KEY_RELEASED
-#define	ReadFBdSw04BtnKey()	GPIO_PinRead(BOARD_INITFUNCIOPINS_FlexSPI_B_D0_GPIO, BOARD_INITFUNCIOPINS_FlexSPI_B_D0_GPIO_PIN) == 0 ? KEY_PRESSED : KEY_RELEASED
-#else
 bool	ReadCBdBtnKey(void)		{return GPIO_PinRead(BOARD_INITPINS_USER_BUTTON_GPIO, BOARD_INITPINS_USER_BUTTON_GPIO_PIN) == 0 ? KEY_PRESSED : KEY_RELEASED;}
 bool	ReadFBdSw01BtnKey(void)	{return GPIO_PinRead(BOARD_INITFUNCIOPINS_FlexSPI_B_D3_GPIO, BOARD_INITFUNCIOPINS_FlexSPI_B_D3_GPIO_PIN) == 0 ? KEY_PRESSED : KEY_RELEASED;}
 bool	ReadFBdSw02BtnKey(void)	{return GPIO_PinRead(BOARD_INITFUNCIOPINS_FlexSPI_B_D2_GPIO, BOARD_INITFUNCIOPINS_FlexSPI_B_D2_GPIO_PIN) == 0 ? KEY_PRESSED : KEY_RELEASED;}
 bool	ReadFBdSw03BtnKey(void)	{return GPIO_PinRead(BOARD_INITFUNCIOPINS_FlexSPI_B_D1_GPIO, BOARD_INITFUNCIOPINS_FlexSPI_B_D1_GPIO_PIN) == 0 ? KEY_PRESSED : KEY_RELEASED;}
 bool	ReadFBdSw04BtnKey(void)	{return GPIO_PinRead(BOARD_INITFUNCIOPINS_FlexSPI_B_D0_GPIO, BOARD_INITFUNCIOPINS_FlexSPI_B_D0_GPIO_PIN) == 0 ? KEY_PRESSED : KEY_RELEASED;}
-#endif
 
 typedef struct {
 	uint8_t keyChattTimer;
@@ -23,8 +15,6 @@ typedef struct {
 	bool keyReleasedOnFlag;
 	bool keyChatStartFlag;
 } key_detect_ctrl_t;
-
-//key_detect_ctrl_t keyCtrl;
 
 typedef struct {
 	key_detect_ctrl_t * keyCtrl;
@@ -40,7 +30,6 @@ ReadKeyInCallback keyInFunc[KEY_IN_MAX] =
 	ReadFBdSw03BtnKey,
 	ReadFBdSw04BtnKey
 };
-
 
 KeyFuncCallback keyFunc[KEY_IN_MAX] = 
 {
@@ -62,7 +51,6 @@ KeyFuncCallback keyFunc[KEY_IN_MAX] =
 };
 
 key_detect_ctrl_t keyInCtrl[KEY_IN_MAX];
-
 keyIn_read_t keyInConfig;
 	
 void RUN_IOCTRL_DN_ACC_OFF(void);
@@ -146,9 +134,8 @@ void RUN_IOCTRL_UP_ACC_ON(void)
 			break;
 
 		case LO_SEQ_02:
-			//memset(&keyCtrl, 0, sizeof(key_detect_ctrl_t));
 			memset(keyInCtrl, 0, sizeof(key_detect_ctrl_t)*KEY_IN_MAX);
-			SetSoftTimer(STIMER_IOCTRL_USER_KEY_OP, 10, Ioctrl_KeyOp);	// dse_yjpark
+			SetSoftTimer(STIMER_IOCTRL_USER_KEY_OP, 10, Ioctrl_KeyOp);	
 			SetSoftTimer(STIMER_IOCTRL_USER_KEY_CHATT_OP, 5, Ioctrl_KeyChattOp);
 			
 			GlobalPocSeq.LSeq.B.SEQ_IOCTRL = LO_SEQ_FINISH;
@@ -182,45 +169,6 @@ uint32_t IOCTRL_GetConfigKeyIn(keyIn_inst_t keych)
 
 void Ioctrl_KeyChattOp(void)
 {
-#if 0
-	if (keyCtrl.keyPressedOnFlag != ON)
-	{
-		if (ReadCBdBtnKey() == KEY_PRESSED)
-		{
-			if (++keyCtrl.keyChattTimer > 10)	// 50ms
-			{
-				keyCtrl.keyChattTimer = 0;
-				keyCtrl.keyPressedOnFlag = ON;
-			}
-			else
-			{
-			}
-		}
-		else
-		{
-			keyCtrl.keyChattTimer = 0;
-		}
-	}
-	else /*if (keyCtrl.keyPressedOnFlag == ON)*/
-	{
-		if (ReadCBdBtnKey() == KEY_RELEASED)
-		{
-			if (++keyCtrl.keyChattTimer > 10)	// 50ms
-			{
-				keyCtrl.keyChattTimer = 0;
-				keyCtrl.keyReleasedOnFlag = ON;
-				KillSoftTimer(STIMER_IOCTRL_USER_KEY_CHATT_OP);
-			}
-			else
-			{
-			}
-		}
-		else
-		{
-			keyCtrl.keyChattTimer = 0;
-		}
-	}
-#else
 	keyIn_inst_t keyin;
 	keyIn_read_t * keyhandle;
 	
@@ -271,36 +219,10 @@ void Ioctrl_KeyChattOp(void)
 		{
 		}
 	}
-#endif
 }
 
 void Ioctrl_KeyOp(void)
 {
-#if 0
-	if (keyCtrl.keyChatStartFlag != ON)
-	{
-		if (ReadCBdBtnKey() == KEY_PRESSED)
-		{
-			keyCtrl.keyChatStartFlag = ON;
-			KillSoftTimer(STIMER_IOCTRL_USER_KEY_CHATT_OP);
-			SetSoftTimer(STIMER_IOCTRL_USER_KEY_CHATT_OP, 5, Ioctrl_KeyChattOp);
-		}
-	}
-	else if (keyCtrl.keyReleasedOnFlag == ON)
-	{
-		memset(&keyCtrl, 0, sizeof(key_detect_ctrl_t));
-		//ApplTxECU1_Blind_Zone_Alert_Status_TxComfirmation();	// CAN
-		//ApplTxECU2_V2V_Warning_TxComfirmation();	// CANFD
-#if (CAN3toCAN_EN == ON)
-		ApplTxECU1_SystemPowerMode_TxComfirmation();	// CAN
-#elif (CAN1toCANFD_EN == ON)
-		ApplTxECU2_V2V_Warning_TxComfirmation();	// CANFD
-#endif
-	}
-	else
-	{
-	}
-#else
 	keyIn_inst_t keyin;
 	keyIn_read_t * keyhandle;
 	
@@ -347,8 +269,5 @@ void Ioctrl_KeyOp(void)
 		{
 		}
 	}
-#endif
 }
-
-
 
