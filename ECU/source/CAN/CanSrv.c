@@ -1,6 +1,17 @@
 #include "pin_mux.h"
 #include "Includes.h"
 
+#define	CAN_TASK_10MS_TIME			10
+#define	QUEUE_CAN_RX_BUFFER_SIZE	128
+
+can_timer_t CanTimer;
+
+static QUEUE CanRx2MsgQueue;
+static queue_can_rx_buf_t CanRx2MsgBuffer[QUEUE_CAN_RX_BUFFER_SIZE];
+
+
+static void CanTaskStart(void);
+static void ApplCan_ScheduleTask(void);
 static void CanTransOperationMode(can_inst_t instance, can_trans_opmode_t opmode);
 static void CAN_ACC_ON_Init(can_inst_t instance);
 static inline uint8_t CanPowerIsEnabled(void);
@@ -28,6 +39,15 @@ canTransFnCallback CanFnCtrl[CAN_CH_MAX] = {
 
 void CanSrv(void)
 {
+	if (CanTimer.TaskEn == ON)
+	{
+		if (CanTimer.SchudleTask >= CAN_TASK_10MS_TIME)
+		{
+			ApplCan_ScheduleTask();
+			CanTimer.SchudleTask -= CAN_TASK_10MS_TIME;
+		}
+	}
+	
 	switch(GlobalPocSeq.GSeq)
 	{
 		case GB_SEQ_UP_ACC_OFF:
@@ -68,7 +88,7 @@ static void RUN_CAN_UP_ACC_ON(void)
 			BOARD_InitCanPins();
 			CanTransOperationMode(CAN_CH_3, CAN_TRANS_OPMODE_STANDBY);
 			CanTransOperationMode(CAN_CH_1, CAN_TRANS_OPMODE_STANDBY);
-			
+
 			CAN_ACC_ON_Init(CAN_CH_3);	// CAN
 			CAN_ACC_ON_Init(CAN_CH_1);	// CANFD
 			
@@ -98,8 +118,11 @@ static void RUN_CAN_UP_ACC_ON(void)
 			break;
 
 		case LO_SEQ_03:
-			CAN3_TX_Test();
-			CAN1_TX_Test();
+			ilInit();
+			ilStart();
+			CanTaskStart();
+			//CAN3_TX_Test();
+			//CAN1_TX_Test();
 
 			GlobalPocSeq.LSeq.B.SEQ_CAN = LO_SEQ_04;
 			break;
@@ -159,6 +182,18 @@ static void CAN_ACC_ON_Init(can_inst_t instance)
 	config = (can_config_t *)CAN_GetConfigAddr(instance);
 
 	memset(config->msgTx->stimer_state, CAN_TX_PERI_FUNC_STOP, config->msgTx->NoOfMsg);
+	memset(config->msgTx->msgUpdate, MSG_UPDATE_COMPLETE, config->msgTx->NoOfMsg);
+}
+
+static void CanTaskStart(void)
+{
+	CanTimer.SchudleTask = 0;
+	CanTimer.TaskEn = ON;
+}
+
+uint8_t CanGetTaskEnState(void)
+{
+	return CanTimer.TaskEn;
 }
 
 static inline uint8_t CanPowerIsEnabled(void)
@@ -187,6 +222,98 @@ static void CanTransOperationMode(can_inst_t instance, can_trans_opmode_t opmode
 		default:
 			break;
 	}
+}
+
+void ApplCan_InitBuf(void)
+{
+	memset(&CanTimer, 0, sizeof(can_timer_t));
+	Queue_InitBuffer(&CanRx2MsgQueue, (void *)CanRx2MsgBuffer, sizeof(queue_can_rx_buf_t), QUEUE_CAN_RX_BUFFER_SIZE);
+}
+
+void QueuePushCanDataforRx2(uint8_t inst, uint32_t id, uint8_t dlc, uint8_t * data)
+{
+	queue_can_rx_buf_t msgbuf;
+
+	memset(&msgbuf, 0, sizeof(queue_can_rx_buf_t));
+	
+	msgbuf.inst = inst;
+	msgbuf.id = id;
+	msgbuf.dlc = dlc;
+	memcpy(msgbuf.data, data, dlc);
+
+#if 0
+	SYSINFO_PRINTF("\r\n[PUSH] CAN_CH=%d ID=0x%x, DLC=%d DATA=", msgbuf.inst, msgbuf.id, msgbuf.dlc);
+	for (uint8_t i=0; i<msgbuf.dlc; i++)
+	{
+		SYSINFO_PRINTF("0x%x ", msgbuf.data[i]);
+	}
+	SYSINFO_PRINTF("\r\n");
+#endif
+
+	Queue_PushBuffer(&CanRx2MsgQueue, (void *)&msgbuf);
+}
+
+//void QueuePopCanDataforRx2(QUEUE * queue, queue_can_rx_buf_t * msgbuf)
+void QueuePopCanDataforRx2(void)
+{
+	queue_can_rx_buf_t msgbuf;
+	
+	if (Queue_PopBuffer(&CanRx2MsgQueue, (void *)&msgbuf) == QUEUE_BUFFER_STS_DONE)
+	{
+		SYSINFO_PRINTF("\r\n[POP] CAN_CH=%d ID=0x%x, DLC=%d DATA=", msgbuf.inst, msgbuf.id, msgbuf.dlc);
+		for (uint8_t i=0; i<msgbuf.dlc; i++)
+		{
+			SYSINFO_PRINTF("0x%x ", msgbuf.data[i]);
+		}
+		SYSINFO_PRINTF("\r\n");
+	}
+}
+
+static void ApplCan_ScheduleTask(void)
+{
+	ilTxTask();
+
+	Debug_ilRxTask();
+}
+
+void ApplCanTx1ECU1_LeftLaneChangeThreat_Sig_Comfirmation(void)
+{
+	
+}
+
+void ApplCanTx1ECU1_SlideBlindZoneAlertTempUnavailableIndiOn_Sig_Comfirmation(void)
+{
+	
+}
+
+void ApplCanTx1ECU1_SlideBlindZoneAlertSystemServiceIndiOn_Sig_Comfirmation(void)
+{
+	
+}
+
+void ApplCanTx1ECU1_SlideBlindZoneAlertSystemOffIndiOn_Sig_Comfirmation(void)
+{
+	
+}
+
+void ApplCanTx1ECU1_SlideBlindZoneAlertSystemCleanIndiOn_Sig_Comfirmation(void)
+{
+	
+}
+
+void ApplCanTx1ECU1_LeftLaneChangeApproachSpeed_Sig_Comfirmation(void)
+{
+
+}
+
+void ApplRx2ECU2_VehicleToVehicleWarningDirectionSigIndication(void)
+{
+
+}
+
+void ApplRx2ECU2_VehicleToVehicleWarningIndicationRequestSigIndication(void)
+{
+	
 }
 
 void ApplRx1BCS_VehSpdSigIndication(void)
@@ -511,5 +638,21 @@ void ApplRx4ALS_ModuleSigIndication(void)
 
 void ApplRx4SAS_ModuleSigIndication(void)
 {
+}
+
+void ApplTxECU1_Blind_Zone_Alert_Status_TxComfirmation(void)
+{
+	uint8_t sig;
+
+	if (IlGetECU1_SlideBlindZoneAlertSystemCleanIndiOn_Sig() == ON)
+	{
+		sig = OFF;
+	}
+	else
+	{
+		sig = ON;
+	}
+	
+	IlSetECU1_SlideBlindZoneAlertSystemCleanIndiOn_Sig(&sig);
 }
 

@@ -5,6 +5,8 @@
 
 _c_NACU_Diag_Tx_buf NACU_Diag_Tx1;
 _c_NACU_Diag_Tx_buf NACU_Diag_Tx2;
+_c_System_Power_Mode_buf ECU1_System_Power_Mode_Tx;
+_c_Blind_Zone_Alert_Status_buf ECU1_Blind_Zone_Alert_Status_Tx;
 _c_NACU_Diag_Tx_buf NACU_Diag_Tx3;
 _c_NACU_Diag_Tx_buf NACU_Diag_Tx4;
 _c_NACU_Diag_Tx_buf NACU_Diag_Tx5;
@@ -26,6 +28,9 @@ _c_BCM_BCAN_2_buf NACU_BCM_BCAN_2_Rx2;
 _c_BCM_BCAN_2_buf NACU_BCM_BCAN_2_Rx3;
 _c_BCM_BCAN_2_buf NACU_BCM_BCAN_2_Rx4;
 
+_c_V2V_Warning_buf ECU2_V2V_Warning_Rx1;
+
+
 _c_BCM_TCU_BCS_buf NACU2_BCM_TCU_BCS_Rx1;
 _c_BCM_TCU_BCS_buf NACU2_BCM_TCU_BCS_Rx2;
 _c_BCM_TCU_BCS_buf NACU2_BCM_TCU_BCS_Rx3;
@@ -45,7 +50,7 @@ _c_BCM_BCAN_2_buf NACU2_BCM_BCAN_2_Rx4;
 
 
 /*******************************************************************************
-	CAN 1 Transmit message
+	CAN 1 (CANFD) Transmit message
  *******************************************************************************/
 uint8_t CanTxMbox1[CAN1_NO_OF_TX_OBJECT] =
 {
@@ -119,6 +124,14 @@ uint8_t Can1SoftTimerState[CAN1_NO_OF_TX_OBJECT] =
 	CAN_TX_PERI_FUNC_STOP,
 };
 
+uint8_t Can1MsgUpdateState[CAN1_NO_OF_TX_OBJECT] =
+{
+	MSG_UPDATE_COMPLETE,
+	MSG_UPDATE_COMPLETE,
+	MSG_UPDATE_COMPLETE,
+	MSG_UPDATE_COMPLETE,
+	MSG_UPDATE_COMPLETE,
+};
 
 CAN_MSG_FUNC_ptr Can1_txmsg =
 {
@@ -135,10 +148,11 @@ CAN_MSG_FUNC_ptr Can1_txmsg =
 	Can1SoftTimerState,
 	CanTxFuncList1,
 	NULL,
+	Can1MsgUpdateState,
 };
 
 /*******************************************************************************
-	CAN 1 Receive message
+	CAN 1 (CANFD) Receive message
  *******************************************************************************/
 uint8_t CanRxMbox1[CAN1_NO_OF_RX_OBJECT] =
 {
@@ -235,10 +249,11 @@ CAN_MSG_FUNC_ptr Can1_rxmsg =
 	NULL,
 	NULL,
 	CanRxFuncList1,
+	NULL,
 };
 
 /*******************************************************************************
-	CAN 3 Transmit message
+	CAN 3 (CAN) Transmit message
  *******************************************************************************/
 uint8_t CanTxMbox2[CAN3_NO_OF_TX_OBJECT] =
 {
@@ -251,17 +266,17 @@ uint8_t CanTxMbox2[CAN3_NO_OF_TX_OBJECT] =
 
 uint32_t CanTxId2[CAN3_NO_OF_TX_OBJECT] =
 {
-	0x611u,
-	0x612u,
-	0x613u,
-	0x614u,
-	0x615u
+	0x101u,
+	0x111u,
+	0x121u,
+	0x131u,
+	0x141u
 };
 
 uint8_t CanTxDLC2[CAN3_NO_OF_TX_OBJECT] =
 {
-	8,
-	8,
+	1,
+	2,
 	8,
 	8,
 	8
@@ -269,8 +284,10 @@ uint8_t CanTxDLC2[CAN3_NO_OF_TX_OBJECT] =
 
 uint8_t * CanTxDataPtr2[CAN3_NO_OF_TX_OBJECT] =
 {
-	(uint8_t *) NACU_Diag_Tx1._c,
-	(uint8_t *) NACU_Diag_Tx2._c,
+	//(uint8_t *) NACU_Diag_Tx1._c,
+	(uint8_t *) ECU1_System_Power_Mode_Tx._c,
+	//(uint8_t *) NACU_Diag_Tx2._c,
+	(uint8_t *) ECU1_Blind_Zone_Alert_Status_Tx._c,
 	(uint8_t *) NACU_Diag_Tx3._c,
 	(uint8_t *) NACU_Diag_Tx4._c,
 	(uint8_t *) NACU_Diag_Tx5._c
@@ -278,8 +295,9 @@ uint8_t * CanTxDataPtr2[CAN3_NO_OF_TX_OBJECT] =
 
 uint8_t CanTxAttr2[CAN3_NO_OF_TX_OBJECT] =
 {
-	CAN_TX_ATTR_EVENT,
 	CAN_TX_ATTR_PERIODIC,
+	//CAN_TX_ATTR_PERIODIC,
+	CAN_TX_ATTR_EVENT,
 	CAN_TX_ATTR_EVENT,
 	CAN_TX_ATTR_PERIODIC,
 	CAN_TX_ATTR_EVENT
@@ -287,8 +305,9 @@ uint8_t CanTxAttr2[CAN3_NO_OF_TX_OBJECT] =
 
 uint16_t CanTxAttrTime2[CAN3_NO_OF_TX_OBJECT] =
 {
+	50,
+	//500,
 	0,
-	500,
 	0,
 	100,
 	0
@@ -312,6 +331,15 @@ uint8_t Can3SoftTimerState[CAN3_NO_OF_TX_OBJECT] =
 	CAN_TX_PERI_FUNC_STOP,
 };
 
+uint8_t Can3MsgUpdateState[CAN1_NO_OF_TX_OBJECT] =
+{
+	MSG_UPDATE_COMPLETE,
+	MSG_UPDATE_COMPLETE,
+	MSG_UPDATE_COMPLETE,
+	MSG_UPDATE_COMPLETE,
+	MSG_UPDATE_COMPLETE,
+};
+
 CAN_MSG_FUNC_ptr Can3_txmsg =
 {
 	CAN_3,
@@ -327,10 +355,11 @@ CAN_MSG_FUNC_ptr Can3_txmsg =
 	Can3SoftTimerState,
 	CanTxFuncList2,
 	NULL,
+	Can3MsgUpdateState,
 };
 
 /*******************************************************************************
-	CAN 3 Receive message
+	CAN 3 (CAN) Receive message
  *******************************************************************************/
 uint8_t CanRxMbox2[CAN3_NO_OF_RX_OBJECT] =
 {
@@ -355,7 +384,7 @@ uint8_t CanRxMbox2[CAN3_NO_OF_RX_OBJECT] =
 uint32_t CanRxId2[CAN3_NO_OF_RX_OBJECT] =
 {
 	 0x630u,
-	 0x631u,
+	 0x119u,
 	 0x632u,
 	 0x633u,
 	 0x634u,
@@ -375,7 +404,7 @@ uint32_t CanRxId2[CAN3_NO_OF_RX_OBJECT] =
 uint8_t CanRxDLC2[CAN3_NO_OF_RX_OBJECT] =
 {
 	 5,
-	 5,
+	 1,
 	 5,
 	 5,
 	 4,
@@ -395,7 +424,7 @@ uint8_t CanRxDLC2[CAN3_NO_OF_RX_OBJECT] =
 uint8_t * CanRxDataPtr2[CAN3_NO_OF_RX_OBJECT] =
 {
 	 (uint8_t *) NACU2_BCM_TCU_BCS_Rx1._c,
-	 (uint8_t *) NACU2_BCM_TCU_BCS_Rx2._c,
+	 (uint8_t *) ECU2_V2V_Warning_Rx1._c,	//(uint8_t *) NACU2_BCM_TCU_BCS_Rx2._c,
 	 (uint8_t *) NACU2_BCM_TCU_BCS_Rx3._c,
 	 (uint8_t *) NACU2_BCM_TCU_BCS_Rx4._c,
 	 (uint8_t *) NACU2_BCM_BCAN_1_Rx1._c,
@@ -426,5 +455,6 @@ CAN_MSG_FUNC_ptr Can3_rxmsg =
 	 NULL,
 	 NULL,
 	 CanRxFuncList2,
+	 NULL,
 };
 

@@ -30,7 +30,13 @@ typedef enum {
 	CAN_NO_MAX,
 } can_instance_t;
 
+typedef enum {
+	MSG_UPDATE_COMPLETE = 0u,
+	MSG_UPDATE_REQUEST,
+} msg_update_inst_t;
+
 typedef void (*FuncCanTxCallback)(void);
+//typedef void (*FuncCanTxCallback)(uint8_t instance, uint32_t id);
 typedef void (*FuncCanRxCallback)(uint8_t * data, uint8_t dlc);
 
 typedef struct {
@@ -47,6 +53,7 @@ typedef struct {
 	uint8_t * stimer_state;
 	FuncCanTxCallback * tCallback;
 	FuncCanRxCallback * rCallback;
+	msg_update_inst_t * msgUpdate;
 } CAN_MSG_FUNC_ptr;
 
 typedef struct _c_NACU_Diag_Tx_msgTypeTag
@@ -67,6 +74,36 @@ typedef union _c_NACU_Diag_Tx_bufTag
 	_c_NACU_Diag_Tx_msgType NACU_Diag_Tx;
 } _c_NACU_Diag_Tx_buf;
 
+typedef struct _c_ECU1_Blind_Zone_Alert_Status_msgTypeTag
+{
+	uint8_t unused0 : 3;
+	uint8_t SlideBlindZoneAlertSystemCleanIndiOn : 1;
+	uint8_t SlideBlindZoneAlertSystemOffIndiOn : 1;
+	uint8_t SlideBlindZoneAlertSystemServiceIndiOn : 1;
+	uint8_t SlideBlindZoneAlertTempUnavailableIndiOn : 1;
+	uint8_t LeftLaneChangeThreat : 1;
+	uint8_t LeftLaneChangeApproachSpeed : 8;
+} _c_Blind_Zone_Alert_Status_msgType;
+
+typedef union _c_ECU1_Blind_Zone_Alert_Status_bufTag
+{
+	uint8_t _c[2];
+	_c_Blind_Zone_Alert_Status_msgType Blind_Zone_Alert_Status;
+} _c_Blind_Zone_Alert_Status_buf;
+
+typedef struct _c_System_Power_Mode_msgTypeTag
+{
+	uint8_t unused0 : 5;
+	uint8_t SystemPowerMode : 2;
+	uint8_t SystemPowerModeValidity : 1;
+} _c_System_Power_Mode_msgType;
+
+typedef union _c_System_Power_Mode_bufTag
+{
+	uint8_t _c[1];
+	_c_System_Power_Mode_msgType System_Power_Mode;
+} _c_System_Power_Mode_buf;
+
 typedef struct _c_BCM_TCU_BCS_msgTypeTag
 {
 	uint8_t unused0 : 8;
@@ -83,6 +120,18 @@ typedef union _c_BCM_TCU_BCS_bufTag
 	uint8_t _c[5];
 	_c_BCM_TCU_BCS_msgType BCM_TCU_BCS;
 } _c_BCM_TCU_BCS_buf;
+
+typedef struct _c_V2V_Warning_msgTypeTag
+{
+	uint8_t VehcileToVehicleWarningIndicationRequest : 5;
+	uint8_t VehcileToVehicleWarningDirection : 3;
+} _c_V2V_Warning_msgType;
+
+typedef union _c_V2V_Warning_bufTag
+{
+	uint8_t _c[1];
+	_c_V2V_Warning_msgType BCM_TCU_BCS;
+} _c_V2V_Warning_buf;
 
 typedef struct _c_BCM_BCAN_1_msgTypeTag
 {
@@ -199,6 +248,9 @@ extern _c_BCM_BCAN_2_buf NACU2_BCM_BCAN_2_Rx2;
 extern _c_BCM_BCAN_2_buf NACU2_BCM_BCAN_2_Rx3;
 extern _c_BCM_BCAN_2_buf NACU2_BCM_BCAN_2_Rx4;
 
+extern _c_System_Power_Mode_buf ECU1_System_Power_Mode_Tx;
+extern _c_Blind_Zone_Alert_Status_buf ECU1_Blind_Zone_Alert_Status_Tx;
+extern _c_V2V_Warning_buf ECU2_V2V_Warning_Rx1;
 
 extern uint8_t CanTxMbox2[CAN3_NO_OF_TX_OBJECT];
 extern uint32_t CanTxId2[CAN3_NO_OF_TX_OBJECT];

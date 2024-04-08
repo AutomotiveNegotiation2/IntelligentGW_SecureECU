@@ -22,7 +22,14 @@
 #ifndef INC_TCPCLIENTRAW_H_
 #define INC_TCPCLIENTRAW_H_
 
+#include "board.h"
+
 void tcp_client_init(void);
 void HAL_TIM_PeriodTcpElapsedCallback(void);
+
+#if BOARD_NETWORK_USE_1G_ENET_PORT
+void tcp_enet1G_client_init(void);
+void HAL_TIM_PeriodTcp1GElapsedCallback(void);
+#endif
 
 #endif /* INC_TCPCLIENTRAW_H_ */

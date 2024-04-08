@@ -23,6 +23,8 @@ void SYSTEM_TIMER_IRQ_HANDLER(void)
 	
 		nTimer_1ms++;
 
+		CanTimer.SchudleTask++;
+
 		for(i=0;i<STIMER_END_OF_ID-1;i++) 	SoftTimerTable[i].nCounter++;
 	}
 

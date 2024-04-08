@@ -37,8 +37,8 @@ can_config_t can_config[CAN_CH_MAX] = {
 			.type	= kFLEXCAN_FrameTypeData,
 			.brs	= 1,
 		},
-		.frame		= NULL,
-		.callback	= flexcan_1_callback,
+		//.frame		= NULL,
+		.callback	= flexcan_3_callback,
 		.msgRx		= &Can1_rxmsg,
 		.msgTx		= &Can1_txmsg,
 	},
@@ -48,10 +48,10 @@ can_config_t can_config[CAN_CH_MAX] = {
 	{
 		.base		= CAN3,
 		.baudRate	= 500000U,
-		.baudRateFD	= NULL,
+		.baudRateFD	= (uint32_t)NULL,
 		.maxMbNum	= 64,
 		.fdEnable	= 0,
-		.framefd	= NULL,
+		//.framefd	= NULL,
 		.frame		=
 		{
 			.format	= kFLEXCAN_FrameFormatStandard,
@@ -268,6 +268,19 @@ int32_t CAN_Transmit(can_inst_t instance, uint32_t id)
 		txXfer.frame->id = FLEXCAN_ID_STD(id);
 		txXfer.frame->length = config->msgTx->dlc[i];
 
+		txXfer.frame->dataByte0 = config->msgTx->data[i][0];
+		txXfer.frame->dataByte1 = config->msgTx->data[i][1];
+		txXfer.frame->dataByte2 = config->msgTx->data[i][2];
+		txXfer.frame->dataByte3 = config->msgTx->data[i][3];
+
+		if (txXfer.frame->length > 4)
+		{
+			txXfer.frame->dataByte4 = config->msgTx->data[i][4];
+			txXfer.frame->dataByte5 = config->msgTx->data[i][5];;
+			txXfer.frame->dataByte6 = config->msgTx->data[i][6];;
+			txXfer.frame->dataByte7 = config->msgTx->data[i][7];;
+		}
+
 		FLEXCAN_TransferSendNonBlocking(config->base, &config->fCanHandle, &txXfer);
 	}
 
@@ -318,7 +331,8 @@ void CAN_ReceiveStart(can_inst_t instance)
 
 static int32_t CAN_Receive(uint32_t instance, uint32_t buffIdx, flexcan_mb_transfer_t *xfer)
 {
-	uint8_t i, data[64];
+	uint8_t i, data[64], dlc;
+	uint32_t id;
 	can_config_t * config;
 	status_t result;
 	
@@ -343,15 +357,17 @@ static int32_t CAN_Receive(uint32_t instance, uint32_t buffIdx, flexcan_mb_trans
 	if (config->fdEnable)
 	{
 		uint8_t len;
-		
+
+		xfer->framefd = &config->framefd;
 		result = FLEXCAN_TransferFDReceiveNonBlocking(config->base, &config->fCanHandle, xfer);
 
-		config->msgRx->dlc[i] = xfer->framefd->length;
+		dlc = config->framefd.length;
+		id = config->framefd.id & 0x1FFFFFFFU;
 
-		if (xfer->framefd->length%4)
-			len = (xfer->framefd->length/4)+1;
+		if (dlc%4)
+			len = (dlc/4)+1;
 		else
-			len = xfer->framefd->length;
+			len = dlc;
 
 		for (uint8_t j=0; j<len; j++)
 		{
@@ -360,29 +376,27 @@ static int32_t CAN_Receive(uint32_t instance, uint32_t buffIdx, flexcan_mb_trans
 			data[j*4+2] = (uint8_t)(config->framefd.dataWord[j]>>8);
 			data[j*4+3] = (uint8_t)(config->framefd.dataWord[j]);
 		}
-
-		memcpy(*(config->msgRx->data+i), data, xfer->framefd->length);
 	}
 	else
 	{
+		xfer->frame = &config->frame;
 		result = FLEXCAN_TransferReceiveNonBlocking(config->base, &config->fCanHandle, xfer);
 		
-		config->msgRx->dlc[i] = xfer->frame->length;
+		dlc = config->frame.length;
+		id = (config->frame.id >> CAN_ID_STD_SHIFT) & 0x7FFU;
 
-		data[0] = (uint8_t)xfer->frame->dataByte0;
-		data[1] = (uint8_t)xfer->frame->dataByte1;
-		data[2] = (uint8_t)xfer->frame->dataByte2;
-		data[3] = (uint8_t)xfer->frame->dataByte3;
+		data[0] = (uint8_t)config->frame.dataByte0;
+		data[1] = (uint8_t)config->frame.dataByte1;
+		data[2] = (uint8_t)config->frame.dataByte2;
+		data[3] = (uint8_t)config->frame.dataByte3;
 
-		if (xfer->frame->length > 4)
+		if (dlc > 4)
 		{
-			data[4] = (uint8_t)xfer->frame->dataByte4;
-			data[5] = (uint8_t)xfer->frame->dataByte5;
-			data[6] = (uint8_t)xfer->frame->dataByte6;
-			data[7] = (uint8_t)xfer->frame->dataByte7;
+			data[4] = (uint8_t)config->frame.dataByte4;
+			data[5] = (uint8_t)config->frame.dataByte5;
+			data[6] = (uint8_t)config->frame.dataByte6;
+			data[7] = (uint8_t)config->frame.dataByte7;
 		}
-
-		memcpy(config->msgRx->data[i], data, xfer->frame->length);
 	}
 
 #if 0
@@ -391,7 +405,9 @@ static int32_t CAN_Receive(uint32_t instance, uint32_t buffIdx, flexcan_mb_trans
 		frame->dataByte4, frame->dataByte5, frame->dataByte6, frame->dataByte7);
 #endif
 
-	(config->msgRx->rCallback[i])(config->msgRx->data[i], config->msgRx->dlc[i]);
+	(config->msgRx->rCallback[i])(data, dlc);
+
+	QueuePushCanDataforRx2(config->msgRx->inst, id, dlc, data);
 
 	return 0;
 }
@@ -405,25 +421,5 @@ uint32_t CAN_GetConfigAddr(can_inst_t instance)
 	}
 
 	return (uint32_t)(&can_config[instance]);
-}
-
-void CAN3_TX_Test(void)
-{
-	uint8_t i;
-	
-	for (i=0; i<CAN3_NO_OF_TX_OBJECT; i++)
-	{
-		CAN_Transmit(CAN_CH_3, CanTxId2[i]);
-	}
-}
-
-void CAN1_TX_Test(void)
-{
-	uint8_t i;
-	
-	for (i=0; i<CAN1_NO_OF_TX_OBJECT; i++)
-	{
-		CAN_Transmit(CAN_CH_1, CanTxId1[i]);
-	}
 }
 

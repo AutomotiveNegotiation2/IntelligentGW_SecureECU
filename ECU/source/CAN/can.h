@@ -40,7 +40,5 @@ uint32_t CAN_GetConfigAddr(can_inst_t instance);
 void CAN_Init(can_inst_t instance);
 int32_t CAN_Transmit(can_inst_t instance, uint32_t id);
 void CAN_ReceiveStart(can_inst_t instance);
-void CAN3_TX_Test(void);
-void CAN1_TX_Test(void);
 
 #endif /* _CAN_H_ */

@@ -105,12 +105,17 @@ static void tcp_client_free(struct tcp_client_struct *es);
 
 static void recv_cb(struct pbuf *p);
 
-uint8_t data[100];
-
 /* create a struct to store data */
 struct tcp_client_struct *esTx = 0;
 
 struct tcp_pcb *pcbTx = 0;
+
+#if BOARD_NETWORK_USE_1G_ENET_PORT
+/* create a struct to store data */
+struct tcp_client_struct *esTx1G = 0;
+
+struct tcp_pcb *pcbTx1G = 0;
+#endif
 
 void HAL_TIM_PeriodTcpElapsedCallback(void)
 {
@@ -127,6 +132,24 @@ void HAL_TIM_PeriodTcpElapsedCallback(void)
 
 	tcp_client_send(pcbTx, esTx);
 }
+
+#if BOARD_NETWORK_USE_1G_ENET_PORT
+void HAL_TIM_PeriodTcp1GElapsedCallback(void)
+{
+	char buf[100];
+
+	/* Prepare the first message to send to the server */
+	int len = sprintf(buf, "Sending TCP1Gclient Message\r\n");
+
+	/* allocate pbuf */
+	esTx1G->p = pbuf_alloc(PBUF_TRANSPORT, len , PBUF_POOL);
+
+	/* copy data to pbuf */
+	pbuf_take(esTx1G->p, (char*)buf, len);
+
+	tcp_client_send(pcbTx1G, esTx1G);
+}
+#endif
 
 /* IMPLEMENTATION FOR TCP CLIENT
 
@@ -145,6 +168,19 @@ void tcp_client_init(void)
 	IP_ADDR4(&destIPADDR, 192, 168, 0, 100);
 	tcp_connect(pcbTx, &destIPADDR, 31, tcp_client_connected);
 }
+
+#if BOARD_NETWORK_USE_1G_ENET_PORT
+void tcp_enet1G_client_init(void)
+{
+	/* 1. create new tcp pcb */
+	pcbTx1G = tcp_new();
+
+	/* 2. Connect to the server */
+	ip_addr_t destIPADDR;
+	IP_ADDR4(&destIPADDR, 192, 168, 0, 10);
+	tcp_connect(pcbTx1G, &destIPADDR, 51, tcp_client_connected);
+}
+#endif
 
 static void tcp_client_error(void *arg, err_t err)
 {

@@ -1,4 +1,3 @@
-#include "board.h"
 #include "pin_mux.h"
 
 #include "Includes.h"
@@ -57,4 +56,6 @@ static void main_init(void)
 
 	/* Initialize softtimer */
 	SoftTimerInit();
+
+	ApplCan_InitBuf();
 }

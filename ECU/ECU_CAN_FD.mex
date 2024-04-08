@@ -29,6 +29,7 @@
             <pin_labels>
                <pin_label pin_num="N6" pin_signal="GPIO_LPSR_00" label="CAN3_TX/U42[1]" identifier="CAN3_TX;CAN_TX"/>
                <pin_label pin_num="R6" pin_signal="GPIO_LPSR_01" label="CAN3_RX/U42[4]" identifier="CAN3_RX;CAN_RX"/>
+               <pin_label pin_num="A5" pin_signal="GPIO_DISP_B2_13" label="INT1_COMBO/BT_UART_RTS/U16[4]/U354[5]/ETHPHY_RST_B/U10[12]" identifier="BT_UART_RTS;ENET_1G_RST"/>
                <pin_label pin_num="N13" pin_signal="GPIO_AD_06" label="USB_OTG2_OC/U18[A2]/J9[10]/AUD_INT" identifier="CANFD_TX"/>
                <pin_label pin_num="T17" pin_signal="GPIO_AD_07" label="USB_OTG2_PWR/WL_DEV_WAKE/U354[10]/J10[2]" identifier="CANFD_RX"/>
                <pin_label pin_num="N14" pin_signal="GPIO_AD_14" label="SPDIF_EXT_CLK/CAN_STBY/J9[16]" identifier="CAN_FD_STBY"/>
@@ -60,6 +61,11 @@
                         <data>true</data>
                      </feature>
                   </dependency>
+                  <dependency resourceType="SWComponent" resourceId="platform.drivers.igpio" description="Pins initialization requires the IGPIO Driver in the project." problem_level="2" source="Pins:BOARD_InitPins">
+                     <feature name="enabled" evaluation="equal" configuration="cm7">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
                </dependencies>
                <pins>
                   <pin peripheral="LPUART1" signal="RXD" pin_num="M15" pin_signal="GPIO_AD_25">
@@ -80,6 +86,12 @@
                         <pin_feature name="open_drain" value="Disable"/>
                         <pin_feature name="drive_strength" value="High"/>
                         <pin_feature name="slew_rate" value="Slow"/>
+                     </pin_features>
+                  </pin>
+                  <pin peripheral="GPIO13" signal="gpio_io, 00" pin_num="T8" pin_signal="WAKEUP">
+                     <pin_features>
+                        <pin_feature name="direction" value="INPUT"/>
+                        <pin_feature name="software_input_on" value="Enable"/>
                      </pin_features>
                   </pin>
                </pins>
@@ -222,6 +234,58 @@
                         <pin_feature name="direction" value="OUTPUT"/>
                      </pin_features>
                   </pin>
+               </pins>
+            </function>
+            <function name="BOARD_InitEnet1GPins">
+               <description>Configures pin routing and optionally pin electrical features.</description>
+               <options>
+                  <callFromInitBoot>false</callFromInitBoot>
+                  <coreID>cm7</coreID>
+                  <enableClock>true</enableClock>
+               </options>
+               <dependencies>
+                  <dependency resourceType="Peripheral" resourceId="ENET_1G" description="Peripheral ENET_1G is not initialized" problem_level="1" source="Pins:BOARD_InitEnet1GPins">
+                     <feature name="initialized" evaluation="equal">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+                  <dependency resourceType="SWComponent" resourceId="platform.drivers.common" description="Pins initialization requires the COMMON Driver in the project." problem_level="2" source="Pins:BOARD_InitEnet1GPins">
+                     <feature name="enabled" evaluation="equal" configuration="cm7">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+                  <dependency resourceType="SWComponent" resourceId="platform.drivers.iomuxc" description="Pins initialization requires the IOMUXC Driver in the project." problem_level="2" source="Pins:BOARD_InitEnet1GPins">
+                     <feature name="enabled" evaluation="equal" configuration="cm7">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+                  <dependency resourceType="SWComponent" resourceId="platform.drivers.igpio" description="Pins initialization requires the IGPIO Driver in the project." problem_level="2" source="Pins:BOARD_InitEnet1GPins">
+                     <feature name="enabled" evaluation="equal" configuration="cm7">
+                        <data>true</data>
+                     </feature>
+                  </dependency>
+               </dependencies>
+               <pins>
+                  <pin peripheral="ENET_1G" signal="enet_rx_en" pin_num="E13" pin_signal="GPIO_DISP_B1_00"/>
+                  <pin peripheral="ENET_1G" signal="enet_rx_clk" pin_num="D13" pin_signal="GPIO_DISP_B1_01"/>
+                  <pin peripheral="ENET_1G" signal="enet_rdata, 00" pin_num="D11" pin_signal="GPIO_DISP_B1_02"/>
+                  <pin peripheral="ENET_1G" signal="enet_rdata, 01" pin_num="E11" pin_signal="GPIO_DISP_B1_03"/>
+                  <pin peripheral="ENET_1G" signal="enet_rdata, 02" pin_num="E10" pin_signal="GPIO_DISP_B1_04"/>
+                  <pin peripheral="ENET_1G" signal="enet_rdata, 03" pin_num="C11" pin_signal="GPIO_DISP_B1_05"/>
+                  <pin peripheral="ENET_1G" signal="enet_tdata, 03" pin_num="D10" pin_signal="GPIO_DISP_B1_06"/>
+                  <pin peripheral="ENET_1G" signal="enet_tdata, 02" pin_num="E12" pin_signal="GPIO_DISP_B1_07"/>
+                  <pin peripheral="ENET_1G" signal="enet_tdata, 01" pin_num="A15" pin_signal="GPIO_DISP_B1_08"/>
+                  <pin peripheral="ENET_1G" signal="enet_tdata, 00" pin_num="C13" pin_signal="GPIO_DISP_B1_09"/>
+                  <pin peripheral="ENET_1G" signal="enet_tx_en" pin_num="B14" pin_signal="GPIO_DISP_B1_10"/>
+                  <pin peripheral="ENET_1G" signal="enet_tx_clk_io" pin_num="A14" pin_signal="GPIO_DISP_B1_11"/>
+                  <pin peripheral="GPIO11" signal="gpio_io, 14" pin_num="A5" pin_signal="GPIO_DISP_B2_13">
+                     <pin_features>
+                        <pin_feature name="identifier" value="ENET_1G_RST"/>
+                        <pin_feature name="direction" value="OUTPUT"/>
+                     </pin_features>
+                  </pin>
+                  <pin peripheral="ENET_1G" signal="enet_mdc" pin_num="U2" pin_signal="GPIO_EMC_B2_19"/>
+                  <pin peripheral="ENET_1G" signal="enet_mdio" pin_num="R3" pin_signal="GPIO_EMC_B2_20"/>
                </pins>
             </function>
          </functions_list>

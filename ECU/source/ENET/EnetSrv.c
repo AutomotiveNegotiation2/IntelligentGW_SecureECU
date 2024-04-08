@@ -13,7 +13,14 @@
 #define	ENET_100M_RESET_ENABLE	GPIO_WritePinOutput(BOARD_INITENETPINS_ENET_RST_GPIO, BOARD_INITENETPINS_ENET_RST_GPIO_PIN, 0);
 #define	ENET_100M_RESET_DISABLE	GPIO_WritePinOutput(BOARD_INITENETPINS_ENET_RST_GPIO, BOARD_INITENETPINS_ENET_RST_GPIO_PIN, 1);
 
-#define	ENET_100M_RESET_TIMEOUT	10000U
+#define	ENET_100M_RESET_TIMEOUT	10U
+
+#if BOARD_NETWORK_USE_1G_ENET_PORT
+#define	ENET_1G_RESET_ENABLE	GPIO_WritePinOutput(BOARD_INITENET1GPINS_ENET_1G_RST_GPIO, BOARD_INITENET1GPINS_ENET_1G_RST_GPIO_PIN, 0);
+#define	ENET_1G_RESET_DISABLE	GPIO_WritePinOutput(BOARD_INITENET1GPINS_ENET_1G_RST_GPIO, BOARD_INITENET1GPINS_ENET_1G_RST_GPIO_PIN, 1);
+
+#define	ENET_1G_RESET_TIMEOUT	10U
+#endif
 
 /* IP address configuration. */
 #ifndef configIP_ADDR0
@@ -27,6 +34,22 @@
 #endif
 #ifndef configIP_ADDR3
 #define configIP_ADDR3 102
+#endif
+
+#if BOARD_NETWORK_USE_1G_ENET_PORT
+/* IP address configuration. */
+#ifndef configIP1G_ADDR0
+#define configIP1G_ADDR0 192
+#endif
+#ifndef configIP1G_ADDR1
+#define configIP1G_ADDR1 168
+#endif
+#ifndef configIP1G_ADDR2
+#define configIP1G_ADDR2 0
+#endif
+#ifndef configIP1G_ADDR3
+#define configIP1G_ADDR3 12
+#endif
 #endif
 
 /* Netmask configuration. */
@@ -59,6 +82,10 @@
 
 static bool	bEnetTMRING, bEnetLinkUp;
 long EnetLinkUpCnt;
+#if BOARD_NETWORK_USE_1G_ENET_PORT
+static bool	bEnet1GLinkUp;
+long Enet1GLinkUpCnt;
+#endif
 
 void RUN_ENET_100M_DN_ACC_OFF(void);
 void RUN_ENET_100M_UP_ACC_ON(void);
@@ -66,6 +93,11 @@ void RUN_ENET_100M_ACC_ON(void);
 void SetEnetSEQ(void);
 void Enet_IPADDR_Config(void);
 void Enet_WaitLinkUp(void);
+
+#if BOARD_NETWORK_USE_1G_ENET_PORT
+void Enet1G_IPADDR_Config(void);
+void Enet1G_WaitLinkUp(void);
+#endif
 
 #if defined (APP_UDP)
 void Enet_UdpCallback(void)
@@ -80,10 +112,21 @@ bool TcpSendEnable = FALSE;
 void Enet_TcpCallback(void)
 {
 	HAL_TIM_PeriodTcpElapsedCallback();
-	SYSINFO_PRINTF("TCP Callback is called.\r\n");
+	SYSINFO_PRINTF("[ENET100M] TCP Callback is called.\r\n");
 	KillSoftTimer(STIMER_ENET_100M_TCP_TEST);
 	SetSoftTimer(STIMER_ENET_100M_TCP_TEST, 1000, Enet_TcpCallback);
 }
+
+#if BOARD_NETWORK_USE_1G_ENET_PORT
+void Enet1G_TcpCallback(void)
+{
+	HAL_TIM_PeriodTcp1GElapsedCallback();
+	SYSINFO_PRINTF("[ENET1G] TCP Callback is called.\r\n");
+	KillSoftTimer(STIMER_ENET_1G_TCP_TEST);
+	SetSoftTimer(STIMER_ENET_1G_TCP_TEST, 1000, Enet1G_TcpCallback);
+}
+#endif
+
 #endif
 
 void EnetSrv(void)
@@ -124,51 +167,82 @@ void RUN_ENET_100M_UP_ACC_ON(void)
 		case LO_SEQ_START:
 			KillSoftTimer(STIMER_ENET_100M);
 			KillSoftTimer(STIMER_ENET_100M_LINKUP);
-			KillSoftTimer(STIMER_ENET_100M_UDP_TEST);
+			KillSoftTimer(STIMER_ENET_100M_TCP_TEST);
+#if BOARD_NETWORK_USE_1G_ENET_PORT
+			KillSoftTimer(STIMER_ENET_1G_LINKUP);
+			KillSoftTimer(STIMER_ENET_1G_TCP_TEST);
+#endif
+
 			bEnetTMRING = OFF;
 			BOARD_InitModuleClock();
 			IOMUXC_SelectENETClock();
 
 			BOARD_InitEnetPins();
+#if BOARD_NETWORK_USE_1G_ENET_PORT
+			BOARD_Init1GModuleClock();
+			IOMUXC_SelectENET1GClock();
+
+			BOARD_InitEnet1GPins();
+#endif
 
 			GlobalPocSeq.LSeq.B.SEQ_ENET_100M = LO_SEQ_01;
 			break;
 
 		case LO_SEQ_01:
 			ENET_100M_RESET_ENABLE;
-
+#if BOARD_NETWORK_USE_1G_ENET_PORT
+			ENET_1G_RESET_ENABLE;
+#endif
 			bEnetTMRING = ON;
 			SetSoftTimer(STIMER_ENET_100M, ENET_100M_RESET_TIMEOUT, SetEnetSEQ); 
-			GlobalPocSeq.LSeq.B.SEQ_ENET_100M = LO_SEQ_02;
 			break;
 
 		case LO_SEQ_02:
 			if(bEnetTMRING == ON) break;
 			
 			ENET_100M_RESET_DISABLE;
+#if BOARD_NETWORK_USE_1G_ENET_PORT
+			ENET_1G_RESET_DISABLE;
+#endif
 
 			bEnetTMRING = ON;
+#if BOARD_NETWORK_USE_1G_ENET_PORT
+			SetSoftTimer(STIMER_ENET_100M, 30U, SetEnetSEQ); 
+#else
 			SetSoftTimer(STIMER_ENET_100M, 6, SetEnetSEQ); 
-			
-			GlobalPocSeq.LSeq.B.SEQ_ENET_100M = LO_SEQ_03;
+#endif
 			break;
 
 		case LO_SEQ_03:
 			if(bEnetTMRING == ON) break;
 
-			Enet_100M_Mdio_Init();
+			Enet_Mdio_Init();
+#if BOARD_NETWORK_USE_1G_ENET_PORT
+			EnableIRQ(ENET_1G_MAC0_Tx_Rx_1_IRQn);
+		    EnableIRQ(ENET_1G_MAC0_Tx_Rx_2_IRQn);
+
+			Enet1G_Mdio_Init();
+#endif
 			time_init();
 
 			Enet_IPADDR_Config();
-
+#if BOARD_NETWORK_USE_1G_ENET_PORT
+			//Enet1G_IPADDR_Config();
+#endif
 			lwip_init();
 
-			Enet_100M_NetifConfig();
-
+			Enet_NetifConfig();
+#if BOARD_NETWORK_USE_1G_ENET_PORT
+			//Enet1G_NetifConfig();
+#endif
 			bEnetLinkUp = FALSE;
 			EnetLinkUpCnt = 0;
 			SetSoftTimer(STIMER_ENET_100M_LINKUP, 10, Enet_WaitLinkUp);
-
+#if BOARD_NETWORK_USE_1G_ENET_PORT
+			//bEnet1GLinkUp = FALSE;
+			//Enet1GLinkUpCnt = 0;
+			//SetSoftTimer(STIMER_ENET_1G_LINKUP, 10, Enet1G_WaitLinkUp);
+#endif
 			GlobalPocSeq.LSeq.B.SEQ_ENET_100M = LO_SEQ_FINISH;
 			break;
 
@@ -216,7 +290,20 @@ void RUN_ENET_100M_ACC_ON(void)
 	{
 		/* Poll the driver, get any outstanding frames */
 		ethernetif_input(&netif);
+	}
+#if BOARD_NETWORK_USE_1G_ENET_PORT
+	if (bEnet1GLinkUp == TRUE)
+	{
+		ethernetif_input(&netif1G);
+	}
+#endif
 
+#if BOARD_NETWORK_USE_1G_ENET_PORT
+	if ((bEnet1GLinkUp == TRUE) || (bEnetLinkUp == TRUE))
+#else
+	if (bEnetLinkUp == TRUE)
+#endif
+	{
 		sys_check_timeouts(); /* Handle all system timeouts for all core protocols */
 	}
 }
@@ -235,6 +322,15 @@ void Enet_IPADDR_Config(void)
     IP4_ADDR(&netif_gw, configGW_ADDR0, configGW_ADDR1, configGW_ADDR2, configGW_ADDR3);
 }
 
+#if BOARD_NETWORK_USE_1G_ENET_PORT
+void Enet1G_IPADDR_Config(void)
+{
+	IP4_ADDR(&netif1G_ipaddr, configIP1G_ADDR0, configIP1G_ADDR1, configIP1G_ADDR2, configIP1G_ADDR3);
+    IP4_ADDR(&netif1G_netmask, configNET_MASK0, configNET_MASK1, configNET_MASK2, configNET_MASK3);
+    IP4_ADDR(&netif1G_gw, configGW_ADDR0, configGW_ADDR1, configGW_ADDR2, configGW_ADDR3);
+}
+#endif
+
 void Enet_WaitLinkUp(void)
 {
 	err_enum_t result = ERR_OK;
@@ -244,7 +340,7 @@ void Enet_WaitLinkUp(void)
 	{
 		if (++EnetLinkUpCnt > 500)
 		{
-			PRINTF("PHY Auto-negotiation failed. Please check the cable connection and link partner setting.\r\n");
+			PRINTF("PHY[100M] Auto-negotiation failed. Please check the cable connection and link partner setting.\r\n");
 			EnetLinkUpCnt = 0;
 		}
 	}
@@ -259,9 +355,16 @@ void Enet_WaitLinkUp(void)
 #elif defined (APP_TCP)
 		tcp_client_init();
 		SetSoftTimer(STIMER_ENET_100M_TCP_TEST, 10000, Enet_TcpCallback);
-		//tcpecho_raw_init();
 #else
 
+#endif
+
+#if BOARD_NETWORK_USE_1G_ENET_PORT
+		Enet1G_IPADDR_Config();
+		Enet1G_NetifConfig();
+		bEnet1GLinkUp = FALSE;
+		Enet1GLinkUpCnt = 0;
+		SetSoftTimer(STIMER_ENET_1G_LINKUP, 10, Enet1G_WaitLinkUp);
 #endif
 
 #if 0
@@ -279,3 +382,27 @@ void Enet_WaitLinkUp(void)
 		KillSoftTimer(STIMER_ENET_100M_LINKUP);
 	}
 }
+
+#if BOARD_NETWORK_USE_1G_ENET_PORT
+void Enet1G_WaitLinkUp(void)
+{
+	err_enum_t result = ERR_OK;
+
+	result = Enet_1G_WaitLinkUp(1);
+	if (result != ERR_OK)
+	{
+		if (++Enet1GLinkUpCnt > 500)
+		{
+			PRINTF("PHY[1G] Auto-negotiation failed. Please check the cable connection and link partner setting.\r\n");
+			Enet1GLinkUpCnt = 0;
+		}
+	}
+	else
+	{
+		bEnet1GLinkUp = TRUE;
+		tcp_enet1G_client_init();
+		//SetSoftTimer(STIMER_ENET_1G_TCP_TEST, 10000, Enet1G_TcpCallback);
+		KillSoftTimer(STIMER_ENET_1G_LINKUP);
+	}
+}
+#endif

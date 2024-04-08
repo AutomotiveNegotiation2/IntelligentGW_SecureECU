@@ -10,12 +10,6 @@ bool IlGetRx3BCS_VehSpdVD(void);
 uint16_t IlGetRx4BCS_VehSpd(void);
 bool IlGetRx4BCS_VehSpdVD(void);
 
-void ilMsgNACU_Diag_Tx1_Send(void);
-void ilMsgNACU_Diag_Tx2_Send(void);
-void ilMsgNACU_Diag_Tx3_Send(void);
-void ilMsgNACU_Diag_Tx4_Send(void);
-void ilMsgNACU_Diag_Tx5_Send(void);
-
 void IlMsgBCM_TCU_BCS_Rx1Indication(uint8_t * data, uint8_t dlc);
 void IlMsgBCM_TCU_BCS_Rx2Indication(uint8_t * data, uint8_t dlc);
 void IlMsgBCM_TCU_BCS_Rx3Indication(uint8_t * data, uint8_t dlc);
@@ -32,6 +26,15 @@ void IlMsgBCM_BCAN_2_Rx1Indication(uint8_t * data, uint8_t dlc);
 void IlMsgBCM_BCAN_2_Rx2Indication(uint8_t * data, uint8_t dlc);
 void IlMsgBCM_BCAN_2_Rx3Indication(uint8_t * data, uint8_t dlc);
 void IlMsgBCM_BCAN_2_Rx4Indication(uint8_t * data, uint8_t dlc);
+
+extern void ApplCanTx1ECU1_LeftLaneChangeThreat_Sig_Comfirmation(void);
+extern void ApplCanTx1ECU1_SlideBlindZoneAlertTempUnavailableIndiOn_Sig_Comfirmation(void);
+extern void ApplCanTx1ECU1_SlideBlindZoneAlertSystemServiceIndiOn_Sig_Comfirmation(void);
+extern void ApplCanTx1ECU1_SlideBlindZoneAlertSystemOffIndiOn_Sig_Comfirmation(void);
+extern void ApplCanTx1ECU1_SlideBlindZoneAlertSystemCleanIndiOn_Sig_Comfirmation(void);
+extern void ApplCanTx1ECU1_LeftLaneChangeApproachSpeed_Sig_Comfirmation(void);
+extern void ApplRx2ECU2_VehicleToVehicleWarningDirectionSigIndication(void);
+extern void ApplRx2ECU2_VehicleToVehicleWarningIndicationRequestSigIndication(void);
 
 extern void ApplRx1BCS_VehSpdSigIndication(void);
 extern void ApplRx1BCS_VehSpdVDSigIndication(void);
@@ -77,6 +80,22 @@ extern void ApplRx1BCS_ModuleSigIndication(void);
 extern void ApplRx1EPS_ModuleSigIndication(void);
 extern void ApplRx1ALS_ModuleSigIndication(void);
 extern void ApplRx1SAS_ModuleSigIndication(void);
+
+bool IlGetECU1_LeftLaneChangeThreat_Sig(void);
+void IlSetECU1_LeftLaneChangeThreat_Sig(uint8_t * msgdata);
+bool IlGetECU1_SlideBlindZoneAlertTempUnavailableIndiOn_Sig(void);
+void IlSetECU1_SlideBlindZoneAlertTempUnavailableIndiOn_Sig(uint8_t * msgdata);
+bool IlGetECU1_SlideBlindZoneAlertSystemServiceIndiOn_Sig(void);
+void IlSetECU1_SlideBlindZoneAlertSystemServiceIndiOn_Sig(uint8_t * msgdata);
+bool IlGetECU1_SlideBlindZoneAlertSystemOffIndiOn_Sig(void);
+void IlSetECU1_SlideBlindZoneAlertSystemOffIndiOn_Sig(uint8_t * msgdata);
+bool IlGetECU1_SlideBlindZoneAlertSystemCleanIndiOn_Sig(void);
+void IlSetECU1_SlideBlindZoneAlertSystemCleanIndiOn_Sig(uint8_t * msgdata);
+uint8_t IlGetECU1_LeftLaneChangeApproachSpeed_Sig(void);
+uint8_t IlGetECU1_LeftLaneChangeApproachSpeed_Sig(void);
+
+
+void IlMsgECU2_V2V_Warning_Rx1Indication(uint8_t * data, uint8_t dlc);
 
 void IlMsgBCM2_TCU_BCS_Rx1Indication(uint8_t * data, uint8_t dlc);
 void IlMsgBCM2_TCU_BCS_Rx2Indication(uint8_t * data, uint8_t dlc);

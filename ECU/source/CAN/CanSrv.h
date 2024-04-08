@@ -16,12 +16,21 @@ typedef struct {
 } canTransFnCallback;
 
 typedef struct {
-	uint32_t	timer;
+	uint32_t	SchudleTask;
 	uint32_t	busoff;
 	uint8_t		TaskEn;
 } can_timer_t;
 
+typedef struct {
+	uint8_t	inst;
+	uint32_t id;
+	uint8_t dlc;
+	uint8_t data[16];
+} queue_can_rx_buf_t;
+
 #pragma pack(pop)
+
+extern can_timer_t CanTimer;
 
 static inline void CAN1_TRANS_TO_STANDBY_MODE(void)
 {
@@ -44,5 +53,11 @@ static inline void CAN3_TRANS_TO_NORMAL_MODE(void)
 }
 
 void CanSrv(void);
+void ApplCan_InitBuf(void);
+uint8_t CanGetTaskEnState(void);
+void QueuePushCanDataforRx2(uint8_t inst, uint32_t id, uint8_t dlc, uint8_t * data);
+void QueuePopCanDataforRx2(void);
+
+void ApplTxECU1_Blind_Zone_Alert_Status_TxComfirmation(void);
 
 #endif /* _CANSRV_H_ */
