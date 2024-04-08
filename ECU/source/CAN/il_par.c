@@ -668,10 +668,10 @@ FuncCanTxCallback CanTxFuncList2[CAN3_NO_OF_TX_OBJECT] =
 
 FuncCanRxCallback CanRxFuncList2[CAN3_NO_OF_RX_OBJECT] =
 {
-	IlMsgBCM2_TCU_BCS_Rx1Indication,
-	IlMsgECU2_V2V_Warning_Rx1Indication,	//IlMsgBCM2_TCU_BCS_Rx2Indication,
-	IlMsgBCM2_TCU_BCS_Rx3Indication,
-	IlMsgBCM2_TCU_BCS_Rx4Indication,
+	IlMsgECU1_ROUTED_Clock_Rx0Indication,
+	IlMsgECU1_ROUTED_Drive_Status_Rx1Indication,
+	IlMsgECU1_ROUTED_V2V_Warning_Rx2Indication,
+	IlMsgECU1_ROUTED_Pedestrain_Friendly_Alert_Status_Rx3Indication,
 	IlMsgBCM2_BCAN_1_Rx1Indication,
 	IlMsgBCM2_BCAN_1_Rx2Indication,
 	IlMsgBCM2_BCAN_1_Rx3Indication,
@@ -686,14 +686,132 @@ FuncCanRxCallback CanRxFuncList2[CAN3_NO_OF_RX_OBJECT] =
 	IlMsgBCM2_BCAN_2_Rx4Indication,
 };
 
-void IlMsgECU2_V2V_Warning_Rx1Indication(uint8_t * data, uint8_t dlc)
+uint8_t IlGetRxECU1_VehicleToVehicleWarningDirectionSig(void)
+{
+	return ECU1_ROUTED_V2V_Warning_Rx2.V2V_Warning.VehcileToVehicleWarningDirection;
+}
+
+uint8_t IlGetRxECU1_VehicleToVehicleWarningIndicationRequestSig(void)
+{
+	return ECU1_ROUTED_V2V_Warning_Rx2.V2V_Warning.VehcileToVehicleWarningIndicationRequest;
+}
+
+void IlMsgECU1_ROUTED_V2V_Warning_Rx2Indication(uint8_t * data, uint8_t dlc)
 {
 	uint8_t buf[8];
 
 	memcpy(buf, data, dlc);
 	
-	ApplRx2ECU2_VehicleToVehicleWarningDirectionSigIndication();
-	ApplRx2ECU2_VehicleToVehicleWarningIndicationRequestSigIndication();
+	ApplRxECU1_VehicleToVehicleWarningDirectionSigIndication();
+	ApplRxECU1_VehicleToVehicleWarningIndicationRequestSigIndication();
+}
+
+bool IlGetRxECU1_PedestrianFriendlyAlertSoundGenerationEnableSig(void)
+{
+	return ECU1_ROUTED_Pedestrain_Friendly_Alert_Status_Rx3.Pedestrain_Friendly_Alert_Status.PedestrianFriendlyAlertSoundGenerationEnable;
+}
+
+uint8_t IlGetRxECU1_PedestrianFriendlyAlertForwardSoundSig(void)
+{
+	return ECU1_ROUTED_Pedestrain_Friendly_Alert_Status_Rx3.Pedestrain_Friendly_Alert_Status.PedestrianFriendlyAlertForwardSound;
+}
+
+uint8_t IlGetRxECU1_PedestrianFriendlyAlertReverseSoundSig(void)
+{
+	return ECU1_ROUTED_Pedestrain_Friendly_Alert_Status_Rx3.Pedestrain_Friendly_Alert_Status.PedestrianFriendlyAlertReverseSound;
+}
+
+uint8_t IlGetRxECU1_PedestrianFriendlyAlertCrossoverSpeedSig(void)
+{
+	return ECU1_ROUTED_Pedestrain_Friendly_Alert_Status_Rx3.Pedestrain_Friendly_Alert_Status.PedestrianFriendlyAlertCrossoverSpeed;
+}
+
+uint8_t IlGetRxECU1_PedestrianFriendlyAlertSystemStatusSig(void)
+{
+	return ECU1_ROUTED_Pedestrain_Friendly_Alert_Status_Rx3.Pedestrain_Friendly_Alert_Status.PedestrianFriendlyAlertSystemStatus;
+}
+
+void IlMsgECU1_ROUTED_Pedestrain_Friendly_Alert_Status_Rx3Indication(uint8_t * data, uint8_t dlc)
+{
+	uint8_t buf[8];
+
+	memcpy(buf, data, dlc);
+	
+	ApplRxECU1_PedestrianFriendlyAlertSoundGenerationEnableSigIndication();
+	ApplRxECU1_PedestrianFriendlyAlertForwardSoundSigIndication();
+	ApplRxECU1_PedestrianFriendlyAlertReverseSoundSigIndication();
+	ApplRxECU1_PedestrianFriendlyAlertCrossoverSpeedSigIndication();
+	ApplRxECU1_PedestrianFriendlyAlertSystemStatusSigIndication();
+}
+
+uint8_t IlGetRxECU1_DrowsinessLevelSig(void)
+{
+	return ECU1_ROUTED_Drive_Status_Rx1.Drive_Status.DrowsinessLevel;
+}
+
+uint8_t IlGetRxECU1_DistractionLevelSig(void)
+{
+	return ECU1_ROUTED_Drive_Status_Rx1.Drive_Status.DistractionLevel;
+}
+
+uint8_t IlGetRxECU1_HandsOnLevelSig(void)
+{
+	return ECU1_ROUTED_Drive_Status_Rx1.Drive_Status.HandsOnLevel;
+}
+
+void IlMsgECU1_ROUTED_Drive_Status_Rx1Indication(uint8_t * data, uint8_t dlc)
+{
+	uint8_t buf[8];
+
+	memcpy(buf, data, dlc);
+
+	ApplRxECU1_DrowsinessLevelSigIndication();
+	ApplRxECU1_DistractionLevelSigIndication();
+	ApplRxECU1_HandsOnLevelSigIndication();
+}
+
+uint8_t IlGetRxECU1_ClockYearSig(void)
+{
+	return ECU1_ROUTED_Clock_Rx0.Clock.Year;
+}
+
+uint8_t IlGetRxECU1_ClockMonthSig(void)
+{
+	return ECU1_ROUTED_Clock_Rx0.Clock.Month;
+}
+
+uint8_t IlGetRxECU1_ClockDaySig(void)
+{
+	return ECU1_ROUTED_Clock_Rx0.Clock.Day;
+}
+
+uint8_t IlGetRxECU1_ClockHourSig(void)
+{
+	return ECU1_ROUTED_Clock_Rx0.Clock.Hour;
+}
+
+uint8_t IlGetRxECU1_ClockMinuteSig(void)
+{
+	return ECU1_ROUTED_Clock_Rx0.Clock.Minute;
+}
+
+uint8_t IlGetRxECU1_ClockSecondSig(void)
+{
+	return ECU1_ROUTED_Clock_Rx0.Clock.Second;
+}
+
+void IlMsgECU1_ROUTED_Clock_Rx0Indication(uint8_t * data, uint8_t dlc)
+{
+	uint8_t buf[8];
+
+	memcpy(buf, data, dlc);
+	
+	ApplRxECU1_ClockYearSigIndication();
+	ApplRxECU1_ClockMonthSigIndication();
+	ApplRxECU1_ClockDaySigIndication();
+	ApplRxECU1_ClockHourSigIndication();
+	ApplRxECU1_ClockMinuteSigIndication();
+	ApplRxECU1_ClockSecondSigIndication();
 }
 
 void IlMsgBCM2_TCU_BCS_Rx1Indication(uint8_t * data, uint8_t dlc)

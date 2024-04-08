@@ -33,8 +33,26 @@ extern void ApplCanTx1ECU1_SlideBlindZoneAlertSystemServiceIndiOn_Sig_Comfirmati
 extern void ApplCanTx1ECU1_SlideBlindZoneAlertSystemOffIndiOn_Sig_Comfirmation(void);
 extern void ApplCanTx1ECU1_SlideBlindZoneAlertSystemCleanIndiOn_Sig_Comfirmation(void);
 extern void ApplCanTx1ECU1_LeftLaneChangeApproachSpeed_Sig_Comfirmation(void);
-extern void ApplRx2ECU2_VehicleToVehicleWarningDirectionSigIndication(void);
-extern void ApplRx2ECU2_VehicleToVehicleWarningIndicationRequestSigIndication(void);
+
+extern void ApplRxECU1_VehicleToVehicleWarningDirectionSigIndication(void);
+extern void ApplRxECU1_VehicleToVehicleWarningIndicationRequestSigIndication(void);
+extern void ApplRxECU1_PedestrianFriendlyAlertSoundGenerationEnableSigIndication(void);
+extern void ApplRxECU1_PedestrianFriendlyAlertForwardSoundSigIndication(void);
+extern void ApplRxECU1_PedestrianFriendlyAlertReverseSoundSigIndication(void);
+extern void	ApplRxECU1_PedestrianFriendlyAlertCrossoverSpeedSigIndication(void);
+extern void ApplRxECU1_PedestrianFriendlyAlertSystemStatusSigIndication(void);
+extern void ApplRxECU1_DrowsinessLevelSigIndication(void);
+extern void ApplRxECU1_DistractionLevelSigIndication(void);
+extern void ApplRxECU1_HandsOnLevelSigIndication(void);
+extern void ApplRxECU1_ClockYearSigIndication(void);
+extern void ApplRxECU1_ClockMonthSigIndication(void);
+extern void ApplRxECU1_ClockDaySigIndication(void);
+extern void ApplRxECU1_ClockHourSigIndication(void);
+extern void ApplRxECU1_ClockMinuteSigIndication(void);
+extern void ApplRxECU1_ClockSecondSigIndication(void);
+
+
+void ApplRx1BCS_VehSpdSigIndication(void);
 
 extern void ApplRx1BCS_VehSpdSigIndication(void);
 extern void ApplRx1BCS_VehSpdVDSigIndication(void);
@@ -93,9 +111,27 @@ bool IlGetECU1_SlideBlindZoneAlertSystemCleanIndiOn_Sig(void);
 void IlSetECU1_SlideBlindZoneAlertSystemCleanIndiOn_Sig(uint8_t * msgdata);
 uint8_t IlGetECU1_LeftLaneChangeApproachSpeed_Sig(void);
 uint8_t IlGetECU1_LeftLaneChangeApproachSpeed_Sig(void);
+uint8_t IlGetRxECU1_VehicleToVehicleWarningDirectionSig(void);
+uint8_t IlGetRxECU1_VehicleToVehicleWarningIndicationRequestSig(void);
+bool IlGetRxECU1_PedestrianFriendlyAlertSoundGenerationEnableSig(void);
+uint8_t IlGetRxECU1_PedestrianFriendlyAlertForwardSoundSig(void);
+uint8_t IlGetRxECU1_PedestrianFriendlyAlertReverseSoundSig(void);
+uint8_t IlGetRxECU1_PedestrianFriendlyAlertCrossoverSpeedSig(void);
+uint8_t IlGetRxECU1_PedestrianFriendlyAlertSystemStatusSig(void);
+uint8_t IlGetRxECU1_DrowsinessLevelSig(void);
+uint8_t IlGetRxECU1_DistractionLevelSig(void);
+uint8_t IlGetRxECU1_HandsOnLevelSig(void);
+uint8_t IlGetRxECU1_ClockYearSig(void);
+uint8_t IlGetRxECU1_ClockMonthSig(void);
+uint8_t IlGetRxECU1_ClockDaySig(void);
+uint8_t IlGetRxECU1_ClockHourSig(void);
+uint8_t IlGetRxECU1_ClockMinuteSig(void);
+uint8_t IlGetRxECU1_ClockSecondSig(void);
 
-
-void IlMsgECU2_V2V_Warning_Rx1Indication(uint8_t * data, uint8_t dlc);
+void IlMsgECU1_ROUTED_V2V_Warning_Rx2Indication(uint8_t * data, uint8_t dlc);
+void IlMsgECU1_ROUTED_Pedestrain_Friendly_Alert_Status_Rx3Indication(uint8_t * data, uint8_t dlc);
+void IlMsgECU1_ROUTED_Drive_Status_Rx1Indication(uint8_t * data, uint8_t dlc);
+void IlMsgECU1_ROUTED_Clock_Rx0Indication(uint8_t * data, uint8_t dlc);
 
 void IlMsgBCM2_TCU_BCS_Rx1Indication(uint8_t * data, uint8_t dlc);
 void IlMsgBCM2_TCU_BCS_Rx2Indication(uint8_t * data, uint8_t dlc);

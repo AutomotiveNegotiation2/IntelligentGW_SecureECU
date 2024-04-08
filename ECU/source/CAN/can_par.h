@@ -130,8 +130,54 @@ typedef struct _c_V2V_Warning_msgTypeTag
 typedef union _c_V2V_Warning_bufTag
 {
 	uint8_t _c[1];
-	_c_V2V_Warning_msgType BCM_TCU_BCS;
+	_c_V2V_Warning_msgType V2V_Warning;
 } _c_V2V_Warning_buf;
+
+typedef struct _c_Pedestrain_Friendly_Alert_Status_msgTypeTag
+{
+	uint8_t unused0	: 3;
+	uint8_t PedestrianFriendlyAlertReverseSound	: 2;
+	uint8_t PedestrianFriendlyAlertForwardSound	: 2;
+	uint8_t	PedestrianFriendlyAlertSoundGenerationEnable	: 1;
+	uint8_t PedestrianFriendlyAlertCrossoverSpeed : 8;
+	uint8_t unused1	: 6;
+	uint8_t PedestrianFriendlyAlertSystemStatus : 2;
+} _c_Pedestrain_Friendly_Alert_Status_msgType;
+
+typedef union _c_Pedestrain_Friendly_Alert_Status_bufTag
+{
+	uint8_t _c[3];
+	_c_Pedestrain_Friendly_Alert_Status_msgType Pedestrain_Friendly_Alert_Status;
+} _c_Pedestrain_Friendly_Alert_Status_buf;
+
+typedef struct _c_Drive_Status_msgTypeTag
+{
+	uint8_t DrowsinessLevel	: 8;
+	uint8_t DistractionLevel	: 8;
+	uint8_t HandsOnLevel	: 8;
+} _c_Drive_Status_msgType;
+
+typedef union _c_Drive_Status_bufTag
+{
+	uint8_t _c[3];
+	_c_Drive_Status_msgType Drive_Status;
+} _c_Drive_Status_buf;
+
+typedef struct _c_Clock_msgTypeTag
+{
+	uint8_t Year	: 8;
+	uint8_t Month	: 8;
+	uint8_t Day		: 8;
+	uint8_t Hour	: 8;
+	uint8_t Minute	: 8;
+	uint8_t Second	: 8;
+} _c_Clock_msgType;
+
+typedef union _c_Clock_bufTag
+{
+	uint8_t _c[3];
+	_c_Clock_msgType Clock;
+} _c_Clock_buf;
 
 typedef struct _c_BCM_BCAN_1_msgTypeTag
 {
@@ -250,7 +296,10 @@ extern _c_BCM_BCAN_2_buf NACU2_BCM_BCAN_2_Rx4;
 
 extern _c_System_Power_Mode_buf ECU1_System_Power_Mode_Tx;
 extern _c_Blind_Zone_Alert_Status_buf ECU1_Blind_Zone_Alert_Status_Tx;
-extern _c_V2V_Warning_buf ECU2_V2V_Warning_Rx1;
+extern _c_V2V_Warning_buf ECU1_ROUTED_V2V_Warning_Rx2;
+extern _c_Pedestrain_Friendly_Alert_Status_buf ECU1_ROUTED_Pedestrain_Friendly_Alert_Status_Rx3;
+extern _c_Drive_Status_buf ECU1_ROUTED_Drive_Status_Rx1;
+extern _c_Clock_buf ECU1_ROUTED_Clock_Rx0;
 
 extern uint8_t CanTxMbox2[CAN3_NO_OF_TX_OBJECT];
 extern uint32_t CanTxId2[CAN3_NO_OF_TX_OBJECT];

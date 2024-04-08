@@ -331,7 +331,7 @@ void CAN_ReceiveStart(can_inst_t instance)
 
 static int32_t CAN_Receive(uint32_t instance, uint32_t buffIdx, flexcan_mb_transfer_t *xfer)
 {
-	uint8_t i, data[64], dlc;
+	uint8_t i, j, data[64], dlc;
 	uint32_t id;
 	can_config_t * config;
 	status_t result;
@@ -357,19 +357,18 @@ static int32_t CAN_Receive(uint32_t instance, uint32_t buffIdx, flexcan_mb_trans
 	if (config->fdEnable)
 	{
 		uint8_t len;
-
+		
 		xfer->framefd = &config->framefd;
 		result = FLEXCAN_TransferFDReceiveNonBlocking(config->base, &config->fCanHandle, xfer);
 
 		dlc = config->framefd.length;
 		id = config->framefd.id & 0x1FFFFFFFU;
 
+		len = (uint8_t)(dlc/4);
 		if (dlc%4)
-			len = (dlc/4)+1;
-		else
-			len = dlc;
+			len += 1;
 
-		for (uint8_t j=0; j<len; j++)
+		for (j=0; j<len; j++)
 		{
 			data[j*4] = (uint8_t)(config->framefd.dataWord[j]>>24);
 			data[j*4+1] = (uint8_t)(config->framefd.dataWord[j]>>16);
@@ -405,6 +404,7 @@ static int32_t CAN_Receive(uint32_t instance, uint32_t buffIdx, flexcan_mb_trans
 		frame->dataByte4, frame->dataByte5, frame->dataByte6, frame->dataByte7);
 #endif
 
+	memcpy(config->msgRx->data[i], data, dlc);
 	(config->msgRx->rCallback[i])(data, dlc);
 
 	QueuePushCanDataforRx2(config->msgRx->inst, id, dlc, data);

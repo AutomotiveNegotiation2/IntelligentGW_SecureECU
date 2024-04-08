@@ -260,7 +260,7 @@ void QueuePopCanDataforRx2(void)
 	
 	if (Queue_PopBuffer(&CanRx2MsgQueue, (void *)&msgbuf) == QUEUE_BUFFER_STS_DONE)
 	{
-		SYSINFO_PRINTF("\r\n[POP] CAN_CH=%d ID=0x%x, DLC=%d DATA=", msgbuf.inst, msgbuf.id, msgbuf.dlc);
+		SYSINFO_PRINTF("[POP] CAN_CH=%d ID=0x%x, DLC=%d DATA=", msgbuf.inst, msgbuf.id, msgbuf.dlc);
 		for (uint8_t i=0; i<msgbuf.dlc; i++)
 		{
 			SYSINFO_PRINTF("0x%x ", msgbuf.data[i]);
@@ -306,14 +306,180 @@ void ApplCanTx1ECU1_LeftLaneChangeApproachSpeed_Sig_Comfirmation(void)
 
 }
 
-void ApplRx2ECU2_VehicleToVehicleWarningDirectionSigIndication(void)
+void ApplRxECU1_VehicleToVehicleWarningDirectionSigIndication(void)
 {
+	uint8_t temp;
 
+	temp = IlGetRxECU1_VehicleToVehicleWarningDirectionSig();
+
+#if 1
+	SYSINFO_PRINTF("[ROUTED V2V Warning] VehicleToVehicleWarningDirectionSig = 0x%x\r\n", temp);
+#endif
 }
 
-void ApplRx2ECU2_VehicleToVehicleWarningIndicationRequestSigIndication(void)
+void ApplRxECU1_VehicleToVehicleWarningIndicationRequestSigIndication(void)
 {
+	uint8_t temp;
 	
+	temp = IlGetRxECU1_VehicleToVehicleWarningIndicationRequestSig();	
+
+#if 1
+	SYSINFO_PRINTF("[ROUTED V2V Warning] VehicleToVehicleWarningIndicationRequestSig = 0x%x\r\n", temp);
+#endif
+}
+
+void ApplRxECU1_PedestrianFriendlyAlertSoundGenerationEnableSigIndication(void)
+{
+	uint8_t temp;
+	
+	temp = IlGetRxECU1_PedestrianFriendlyAlertSoundGenerationEnableSig();
+	
+#if 1
+	SYSINFO_PRINTF("[ROUTED Pedestrain Friendly Alert Status] PedestrianFriendlyAlertSoundGenerationEnableSig = 0x%x\r\n", temp);
+#endif
+}
+
+void ApplRxECU1_PedestrianFriendlyAlertForwardSoundSigIndication(void)
+{
+	uint8_t temp;
+	
+	temp = IlGetRxECU1_PedestrianFriendlyAlertForwardSoundSig();
+	
+#if 1
+	SYSINFO_PRINTF("[ROUTED Pedestrain Friendly Alert Status] PedestrianFriendlyAlertForwardSoundSig = 0x%x\r\n", temp);
+#endif
+}
+
+void ApplRxECU1_PedestrianFriendlyAlertReverseSoundSigIndication(void)
+{
+	uint8_t temp;
+	
+	temp = IlGetRxECU1_PedestrianFriendlyAlertReverseSoundSig();
+	
+#if 1
+	SYSINFO_PRINTF("[ROUTED Pedestrain Friendly Alert Status] PedestrianFriendlyAlertReverseSoundSig = 0x%x\r\n", temp);
+#endif
+}
+
+void ApplRxECU1_PedestrianFriendlyAlertCrossoverSpeedSigIndication(void)
+{
+	uint8_t temp;
+		
+	temp = IlGetRxECU1_PedestrianFriendlyAlertCrossoverSpeedSig();
+		
+#if 1
+	SYSINFO_PRINTF("[ROUTED Pedestrain Friendly Alert Status] PedestrianFriendlyAlertCrossoverSpeedSig = 0x%x\r\n", temp);
+#endif
+}
+
+void ApplRxECU1_PedestrianFriendlyAlertSystemStatusSigIndication()
+{
+	uint8_t temp;
+		
+	temp = IlGetRxECU1_PedestrianFriendlyAlertSystemStatusSig();
+		
+#if 1
+	SYSINFO_PRINTF("[ROUTED Pedestrain Friendly Alert Status] PedestrianFriendlyAlertSystemStatusSig = 0x%x\r\n", temp);
+#endif
+}
+
+void ApplRxECU1_DrowsinessLevelSigIndication(void)
+{
+	uint8_t temp;
+		
+	temp = IlGetRxECU1_DrowsinessLevelSig();
+		
+#if 1
+	SYSINFO_PRINTF("[ROUTED Drive Status] DrowsinessLevelSig = 0x%x\r\n", temp);
+#endif
+}
+
+void ApplRxECU1_DistractionLevelSigIndication(void)
+{
+	uint8_t temp;
+		
+	temp = IlGetRxECU1_DistractionLevelSig();
+		
+#if 1
+	SYSINFO_PRINTF("[ROUTED Drive Status] DistractionLevelSig = 0x%x\r\n", temp);
+#endif
+}
+
+void ApplRxECU1_HandsOnLevelSigIndication(void)
+{
+	uint8_t temp;
+		
+	temp = IlGetRxECU1_HandsOnLevelSig();
+		
+#if 1
+	SYSINFO_PRINTF("[ROUTED Drive Status] HandsOnLevelSig = 0x%x\r\n", temp);
+#endif
+}
+
+void ApplRxECU1_ClockYearSigIndication(void)
+{
+	uint8_t temp;
+		
+	temp = IlGetRxECU1_ClockYearSig();
+		
+#if 1
+	SYSINFO_PRINTF("[ROUTED Clock] ClockYearSig = 0x%x\r\n", temp);
+#endif
+}
+
+void ApplRxECU1_ClockMonthSigIndication(void)
+{
+	uint8_t temp;
+		
+	temp = IlGetRxECU1_ClockMonthSig();
+		
+#if 1
+	SYSINFO_PRINTF("[ROUTED Clock] ClockMonthSig = 0x%x\r\n", temp);
+#endif
+}
+
+void ApplRxECU1_ClockDaySigIndication(void)
+{
+	uint8_t temp;
+		
+	temp = IlGetRxECU1_ClockDaySig();
+		
+#if 1
+	SYSINFO_PRINTF("[ROUTED Clock] ClockDaySig = 0x%x\r\n", temp);
+#endif
+}
+
+void ApplRxECU1_ClockHourSigIndication()
+{
+	uint8_t temp;
+		
+	temp = IlGetRxECU1_ClockHourSig();
+		
+#if 1
+	SYSINFO_PRINTF("[ROUTED Clock] ClockHourSig = 0x%x\r\n", temp);
+#endif
+}
+
+void ApplRxECU1_ClockMinuteSigIndication(void)
+{
+	uint8_t temp;
+		
+	temp = IlGetRxECU1_ClockMinuteSig();
+		
+#if 1
+	SYSINFO_PRINTF("[ROUTED Clock] ClockMInuteSig = 0x%x\r\n", temp);
+#endif
+}
+
+void ApplRxECU1_ClockSecondSigIndication()
+{
+	uint8_t temp;
+		
+	temp = IlGetRxECU1_ClockSecondSig();
+		
+#if 1
+	SYSINFO_PRINTF("[ROUTED Clock] ClockSecondSig = 0x%x\r\n", temp);
+#endif
 }
 
 void ApplRx1BCS_VehSpdSigIndication(void)
@@ -521,7 +687,7 @@ void ApplRx2SRS_ModuleSigIndication(void)
 }
 
 void ApplRx2BCS_ModuleSigIndication(void)
-{
+	{
 }
 
 void ApplRx2EPS_ModuleSigIndication(void)
