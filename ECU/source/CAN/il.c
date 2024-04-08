@@ -56,6 +56,7 @@ void ilTxTask(void)
 				if (config->msgTx->msgUpdate[cnt] == MSG_UPDATE_REQUEST)
 				{
 					CAN_Transmit(config->msgTx->inst, config->msgTx->id[cnt]);
+					IOCTRL_SetLedOpForTx((uint8_t)ilCanChannel[i], config->msgTx->attr[cnt]);
 					config->msgTx->msgUpdate[cnt] = MSG_UPDATE_COMPLETE;
 				}
 			}

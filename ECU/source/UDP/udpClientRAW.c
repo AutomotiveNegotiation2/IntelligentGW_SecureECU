@@ -94,7 +94,9 @@ err_t create_udp_socket(void)
 		return ERR_MEM;
 	}
 	// Load the static IP of the destination address
-	IP4_ADDR(&destIPAddr,192,168,0,100);
+
+	IP4_ADDR(&destIPAddr,192,168,0,255);
+
 	upcb->local_port = 4004;
 	// Set our local port to 4004
 	// Should bind to the local ip and port

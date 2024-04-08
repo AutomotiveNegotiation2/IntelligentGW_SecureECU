@@ -297,10 +297,12 @@ void QueuePopCanDataforRx2(void)
 		if (msgbuf.inst == CAN_CH_3)
 		{
 			sprintf(buf, "CAN");
+			IOCTRL_SetLedOpForRx(msgbuf.inst);
 		}
 		else if (msgbuf.inst == CAN_CH_1)
 		{
 			sprintf(buf, "CANFD");
+			IOCTRL_SetLedOpForRx(msgbuf.inst);
 		}
 
 		CANINFO_PRINTF("[RX] %05s ID=0x%X, DLC=%d DATA=", buf, msgbuf.id, msgbuf.dlc);

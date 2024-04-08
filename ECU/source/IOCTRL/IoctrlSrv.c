@@ -9,6 +9,47 @@ bool	ReadFBdSw02BtnKey(void)	{return GPIO_PinRead(BOARD_INITFUNCIOPINS_FlexSPI_B
 bool	ReadFBdSw03BtnKey(void)	{return GPIO_PinRead(BOARD_INITFUNCIOPINS_FlexSPI_B_D1_GPIO, BOARD_INITFUNCIOPINS_FlexSPI_B_D1_GPIO_PIN) == 0 ? KEY_PRESSED : KEY_RELEASED;}
 bool	ReadFBdSw04BtnKey(void)	{return GPIO_PinRead(BOARD_INITFUNCIOPINS_FlexSPI_B_D0_GPIO, BOARD_INITFUNCIOPINS_FlexSPI_B_D0_GPIO_PIN) == 0 ? KEY_PRESSED : KEY_RELEASED;}
 
+#define	LED_D1_RED_ON		GPIO_PinWrite(BOARD_INITFUNCIOPINS_LED_RED_D1_GPIO, BOARD_INITFUNCIOPINS_LED_RED_D1_GPIO_PIN, ON)
+#define	LED_D1_RED_OFF		GPIO_PinWrite(BOARD_INITFUNCIOPINS_LED_RED_D1_GPIO, BOARD_INITFUNCIOPINS_LED_RED_D1_GPIO_PIN, OFF)
+#define	LED_D1_GREEN_ON		GPIO_PinWrite(BOARD_INITFUNCIOPINS_LED_GREEN_D1_GPIO, BOARD_INITFUNCIOPINS_LED_GREEN_D1_GPIO_PIN, ON)
+#define	LED_D1_GREEN_OFF	GPIO_PinWrite(BOARD_INITFUNCIOPINS_LED_GREEN_D1_GPIO, BOARD_INITFUNCIOPINS_LED_GREEN_D1_GPIO_PIN, OFF)
+#define	LED_D2_RED_ON		GPIO_PinWrite(BOARD_INITFUNCIOPINS_LED_RED_D2_GPIO, BOARD_INITFUNCIOPINS_LED_RED_D2_GPIO_PIN, ON)
+#define	LED_D2_RED_OFF		GPIO_PinWrite(BOARD_INITFUNCIOPINS_LED_RED_D2_GPIO, BOARD_INITFUNCIOPINS_LED_RED_D2_GPIO_PIN, OFF)
+#define	LED_D2_GREEN_ON		GPIO_PinWrite(BOARD_INITFUNCIOPINS_LED_GREEN_D2_GPIO, BOARD_INITFUNCIOPINS_LED_GREEN_D2_GPIO_PIN, ON)
+#define	LED_D2_GREEN_OFF	GPIO_PinWrite(BOARD_INITFUNCIOPINS_LED_GREEN_D2_GPIO, BOARD_INITFUNCIOPINS_LED_GREEN_D2_GPIO_PIN, OFF)
+#define	LED_D3_RED_ON		GPIO_PinWrite(BOARD_INITFUNCIOPINS_LED_RED_D3_GPIO, BOARD_INITFUNCIOPINS_LED_RED_D3_GPIO_PIN, ON)
+#define	LED_D3_RED_OFF		GPIO_PinWrite(BOARD_INITFUNCIOPINS_LED_RED_D3_GPIO, BOARD_INITFUNCIOPINS_LED_RED_D3_GPIO_PIN, OFF)
+#define	LED_D3_GREEN_ON		GPIO_PinWrite(BOARD_INITFUNCIOPINS_LED_GREEN_D3_GPIO, BOARD_INITFUNCIOPINS_LED_GREEN_D3_GPIO_PIN, ON)
+#define	LED_D3_GREEN_OFF	GPIO_PinWrite(BOARD_INITFUNCIOPINS_LED_GREEN_D3_GPIO, BOARD_INITFUNCIOPINS_LED_GREEN_D3_GPIO_PIN, OFF)
+#define	LED_D4_RED_ON		GPIO_PinWrite(BOARD_INITFUNCIOPINS_LED_RED_D4_GPIO, BOARD_INITFUNCIOPINS_LED_RED_D4_GPIO_PIN, ON)
+#define	LED_D4_RED_OFF		GPIO_PinWrite(BOARD_INITFUNCIOPINS_LED_RED_D4_GPIO, BOARD_INITFUNCIOPINS_LED_RED_D4_GPIO_PIN, OFF)
+#define	LED_D4_GREEN_ON		GPIO_PinWrite(BOARD_INITFUNCIOPINS_LED_GREEN_D4_GPIO, BOARD_INITFUNCIOPINS_LED_GREEN_D4_GPIO_PIN, ON)
+#define	LED_D4_GREEN_OFF	GPIO_PinWrite(BOARD_INITFUNCIOPINS_LED_GREEN_D4_GPIO, BOARD_INITFUNCIOPINS_LED_GREEN_D4_GPIO_PIN, OFF)
+#define	LED_D5_RED_ON		GPIO_PinWrite(BOARD_INITFUNCIOPINS_LED_RED_D5_GPIO, BOARD_INITFUNCIOPINS_LED_RED_D5_GPIO_PIN, ON)
+#define	LED_D5_RED_OFF		GPIO_PinWrite(BOARD_INITFUNCIOPINS_LED_RED_D5_GPIO, BOARD_INITFUNCIOPINS_LED_RED_D5_GPIO_PIN, OFF)
+#define	LED_D5_GREEN_ON		GPIO_PinWrite(BOARD_INITFUNCIOPINS_LED_GREEN_D5_GPIO, BOARD_INITFUNCIOPINS_LED_GREEN_D5_GPIO_PIN, ON)
+#define	LED_D5_GREEN_OFF	GPIO_PinWrite(BOARD_INITFUNCIOPINS_LED_GREEN_D5_GPIO, BOARD_INITFUNCIOPINS_LED_GREEN_D5_GPIO_PIN, OFF)
+
+uint32_t led[LED_COLOR_MAX][LED_NUM_MAX] = 
+{
+	// LED GREEN
+	{
+		BOARD_INITFUNCIOPINS_LED_GREEN_D1_GPIO_PIN,
+		BOARD_INITFUNCIOPINS_LED_GREEN_D2_GPIO_PIN,
+		BOARD_INITFUNCIOPINS_LED_GREEN_D3_GPIO_PIN,
+		BOARD_INITFUNCIOPINS_LED_GREEN_D4_GPIO_PIN,
+		BOARD_INITFUNCIOPINS_LED_GREEN_D5_GPIO_PIN,
+	},
+	// LED RED
+	{
+		BOARD_INITFUNCIOPINS_LED_RED_D1_GPIO_PIN,
+		BOARD_INITFUNCIOPINS_LED_RED_D2_GPIO_PIN,
+		BOARD_INITFUNCIOPINS_LED_RED_D3_GPIO_PIN,
+		BOARD_INITFUNCIOPINS_LED_RED_D4_GPIO_PIN,
+		BOARD_INITFUNCIOPINS_LED_RED_D5_GPIO_PIN
+	},
+};
+
 typedef struct {
 	uint8_t keyChattTimer;
 	bool keyPressedOnFlag;
@@ -57,6 +98,13 @@ void RUN_IOCTRL_DN_ACC_OFF(void);
 void RUN_IOCTRL_UP_ACC_ON(void);
 void Ioctrl_KeyOp(void);
 void Ioctrl_KeyChattOp(void);
+#if (CAN1toCANFD_EN == ON)
+void Ioctrl_CanFdLedOp(void);
+#endif
+#if (CAN3toCAN_EN == ON)
+void Ioctrl_CanLedOp(void);
+#endif
+void Led_Write(led_color_inst_t color, led_inst_t led, uint8_t output);
 
 void IoctrlSrv(void)
 {
@@ -122,6 +170,12 @@ void RUN_IOCTRL_UP_ACC_ON(void)
 		case LO_SEQ_START:
 			KillSoftTimer(STIMER_IOCTRL_USER_KEY_OP);
 			KillSoftTimer(STIMER_IOCTRL_USER_KEY_CHATT_OP);
+#if (CAN1toCANFD_EN == 1)
+			KillSoftTimer(STIMER_IOCTRL_CANFD_LED_OP);
+#endif
+#if (CAN3toCAN_EN == 1)
+			KillSoftTimer(STIMER_IOCTRL_CAN_LED_OP);
+#endif
 
 			BOARD_InitFuncIoPins();
 			GlobalPocSeq.LSeq.B.SEQ_IOCTRL = LO_SEQ_01;
@@ -137,6 +191,13 @@ void RUN_IOCTRL_UP_ACC_ON(void)
 			memset(keyInCtrl, 0, sizeof(key_detect_ctrl_t)*KEY_IN_MAX);
 			SetSoftTimer(STIMER_IOCTRL_USER_KEY_OP, 10, Ioctrl_KeyOp);	
 			SetSoftTimer(STIMER_IOCTRL_USER_KEY_CHATT_OP, 5, Ioctrl_KeyChattOp);
+#if (CAN1toCANFD_EN == 1)
+			SetSoftTimer(STIMER_IOCTRL_CANFD_LED_OP, 200, Ioctrl_CanFdLedOp);
+#endif
+
+#if (CAN3toCAN_EN == 1)
+			SetSoftTimer(STIMER_IOCTRL_CAN_LED_OP, 200, Ioctrl_CanLedOp);
+#endif
 			
 			GlobalPocSeq.LSeq.B.SEQ_IOCTRL = LO_SEQ_FINISH;
 			break;
@@ -271,3 +332,156 @@ void Ioctrl_KeyOp(void)
 	}
 }
 
+#if (CAN1toCANFD_EN == 1)
+bool ledCanFdPEToggle=1, ledCanFdEVToggle=1, ledCanFdRxToggle=1;
+uint8_t ledCanFdPECnt=0, ledCanFdEVCnt=0, ledCanFdRxCnt=0;
+void Ioctrl_CanFdLedOp(void)
+{
+	if (ledCanFdPECnt > 0 )
+	{
+		if (ledCanFdPEToggle == 1)
+			Led_Write(LED_RED, LED_D1, ON);
+		else
+			Led_Write(LED_RED, LED_D1, OFF);
+
+		ledCanFdPEToggle ^= 1;
+		ledCanFdPECnt--;
+	}
+	else
+	{
+		ledCanFdPEToggle = 1;
+		Led_Write(LED_RED, LED_D1, OFF);		
+	}
+
+	if (ledCanFdEVCnt > 0 )
+	{
+		if (ledCanFdEVToggle == 1)
+			Led_Write(LED_RED, LED_D2, ON);
+		else
+			Led_Write(LED_RED, LED_D2, OFF);
+
+		ledCanFdEVToggle ^= 1;
+		ledCanFdEVCnt--;
+	}
+	else
+	{
+		ledCanFdEVToggle = 1;
+		Led_Write(LED_RED, LED_D2, OFF);		
+	}
+
+	if (ledCanFdRxCnt > 0 )
+	{
+		if (ledCanFdRxToggle == 1)
+			Led_Write(LED_RED, LED_D3, ON);
+		else
+			Led_Write(LED_RED, LED_D3, OFF);
+
+		ledCanFdRxToggle ^= 1;
+		ledCanFdRxCnt--;
+	}
+	else
+	{
+		ledCanFdRxToggle = 1;
+		Led_Write(LED_RED, LED_D3, OFF);		
+	}
+}
+#endif
+
+#if (CAN3toCAN_EN == 1)
+bool ledCanPEToggle=1, ledCanEVToggle=1, ledCanRxToggle=1;
+uint8_t ledCanPECnt=0, ledCanEVCnt=0, ledCanRxCnt=0;
+void Ioctrl_CanLedOp(void)
+{
+	if (ledCanPECnt > 0 )
+	{
+		if (ledCanPEToggle == 1)
+			Led_Write(LED_GREEN, LED_D1, ON);
+		else
+			Led_Write(LED_GREEN, LED_D1, OFF);
+
+		ledCanPEToggle ^= 1;
+		ledCanPECnt--;
+	}
+	else
+	{
+		ledCanPEToggle = 1;
+		Led_Write(LED_GREEN, LED_D1, OFF);		
+	}
+
+	if (ledCanEVCnt > 0 )
+	{
+		if (ledCanEVToggle == 1)
+			Led_Write(LED_GREEN, LED_D2, ON);
+		else
+			Led_Write(LED_GREEN, LED_D2, OFF);
+
+		ledCanEVToggle ^= 1;
+		ledCanEVCnt--;
+	}
+	else
+	{
+		ledCanEVToggle = 1;
+		Led_Write(LED_GREEN, LED_D2, OFF);		
+	}
+
+	if (ledCanRxCnt > 0 )
+	{
+		if (ledCanRxToggle == 1)
+			Led_Write(LED_GREEN, LED_D3, ON);
+		else
+			Led_Write(LED_GREEN, LED_D3, OFF);
+
+		ledCanRxToggle ^= 1;
+		ledCanRxCnt--;
+	}
+	else
+	{
+		ledCanRxToggle = 1;
+		Led_Write(LED_GREEN, LED_D3, OFF);		
+	}
+}
+#endif
+
+void IOCTRL_SetLedOpForTx(uint8_t inst, uint8_t attr)
+{
+	if (attr == CAN_TX_ATTR_PERIODIC)
+	{
+#if (CAN1toCANFD_EN == 1)
+		if (inst == CAN_1)	// CANFD
+			ledCanFdPECnt = 5;
+#endif
+#if (CAN3toCAN_EN == 1)
+		if (inst == CAN_3)	// CAN
+			ledCanPECnt = 5;
+#endif
+	}
+	else	// EVENT
+	{
+#if (CAN1toCANFD_EN == 1)
+		if (inst == CAN_1)	// CANFD
+			ledCanFdEVCnt = 5;
+#endif
+#if (CAN3toCAN_EN == 1)
+		if (inst == CAN_3)	// CAN
+			ledCanEVCnt = 5;
+#endif
+	}
+}
+
+void IOCTRL_SetLedOpForRx(uint8_t inst)
+{
+#if (CAN1toCANFD_EN == 1)
+	if (inst == CAN_1)	// CANFD
+		ledCanFdRxCnt = 5;
+#endif
+#if (CAN3toCAN_EN == 1)
+	if (inst == CAN_3)	// CAN
+		ledCanRxCnt = 5;
+#endif
+}
+
+
+void Led_Write(led_color_inst_t color, led_inst_t ledNum, uint8_t output)
+{
+	GPIO_PinWrite(GPIO13, led[color][ledNum], output);
+}

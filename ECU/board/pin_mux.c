@@ -415,16 +415,16 @@ BOARD_InitFuncIoPins:
   - {pin_num: J14, peripheral: GPIO10, signal: 'gpio_io, 10', pin_signal: GPIO_SD_B2_01, direction: INPUT, software_input_on: Enable}
   - {pin_num: H13, peripheral: GPIO10, signal: 'gpio_io, 11', pin_signal: GPIO_SD_B2_02, direction: INPUT, software_input_on: Enable}
   - {pin_num: E15, peripheral: GPIO10, signal: 'gpio_io, 12', pin_signal: GPIO_SD_B2_03, direction: INPUT, software_input_on: Enable}
-  - {pin_num: R10, peripheral: GPIO13, signal: 'gpio_io, 03', pin_signal: GPIO_SNVS_00, direction: OUTPUT, gpio_init_state: 'true'}
-  - {pin_num: P10, peripheral: GPIO13, signal: 'gpio_io, 04', pin_signal: GPIO_SNVS_01, direction: OUTPUT, gpio_init_state: 'true'}
-  - {pin_num: L9, peripheral: GPIO13, signal: 'gpio_io, 05', pin_signal: GPIO_SNVS_02, direction: OUTPUT, gpio_init_state: 'true'}
-  - {pin_num: M10, peripheral: GPIO13, signal: 'gpio_io, 06', pin_signal: GPIO_SNVS_03, direction: OUTPUT, gpio_init_state: 'true'}
-  - {pin_num: N10, peripheral: GPIO13, signal: 'gpio_io, 07', pin_signal: GPIO_SNVS_04, direction: OUTPUT, gpio_init_state: 'true'}
-  - {pin_num: P9, peripheral: GPIO13, signal: 'gpio_io, 08', pin_signal: GPIO_SNVS_05, direction: OUTPUT, gpio_init_state: 'true'}
-  - {pin_num: M9, peripheral: GPIO13, signal: 'gpio_io, 09', pin_signal: GPIO_SNVS_06, direction: OUTPUT, gpio_init_state: 'true'}
-  - {pin_num: R9, peripheral: GPIO13, signal: 'gpio_io, 10', pin_signal: GPIO_SNVS_07, direction: OUTPUT, gpio_init_state: 'true'}
-  - {pin_num: N9, peripheral: GPIO13, signal: 'gpio_io, 11', pin_signal: GPIO_SNVS_08, direction: OUTPUT, gpio_init_state: 'true'}
-  - {pin_num: R11, peripheral: GPIO13, signal: 'gpio_io, 12', pin_signal: GPIO_SNVS_09, direction: OUTPUT, gpio_init_state: 'true'}
+  - {pin_num: R10, peripheral: GPIO13, signal: 'gpio_io, 03', pin_signal: GPIO_SNVS_00, direction: OUTPUT, pull_keeper_select: Pull}
+  - {pin_num: P10, peripheral: GPIO13, signal: 'gpio_io, 04', pin_signal: GPIO_SNVS_01, direction: OUTPUT, pull_keeper_select: Pull}
+  - {pin_num: L9, peripheral: GPIO13, signal: 'gpio_io, 05', pin_signal: GPIO_SNVS_02, direction: OUTPUT, pull_keeper_select: Pull}
+  - {pin_num: M10, peripheral: GPIO13, signal: 'gpio_io, 06', pin_signal: GPIO_SNVS_03, direction: OUTPUT, pull_keeper_select: Pull}
+  - {pin_num: N10, peripheral: GPIO13, signal: 'gpio_io, 07', pin_signal: GPIO_SNVS_04, direction: OUTPUT, pull_keeper_select: Pull}
+  - {pin_num: P9, peripheral: GPIO13, signal: 'gpio_io, 08', pin_signal: GPIO_SNVS_05, direction: OUTPUT, pull_keeper_select: Pull}
+  - {pin_num: M9, peripheral: GPIO13, signal: 'gpio_io, 09', pin_signal: GPIO_SNVS_06, direction: OUTPUT, pull_keeper_select: Pull}
+  - {pin_num: R9, peripheral: GPIO13, signal: 'gpio_io, 10', pin_signal: GPIO_SNVS_07, direction: OUTPUT, pull_keeper_select: Pull}
+  - {pin_num: N9, peripheral: GPIO13, signal: 'gpio_io, 11', pin_signal: GPIO_SNVS_08, direction: OUTPUT, pull_keeper_select: Pull}
+  - {pin_num: R11, peripheral: GPIO13, signal: 'gpio_io, 12', pin_signal: GPIO_SNVS_09, direction: OUTPUT, pull_keeper_select: Pull}
  * BE CAREFUL MODIFYING THIS COMMENT - IT IS YAML SETTINGS FOR TOOLS ***********
  */
 
@@ -476,7 +476,7 @@ void BOARD_InitFuncIoPins(void) {
   /* GPIO configuration of LED_RED_D1 on GPIO_SNVS_00_DIG (pin R10) */
   gpio_pin_config_t LED_RED_D1_config = {
       .direction = kGPIO_DigitalOutput,
-      .outputLogic = 1U,
+      .outputLogic = 0U,
       .interruptMode = kGPIO_NoIntmode
   };
   /* Initialize GPIO functionality on GPIO_SNVS_00_DIG (pin R10) */
@@ -485,7 +485,7 @@ void BOARD_InitFuncIoPins(void) {
   /* GPIO configuration of LED_GREEN_D1 on GPIO_SNVS_01_DIG (pin P10) */
   gpio_pin_config_t LED_GREEN_D1_config = {
       .direction = kGPIO_DigitalOutput,
-      .outputLogic = 1U,
+      .outputLogic = 0U,
       .interruptMode = kGPIO_NoIntmode
   };
   /* Initialize GPIO functionality on GPIO_SNVS_01_DIG (pin P10) */
@@ -494,7 +494,7 @@ void BOARD_InitFuncIoPins(void) {
   /* GPIO configuration of LED_RED_D2 on GPIO_SNVS_02_DIG (pin L9) */
   gpio_pin_config_t LED_RED_D2_config = {
       .direction = kGPIO_DigitalOutput,
-      .outputLogic = 1U,
+      .outputLogic = 0U,
       .interruptMode = kGPIO_NoIntmode
   };
   /* Initialize GPIO functionality on GPIO_SNVS_02_DIG (pin L9) */
@@ -503,7 +503,7 @@ void BOARD_InitFuncIoPins(void) {
   /* GPIO configuration of LED_GREEN_D2 on GPIO_SNVS_03_DIG (pin M10) */
   gpio_pin_config_t LED_GREEN_D2_config = {
       .direction = kGPIO_DigitalOutput,
-      .outputLogic = 1U,
+      .outputLogic = 0U,
       .interruptMode = kGPIO_NoIntmode
   };
   /* Initialize GPIO functionality on GPIO_SNVS_03_DIG (pin M10) */
@@ -512,7 +512,7 @@ void BOARD_InitFuncIoPins(void) {
   /* GPIO configuration of LED_RED_D3 on GPIO_SNVS_04_DIG (pin N10) */
   gpio_pin_config_t LED_RED_D3_config = {
       .direction = kGPIO_DigitalOutput,
-      .outputLogic = 1U,
+      .outputLogic = 0U,
       .interruptMode = kGPIO_NoIntmode
   };
   /* Initialize GPIO functionality on GPIO_SNVS_04_DIG (pin N10) */
@@ -521,7 +521,7 @@ void BOARD_InitFuncIoPins(void) {
   /* GPIO configuration of LED_GREEN_D3 on GPIO_SNVS_05_DIG (pin P9) */
   gpio_pin_config_t LED_GREEN_D3_config = {
       .direction = kGPIO_DigitalOutput,
-      .outputLogic = 1U,
+      .outputLogic = 0U,
       .interruptMode = kGPIO_NoIntmode
   };
   /* Initialize GPIO functionality on GPIO_SNVS_05_DIG (pin P9) */
@@ -530,7 +530,7 @@ void BOARD_InitFuncIoPins(void) {
   /* GPIO configuration of LED_RED_D4 on GPIO_SNVS_06_DIG (pin M9) */
   gpio_pin_config_t LED_RED_D4_config = {
       .direction = kGPIO_DigitalOutput,
-      .outputLogic = 1U,
+      .outputLogic = 0U,
       .interruptMode = kGPIO_NoIntmode
   };
   /* Initialize GPIO functionality on GPIO_SNVS_06_DIG (pin M9) */
@@ -539,7 +539,7 @@ void BOARD_InitFuncIoPins(void) {
   /* GPIO configuration of LED_GREEN_D4 on GPIO_SNVS_07_DIG (pin R9) */
   gpio_pin_config_t LED_GREEN_D4_config = {
       .direction = kGPIO_DigitalOutput,
-      .outputLogic = 1U,
+      .outputLogic = 0U,
       .interruptMode = kGPIO_NoIntmode
   };
   /* Initialize GPIO functionality on GPIO_SNVS_07_DIG (pin R9) */
@@ -548,7 +548,7 @@ void BOARD_InitFuncIoPins(void) {
   /* GPIO configuration of LED_RED_D5 on GPIO_SNVS_08_DIG (pin N9) */
   gpio_pin_config_t LED_RED_D5_config = {
       .direction = kGPIO_DigitalOutput,
-      .outputLogic = 1U,
+      .outputLogic = 0U,
       .interruptMode = kGPIO_NoIntmode
   };
   /* Initialize GPIO functionality on GPIO_SNVS_08_DIG (pin N9) */
@@ -557,7 +557,7 @@ void BOARD_InitFuncIoPins(void) {
   /* GPIO configuration of LED_GREEN_D5 on GPIO_SNVS_09_DIG (pin R11) */
   gpio_pin_config_t LED_GREEN_D5_config = {
       .direction = kGPIO_DigitalOutput,
-      .outputLogic = 1U,
+      .outputLogic = 0U,
       .interruptMode = kGPIO_NoIntmode
   };
   /* Initialize GPIO functionality on GPIO_SNVS_09_DIG (pin R11) */
@@ -605,6 +605,96 @@ void BOARD_InitFuncIoPins(void) {
   IOMUXC_SetPinMux(
       IOMUXC_GPIO_SNVS_09_DIG_GPIO13_IO12,    /* GPIO_SNVS_09_DIG is configured as GPIO13_IO12 */
       0U);                                    /* Software Input On Field: Input Path is determined by functionality */
+  IOMUXC_SetPinConfig(
+      IOMUXC_GPIO_SNVS_00_DIG_GPIO13_IO03,    /* GPIO_SNVS_00_DIG PAD functional properties : */
+      0x06U);                                 /* Slew Rate Field: Slow Slew Rate
+                                                 Drive Strength Field: high driver
+                                                 Pull / Keep Select Field: Pull Enable
+                                                 Pull Up / Down Config. Field: Weak pull down
+                                                 Open Drain SNVS Field: Disabled
+                                                 Domain write protection: Both cores are allowed
+                                                 Domain write protection lock: Neither of DWP bits is locked */
+  IOMUXC_SetPinConfig(
+      IOMUXC_GPIO_SNVS_01_DIG_GPIO13_IO04,    /* GPIO_SNVS_01_DIG PAD functional properties : */
+      0x06U);                                 /* Slew Rate Field: Slow Slew Rate
+                                                 Drive Strength Field: high driver
+                                                 Pull / Keep Select Field: Pull Enable
+                                                 Pull Up / Down Config. Field: Weak pull down
+                                                 Open Drain SNVS Field: Disabled
+                                                 Domain write protection: Both cores are allowed
+                                                 Domain write protection lock: Neither of DWP bits is locked */
+  IOMUXC_SetPinConfig(
+      IOMUXC_GPIO_SNVS_02_DIG_GPIO13_IO05,    /* GPIO_SNVS_02_DIG PAD functional properties : */
+      0x06U);                                 /* Slew Rate Field: Slow Slew Rate
+                                                 Drive Strength Field: high driver
+                                                 Pull / Keep Select Field: Pull Enable
+                                                 Pull Up / Down Config. Field: Weak pull down
+                                                 Open Drain SNVS Field: Disabled
+                                                 Domain write protection: Both cores are allowed
+                                                 Domain write protection lock: Neither of DWP bits is locked */
+  IOMUXC_SetPinConfig(
+      IOMUXC_GPIO_SNVS_03_DIG_GPIO13_IO06,    /* GPIO_SNVS_03_DIG PAD functional properties : */
+      0x06U);                                 /* Slew Rate Field: Slow Slew Rate
+                                                 Drive Strength Field: high driver
+                                                 Pull / Keep Select Field: Pull Enable
+                                                 Pull Up / Down Config. Field: Weak pull down
+                                                 Open Drain SNVS Field: Disabled
+                                                 Domain write protection: Both cores are allowed
+                                                 Domain write protection lock: Neither of DWP bits is locked */
+  IOMUXC_SetPinConfig(
+      IOMUXC_GPIO_SNVS_04_DIG_GPIO13_IO07,    /* GPIO_SNVS_04_DIG PAD functional properties : */
+      0x06U);                                 /* Slew Rate Field: Slow Slew Rate
+                                                 Drive Strength Field: high driver
+                                                 Pull / Keep Select Field: Pull Enable
+                                                 Pull Up / Down Config. Field: Weak pull down
+                                                 Open Drain SNVS Field: Disabled
+                                                 Domain write protection: Both cores are allowed
+                                                 Domain write protection lock: Neither of DWP bits is locked */
+  IOMUXC_SetPinConfig(
+      IOMUXC_GPIO_SNVS_05_DIG_GPIO13_IO08,    /* GPIO_SNVS_05_DIG PAD functional properties : */
+      0x06U);                                 /* Slew Rate Field: Slow Slew Rate
+                                                 Drive Strength Field: high driver
+                                                 Pull / Keep Select Field: Pull Enable
+                                                 Pull Up / Down Config. Field: Weak pull down
+                                                 Open Drain SNVS Field: Disabled
+                                                 Domain write protection: Both cores are allowed
+                                                 Domain write protection lock: Neither of DWP bits is locked */
+  IOMUXC_SetPinConfig(
+      IOMUXC_GPIO_SNVS_06_DIG_GPIO13_IO09,    /* GPIO_SNVS_06_DIG PAD functional properties : */
+      0x06U);                                 /* Slew Rate Field: Slow Slew Rate
+                                                 Drive Strength Field: high driver
+                                                 Pull / Keep Select Field: Pull Enable
+                                                 Pull Up / Down Config. Field: Weak pull down
+                                                 Open Drain SNVS Field: Disabled
+                                                 Domain write protection: Both cores are allowed
+                                                 Domain write protection lock: Neither of DWP bits is locked */
+  IOMUXC_SetPinConfig(
+      IOMUXC_GPIO_SNVS_07_DIG_GPIO13_IO10,    /* GPIO_SNVS_07_DIG PAD functional properties : */
+      0x06U);                                 /* Slew Rate Field: Slow Slew Rate
+                                                 Drive Strength Field: high driver
+                                                 Pull / Keep Select Field: Pull Enable
+                                                 Pull Up / Down Config. Field: Weak pull down
+                                                 Open Drain SNVS Field: Disabled
+                                                 Domain write protection: Both cores are allowed
+                                                 Domain write protection lock: Neither of DWP bits is locked */
+  IOMUXC_SetPinConfig(
+      IOMUXC_GPIO_SNVS_08_DIG_GPIO13_IO11,    /* GPIO_SNVS_08_DIG PAD functional properties : */
+      0x06U);                                 /* Slew Rate Field: Slow Slew Rate
+                                                 Drive Strength Field: high driver
+                                                 Pull / Keep Select Field: Pull Enable
+                                                 Pull Up / Down Config. Field: Weak pull down
+                                                 Open Drain SNVS Field: Disabled
+                                                 Domain write protection: Both cores are allowed
+                                                 Domain write protection lock: Neither of DWP bits is locked */
+  IOMUXC_SetPinConfig(
+      IOMUXC_GPIO_SNVS_09_DIG_GPIO13_IO12,    /* GPIO_SNVS_09_DIG PAD functional properties : */
+      0x06U);                                 /* Slew Rate Field: Slow Slew Rate
+                                                 Drive Strength Field: high driver
+                                                 Pull / Keep Select Field: Pull Enable
+                                                 Pull Up / Down Config. Field: Weak pull down
+                                                 Open Drain SNVS Field: Disabled
+                                                 Domain write protection: Both cores are allowed
+                                                 Domain write protection lock: Neither of DWP bits is locked */
 }
 
 /***********************************************************************************************************************
