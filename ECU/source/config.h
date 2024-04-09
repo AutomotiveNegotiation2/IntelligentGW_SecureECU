@@ -18,6 +18,8 @@
 #define	CAN3toCAN_EN	ON
 #define	CAN1toCANFD_EN	OFF
 
+#define	BOARD_NETWORK_USE_1G_ENET_PORT	OFF
+
 /* Enable/Disable DHAUTO function. */
 #define	DHAUTO_FUNC_EN				ON
 #define	LIGHTING_GRILL_INSTALLED	OFF
@@ -31,9 +33,6 @@
 #define	EXECUTION_TIME_LOG_KETI			OFF
 #define	EXECUTION_TIME_LOG_DHAUTO		ON
 #endif
-
-/* 100Mbps Ethernet MAC address */
-#define configMAC_ADDR {0x02, 0x12, 0x13, 0x10, 0x15, 0x11}
 
 #if ((CAN3toCAN_EN == OFF) && (CAN1toCANFD_EN == OFF))
 #error CAN function more than one channel must be activated

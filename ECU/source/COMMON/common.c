@@ -6,6 +6,7 @@
 
 static void Init_CanDriver(void);
 static void Init_EthDriver(void);
+static void Init_Eth1GbpsDriver(void);
 
 void Init_CommonFunc(void)
 {
@@ -83,6 +84,20 @@ static void Init_EthDriver(void)
 
 	Enet_Mdio_Init();
 
+#if BOARD_NETWORK_USE_1G_ENET_PORT
+	BOARD_InitEnet1GPins();
+	
+	ENET_1G_RESET_ENABLE;
+	SDK_DelayAtLeastUs(10000U, SDK_DEVICE_MAXIMUM_CPU_CLOCK_FREQUENCY); // 10ms
+	ENET_100M_RESET_DISABLE;
+	SDK_DelayAtLeastUs(10000U, SDK_DEVICE_MAXIMUM_CPU_CLOCK_FREQUENCY); // 10ms
+	
+	EnableIRQ(ENET_1G_MAC0_Tx_Rx_1_IRQn);
+	EnableIRQ(ENET_1G_MAC0_Tx_Rx_2_IRQn);
+	
+	Enet_Mdio_Init_1G();
+#endif
+
 	time_init();
 
 	Enet_IPADDR_Config();
@@ -90,11 +105,12 @@ static void Init_EthDriver(void)
 	lwip_init();
 
 	Enet_NetifConfig();
-	
+
 	bEnetLinkUp = FALSE;
 	EnetLinkUpCnt = 0;
 
 	create_udp_socket();
 	bUdpTest = FALSE;
 }
+
 
