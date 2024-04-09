@@ -25,9 +25,18 @@
 #include "board.h"
 #include "enet.h"
 
-void udpClient_connect(void);
+enum {
+	ETH_100M = 0,
+	ETH_1G,
+	ETH_MAX,
+};
+
 void HAL_TIM_PeriodUdpElapsedCallback(void);
 err_t create_udp_socket(void);
 
+#if BOARD_NETWORK_USE_1G_ENET_PORT
+err_t create_udp_socket_1G(void);
+void HAL_TIM_PeriodUdpElapsedCallback_1G(void);
+#endif
 
 #endif /* INC_UDPCLIENTRAW_H_ */

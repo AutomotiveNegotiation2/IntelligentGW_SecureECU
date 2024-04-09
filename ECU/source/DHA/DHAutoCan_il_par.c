@@ -32,7 +32,7 @@ void ilMsg_Register_Callback_Fn(can_inst_t instance, uint32_t id)
 
 	if (i >= ((CAN_MSG_FUNC_ptr *)config->msgTx)->NoOfMsg)
 	{
-		ENETINFO_PRINTF("[%s] CAN ID[0x%X] is not matched.\n", __func__, id);
+		CANINFO_PRINTF("[%s] CAN ID[0x%X] is not matched.\n", __func__, id);
 		assert(0);
 	}
 	

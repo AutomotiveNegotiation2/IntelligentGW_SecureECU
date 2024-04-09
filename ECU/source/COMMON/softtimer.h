@@ -24,11 +24,18 @@ void SoftTimerInit(void);
 void StartFuncExecTime(organ_t organ, char *s);
 void StopFuncExecTime(void);
 void PrintFuncExecTime(void);
-void ClearPrintFuncExecTimeValue(void);
-uint32_t GetPrintFuncExecTimeValue(void);
 uint32_t GetSoftTimerValue(void);
 void ClearSoftTimerValue(void);
 void TimerCallback_Register(organ_t organ, void * callback);
 void TimerCallback_Clear(organ_t organ);
+
+bool GetFuncTimer_100ms(void);
+bool ClearFuncTimer_100ms(void);
+bool GetFuncTimer_200ms(void);
+bool ClearFuncTimer_200ms(void);
+bool GetFuncTimer_500ms(void);
+bool ClearFuncTimer_500ms(void);
+bool GetFuncTimer_1000ms(void);
+bool ClearFuncTimer_1000ms(void);
 
 #endif /* _SOFTTIMER_H_ */

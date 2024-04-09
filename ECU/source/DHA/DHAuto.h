@@ -12,7 +12,7 @@
 
 #define	DEBUG_SYS		ON
 #define	DEBUG_CAN		OFF
-#define	DEBUG_ENET		ON
+#define	DEBUG_ENET		OFF
 #define	DEBUG_APP		OFF
 #define	DEBUG_IOCTRL	OFF
 

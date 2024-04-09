@@ -17,19 +17,30 @@
 #define	TIMEOUT_OFF		0
 #define TIMEOUT_ON		1
 
+#pragma pack(push, 4)
+
 typedef struct {
 	char funcName[64];
 	organ_t organ;
 	uint32_t execFuncTime;
 	uint32_t execMaxTime;
-	uint32_t execSrvTime;
 	bool timeout;
 } funcExec_time_t;
+
+typedef struct {
+	bool b100ms;
+	bool b200ms;
+	bool b500ms;
+	bool b1000ms;
+} func_timer_t;
+
+#pragma pack(pop)
 
 TimerFuncCallback timerCallback[ORGAN_MAX] = {NULL, };
 
 static uint32_t nTimer_1ms;
 static uint32_t nFuncTimer_1ms;
+static func_timer_t funcTimer;
 
 static funcExec_time_t fEtime_Organ[ORGAN_MAX];
 static funcExec_time_t * fEtime;
@@ -45,6 +56,14 @@ void SYSTEM_TIMER_IRQ_HANDLER(void)
 
 		nTimer_1ms++;
 		nFuncTimer_1ms++;
+		if ((nFuncTimer_1ms % 100) == 0)	funcTimer.b100ms = ON;
+		if ((nFuncTimer_1ms % 200) == 0)	funcTimer.b200ms = ON;
+		if ((nFuncTimer_1ms % 500) == 0)	funcTimer.b500ms = ON;
+		if ((nFuncTimer_1ms % 1000) == 0)	
+		{
+			nFuncTimer_1ms = 0;
+			funcTimer.b1000ms = ON;
+		}
 
 		for (uint8_t i=0; i<ORGAN_MAX; i++)
 		{
@@ -67,6 +86,7 @@ void SoftTimerInit(void)
 {
 	nTimer_1ms = 0;
 	nFuncTimer_1ms = 0;
+	memset(&funcTimer, 0, sizeof(func_timer_t));
 	SysTimer_Config();
 
 	memset(fEtime_Organ, 0, sizeof(funcExec_time_t)*ORGAN_MAX);
@@ -181,14 +201,44 @@ void StopFuncExecTime(void)
 	}
 }
 
-void ClearPrintFuncExecTimeValue(void)
+bool GetFuncTimer_100ms(void)
 {
-	nFuncTimer_1ms = 0;
+	return funcTimer.b100ms;
 }
 
-uint32_t GetPrintFuncExecTimeValue(void)
+bool ClearFuncTimer_100ms(void)
 {
-	return nFuncTimer_1ms;
+	funcTimer.b100ms = OFF;
+}
+
+bool GetFuncTimer_200ms(void)
+{
+	return funcTimer.b200ms;
+}
+
+bool ClearFuncTimer_200ms(void)
+{
+	funcTimer.b200ms = OFF;
+}
+
+bool GetFuncTimer_500ms(void)
+{
+	return funcTimer.b500ms;
+}
+
+bool ClearFuncTimer_500ms(void)
+{
+	funcTimer.b500ms = OFF;
+}
+
+bool GetFuncTimer_1000ms(void)
+{
+	return funcTimer.b1000ms;
+}
+
+bool ClearFuncTimer_1000ms(void)
+{
+	funcTimer.b1000ms = OFF;
 }
 
 void PrintFuncExecTime(void)

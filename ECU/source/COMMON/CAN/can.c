@@ -304,12 +304,12 @@ int32_t CAN_Transmit(can_inst_t instance, uint32_t id)
 		if (dlc%4)
 			len += 1;
 
-		for (uint8_t j=0; j<len; j++)
+		for (i=0; i<len; i++)
 		{
-			txXfer.framefd->dataWord[j] = (uint32_t)(((CAN_MSG_FUNC_ptr *)config->msgTx)->data[no][j*4])<<24;
-			txXfer.framefd->dataWord[j] += (uint32_t)(((CAN_MSG_FUNC_ptr *)config->msgTx)->data[no][j*4+1])<<16;
-			txXfer.framefd->dataWord[j] += (uint32_t)(((CAN_MSG_FUNC_ptr *)config->msgTx)->data[no][j*4+2])<<8;
-			txXfer.framefd->dataWord[j] += (uint32_t)(((CAN_MSG_FUNC_ptr *)config->msgTx)->data[no][j*4+3]);
+			txXfer.framefd->dataWord[i] = (uint32_t)(((CAN_MSG_FUNC_ptr *)config->msgTx)->data[no][i*4])<<24;
+			txXfer.framefd->dataWord[i] += (uint32_t)(((CAN_MSG_FUNC_ptr *)config->msgTx)->data[no][i*4+1])<<16;
+			txXfer.framefd->dataWord[i] += (uint32_t)(((CAN_MSG_FUNC_ptr *)config->msgTx)->data[no][i*4+2])<<8;
+			txXfer.framefd->dataWord[i] += (uint32_t)(((CAN_MSG_FUNC_ptr *)config->msgTx)->data[no][i*4+3]);
 		}
 
 		(void)FLEXCAN_TransferFDSendNonBlocking(config->base, &config->fCanHandle, &txXfer);

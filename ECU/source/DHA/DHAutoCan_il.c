@@ -34,7 +34,7 @@ void ilTxTask(void)
 
 			if (config->base == NULL)
 			{
-				ENETINFO_PRINTF("[%s] CAN Instance Error ...\r\n", __func__);
+				CANINFO_PRINTF("[%s] CAN Instance Error ...\r\n", __func__);
 				assert(0);
 			}
 

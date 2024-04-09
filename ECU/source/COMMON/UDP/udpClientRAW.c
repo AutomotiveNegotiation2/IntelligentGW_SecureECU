@@ -28,22 +28,30 @@
 
 #include "udpClientRAW.h"
 
+struct udp_pcb *upcb;
+
+#if BOARD_NETWORK_USE_1G_ENET_PORT
+struct udp_pcb *upcb_1g;
+#endif
+
+char buffer[100];
+static int counter = 0;
+ip4_addr_t destIPAddr; 
 
 void udp_receive_callback(void *arg, struct udp_pcb *upcb, struct pbuf *p, const ip_addr_t *addr, u16_t port);
 static void udpClient_send(void);
 static err_t send_msg_to_dest(void);
 
-struct udp_pcb *upcb;
-char buffer[100];
-static int counter = 0;
-ip4_addr_t destIPAddr; 
+#if BOARD_NETWORK_USE_1G_ENET_PORT
+static err_t send_msg_to_dest_1G(void);
+#endif
 
 void HAL_TIM_PeriodUdpElapsedCallback(void)
 {
 	send_msg_to_dest();
 }
 
-void udp_receive_callback(void *arg, struct udp_pcb *upcb, struct pbuf *p, const ip_addr_t *addr, u16_t port)
+void udp_receive_callback(void *arg, struct udp_pcb *upcb_t, struct pbuf *p, const ip_addr_t *addr, u16_t port)
 {
 	struct pbuf *pbuf;
 
@@ -56,7 +64,7 @@ void udp_receive_callback(void *arg, struct udp_pcb *upcb, struct pbuf *p, const
 		/* copy data to pbuf */
 		pbuf_take(pbuf, (char*)buffer, strlen((char*)buffer));
 		/* send udp data */
-		udp_send(upcb, pbuf);
+		udp_send(upcb_t, pbuf);
 		/* free pbuf */
 		pbuf_free(pbuf);
 	}
@@ -66,7 +74,7 @@ err_t send_msg_to_dest(void)
 {
 	struct pbuf *p;
 
-	sprintf((char*)buffer, "sending udp client message %d\r\n", (int)counter);
+	sprintf((char*)buffer, "sending udp[100M] client message %d\r\n", (int)counter);
 	/* allocate pbuf from pool*/
 	p = pbuf_alloc(PBUF_TRANSPORT,strlen((char*)buffer), PBUF_POOL);
 	if (p != NULL)
@@ -100,17 +108,14 @@ err_t create_udp_socket(void)
 	upcb->local_port = 4004;
 	// Set our local port to 4004
 	// Should bind to the local ip and port
-	//ip_addr_t myIPADDR;
-	//IP_ADDR4(&myIPADDR, 192, 168, 0, 104);
-	//err = udp_bind(upcb,&myIPADDR,4004);
-	//udp_bind_netif(upcb, &netif_1G);
-	err = udp_bind(upcb,IP4_ADDR_ANY,4004);
+	udp_bind_netif(upcb, &netif);
+	err = udp_bind(upcb, &netif_ipaddr, 4004);
 	if (err != ERR_OK)
 	{
 		return err;
 	}
 	// Connect to the other port
-	err = udp_connect(upcb,&destIPAddr,1234);
+	err = udp_connect(upcb, &destIPAddr, 1234);
 	if (err != ERR_OK)
 	{
 		return err;
@@ -119,6 +124,69 @@ err_t create_udp_socket(void)
 	udp_recv(upcb,udp_receive_callback,NULL);
 	return err;
 }
+
+#if BOARD_NETWORK_USE_1G_ENET_PORT
+void HAL_TIM_PeriodUdpElapsedCallback_1G(void)
+{
+	send_msg_to_dest_1G();
+}
+
+err_t send_msg_to_dest_1G(void)
+{
+	struct pbuf *p;
+
+	sprintf((char*)buffer, "sending udp[1G] client message %d\r\n", (int)counter);
+	/* allocate pbuf from pool*/
+	p = pbuf_alloc(PBUF_TRANSPORT,strlen((char*)buffer), PBUF_POOL);
+	if (p != NULL)
+	{
+		/* copy data to pbuf */
+		pbuf_take(p, (char*)buffer, strlen((char*)buffer));
+		/* send udp data */
+		udp_send(upcb_1g, p);
+		/* free pbuf */
+		pbuf_free(p);
+
+		return ERR_OK;
+	}
+
+	return ERR_MEM;
+}
+
+err_t create_udp_socket_1G(void)
+{
+	err_t err = ERR_OK;
+
+	upcb_1g = udp_new();
+	if (upcb_1g == NULL)
+	{
+		return ERR_MEM;
+	}
+	// Load the static IP of the destination address
+
+	IP4_ADDR(&destIPAddr,192,168,0,255);
+
+	upcb_1g->local_port = 6004;
+	// Set our local port to 4004
+	// Should bind to the local ip and port
+	udp_bind_netif(upcb_1g, &netif_1G);
+	err = udp_bind(upcb_1g, &netif_ipaddr_1G, 6004);
+	if (err != ERR_OK)
+	{
+		return err;
+	}
+	// Connect to the other port
+	err = udp_connect(upcb_1g, &destIPAddr, 2234);
+	if (err != ERR_OK)
+	{
+		return err;
+	}
+	// Set the receive function
+	udp_recv(upcb_1g,udp_receive_callback,NULL);
+	return err;
+}
+
+#endif
 
 #if 0
 void udpClient_connect(void)

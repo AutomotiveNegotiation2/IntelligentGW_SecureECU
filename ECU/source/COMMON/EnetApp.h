@@ -42,4 +42,9 @@ extern bool bUdpTest;
 
 void Enet_IPADDR_Config(void);
 void Enet_UdpCallback(void);
+
+#if BOARD_NETWORK_USE_1G_ENET_PORT
+void Enet_UdpCallback_1G(void);
+#endif
+
 #endif /* _ENET_APP_H_ */

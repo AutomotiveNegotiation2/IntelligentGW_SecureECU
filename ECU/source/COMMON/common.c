@@ -22,35 +22,50 @@ void Init_CommonFunc(void)
 
 void CommonFunc(void)
 {
-	Enet_WaitLinkUp();
-	Poll_EthDriver();
-
-	if (GetPrintFuncExecTimeValue() > TIME_1S)	// Print max execution time every 1s is printed.	
+	if (GetFuncTimer_1000ms() == ON)	// Print max execution time every 1s is printed.	
 	{	
-		/* Add the function to be executed every 1 seconds. */
+		/* Test function for 100M ehternet */
+		if (Enet_GetLinkUp_100M() == TRUE)
+		{
+			Enet_UdpCallback();
+		}
+		
+#if BOARD_NETWORK_USE_1G_ENET_PORT
+		/* Test function for 1G ehternet */
+		if (Enet_GetLinkUp_1G() == TRUE)
+		{
+			Enet_UdpCallback_1G();
+		}
+#endif
+
+		ClearFuncTimer_1000ms();
+
 #if (EXECUTION_TIME_LOG == ON)
 		PrintFuncExecTime();
 #endif
 
-		if (Enet_GetLinkUp_100M()== TRUE)
-		{
-			Enet_UdpCallback();
-		}
+	}
 
-		ClearPrintFuncExecTimeValue();
-	}
-	else if (GetPrintFuncExecTimeValue() > TIME_500MS)
-	{
-		/* Add the function to be executed every 500 mili-seconds. */
-	}
-	else if (GetPrintFuncExecTimeValue() > TIME_100MS)
-	{
-		/* Add the function to be executed every 100 mili-seconds. */
-	}
-	else
+	if (GetFuncTimer_500ms() == ON)
 	{
 
+		ClearFuncTimer_500ms();
 	}
+
+	if (GetFuncTimer_200ms() == ON)
+	{
+
+		ClearFuncTimer_200ms();
+	}
+	
+	if (GetFuncTimer_100ms() == ON)
+	{
+		Enet_WaitLinkUp();
+
+		ClearFuncTimer_100ms();
+	}
+
+	Poll_EthDriver();
 }
 
 static void Init_CanDriver(void)
@@ -110,6 +125,10 @@ static void Init_EthDriver(void)
 	Enet_NetifConfig();
 
 	create_udp_socket();
+#if BOARD_NETWORK_USE_1G_ENET_PORT
+	create_udp_socket_1G();
+#endif
+	//create_udp_socket();
 
 	Enet_Init();
 	bUdpTest = FALSE;

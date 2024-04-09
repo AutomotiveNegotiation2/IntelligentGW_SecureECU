@@ -196,7 +196,7 @@ void Enet_NetifConfig(void)
 	/* Get clock after hardware init. */
     enet_config_1G.srcClockHz = ENET_CLOCK_FREQ;
 
-	netif_add(&netif_1G, &netif_ipaddr, &netif_netmask, &netif_gw, &enet_config_1G, ENET_NETIF_INIT_FN_1G, ethernet_input);
+	netif_add(&netif_1G, &netif_ipaddr_1G, &netif_netmask, &netif_gw, &enet_config_1G, ENET_NETIF_INIT_FN_1G, ethernet_input);
 	netif_set_default(&netif_1G);
 	netif_set_up(&netif_1G);
 #endif
@@ -239,14 +239,14 @@ void Enet_WaitLinkUp(void)
 {
 	err_enum_t result = ERR_OK;
 
-	result = Enet_WaitLinkUp_100M(1);
+	result = Enet_WaitLinkUp_100M(2);
 	if (result != ERR_OK)
 	{
-		//if (++EnetLinkUpCnt > 500)
-		if (++EnetLinkUpCnt > 100)
+		if (++EnetLinkUpCnt > 50)	// 5s
 		{
 			bUdpTest = FALSE;
-			COMMON_PRINTF("PHY[100M] Auto-negotiation failed. Please check the cable connection and link partner setting.\r\n");
+			bEnetLinkUp = FALSE;
+			COMMON_PRINTF("PHY[100M] Please check the cable connection.\r\n");
 			EnetLinkUpCnt = 0;
 		}
 	}
@@ -261,13 +261,14 @@ void Enet_WaitLinkUp(void)
 	}
 
 #if BOARD_NETWORK_USE_1G_ENET_PORT
-	result = Enet_WaitLinkUp_1G(1);
+	result = Enet_WaitLinkUp_1G(2);
 	if (result != ERR_OK)
 	{
-		if (++EnetLinkUpCnt_1G > 100)
+		if (++EnetLinkUpCnt_1G > 50)	// 5s
 		{
 			//bUdpTest = FALSE;
-			COMMON_PRINTF("PHY[1G] Auto-negotiation failed. Please check the cable connection and link partner setting.\r\n");
+			bEnetLinkUp_1G = FALSE;
+			COMMON_PRINTF("PHY[1G] Please check the cable connection.\r\n");
 			EnetLinkUpCnt_1G = 0;
 		}
 	}
