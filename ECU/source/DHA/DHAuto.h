@@ -12,10 +12,10 @@
 #include "DHAutoTimer.h"
 
 #define	DEBUG_SYS		ON
-#define	DEBUG_CAN		OFF
-#define	DEBUG_ENET		OFF
-#define	DEBUG_APP		OFF
-#define	DEBUG_IOCTRL	OFF
+#define	DEBUG_CAN		ON
+#define	DEBUG_ENET		ON
+#define	DEBUG_APP		ON
+#define	DEBUG_IOCTRL	ON
 
 #define	DHAUTO_SOFTTIME_10MS		10
 #define	DHAUTO_SOFTTIME_50MS		50

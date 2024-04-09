@@ -5,6 +5,7 @@ void ilMsg_Register_Callback_Fn(can_inst_t instance, uint32_t id);
 
 static void ilMsgECU2_Clock_Tx_Send(void);
 static void ilMsgECU2_V2V_Warning_Send(void);
+static void ilMsgECU2_ACON_Msg_1_Send(void);
 
 static void ilMsgECU1_System_Power_Mode_Tx_Send(void);
 static void	ilMsgECU1_Blind_Zone_Alert_Status_Tx_Send(void);
@@ -54,7 +55,7 @@ FuncCanTxCallback CanTxFuncList1[CAN1_NO_OF_TX_OBJECT] =
 {
 	ilMsgECU2_Clock_Tx_Send,
 	ilMsgECU2_V2V_Warning_Send,
-	ilMsgNACU_Diag_Tx3_Send,
+	ilMsgECU2_ACON_Msg_1_Send,
 	ilMsgNACU_Diag_Tx4_Send,
 	ilMsgNACU_Diag_Tx5_Send
 };
@@ -597,6 +598,36 @@ static void ilMsgECU2_V2V_Warning_Send(void)
 
 	if (ilGetFirstCanOpStatus() != ON)
 		CAN_SetTxFlagForMsgUpdate(CAN_CH_1, Can1_txmsg.id[1]);
+}
+
+void IlSetECU2_CR_HazardSig(uint8_t * msgdata)
+{
+	ECU2_ACON_Msg_1_Tx2.ACON_Msg_1.CR_Hazard = msgdata[0] & 0x1;
+
+	// CANFD Transmit ON
+	if (ilGetFirstCanOpStatus() != ON)
+		CAN_SetTxFlagForMsgUpdate(CAN_CH_1, Can1_txmsg.id[2]);
+}
+
+void IlSetECU2_CR_HorndSig(uint8_t * msgdata)
+{
+	ECU2_ACON_Msg_1_Tx2.ACON_Msg_1.CR_Horn = msgdata[0] & 0x1;
+
+	// CANFD Transmit ON
+	if (ilGetFirstCanOpStatus() != ON)
+		CAN_SetTxFlagForMsgUpdate(CAN_CH_1, Can1_txmsg.id[2]);
+}
+
+static void ilMsgECU2_ACON_Msg_1_Send(void)
+{
+	uint8_t data;
+
+	data = 0;
+	IlSetECU2_CR_HazardSig(&data);
+	IlSetECU2_CR_HorndSig(&data);
+
+	if (ilGetFirstCanOpStatus() != ON)
+		CAN_SetTxFlagForMsgUpdate(CAN_CH_1, Can1_txmsg.id[2]);
 }
 
 bool IlGetRxECU2_SystemPowerModeValiditySig(void)

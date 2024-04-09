@@ -5,6 +5,7 @@
 
 _c_Clock_buf ECU2_Clock_Tx0;
 _c_V2V_Warning_buf ECU2_V2V_Warning_Tx1;
+_c_ACON_Msg_1_buf ECU2_ACON_Msg_1_Tx2;	// to A-con
 _c_System_Power_Mode_buf ECU2_ROUTED_System_Power_Mode_Rx0;
 _c_Blind_Zone_Alert_Status_buf ECU2_ROUTED_Blind_Zone_Alert_Status_Rx1;
 _c_Drive_Status_buf ECU2_ROUTED_Drive_Status_Rx2;
@@ -74,7 +75,7 @@ uint32_t CanTxId1[CAN1_NO_OF_TX_OBJECT] =
 {
 	0x109u,
 	0x119u,
-	0x513u,
+	0x236u,		// to A-con
 	0x514u,
 	0x515u
 };
@@ -83,7 +84,7 @@ uint8_t CanTxDLC1[CAN1_NO_OF_TX_OBJECT] =
 {
 	7,
 	1,
-	8,
+	2,			// to A-con
 	8,
 	8
 };
@@ -92,7 +93,7 @@ uint8_t * CanTxDataPtr1[CAN1_NO_OF_TX_OBJECT] =
 {
 	(uint8_t *) ECU2_Clock_Tx0._c,
 	(uint8_t *) ECU2_V2V_Warning_Tx1._c,
-	(uint8_t *) NACU_Diag_Tx3._c,
+	(uint8_t *) ECU2_ACON_Msg_1_Tx2._c,
 	(uint8_t *) NACU_Diag_Tx4._c,
 	(uint8_t *) NACU_Diag_Tx5._c
 };

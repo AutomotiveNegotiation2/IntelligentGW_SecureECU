@@ -135,6 +135,20 @@ typedef union _c_V2V_Warning_bufTag
 	_c_V2V_Warning_msgType V2V_Warning;
 } _c_V2V_Warning_buf;
 
+typedef struct _c_ACON_Msg_1_msgTypeTag
+{
+	uint8_t CR_Hazard : 1;
+	uint8_t unused0 : 7;
+	uint8_t CR_Horn : 1;
+	uint8_t unused1 : 7;
+} _c_ACON_Msg_1_msgType;
+
+typedef union _c_ACON_Msg_1_bufTag
+{
+	uint8_t _c[2];
+	_c_ACON_Msg_1_msgType ACON_Msg_1;
+} _c_ACON_Msg_1_buf;
+
 typedef struct _c_Pedestrain_Friendly_Alert_Status_msgTypeTag
 {
 	uint8_t unused0	: 3;
@@ -298,6 +312,7 @@ extern _c_BCM_BCAN_2_buf NACU2_BCM_BCAN_2_Rx4;
 
 extern _c_Clock_buf ECU2_Clock_Tx0;
 extern _c_V2V_Warning_buf ECU2_V2V_Warning_Tx1;
+extern _c_ACON_Msg_1_buf ECU2_ACON_Msg_1_Tx2;
 extern _c_System_Power_Mode_buf ECU2_ROUTED_System_Power_Mode_Rx0;
 extern _c_Blind_Zone_Alert_Status_buf ECU2_ROUTED_Blind_Zone_Alert_Status_Rx1;
 extern _c_Drive_Status_buf ECU2_ROUTED_Drive_Status_Rx2;

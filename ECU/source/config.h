@@ -9,9 +9,9 @@
 #define	DEBUG_AUTOCRYPT	OFF
 #define	DEBUG_KORUNIV	OFF
 #define	DEBUG_KETI		OFF
-#define	DEBUG_DHAUTO	ON
+#define	DEBUG_DHAUTO	OFF
 
-#define	ORGAN_FUNC_LOAD	OFF
+//#define	ORGAN_FUNC_LOAD	OFF
 
 /* Enable/Disable CAN & CAN-FD
    Enable CAN.
@@ -19,8 +19,6 @@
    Enable CAN & CAN-FD for only test */
 #define	CAN3toCAN_EN	ON
 #define	CAN1toCANFD_EN	OFF
-
-//#define	BOARD_NETWORK_USE_1G_ENET_PORT	ON
 
 /* Enable/Disable DHAUTO function. */
 #define	DHAUTO_FUNC_EN				ON
