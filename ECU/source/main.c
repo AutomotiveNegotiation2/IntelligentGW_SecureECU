@@ -53,34 +53,41 @@ int main(void)
 		SoftTimerSrv();
 		StopFuncExecTime();
 #endif
+
 		StartFuncExecTime(ORGAN_COMMON, "Common");
-		/* Add general functions */
 		CommonFunc();
 		StopFuncExecTime();
+		
 #if (DHAUTO_FUNC_EN == ON)
 		StartFuncExecTime(ORGAN_DHAUTO_PLUS, "SoftTimerSrv");
 		SoftTimerSrv();
 		StopFuncExecTime();
 #endif
+
 		StartFuncExecTime(ORGAN_AUTOCRYPT, "AutoCrypt");
 		AutoCryptFunc();
 		StopFuncExecTime();
+		
 #if (DHAUTO_FUNC_EN == ON)
 		StartFuncExecTime(ORGAN_DHAUTO_PLUS, "SoftTimerSrv");
 		SoftTimerSrv();
 		StopFuncExecTime();
 #endif
+
 		StartFuncExecTime(ORGAN_KORU, "KorUniv");
 		KorUnivFunc();
 		StopFuncExecTime();
+		
 #if (DHAUTO_FUNC_EN == ON)
 		StartFuncExecTime(ORGAN_DHAUTO_PLUS, "SoftTimerSrv");
 		SoftTimerSrv();
 		StopFuncExecTime();
 #endif
+
 		StartFuncExecTime(ORGAN_KETI, "Keti");
 		KetiFunc();
 		StopFuncExecTime();
+		
 #if (DHAUTO_FUNC_EN == ON)
 		StartFuncExecTime(ORGAN_DHAUTO, "DHAuto");
 		DHAutoFunc();
