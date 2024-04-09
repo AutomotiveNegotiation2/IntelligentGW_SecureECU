@@ -41,7 +41,9 @@ int main(void)
 	Init_AutoCryptFunc();
 	Init_KorUnivFunc();
 	Init_KetiFunc();
+#if (DHAUTO_FUNC_EN == ON)
 	Init_DHAutoFunc();
+#endif
 
 	/* Initialize general drivers */
 	Init_CommonFunc();

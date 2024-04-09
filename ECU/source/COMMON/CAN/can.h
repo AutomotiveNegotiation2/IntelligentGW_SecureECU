@@ -18,9 +18,36 @@ typedef enum {
 	CAN_TRANS_OPMODE_NORMAL
 } can_trans_opmode_t;
 
+typedef enum {
+	MSG_UPDATE_COMPLETE = 0u,
+	MSG_UPDATE_REQUEST,
+} msg_update_inst_t;
+
+typedef void (*FuncCanTxCallback)(void);
+typedef void (*FuncCanRxCallback)(uint8_t * data, uint8_t dlc);
+
+typedef void (*CanRxFuncCallback)(void * callback, uint8_t no, uint32_t id, uint8_t dlc, uint8_t * data);
+typedef void (*CanTxFuncCallback)(void * callback, uint8_t no);
+
 typedef void (*FuncCanTransCallback)(void);
 
 #pragma pack(push, 4)
+
+typedef struct {
+	can_inst_t inst;
+	uint8_t NoOfMsg;
+	uint8_t * mbox;
+	uint32_t * id;
+	uint8_t * dlc;
+	uint8_t ** data;
+	uint8_t * attr;
+	uint16_t * attrtime;
+	uint16_t * stimerId;
+	uint8_t * stimer_state;
+	FuncCanTxCallback * tCallback;
+	FuncCanRxCallback * rCallback;
+	msg_update_inst_t * msgUpdate;
+} CAN_MSG_FUNC_ptr;
 
 typedef struct {
 	CAN_Type *					base;
@@ -70,6 +97,8 @@ void CAN_Init(can_inst_t instance);
 int32_t CAN_Transmit(can_inst_t instance, uint32_t id);
 void CAN_ReceiveStart(can_inst_t instance);
 void CanTransOperationMode(can_inst_t instance, can_trans_opmode_t opmode);
+void CanRxCallback_Register(organ_t organ, void * callback);
+void CanTxCallback_Register(organ_t organ, void * callback);
 
 #endif /* _CAN_H_ */
 

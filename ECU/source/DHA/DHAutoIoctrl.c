@@ -454,22 +454,22 @@ void IOCTRL_SetLedOpForTx(uint8_t inst, uint8_t attr)
 	if (attr == CAN_TX_ATTR_PERIODIC)
 	{
 #if (CAN1toCANFD_EN == 1)
-		if (inst == CAN_1)	// CANFD
+		if (inst == CAN_CH_1)	// CANFD
 			ledCanFdPECnt = 5;
 #endif
 #if (CAN3toCAN_EN == 1)
-		if (inst == CAN_3)	// CAN
+		if (inst == CAN_CH_3)	// CAN
 			ledCanPECnt = 5;
 #endif
 	}
 	else	// EVENT
 	{
 #if (CAN1toCANFD_EN == 1)
-		if (inst == CAN_1)	// CANFD
+		if (inst == CAN_CH_1)	// CANFD
 			ledCanFdEVCnt = 5;
 #endif
 #if (CAN3toCAN_EN == 1)
-		if (inst == CAN_3)	// CAN
+		if (inst == CAN_CH_3)	// CAN
 			ledCanEVCnt = 5;
 #endif
 	}
@@ -478,11 +478,11 @@ void IOCTRL_SetLedOpForTx(uint8_t inst, uint8_t attr)
 void IOCTRL_SetLedOpForRx(uint8_t inst)
 {
 #if (CAN1toCANFD_EN == 1)
-	if (inst == CAN_1)	// CANFD
+	if (inst == CAN_CH_1)	// CANFD
 		ledCanFdRxCnt = 5;
 #endif
 #if (CAN3toCAN_EN == 1)
-	if (inst == CAN_3)	// CAN
+	if (inst == CAN_CH_3)	// CAN
 		ledCanRxCnt = 5;
 #endif
 }

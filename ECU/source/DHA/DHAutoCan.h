@@ -35,6 +35,8 @@ typedef struct {
 #pragma pack(pop)
 
 void CanTimer_Incr(void);
+void CanTxState_Register(void * callback, uint8_t no);
+void CanRxMsg_Register(void * callback, uint8_t no, uint32_t id, uint8_t dlc, uint8_t * data);
 
 void ApplCan_InitBuf(void);
 void CAN_ACC_ON_Init(can_inst_t instance);

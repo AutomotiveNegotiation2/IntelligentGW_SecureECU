@@ -22,7 +22,8 @@
 #ifndef INC_UDPCLIENTRAW_H_
 #define INC_UDPCLIENTRAW_H_
 
-
+#include "board.h"
+#include "enet.h"
 
 void udpClient_connect(void);
 void HAL_TIM_PeriodUdpElapsedCallback(void);

@@ -21,7 +21,7 @@ enum {
 	CAN_TX_PERI_FUNC_STOP = 0,
 	CAN_TX_PERI_FUNC_START,
 };
-
+#if 0
 typedef enum {
 	CAN_NOT_USED = 0u,
 	CAN_1,
@@ -29,7 +29,8 @@ typedef enum {
 	CAN_3,
 	CAN_NO_MAX,
 } can_instance_t;
-
+#endif
+#if 0
 typedef enum {
 	MSG_UPDATE_COMPLETE = 0u,
 	MSG_UPDATE_REQUEST,
@@ -40,7 +41,7 @@ typedef void (*FuncCanTxCallback)(void);
 typedef void (*FuncCanRxCallback)(uint8_t * data, uint8_t dlc);
 
 typedef struct {
-	can_instance_t inst;
+	can_inst_t inst;
 	uint8_t NoOfMsg;
 	uint8_t * mbox;
 	uint32_t * id;
@@ -55,6 +56,7 @@ typedef struct {
 	FuncCanRxCallback * rCallback;
 	msg_update_inst_t * msgUpdate;
 } CAN_MSG_FUNC_ptr;
+#endif
 
 typedef struct _c_NACU_Diag_Tx_msgTypeTag
 {

@@ -11,6 +11,9 @@ clock_root_t can_clk[] = {(clock_root_t)0, kCLOCK_Root_Can1, kCLOCK_Root_Can2, k
 
 flexcan_mb_transfer_t txXfer, rxXfer;
 
+CanRxFuncCallback CanRxCallback[ORGAN_MAX] = {NULL, };
+CanTxFuncCallback CanTxCallback[ORGAN_MAX] = {NULL, };
+
 static FLEXCAN_CALLBACK(flexcan_3_callback);
 static FLEXCAN_CALLBACK(flexcan_1_callback);
 static void FLEXCAN_CalculateClock(can_config_t * config, flexcan_config_t * flexcanConfig, uint32_t clock);
@@ -196,7 +199,7 @@ static void FLEXCAN_ConfigRxMsg(can_config_t * config)
 
 	if (config == NULL)
 	{
-		CANINFO_PRINTF("[%s] register memory is not assigned normally ...\r\n", __func__);
+		COMMON_PRINTF("[%s] register memory is not assigned normally ...\r\n", __func__);
 		assert(0);
 	}
 
@@ -219,7 +222,7 @@ static void FLEXCAN_ConfigTxMsg(can_config_t * config)
 
 	if (config == NULL)
 	{
-		CANINFO_PRINTF("[%s] register memory is not assigned normally ...\r\n", __func__);
+		COMMON_PRINTF("[%s] register memory is not assigned normally ...\r\n", __func__);
 		assert(0);
 	}
 
@@ -247,7 +250,7 @@ static void FLEXCAN_CalculateClock(can_config_t * config, flexcan_config_t * fle
 	    }
 	    else
 	    {
-	        CANINFO_PRINTF("No found Improved Timing Configuration. Just used default configuration\r\n\r\n");
+	        COMMON_PRINTF("No found Improved Timing Configuration. Just used default configuration\r\n\r\n");
 	    }
 	}
 	else
@@ -259,7 +262,7 @@ static void FLEXCAN_CalculateClock(can_config_t * config, flexcan_config_t * fle
 	    }
 	    else
 	    {
-	        CANINFO_PRINTF("No found Improved Timing Configuration. Just used default configuration\r\n\r\n");
+	        COMMON_PRINTF("No found Improved Timing Configuration. Just used default configuration\r\n\r\n");
 	    }
 	}
 #endif
@@ -267,26 +270,26 @@ static void FLEXCAN_CalculateClock(can_config_t * config, flexcan_config_t * fle
 
 int32_t CAN_Transmit(can_inst_t instance, uint32_t id)
 {
-	uint8_t i, dlc;
+	uint8_t no, i, dlc;
 	can_config_t * config;
 
 	config = (can_config_t *)CAN_GetConfigAddr(instance);
 	
-	for (i=0; i<((CAN_MSG_FUNC_ptr *)config->msgTx)->NoOfMsg; i++)
+	for (no=0; no<((CAN_MSG_FUNC_ptr *)config->msgTx)->NoOfMsg; no++)
 	{
-		if (id == ((CAN_MSG_FUNC_ptr *)config->msgTx)->id[i])
+		if (id == ((CAN_MSG_FUNC_ptr *)config->msgTx)->id[no])
 		{
 			break;
 		}
 	}
 
-	if (i >= ((CAN_MSG_FUNC_ptr *)config->msgTx)->NoOfMsg)
+	if (no >= ((CAN_MSG_FUNC_ptr *)config->msgTx)->NoOfMsg)
 	{
-		CANINFO_PRINTF("[%s] CAN ID[0x%X] is not matched.\n", __func__, id);
+		COMMON_PRINTF("[%s] CAN ID[0x%X] is not matched.\n", __func__, id);
 		assert(0);
 	}
 
-	txXfer.mbIdx = ((CAN_MSG_FUNC_ptr *)config->msgTx)->mbox[i];
+	txXfer.mbIdx = ((CAN_MSG_FUNC_ptr *)config->msgTx)->mbox[no];
 
 	if (config->fdEnable)
 	{
@@ -294,8 +297,8 @@ int32_t CAN_Transmit(can_inst_t instance, uint32_t id)
 		
 		txXfer.framefd = &config->framefd;
 		txXfer.framefd->id = FLEXCAN_ID_STD(id);
-		txXfer.framefd->length = ((CAN_MSG_FUNC_ptr *)config->msgTx)->dlc[i];
-		dlc = ((CAN_MSG_FUNC_ptr *)config->msgTx)->dlc[i];
+		txXfer.framefd->length = ((CAN_MSG_FUNC_ptr *)config->msgTx)->dlc[no];
+		dlc = ((CAN_MSG_FUNC_ptr *)config->msgTx)->dlc[no];
 
 		len = (uint8_t)(dlc/4);
 		if (dlc%4)
@@ -303,10 +306,10 @@ int32_t CAN_Transmit(can_inst_t instance, uint32_t id)
 
 		for (uint8_t j=0; j<len; j++)
 		{
-			txXfer.framefd->dataWord[j] = (uint32_t)(((CAN_MSG_FUNC_ptr *)config->msgTx)->data[i][j*4])<<24;
-			txXfer.framefd->dataWord[j] += (uint32_t)(((CAN_MSG_FUNC_ptr *)config->msgTx)->data[i][j*4+1])<<16;
-			txXfer.framefd->dataWord[j] += (uint32_t)(((CAN_MSG_FUNC_ptr *)config->msgTx)->data[i][j*4+2])<<8;
-			txXfer.framefd->dataWord[j] += (uint32_t)(((CAN_MSG_FUNC_ptr *)config->msgTx)->data[i][j*4+3]);
+			txXfer.framefd->dataWord[j] = (uint32_t)(((CAN_MSG_FUNC_ptr *)config->msgTx)->data[no][j*4])<<24;
+			txXfer.framefd->dataWord[j] += (uint32_t)(((CAN_MSG_FUNC_ptr *)config->msgTx)->data[no][j*4+1])<<16;
+			txXfer.framefd->dataWord[j] += (uint32_t)(((CAN_MSG_FUNC_ptr *)config->msgTx)->data[no][j*4+2])<<8;
+			txXfer.framefd->dataWord[j] += (uint32_t)(((CAN_MSG_FUNC_ptr *)config->msgTx)->data[no][j*4+3]);
 		}
 
 		(void)FLEXCAN_TransferFDSendNonBlocking(config->base, &config->fCanHandle, &txXfer);
@@ -315,33 +318,29 @@ int32_t CAN_Transmit(can_inst_t instance, uint32_t id)
 	{
 		txXfer.frame = &config->frame;
 		txXfer.frame->id = FLEXCAN_ID_STD(id);
-		txXfer.frame->length = ((CAN_MSG_FUNC_ptr *)config->msgTx)->dlc[i];
-		dlc = ((CAN_MSG_FUNC_ptr *)config->msgTx)->dlc[i];
+		txXfer.frame->length = ((CAN_MSG_FUNC_ptr *)config->msgTx)->dlc[no];
+		dlc = ((CAN_MSG_FUNC_ptr *)config->msgTx)->dlc[no];
 
-		txXfer.frame->dataByte0 = ((CAN_MSG_FUNC_ptr *)config->msgTx)->data[i][0];
-		txXfer.frame->dataByte1 = ((CAN_MSG_FUNC_ptr *)config->msgTx)->data[i][1];
-		txXfer.frame->dataByte2 = ((CAN_MSG_FUNC_ptr *)config->msgTx)->data[i][2];
-		txXfer.frame->dataByte3 = ((CAN_MSG_FUNC_ptr *)config->msgTx)->data[i][3];
+		txXfer.frame->dataByte0 = ((CAN_MSG_FUNC_ptr *)config->msgTx)->data[no][0];
+		txXfer.frame->dataByte1 = ((CAN_MSG_FUNC_ptr *)config->msgTx)->data[no][1];
+		txXfer.frame->dataByte2 = ((CAN_MSG_FUNC_ptr *)config->msgTx)->data[no][2];
+		txXfer.frame->dataByte3 = ((CAN_MSG_FUNC_ptr *)config->msgTx)->data[no][3];
 
 		if (dlc > 4)
 		{
-			txXfer.frame->dataByte4 = ((CAN_MSG_FUNC_ptr *)config->msgTx)->data[i][4];
-			txXfer.frame->dataByte5 = ((CAN_MSG_FUNC_ptr *)config->msgTx)->data[i][5];
-			txXfer.frame->dataByte6 = ((CAN_MSG_FUNC_ptr *)config->msgTx)->data[i][6];
-			txXfer.frame->dataByte7 = ((CAN_MSG_FUNC_ptr *)config->msgTx)->data[i][7];
+			txXfer.frame->dataByte4 = ((CAN_MSG_FUNC_ptr *)config->msgTx)->data[no][4];
+			txXfer.frame->dataByte5 = ((CAN_MSG_FUNC_ptr *)config->msgTx)->data[no][5];
+			txXfer.frame->dataByte6 = ((CAN_MSG_FUNC_ptr *)config->msgTx)->data[no][6];
+			txXfer.frame->dataByte7 = ((CAN_MSG_FUNC_ptr *)config->msgTx)->data[no][7];
 		}
 
 		FLEXCAN_TransferSendNonBlocking(config->base, &config->fCanHandle, &txXfer);
 	}
 
-	if (((CAN_MSG_FUNC_ptr *)config->msgTx)->attr[i] == CAN_TX_ATTR_PERIODIC)
+	for (i=0; i<ORGAN_MAX; i++)
 	{
-		ClearSoftTimerCounter(((CAN_MSG_FUNC_ptr *)config->msgTx)->stimerId[i]);
-		if (((CAN_MSG_FUNC_ptr *)config->msgTx)->stimer_state[i] == CAN_TX_PERI_FUNC_STOP)
-		{
-			SetSoftTimer(((CAN_MSG_FUNC_ptr *)config->msgTx)->stimerId[i], ((CAN_MSG_FUNC_ptr *)config->msgTx)->attrtime[i], ((CAN_MSG_FUNC_ptr *)config->msgTx)->tCallback[i]);
-			((CAN_MSG_FUNC_ptr *)config->msgTx)->stimer_state[i] = CAN_TX_PERI_FUNC_START;
-		}
+		if (CanTxCallback[i] != NULL)
+			(*CanTxCallback[i])(config->msgTx, no);
 	}
 
 	return 0;
@@ -381,25 +380,25 @@ void CAN_ReceiveStart(can_inst_t instance)
 
 static int32_t CAN_Receive(uint32_t instance, uint32_t buffIdx, flexcan_mb_transfer_t *xfer)
 {
-	uint8_t i, j, data[64], dlc;
+	uint8_t no, i, data[64], dlc;
 	uint32_t id;
 	can_config_t * config;
 	status_t result;
 	
 	config = (can_config_t *)CAN_GetConfigAddr(instance);
 
-	for (i=0; i<((CAN_MSG_FUNC_ptr *)config->msgRx)->NoOfMsg; i++) 
+	for (no=0; no<((CAN_MSG_FUNC_ptr *)config->msgRx)->NoOfMsg; no++) 
 	{
-		if (((CAN_MSG_FUNC_ptr *)config->msgRx)->mbox[i] == buffIdx)
+		if (((CAN_MSG_FUNC_ptr *)config->msgRx)->mbox[no] == buffIdx)
 		{
 			break;
 		}
 	}
 
-	if (i >= ((CAN_MSG_FUNC_ptr *)config->msgRx)->NoOfMsg)
+	if (no >= ((CAN_MSG_FUNC_ptr *)config->msgRx)->NoOfMsg)
 	{
 		// error
-		//CANINFO_PRINTF("[%s] mailbox id is over maximum rx message.\r\n", __func__, rxmsg, frame);
+		//COMMON_PRINTF("[%s] mailbox id is over maximum rx message.\r\n", __func__, rxmsg, frame);
 		assert(0);
 	}
 
@@ -418,12 +417,12 @@ static int32_t CAN_Receive(uint32_t instance, uint32_t buffIdx, flexcan_mb_trans
 		if (dlc%4)
 			len += 1;
 
-		for (j=0; j<len; j++)
+		for (i=0; i<len; i++)
 		{
-			data[j*4] = (uint8_t)(config->framefd.dataWord[j]>>24);
-			data[j*4+1] = (uint8_t)(config->framefd.dataWord[j]>>16);
-			data[j*4+2] = (uint8_t)(config->framefd.dataWord[j]>>8);
-			data[j*4+3] = (uint8_t)(config->framefd.dataWord[j]);
+			data[i*4] = (uint8_t)(config->framefd.dataWord[i]>>24);
+			data[i*4+1] = (uint8_t)(config->framefd.dataWord[i]>>16);
+			data[i*4+2] = (uint8_t)(config->framefd.dataWord[i]>>8);
+			data[i*4+3] = (uint8_t)(config->framefd.dataWord[i]);
 		}
 	}
 	else
@@ -448,16 +447,11 @@ static int32_t CAN_Receive(uint32_t instance, uint32_t buffIdx, flexcan_mb_trans
 		}
 	}
 
-#if 0
-	CANINFO_PRINTF("[%s] length=0x%X, data=0x%X 0x%X 0x%X 0x%X 0x%X 0x%X 0x%X 0x%X\r\n", __func__, 
-		frame->length, frame->dataByte0, frame->dataByte1, frame->dataByte2, frame->dataByte3, 
-		frame->dataByte4, frame->dataByte5, frame->dataByte6, frame->dataByte7);
-#endif
-
-	memcpy(((CAN_MSG_FUNC_ptr *)config->msgRx)->data[i], data, dlc);
-	(((CAN_MSG_FUNC_ptr *)config->msgRx)->rCallback[i])(data, dlc);
-
-	QueuePushCanDataforRx2(((CAN_MSG_FUNC_ptr *)config->msgRx)->inst, id, dlc, data);
+	for (i=0; i<ORGAN_MAX; i++)
+	{
+		if (CanRxCallback[i] != NULL)
+			(*CanRxCallback[i])(config->msgRx, no, id, dlc, data);
+	}
 
 	return 0;
 }
@@ -466,7 +460,7 @@ uint32_t CAN_GetConfigAddr(can_inst_t instance)
 {
 	if ((instance != CAN_CH_3) && (instance != CAN_CH_1))
 	{
-		CANINFO_PRINTF("[%s] CAN Instance Error ...\r\n", __func__);
+		COMMON_PRINTF("[%s] CAN Instance Error ...\r\n", __func__);
 		assert(0);
 	}
 
@@ -483,15 +477,36 @@ void CanTransOperationMode(can_inst_t instance, can_trans_opmode_t opmode)
 	{
 		case CAN_TRANS_OPMODE_STANDBY:
 			ctrl->Standby();
-			CANINFO_PRINTF("[%s] CAN_%d_TRANS_OPMODE_STANDBY Operation ...\r\n", __func__, instance);
+			COMMON_PRINTF("[%s] CAN_%d_TRANS_OPMODE_STANDBY Operation ...\r\n", __func__, instance);
 			break;
 
 		case CAN_TRANS_OPMODE_NORMAL:
 			ctrl->Normal();
-			CANINFO_PRINTF("[%s] CAN_%d_TRANS_OPMODE_NORMAL Operation ...\r\n", __func__, instance);
+			COMMON_PRINTF("[%s] CAN_%d_TRANS_OPMODE_NORMAL Operation ...\r\n", __func__, instance);
 			break;
 
 		default:
 			break;
 	}
 }
+
+void CanRxCallback_Register(organ_t organ, void * callback)
+{
+	CanRxCallback[organ] = callback;
+}
+
+void CanRxCallback_Clear(organ_t organ)
+{
+	CanRxCallback[organ] = NULL;
+}
+
+void CanTxCallback_Register(organ_t organ, void * callback)
+{
+	CanTxCallback[organ] = callback;
+}
+
+void CanTxCallback_Clear(organ_t organ)
+{
+	CanTxCallback[organ] = NULL;
+}
+

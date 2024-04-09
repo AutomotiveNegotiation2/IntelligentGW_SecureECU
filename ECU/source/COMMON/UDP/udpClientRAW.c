@@ -100,6 +100,10 @@ err_t create_udp_socket(void)
 	upcb->local_port = 4004;
 	// Set our local port to 4004
 	// Should bind to the local ip and port
+	//ip_addr_t myIPADDR;
+	//IP_ADDR4(&myIPADDR, 192, 168, 0, 104);
+	//err = udp_bind(upcb,&myIPADDR,4004);
+	//udp_bind_netif(upcb, &netif_1G);
 	err = udp_bind(upcb,IP4_ADDR_ANY,4004);
 	if (err != ERR_OK)
 	{

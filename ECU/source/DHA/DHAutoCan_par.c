@@ -144,7 +144,7 @@ uint8_t Can1MsgUpdateState[CAN1_NO_OF_TX_OBJECT] =
 
 CAN_MSG_FUNC_ptr Can1_txmsg =
 {
-	CAN_1,
+	CAN_CH_1,
 	CAN1_NO_OF_TX_OBJECT,
 	CanTxMbox1,
 	CanTxId1,
@@ -245,7 +245,7 @@ uint8_t * CanRxDataPtr1[CAN1_NO_OF_RX_OBJECT] =
 
 CAN_MSG_FUNC_ptr Can1_rxmsg =
 {
-	CAN_1,
+	CAN_CH_1,
 	CAN1_NO_OF_RX_OBJECT,
 	CanRxMbox1,
 	CanRxId1,
@@ -347,7 +347,7 @@ uint8_t Can3MsgUpdateState[CAN1_NO_OF_TX_OBJECT] =
 
 CAN_MSG_FUNC_ptr Can3_txmsg =
 {
-	CAN_3,
+	CAN_CH_3,
 	CAN3_NO_OF_TX_OBJECT,
 	CanTxMbox2,
 	CanTxId2,
@@ -448,7 +448,7 @@ uint8_t * CanRxDataPtr2[CAN3_NO_OF_RX_OBJECT] =
 
 CAN_MSG_FUNC_ptr Can3_rxmsg =
 {
-	 CAN_3,
+	 CAN_CH_3,
 	 CAN3_NO_OF_RX_OBJECT,
 	 CanRxMbox2,
 	 CanRxId2,

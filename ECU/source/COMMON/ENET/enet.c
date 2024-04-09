@@ -86,7 +86,7 @@ void BOARD_ENETFlexibleConfigure(enet_config_t *config)
 		config->miiMode = kENET_RgmiiMode;
 #endif
 	else
-		ENETINFO_PRINTF("[%s] netif address isn't valid. \r\n", __func__);
+		COMMON_PRINTF("[%s] netif address isn't valid. \r\n", __func__);
 }
 
 static void MDIO_Init(void)
@@ -246,7 +246,7 @@ void Enet_WaitLinkUp(void)
 		if (++EnetLinkUpCnt > 100)
 		{
 			bUdpTest = FALSE;
-			ENETINFO_PRINTF("PHY[100M] Auto-negotiation failed. Please check the cable connection and link partner setting.\r\n");
+			COMMON_PRINTF("PHY[100M] Auto-negotiation failed. Please check the cable connection and link partner setting.\r\n");
 			EnetLinkUpCnt = 0;
 		}
 	}
@@ -267,18 +267,13 @@ void Enet_WaitLinkUp(void)
 		if (++EnetLinkUpCnt_1G > 100)
 		{
 			//bUdpTest = FALSE;
-			ENETINFO_PRINTF("PHY[1G] Auto-negotiation failed. Please check the cable connection and link partner setting.\r\n");
+			COMMON_PRINTF("PHY[1G] Auto-negotiation failed. Please check the cable connection and link partner setting.\r\n");
 			EnetLinkUpCnt_1G = 0;
 		}
 	}
 	else
 	{
 		bEnetLinkUp_1G = TRUE;
-
-		/*if (bUdpTest == FALSE)
-		{
-			bUdpTest = TRUE;
-		}*/
 	}
 #endif
 }

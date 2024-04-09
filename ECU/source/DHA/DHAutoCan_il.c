@@ -18,7 +18,7 @@ can_inst_t ilCanChannel[USED_CAN_CHANNEL_NO] = {CAN_CH_1};	// {CANFD}
 ilMsgCtrl_t ilMsgCtrl;
 
 #if (DEBUG_CAN == ON)
-void ilMsgTxLog(can_instance_t inst, uint32_t id, uint8_t dlc, uint8_t * data);
+void ilMsgTxLog(can_inst_t inst, uint32_t id, uint8_t dlc, uint8_t * data);
 #endif
 
 void ilTxTask(void)
@@ -67,7 +67,7 @@ void ilTxTask(void)
 }
 
 #if (DEBUG_CAN == ON)
-void ilMsgTxLog(can_instance_t inst, uint32_t id, uint8_t dlc, uint8_t * data)
+void ilMsgTxLog(can_inst_t inst, uint32_t id, uint8_t dlc, uint8_t * data)
 {
 	uint8_t buf[10]={0,};
 	

@@ -261,6 +261,8 @@ void ApplCan_InitBuf(void)
 {
 	memset(&CanTimer, 0, sizeof(can_timer_t));
 	TimerCallback_Register(ORGAN_DHAUTO, (void *) CanTimer_Incr);
+	CanTxCallback_Register(ORGAN_DHAUTO, (void *) CanTxState_Register);
+	CanRxCallback_Register(ORGAN_DHAUTO, (void *) CanRxMsg_Register);
 	Queue_InitBuffer(&CanRx2MsgQueue, (void *)CanRx2MsgBuffer, sizeof(queue_can_rx_buf_t), QUEUE_CAN_RX_BUFFER_SIZE);
 }
 
@@ -313,6 +315,27 @@ void QueuePopCanDataforRx2(void)
 		}
 		CANINFO_PRINTF("\r\n");
 	}
+}
+
+void CanTxState_Register(void * callback, uint8_t no)
+{
+	if (((CAN_MSG_FUNC_ptr *)callback)->attr[no] == CAN_TX_ATTR_PERIODIC)
+	{
+		ClearSoftTimerCounter(((CAN_MSG_FUNC_ptr *)callback)->stimerId[no]);
+		if (((CAN_MSG_FUNC_ptr *)callback)->stimer_state[no] == CAN_TX_PERI_FUNC_STOP)
+		{
+			SetSoftTimer(((CAN_MSG_FUNC_ptr *)callback)->stimerId[no], ((CAN_MSG_FUNC_ptr *)callback)->attrtime[no], ((CAN_MSG_FUNC_ptr *)callback)->tCallback[no]);
+			((CAN_MSG_FUNC_ptr *)callback)->stimer_state[no] = CAN_TX_PERI_FUNC_START;
+		}
+	}
+}
+
+void CanRxMsg_Register(void * callback, uint8_t no, uint32_t id, uint8_t dlc, uint8_t * data)
+{
+	memcpy(((CAN_MSG_FUNC_ptr *)callback)->data[no], data, dlc);
+	(((CAN_MSG_FUNC_ptr *)callback)->rCallback[no])(data, dlc);
+
+	QueuePushCanDataforRx2(((CAN_MSG_FUNC_ptr *)callback)->inst, id, dlc, data);
 }
 
 static void ApplCan_ScheduleTask(void)

@@ -77,6 +77,7 @@ static void Init_EthDriver(void)
 	BOARD_InitModuleClock();
 	IOMUXC_SelectENETClock();
 
+	/* 100Mbps Ethernet */
 	BOARD_InitEnetPins();
 
 	ENET_RESET_ENABLE_100M;
