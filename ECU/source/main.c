@@ -1,35 +1,32 @@
-#include "pin_mux.h"
-
 #include "Includes.h"
 
-static char McuVer[20] = "M0.001_20230628T";
+static char McuVer[20] = "M0.001_20240118T";
 
-static void main_init(void);
-
-static void SystemInfo(void)
+void SystemInfo(void)
 {
 	uint32_t freq=CLOCK_GetFreq(kCLOCK_CpuClk);
-	
-	SYSINFO_PRINTF("\r\n");
-	SYSINFO_PRINTF("***********************************************************\r\n");
-	SYSINFO_PRINTF("***                     MIMX1170 MCU                    ***\r\n");
-	SYSINFO_PRINTF("***                                                     ***\r\n");
-	SYSINFO_PRINTF("*** SW Version : %s	                ***\r\n", McuVer);
-	SYSINFO_PRINTF("***                                                     ***\r\n");
-	SYSINFO_PRINTF("***                                                     ***\r\n");
-	SYSINFO_PRINTF("*** Core Clock = %dHz                            ***\r\n", freq);
-	//SYSINFO_PRINTF("*** CPU wakeup source = 0x%x...                      ***\r\n", SRC->SRSR);
-	SYSINFO_PRINTF("***                                                     ***\r\n");
+
+	COMMON_PRINTF("\33[0m");	// normal
+	COMMON_PRINTF("\r\n");
+	COMMON_PRINTF("***********************************************************\r\n");
+	COMMON_PRINTF("***                     MIMX1170 MCU                    ***\r\n");
+	COMMON_PRINTF("***                                                     ***\r\n");
+	COMMON_PRINTF("*** SW Version : %s	                ***\r\n", McuVer);
+	COMMON_PRINTF("***                                                     ***\r\n");
+	COMMON_PRINTF("***                                                     ***\r\n");
+	COMMON_PRINTF("*** Core Clock = %dHz                            ***\r\n", freq);
+	//COMMON_PRINTF("*** CPU wakeup source = 0x%x...                      ***\r\n", SRC->SRSR);
+	COMMON_PRINTF("***                                                     ***\r\n");
 #if ((CAN3toCAN_EN == ON) && (CAN1toCANFD_EN == ON))
-	SYSINFO_PRINTF("*** CAN / CANFD NETWORK OPERATION                       ***\r\n");
+	COMMON_PRINTF("*** CAN / CANFD NETWORK OPERATION                       ***\r\n");
 #elif (CAN3toCAN_EN == ON) 
-	SYSINFO_PRINTF("*** CAN NETWORK OPERATION                               ***\r\n");
+	COMMON_PRINTF("*** CAN NETWORK OPERATION                               ***\r\n");
 #elif (CAN1toCANFD_EN == ON)
-	SYSINFO_PRINTF("*** CANFD NETWORK OPERATION                             ***\r\n");
+	COMMON_PRINTF("*** CANFD NETWORK OPERATION                             ***\r\n");
 #endif
-	SYSINFO_PRINTF("***                                                     ***\r\n");
-	SYSINFO_PRINTF("***********************************************************\r\n");
-	SYSINFO_PRINTF("\r\n");
+	COMMON_PRINTF("***                                                     ***\r\n");
+	COMMON_PRINTF("***********************************************************\r\n");
+	COMMON_PRINTF("\r\n");
 }
 
 int main(void)
@@ -40,43 +37,53 @@ int main(void)
 	BOARD_BootClockRUN();
 	BOARD_InitDebugConsole();
 
-	main_init();
+	Init_AutoCryptFunc();
+	Init_KorUnivFunc();
+	Init_KetiFunc();
+	Init_DHAutoFunc();
+
+	Init_CommonFunc();
+	
+	BOARD_InitFuncIoPins();
 
 	while (1)
 	{
-		GlobalSequence();
-		
-		CanMain();
-		EnetMain();
-		AppMain();
-		IoctrlMain();
-	}
-}
-
-static void main_init(void)
-{
-	/* System Information */
-	SystemInfo();
-
-	/* Initialize global sequence */
-	GlobalSequence_Init();
-
-	/* Initialize softtimer */
-	SoftTimerInit();
-
-	ApplCan_InitBuf();
-
-#if 0
-	BOARD_InitFuncLightingGrillPins();
-	lightingGrill_Init();
-#if 1
-	lightingGrill_OpStart(OP_LED_TURN_RIGHT, 5);
-	lightingGrill_OpSeq();
-#else
-	for (int i=0; i<5; i++)
-	{
-		turn_right_sig();
-	}
+#if (DHAUTO_FUNC_EN == ON)
+		StartFuncExecTime(ORGAN_DHAUTO_PLUS, "SoftTimerSrv");
+		SoftTimerSrv();
+		StopFuncExecTime();
 #endif
+		StartFuncExecTime(ORGAN_COMMON, "Common");
+		CommonFunc();
+		StopFuncExecTime();
+#if (DHAUTO_FUNC_EN == ON)
+		StartFuncExecTime(ORGAN_DHAUTO_PLUS, "SoftTimerSrv");
+		SoftTimerSrv();
+		StopFuncExecTime();
 #endif
+		StartFuncExecTime(ORGAN_AUTOCRYPT, "AutoCrypt");
+		AutoCryptFunc();
+		StopFuncExecTime();
+#if (DHAUTO_FUNC_EN == ON)
+		StartFuncExecTime(ORGAN_DHAUTO_PLUS, "SoftTimerSrv");
+		SoftTimerSrv();
+		StopFuncExecTime();
+#endif
+		StartFuncExecTime(ORGAN_KORU, "KorUniv");
+		KorUnivFunc();
+		StopFuncExecTime();
+#if (DHAUTO_FUNC_EN == ON)
+		StartFuncExecTime(ORGAN_DHAUTO_PLUS, "SoftTimerSrv");
+		SoftTimerSrv();
+		StopFuncExecTime();
+#endif
+		StartFuncExecTime(ORGAN_KETI, "Keti");
+		KetiFunc();
+		StopFuncExecTime();
+#if (DHAUTO_FUNC_EN == ON)
+		StartFuncExecTime(ORGAN_DHAUTO, "DHAuto");
+		DHAutoFunc();
+		StopFuncExecTime();
+#endif
+	}
 }

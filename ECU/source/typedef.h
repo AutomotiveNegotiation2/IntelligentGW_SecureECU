@@ -1,21 +1,6 @@
 #ifndef _TYPEDEF_H_
 #define	_TYPEDEF_H_
 
-#if 0
-typedef int8_t 			s8;
-typedef uint8_t 		u8;
-typedef int16_t 		s16;
-typedef uint16_t 		u16;
-typedef int32_t 		s32;
-typedef uint32_t 		u32;
-typedef int64_t 		s64;
-typedef uint64_t 		u64;
-
-#ifndef bool
-typedef	u8	bool;
-#endif 
-#endif
-
 #ifndef null
 #define	null		0
 #endif 
@@ -47,15 +32,5 @@ typedef	u8	bool;
 #ifndef OFF
 #define OFF			0
 #endif  
-
-#if 0
-#ifndef LOW
-#define	LOW			0
-#endif
-
-#ifndef HIGH
-#define	HIGH		1
-#endif
-#endif
 
 #endif /* _TYPEDEF_H_ */

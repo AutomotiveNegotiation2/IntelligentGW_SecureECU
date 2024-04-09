@@ -4,11 +4,11 @@
 #include <stdint.h>
 #include "fsl_debug_console.h"
 
-#define	DEBUG_SYS		ON
-#define	DEBUG_CAN		OFF
-#define	DEBUG_ENET		OFF
-#define	DEBUG_APP		ON
-#define	DEBUG_IOCTRL	OFF
+#define	DEBUG_COMMON	ON
+#define	DEBUG_AUTOCRYPT	OFF
+#define	DEBUG_KORUNIV	OFF
+#define	DEBUG_KETI		OFF
+#define	DEBUG_DHAUTO	ON
 
 typedef enum {
 	DEBUG_LEVEL0=0,
@@ -19,40 +19,47 @@ typedef enum {
 
 #define	CAN3toCAN_EN	ON
 #define	CAN1toCANFD_EN	OFF
-#define	LIGHTING_GRILL_INSTALLED	ON
+
+#define	DHAUTO_FUNC_EN				ON
+#define	LIGHTING_GRILL_INSTALLED	OFF
+
+#define	EXECUTION_TIME_LOG				ON
+#if (EXECUTION_TIME_LOG == ON)
+#define	EXECUTION_TIME_LOG_COMMON		ON
+#define	EXECUTION_TIME_LOG_AUTOCRYPT	OFF
+#define	EXECUTION_TIME_LOG_KORUNIV		OFF
+#define	EXECUTION_TIME_LOG_KETI			OFF
+#define	EXECUTION_TIME_LOG_DHAUTO		ON
+#endif
+
+#define configMAC_ADDR {0x02, 0x12, 0x13, 0x10, 0x15, 0x11}
 
 #if ((CAN3toCAN_EN == OFF) && (CAN1toCANFD_EN == OFF))
 #error CAN function more than one channel must be activated
 #endif
 
-#if (DEBUG_SYS == ON)
-#define	SYSINFO_PRINTF		PRINTF
+#if (DEBUG_COMMON == ON)
+#define	COMMON_PRINTF		PRINTF
 #else
-#define	SYSINFO_PRINTF
+#define	COMMON_PRINTF
 #endif
 
-#if (DEBUG_CAN == ON)
-#define	CANINFO_PRINTF		PRINTF
+#if (DEBUG_AUTOCRYPT == ON)
+#define	AUTOCRYPT_PRINTF	PRINTF
 #else
-#define	CANINFO_PRINTF
+#define	AUTOCRYPT_PRINTF
 #endif
 
-#if (DEBUG_ENET == ON)
-#define	ENETINFO_PRINTF		PRINTF
+#if (DEBUG_KORUNIV == ON)
+#define	KORUNIV_PRINTF		PRINTF
 #else
-#define	ENETINFO_PRINTF
+#define	KORUNIV_PRINTF
 #endif
 
-#if (DEBUG_APP == ON)
-#define	APPINFO_PRINTF		PRINTF
+#if (DEBUG_KETI == ON)
+#define	KETI_PRINTF			PRINTF
 #else
-#define	APPINFO_PRINTF
-#endif
-
-#if (DEBUG_IOCTRL == ON)
-#define	IOCTRLINFO_PRINTF		PRINTF
-#else
-#define	IOCTRLINFO_PRINTF
+#define	KETI_PRINTF
 #endif
 
 #endif /* _CONFIG_H_ */

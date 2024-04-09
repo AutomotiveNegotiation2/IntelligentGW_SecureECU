@@ -3,36 +3,25 @@
 
 #include <stdio.h>
 
+#include "pin_mux.h"
+#include "fsl_pit.h"
+#include "fsl_lpuart.h"
+#include "clock_config.h"
+
 #include "board.h"
 
+#include "main.h"
 #include "typedef.h"
 #include "config.h"
 #include "softtimer.h"
-#include "queue.h"
 
-#include "GlobalSequence.h" 
+#include "fsl_phy.h"
+#include "fsl_enet.h"
 
-#include "can.h"
-#include "can_par.h"
-#include "il.h"
-#include "il_par.h"
-#include "CanMain.h"
-#include "CanSrv.h"
-
-#include "enet.h"
-#include "EnetMain.h"
-#include "EnetSrv.h"
-
-#include "App.h"
-#include "AppMain.h"
-#include "AppSrv.h"
-
-#include "ioctrl.h"
-#include "IoctrlMain.h"
-#include "IoctrlSrv.h"
-
-#include "rtc.h"
-
-#include "elmos_led.h"
+#include "common.h"
+#include "AutoCrypt.h"
+#include "KorUniv.h"
+#include "KETI.h"
+#include "DHAuto.h"
 
 #endif /* _INCLUDES_H_ */
