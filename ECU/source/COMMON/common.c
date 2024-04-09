@@ -6,7 +6,7 @@
 
 static void Init_CanDriver(void);
 static void Init_EthDriver(void);
-static void Init_Eth1GbpsDriver(void);
+static void Poll_EthDriver(void);
 
 void Init_CommonFunc(void)
 {
@@ -23,6 +23,7 @@ void Init_CommonFunc(void)
 void CommonFunc(void)
 {
 	Enet_WaitLinkUp();
+	Poll_EthDriver();
 
 	if (GetPrintFuncExecTimeValue() > TIME_1S)	// Print max execution time every 1s is printed.	
 	{	
@@ -31,7 +32,7 @@ void CommonFunc(void)
 		PrintFuncExecTime();
 #endif
 
-		if (bEnetLinkUp == TRUE)
+		if (Enet_GetLinkUp_100M()== TRUE)
 		{
 			Enet_UdpCallback();
 		}
@@ -48,6 +49,7 @@ void CommonFunc(void)
 	}
 	else
 	{
+
 	}
 }
 
@@ -77,20 +79,20 @@ static void Init_EthDriver(void)
 
 	BOARD_InitEnetPins();
 
-	ENET_100M_RESET_ENABLE;
-	SDK_DelayAtLeastUs(10000U, SDK_DEVICE_MAXIMUM_CPU_CLOCK_FREQUENCY);	// 10ms
-	ENET_100M_RESET_DISABLE;
-	SDK_DelayAtLeastUs(10000U, SDK_DEVICE_MAXIMUM_CPU_CLOCK_FREQUENCY);	// 10ms
+	ENET_RESET_ENABLE_100M;
+	SDK_DelayAtLeastUs(ENET_RESET_ENABLE_TIME, SDK_DEVICE_MAXIMUM_CPU_CLOCK_FREQUENCY);	// 10ms
+	ENET_RESET_DISABLE_100M;
+	SDK_DelayAtLeastUs(ENET_RESET_STABLE_TIME, SDK_DEVICE_MAXIMUM_CPU_CLOCK_FREQUENCY);	// 10ms
 
 	Enet_Mdio_Init();
 
 #if BOARD_NETWORK_USE_1G_ENET_PORT
 	BOARD_InitEnet1GPins();
 	
-	ENET_1G_RESET_ENABLE;
-	SDK_DelayAtLeastUs(10000U, SDK_DEVICE_MAXIMUM_CPU_CLOCK_FREQUENCY); // 10ms
-	ENET_100M_RESET_DISABLE;
-	SDK_DelayAtLeastUs(10000U, SDK_DEVICE_MAXIMUM_CPU_CLOCK_FREQUENCY); // 10ms
+	ENET_RESET_ENABLE_1G;
+	SDK_DelayAtLeastUs(ENET_RESET_ENABLE_TIME_1G, SDK_DEVICE_MAXIMUM_CPU_CLOCK_FREQUENCY); // 10ms
+	ENET_RESET_DISABLE_1G;
+	SDK_DelayAtLeastUs(ENET_RESET_STABLE_TIME_1G, SDK_DEVICE_MAXIMUM_CPU_CLOCK_FREQUENCY); // 30ms
 	
 	EnableIRQ(ENET_1G_MAC0_Tx_Rx_1_IRQn);
 	EnableIRQ(ENET_1G_MAC0_Tx_Rx_2_IRQn);
@@ -106,11 +108,31 @@ static void Init_EthDriver(void)
 
 	Enet_NetifConfig();
 
-	bEnetLinkUp = FALSE;
-	EnetLinkUpCnt = 0;
-
 	create_udp_socket();
+
+	Enet_Init();
 	bUdpTest = FALSE;
 }
 
-
+static void Poll_EthDriver(void)
+{
+	if (Enet_GetLinkUp_100M() == TRUE)
+	{
+		/* Poll the driver, get any outstanding frames */
+		ethernetif_input(&netif);
+	}
+#if BOARD_NETWORK_USE_1G_ENET_PORT
+	if (Enet_GetLinkUp_1G() == TRUE)
+	{
+		/* Poll the driver, get any outstanding frames */
+		ethernetif_input(&netif_1G);
+	}
+	
+	if ((Enet_GetLinkUp_1G() == TRUE) || (Enet_GetLinkUp_100M() == TRUE))
+#else
+	if (Enet_GetLinkUp_100M() == TRUE)
+#endif
+	{
+		sys_check_timeouts(); /* Handle all system timeouts for all core protocols */
+	}
+}

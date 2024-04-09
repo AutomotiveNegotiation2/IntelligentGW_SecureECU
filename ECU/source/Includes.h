@@ -8,12 +8,12 @@
 #include "fsl_lpuart.h"
 #include "clock_config.h"
 
+#include "board.h"
+
 #include "main.h"
 #include "typedef.h"
 #include "config.h"
 #include "softtimer.h"
-
-#include "board.h"
 
 #include "fsl_phy.h"
 #include "fsl_enet.h"

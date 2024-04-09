@@ -4,14 +4,14 @@ phy_ksz8081_resource_t g_phy_resource;
 
 #define ENET_100M ENET
 /* Address of PHY interface. */
-#define ENET_100M_PHY_ADDRESS BOARD_ENET0_PHY_ADDRESS
+#define ENET_PHY_ADDRESS_100M BOARD_ENET0_PHY_ADDRESS
 /* PHY operations. */
-#define ENET_100M_PHY_OPS &phyksz8081_ops
+#define ENET_PHY_OPS_100M &phyksz8081_ops
 /* ENET instance select. */
 #define ENET_100M_NETIF_INIT_FN ethernetif0_init
 
 /* PHY resource. */
-#define ENET_100M_PHY_RESOURCE &g_phy_resource
+#define ENET_PHY_RESOURCE_100M &g_phy_resource
 
 /* ENET clock frequency. */
 #define ENET_CLOCK_FREQ CLOCK_GetRootClockFreq(kCLOCK_Root_Bus)
@@ -21,6 +21,9 @@ phy_ksz8081_resource_t g_phy_resource;
 static phy_handle_t phyHandle;
 struct netif netif;
 ip4_addr_t netif_ipaddr, netif_netmask, netif_gw;
+
+static bool bEnetLinkUp;
+static long EnetLinkUpCnt;
 
 #if BOARD_NETWORK_USE_1G_ENET_PORT
 phy_rtl8211f_resource_t g_phy_resource_1G;
@@ -42,7 +45,11 @@ static phy_handle_t phyHandle_1G;
 struct netif netif_1G;
 ip4_addr_t netif_ipaddr_1G, netif_netmask_1G, netif_gw_1G;
 
+static bool bEnetLinkUp_1G;
+static long EnetLinkUpCnt_1G;
 #endif
+
+
 
 void BOARD_InitModuleClock(void)
 {
@@ -151,9 +158,9 @@ void Enet_IPADDR_Config(void)
 void Enet_NetifConfig(void)
 {
 	ethernetif_config_t enet_config = {.phyHandle   = &phyHandle,
-                                       .phyAddr     = ENET_100M_PHY_ADDRESS,
-                                       .phyOps      = ENET_100M_PHY_OPS,
-                                       .phyResource = ENET_100M_PHY_RESOURCE,
+                                       .phyAddr     = ENET_PHY_ADDRESS_100M,
+                                       .phyOps      = ENET_PHY_OPS_100M,
+                                       .phyResource = ENET_PHY_RESOURCE_100M,
 #ifdef configMAC_ADDR
                                        .macAddress = configMAC_ADDR
 #endif
@@ -189,33 +196,54 @@ void Enet_NetifConfig(void)
 	/* Get clock after hardware init. */
     enet_config_1G.srcClockHz = ENET_CLOCK_FREQ;
 
-	netif_add(&netif_1G, &netif_ipaddr, &netif_netmask, &netif_gw, &enet_config, ENET_NETIF_INIT_FN_1G, ethernet_input);
+	netif_add(&netif_1G, &netif_ipaddr, &netif_netmask, &netif_gw, &enet_config_1G, ENET_NETIF_INIT_FN_1G, ethernet_input);
 	netif_set_default(&netif_1G);
 	netif_set_up(&netif_1G);
 #endif
 }
 
-err_enum_t Enet_100M_WaitLinkUp(long timeout_ms)
+err_enum_t Enet_WaitLinkUp_100M(long timeout_ms)
 {
 	return ethernetif_wait_linkup(&netif, timeout_ms);;
 }
 
+bool Enet_GetLinkUp_100M(void)
+{
+	return bEnetLinkUp;
+}
+
 #if BOARD_NETWORK_USE_1G_ENET_PORT
-err_enum_t Enet_1G_WaitLinkUp(long timeout_ms)
+err_enum_t Enet_WaitLinkUp_1G(long timeout_ms)
 {
 	return ethernetif_wait_linkup(&netif_1G, timeout_ms);;
 }
+
+bool Enet_GetLinkUp_1G(void)
+{
+	return bEnetLinkUp_1G;
+}
 #endif
+
+void Enet_Init(void)
+{
+	bEnetLinkUp = FALSE;
+	EnetLinkUpCnt = 0;
+
+#if BOARD_NETWORK_USE_1G_ENET_PORT
+	bEnetLinkUp_1G = FALSE;
+	EnetLinkUpCnt_1G = 0;
+#endif
+}
 
 void Enet_WaitLinkUp(void)
 {
 	err_enum_t result = ERR_OK;
 
-	result = Enet_100M_WaitLinkUp(1);
+	result = Enet_WaitLinkUp_100M(1);
 	if (result != ERR_OK)
 	{
 		//if (++EnetLinkUpCnt > 500)
-		if (++EnetLinkUpCnt > 250)
+		if (++EnetLinkUpCnt > 100)
 		{
 			bUdpTest = FALSE;
 			ENETINFO_PRINTF("PHY[100M] Auto-negotiation failed. Please check the cable connection and link partner setting.\r\n");
@@ -231,5 +259,27 @@ void Enet_WaitLinkUp(void)
 			bUdpTest = TRUE;
 		}
 	}
+
+#if BOARD_NETWORK_USE_1G_ENET_PORT
+	result = Enet_WaitLinkUp_1G(1);
+	if (result != ERR_OK)
+	{
+		if (++EnetLinkUpCnt_1G > 100)
+		{
+			//bUdpTest = FALSE;
+			ENETINFO_PRINTF("PHY[1G] Auto-negotiation failed. Please check the cable connection and link partner setting.\r\n");
+			EnetLinkUpCnt_1G = 0;
+		}
+	}
+	else
+	{
+		bEnetLinkUp_1G = TRUE;
+
+		/*if (bUdpTest == FALSE)
+		{
+			bUdpTest = TRUE;
+		}*/
+	}
+#endif
 }
 

@@ -29,13 +29,15 @@ void BOARD_InitModuleClock(void);
 void IOMUXC_SelectENETClock(void);
 void Enet_Mdio_Init(void);
 void Enet_NetifConfig(void);
-err_enum_t Enet_100M_WaitLinkUp(long timeout_ms);
 void Enet_WaitLinkUp(void);
 void Enet_IPADDR_Config(void);
+void Enet_Init(void);
+bool Enet_GetLinkUp_100M(void);
 
 #if BOARD_NETWORK_USE_1G_ENET_PORT
 void Enet_Mdio_Init_1G(void);
-err_enum_t Enet_1G_WaitLinkUp(long timeout_ms);
+bool Enet_GetLinkUp_1G(void);
+err_enum_t Enet_WaitLinkUp_1G(long timeout_ms);
 #endif
 
 #endif /* _ENET_H_ */

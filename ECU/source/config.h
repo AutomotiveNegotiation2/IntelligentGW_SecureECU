@@ -18,7 +18,7 @@
 #define	CAN3toCAN_EN	ON
 #define	CAN1toCANFD_EN	OFF
 
-#define	BOARD_NETWORK_USE_1G_ENET_PORT	OFF
+//#define	BOARD_NETWORK_USE_1G_ENET_PORT	ON
 
 /* Enable/Disable DHAUTO function. */
 #define	DHAUTO_FUNC_EN				ON
