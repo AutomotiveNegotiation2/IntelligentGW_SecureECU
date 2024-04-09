@@ -7,6 +7,7 @@
 #include "DHAutoRtc.h"
 #include "DHAutoQueue.h"
 #include "DHAutoCan.h"
+#include "DHAutoEnet.h"
 #include "DHAutoIoctrl.h"
 #include "DHAutoTimer.h"
 

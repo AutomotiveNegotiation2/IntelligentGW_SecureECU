@@ -19,7 +19,7 @@ void DHAutoFunc()
 	GlobalSequence();
 	
 	CanMain();
-	//EnetMain();
+	EnetMain();
 	AppMain();
 	IoctrlMain();
 }

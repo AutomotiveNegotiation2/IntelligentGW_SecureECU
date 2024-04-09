@@ -58,7 +58,7 @@ typedef union
 		//uint32_t SEQ_POWER  :4;
 		//uint32_t SEQ_IDLE	:4;
      	uint32_t SEQ_CAN    :4;
-		uint32_t SEQ_ENET_100M	:4;
+		uint32_t SEQ_ENET	:4;
 		uint32_t SEQ_APP	:4;
 		uint32_t SEQ_IOCTRL	:4;
 		uint32_t SEQ_RES	:16;	// reserved
