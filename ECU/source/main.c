@@ -37,15 +37,15 @@ int main(void)
 	BOARD_BootClockRUN();
 	BOARD_InitDebugConsole();
 
+	/* Init_****Func() : Initialize registers and variables */
 	Init_AutoCryptFunc();
 	Init_KorUnivFunc();
 	Init_KetiFunc();
 	Init_DHAutoFunc();
 
+	/* Initialize general drivers */
 	Init_CommonFunc();
 	
-	BOARD_InitFuncIoPins();
-
 	while (1)
 	{
 #if (DHAUTO_FUNC_EN == ON)
@@ -54,6 +54,7 @@ int main(void)
 		StopFuncExecTime();
 #endif
 		StartFuncExecTime(ORGAN_COMMON, "Common");
+		/* Add general functions */
 		CommonFunc();
 		StopFuncExecTime();
 #if (DHAUTO_FUNC_EN == ON)

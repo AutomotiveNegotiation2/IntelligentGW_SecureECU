@@ -25,6 +25,7 @@ void CommonFunc(void)
 
 	if (GetPrintFuncExecTimeValue() > TIME_1S)	// Print max execution time every 1s is printed.	
 	{	
+		/* Add the function to be executed every 1 seconds. */
 #if (EXECUTION_TIME_LOG == ON)
 		PrintFuncExecTime();
 #endif
@@ -38,9 +39,11 @@ void CommonFunc(void)
 	}
 	else if (GetPrintFuncExecTimeValue() > TIME_500MS)
 	{
+		/* Add the function to be executed every 500 mili-seconds. */
 	}
 	else if (GetPrintFuncExecTimeValue() > TIME_100MS)
 	{
+		/* Add the function to be executed every 100 mili-seconds. */
 	}
 	else
 	{
