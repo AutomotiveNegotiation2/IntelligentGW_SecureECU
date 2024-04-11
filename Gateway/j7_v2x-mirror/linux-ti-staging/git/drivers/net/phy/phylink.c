@@ -1249,12 +1249,15 @@ static int phylink_bringup_phy(struct phylink *pl, struct phy_device *phy,
 	 * speeds. We really need to know which interface modes the PHY and
 	 * MAC supports to properly work out which linkmodes can be supported.
 	 */
+
+#if 0
 	if (phy->is_c45 &&
 	    interface != PHY_INTERFACE_MODE_RXAUI &&
 	    interface != PHY_INTERFACE_MODE_XAUI &&
 	    interface != PHY_INTERFACE_MODE_USXGMII)
 		config.interface = PHY_INTERFACE_MODE_NA;
 	else
+#endif
 		config.interface = interface;
 
 	ret = phylink_validate(pl, supported, &config);
