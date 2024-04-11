@@ -626,6 +626,7 @@
 	};
 
 	serdes_wiz1: wiz@5010000 {
+		status = "disabled";
 		compatible = "ti,j721e-wiz-16g";
 		#address-cells = <1>;
 		#size-cells = <1>;
@@ -684,6 +685,7 @@
 	};
 
 	serdes_wiz2: wiz@5020000 {
+		status = "disabled";
 		compatible = "ti,j721e-wiz-16g";
 		#address-cells = <1>;
 		#size-cells = <1>;
@@ -742,6 +744,7 @@
 	};
 
 	serdes_wiz3: wiz@5030000 {
+		status = "disabled";
 		compatible = "ti,j721e-wiz-16g";
 		#address-cells = <1>;
 		#size-cells = <1>;
@@ -800,6 +803,7 @@
 	};
 
 	pcie0_rc: pcie@2900000 {
+		status = "disabled";
 		compatible = "ti,j721e-pcie-host";
 		reg = <0x00 0x02900000 0x00 0x1000>,
 		      <0x00 0x02907000 0x00 0x400>,
@@ -841,6 +845,7 @@
 	};
 
 	pcie0_ep: pcie-ep@2900000 {
+		status = "disabled";
 		compatible = "ti,j721e-pcie-ep";
 		reg = <0x00 0x02900000 0x00 0x1000>,
 		      <0x00 0x02907000 0x00 0x400>,
@@ -861,6 +866,7 @@
 	};
 
 	pcie1_rc: pcie@2910000 {
+		status = "disabled";
 		compatible = "ti,j721e-pcie-host";
 		reg = <0x00 0x02910000 0x00 0x1000>,
 		      <0x00 0x02917000 0x00 0x400>,
@@ -902,6 +908,7 @@
 	};
 
 	pcie1_ep: pcie-ep@2910000 {
+		status = "disabled";
 		compatible = "ti,j721e-pcie-ep";
 		reg = <0x00 0x02910000 0x00 0x1000>,
 		      <0x00 0x02917000 0x00 0x400>,
@@ -922,6 +929,7 @@
 	};
 
 	pcie2_rc: pcie@2920000 {
+		status = "disabled";
 		compatible = "ti,j721e-pcie-host";
 		reg = <0x00 0x02920000 0x00 0x1000>,
 		      <0x00 0x02927000 0x00 0x400>,
@@ -963,6 +971,7 @@
 	};
 
 	pcie2_ep: pcie-ep@2920000 {
+		status = "disabled";
 		compatible = "ti,j721e-pcie-ep";
 		reg = <0x00 0x02920000 0x00 0x1000>,
 		      <0x00 0x02927000 0x00 0x400>,
@@ -983,6 +992,7 @@
 	};
 
 	pcie3_rc: pcie@2930000 {
+		status = "disabled";
 		compatible = "ti,j721e-pcie-host";
 		reg = <0x00 0x02930000 0x00 0x1000>,
 		      <0x00 0x02937000 0x00 0x400>,
@@ -1046,6 +1056,7 @@
 	};
 
 	serdes_wiz4: wiz@5050000 {
+		status = "disabled";
 		compatible = "ti,j721e-wiz-10g";
 		#address-cells = <1>;
 		#size-cells = <1>;
@@ -1636,6 +1647,7 @@
 	};
 
 	mhdp: dp-bridge@a000000 {
+		status = "disabled";
 		compatible = "ti,j721e-mhdp8546";
 		/*
 		 * Note: we do not map DPTX PHY area, as that is handled by
@@ -2688,6 +2700,7 @@
 	};
 
 	ti_csi2rx0: ticsi2rx@4500000 {
+		status = "disabled";
 		compatible = "ti,j721e-csi2rx";
 		dmas = <&main_udmap 0x4940>, <&main_udmap 0x4941>, <&main_udmap 0x4942>,
 			<&main_udmap 0x4943>, <&main_udmap 0x4944>, <&main_udmap 0x4945>,
@@ -2742,6 +2755,7 @@
 	};
 
 	ti_csi2rx1: ticsi2rx@4510000 {
+		status = "disabled";
 		compatible = "ti,j721e-csi2rx";
 		dmas = <&main_udmap 0x4960>, <&main_udmap 0x4961>, <&main_udmap 0x4962>,
 			<&main_udmap 0x4963>, <&main_udmap 0x4964>, <&main_udmap 0x4965>,
