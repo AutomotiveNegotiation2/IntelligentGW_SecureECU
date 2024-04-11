@@ -5,6 +5,7 @@
 #include <linux/ethtool_netlink.h>
 #include <linux/marvell_phy.h>
 #include <linux/phy.h>
+#include <linux/delay.h>
 
 #define MDIO_MMD_AN_MV_STAT			32769
 #define MDIO_MMD_AN_MV_STAT_ANEG		0x0100
@@ -27,13 +28,55 @@
 #define MDIO_MMD_PCS_MV_100BT1_STAT2_LINK	0x0004
 #define MDIO_MMD_PCS_MV_100BT1_STAT2_ANGE	0x0008
 
+#define MV_PCS_BASE_R 0x0900
+
+static int mv88q2xxx_reset(struct phy_device *phydev)
+{
+	int ret;
+	int val;
+	printk("%s++\n",__func__);
+
+
+	// RGMII reset
+	phy_modify_mmd(phydev, MDIO_MMD_PCS, 0x8000, 0x8000, 0x8000);
+	ret = phy_read_mmd(phydev, MDIO_MMD_PCS, 0x8000);
+	printk("%s - 3.0x8000(0x%x)\n",__func__, ret);
+	usleep_range(10, 20);
+	phy_modify_mmd(phydev, MDIO_MMD_PCS, 0x8000, 0x8000, 0x0000);
+	ret = phy_read_mmd(phydev, MDIO_MMD_PCS, 0x8000);
+	printk("%s - 3.0x8000(0x%x)\n",__func__, ret);
+	
+	// PMA reset
+	phy_modify_mmd(phydev, 1, 0x0000, 0x8000, 0x8000);
+	usleep_range(10, 20);
+	ret = phy_read_mmd(phydev, 1, 0x0000);
+	printk("%s - 1.0x0000(0x%x)\n",__func__, ret);	
+
+	phy_modify_mmd(phydev, 1, 0x0900, 0x8000, 0x8000);
+	usleep_range(10, 20);
+	ret = phy_read_mmd(phydev, 1, 0x0900);
+	printk("%s - 1.0x0900(0x%x)\n",__func__, ret);	
+	
+	// PCS reset
+	phy_modify_mmd(phydev, 3, 0x0000, 0x8000, 0x8000);
+	usleep_range(10, 20);
+	ret = phy_read_mmd(phydev, 3, 0x0000);
+	printk("%s - 3.0x0000(0x%x)\n",__func__, ret);	
+	phy_modify_mmd(phydev, 3, 0x0900, 0x8000, 0x8000);
+	usleep_range(10, 20);
+	ret = phy_read_mmd(phydev, 3, 0x0900);
+	printk("%s - 3.0x0900(0x%x)\n",__func__, ret);
+
+	return 0;
+}
+
 static int mv88q2xxx_soft_reset(struct phy_device *phydev)
 {
 	int ret;
 	int val;
 
 	ret = phy_write_mmd(phydev, MDIO_MMD_PCS,
-			    MDIO_PCS_1000BT1_CTRL, MDIO_PCS_1000BT1_CTRL_RESET);
+			    MDIO_PCS_1000BT1_CTRL, MDIO_PCS_1000BT1_CTRL_RESET);					// 3.0x0900
 	if (ret < 0)
 		return ret;
 
@@ -179,7 +222,7 @@ static int mv88q2xxx_config_aneg(struct phy_device *phydev)
 	if (ret)
 		return ret;
 
-	return mv88q2xxx_soft_reset(phydev);
+	return 0;
 }
 
 static int mv88q2xxx_config_init(struct phy_device *phydev)
@@ -197,6 +240,17 @@ static int mv88q2xxx_config_init(struct phy_device *phydev)
 	if (ret)
 		return ret;
 
+	// TX FIFO depth
+	phy_modify_mmd(phydev, MDIO_MMD_PCS, 0xFD20, 0x0003, 0x0003);
+	ret = phy_read_mmd(phydev, MDIO_MMD_PCS, 0xFD20);
+	printk("%s - 3.0xFD20(0x%x)\n",__func__, ret);
+	
+	// TX_ENABLE pin disable and use to the LED function.
+	phy_modify_mmd(phydev, MDIO_MMD_PCS, 0x8000, 0x0008, 0x0000);
+	ret = phy_read_mmd(phydev, MDIO_MMD_PCS, 0x8000);
+	printk("%s - 3.0x8000(0x%x)\n",__func__, ret);
+	
+	
 	return mv88q2xxx_config_aneg(phydev);
 }
 
@@ -218,35 +272,39 @@ static int mv88q2xxxx_get_sqi(struct phy_device *phydev)
 		 * but can be found in the Software Initialization Guide. Only
 		 * revisions >= A0 are supported.
 		 */
-		ret = phy_modify_mmd(phydev, MDIO_MMD_PCS, 0xFC5D, 0x00FF, 0x00AC);
-		if (ret < 0)
-			return ret;
+		//ret = phy_modify_mmd(phydev, MDIO_MMD_PCS, 0xFC5D, 0x00FF, 0x00AC);
+		//if (ret < 0)
+		//	return ret;
 
-		ret = phy_read_mmd(phydev, MDIO_MMD_PCS, 0xfc88);
+		//ret = phy_read_mmd(phydev, MDIO_MMD_PCS, 0xfc88);
+		ret = phy_read_mmd(phydev, MDIO_MMD_PCS, 0xfc4c);
 		if (ret < 0)
 			return ret;
 	}
 
-	return ret & 0x0F;
+	return ret & 0x3FF;
+	//return ret & 0x0F;
 }
 
 static int mv88q2xxxx_get_sqi_max(struct phy_device *phydev)
 {
-	return 15;
+	//return 15;
+	return 1023;
 }
 
 static struct phy_driver mv88q2xxx_driver[] = {
 	{
-		.phy_id			= MARVELL_PHY_ID_88Q2110,
+		.phy_id			    = MARVELL_PHY_ID_88Q2120,
 		.phy_id_mask		= MARVELL_PHY_ID_MASK,
-		.name			= "mv88q2110",
+		.name			    = "mv88q2120",
 		.get_features		= mv88q2xxx_get_features,
 		.config_aneg		= mv88q2xxx_config_aneg,
 		.config_init		= mv88q2xxx_config_init,
 		.read_status		= mv88q2xxx_read_status,
-		.soft_reset		= mv88q2xxx_soft_reset,
+		.soft_reset		    = mv88q2xxx_reset,
+		//.soft_reset		    = mv88q2xxx_soft_reset,
 		.set_loopback		= genphy_c45_loopback,
-		.get_sqi		= mv88q2xxxx_get_sqi,
+		.get_sqi		    = mv88q2xxxx_get_sqi,
 		.get_sqi_max		= mv88q2xxxx_get_sqi_max,
 	},
 };
@@ -254,7 +312,7 @@ static struct phy_driver mv88q2xxx_driver[] = {
 module_phy_driver(mv88q2xxx_driver);
 
 static struct mdio_device_id __maybe_unused mv88q2xxx_tbl[] = {
-	{ MARVELL_PHY_ID_88Q2110, MARVELL_PHY_ID_MASK },
+	{ MARVELL_PHY_ID_88Q2120, MARVELL_PHY_ID_MASK },
 	{ /*sentinel*/ }
 };
 MODULE_DEVICE_TABLE(mdio, mv88q2xxx_tbl);
