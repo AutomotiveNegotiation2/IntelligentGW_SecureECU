@@ -65,7 +65,7 @@ extern const int phy_basic_ports_array[3];
 extern const int phy_fibre_port_array[1];
 extern const int phy_all_ports_features_array[7];
 extern const int phy_10_100_features_array[4];
-extern const int phy_basic_t1_features_array[2];
+extern const int phy_basic_t1_features_array[3];
 extern const int phy_gbit_features_array[2];
 extern const int phy_10gbit_features_array[1];
 
@@ -642,7 +642,10 @@ struct phy_device {
 	__ETHTOOL_DECLARE_LINK_MODE_MASK(lp_advertising);
 	/* used with phy_speed_down */
 	__ETHTOOL_DECLARE_LINK_MODE_MASK(adv_old);
-
+	__ETHTOOL_DECLARE_LINK_MODE_MASK(supported_eee);
+	__ETHTOOL_DECLARE_LINK_MODE_MASK(advertising_eee);
+	bool eee_enabled;
+	
 	/* Energy efficient ethernet modes which should be prohibited */
 	u32 eee_broken_modes;
 
@@ -687,6 +690,8 @@ struct phy_device {
 
 	u8 mdix;
 	u8 mdix_ctrl;
+	
+	int pma_extable;
 
 	void (*phy_link_change)(struct phy_device *phydev, bool up);
 	void (*adjust_link)(struct net_device *dev);
@@ -1601,6 +1606,13 @@ int genphy_c45_read_mdix(struct phy_device *phydev);
 int genphy_c45_pma_read_abilities(struct phy_device *phydev);
 int genphy_c45_read_status(struct phy_device *phydev);
 int genphy_c45_config_aneg(struct phy_device *phydev);
+
+////////////////////////////////////
+int genphy_c45_loopback(struct phy_device *phydev, bool enable);
+int genphy_c45_pma_baset1_read_abilities(struct phy_device *phydev);
+int genphy_c45_pma_baset1_read_master_slave(struct phy_device *phydev);
+int genphy_c45_an_config_eee_aneg(struct phy_device *phydev);
+////////////////////////////////////
 
 /* Generic C45 PHY driver */
 extern struct phy_driver genphy_c45_driver;
