@@ -1,0 +1,4 @@
+0002-ina226-Porting-to-5.10-branch.patch -p1
+0001-arm64-dts-ti-Add-DTB-overlays-for-vision-apps-and-ed.patch -p1
+0003-arm64-dts-ti-k3-j721e-sk-Add-additional-DDR-carveout.patch -p1
+0004-arm64-dts-ti-k3-j721e-rtos-memory-map-CMA-DT-node.patch -p1

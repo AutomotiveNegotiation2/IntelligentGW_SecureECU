@@ -1,0 +1,53 @@
+From 186a07357e2df974d3e960a01a6d4d69eb43d103 Mon Sep 17 00:00:00 2001
+From: Siddharth Vadapalli <s-vadapalli@ti.com>
+Date: Thu, 17 Feb 2022 17:39:33 +0530
+Subject: [PATCH 3/4] arm64: dts: ti: k3-j721e-sk: Add additional DDR carveout
+ memory nodes for R5Fs
+
+Reserve two additional shared memory regions for inter-core
+communication between A72 and R5 required by ti-eth FW
+version 08.01.00.11
+
+Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+Signed-off-by: Rahul T R <r-ravikumar@ti.com>
+---
+ arch/arm64/boot/dts/ti/k3-j721e-sk.dts | 16 +++++++++++++++-
+ 1 file changed, 15 insertions(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/ti/k3-j721e-sk.dts b/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
+index 6e254d55e0..523c9ae7c8 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
++++ b/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
+@@ -150,6 +150,18 @@
+ 			alignment = <0x1000>;
+ 			no-map;
+ 		};
++
++		main_r5fss0_core0_shared_memory_queue_region:r5f-virtual-eth-queues@ac000000 {
++			compatible = "shared-dma-pool";
++			reg = <0x00 0xac000000 0x00 0x200000>;
++			no-map;
++		};
++
++		main_r5fss0_core0_shared_memory_bufpool_region:r5f-virtual-eth-buffers@ac200000 {
++			compatible = "shared-dma-pool";
++			reg = <0x00 0xac200000 0x00 0x1e00000>;
++			no-map;
++		};
+ 	};
+ 
+ 	vusb_main: fixedregulator-vusb-main5v0 {
+@@ -1319,7 +1331,9 @@
+ &main_r5fss0_core0 {
+ 	mboxes = <&mailbox0_cluster1 &mbox_main_r5fss0_core0>;
+ 	memory-region = <&main_r5fss0_core0_dma_memory_region>,
+-			<&main_r5fss0_core0_memory_region>;
++			<&main_r5fss0_core0_memory_region>,
++			<&main_r5fss0_core0_shared_memory_queue_region>,
++			<&main_r5fss0_core0_shared_memory_bufpool_region>;
+ };
+ 
+ &main_r5fss0_core1 {
+-- 
+2.17.1
+

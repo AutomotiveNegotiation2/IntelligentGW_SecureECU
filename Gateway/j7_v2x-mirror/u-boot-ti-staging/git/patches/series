@@ -1,0 +1,5 @@
+0001-tiU21.01-arm-mach-k3-j721s2-Enable-QoS-for-DSS.patch -p1
+0002-tiU21.01-arm-mach-k3-j784s4-Enable-QoS-for-DSS.patch -p1
+0001-tiU21.01-arm-mach-k3-common-don-t-reconfigure-.patch -p1
+0001-Optimal-QoS-Settings.patch -p1
+0001-HACK-arm-k3-j721e-sk-RPi-header-pins-set-to-default-.patch -p1

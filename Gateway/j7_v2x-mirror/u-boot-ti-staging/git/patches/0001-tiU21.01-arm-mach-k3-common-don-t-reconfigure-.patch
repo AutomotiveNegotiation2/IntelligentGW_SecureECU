@@ -1,0 +1,56 @@
+From e8a8ef5ce621ba5bac6affe790a0c37825f8641f Mon Sep 17 00:00:00 2001
+From: Manorit Chawdhry <m-chawdhry@ti.com>
+Date: Tue, 2 May 2023 15:32:53 +0530
+Subject: [PATCH] [tiU21.01] arm: mach-k3: common: don't reconfigure
+ background firewalls
+
+K3 devices have some firewalls set up by ROM that we usually remove so
+that the development is easy in HS devices.
+
+While removing the firewalls disabling a background region before
+disabling the foreground regions keeps the firewall in a state where all
+the transactions will be blacklisted until all the regions are disabled.
+This causes a race for some other entity trying to access that memory
+region before all the firewalls are disabled and causes an exception.
+
+Since there is no guarantee on where the background regions lie based on
+ROM configurations, iterate the loop twice removing the foregrounds
+first and then backgrounds.
+
+To be pushed to ti-u-boot 2023.04 for 9.0 release.
+
+Signed-off-by: Manorit Chawdhry <m-chawdhry@ti.com>
+---
+ arch/arm/mach-k3/common.c | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
+
+diff --git a/arch/arm/mach-k3/common.c b/arch/arm/mach-k3/common.c
+index 77e1ed9419..8816689bf2 100644
+--- a/arch/arm/mach-k3/common.c
++++ b/arch/arm/mach-k3/common.c
+@@ -566,6 +566,25 @@ void remove_fwl_configs(struct fwl_data *fwl_data, size_t fwl_data_size)
+ 
+ 			fwl_ops->get_fwl_region(ti_sci, &region);
+ 
++			/* Don't disable the background regions */
++			if (region.control != 0 && ((region.control & BIT(8)) == 0)) {
++				pr_debug("Attempting to disable firewall %5d (%25s)\n",
++					 region.fwl_id, fwl_data[i].name);
++				region.control = 0;
++
++				if (fwl_ops->set_fwl_region(ti_sci, &region))
++					pr_err("Could not disable firewall %5d (%25s)\n",
++					       region.fwl_id, fwl_data[i].name);
++			}
++		}
++		for (j = 0; j <  fwl_data[i].regions; j++) {
++			region.fwl_id = fwl_data[i].fwl_id;
++			region.region = j;
++			region.n_permission_regs = 3;
++
++			fwl_ops->get_fwl_region(ti_sci, &region);
++
++			/* Disable all the enabled regions after the foregrounds are disabled */
+ 			if (region.control != 0) {
+ 				pr_debug("Attempting to disable firewall %5d (%25s)\n",
+ 					 region.fwl_id, fwl_data[i].name);

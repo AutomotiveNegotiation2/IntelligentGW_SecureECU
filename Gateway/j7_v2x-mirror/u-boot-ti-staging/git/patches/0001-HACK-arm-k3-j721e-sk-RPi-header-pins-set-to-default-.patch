@@ -1,0 +1,179 @@
+From b52141b23675f08394d30b98133130e4fd450d1c Mon Sep 17 00:00:00 2001
+From: Rahul T R <r-ravikumar@ti.com>
+Date: Thu, 17 Mar 2022 19:28:28 +0530
+Subject: [PATCH] HACK: arm: k3-j721e-sk: RPi header pins set to default output
+
+Set GPIO pins connected to RPi header to default output
+since the voltage is high when they are input.
+
+This causes issues when motors are connected to the
+gpio pins
+see: https://jira.itg.ti.com/browse/ADASVISION-5409
+
+This patches will be dropped once the issue is root caused
+at HW level and fixed
+
+Signed-off-by: Rahul T R <r-ravikumar@ti.com>
+---
+ arch/arm/dts/k3-j721e-sk.dts    | 135 ++++++++++++++++++++++++++++++++
+ configs/j721e_evm_a72_defconfig |   1 +
+ 2 files changed, 136 insertions(+)
+
+diff --git a/arch/arm/dts/k3-j721e-sk.dts b/arch/arm/dts/k3-j721e-sk.dts
+index 1b1aeb0844..5215f95120 100644
+--- a/arch/arm/dts/k3-j721e-sk.dts
++++ b/arch/arm/dts/k3-j721e-sk.dts
+@@ -794,3 +794,138 @@
+ 	memory-region = <&c71_0_dma_memory_region>,
+ 			<&c71_0_memory_region>;
+ };
++
++&main_gpio0 {
++	gpio0-7-hog {
++		gpio-hog;
++		gpios = <7   GPIO_ACTIVE_HIGH>;
++		output-low;
++		line-name = "GPIO0_7";
++	};
++
++	gpio0-71-hog {
++		gpio-hog;
++		gpios = <71 GPIO_ACTIVE_HIGH>;
++		output-low;
++		line-name = "GPIO0_71";
++	};
++
++	gpio0-82-hog {
++		gpio-hog;
++		gpios = <82 GPIO_ACTIVE_HIGH>;
++		output-low;
++		line-name = "GPIO0_82";
++	};
++
++	gpio0-11-hog {
++		gpio-hog;
++		gpios = <11 GPIO_ACTIVE_HIGH>;
++		output-low;
++		line-name = "GPIO0_11";
++	};
++
++	gpio0-101-hog {
++		gpio-hog;
++		gpios = <101 GPIO_ACTIVE_HIGH>;
++		output-low;
++		line-name = "GPIO0_101";
++	};
++
++	gpio0-107-hog {
++		gpio-hog;
++		gpios = <107 GPIO_ACTIVE_HIGH>;
++		output-low;
++		line-name = "GPIO0_107";
++	};
++
++	gpio0-103-hog {
++		gpio-hog;
++		gpios = <103 GPIO_ACTIVE_HIGH>;
++		output-low;
++		line-name = "GPIO0_103";
++	};
++
++	gpio0-2-hog {
++		gpio-hog;
++		gpios = <2 GPIO_ACTIVE_HIGH>;
++		output-low;
++		line-name = "GPIO0_2";
++	};
++
++	gpio0-115-hog {
++		gpio-hog;
++		gpios = <115 GPIO_ACTIVE_HIGH>;
++		output-low;
++		line-name = "GPIO0_115";
++	};
++
++	gpio0-70-hog {
++		gpio-hog;
++		gpios = <70 GPIO_ACTIVE_HIGH>;
++		output-low;
++		line-name = "GPIO0_70";
++	};
++
++	gpio0-81-hog {
++		gpio-hog;
++		gpios = <81 GPIO_ACTIVE_HIGH>;
++		output-low;
++		line-name = "GPIO0_81";
++	};
++
++	gpio0-1-hog {
++		gpio-hog;
++		gpios = <1 GPIO_ACTIVE_HIGH>;
++		output-low;
++		line-name = "GPIO0_1";
++	};
++
++	gpio0-5-hog {
++		gpio-hog;
++		gpios = <5 GPIO_ACTIVE_HIGH>;
++		output-low;
++		line-name = "GPIO0_5";
++	};
++
++	gpio0-8-hog {
++		gpio-hog;
++		gpios = <8 GPIO_ACTIVE_HIGH>;
++		output-low;
++		line-name = "GPIO0_8";
++	};
++
++	gpio0-102-hog {
++		gpio-hog;
++		gpios = <102 GPIO_ACTIVE_HIGH>;
++		output-low;
++		line-name = "GPIO0_102";
++	};
++
++	gpio0-108-hog {
++		gpio-hog;
++		gpios = <108 GPIO_ACTIVE_HIGH>;
++		output-low;
++		line-name = "GPIO0_108";
++	};
++
++	gpio0-97-hog {
++		gpio-hog;
++		gpios = <97 GPIO_ACTIVE_HIGH>;
++		output-low;
++		line-name = "GPIO0_97";
++	};
++
++	gpio0-3-hog {
++		gpio-hog;
++		gpios = <3 GPIO_ACTIVE_HIGH>;
++		output-low;
++		line-name = "GPIO0_3";
++	};
++
++	gpio0-4-hog {
++		gpio-hog;
++		gpios = <4 GPIO_ACTIVE_HIGH>;
++		output-low;
++		line-name = "GPIO0_4";
++	};
++};
+diff --git a/configs/j721e_evm_a72_defconfig b/configs/j721e_evm_a72_defconfig
+index bb7334ddd5..fd4a696e5b 100644
+--- a/configs/j721e_evm_a72_defconfig
++++ b/configs/j721e_evm_a72_defconfig
+@@ -20,6 +20,7 @@ CONFIG_SPL_FS_FAT=y
+ CONFIG_SPL_LIBDISK_SUPPORT=y
+ CONFIG_SPL_SPI_FLASH_SUPPORT=y
+ CONFIG_SPL_SPI_SUPPORT=y
++CONFIG_GPIO_HOG=y
+ # CONFIG_PSCI_RESET is not set
+ CONFIG_DEFAULT_DEVICE_TREE="k3-j721e-common-proc-board"
+ CONFIG_DISTRO_DEFAULTS=y
+-- 
+2.17.1
+
