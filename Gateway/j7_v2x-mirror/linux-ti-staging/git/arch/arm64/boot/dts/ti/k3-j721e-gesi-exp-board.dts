@@ -38,29 +38,31 @@
 };
 
 &cpsw0_port1 {
-	phy-handle = <&cpsw9g_phy12>;
-	phy-mode = "rgmii-rxid";
+	phy-handle = <&cpsw9g_phy4>;
+	phy-mode = "rgmii-txid";							/* Marvell 88q2120 */
+	/* phy-mode = "rgmii-rxid"; */						/* DP83867*/
 	mac-address = [00 00 00 00 00 00];
 	phys = <&cpsw0_phy_gmii_sel 1>;
 };
 
 &cpsw0_port2 {
-	phy-handle = <&cpsw9g_phy15>;
-	phy-mode = "rgmii-rxid";
+	phy-handle = <&cpsw9g_phy7>;
+	/* phy-mode = "rgmii-rxid"; */						/* DP83867*/
+	phy-mode = "rgmii-txid";							/* Marvell 88q2120 */
 	mac-address = [00 00 00 00 00 00];
 	phys = <&cpsw0_phy_gmii_sel 2>;
 };
 
 &cpsw0_port3 {
 	phy-handle = <&cpsw9g_phy0>;
-	phy-mode = "rgmii-rxid";
+	phy-mode = "rgmii-txid";							/* Marvell 88q2120 */
 	mac-address = [00 00 00 00 00 00];
 	phys = <&cpsw0_phy_gmii_sel 3>;
 };
 
 &cpsw0_port4 {
 	phy-handle = <&cpsw9g_phy3>;
-	phy-mode = "rgmii-rxid";
+	phy-mode = "rgmii-txid";							/* Marvell 88q2120 */
 	mac-address = [00 00 00 00 00 00];
 	phys = <&cpsw0_phy_gmii_sel 4>;
 };
@@ -88,27 +90,31 @@
 
 	cpsw9g_phy0: ethernet-phy@0 {
 		reg = <0>;
-		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
-		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
+		#ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
+		#ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
 		ti,min-output-impedance;
+		compatible = "ethernet-phy-ieee802.3-c45";		/* Marvell 88q2120 */
 	};
 	cpsw9g_phy3: ethernet-phy@3 {
 		reg = <3>;
-		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
-		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
+		#ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
+		#ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
 		ti,min-output-impedance;
+		compatible = "ethernet-phy-ieee802.3-c45";		/* Marvell 88q2120 */
 	};
-	cpsw9g_phy12: ethernet-phy@12 {
-		reg = <12>;
-		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
-		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
+	cpsw9g_phy4: ethernet-phy@4 {
+		reg = <4>;
+		#ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
+		#ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
 		ti,min-output-impedance;
+		compatible = "ethernet-phy-ieee802.3-c45";		/* Marvell 88q2120 */
 	};
-	cpsw9g_phy15: ethernet-phy@15 {
-		reg = <15>;
-		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
-		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
+	cpsw9g_phy7: ethernet-phy@7 {
+		reg = <7>;
+		#ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
+		#ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
 		ti,min-output-impedance;
+		compatible = "ethernet-phy-ieee802.3-c45";		/* Marvell 88q2120 */
 	};
 };
 
