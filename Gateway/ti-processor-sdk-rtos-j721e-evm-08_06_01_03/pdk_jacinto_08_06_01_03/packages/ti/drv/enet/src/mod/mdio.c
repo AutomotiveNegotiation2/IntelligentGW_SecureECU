@@ -269,12 +269,14 @@ int32_t Mdio_open(EnetMod_Handle hMod,
                     break;
 
                 case MDIO_MODE_MANUAL:
+#if 0
                     if (mdioCfg->c45EnMask != ENET_MDIO_PHY_ADDR_MASK_NONE)
                     {
                         status = ENET_ENOTSUPPORTED;
                         ENETTRACE_WARN("MDIO Clause 45 is not supported\n");
                     }
                     else
+#endif
                     {
                         ENETTRACE_INFO("MDIO manual mode enabled\n");
                         hMdio->mdc_halfPeriodInNsec = (SEC_TO_NANOSEC / mdioCfg->mdioBusFreqHz);

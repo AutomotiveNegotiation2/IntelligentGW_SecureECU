@@ -659,7 +659,7 @@ endif
 
 # Enable MDIO manual mode in j721e SoC due to errata i2329.
 ifeq ($(SOC),$(filter $(SOC), j721e j7200 j721s2))
-    ENET_CFLAGS += -DENABLE_MDIO_MANUAL_MODE
+##    ENET_CFLAGS += -DENABLE_MDIO_MANUAL_MODE
 endif
 
 export ENET_CFLAGS
