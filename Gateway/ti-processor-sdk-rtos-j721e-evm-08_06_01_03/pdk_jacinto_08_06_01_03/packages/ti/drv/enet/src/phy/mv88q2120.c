@@ -102,6 +102,16 @@ static int32_t Mv88q2120_config(EnetPhy_Handle hPhy,
                               EnetPhy_Mii mii)
 {
 	int32_t status = ENETPHY_SOK;
+	int16_t val = 0;
+	
+	
+	// TX_ENABLE pin disable and use to the LED function.
+	EnetPhy_readC45Reg(hPhy, 3, 0x8000, &val);
+	ENETTRACE_DBG(" PHY(%u), 3.0x8000(%u)\n", hPhy->addr, val);
+	EnetPhy_writeC45Reg(hPhy, 3, 0x8000, 0x0000);
+	
+	
+	
 	
     return status;
 }
