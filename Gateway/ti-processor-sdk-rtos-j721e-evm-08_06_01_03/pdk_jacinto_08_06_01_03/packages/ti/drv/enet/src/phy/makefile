@@ -19,7 +19,7 @@ INCLUDE_INTERNAL_INTERFACES =
 
 # Common source files and CFLAGS across all platforms and cores
 SRCS_COMMON += enetphy.c generic_phy.c
-SRCS_COMMON += dp83867.c dp83822.c vsc8514.c
+SRCS_COMMON += dp83867.c dp83822.c vsc8514.c mv88q2120.c
 
 PACKAGE_SRCS_COMMON = $(SRCDIR)
 CFLAGS_LOCAL_COMMON = $(PDK_CFLAGS) $(ENET_CFLAGS)
