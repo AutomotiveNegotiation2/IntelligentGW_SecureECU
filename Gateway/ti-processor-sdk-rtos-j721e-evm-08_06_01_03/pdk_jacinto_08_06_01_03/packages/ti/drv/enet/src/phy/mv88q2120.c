@@ -145,6 +145,17 @@ void Mv88q2120_reset(EnetPhy_Handle hPhy)
 	EnetPhy_readC45Reg(hPhy, 3, 0x8000, &val);
 	ENETTRACE_DBG(" PHY(%u) 3.0x8000(0x%x)\n", hPhy->addr, val);
 	EnetPhy_rmwC45Reg(hPhy, 3, 0x8000, 0x8000, 0x0000);
+	
+	// PMA reset
+	EnetPhy_rmwC45Reg(hPhy, 1, 0x0000, 0x8000, 0x8000);
+	EnetPhy_rmwC45Reg(hPhy, 1, 0x0900, 0x8000, 0x8000);
+	val = EnetPhy_readC45Reg(hPhy, 1, 0x0900, &val);
+	ENETTRACE_DBG(" PHY(%u) 1.0x0900(0x%x)\n", hPhy->addr, val);
+	// PCS reset
+	EnetPhy_rmwC45Reg(hPhy, 3, 0x0000, 0x8000, 0x8000);
+	EnetPhy_rmwC45Reg(hPhy, 3, 0x0900, 0x8000, 0x8000);	
+	val = EnetPhy_readC45Reg(hPhy, 3, 0x0900, &val);
+	ENETTRACE_DBG(" PHY(%u) 3.0x0900(0x%x)\n", hPhy->addr, val);
 }
 
 bool Mv88q2120_isResetComplete(EnetPhy_Handle hPhy)
