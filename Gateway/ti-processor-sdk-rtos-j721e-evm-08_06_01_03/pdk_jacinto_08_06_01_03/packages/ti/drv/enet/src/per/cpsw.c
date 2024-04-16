@@ -1681,7 +1681,8 @@ static int32_t Cpsw_openPortLinkWithPhy(Cpsw_Handle hCpsw,
     macModCfg.macCfg = *macCfg;
     macModCfg.mii = *mii;
     macModCfg.linkCfg = *linkCfg;
-
+	
+	EnetUtils_printf("Cpsw_openPortLinkWithPhy - portNum:%d\n",portNum);
     /* Open MAC port */
     status = EnetMod_open(hMacPort, hPer->enetType, hPer->instId, &macModCfg, sizeof(macModCfg));
     ENETTRACE_ERR_IF(status != ENET_SOK, "Port %u: Failed to open MAC: %d\n", portId, status);
@@ -2199,7 +2200,9 @@ static int32_t Cpsw_isPortLinkUp(Cpsw_Handle hCpsw,
                      (enetSublayer == ENET_MAC_SUBLAYER_QUAD_SERIAL_SUB))
             {
                 status = EnetSoc_mapPort2QsgmiiId(hPer->enetType, hPer->instId, macPort, &qsgmiiId);
-                ENETTRACE_ERR_IF(status != ENET_SOK,
+                
+				ENETTRACE_INFO("qsgmiiId:%d\n", qsgmiiId);
+				ENETTRACE_ERR_IF(status != ENET_SOK,
                                  "Port %u: Failed to map QSGMII Id: %d\n", portId, status);
                 Enet_devAssert(status == ENET_SOK, "Port %u: QSGMII map failed\n", portId);
 
@@ -2214,11 +2217,13 @@ static int32_t Cpsw_isPortLinkUp(Cpsw_Handle hCpsw,
 
                     status = EnetMod_ioctl(hMacPort, CPSW_MACPORT_IOCTL_GET_SGMII_AUTONEG_LINK_STATUS, &prms);
                     ENETTRACE_ERR_IF(status != ENET_SOK,
-                                     "Port %u: Failed to get SGMII link state: %d\n", portId, status);
+                                    "Port %u: Failed to get SGMII link state: %d\n", portId, status);
+					ENETTRACE_INFO("sgmiiLink:%d\n", sgmiiLink);
+					
                     if (!sgmiiLink)
                     {
-                        ENETTRACE_WARN("Port %u: SGMII link not up\n", portId);
-                        *linked = false;
+                       ENETTRACE_WARN("Port %u: SGMII link not up\n", portId);
+                       *linked = false;
                     }
                 }
             }

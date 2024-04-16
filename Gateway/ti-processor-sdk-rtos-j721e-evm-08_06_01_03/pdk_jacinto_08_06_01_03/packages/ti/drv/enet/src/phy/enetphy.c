@@ -175,6 +175,7 @@ static void EnetPhy_showLinkPartnerCompat(EnetPhy_Handle hPhy,
 /* ========================================================================== */
 
 /* PHY drivers */
+extern EnetPhy_Drv gEnetPhyDrv88q2120;
 extern EnetPhy_Drv gEnetPhyDrvGeneric;
 extern EnetPhy_Drv gEnetPhyDrvDp83822;
 extern EnetPhy_Drv gEnetPhyDrvDp83867;
@@ -183,6 +184,7 @@ extern EnetPhy_Drv gEnetPhyDrvVsc8514;
 /*! \brief All the registered PHY specific drivers. */
 static EnetPhyDrv_Handle gEnetPhyDrvs[] =
 {
+	&gEnetPhyDrv88q2120,   /* MV88Q2120 */
     &gEnetPhyDrvVsc8514,   /* VSC8514 */
     &gEnetPhyDrvDp83822,   /* DP83822 */
     &gEnetPhyDrvDp83867,   /* DP83867 */
@@ -192,7 +194,7 @@ static EnetPhyDrv_Handle gEnetPhyDrvs[] =
 /*! \brief Enet MAC port objects. */
 static EnetPhy_Obj gEnetPhy_phyObjs[ENET_CFG_ENETPHY_PHY_MAX];
 
-#if (ENET_CFG_TRACE_LEVEL >= ENET_CFG_TRACE_LEVEL_DEBUG)
+//#if (ENET_CFG_TRACE_LEVEL >= ENET_CFG_TRACE_LEVEL_DEBUG)
 /*! \brief Name of the FSM states. */
 static const char *gEnetPhyStateNames[] =
 {
@@ -207,17 +209,17 @@ static const char *gEnetPhyStateNames[] =
     "LINKED",
     "LOOPBACK",
 };
-#endif
+//#endif
 
-#if (ENET_CFG_TRACE_LEVEL >= ENET_CFG_TRACE_LEVEL_WARN)
+//#if (ENET_CFG_TRACE_LEVEL >= ENET_CFG_TRACE_LEVEL_WARN)
 /*! \brief Ethernet PHY capabilities string buffer. */
 static char gEnetPhyCapsBuf[ENETPHY_CAPS_BUF_LEN];
-#endif
+//#endif
 
-#if (ENET_CFG_TRACE_LEVEL >= ENET_CFG_TRACE_LEVEL_DEBUG)
+//#if (ENET_CFG_TRACE_LEVEL >= ENET_CFG_TRACE_LEVEL_DEBUG)
 /*! \brief Ethernet PHY mode string buffer. */
 static char gEnetPhyModeBuf[ENETPHY_MODE_BUF_LEN];
-#endif
+//#endif
 
 /* ========================================================================== */
 /*                          Function Definitions                              */
@@ -290,6 +292,8 @@ EnetPhy_Handle EnetPhy_open(const EnetPhy_Cfg *phyCfg,
         hPhy->addr    = phyCfg->phyAddr;
         hPhy->group   = phyCfg->phyGroup;
 
+		EnetUtils_printf("EnetPhy_open - PHY:%u\n", hPhy->addr);
+		
         /* State's linkCaps will be a mask for NWAY path and single bit for manual settings */
         if ((linkCfg->speed == ENETPHY_SPEED_AUTO) ||
             (linkCfg->duplexity == ENETPHY_DUPLEX_AUTO))
@@ -1118,11 +1122,11 @@ static void EnetPhy_enableState(EnetPhy_Handle hPhy)
         {
             /* If PHY is not capable of auto negotiation, fallback to manual mode
              * with the highest refined capability */
-            ENETTRACE_WARN("PHY %u: falling back to manual mode\n", hPhy->addr);
+            ENETTRACE_DBG("PHY %u: falling back to manual mode\n", hPhy->addr);
             state->enableNway = false;
 
             commonLinkCaps = EnetPhy_findBestCap(commonLinkCaps);
-            ENETTRACE_WARN("PHY %u: new link caps: %s\n",
+            ENETTRACE_DBG("PHY %u: new link caps: %s\n",
                            hPhy->addr, EnetPhy_getCapsString(commonLinkCaps));
             state->linkCaps = commonLinkCaps;
         }
