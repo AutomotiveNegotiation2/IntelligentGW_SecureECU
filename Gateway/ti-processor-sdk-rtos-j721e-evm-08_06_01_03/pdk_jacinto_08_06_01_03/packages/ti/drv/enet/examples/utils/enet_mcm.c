@@ -750,7 +750,7 @@ static int32_t EnetMcm_enablePorts(EnetMcm_Handle hMcm)
         {
             if (alive == true)
             {
-                hMcm->print("PHY %d is alive\n", i);
+                hMcm->print("> PHY %d is alive\n", i);
             }
         }
         else

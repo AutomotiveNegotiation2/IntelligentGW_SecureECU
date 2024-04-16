@@ -447,6 +447,16 @@ static EthFw_VirtPortCfg gEthApp_virtPortCfg[] =
         .remoteCoreId = IPC_MCU2_1,
         .portId       = ETHREMOTECFG_SWITCH_PORT_1,
     },
+// +mcbae
+    {
+        .remoteCoreId = IPC_MPU1_0,
+        .portId       = ETHREMOTECFG_SWITCH_PORT_2,
+    },
+    {
+        .remoteCoreId = IPC_MCU2_1,
+        .portId       = ETHREMOTECFG_SWITCH_PORT_3,
+    },
+#if 0
 #if defined(ENABLE_MAC_ONLY_PORTS)
     {
         .remoteCoreId = IPC_MPU1_0,
@@ -456,6 +466,7 @@ static EthFw_VirtPortCfg gEthApp_virtPortCfg[] =
         .remoteCoreId = IPC_MCU2_1,
         .portId       = ETHREMOTECFG_MAC_PORT_4,
     },
+#endif
 #endif
 };
 
@@ -623,7 +634,7 @@ static void EthApp_initTaskFxn(void* arg0, void* arg1)
     if (status == ETHAPP_OK)
     {
         appLogPrintf("=======================================================\n");
-        appLogPrintf("            CPSW Ethernet Firmware                     \n");
+        appLogPrintf("            CPSW Ethernet Firmware - v2x               \n");
         appLogPrintf("=======================================================\n");
 
         /* Open UDMA driver */

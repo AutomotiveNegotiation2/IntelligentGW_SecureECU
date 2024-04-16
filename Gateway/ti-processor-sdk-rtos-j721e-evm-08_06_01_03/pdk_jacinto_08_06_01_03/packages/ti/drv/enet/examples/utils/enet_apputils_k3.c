@@ -388,7 +388,7 @@ void EnetAppUtils_selectCptsClock(Enet_Type enetType,
                                   uint32_t clkSelMux)
 {
     EnetAppUtils_MmrLockState prevLockState;
-
+	UART_printf("EnetAppUtils_selectCptsClock - enetType(%u), Mux(0x%x)\n", enetType, clkSelMux);
     if ((enetType == ENET_CPSW_2G) && (instId == 0U))
     {
 #if defined(SOC_AM65XX)

@@ -64,9 +64,10 @@ endif
 ####DEFS += ENABLE_QSGMII_PORTS
 
 # MAC-only ports are not supported in QNX virtual MAC driver
-ifneq ($(BUILD_QNX_A72), yes)
-  DEFS += ENABLE_MAC_ONLY_PORTS
-endif
+####ifneq ($(BUILD_QNX_A72), yes)
+####  DEFS += ENABLE_MAC_ONLY_PORTS
+####endif
+
 
 ifneq ($(filter $(TARGET_OS),FREERTOS SAFERTOS),)
   ifeq ($(TARGET_PLATFORM),J7200)
@@ -154,9 +155,9 @@ endif
 DEFS += ENABLE_QSGMII_PORTS
 
 # MAC-only ports are not supported in QNX virtual MAC driver
-ifneq ($(BUILD_QNX_A72), yes)
-  DEFS += ENABLE_MAC_ONLY_PORTS
-endif
+##ifneq ($(BUILD_QNX_A72), yes)
+##  DEFS += ENABLE_MAC_ONLY_PORTS
+##endif
 
 ifneq ($(filter $(TARGET_OS),FREERTOS SAFERTOS),)
   ENET_APPUTILS_LIB = enet_example_utils_full_$(TARGET_OS_LC)

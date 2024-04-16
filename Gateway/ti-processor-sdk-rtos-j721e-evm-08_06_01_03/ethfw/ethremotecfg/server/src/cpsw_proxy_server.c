@@ -2404,7 +2404,7 @@ int32_t CpswProxyServer_init(CpswProxyServer_Config_t *cfg)
         EnetAppUtils_assert(cfg->numVirtPorts <= ENET_ARRAYSIZE(remote_ethswitch_init_prm.inst_prm));
         EnetAppUtils_assert(cfg->numVirtPorts <= ENET_ARRAYSIZE(cfg->virtPortCfg));
 
-        appLogPrintf("CpswProxyServer: Virtual port configuration:\n");
+        appLogPrintf("CpswProxyServer: Virtual port configuration  numVirtPorts:%d\n", cfg->numVirtPorts);
 
         for (i = 0U; i < cfg->numVirtPorts; i++)
         {
