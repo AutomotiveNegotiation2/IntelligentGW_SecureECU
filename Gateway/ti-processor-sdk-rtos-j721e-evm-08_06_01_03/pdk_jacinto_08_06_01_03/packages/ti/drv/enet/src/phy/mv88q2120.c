@@ -164,6 +164,16 @@ bool Mv88q2120_isResetComplete(EnetPhy_Handle hPhy)
     uint16_t val;
     bool complete = false;
 
+	
+	EnetPhy_readC45Reg(hPhy, 1, 0x0900, &val);
+	if((val & 0x8000) == 0x00)
+	{
+		EnetPhy_readC45Reg(hPhy, 3, 0x0900, &val);
+		if((val & 0x8000) == 0x00)
+			complete = true;
+	}
+    ENETTRACE_DBG(" PHY(%u) reset is %s complete\n", hPhy->addr, complete ? "" : "not");
+	
     return complete;
 }
 
