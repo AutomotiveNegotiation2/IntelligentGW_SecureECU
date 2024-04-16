@@ -1,0 +1,135 @@
+.. _freertos:
+
+FreeRTOS
+========
+
+Introduction
+------------
+
+FreeRTOS is a market-leading real-time operating system (RTOS) for microcontrollers and small microprocessors. 
+Distributed freely under the MIT open source license, FreeRTOS includes a kernel and a growing set of libraries 
+suitable for use across all industry sectors. FreeRTOS is built with an emphasis on reliability and ease of use.
+
+.. ifconfig:: CONFIG_family in ('jacinto', 'j7200', 'am65xx')
+
+    PDK supports FreeRTOS on |__FREERTOS_SUPPORTED_CPUS__| CPUs for |__PART_DEFAULT_SOC_CAPS__|.
+    OSAL support and PDK Drivers running with FreeRTOS are available in this release.
+
+    FreeRTOS is not supported on |__PART_CORTEX_A_CORE_NAME__| core.
+
+Features Supported
+------------------
+
+- FreeRTOS Kernel |__FREERTOS_KERNEL_VERSION__|
+  
+    - Tasks, semaphores, mutex, queues, timers, list, heap, event groups
+  
+    - preemptive priority-based scheduler
+  
+    - static and/or dynamic memory allocation Mode
+
+- In order to keep the PDK drivers/examples OS agnostic, additionally below OSAL modules are implemented 
+  to call FreeRTOS APIs underneath:-
+
+    - Clock, Task, Semaphore, Event, Mailbox, Mutex, Queue, Cache, HW Interrupts, HW Timers, Cycleprofiler, Heap, Load. 
+
+Features Not Supported
+----------------------
+
+.. ifconfig:: CONFIG_family in ('jacinto', 'j7200', 'am65xx')
+
+    - Co-routines, stream buffer are not enabled and compiled by default.
+      Users can add these to the FreeRTOS config and makefile if they want to use these features.
+  
+    - Tickless IDLE mode
+  
+    - Task level memory protection wrapper
+  
+    - On R5F, nested interrupts are not supported.
+
+    - HW Interrupt and SW Interrupt Load measurements are not supported.
+    
+Important files and directory structure
+---------------------------------------
+
+FreeRTOS source is distributed along with PDK and given below are some important files and folders related to FreeRTOS.
+
+::
+
+    ${PDK_INSTALL_PATH}/packages/ti/kernel
+    │
+    ├────────────────────────────────── freertos
+    │                                    ├────── FreeRTOS-LTS   <= FreeRTOS Kernel source code. PDK simply clones the code from 
+    │                                    │                         FreeRTOS Github and does not modify anything in this folder
+    │                                    │
+    │                                    ├────── config         <= FreeRTOS configuration header files for different SOCs and CPUs
+    │                                    │
+    │                                    └────── portable       <= FreeRTOS porting related files for supported cores
+    │    
+    ├────────────────────────────────── lib                     <= FreeRTOS library to link against. Linking to the library in this path 
+    │                                                              enables the application to operate in FreeRTOS mode
+    │
+    └────────────────────────────────── test/freertos           <= FreeRTOS Examples and Unit Test
+
+    ${PDK_INSTALL_PATH}/packages/ti/osal                        <= APIs to access FreeRTOS features in a OS agnostic way
+    │    
+    └────────────────────────────────── lib/freertos            <= OSAL FreeRTOS library to link against. Linking to the library in this path 
+                                                                   enables the application to use OSAL APIs which will operate in FreeRTOS mode
+
+FreeRTOS Examples
+-----------------
+
++----------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------------+-------------------------------+
+| Example              | Application Name          | Description                                                                                                                    | Cores Supported               |
++======================+===========================+================================================================================================================================+===============================+
+| FreeRTOS Task Switch | freertos_test_task_switch | | The FreeRTOS Task Switch Example test performs the following:                                                                | |__FREERTOS_CPU_PORT_CORES__| |
+|                      |                           | | 1. switch between ping and pong tasks using semaphores                                                                       |                               |
+|                      |                           | | 2. switch between ping and pong tasks using direct-to-task notifications                                                     |                               |
+|                      |                           | | 3. switch from ping task to ISR to pong task and back to ping task using semaphores, here there is a task switch             |                               |
++----------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------------+-------------------------------+
+| FreeRTOS Unit Test   | freertos_test_ut          | | The FreeRTOS Unit Test performs the following:                                                                               | |__FREERTOS_CPU_PORT_CORES__| |
+|                      |                           | | 1. switch between ping and pong tasks using semaphores                                                                       |                               |
+|                      |                           | | 2. switch between ping and pong tasks using direct-to-task notifications                                                     |                               |
+|                      |                           | | 3. just invoke the task switch logic (Task Yield) without any semaphores or direct-to-task notifications                     |                               |
+|                      |                           | | 4. switch from ping to ISR and back to the same task using semaphores, here there is no task switch                          |                               |
+|                      |                           | | 5. switch from ping to ISR and back to the same task using direct-to-task notify, here there is no task switch               |                               |
+|                      |                           | | 6. switch from ping task to ISR to pong task and back to ping task using semaphores, here there is a task switch             |                               |
+|                      |                           | | 7. switch from ping task to ISR to pong task and back to ping task using direct-to-task notify, here there is a task switch  |                               |
+|                      |                           | | 8. switch between ping and pong tasks and do float operations in between                                                     |                               |
+|                      |                           | | 9. Test TaskDelay                                                                                                            |                               |
++----------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------------+-------------------------------+
+
+FreeRTOS Usage and Migration Guidelines
+---------------------------------------
+
+See :ref:`freertos_usage_and_migration_guidelines` for FreeRTOS migration & usage guidelines and comparison to SysBIOS.
+
+FreeRTOS with Real-time Object View (ROV)
+-----------------------------------------
+
+Real-time Object View (ROV) in CCS IDE for FreeRTOS is available for |__FREERTOS_ROV_CPUS__| cores.
+
+See :ref:`freertos_ccs_rov` for instructions related to using Real-time Object View (ROV) with FreeRTOS.
+
+Additional references
+---------------------
+
++--------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+|                           Document Description                           |                                                                Weblink                                                                |
++==========================================================================+=======================================================================================================================================+
+| Easy to read FreeRTOS book                                               | https://www.freertos.org/Documentation/RTOS_book.html                                                                                 |
++--------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+| FreeRTOS user docs                                                       | https://www.freertos.org/features.html                                                                                                |
++--------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+| User API reference                                                       | https://www.freertos.org/a00106.html                                                                                                  |
++--------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+| FreeRTOS core kernel source code                                         | https://github.com/FreeRTOS/FreeRTOS-Kernel                                                                                           |
++--------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+| FreeRTOS core kernel example source code                                 | https://github.com/FreeRTOS/FreeRTOS/tree/master/FreeRTOS                                                                             |
++--------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+| Additional FreeRTOS.org maintained libraries (POSIX, TCP, Filesystem, …) | https://www.freertos.org/FreeRTOS-Labs/index.html                                                                                     |
+|                                                                          +---------------------------------------------------------------------------------------------------------------------------------------+
+|                                                                          | https://www.freertos.org/FreeRTOS-Plus/index.html                                                                                     | 
+|                                                                          +---------------------------------------------------------------------------------------------------------------------------------------+
+|                                                                          | https://github.com/FreeRTOS                                                                                                           |
++--------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+

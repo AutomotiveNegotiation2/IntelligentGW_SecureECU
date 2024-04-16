@@ -1,0 +1,1378 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>5.2. J721E SBL &mdash; Platform Development Kit (PDK) - JACINTO User Guide</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Platform Development Kit (PDK) - JACINTO User Guide" href="../index.html"/>
+        <link rel="up" title="5. Bootloader (SBL)" href="../family_cfg/jacinto/index_boot_jacinto.html"/>
+        <link rel="next" title="5.3. Boot App" href="boot_app.html"/>
+        <link rel="prev" title="5.1. SBL Overview" href="boot.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index_jacinto.html" class="icon icon-home"> Platform Development Kit (PDK) - JACINTO User Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                08_06_01
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">1. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_release_notes_jacinto.html">2. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">3. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_modules_jacinto.html">4. Modules</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../family_cfg/jacinto/index_boot_jacinto.html">5. Bootloader (SBL)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="boot.html">5.1. SBL Overview</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">5.2. J721E SBL</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">5.2.1. Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#block-diagram">5.2.2. Block Diagram</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#memory-map">5.2.3. Memory Map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#directory-structure">5.2.4. Directory structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#image-formats">5.2.5. Image Formats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#building-the-sbl-and-its-components">5.2.6. Building the SBL and its components</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pre-requisites-to-building">5.2.6.1. Pre-requisites to Building</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#compiling-sbl-for-gp-general-purpose-device">5.2.6.2. Compiling SBL for GP (General Purpose) Device</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#compiling-sbl-for-hs-high-security-device">5.2.6.3. Compiling SBL for HS (High Security) Device</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#compiling-appimage-that-can-be-loaded-by-sbl">5.2.6.4. Compiling appimage that can be loaded by SBL</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#testing-the-sbl">5.2.7. Testing the SBL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#boot-modes">5.2.8. Boot Modes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#booting-via-sd-card">5.2.8.1. Booting Via SD Card</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#booting-via-emmc-uda-partition">5.2.8.2. Booting Via eMMC UDA partition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#booting-via-emmc-boot0-partition">5.2.8.3. Booting Via eMMC BOOT0 partition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#booting-via-ospi-flash">5.2.8.4. Booting Via OSPI flash</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#booting-via-uart">5.2.8.5. Booting via UART</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#hsm-boot">5.2.9. HSM Boot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#evm-setup-for-testing-sbl">5.2.10. EVM Setup for testing SBL</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="boot_app.html">5.3. Boot App</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_board_jacinto.html">6. Board/EVM Abstraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_howto_jacinto.html">7. How to Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_faq_jacinto.html">8. Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_developer_notes_jacinto.html">9. Developer Notes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index_jacinto.html">Platform Development Kit (PDK) - JACINTO User Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index_jacinto.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../family_cfg/jacinto/index_boot_jacinto.html">5. Bootloader (SBL)</a> &raquo;</li>
+      
+    <li>5.2. J721E SBL</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="part-default-soc-caps-sbl">
+<h1>5.2. J721E SBL<a class="headerlink" href="#part-default-soc-caps-sbl" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>5.2.1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>The Secondary Bootloader (SBL) for J721E initializes the execution
+environment for multi-core applications and this can be used to demonstrate
+a real world product experience. This section covers additional details
+including execution sequence, tools and additional flashing instructions.</p>
+<p>The SBL is essentially a baremetal application, and it uses many components
+from the Processor SDK</p>
+<ul class="simple">
+<li>&lt;PDK&gt;/packages/ti/build         : For build infrastructure</li>
+<li>&lt;PDK&gt;/packages/ti/csl           : For initialization and SoC addresses</li>
+<li>&lt;PDK&gt;/packages/ti/board         : For board and usecase specific initialization</li>
+<li>&lt;PDK&gt;/packages/ti/drv/spi       : For reading applications from OSPI flash</li>
+<li>&lt;PDK&gt;/packages/ti/drv/udma      : For reading data from boot media using DMA</li>
+<li>&lt;PDK&gt;/packages/ti/drv/mmcsd     : For reading applications from MMC/SD/eMMC</li>
+<li>&lt;PDK&gt;/packages/ti/fs/fatfs      : For reading files from MMC/SD/eMMC</li>
+<li>&lt;PDK&gt;/packages/ti/drv/sciclient : For communicating with DMSC sub-system</li>
+<li>&lt;PDK&gt;/packages/ti/drv/uart      : For log messages</li>
+<li>&lt;PDK&gt;/packages/ti/osal          : Primitives required by ti/drv components</li>
+</ul>
+<p>The SBL is in turn used by the board framework to load and start diagnostics</p>
+<p class="rubric" id="bootloader-execution-sequence">Bootloader Execution Sequence</p>
+<ul class="simple">
+<li><strong>Power On Reset</strong></li>
+<li><strong>ROM Bootloader (RBL)</strong><ul>
+<li>Software pre-programmed in Jacinto ROM memory starts executing</li>
+<li>The RBL performs platform configuration and initialization.</li>
+<li>It then checks sysboot pins and chooses booting device</li>
+<li>The RBL then configures PLL and clock settings for R5, and
+boot media like eMMC, SD/MMC, OSPI, UART, PCIe, Ethernet etc for reliable
+boot.</li>
+<li>If no valid bootloader found on booting device, the RBL checks for next
+booting device, based on sysboot pins</li>
+<li>It then gets image size and load address by checking the X.509 certificate that
+is part of the bootloader image.</li>
+<li>The RBL then verifies, optionally decrypts and loads the binary to internal
+memory at the load address specified in the X.509 certificate.</li>
+<li>Finally it resets the R5 and passes control to Secondary Bootloader(SBL) running on the R5.</li>
+</ul>
+</li>
+<li><strong>Secondary bootloader(SBL)</strong><ul>
+<li>User level secondary bootloader(SBL) begins execution from internal memory.
+It enables ATCM, starts PMU timers for profiling, initializes the MCU,
+and sets up the stack, heap and globals. It then jumps to main().</li>
+<li>Board Initialization is done by calls to <strong>Board_init()</strong> API.For additional
+details refer <a class="reference external" href="http://software-dl.ti.com/processor-sdk-rtos/esd/docs/latest/rtos/Board_EVM_Abstration.html">Processor SDK Board Support</a>.</li>
+<li>The RAT is setup. Pin MUX and UART console are setup by calling <strong>Board_init()</strong> API. The
+system firmware (SYSFW or TIFS) is then loaded from the boot media into the DMSC subsystem.</li>
+<li>Once the system firmware is up and running, the rest of the initialization can be done.</li>
+<li>This includes optionally using <strong>Board_init()</strong> to configure PLLs, LPSCs and DDR.</li>
+<li>The SBL then loads the application from the boot media. If the image is signed, the
+application will be copied into a user specified reserved memory, and the SBL will attempt
+to verify the image by calling system firmware APIs. On HS devices, the boot proceeds
+only if image verification passes.</li>
+<li>The SBL parses application image(s) for each of the core(s) from boot
+media and scatter loads it to memory.</li>
+<li>Once the application is loaded, the SBL communicates with the system firmware
+to setup the clocks for the core(s) and release it from reset.</li>
+<li>The core then starts executing from application entry point.</li>
+</ul>
+</li>
+</ul>
+<div
+style="margin: 5px; padding: 2px 10px; background-color: #ecffff; border-left: 5px solid #3399ff;"><p><strong>NOTE</strong></p>
+<ul class="simple">
+<li>RBL requires boot loader (SBL) to be in a special format with the binary image
+appended to a X.509 certificate. The certificate contains the load address, size
+and SHA of the bootloader image.</li>
+<li>For a detailed description of ROM bootloader and more information on the image
+format expected by the RBL refer the initialization chapter in the <a class="reference external" href="http://www.ti.com/lit/pdf/spruil1">J721E Technical Reference Manual</a></li>
+<li>In addition to the bootloader and application, the DMSC firmware binary is also needed
+for the SoC to complete the system boot flow.</li>
+<li>The first 256 bytes of the ATCM are reserved by SBL for its use. The SBL initializes
+the ATCM with 0xFF before it uses it.</li>
+<li>If the multicore application image is signed using the TI Dummy Key, instead of a
+degenerate key (default setting) the same binary can be used on GP and HS devices.
+For information on the application&#8217;s X.509 certificate format, please refer
+<a class="reference external" href="http://downloads.ti.com/tisci/esd/latest/2_tisci_msgs/security/sec_cert_format.html#security-x509-certificate-documentation">Security X509 Certificate Documentation</a></li>
+<li>When the R5 is released from reset, it will always fetch and execute the first
+intruction from address 0x0.</li>
+</ul>
+</div></div>
+<div class="section" id="block-diagram">
+<span id="sbl-high-level-arch"></span><h2>5.2.2. Block Diagram<a class="headerlink" href="#block-diagram" title="Permalink to this headline">¶</a></h2>
+<img alt="../_images/k3_sbl_arch_block_diag.png" src="../_images/k3_sbl_arch_block_diag.png" />
+</div>
+<div class="section" id="memory-map">
+<span id="sbl-memory-usage"></span><h2>5.2.3. Memory Map<a class="headerlink" href="#memory-map" title="Permalink to this headline">¶</a></h2>
+<img alt="../_images/k3_sbl_mem_usage.png" src="../_images/k3_sbl_mem_usage.png" />
+</div>
+<div class="section" id="directory-structure">
+<span id="sbl-directory-structure"></span><h2>5.2.4. Directory structure<a class="headerlink" href="#directory-structure" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp"><div class="highlight"><pre>sbl
+│
+├── board
+│   └── k3
+│       └── sbl_main.c                                      &lt;= define main() for SBL, board specific init
+│
+├── build
+│   ├── makefile                                            &lt;= makefile for the SBL component
+│   ├── sbl_am65xx.sh                                       &lt;= For legacy, called by Yocto build
+│   ├── sbl_boot_test.mk                                    &lt;= Builds SBL single core tests
+│   ├── sbl_smp_test.mk                                     &lt;= Builds example app for using SBL lib
+│   ├── sbl_mcu0_boot_perf_test.mk                          &lt;= Builds example app for SBL performance tuning
+│   ├── sbl_mcu0_boot_xip_entry.mk                          &lt;= Builds example trampoline app to demonstrate transitioning to a XIP app from SBL
+│   ├── sbl_mcu0_boot_xip_test.mk                           &lt;= Builds example app to demonstrate XIP execution from XIP capable boot media
+│   ├── sbl_img.mk                                          &lt;= builds SBL image that is loaded and executed by ROM code
+│   ├── sbl_lib.mk                                          &lt;= Builds sbl library that other apps can link into
+│   ├── sbl_multicore_smp.mk                                &lt;= Builds multi-core image from SBL lib eg. test to demonstrate symmetric multiprocessor boot (SMP)
+│   └── sbl_multicore_amp.mk                                &lt;= Builds multi-core image from single core tests to demonstrate asymmetric multiprocessor boot (AMP)
+│
+├── example
+│   └── k3MulticoreApp
+│       ├── binary
+│       │   └── [soc]
+│       │       ├── sbl_baremetal_*.appimage                &lt;= SBL loadable board specific sample apps for testing SBL boot flow on GP devices
+│       │       ├── sbl_baremetal_*.appimage.signed         &lt;= SBL loadable board specific signed sample apps for testing SBL boot flow on HS devices
+│       │       └── sbl_baremetal_*_release.x*.bin          &lt;= Binary image that can be eXecuted In Place on XIP capable boot media
+|       ├── [soc]
+│       │   ├── mcuAmplinker.lds                            &lt;= Linker command file when TI CGT is used for Asym. Multiproc. boot
+│       │   ├── mpuAmplinker.lds                            &lt;= GCC linker command file (for Cortex Axx cores) for Asym. Multiproc. boot
+│       │   ├── mcuXiplinker.lds                            &lt;= Linker command file for XIP trampoline app
+│       │   └── xip_entry.lds                                       &lt;= Linker command file for XIP test case
+│       ├── mcuBootPerfLinker_j7.lds                        &lt;= TI CGT Linker command file for SBL performance tuning example (J721E)
+│       ├── mcuBootPerfLinker.lds                           &lt;= TI CGT Linker command file for SBL performance tuning example (AM65xx)
+|       ├── mcuBootPerfLinker_small.lds                     &lt;= TI CGT Linker command file for SBL performance tuning example (for boot with MCU domain only)
+│       ├── mcu[core#]LockStepLinker.lds                    &lt;= Linker command file when TI CGT is used for R5 lock-step boot
+│       ├── mpuSmplinker.lds                                &lt;= GCC linker command file (for Cortex Axx cores) for SMP boot
+│       ├── xip_entry.asm                                   &lt;= Entry point of XIP trampoline app
+│       ├── xip_stub.c                                      &lt;= Simple SBL test app that demonstrates transitioning to a XIP app
+│       ├── sbl_amp_multicore.c                             &lt;= Simple SBL test that displays UART message
+│       ├── sbl_amp_multicore_sections.h                    &lt;= Allows same source to be loaded to different sections for different cores.
+│       ├── sbl_mcu_0_boot_perf_benchmark.c                 &lt;= SBL Test to tune boot performance.
+│       ├── sbl_multicore_a53.asm                           &lt;= Test case entry point  for Cortex-Axx cores
+│       ├── sbl_multicore_r5.asm                            &lt;= Test case entry point for Cortex-R5 cores
+│       ├── sbl_multicore_r5_sections.inc                   &lt;= Allows same source to be loaded to different sections for different MCUs.
+│       ├── sbl_printf.c                                    &lt;= Lightweight UART printf function for SBL testing
+│       ├── sbl_smp_multicore.c                             &lt;= Simple SBL SMP test that uses SBL lib to reset MPUs
+│       └── sbl_smp_r5.asm                                  &lt;= Provides dummy override function for __mpu_init for SMP testcase.
+│
+├── binary                                                  &lt;= ROM bootable SBL images for each board/boot media
+│   ├── [board]
+│       └── [bootmedia]
+│           └── bin
+│               └── sbl_[bootmedia]_img_mcu1_0_release.tiimage
+│
+├── lib                                                     &lt;= SBL lib for each boot media/board supported
+│   ├── [bootmedia]
+│   │   └── [board]
+│   │       └── r5f
+│   │           └── release
+│   │               └── sbl_lib_[bootmedia].aer5f
+│   └── cust
+│       └── [board]
+│           └── r5f
+│               └── release
+│                   └── sbl_lib_cust.aer5f
+│
+├── soc                                                     &lt;= SOC specific SBL code
+│   └── k3
+│       ├── [soc]
+|       |   └── linker.cmd                                  &lt;= Linker file used for generating ROM loadable SBL image.
+│       ├── sbl_err_trap.h                                  &lt;= Error loops for SBL
+│       ├── sbl_init.asm                                    &lt;= SBL Entry point
+│       ├── sbl_misc.asm                                    &lt;= SBL Assembly utility functions
+│       ├── sbl_log.h                                       &lt;= SBL logging framework
+│       ├── sbl_sci_client.c                                &lt;= Calls system firmware on DMSC
+│       ├── sbl_sci_client.h
+│       ├── sbl_slave_core_boot.c                           &lt;= Code that contains the sequence to release a core from reset
+│       ├── sbl_slave_core_boot.h
+│       ├── sbl_soc.c                                       &lt;= Cache Ops, PMU init, image verfication, etc &amp; SoC specific code like RAT Init..
+│       ├── sbl_soc_cfg.h                                   &lt;= Abstraction layer for hiding SoC level changes from SBL
+│       └── sbl_profile.h                                   &lt;= SBL profiling framework
+│
+├── src                                                     &lt;= Common drivers used across SOCs
+│   ├── mmcsd
+│   ├── hyperflash
+│   ├── ospi
+│   ├── qspi
+│   ├── uart
+│   ├── rprc                                                &lt;= RPRC image parser used by SBL
+│   └── spi
+│
+└── tools
+    ├── btoccs
+    ├── byteswap
+    ├── ccsutil
+    ├── combined_appimage                                   &lt;= Creates a &quot;combined&quot; .appimage file for booting HLOS images (e.g., ATF,U-boot,Linux)
+    │   ├── bin
+    │   │   └── [board]
+    │   │       ├── base-board.dtb                          &lt;= Default (example) Linux DTB per platform - to be replaced with desired DTB
+    │   │       └── combined.appimage                       &lt;= Output &quot;combined&quot; .appimage for HLOS + RTOS images boot (after build)
+    │   ├── config.mk                                       &lt;= Configuration make include file. Use this to specify images to include in combined.appimage
+    │   └── makefile                                        &lt;= combined.appimage Makefile
+    ├── flashWriter                                         &lt;= Unused for AM65xx/J721E. AM65xx/J721E uses Uniflash to program flashes.
+    ├── multicoreImageGen                                   &lt;= Stitches multiple RPRC images for different cores into a single image
+    ├── omapl13x_boot_utils                                 &lt;= Unused for AM65xx/J721E
+    ├── omapl13x_sd_card_format                             &lt;= Unused for AM65xx/J721E
+    ├── out2rprc                                            &lt;= Converts .out into .rprc files, so that SBL can load non-continuous memory sections
+    ├── scripts                                             &lt;= Scripts used by .out  generated by CCS projects into SBL loadable images
+    │   ├── K3ImageGen.bat
+    │   └── K3ImageGen.sh
+    └── tiImageGen                                          &lt;= Unused for AM65xx/J721E. Image generation is handled by PDK build framework (&lt;sdk_install_path&gt;/pdk_*/packages/ti/build/)
+</pre></div>
+</div>
+</div>
+<div class="section" id="image-formats">
+<span id="id1"></span><h2>5.2.5. Image Formats<a class="headerlink" href="#image-formats" title="Permalink to this headline">¶</a></h2>
+<p><strong>SBL format:</strong></p>
+<p>To generate the a bootable image, the SBL build uses the x509CertificateGen script to
+sign the sbl binary with so that the ROM Boot Loader (RBL) can parse it. The image
+format expected by the RBL has been described in detail in the Image Format Section
+of the <a class="reference external" href="http://www.ti.com/lit/pdf/spruil1">J721E Technical Reference Manual</a></p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For HS devices, the SBL and system firmware have to be signed with the MPK.
+Processor SDK sign SBL and system firmware with a TI Dummy Key on HS device.
+Use sbl_&lt;bootmode&gt;_img to boot on GP devices and sbl_&lt;bootmode&gt;_img_hs to boot on HS devices.
+The build system invokes the script
+&lt;PDK&gt;/packages/ti/build/makerules/x509CertificateGen* which inturn calls OpenSSL
+to create the X509 certificate.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For compatibility, all signed certificates must include a software
+revision extension <strong>with a minimum value of 1</strong> as ROM will use this
+to enforce the revision programmed into the device efuses for
+anti-rollback protection. This default value of 1 is set into the SDK
+scripts but must be incremented during the lifecycle of the device if
+or when the efuse value is incremented. See
+<a class="reference external" href="http://software-dl.ti.com/tisci/esd/latest/6_topic_user_guides/otp_revision.html">http://software-dl.ti.com/tisci/esd/latest/6_topic_user_guides/otp_revision.html</a>
+for more details.</p>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">The TI Dummy Key(s) <em>MUST</em> be replaced by customers during production
+with their own Private Keys. If the TI Dummy Keys are used in a production
+system, the system will be open to security attacks. The path of the default
+(dummy) key used by the signing script for HS devices is
+&lt;PDK&gt;/packages/ti/build/makerules/k3_dev_mpk.pem</p>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">While SBL and system firmware images signed with the TI Dummy Keys will work
+on both GP and HS devices, the boot time will be significantly impacted on GP
+devices. Using SBL signed by TI Dummy Keys on GP devices is only recommended
+during the prototyping phase - when porting code developed on GP to HS devices.</p>
+</div>
+<p><strong>Application image format:</strong></p>
+<p>Two utilities - out2rprc and multicoreImageGen are used to convert an application elf
+image(s) into an image loadable by the SBL. The structure of a multicore application
+image is provided below:</p>
+<img alt="../_images/multicore_app_image.png" src="../_images/multicore_app_image.png" />
+<p><strong>RPRC File Header Format</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="30%" />
+<col width="70%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Offset</th>
+<th class="head">Binary value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>0x00000000</td>
+<td><strong>Magic Word(43525052)</strong></td>
+</tr>
+<tr class="row-odd"><td>0x00000004</td>
+<td><strong>Entry Point (Location)</strong></td>
+</tr>
+<tr class="row-even"><td>0x00000008</td>
+<td><strong>Reserved Addr</strong></td>
+</tr>
+<tr class="row-odd"><td>0x0000000C</td>
+<td><strong>Section Count</strong></td>
+</tr>
+<tr class="row-even"><td>0x00000010</td>
+<td><strong>Version</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>RPRC Section Header Format</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="31%" />
+<col width="69%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Offset</th>
+<th class="head">Binary value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>0x00000000</td>
+<td><strong>Section start Address</strong></td>
+</tr>
+<tr class="row-odd"><td>0x00000004</td>
+<td><strong>Reserved Addr</strong></td>
+</tr>
+<tr class="row-even"><td>0x00000008</td>
+<td><strong>Size</strong></td>
+</tr>
+<tr class="row-odd"><td>0x0000000C</td>
+<td><strong>Reserved CRC</strong></td>
+</tr>
+<tr class="row-even"><td>0x00000010</td>
+<td><strong>Reserved</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Multicore boot image format</strong></p>
+<p><strong>Meta Header Start</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="28%" />
+<col width="72%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Offset</th>
+<th class="head">Binary value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>0x00000000</td>
+<td><strong>Magic String (0x5254534D)</strong></td>
+</tr>
+<tr class="row-odd"><td>0x00000004</td>
+<td><strong>Number of Files</strong></td>
+</tr>
+<tr class="row-even"><td>0x00000008</td>
+<td><strong>Device ID</strong></td>
+</tr>
+<tr class="row-odd"><td>0x0000000C</td>
+<td><strong>Reserved</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Meta Header per Core</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="40%" />
+<col width="60%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Offset</th>
+<th class="head">Binary value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>0x00000000</td>
+<td><strong>Core ID</strong></td>
+</tr>
+<tr class="row-odd"><td>0x00000004</td>
+<td><strong>Image Offset</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Signed application image format:</strong></p>
+<p>To convert the multicore application image into a format that can be verified,  the build flow uses
+the x509CertificateGen script to create a x509 certificate for the app image. Images that have a
+x509 certificate are called signed images. Signed applications images are mandatory for HS devices,
+but will work also work on GP devices.</p>
+<p>Signed images are automatically detected by the SBL and loaded into a scratch memory area specified during
+SBL build. The scratch memory area used by default is specified in <a class="reference external" href="https://git.ti.com/keystone-rtos/sbl/blobs/master/build/sbl_lib.mk">sbl_lib.mk</a> via the flags SBL_SCRATCH_MEM_START and
+SBL_SCRATCH_MEM_SIZE. The SBL_SCRATCH_MEM* options can also be specified for custom builds to override
+the defaults.</p>
+<p>The SBL scratch memory is unavailable to applications during app load time, as the SBL is
+still active. Once the SBL transfers control to the application, this memory is available for app
+use - in other words SBL_SCRATCH_MEM* is available during app runtime.</p>
+<p>For information on the application&#8217;s X.509 certificate format, please refer
+<a class="reference external" href="http://downloads.ti.com/tisci/esd/latest/2_tisci_msgs/security/sec_cert_format.html#security-x509-certificate-documentation">Security X509 Certificate Documentation</a></p>
+</div>
+<div class="section" id="building-the-sbl-and-its-components">
+<h2>5.2.6. Building the SBL and its components<a class="headerlink" href="#building-the-sbl-and-its-components" title="Permalink to this headline">¶</a></h2>
+<p>This section will cover compiling SBL for GP and HS devices.
+It will also show how to compile a loadable appimage file from an example application,
+which can be used as a reference to compile your own custom application.</p>
+<div class="section" id="pre-requisites-to-building">
+<h3>5.2.6.1. Pre-requisites to Building<a class="headerlink" href="#pre-requisites-to-building" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Set your environment using pdksetupenv.bat or pdksetupenv.sh located in &lt;PDK&gt;/packages directory. Refer to
+<a class="reference external" href="http://software-dl.ti.com/processor-sdk-rtos/esd/docs/latest/rtos/index_overview.html#setup-environment">Processor SDK RTOS Building</a> for information on setting up your build environment</li>
+</ul>
+<div
+style="margin: 5px; padding: 2px 10px; background-color: #ecffff; border-left: 5px solid #3399ff;"><p><strong>NOTE</strong></p>
+<ul class="simple">
+<li>SBL needs openssl to build. To check if openssl is present, type the
+following at the linux or windows prompt.</li>
+</ul>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">openssl</span> <span class="n">version</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>To build on Linux, you need to have <a class="reference external" href="http://www.mono-project.com">mono</a> installed.</li>
+<li>Refer <a class="reference external" href="http://software-dl.ti.com/processor-sdk-rtos/esd/docs/latest/rtos/Overview.html#command">Build Dependencies</a> for instructions on how to install these tools,
+if they are not already present on your system.</li>
+</ul>
+</div></div>
+<div class="section" id="compiling-sbl-for-gp-general-purpose-device">
+<h3>5.2.6.2. Compiling SBL for GP (General Purpose) Device<a class="headerlink" href="#compiling-sbl-for-gp-general-purpose-device" title="Permalink to this headline">¶</a></h3>
+<p><strong>Compiling the SBL</strong></p>
+<p>To build all the SBL components:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">cd</span> <span class="o">&lt;</span><span class="n">PDK</span><span class="o">&gt;/</span><span class="n">packages</span><span class="o">/</span><span class="n">ti</span><span class="o">/</span><span class="n">boot</span><span class="o">/</span><span class="n">sbl</span><span class="o">/</span><span class="n">build</span>
+<span class="n">gmake</span> <span class="n">clean</span> <span class="n">all</span> <span class="p">(</span><span class="k">for</span> <span class="n">windows</span><span class="p">)</span>
+<span class="n">make</span> <span class="n">clean</span> <span class="n">all</span>  <span class="p">(</span><span class="k">for</span> <span class="n">Linux</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>SBL image files are be located at: <strong>&lt;PDK&gt;/packages/ti/boot/sbl/binary/</strong></li>
+<li>SBL examples are located at <strong>&lt;PDK&gt;/packages/ti/boot/sbl/examples/k3MulticoreApp/binary</strong></li>
+<li>SBL lib are located at <strong>&lt;PDK&gt;/packages/ti/boot/sbl/lib/</strong></li>
+</ul>
+<p><strong>Compile time options for the SBL</strong></p>
+<p>The SBL supports several compile time options to tweak the SBL to satisfy requirements of
+ease of use, boot time and size. These can be enabled or disabled by editing <a class="reference external" href="http://git.ti.com/cgit/processor-sdk/pdk/tree/packages/ti/boot/sbl/sbl_component.mk">sbl/sbl_component.mk</a></p>
+<ul class="simple">
+<li>SBL_LOG_LEVEL : Controls amount of SBL logs (on the MCU UART) and system firmware logs(on WAKEUP UART).
+Varies from 0(no logs) to  3 (all logs)</li>
+<li>SBL_USE_DMA : Valid values are 0 (use CPU to access boot media) or 1 (use DMA to
+access boot media).</li>
+<li>SBL_DISPLAY_PROFILE_INFO : At the end of the boot process, displays a log of timestamps
+at which different SBL profile points are hit. This is useful to see how much
+time the SBL spends in different functions. SBL_LOG_LEVEL can significantly
+affect performance numbers.</li>
+<li>SBL_ENABLE_PLL : Dials up all the PLLs calling Board_init(). Makes it easier for
+applications as they no longer have to initialize the PLLs. However, enabling this
+significantly increases boot time and power consumption. Requires system firmware to
+be loaded.</li>
+<li>SBL_ENABLE_CLOCKS : Enables all the module clocks by calling Board_init(). Makes
+it easier for applications as they no longer have to enable clocks.</li>
+<li>SBL_ENABLE_DDR : Initializes the DDR. At the cost of boot time, this enables
+applications to run from and use DDR. SBL_ENABLE_CLOCKS and SBL_ENABLE_PLL must
+also be enabed for this to work. Enabling this option increases the boot time.</li>
+<li>SBL_SKIP_MCU_RESET : Jumps to the MCU0 application entry point
+without resetting the core. Enables faster boot time. Will not change the MCU&#8217;s
+mode (lock-step/split). Application also inherits the MCU state as the SBL
+left it in.</li>
+<li>SBL_ENABLE_DEV_GRP_MCU : Will cause the system firmware to only use MCU domain
+resources during system firmware initialization. This can be done either to support
+boot when the main power domain is off, or to save boot time.</li>
+<li>SBL_ENABLE_HLOS_BOOT: SBL will take some extra steps to prepare certain peripherals
+and resources to be handed over for HLOS (e.g., Linux) control from the Cortex-A
+cores.</li>
+<li>SBL_HLOS_OWNS_FLASH : Ensures the SBL will leave the OSPI flash in single SPI mode,
+so that the MAIN domain Cortex-A code (e.g., HLOS) can reset the flash and take
+control of it, if needed.</li>
+<li>SBL_SKIP_PINMUX_ENABLE : SBL will skip any PINMUX init being done in the bootloader
+and expect that it will be handled by a subsequent application.</li>
+<li>SBL_SKIP_LATE_INIT : SBL will skip calling the SoC Late Init functions,
+normally contained in SBL_SocLateInit()</li>
+<li>SBL_USE_MCU_DOMAIN_ONLY : SBL will configure &amp; boot MCU domain cores ONLY. Saves
+boot time when configuring &amp; using MCU domain only (especially when testing
+MCU-only boot or measuring Early CAN response).</li>
+</ul>
+<p>The SBL also supports a &#8220;custom&#8221; build, in addition to standard out-of-box builds.
+A custom build is a useful way of testing out the effect of different build options -
+like when optimizing for boot time, or enabling custom usecases like eXecute In Place (XIP)
+to reduce memory usage.</p>
+<p>For an example of how to use such custom builds, please refer to <a class="reference external" href="https://git.ti.com/cgit/processor-sdk/pdk/tree/packages/ti/boot/sbl/sbl_component.mk#n1177">sbl/sbl_component.mk</a>. It shows
+how to specify a select list of build options while building SBL images and libs.</p>
+<p><strong>HLOS boot</strong></p>
+<p>The SBL now also supports booting ARM Trusted Firmware (ATF) along with either U-boot
+or HLOS images (e.g., Linux + DTB) on the Cortex-A cores of the device, when used together
+with the &#8220;combined_appimage&#8221; make facility in the SBL tools dir.</p>
+<p>To boot the combined.appimage that is produced, simply build an alternate SBL bootloader
+target with &#8220;_hlos&#8221; (GP device) or &#8220;_hlos_hs&#8221; (HS device) appended to the build target name
+(only for MMCSD or OSPI boot modes).</p>
+<p>SBL Build Target Examples for HLOS Boot:</p>
+<ul class="simple">
+<li>GP device : To boot from SD card, use the &#8220;sbl_mmcsd_img_hlos&#8221; build target. For OSPI boot mode, use &#8220;sbl_ospi_img_hlos&#8221;.</li>
+<li>HS device : To boot from SD card, use the &#8220;sbl_mmcsd_img_hlos_hs&#8221; build target. For OSPI boot mode, use &#8220;sbl_ospi_img_hlos_hs&#8221;.</li>
+</ul>
+<p>Note :</p>
+<ul class="simple">
+<li>base-board.dtb needs to be modified to ensure that SD card filesystem (&#8216;rootfs&#8217;) is specified for the Linux filesystem in each case.</li>
+<li>For J721E SBL initializes the SERDES and hence the same should be disabled in device tree.</li>
+<li>To disable serdes : Add &#8216;status = &#8220;disabled&#8221;;&#8217; for serdes0, serdes1, serdes2</li>
+</ul>
+<p><strong>SBL Startup</strong></p>
+<p>The SBL can specify the R5 configuration (lockstep or split) that ROM needs to use when it
+starts up the SBL. This info is passed to ROM as a field in the X509 certificate. The value
+in this field can be controlled by editing the build flag R5_STARTUP_MODE  in <a class="reference external" href="https://git.ti.com/cgit/processor-sdk/pdk/tree/packages/ti/boot/sbl/build/sbl_img.mk#n170">sbl/build/sbl_img.mk</a></p>
+<ul class="simple">
+<li>EFUSE_DEFAULT : SBL will run with the same R5 configuration the boot rom ran in.</li>
+<li>SPLIT_MODE  : ROM will switch the R5 to split mode before starting the SBL (default).</li>
+</ul>
+<p><strong>Enabling/Disabling JTAG on secure devices</strong></p>
+<p>JTAG access is controlled using a field in the X509 certificate.</p>
+<p>By default, for an easy out of box experience, the Processor SDK enables debug via JTAG
+on High Secure devices. Leaving JTAG enabled, while making it easy for software development,
+creates a major security hole in production devices.</p>
+<p>To disable/change the level of JTAG access on HS devices, update the value of the debugType field in the
+signing scripts <a class="reference external" href="http://git.ti.com/cgit/processor-sdk/pdk/tree/packages/ti/build/makerules/x509template.txt#n74">build/makerules/x509template.txt</a>
+(when building from windows) and <a class="reference external" href="http://git.ti.com/cgit/processor-sdk/pdk/tree/packages/ti/build/makerules/x509CertificateGen.sh#n513">build/makerules/x509CertificateGen.sh</a> (when building from linux).</p>
+<p>Valid values are:</p>
+<ul class="simple">
+<li>0 : Disable all JTAG access (most secure and most restrictive)</li>
+<li>1 : Use device defaults (most secure and most restrictive)</li>
+<li>2 : Allow debug of non-secure code, when the CPU is running in secure mode, JTAG connectivity will be lost</li>
+<li>4 : Allow debug of both secure and non-secure code (least secure and least restrictive). This is the default.</li>
+</ul>
+</div></div>
+<div class="section" id="compiling-sbl-for-hs-high-security-device">
+<span id="compiling-apps-for-sbl"></span><h3>5.2.6.3. Compiling SBL for HS (High Security) Device<a class="headerlink" href="#compiling-sbl-for-hs-high-security-device" title="Permalink to this headline">¶</a></h3>
+<p>This section should be skipped if you are using a GP device.</p>
+<p><strong>Compile Non-encrypted SBL for HS Device</strong></p>
+<p>The steps to build HS SBL and HS Uniflash Programmer are as below:</p>
+<div class="highlight-cpp"><div class="highlight"><pre>cd &lt;PDK&gt;/packages/ti/build
+make -s sbl_&lt;bootmode&gt;_img_hs BOARD=$BOARD
+
+where boot mode is mmcsd, ospi, hyperflash, uart and $BOARD is j721e_evm or another valid board which can be listed using **make -s help**
+This generates HS SBL images under &lt;PDK&gt;/packages/ti/boot/sbl/binary/&lt;$BOARD&gt;_hs folder
+</pre></div>
+</div>
+<div
+style="margin: 5px; padding: 2px 10px; background-color: #ecffff; border-left: 5px solid #3399ff;"><p><strong>NOTE</strong></p>
+<ul class="simple">
+<li>Make sure build environment is set up using <strong>pdksetupenv</strong> if you have not done so when compiling for GP device.</li>
+<li>If the make does not succeed, try setting DISABLE_RECURSE_DEPS=no like so: <strong>make -s sbl_&lt;bootmode&gt;_img_hs BOARD=$BOARD DISABLE_RECURSE_DEPS=no</strong>.</li>
+</ul>
+</div><p>Building HS Uniflash programmer is similar to SBL. Instead provide the make target as “board_utils_uart_flash_programmer_hs”.
+This generates HS uniflash programmer image under &lt;PDK&gt;/packages/ti/board/utils/uniflash/target/bin/&lt;$BOARD&gt;_hs folder</p>
+<p><strong>Compile Encrypted SBL for HS Device</strong></p>
+<p>A few additional steps on top of compiling non-encrypted SBL for HS device is necessary when compiling an encrypted SBL.</p>
+<ol class="arabic simple">
+<li>Open the file &lt;PDK&gt;/packages/ti/build/makerules/x509CertificateGen.sh or x509CertificateGen.ps1 if on Windows.</li>
+<li>Edit line 119 of x509CertificateGen to <code class="docutils literal"><span class="pre">ENC_BIN=$BIN&quot;-ENC-&quot;$CERT_SIGN</span></code> instead of <code class="docutils literal"><span class="pre">ENC_BIN=$CERT_SIGN&quot;-ENC-&quot;$BIN</span></code></li>
+<li>Open &lt;PDK&gt;/packages/ti/build/makerules/common.mk</li>
+<li>Edit line 638 of common.mk that starts with <strong>$(SBL_CERT_GEN) -b $(SBL_BIN_PATH) ...</strong>
+by adding the flags <strong>-e $(PDK_INSTALL_PATH)/ti/build/makerules/k3_dev_mek.txt -y ENCRYPT</strong></li>
+<li>Compile encrypted SBL for HS device using the same command used for non-encrypted SBL for HS device</li>
+</ol>
+<p>This generates encrypted HS SBL images under &lt;PDK&gt;/packages/ti/boot/sbl/binary/&lt;$BOARD&gt;_hs folder with the same name as non-encrypted HS SBL image.</p>
+</div>
+<div class="section" id="compiling-appimage-that-can-be-loaded-by-sbl">
+<h3>5.2.6.4. Compiling appimage that can be loaded by SBL<a class="headerlink" href="#compiling-appimage-that-can-be-loaded-by-sbl" title="Permalink to this headline">¶</a></h3>
+<p>In this section we will demonstrate how you can create a SBL loadable appimage from an existing ELF file.</p>
+<p><strong>Memory Map Considerations</strong></p>
+<p>Applications that the SBL loads must comply generally with the <a class="reference internal" href="#sbl-memory-usage">sbl-memory-usage</a>.
+In the application&#8217;s linker command file, care must be taken to not use the first
+0x100 bytes of the MCU R5&#8217;s ATCM memory, as well as the SBL reserved memory from 0x41C00100
+to 0x41C80000, for J7xx devices (0x41C00100 to 0x41C3E00, for AM65xx).
+If the applications are signed, no loadable sections must be placed in the SBL scratch memory
+area. The scratch memory can be used at application runtime for stacks, heaps, etc.</p>
+<p>Also, the SCISERVER now needs to be started on MCU1_0, as part of the MCU1_0 application.
+The board configuration space for SBL to leave behind for the SCISERVER in MCU SRAM should
+be left as reserved, at least until Sciclient_init() has executed on MCU1_0 - it is from
+0x41C80000 to 0x41C82000.  Similarly, the common header location from 0x41CFFB00 to 0x41D00000
+should also be left untouched until Sciclient_init() has finished execution.</p>
+<div
+style="margin: 5px; padding: 2px 10px; background-color: #ecffff; border-left: 5px solid #3399ff;"><p><strong>NOTE</strong></p>
+<ul class="simple">
+<li>The local address 0x0 of the MPU is not accessible from the MCU, so any MPU linker
+command file must not specify any loadable sections in that memory region. The SBL
+will not be able to access that memory to load code or data.</li>
+</ul>
+</div><p><strong>Compile SBL loadable image from ELF executables</strong></p>
+<p>Depending on the usecase, an ELF application executable can be converted into an
+image that can be loaded by SBL in many ways.</p>
+<ul class="simple">
+<li><strong>Using CCS</strong>: Any project created using the pdkProjectCreate scripts will
+automatically generate a SBL loadable app, as part of a post-build step.</li>
+<li><strong>Using makefiles</strong>: Add the following lines to the component&#8217;s .mk file</li>
+</ul>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">app_name_SBL_APPIMAGEGEN</span> <span class="o">=</span> <span class="n">yes</span>
+<span class="k">export</span> <span class="n">app_name_SBL_APPIMAGEGEN</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><strong>Existing ELF executable</strong>: By calling the K3ImageGen script.</li>
+</ul>
+<div class="highlight-cpp"><div class="highlight"><pre>Linux Syntax: ./K3ImageGen.sh &lt;CoreID&gt; &lt;.out&gt;
+
+Example:
+cd  &lt;sdk_install_path&gt;/pdk_*/packages/ti/boot/sbl/tools/scripts/
+./K3ImageGen.sh 4 sbl_baremetal_boot_test_&lt;board&gt;_mcu1_0TestApp_release.xer5f
+</pre></div>
+</div>
+<div class="highlight-cpp"><div class="highlight"><pre>Windows Syntax: K3ImageGen.bat &quot;&lt;CoreID&gt; &lt;.out&gt;&quot;
+
+Example:
+cd  &lt;sdk_install_path&gt;\pdk_*\packages\ti\boot\sbl\tools\scripts\
+K3ImageGen.bat &quot;4 sbl_baremetal_boot_test_&lt;board&gt;_mcu1_0TestApp_release.xer5f&quot;
+</pre></div>
+</div>
+<ul class="simple">
+<li><strong>Multicore Images</strong>: Multicore images, as the name suggests, allows the SBL
+to load applications for multiple cores from a single image. Creating such images
+involves three steps.</li>
+</ul>
+<ol class="arabic simple">
+<li>Generate the ELF application executables for individual cores</li>
+<li>Convert the ELF executables into intermediate .rprc images</li>
+<li>Combine the .rprc images of individual cores to create a single multicore image</li>
+</ol>
+<p>To covert any .out into the intermediate .rprc format, execute the following commands</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">For</span> <span class="nl">Linux</span><span class="p">:</span>
+<span class="n">mono</span> <span class="o">&lt;</span><span class="n">PDK</span><span class="o">&gt;/</span><span class="n">packages</span><span class="o">/</span><span class="n">ti</span><span class="o">/</span><span class="n">boot</span><span class="o">/</span><span class="n">sbl</span><span class="o">/</span><span class="n">tools</span><span class="o">/</span><span class="n">out2rprc</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">out2rprc</span><span class="p">.</span><span class="n">exe</span> <span class="n">input</span><span class="p">.</span><span class="n">out</span> <span class="n">output</span><span class="p">.</span><span class="n">rprc</span>
+</pre></div>
+</div>
+<div class="highlight-cpp"><div class="highlight"><pre>For Windows:
+&lt;PDK&gt;\packages\ti\boot\sbl\tools\out2rprc\bin\out2rprc.exe input.out output.rprc
+</pre></div>
+</div>
+<p>To stitch multiple .rprc images into a multicore image, execute the following command</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">For</span> <span class="nl">Linux</span><span class="p">:</span>
+<span class="o">&lt;</span><span class="n">PDK</span><span class="o">&gt;/</span><span class="n">packages</span><span class="o">/</span><span class="n">ti</span><span class="o">/</span><span class="n">boot</span><span class="o">/</span><span class="n">sbl</span><span class="o">/</span><span class="n">tools</span><span class="o">/</span><span class="n">multicoreImageGen</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">MulticoreImageGen</span> <span class="n">LE</span> <span class="mi">55</span> <span class="n">output</span><span class="p">.</span><span class="n">appimage</span>  <span class="o">&lt;</span><span class="n">core_id_1</span><span class="o">&gt;</span> <span class="n">core_1</span><span class="p">.</span><span class="n">rprc</span> <span class="o">&lt;</span><span class="n">core_id_2</span><span class="o">&gt;</span> <span class="n">core_2</span><span class="p">.</span><span class="n">rprc</span>
+</pre></div>
+</div>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">For</span> <span class="nl">Windows</span><span class="p">:</span>
+<span class="o">&lt;</span><span class="n">PDK</span><span class="o">&gt;/</span><span class="n">packages</span><span class="o">/</span><span class="n">ti</span><span class="o">/</span><span class="n">boot</span><span class="o">/</span><span class="n">sbl</span><span class="o">/</span><span class="n">tools</span><span class="o">/</span><span class="n">multicoreImageGen</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">MulticoreImageGen</span><span class="p">.</span><span class="n">exe</span> <span class="n">LE</span> <span class="mi">55</span> <span class="n">output</span><span class="p">.</span><span class="n">appimage</span>  <span class="o">&lt;</span><span class="n">core_id_1</span><span class="o">&gt;</span> <span class="n">core_1</span><span class="p">.</span><span class="n">rprc</span> <span class="o">&lt;</span><span class="n">core_id_2</span><span class="o">&gt;</span> <span class="n">core_2</span><span class="p">.</span><span class="n">rprc</span>
+</pre></div>
+</div>
+<div
+style="margin: 5px; padding: 2px 10px; background-color: #ecffff; border-left: 5px solid #3399ff;"><p><strong>NOTE</strong></p>
+<ul class="simple">
+<li>The linux host environment needs to have <a class="reference external" href="http://www.mono-project.com">mono</a> installed.</li>
+<li>The values used for the Core ID and Device ID can be found in <a class="reference external" href="https://git.ti.com/cgit/processor-sdk/pdk/tree/packages/ti/boot/sbl/soc/k3/sbl_slave_core_boot.h#n51">sbl/soc/k3/
+sbl_slave_core_boot.h</a></li>
+<li>To simply load an ELF without executing it, use CoreID value ONLY_LOAD_ID</li>
+<li>If an image for MCU_1 core is provided, the SBL will attempt to switch to
+split mode.</li>
+<li>If only an image for MCU_0 is provided, the SBL will not change the mode of the
+MCU subsystem.</li>
+<li>To enable SMP on the MPU, ie, to get multiple MPUs execute from a single binary
+from the same address, use one of the following core_ids<ul>
+<li>MPU1_SMP_ID: The same app binary runs on both cores in MPU cluster 1</li>
+<li>MPU2_SMP_ID: The same app binary runs on both cores in MPU cluster 2</li>
+<li>MPU_SMP_ID:  The same app binary runs all the MPUs</li>
+</ul>
+</li>
+</ul>
+</div><p><strong>Boot a HLOS+RTOS appimage using the combined_appimage tooling</strong></p>
+<p>Creating a combined.appimage file including all images necessary to boot U-boot or HLOS
+on the SoC&#8217;s Cortex-A cores, as well as booting RTOS images on the other remote cores can be
+done with the following 4 steps:</p>
+<ol class="arabic simple">
+<li>Modify the sbl/tools/combined_appimage/config.mk file <strong>HLOS_BIN_PATH</strong> var to point to the desired HLOS images to be booted</li>
+<li>Modify the <strong>HLOS_BOOT</strong> var in the same file to select &#8220;development&#8221; option (boots to SPL/U-boot) or &#8220;optimized&#8221; option (boots ATF/OPTEE/Linux)</li>
+<li>Modify the <strong>RTOS_BIN_PATH</strong> var there to point to your RTOS binaries and then list the cores &amp; binaries to be loaded in the vars: IMG1, IMG2, ...</li>
+<li>Make the combined.appimage output app using the following make command:</li>
+</ol>
+<div class="highlight-cpp"><div class="highlight"><pre>make BOARD=&lt;board&gt; GCC_LINUX_ARM_PATH=&lt;path&gt;
+
+Example:
+cd  &lt;sdk_install_path&gt;/pdk_*/packages/ti/boot/sbl/tools/combined_appimage
+make BOARD=&lt;board&gt; GCC_LINUX_ARM_PATH=&lt;sdk_install_path&gt;/gcc-arm-9.2-2019.12-x86_64-aarch64-none-elf
+cd bin/&lt;board&gt;
+ls *.appimage
+</pre></div>
+</div>
+<p><strong>Converting ELF executables to executable binary images</strong></p>
+<p>Sometimes, for extremely constrained and specialized usecases like ultra-low-latency boot
+or DDR-less systems, an ELF application executable can be converted into a binary
+image that can executed directly from the boot media, without loading into internal
+memory.</p>
+<p>As internal memory is always accessible, this mode of execution allows some otherwise
+mandatory steps steps like DDR initlization or clock initialization  to be done
+later or skipped altogether.</p>
+<p>Working with such highly contrained systems require some special steps..</p>
+<ul class="simple">
+<li>Make sure that the boot media supports eXecuting In Place (XIP).</li>
+<li>Use the custom SBL build to select the build options to build a SBL
+that meets the usecase requirements.</li>
+<li>In the linker command file for the application, make sure that all the data
+sections, stacks, heaps and globals are in internal read/write memory</li>
+<li>In the linker command file for the application, make sure that there are no
+holes in the loadable sections. Such non-contiguous sections can drastically
+blow up the binary image size, when compared to the ELF executable size.</li>
+<li>To generate an executable binary image from the applications ELF file,
+add the following lines to the component&#8217;s .mk file</li>
+</ul>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">app_name_SBL_APP_BINIMAGEGEN</span> <span class="o">=</span> <span class="n">yes</span>
+<span class="k">export</span> <span class="n">app_name_SBL_APP_BINIMAGEGEN</span>
+</pre></div>
+</div>
+<p><strong>Compile encrypted SBL loadable image for HS device from ELF executables</strong></p>
+<p>An edit to our appimage generation script is necessary to generate encrypted appimage:</p>
+<ol class="arabic simple">
+<li>Open &lt;PDK&gt;/packages/ti/boot/sbl/tools/scripts/K3ImageGen.sh for Linux or K3ImageGen.bat for Windows</li>
+<li>Edit line 88 that starts with <strong>&#8220;$PDK_INSTALL_PATH/ti/build/makerules/x509...</strong> by adding the flags:
+<strong>-e $PDK_INSTALL_PATH/ti/build/makerules/k3_dev_mek.txt -y ENCRYPT</strong></li>
+</ol>
+<p>Now the K3ImageGen script generates encrypted appimage instead of non-encrypted appimage.
+It can still be used like so:</p>
+<div class="highlight-cpp"><div class="highlight"><pre>cd  &lt;sdk_install_path&gt;/pdk_*/packages/ti/boot/sbl/tools/scripts
+./K3ImageGen.sh 4 &lt;path_to_ELF_file&gt;/sbl_baremetal_boot_test_&lt;board&gt;_mcu1_0TestApp_release.xer5f
+</pre></div>
+</div>
+<p>The generated appimage should be in &lt;PDK&gt;/packages/ti/boot/sbl/examples/k3MulticoreApp/binary/&lt;board&gt;/ directory
+which also has some ELF files that you can use to test the script.</p>
+</div>
+</div>
+<div class="section" id="testing-the-sbl">
+<h2>5.2.7. Testing the SBL<a class="headerlink" href="#testing-the-sbl" title="Permalink to this headline">¶</a></h2>
+<p>SBL provides test applications to demonstrate booting the A53/A72 and R5 cores in
+both symmetric/lock step &amp; asymmetric/split-mode and other features. The multicore
+sample application prints a message on the UART for each core. The functionality
+the different tests exercises are listed below.</p>
+<ul class="simple">
+<li>sbl_*_boot_test_*_all_coresTestApp_release: A single multicore boot test case
+that boots each core in the SoC with a separate app. Also tests DDR loading</li>
+<li>sbl_*_boot_test_*_xxxx_xTestApp_release.appimage: A simple testcase for booting
+core xxxx_x (eg. MCU1_0, MPU2_0 etc.)</li>
+<li>sbl_*_smp_test_*_all_coresTestApp_release.appimage: A single SMP boot test case
+that boots MCUs in lock step. The MCU app then uses the SBL lib to boot all the
+MPUs in SMP mode, ie, all the MPUs execute a single binary from the same address.</li>
+<li>sbl_baremetal_boot_perf_*_mcu1_0TestApp_release.appimage: A single MCU1_0 test
+case that can be used to measure the effect of enabling/disabling the perf.
+tuning knobs in the SBL for OSPI boot. The size of the test case can be easily
+modified by changing the values of .space directives in <a class="reference external" href="http://git.ti.com/cgit/processor-sdk/pdk/tree/packages/ti/boot/sbl/example/k3MulticoreApp/sbl_boot_perf_r5.asm#n42">sbl/example/k3MulticoreApp/
+sbl_boot_perf_r5.asm</a>
+to profile for different app image sizes.</li>
+<li>sbl_baremetal_boot_xip_test_*_mcu1_0TestApp_release.xer5f.bin: A testcase
+demonstrating booting an XIP application from OSPI flash. Please refer to <a class="reference external" href="https://git.ti.com/cgit/processor-sdk/pdk/tree/packages/ti/boot/sbl/build/sbl_mcu0_boot_xip_test.mk">sbl/build/
+sbl_mcu0_boot_xip_test.mk</a> and the related linker command file, under
+sbl/example/k3MulticoreApp/j721e/mcuXiplinker.lds,
+to see how to convert an existing application into an XIP application. The
+sbl_*_xip_entry_*.appimage works in tandem with sbl_*xip_test_*.xer5f.bin to transition
+the system from non-xip to xip boot, as the ROM, by default, does not support XIP from
+boot media. After programming the sbl and syfw, to program  both sbl_*_xip_entry_*.appimage
+and  sbl_*xip_test_*.xer5f.bin into OSPI flash, use the following uniflash commands</li>
+</ul>
+<div class="highlight-cpp"><div class="highlight"><pre>For Windows:
+.\dslite.bat --mode processors -c COM9 -f &lt;PDK&gt;\packages\ti\boot\sbl\example\k3MulticoreApp\binary\&lt;soc&gt;\sbl_baremetal_boot_xip_entry_&lt;board&gt;_mcu1_0TestApp_release.appimage -d 3 -o 100000
+.\dslite.bat --mode processors -c COM9 -f &lt;PDK&gt;\packages\ti\boot\sbl\example\k3MulticoreApp\binary\&lt;soc&gt;\sbl_baremetal_boot_xip_test_&lt;board&gt;_mcu1_0TestApp_release.xer5f.bin -d 3 -o 1C0000
+</pre></div>
+</div>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">For</span> <span class="nl">Linux</span><span class="p">:</span>
+<span class="n">sudo</span> <span class="p">.</span><span class="o">/</span><span class="n">dslite</span><span class="p">.</span><span class="n">sh</span> <span class="o">--</span><span class="n">mode</span> <span class="n">processors</span> <span class="o">-</span><span class="n">c</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">ttyUSB1</span> <span class="o">-</span><span class="n">f</span> <span class="o">&lt;</span><span class="n">PDK</span><span class="o">&gt;/</span><span class="n">packages</span><span class="o">/</span><span class="n">ti</span><span class="o">/</span><span class="n">boot</span><span class="o">/</span><span class="n">sbl</span><span class="o">/</span><span class="n">example</span><span class="o">/</span><span class="n">k3MulticoreApp</span><span class="o">/</span><span class="n">binary</span><span class="o">/&lt;</span><span class="n">soc</span><span class="o">&gt;/</span><span class="n">sbl_baremetal_boot_xip_entry_</span><span class="o">&lt;</span><span class="n">board</span><span class="o">&gt;</span><span class="n">_mcu1_0TestApp_release</span><span class="p">.</span><span class="n">appimage</span> <span class="o">-</span><span class="n">d</span> <span class="mi">3</span> <span class="o">-</span><span class="n">o</span> <span class="mi">100000</span>
+<span class="n">sudo</span> <span class="p">.</span><span class="o">/</span><span class="n">dslite</span><span class="p">.</span><span class="n">sh</span> <span class="o">--</span><span class="n">mode</span> <span class="n">processors</span> <span class="o">-</span><span class="n">c</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">ttyUSB1</span> <span class="o">-</span><span class="n">f</span> <span class="o">&lt;</span><span class="n">PDK</span><span class="o">&gt;/</span><span class="n">packages</span><span class="o">/</span><span class="n">ti</span><span class="o">/</span><span class="n">boot</span><span class="o">/</span><span class="n">sbl</span><span class="o">/</span><span class="n">example</span><span class="o">/</span><span class="n">k3MulticoreApp</span><span class="o">/</span><span class="n">binary</span><span class="o">/&lt;</span><span class="n">soc</span><span class="o">&gt;/</span><span class="n">sbl_baremetal_boot_xip_test_</span><span class="o">&lt;</span><span class="n">board</span><span class="o">&gt;</span><span class="n">_mcu1_0TestApp_release</span><span class="p">.</span><span class="n">xer5f</span><span class="p">.</span><span class="n">bin</span> <span class="o">-</span><span class="n">d</span> <span class="mi">3</span> <span class="o">-</span><span class="n">o</span> <span class="mi">1</span><span class="n">C0000</span>
+</pre></div>
+</div>
+<p>An example test log for sbl_*_boot_test_*_all_coresTestApp_release is</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">SBL</span> <span class="nl">Revision</span><span class="p">:</span> <span class="n">xx</span><span class="p">.</span><span class="n">xx</span><span class="p">.</span><span class="n">xx</span><span class="p">.</span><span class="n">xx</span> <span class="p">(</span><span class="n">MMM</span>  <span class="n">DD</span> <span class="n">YYYY</span> <span class="o">-</span> <span class="nl">HH</span><span class="p">:</span><span class="nl">MM</span><span class="p">:</span><span class="n">SS</span><span class="p">)</span>
+<span class="n">TIFS</span><span class="p">(</span><span class="n">or</span> <span class="n">SYSFW</span><span class="p">)</span>  <span class="n">ver</span> <span class="n">xx</span><span class="p">.</span><span class="n">x</span><span class="p">.</span><span class="n">x</span><span class="o">-</span><span class="n">v20xx</span><span class="p">.</span><span class="n">xx</span> <span class="p">(</span><span class="n">xxx</span> <span class="n">xxx</span><span class="p">)</span>
+
+<span class="n">MPU1_0</span> <span class="n">running</span>
+<span class="n">MPU1_1</span> <span class="n">running</span>
+<span class="n">MPU2_0</span> <span class="n">running</span>
+<span class="n">MPU2_1</span> <span class="n">running</span>
+<span class="n">MCU1_1</span> <span class="n">running</span>
+<span class="n">MCU1_0</span> <span class="n">running</span>
+<span class="n">MCU1_0</span> <span class="nl">reports</span><span class="p">:</span> <span class="n">All</span> <span class="n">tests</span> <span class="n">have</span> <span class="n">passed</span>
+</pre></div>
+</div>
+<p>An example log for sbl_*_smp_test_*_all_coresTestApp_release.appimage is</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">SBL</span> <span class="nl">Revision</span><span class="p">:</span> <span class="n">xx</span><span class="p">.</span><span class="n">xx</span><span class="p">.</span><span class="n">xx</span><span class="p">.</span><span class="n">xx</span> <span class="p">(</span><span class="n">MMM</span>  <span class="n">DD</span> <span class="n">YYYY</span> <span class="o">-</span> <span class="nl">HH</span><span class="p">:</span><span class="nl">MM</span><span class="p">:</span><span class="n">SS</span><span class="p">)</span>
+<span class="n">TIFS</span><span class="p">(</span><span class="n">or</span> <span class="n">SYSFW</span><span class="p">)</span>  <span class="n">ver</span> <span class="n">xx</span><span class="p">.</span><span class="n">x</span><span class="p">.</span><span class="n">x</span><span class="o">-</span><span class="n">v20xx</span><span class="p">.</span><span class="n">xx</span> <span class="p">(</span><span class="n">xxx</span> <span class="n">xxx</span><span class="p">)</span>
+
+<span class="n">MPU</span> <span class="n">SMP</span> <span class="n">boot</span> <span class="n">test</span>
+<span class="n">Cores</span> <span class="mi">0</span> <span class="o">&amp;</span> <span class="mi">1</span> <span class="n">will</span> <span class="n">boot</span> <span class="n">from</span> <span class="mh">0x801007a0</span>
+<span class="n">Cores</span> <span class="mi">6</span> <span class="o">&amp;</span> <span class="mi">7</span> <span class="n">will</span> <span class="n">boot</span> <span class="n">in</span> <span class="n">lockstep</span> <span class="n">from</span> <span class="mh">0x70050000</span>
+<span class="n">Resetting</span> <span class="n">all</span> <span class="n">ARM</span> <span class="n">cores</span> <span class="n">now</span><span class="p">...</span>
+<span class="n">No</span> <span class="n">of</span> <span class="n">Cortex</span><span class="o">-</span><span class="n">A</span> <span class="n">core</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="nl">running</span><span class="p">:</span> <span class="mi">1</span>
+<span class="n">No</span> <span class="n">of</span> <span class="n">Cortex</span><span class="o">-</span><span class="n">A</span> <span class="n">core</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="nl">running</span><span class="p">:</span> <span class="mi">2</span>
+<span class="n">No</span> <span class="n">of</span> <span class="n">Cortex</span><span class="o">-</span><span class="n">R</span> <span class="n">core</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="nl">running</span><span class="p">:</span> <span class="mi">3</span>
+<span class="n">All</span> <span class="n">tests</span> <span class="n">have</span> <span class="n">passed</span>
+</pre></div>
+</div>
+<p>An example log for sbl_baremetal_boot_perf_*_mcu1_0TestApp_release.appimage, when the best boot time is reached is</p>
+<div class="highlight-cpp"><div class="highlight"><pre>Time elapsed since start of SBL:     36665us
+fxn:boot_perf_test_main     cycles:  14666041
+
+Attempting board config ...BOARD_INIT_PLL ...passed
+BOARD_INIT_MODULE_CLOCK...passed
+BOARD_INIT_DDR...passed
+
+Analyzing run results ....
+Boot time is now optimized....
+All tests have passed
+
+Profiling info ....
+MCU @ 400000000Hz.
+cycles per usec  = 400
+  fxn:                            main      line:  75       cycle:  xxx     timestamp:       432us
+                                    .
+                                    .
+                                    .
+  fxn:               SBL_SlaveCoreBoot      line: 231       cycle:  xxx     timestamp:     36149us
+</pre></div>
+</div>
+<p>The test log for sbl_*_xip_test_*.xer5f.bin is</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">MCU1_0</span> <span class="n">running</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="boot-modes">
+<h2>5.2.8. Boot Modes<a class="headerlink" href="#boot-modes" title="Permalink to this headline">¶</a></h2>
+<p>The SBL supports MMCSD, OSPI, and UART Boot modes. The different boot modes
+supported for Jacinto is tabulated below.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="32%" />
+<col width="11%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="16%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td>MMCSD</td>
+<td>eMMC</td>
+<td>OSPI</td>
+<td>UART</td>
+<td>PCIe</td>
+<td>ETH</td>
+<td>HYPERFLASH</td>
+</tr>
+<tr class="row-even"><td>J721E EVM</td>
+<td>YES</td>
+<td>YES</td>
+<td>YES</td>
+<td>YES</td>
+<td>NO</td>
+<td>NO</td>
+<td>NO</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="booting-via-sd-card">
+<h3>5.2.8.1. Booting Via SD Card<a class="headerlink" href="#booting-via-sd-card" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Preparing the SD card.</li>
+<li>Booting the testcase from SD card.</li>
+</ol>
+<p><strong>Preparing the SD card</strong></p>
+<ol class="arabic simple">
+<li>To boot the target the SD card should be bootable. Follow the steps
+to <a class="reference external" href="https://software-dl.ti.com/jacinto7/esd/processor-sdk-rtos-jacinto7/07_03_00_07/exports/docs/psdk_rtos/docs/user_guide/out_of_box_j721e.html">Creating bootable SD card in
+Linux</a>.</li>
+<li>To update the SBL with a newer version, copy the sbl image (sbl_mmcsd_img_mcu1_0_release.tiimage) to the SD card.
+Rename it to <strong>tiboot3.bin</strong></li>
+<li>Copy the generated application image(*.appimage or *.appimage.signed) to the SD card. Rename it to
+<strong>app</strong></li>
+<li>Update the TIFS with a newer version, copy the TIFS system firmware image binary (or, for HS device, use the
+encrypted TIFS system firmware binary, &#8220;tifs-hs-enc.bin&#8221;) found in &lt;PDK&gt;/packages/ti/drv/sciclient/soc/V1 to the SD card as <strong>tifs.bin</strong>.</li>
+</ol>
+<p><strong>Booting the testcase from SD card</strong></p>
+<ol class="arabic simple">
+<li>Insert SD card into the SD card slot of the board.</li>
+<li>Refer to the Boot Modes section in the <a class="reference external" href="http://www.ti.com/lit/pdf/spruis4">J721E EVM Hardware Users Guide</a> to setup the EVM to boot from MMCSD.</li>
+<li>Open a serial communication terminal like TeraTerm, MiniCom on host
+PC and connect to the MCU UART console port</li>
+<li>Power cycle the board to boot the application from the SD card.</li>
+<li>The test logs will be displayed on the MCU UART</li>
+</ol>
+</div>
+<div class="section" id="booting-via-emmc-uda-partition">
+<h3>5.2.8.2. Booting Via eMMC UDA partition<a class="headerlink" href="#booting-via-emmc-uda-partition" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Preparing eMMC.</li>
+<li>Booting the testcase from eMMC.</li>
+</ol>
+<p><strong>Preparing eMMC</strong></p>
+<ol class="arabic simple">
+<li>Boot the target with the linux SDK. You can find the latest linux <a class="reference external" href="https://www.ti.com/tool/download/PROCESSOR-SDK-LINUX-J721E">here</a>.</li>
+<li>Prepare the SD Card with Linux Images. Follow the procedure <a class="reference external" href="https://software-dl.ti.com/processor-sdk-linux/esd/AM65X/07_01_00_17/exports/docs/linux/Overview/Processor_SDK_Linux_Formatting_SD_Card.html">here</a>.</li>
+<li>Copy mksdboot.sh from &lt;Linux_SDK_Install_Directory&gt;/bin to /media/$USER/rootfs/home/root</li>
+<li>Change boot mode setting to SD boot mode: SW8: 1000 0010 SW9: 0000 0000</li>
+<li>Boot the board</li>
+<li>login as root</li>
+<li>Run the mksdboot.sh script: ./mksdboot.sh &#8211;device /dev/mmcblk0</li>
+<li>Run fdisk -l to check if the /dev/mmcblk0 is partitioned</li>
+</ol>
+<p><strong>Booting the testcase from eMMC</strong></p>
+<ol class="arabic simple">
+<li>To update the SBL with a newer version, copy the sbl image (sbl_emmc_uda_img_mcu1_0_release.tiimage) to /media/$USER/rootfs/home/root in the SD card.
+Rename it to <strong>tiboot3.bin</strong></li>
+<li>Copy the generated application image(*.appimage or *.appimage.signed) to /media/$USER/rootfs/home/root in the SD card. Rename it to
+<strong>app</strong></li>
+<li>Update the TIFS with a newer version, copy the TIFS system firmware image binary (or, for HS device, use the
+encrypted TIFS system firmware binary, &#8220;tifs-hs-enc.bin&#8221;) found in &lt;PDK&gt;/packages/ti/drv/sciclient/soc/V* to /media/$USER/rootfs/home/root in the SD card as <strong>tifs.bin</strong>.</li>
+<li>Put the SD Card back to board and boot in SD boot mode: SW8: 1000 0010 SW9: 0000 0000</li>
+<li>Copy the images to eMMC partition<ul>
+<li>mkdir eMMC</li>
+<li>mount /dev/mmcblk0p1 eMMC</li>
+<li>cp tiboot3.bin eMMC</li>
+<li>cp tifs.bin eMMC</li>
+<li>cp app eMMC</li>
+</ul>
+</li>
+<li>Change boot mode to eMMC UDA partition and boot the board: SW8: 1000 0000 SW9: 0000 0000</li>
+</ol>
+</div></blockquote>
+</div>
+<div class="section" id="booting-via-emmc-boot0-partition">
+<h3>5.2.8.3. Booting Via eMMC BOOT0 partition<a class="headerlink" href="#booting-via-emmc-boot0-partition" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Flashing images to eMMC.</li>
+<li>Booting the testcase from eMMC.</li>
+<li>Limitations</li>
+</ol>
+<p><strong>Flashing images to eMMC</strong></p>
+<ol class="arabic">
+<li><p class="first">Create a folder named SBL in boot partition of SD card which is flashed with the linux images. You can find how to flash linux images to SD card in prepare eMMC section under Booting Via eMMC UDA partition.</p>
+</li>
+<li><p class="first">Copy the sbl image (sbl_emmc_boot0_img_mcu1_0_release.tiimage) to the boot partition of SD card in SBL folder.</p>
+</li>
+<li><p class="first">Copy the generated application image(*.appimage or *.appimage.signed) to the boot partition of SD card in SBL folder.</p>
+</li>
+<li><p class="first">Copy the TIFS system firmware image binary (or, for HS device, use the encrypted TIFS system firmware binary, &#8220;tifs-hs-enc.bin&#8221;) boot partition of SD card in SBL folder.</p>
+</li>
+<li><p class="first">Insert the SD card into the evm. Boot the evm in SD bootmode: SW8: 1000_0010 SW9: 0000_0000</p>
+</li>
+<li><p class="first">Halt in uboot and Enter the following commands to download the images from an SD card and write them to the eMMC boot0 partition at respective addresses.</p>
+<ul>
+<li><p class="first">Selecting device 0 (eMMC) and partition 1 (BOOT0)</p>
+<blockquote>
+<div><ul class="simple">
+<li>mmc dev 0 1</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">Erasing 0x2000 sectors from 0x0. Each sector is of 512 Bytes</p>
+<blockquote>
+<div><ul class="simple">
+<li>mmc erase 0x0 0x2000</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">Load SBL image to DDR from MMCSD</p>
+<blockquote>
+<div><ul class="simple">
+<li>fatload mmc 1 ${loadaddr} SBL/sbl_emmc_boot0_img_mcu1_0_release.tiimage</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">Write &lt;size_of_sbl_in_sectors&gt; to 0x0 from DDR</p>
+<blockquote>
+<div><ul class="simple">
+<li>mmc write ${loadaddr} 0x0 size_of_sbl_in_sectors</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">Load tifs.bin to DDR from MMCSD</p>
+<blockquote>
+<div><ul class="simple">
+<li>fatload mmc 1 ${loadaddr} SBL/tifs.bin</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">Write &lt;size_of_tifs_in_sectors&gt; to 0x400 from DDR</p>
+<blockquote>
+<div><ul class="simple">
+<li>mmc write ${loadaddr} 0x400 size_of_tifs_in_sectors</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">Load application image to DDR from MMCSD</p>
+<blockquote>
+<div><ul class="simple">
+<li>fatload mmc 1 ${loadaddr} SBL/application_image</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">Write &lt;size_of_app_in_sectors&gt; to 0x1400 from DDR</p>
+<blockquote>
+<div><ul class="simple">
+<li>mmc write ${loadaddr} 0x1400 size_of_app_in_sectors</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">Enable Booting from BOOT0 partition of eMMC</p>
+<blockquote>
+<div><ul class="simple">
+<li>mmc partconf 0 1 1 1</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">Selecting bus width</p>
+<blockquote>
+<div><ul class="simple">
+<li>mmc bootbus 0 2 0 0</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</li>
+<li><p class="first">Note : To calculate size of an image in sectors see below example</p>
+<ul class="simple">
+<li>For example size of image = 409600 Bytes</li>
+<li>eMMC sector size = 512 Bytes</li>
+<li>Number of sectors = (409600/512)+1 =&gt; (0x64000/0x200)+1</li>
+<li>size of image in sectors = 0x321</li>
+</ul>
+</li>
+</ol>
+<p><strong>Booting the testcase from eMMC</strong></p>
+<ol class="arabic simple">
+<li>Change the boot mode to eMMC boot via BOOT0 partition: SW8: 1000 0000 SW9: 0100 0000.</li>
+<li>Open a serial communication terminal like TeraTerm, MiniCom on host
+PC and connect to the MCU UART console port</li>
+<li>Power cycle the board to boot the application from the eMMC boot.</li>
+<li>The test logs will be displayed on the MCU UART.</li>
+</ol>
+<p><strong>Limitations</strong></p>
+<ol class="arabic simple">
+<li>It can boot the application with the max size of 512000 bytes. If the size of application is more than that you need to pass MAX_APP_SIZE_EMMC=&lt;size_of_image&gt; while building image.</li>
+<li>size_of_image can be calculated in the following manner.<ul>
+<li>For example size of .appimage = 712000 bytes.</li>
+<li>MAX_APP_SIZE_EMMC=0xADD40.</li>
+</ul>
+</li>
+<li>Last point in Flashig images to eMMC should be mmc write ${loadaddr} 0x1400 &lt;size_of_image&gt; where size_of_image can be calculated as follows.<ul>
+<li>For example size of .appimage = 712000 bytes.</li>
+<li>eMMC sector size  = 512 bytes</li>
+<li>Number of sectors = (712000/512) + 1 =&gt; (0xADD40/0x200) + 1</li>
+<li>size_of_image = 0x56F</li>
+</ul>
+</li>
+</ol>
+</div></blockquote>
+</div>
+<div class="section" id="booting-via-ospi-flash">
+<h3>5.2.8.4. Booting Via OSPI flash<a class="headerlink" href="#booting-via-ospi-flash" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li><a class="reference external" href="http://software-dl.ti.com/processor-sdk-rtos/esd/docs/latest/rtos/index_board.html#uniflash">Programming the OSPI flash</a></li>
+<li>Flash addresses for Images</li>
+<li>Booting the testcase from OSPI flash</li>
+</ol>
+<p><strong>Flash addresses for Images</strong></p>
+<ol class="arabic simple">
+<li>tiboot3.bin (SBL) is flashed to address 0x0</li>
+<li>&lt;system_firmware_name&gt;.bin (TIFS or SYSFW) is flashed to address 0x80000</li>
+<li>&lt;app_name&gt;.appimage (APP) is flashed to address 0x100000</li>
+<li>Optional: &lt;xip_app&gt;.bin (XIP.bin) is flashed to 0x1C0000</li>
+<li>OSPI PHY tuning data binary must also be flashed to the start of the last flash sector (e.g., usually a 512kB or 256kB size sector)</li>
+</ol>
+<p>Note: The file &lt;system_firmware_name&gt;.bin will be <strong>tifs.bin</strong> for a J7xx device
+(for HS device, use the encrypted firmware binary, <strong>tifs-hs-enc.bin</strong>).</p>
+<p><strong>Booting the testcase from OSPI flash</strong></p>
+<ol class="arabic simple">
+<li>Refer to the Boot Modes section in the <a class="reference external" href="http://www.ti.com/lit/pdf/spruis4">J721E EVM Hardware Users Guide</a> to setup the EVM to boot from OSPI.</li>
+<li>Open a serial communication terminal like TeraTerm, MiniCom on host
+PC and connect to the MCU UART console port</li>
+<li>Power cycle the board to boot the application from the OSPI flash.</li>
+<li>The test logs will be displayed on the MCU UART</li>
+</ol>
+</div>
+<div class="section" id="booting-via-uart">
+<h3>5.2.8.5. Booting via UART<a class="headerlink" href="#booting-via-uart" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Refer to the Boot Modes section in the <a class="reference external" href="http://www.ti.com/lit/pdf/spruis4">J721E EVM Hardware Users Guide</a> to setup the EVM to boot from UART.</li>
+<li>Open a serial communication terminal like TeraTerm, MiniCom on host
+PC and connect to the MCU UART console port</li>
+<li>Power cycle the board, the console should show a sequence of CCC being printed</li>
+<li>Choose the X-Modem interface and send the SBL that was built for UART. After the transfer is completed,
+repeat the same steps for the system firmware and the application.
+You will see notifications to perform these actions.</li>
+</ol>
+<p>Note: The system firmware binary will be <strong>tifs.bin</strong> for a J7xx device
+(for HS device, use the encrypted firmware binary, <strong>tifs-hs-enc.bin</strong>).</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">If the system firmware binary is not present in the boot media, the boot will fail without displaying any
+logs on the MCU UART. SBL enables UART logging only after successfully starting the system
+firmware image. If the system firmware load fails, the RBL will eventually reset the system.</p>
+</div>
+</div>
+</div>
+<div class="section" id="hsm-boot">
+<h2>5.2.9. HSM Boot<a class="headerlink" href="#hsm-boot" title="Permalink to this headline">¶</a></h2>
+<p>Not applicable for this device.</p>
+</div>
+<div class="section" id="evm-setup-for-testing-sbl">
+<h2>5.2.10. EVM Setup for testing SBL<a class="headerlink" href="#evm-setup-for-testing-sbl" title="Permalink to this headline">¶</a></h2>
+<p>For information on board specific requirements like power supply, UART console port
+connections refer the Hardware User guide of the respective boards.</p>
+<p>The configurations needed to setup UART console through a serial terminal
+application on host PC&nbsp;are listed in the next section.</p>
+<p><strong>UART Console Setup</strong></p>
+<p>PDK SBL prints messages on the UART Serial Console running on the host. Hence, a
+serial terminal application (like Tera Term/HyperTerminal/minicom) should be
+running on the host.</p>
+<ul class="simple">
+<li>The host serial port&nbsp;must be&nbsp;configured at 115200 baud, no parity, 1  stop bit
+and no flow control.</li>
+<li>Please ensure that the local echo setting for the terminal is turned  off.</li>
+<li>All SBL prints are routed to the <a class="reference external" href="http://software-dl.ti.com/processor-sdk-rtos/esd/docs/latest/rtos/index_how_to_guides.html#uart-connection">MCU UART</a></li>
+<li>To verify setup is correct, setup the EVM to boot from UART as the Primary Boot
+Device (refer to <a class="reference external" href="http://www.ti.com/lit/pdf/spruis4">J721E EVM Hardware Users Guide</a> )
+Power cycle the EVM, and look for the string CCCCCCC on the UART.</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="boot_app.html" class="btn btn-neutral float-right" title="5.3. Boot App" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="boot.html" class="btn btn-neutral" title="5.1. SBL Overview" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="http://www.ti.com/corp/docs/legal/copyright.shtml">&copy; Copyright 1995-2020</a>, Texas Instruments Incorporated. All rights reserved. <br>
+      <a href="http://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="http://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="http://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="http://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'08_06_01',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,344 @@
+.. _xip_using_two_appimages:
+
+XIP Using Two Appimages
+=======================
+
+.. _xip-using-two-appimages-rom-an-application:
+
+Rom An Application
+-------------------
+ROMing an application or running from XIP is running from a read-only memory - essentially XIP boils down to running an application from a read-only memory.
+
+.. _xip-using-two-appimages-what-is-xip:
+
+What is XIP?
+------------
+.. Image:: ../../images/developer_notes/xip_comparison_flow_chart.png
+.. Image:: ../../images/developer_notes/xip_comparison_diagram.png
+
+In order to take advantage of the XIP mode, two conditions must be fulfilled:
+
+1. **The NOR flash (or flash device in general) device must support DAC mode**
+
+2. **The microcontroller's SPI controller must support XIP mode**
+    a. Burst mode of access - no byte access but a 32bit accesses only in XIP mode
+    b. As code must be in memory to be executed, XIP requires a memory-mappable device such as a RAM, ROM, or a NOR Flash.
+    c. The serial NOR flash memory is mapped in the microcontroller's memory space and is seen as another memory by the processor.
+
+.. _xip-using-two-appimages-difference-between-normal-mode-and-xip-mode:
+
+Normal Mode v/s XIP Mode
+^^^^^^^^^^^^^^^^^^^^^^^^^
+From a SPI protocol perspective, a READ command is composed of three phases: instruction opcode, address and data. XIP mode requires only an address (no instruction) to output data, improving random access time and eliminating the need to shadow code onto RAM for fast execution.
+
+.. _xip-using-two-appimages-why-xip:
+
+Why XIP?
+---------
+
+* Improve startup/boot time - Initial time of copying code from flash to RAM is saved
+* Size of on-chip RAM will not limit the application size
+* NOTE: Slower than internal memory - 2.5 - 3x times worse than OCM
+
+.. _xip-using-two-appimages-twin-appimage-generation:
+
+TWIN APPIMAGE GENERATION
+------------------------
+
+The xx_component.mk must have these two present for twin appimage generation.
+
+.. code-block:: c
+
+    export *_testapp_SBL_APPIMAGEGEN = yes
+    export *_testapp_SBL_XIP_APPIMAGEGEN = yes
+
+
+* For each CPU, the compiler+linker toolchain is used to create the application .out "ELF" file which can be loaded and run via CCS
+* The below "post build" steps are then used to convert the application .out into a "flash" friendly format
+    * For each CPU, out2rpc is used to convert the ELF .out to a binary file containing only the loadable sections. This is called a RPRC file.
+    * For each CPU, xipGen is used to split this RPRC file into two RPRC files.
+    * One RPRC, containing the section that during boot need to be loaded to RAM
+    * Second RPRC, containing the section that during boot are not loaded to RAM but are instead "eXecuted In Place", i.e XIP
+    * multiCoreGen is then used to combine all the non-XIP RPRC files per CPU into a single .appimage file which is a concatenation of the individual CPU specific RPRC files.
+    * multiCoreGen is used again to combine all the XIP RPRC files per CPU into a single .appimage_xip file which is a concatenation of the individual CPU specific RPRC XIP files.
+* This .appimage and .appimage_xip is then flashed to the EVM
+
+
+MULTICORE APPIMAGE GENERATION
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Add this to your multicore generation script
+
+.. code-block:: c
+
+    MULTICORE_IMG_PARAMS_XIP = $(foreach SOC_CORE_ID, $(ipc_perf_test_$(SOC)_CORELIST), $(SBL_CORE_ID_$(SOC_CORE_ID)) $(BINDIR)/$(RPRC_PREFIX)_$(SOC_CORE_ID)_$(BUILD_PROFILE_$(CORE)).rprc_xip)
+    $(ECHO) "# MULTICORE_IMG_PARAMS_XIP are $(MULTICORE_IMG_PARAMS_XIP)"
+    $(SBL_IMAGE_GEN) LE $(SBL_DEV_ID) $(BINDIR)/$(RPRC_PREFIX)_all_cores_$(BUILD_PROFILE_$(CORE)).appimage_xip $(MULTICORE_IMG_PARAMS_XIP)
+    $(ECHO) "#"
+    $(ECHO) "# Multicore IPC App image $(BINDIR)/$(RPRC_PREFIX)_all_cores_$(BUILD_PROFILE_$(CORE)).appimage_xip created."
+    $(ECHO) "#"
+    $(ECHO) "# Signing the multicore image...."
+
+.. Image:: ../../images/developer_notes/xip_post_build_steps.png
+
+.. _xip-using-two-appimages-section-placement:
+
+Section Placement
+^^^^^^^^^^^^^^^^^^
+
+Attributes: r-x or r--                  => Flash
+
+Attributes: rw-                         => RAM
+
+.. _xip-using-two-appimages-linker-file-usage:
+
+Linker File Usage
+^^^^^^^^^^^^^^^^^^
+
+Linker File
+
+.. code-block:: c
+
+    MEMORY
+    {
+        ...
+        ...
+
+        XIP_FLASH_1               : origin=0x501C0000 length=0x40000
+        XIP_FLASH_2               : origin=0x50200000 length=0x10000
+
+        ...
+        ...
+    }
+
+    SECTIONS
+    {
+        ...
+        ...
+
+        .text       : {} palign(8)      > XIP_FLASH_1
+        .const      : {} palign(8)      > XIP_FLASH_2
+
+        ...
+        ...
+    }
+
+
+.. _xip-using-two-appimages-map-file:
+
+Map File Usage
+^^^^^^^^^^^^^^
+
+* Build your application normally (non-xip) and then look at the attributes of different sections.
+* Section attributes (R/W/X) tell you exactly what sections can be placed where.
+
+.. _xip-using-two-appimages-programming-bios-setting:
+
+Cache setting change
+^^^^^^^^^^^^^^^^^^^^
+The OSPI memory region must be marked as cacheable.
+
+Barermetal/FreeRTOS
+~~~~~~~~~~~~~~~~~~~
+
+Include a mpu_config.c file and add the following entry
+
+.. code-block:: c
+
+    #include <ti/csl/arch/csl_arch.h>
+    const CSL_ArmR5MpuRegionCfg gCslR5MpuCfg[CSL_ARM_R5F_MPU_REGIONS_MAX] =
+    {
+        ...
+        ...
+
+        {
+            //Region x configuration: Covers first 64MB of EVM Flash (FSS DAT0) *
+            .regionId         = xU,
+            .enable           = 1U,
+            .baseAddr         = 0x50000000,
+            .size             = CSL_ARM_R5_MPU_REGION_SIZE_64MB,
+            .subRegionEnable  = CSL_ARM_R5_MPU_SUB_REGION_ENABLE_ALL,
+            .exeNeverControl  = 0U,
+            .accessPermission = CSL_ARM_R5_ACC_PERM_PRIV_USR_RD_WR,
+            .shareable        = 0U,
+            .cacheable        = (uint32_t)TRUE,
+            .cachePolicy      = CSL_ARM_R5_CACHE_POLICY_WB_WA,
+            .memAttr          = 0U,
+        },
+
+        ...
+        ...
+    }
+
+
+.. _xip-using-two-appimages-programming-how-to-flash:
+
+How To Flash
+^^^^^^^^^^^^^
+
+.. _xip-using-two-appimages-programming-insatllation:
+
+Installation
+~~~~~~~~~~~~~
+Install uniflash 6.3 from http://www.ti.com/tool/UNIFLASH
+
+Note : Uniflash 6.3 does not support .appimage_xip file. Support for this would be added in Uniflash 6.4. Please follow the below steps after installing Uniflash.
+
+.. code-block:: c
+
+    cd <pathToPDKRepo>/packages/ti/board/utils/uniflash/host/
+    make all (Linux) or gmake all (Windows)
+    copy ProcessorSDKSerialFlash (Linux) or ProcessorSDKSerialFlash.exe (Windows) to <pathToUniflashDirectory>\processors\
+    cd <pathToPDKRepo>/packages/ti/build/
+    make board_utils_uart_flash_programmer BOARD=j7xx_evm CORE=mcu1_0 -sj8
+    copy <pathToPDKRepo>/packages/ti/binary/uart_j7xx_evm_flash_programmer_release.tiimage to <pathToUniflashDirectory>\processors\FlashWriter\j7xx_evm
+
+
+.. _xip-using-two-appimages-programming-bootmodes:
+
+BootModes
+~~~~~~~~~~
+
+.. ifconfig:: CONFIG_family in ('am64x')
+
+    +----------+-----------------------------------+
+    | MODE     | Switch Settings                   |
+    +==========+===================================+
+    | UART     | SW2: 11011100, SW3: 00000000      |
+    +----------+-----------------------------------+
+    | OSPI     | SW2: 11001110, SW3: 01000000      |
+    +----------+-----------------------------------+
+
+.. ifconfig:: CONFIG_family in ('am65xx')
+
+    +----------+-----------------------------------+
+    | MODE     | Switch Settings                   |
+    +==========+===================================+
+    | UART     | SW2: 00100000, SW3: 01010000      |
+    +----------+-----------------------------------+
+    | OSPI     | SW2: 10000000, SW3: 10000000      |
+    +----------+-----------------------------------+
+
+.. ifconfig:: CONFIG_family in ('j7200')
+
+    +----------+---------------------------------------------+
+    | MODE     | Switch Settings                             |
+    +==========+=============================================+
+    | UART     | SW3: 0xxxxxxx, SW8: 00000000, SW9: 01110000 |
+    +----------+---------------------------------------------+
+    | OSPI     | SW2: 0xxxxxxx, SW3: 10000010, SW9: 00110000 |
+    +----------+---------------------------------------------+
+
+.. ifconfig:: CONFIG_family in ('jacinto')
+
+    +----------+---------------------------------------------+
+    | MODE     | Switch Settings                             |
+    +==========+=============================================+
+    | UART     | SW3: 0xxxxxxx, SW8: 00000000, SW9: 01110000 |
+    +----------+---------------------------------------------+
+    | OSPI     | SW2: 0xxxxxxx, SW3: 00000000, SW9: 01000000 |
+    +----------+---------------------------------------------+
+
+
+.. _xip-using-two-appimages-programming-steps-to-flash:
+
+Steps To Flash
+~~~~~~~~~~~~~~~
+
+1. **Change boot mode to UART boot mode.**
+
+.. ifconfig:: CONFIG_family in ('am64x')
+
+    2. **Connect to the 1st instance of MCU UART and power on**
+        * You should see 'CCC...' being printed on the console.
+        * Once validated, close this instance of the UART (the UART device needs to be free to transfer data)
+
+.. ifconfig:: CONFIG_family in ('am65xx', 'j7200', 'jacinto')
+
+    2. **Connect to the 2nd instance of MCU UART and power on**
+        * You should see 'CCC...' being printed on the console.
+        * Once validated, close this instance of the UART (the UART device needs to be free to transfer data)
+
+3. **Navigate to the uniflash installed directory**
+    * dslite.sh should be present here
+
+4. **Run the following commands to flash**
+
+    .. ifconfig:: CONFIG_family in ('am64x')
+
+        .. code-block:: c
+
+            UART SBL and tifs   : ./dslite.sh --mode processors -c /dev/ttyUSB0 -f <pathToUniflashDirectory>/processors/FlashWriter/am64x_evm/uart_am64x_evm_flash_programmer_release.tiimage -i 0
+            OSPI SBL            : ./dslite.sh --mode processors -c /dev/ttyUSB0 -f <pathToPDKRepo>/pdk/packages/ti/boot/sbl/binary/am64x_evm/ospi/bin/sbl_ospi_img_mcu1_0_release.tiimage -d 3 -o 0
+            TIFS                : ./dslite.sh --mode processors -c /dev/ttyUSB0 -f <pathToPDKRepo>/pdk/packages/ti/drv/sciclient/soc/V3/tifs.bin -d 3 -o 80000
+            Appimage            : ./dslite.sh --mode processors -c /dev/ttyUSB0 -f <pathToMcuswRepo>/mcusw/binary/can_profile_xip_app/bin/am64x_evm/can_profiling_xip_app_mcu1_0_release.appimage -d 3 -o 100000
+            Appimage_xip        : ./dslite.sh --mode processors -c /dev/ttyUSB0 -f <pathToMcuswRepo>/mcusw/binary/can_profile_xip_app/bin/am64x_evm/can_profiling_xip_app_mcu1_0_release.appimage_xip -d 3
+
+    .. ifconfig:: CONFIG_family in ('am65xx', 'j7200', 'jacinto')
+
+        .. code-block:: c
+
+            UART SBL and tifs   : ./dslite.sh --mode processors -c /dev/ttyUSB1 -f <pathToUniflashDirectory>/processors/FlashWriter/am65xx_evm/uart_am65xx_evm_flash_programmer_release.tiimage -i 0
+            OSPI SBL            : ./dslite.sh --mode processors -c /dev/ttyUSB1 -f <pathToPDKRepo>/pdk/packages/ti/boot/sbl/binary/am65xx_evm/ospi/bin/sbl_ospi_img_mcu1_0_release.tiimage -d 3 -o 0
+            TIFS                : ./dslite.sh --mode processors -c /dev/ttyUSB1 -f <pathToPDKRepo>/pdk/packages/ti/drv/sciclient/soc/V0/tifs.bin -d 3 -o 80000
+            Appimage            : ./dslite.sh --mode processors -c /dev/ttyUSB1 -f <pathToMcuswRepo>/mcusw/binary/can_profile_xip_app/bin/am65xx_evm/can_profiling_xip_app_mcu1_0_release.appimage -d 3 -o 100000
+            Appimage_xip        : ./dslite.sh --mode processors -c /dev/ttyUSB1 -f <pathToMcuswRepo>/mcusw/binary/can_profile_xip_app/bin/am65xx_evm/can_profiling_xip_app_mcu1_0_release.appimage_xip -d 3
+
+5. **Power off the board and change bootmode to OSPI.**
+
+6. **Power on the board**
+
+.. _xip-using-two-appimages-programming-debug-care-abouts:
+
+Debug Care Abouts
+^^^^^^^^^^^^^^^^^^
+
+* Debugging using CCS
+    * Put a software loop in you program.
+    * Connect CCS and load symbols for your application.
+    * Clear the loop and debug further.
+
+    .. Image:: ../../images/developer_notes/xip_load_symbols.png
+
+* Disable few options in Program/Memory Load Options
+    * Software breakpoints are not allowed. But in Program/Memory Load Options for the core (Right clock on core on Debug view→ Open GEL files view → Program/Memory Load Options), few defaults options need software breakpoints. They need to be disabled, otherwise you might see an error while loading symbols for debugging.
+    * Uncheck the following:
+        * "Halt at program exit for TI compilers (requires a breakpoint)"
+        * "Enable CIO function use (requires setting a breakpoint)"
+
+* Always use HW breakpoints
+    * Putting a breakpoint in CCS will need to write a BKP instruction and writing to FLASH will cause a crash or the breakpoint will not be activated
+    * Sometimes SW breakpoints might work as the code might be in cache
+    * Note that there is a limit to the number of HW breakpoints one can set. Essentially the HW breakpoint is writing to some R5F register saying that halt if this address comes. Such registers are limited and hence the number of HW breakpoints.
+
+    .. Image:: ../../images/developer_notes/xip_hw_break_point.png
+
+
+.. ifconfig:: CONFIG_family in ('jacinto')
+
+    .. _xip-using-two-appimages-programming-xip-application-on-j721e:
+
+    XIP Application on J721E
+    ^^^^^^^^^^^^^^^^^^^^^^^^
+
+    1. xip_testapp
+    2. can_profile_xip_app
+
+
+.. _xip-using-two-appimages-programming-known-issues:
+
+Known Issues
+------------
+Closing the flash doesn't work if the OSPI controller is in XIP mode.
+
+.. _xip-using-two-appimages-programming-useful-links:
+
+Useful Links
+------------
+
+* XIP wiki: https://en.wikipedia.org/wiki/Execute_in_place
+* XIP blog: http://www.vlsiip.com/c/embedded_c/xip.html
+* Linker command file: http://downloads.ti.com/docs/esd/SPRU513J/Content/SPRU513J_HTML/linker_description.html
+* Linker command file basic: http://software-dl.ti.com/ccs/esd/documents/sdto_cgt_Linker-Command-File-Primer.html
+* Load and run section: http://downloads.ti.com/docs/esd/SPRU513/load-and-run-addresses-slau1317366.html
+* Micrium documentation: https://doc.micrium.com/display/TECHOV/NOR+Flash+XIP

@@ -1,0 +1,2148 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2.9. Release Notes - 07_00_00 &mdash; Platform Development Kit (PDK) - JACINTO User Guide</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Platform Development Kit (PDK) - JACINTO User Guide" href="../index.html"/>
+        <link rel="up" title="2. Release Notes" href="../family_cfg/jacinto/index_release_notes_jacinto.html"/>
+        <link rel="next" title="2.10. Release Notes - 06_02_00" href="release_notes_06_02_00.html"/>
+        <link rel="prev" title="2.8. Release Notes - 07_01_00" href="release_notes_07_01_00.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index_jacinto.html" class="icon icon-home"> Platform Development Kit (PDK) - JACINTO User Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                08_06_01
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">1. Overview</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../family_cfg/jacinto/index_release_notes_jacinto.html">2. Release Notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="release_notes_08_06_00.html">2.1. Release Notes - 08_06_00</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_08_05_00.html">2.2. Release Notes - 08_05_00</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_08_04_00.html">2.3. Release Notes - 08_04_00</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_08_02_00.html">2.4. Release Notes - 08_02_00</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_08_01_00.html">2.5. Release Notes - 08_01_00</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_08_00_00.html">2.6. Release Notes - 08_00_00</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_07_03_00.html">2.7. Release Notes - 07_03_00</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_07_01_00.html">2.8. Release Notes - 07_01_00</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">2.9. Release Notes - 07_00_00</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">2.9.1. Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#what-s-new">2.9.2. What&#8217;s New</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#sbl">2.9.2.1. SBL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sysfw">2.9.2.2. SYSFW</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#upgrade-and-compatibility">2.9.3. Upgrade and Compatibility</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#build-and-packaging">2.9.3.1. Build and Packaging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cpsw">2.9.3.2. CPSW</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1">2.9.3.3. SBL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sciclient">2.9.3.4. Sciclient</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">2.9.3.5. SYSFW</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#executing-sysbios-applications-via-ccs-no-boot-mode">2.9.3.6. Executing sysbios applications via CCS (no-boot mode)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#board-diagnostics">2.9.3.7. BOARD Diagnostics</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#device-support">2.9.4. Device Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#validation-information">2.9.5. Validation Information</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tool-chain-information">2.9.6. Tool Chain Information</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fixed-issues">2.9.7. Fixed Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#known-issues">2.9.8. Known Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#limitations">2.9.9. Limitations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_06_02_00.html">2.10. Release Notes - 06_02_00</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_06_01_00.html">2.11. Release Notes - 06_01_00</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">3. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_modules_jacinto.html">4. Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_boot_jacinto.html">5. Bootloader (SBL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_board_jacinto.html">6. Board/EVM Abstraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_howto_jacinto.html">7. How to Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_faq_jacinto.html">8. Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_developer_notes_jacinto.html">9. Developer Notes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index_jacinto.html">Platform Development Kit (PDK) - JACINTO User Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index_jacinto.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../family_cfg/jacinto/index_release_notes_jacinto.html">2. Release Notes</a> &raquo;</li>
+      
+    <li>2.9. Release Notes - 07_00_00</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="release-notes-07-00-00">
+<h1>2.9. Release Notes - 07_00_00<a class="headerlink" href="#release-notes-07-00-00" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>2.9.1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>This release notes provides important information that will assist you in using the PDK software package.
+This document provides the product information and known issues that are specific to the PDK software package.</p>
+</div>
+<div class="section" id="what-s-new">
+<h2>2.9.2. What&#8217;s New<a class="headerlink" href="#what-s-new" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="9%" />
+<col width="79%" />
+<col width="13%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ID</th>
+<th class="head">Description</th>
+<th class="head">Module</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>PDK-4940</td>
+<td>SBL shall program the Thermal shutdown (TSHUT) values during boot</td>
+<td>SBL</td>
+</tr>
+<tr class="row-odd"><td>PDK-5246</td>
+<td>Boot time Security support on RTOS SDK for AM65xx and J721E Platforms</td>
+<td>SBL</td>
+</tr>
+<tr class="row-even"><td>PDK-6298</td>
+<td>SciClient: Update the Sciclient_rmIrqSet and Sciclient_rmIrqRelease APIs to perform interrupt routing</td>
+<td>Sciclient</td>
+</tr>
+<tr class="row-odd"><td>PDK-5264</td>
+<td>Support Thumb2 mode on R5F</td>
+<td>BUILD</td>
+</tr>
+<tr class="row-even"><td>PDK-5372</td>
+<td>Board: DDR software shall use EMIF/LPDDR chip support library</td>
+<td>BOARD</td>
+</tr>
+<tr class="row-odd"><td>PDK-5367</td>
+<td>DDR software shall support runtime refresh rate modification based on temperature feedback</td>
+<td>BOARD</td>
+</tr>
+<tr class="row-even"><td>PDK-5866</td>
+<td>VTM: SW shall enable configuration of Temperature Warning</td>
+<td>CSL VTM</td>
+</tr>
+<tr class="row-odd"><td>PDK-5366</td>
+<td>CSL-FL: FSS Support</td>
+<td>CSL FSS</td>
+</tr>
+<tr class="row-even"><td>PDK-5149</td>
+<td>Support DSS, VHWA, CSI-RX, CSI-TX on mcu2_0 instead of mcu2_1</td>
+<td>Video Drivers</td>
+</tr>
+<tr class="row-odd"><td>PDK-5252</td>
+<td>AM65xx PG2: CAL Configuration option to route traffic through real time or non real time path</td>
+<td>CAL</td>
+</tr>
+<tr class="row-even"><td>PDK-5204</td>
+<td>Fusion 2 board Support</td>
+<td>CSIRX</td>
+</tr>
+<tr class="row-odd"><td>PDK-5255</td>
+<td>CSIRX: YUV422 dataformat Support</td>
+<td>CSIRX</td>
+</tr>
+<tr class="row-even"><td>PDK-5253</td>
+<td>CSI2 TX : Support for multiple virtual channel</td>
+<td>CSITX</td>
+</tr>
+<tr class="row-odd"><td>PDK-4988</td>
+<td>AM65xx PG2: DSS Driver update required to support yuv2rgb</td>
+<td>DSS</td>
+</tr>
+<tr class="row-even"><td>PDK-6486</td>
+<td>VPAC LDC driver shall support config updates after create time</td>
+<td>VPAC</td>
+</tr>
+<tr class="row-odd"><td>PDK-5811</td>
+<td>PMIC: Driver shall support TPS6594x (Leo)</td>
+<td>PMIC</td>
+</tr>
+<tr class="row-even"><td>PDK-4966</td>
+<td>SA2UL Driver shall be supported</td>
+<td>SA2UL</td>
+</tr>
+<tr class="row-odd"><td>ETHFW-1201</td>
+<td>CPSW Checksum offload support</td>
+<td>CPSW</td>
+</tr>
+<tr class="row-even"><td>ETHFW-1163</td>
+<td>Directed packet support</td>
+<td>CPSW</td>
+</tr>
+<tr class="row-odd"><td>ETHFW-1139</td>
+<td>Tx packet control: Timestamp Enable, Domain, msg_type, sequence_id</td>
+<td>CPSW</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="sbl">
+<h3>2.9.2.1. SBL<a class="headerlink" href="#sbl" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li>Adds J721E-HS secure boot support for RTOS SDK</li>
+<li>Programs thermal limits for J721E to force the SoC into reset if the max temp is reached</li>
+<li>SBL &#8220;cust&#8221; build by default now only initializes MCU DOMAIN clocks &amp; resources for a faster boot option for MCU R5 apps (J721E/J721E-HS only)</li>
+<li>Added an optional set of build flags for the SBL &#8220;cust&#8221; build specifically for testing Early CAN response</li>
+<li>Added a small-footprint SBL boot performance test app that works with the SBL &#8220;cust&#8221; build (MCU DOMAIN only usage)</li>
+<li>Optional SBL build flag added to allow subsequent software (e.g., HLOS) to take control of the OSPI flash</li>
+<li>Updated the default GTC clock rate to 200 MHz.  Matches the value expected by ARM Trusted Firmware build for the Cortex-A cores.</li>
+<li>SBL update added to fix occasional instability seen when the R5 reads from the OSPI flash</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="sysfw">
+<h3>2.9.2.2. SYSFW<a class="headerlink" href="#sysfw" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul>
+<li><dl class="first docutils">
+<dt>Security Features:</dt>
+<dd><ul class="first last simple">
+<li>Official support for silicon tested J721e HS images.</li>
+<li>HS Devices: Support for configuring derived KEK (DKEK) in SA2UL and enabled host access to SA2UL</li>
+<li>Removed support of HSM-related features (TRNG, Asymmetric key services, and keystore)</li>
+<li>Global soft lock for extended OTP</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>PM Features:</dt>
+<dd><ul class="first last simple">
+<li>HW PTSTAT silicon errata workaround</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>RM Features:</dt>
+<dd><ul class="first last simple">
+<li>RM board configuration now allows up to two assignments of a resource per host.</li>
+<li>Added the TISCI_MSG_RM_UDMAP_FLOW_DELEGATE message to pass configuration control of common flows to other hosts.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Boot Time Optimizations</dt>
+<dd><ul class="first last simple">
+<li>SYSFW Boot notification + Board Configuration = 6.39 ms (Within Budget of 5 ms (+/- 2 ms))</li>
+<li>ROM MCU Only Boot mode support.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="upgrade-and-compatibility">
+<h2>2.9.3. Upgrade and Compatibility<a class="headerlink" href="#upgrade-and-compatibility" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="build-and-packaging">
+<h3>2.9.3.1. Build and Packaging<a class="headerlink" href="#build-and-packaging" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul>
+<li><p class="first">The PDK Jacinto package is now a combined package for both AM65xx and J721E platforms.
+Hence the pdk folder name in SDK reflect the family name rather than the SOC name like am65xx or j721e.
+Due to this the PDK_SOC variable derived from the pdk folder while sourcing pdksetupenv.sh/.bat
+will default to one of the SOC in the family i.e. in this case am65xx</p>
+<blockquote>
+<div><ul class="simple">
+<li>This means user need to set PDK_SOC variable to the required SOC while calling
+pdk makefile from <strong>PDK_INSTALL_DIR/packages</strong></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">Only the files applicable to a particular platform is packaged. This is to done to reduce the overall
+package size, remove unwanted files for users for better file/folder navigation and also to
+ensure that a file which is not applicable for a platform is not wrongly included by application</p>
+<blockquote>
+<div><ul class="simple">
+<li>Due to this some of the application interface files may be missing from the package
+compared to last release. Users are advised to remove the inclusion of these files in
+their application for the respective platform builds</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">API guide for PDK is now generated for the entire PDK package instead of individual module
+API guides. The generated API guide is now present in <strong>PDK_INSTALL_DIR/docs/api_guide</strong> folder.
+This gives flexibility to give cross references across modules in PDK as well generate
+SOC specific documentation. Due to this API_Documentation.html present in <strong>PDK_INSTALL_DIR/packages</strong>
+is removed</p>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="cpsw">
+<h3>2.9.3.2. CPSW<a class="headerlink" href="#cpsw" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul>
+<li><p class="first">Hardware push instance number in CPTS events is now an enumeration of type CpswCpts_HwPush, not an 8-bit integer.</p>
+</li>
+<li><p class="first">CPSW DMA TX channel params (CpswDma_UdmaChTxPrms) added boolean flags to filter out extended and protocol specific info words.</p>
+</li>
+<li><dl class="first docutils">
+<dt>Exposed below UDMA ring and channel config params</dt>
+<dd><ul class="first last simple">
+<li>Added Ring mode config option in CpswDma_UdmaRingPrms</li>
+<li>CpswDma_UdmaFlowPrms - added boolean flags to indicate if extended or protocol specific info words.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">CpswDma_PktInfo now has fields for packet timestamp information (CpswDma_PktTsInfo) and directed port numbers.</p>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="id1">
+<h3>2.9.3.3. SBL<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li>In case of AM65xx-HS build, the HS SBL image is generated under <strong>PDK_INSTALL_DIR/packages/ti/boot/sbl/binary/am65xx_evm_hs</strong>
+folder instead of <strong>PDK_INSTALL_DIR/packages/ti/boot/sbl/binary/am65xx_evm</strong> folder.
+This is done in order to support HS and GP builds in the same package.</li>
+<li>In case of HS build, BUILD_HS flag need not be passed while calling make. Both
+the HS and GP SBL binaries gets generated by the default build procedures</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="sciclient">
+<h3>2.9.3.4. Sciclient<a class="headerlink" href="#sciclient" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul>
+<li><p class="first">Due to a System Firmware ABI change, applications using the
+Sciclient_rmGetResourceRange API to retrieve host processor IRQ ranges
+need to update the processor through which processor IRQ ranges are
+discovered.</p>
+<blockquote>
+<div><p>System Firmware no longer directly manages host processor input IRQs
+as a resource.  All resources of subtype
+TISCI_RESASG_SUBTYPE_&lt;destination processor IRQ interface&gt;_IRQ_GROUPr*_FROM_&lt;source interrupt router&gt;
+have been removed.</p>
+<p>System Firmware now manages all interrupt router (IR) outputs directly
+with SoC IR output ranges managed under the resource subtype
+TISCI_RESASG_SUBTYPE_IR_OUTPUT</p>
+<p>Applications that query System Firmware for the host processor input
+IRQ range via the Sciclient_rmGetResourceRange() must update the types
+and subtypes used in the query.  The processor IRQ subtypes have been
+removed.  The query via Sciclient_rmGetResourceRange() now needs to
+use SoC IR types and the IR output resource subtype.  Note, this
+requires knowledge of which IR is directly connected to the processor
+IRQ input range desired for configuration.  The linked tables below
+show the resource type migration that an application using the
+Sciclient_rmGetResourceRange() API should make when switching from the
+old IRQ input resource types to the new IR output resource types.</p>
+<blockquote>
+<div><p><a class="reference internal" href="#am65x-sciclient-interrupt-resource-type-migration-table">AM65X Sciclient Interrupt Resource Type Migration Table</a></p>
+<p><a class="reference internal" href="#am65x-sr2-sciclient-interrupt-resource-type-migration-table">AM65X SR2 Sciclient Interrupt Resource Type Migration Table</a></p>
+<p><a class="reference internal" href="#j721e-sciclient-interrupt-resource-type-migration-table">J721E Sciclient Interrupt Resource Type Migration Table</a></p>
+</div></blockquote>
+<p>To facilitate backwards compatibility between the new IR output
+resource and the Sciclient_rmIrqSet and Sciclient_rmIrqRelease APIs
+which take a destination host IRQ (dst_host_irq parameter) as input
+the Sciclient_rmIrqTranslateIrOutput() API has been added.</p>
+<blockquote>
+<div><p>The Sciclient_rmIrqTranslateIrOutput API translates an IR output
+to the destination processor input IRQ value.  The returned
+value can be provided directly to the dst_host_irq parameter of
+the Sciclient_rmIrqSet and Sciclient_rmIrqRelease APIs.</p>
+</div></blockquote>
+</div></blockquote>
+</li>
+<li><p class="first">New Sciclient_rmIrqSetRaw and Sciclient_rmIrqReleaseRaw APIs have been
+added.  These APIs allow direct programming of SoC interrupt aggregators
+(IA) and interrupt routers (IR) in accordance to new System Firmware
+interrupt management functionality.</p>
+<blockquote>
+<div><p>The existing Sciclient_rmIrqSet and Sciclient_rmIrqRelease APIs
+continue to function as they did before.</p>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="id2">
+<h3>2.9.3.5. SYSFW<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li>Interrupt management Simplification and Memory Optimization. (ABI 3.0)</li>
+<li>Board configuration updates for New Security features - DKEK, SA2UL sharing. (ABI 3.0)</li>
+<li>AM65x SR 1.0 RM resource assignment types are now aligned with AM65x SR 2.0 resource assignment types</li>
+<li>The TISCI_MSG_RM_GET_RESOURCE_RANGE has been updated to return an additional resource range - Backward compatible.</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="executing-sysbios-applications-via-ccs-no-boot-mode">
+<h3>2.9.3.6. Executing sysbios applications via CCS (no-boot mode)<a class="headerlink" href="#executing-sysbios-applications-via-ccs-no-boot-mode" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li>An additional step of copying interrupt vector to ATCM is necessary</li>
+<li>Refer <a class="reference internal" href="../index_jacinto.html#copy-vectors-2-atcm"><span>FAQ Copy Vecs to ATCM</span></a> for details</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="board-diagnostics">
+<h3>2.9.3.7. BOARD Diagnostics<a class="headerlink" href="#board-diagnostics" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li>In case of AM65xx, the board diagnostics builds are now supported from PDK
+top level makefile present in pdk/packages/makefile or from pdk/packages/ti/build folders</li>
+<li>Board diagnostic application image location is changed from &#8216;pdk/packages/ti/board/bin&#8217; to &#8216;pdk/packages/binary&#8217;. Refer to
+<a class="reference external" href="../board/board_diag.html">Board Diagnostics Documentation</a> for more details.</li>
+</ul>
+</div></blockquote>
+<div class="section" id="am65x-sciclient-interrupt-resource-type-migration-table">
+<h4>2.9.3.7.1. AM65X Sciclient Interrupt Resource Type Migration Table<a class="headerlink" href="#am65x-sciclient-interrupt-resource-type-migration-table" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="31%" />
+<col width="26%" />
+<col width="23%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Old Resource Type</th>
+<th class="head">Old Resource Subtype</th>
+<th class="head">New Resource Type</th>
+<th class="head">New Resource Subtype</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>RESASG_TYPE_GIC_IRQ</td>
+<td>RESASG_SUBTYPE_GIC_IRQ_MAIN_NAV_SET0</td>
+<td>TISCI_DEV_NAVSS0_INTR_ROUTER_0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>RESASG_SUBTYPE_GIC_IRQ_MAIN_GPIO</td>
+<td>TISCI_DEV_GPIOMUX_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>RESASG_SUBTYPE_GIC_IRQ_MAIN_NAV_SET1</td>
+<td>TISCI_DEV_NAVSS0_INTR_ROUTER_0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>RESASG_SUBTYPE_GIC_IRQ_COMP_EVT</td>
+<td>TISCI_DEV_CMPEVENT_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>RESASG_SUBTYPE_GIC_IRQ_WKUP_GPIO</td>
+<td>TISCI_DEV_WKUP_GPIOMUX_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>RESASG_TYPE_PULSAR_C0_IRQ</td>
+<td>RESASG_SUBTYPE_PULSAR_C0_IRQ_MCU_NAV</td>
+<td>TISCI_DEV_MCU_NAVSS0_INTR_ROUTER_0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>RESASG_SUBTYPE_PULSAR_C0_IRQ_WKUP_GPIO</td>
+<td>TISCI_DEV_WKUP_GPIOMUX_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>RESASG_SUBTYPE_PULSAR_C0_IRQ_MAIN2MCU_LVL</td>
+<td>TISCI_DEV_MAIN2MCU_LVL_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>RESASG_SUBTYPE_PULSAR_C0_IRQ_MAIN2MCU_PLS</td>
+<td>TISCI_DEV_MAIN2MCU_PLS_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>RESASG_TYPE_PULSAR_C1_IRQ</td>
+<td>RESASG_SUBTYPE_PULSAR_C1_IRQ_MCU_NAV</td>
+<td>TISCI_DEV_MCU_NAVSS0_INTR_ROUTER_0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>RESASG_SUBTYPE_PULSAR_C1_IRQ_WKUP_GPIO</td>
+<td>TISCI_DEV_WKUP_GPIOMUX_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>RESASG_SUBTYPE_PULSAR_C1_IRQ_MAIN2MCU_LVL</td>
+<td>TISCI_DEV_MAIN2MCU_LVL_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>RESASG_SUBTYPE_PULSAR_C1_IRQ_MAIN2MCU_PLS</td>
+<td>TISCI_DEV_MAIN2MCU_PLS_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>RESASG_TYPE_ICSSG0_IRQ</td>
+<td>RESASG_SUBTYPE_ICSSG0_IRQ_MAIN_NAV</td>
+<td>TISCI_DEV_NAVSS0_INTR_ROUTER_0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>RESASG_SUBTYPE_ICSSG0_IRQ_MAIN_GPIO</td>
+<td>TISCI_DEV_GPIOMUX_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>RESASG_TYPE_ICSSG1_IRQ</td>
+<td>RESASG_SUBTYPE_ICSSG1_IRQ_MAIN_NAV</td>
+<td>TISCI_DEV_NAVSS0_INTR_ROUTER_0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>RESASG_SUBTYPE_ICSSG1_IRQ_MAIN_GPIO</td>
+<td>TISCI_DEV_GPIOMUX_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>RESASG_TYPE_ICSSG2_IRQ</td>
+<td>RESASG_SUBTYPE_ICSSG1_IRQ_MAIN_NAV</td>
+<td>TISCI_DEV_NAVSS0_INTR_ROUTER_0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>RESASG_SUBTYPE_ICSSG1_IRQ_MAIN_GPIO</td>
+<td>TISCI_DEV_GPIOMUX_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="am65x-sr2-sciclient-interrupt-resource-type-migration-table">
+<h4>2.9.3.7.2. AM65X SR2 Sciclient Interrupt Resource Type Migration Table<a class="headerlink" href="#am65x-sr2-sciclient-interrupt-resource-type-migration-table" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="47%" />
+<col width="19%" />
+<col width="17%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Old Resource Type</th>
+<th class="head">Old Resource Subtype</th>
+<th class="head">New Resource Type</th>
+<th class="head">New Resource Subtype</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>AM6_DEV_MCU_CPSW0</td>
+<td>TISCI_RESASG_SUBTYPE_MCU_CPSW0_CPTS_HW3_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0</td>
+<td>TISCI_DEV_TIMESYNC_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_MCU_CPSW0_CPTS_HW4_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0</td>
+<td>TISCI_DEV_TIMESYNC_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>AM6_DEV_WKUP_DMSC0_CORTEX_M3_0</td>
+<td>TISCI_RESASG_SUBTYPE_WKUP_DMSC0_CORTEX_M3_0_NVIC_IRQ_GROUP0_FROM_WKUP_GPIOMUX_INTRTR0</td>
+<td>TISCI_DEV_WKUP_GPIOMUX_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>AM6_DEV_ESM0</td>
+<td>TISCI_RESASG_SUBTYPE_ESM0_ESM_PLS_EVENT0_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0</td>
+<td>TISCI_DEV_GPIOMUX_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_ESM0_ESM_PLS_EVENT1_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0</td>
+<td>TISCI_DEV_GPIOMUX_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_ESM0_ESM_PLS_EVENT2_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0</td>
+<td>TISCI_DEV_GPIOMUX_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>AM6_DEV_WKUP_ESM0</td>
+<td>TISCI_RESASG_SUBTYPE_WKUP_ESM0_ESM_PLS_EVENT0_IRQ_GROUP0_FROM_WKUP_GPIOMUX_INTRTR0</td>
+<td>TISCI_DEV_WKUP_GPIOMUX_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_WKUP_ESM0_ESM_PLS_EVENT1_IRQ_GROUP0_FROM_WKUP_GPIOMUX_INTRTR0</td>
+<td>TISCI_DEV_WKUP_GPIOMUX_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_WKUP_ESM0_ESM_PLS_EVENT2_IRQ_GROUP0_FROM_WKUP_GPIOMUX_INTRTR0</td>
+<td>TISCI_DEV_WKUP_GPIOMUX_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>AM6_DEV_GIC0</td>
+<td>TISCI_RESASG_SUBTYPE_GIC0_SPI_IRQ_GROUP0_FROM_NAVSS0_INTR_ROUTER_0</td>
+<td>TISCI_DEV_NAVSS0_INTR_ROUTER_0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_GIC0_SPI_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0</td>
+<td>TISCI_DEV_GPIOMUX_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_GIC0_SPI_IRQ_GROUP1_FROM_NAVSS0_INTR_ROUTER_0</td>
+<td>TISCI_DEV_NAVSS0_INTR_ROUTER_0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_GIC0_SPI_IRQ_GROUP0_FROM_CMPEVENT_INTRTR0</td>
+<td>TISCI_DEV_CMPEVENT_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_GIC0_SPI_IRQ_GROUP0_FROM_WKUP_GPIOMUX_INTRTR0</td>
+<td>TISCI_DEV_WKUP_GPIOMUX_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>AM6_DEV_PRU_ICSSG0</td>
+<td>TISCI_RESASG_SUBTYPE_PRU_ICSSG0_PR1_EDC0_LATCH0_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0</td>
+<td>TISCI_DEV_TIMESYNC_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_PRU_ICSSG0_PR1_EDC0_LATCH1_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0</td>
+<td>TISCI_DEV_TIMESYNC_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_PRU_ICSSG0_PR1_EDC1_LATCH0_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0</td>
+<td>TISCI_DEV_TIMESYNC_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_PRU_ICSSG0_PR1_EDC1_LATCH1_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0</td>
+<td>TISCI_DEV_TIMESYNC_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_PRU_ICSSG0_PR1_IEP0_CAP_INTR_REQ_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0</td>
+<td>TISCI_DEV_GPIOMUX_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_PRU_ICSSG0_PR1_IEP1_CAP_INTR_REQ_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0</td>
+<td>TISCI_DEV_GPIOMUX_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_PRU_ICSSG0_PR1_SLV_INTR_IRQ_GROUP0_FROM_NAVSS0_INTR_ROUTER_0</td>
+<td>TISCI_DEV_NAVSS0_INTR_ROUTER_0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_PRU_ICSSG0_PR1_SLV_INTR_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0</td>
+<td>TISCI_DEV_GPIOMUX_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>AM6_DEV_PRU_ICSSG1</td>
+<td>TISCI_RESASG_SUBTYPE_PRU_ICSSG1_PR1_EDC0_LATCH0_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0</td>
+<td>TISCI_DEV_TIMESYNC_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_PRU_ICSSG1_PR1_EDC0_LATCH1_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0</td>
+<td>TISCI_DEV_TIMESYNC_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_PRU_ICSSG1_PR1_EDC1_LATCH0_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0</td>
+<td>TISCI_DEV_TIMESYNC_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_PRU_ICSSG1_PR1_EDC1_LATCH1_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0</td>
+<td>TISCI_DEV_TIMESYNC_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_PRU_ICSSG1_PR1_IEP0_CAP_INTR_REQ_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0</td>
+<td>TISCI_DEV_GPIOMUX_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_PRU_ICSSG1_PR1_IEP1_CAP_INTR_REQ_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0</td>
+<td>TISCI_DEV_GPIOMUX_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_PRU_ICSSG1_PR1_SLV_INTR_IRQ_GROUP0_FROM_NAVSS0_INTR_ROUTER_0</td>
+<td>TISCI_DEV_NAVSS0_INTR_ROUTER_0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_PRU_ICSSG1_PR1_SLV_INTR_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0</td>
+<td>TISCI_DEV_GPIOMUX_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>AM6_DEV_PRU_ICSSG2</td>
+<td>TISCI_RESASG_SUBTYPE_PRU_ICSSG2_PR1_EDC0_LATCH0_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0</td>
+<td>TISCI_DEV_TIMESYNC_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_PRU_ICSSG2_PR1_EDC0_LATCH1_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0</td>
+<td>TISCI_DEV_TIMESYNC_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_PRU_ICSSG2_PR1_EDC1_LATCH0_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0</td>
+<td>TISCI_DEV_TIMESYNC_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_PRU_ICSSG2_PR1_EDC1_LATCH1_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0</td>
+<td>TISCI_DEV_TIMESYNC_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_PRU_ICSSG2_PR1_IEP0_CAP_INTR_REQ_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0</td>
+<td>TISCI_DEV_GPIOMUX_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_PRU_ICSSG2_PR1_IEP1_CAP_INTR_REQ_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0</td>
+<td>TISCI_DEV_GPIOMUX_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_PRU_ICSSG2_PR1_SLV_INTR_IRQ_GROUP0_FROM_NAVSS0_INTR_ROUTER_0</td>
+<td>TISCI_DEV_NAVSS0_INTR_ROUTER_0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_PRU_ICSSG2_PR1_SLV_INTR_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0</td>
+<td>TISCI_DEV_GPIOMUX_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>AM6_DEV_NAVSS0</td>
+<td>TISCI_RESASG_SUBTYPE_NAVSS0_CPTS0_HW1_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0</td>
+<td>TISCI_DEV_TIMESYNC_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_NAVSS0_CPTS0_HW2_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0</td>
+<td>TISCI_DEV_TIMESYNC_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_NAVSS0_CPTS0_HW3_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0</td>
+<td>TISCI_DEV_TIMESYNC_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_NAVSS0_CPTS0_HW4_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0</td>
+<td>TISCI_DEV_TIMESYNC_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_NAVSS0_CPTS0_HW5_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0</td>
+<td>TISCI_DEV_TIMESYNC_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_NAVSS0_CPTS0_HW6_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0</td>
+<td>TISCI_DEV_TIMESYNC_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_NAVSS0_CPTS0_HW7_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0</td>
+<td>TISCI_DEV_TIMESYNC_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_NAVSS0_CPTS0_HW8_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0</td>
+<td>TISCI_DEV_TIMESYNC_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>AM6_DEV_PCIE0</td>
+<td>TISCI_RESASG_SUBTYPE_PCIE0_PCIE_CPTS_HW2_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0</td>
+<td>TISCI_DEV_TIMESYNC_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>AM6_DEV_PCIE1</td>
+<td>TISCI_RESASG_SUBTYPE_PCIE1_PCIE_CPTS_HW2_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0</td>
+<td>TISCI_DEV_TIMESYNC_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>AM6_DEV_PDMA1</td>
+<td>TISCI_RESASG_SUBTYPE_PDMA1_LEVENT_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0</td>
+<td>TISCI_DEV_TIMESYNC_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_PDMA1_LEVENT_IN_IRQ_GROUP0_FROM_CMPEVENT_INTRTR0</td>
+<td>TISCI_DEV_CMPEVENT_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>AM6_DEV_MCU_ARMSS0_CPU0</td>
+<td>TISCI_RESASG_SUBTYPE_MCU_ARMSS0_CPU0_INTR_IRQ_GROUP0_FROM_MCU_NAVSS0_INTR_ROUTER_0</td>
+<td>TISCI_DEV_MCU_NAVSS0_INTR_ROUTER_0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_MCU_ARMSS0_CPU0_INTR_IRQ_GROUP0_FROM_WKUP_GPIOMUX_INTRTR0</td>
+<td>TISCI_DEV_WKUP_GPIOMUX_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_MCU_ARMSS0_CPU0_INTR_IRQ_GROUP0_FROM_MAIN2MCU_LVL_INTRTR0</td>
+<td>TISCI_DEV_MAIN2MCU_LVL_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_MCU_ARMSS0_CPU0_INTR_IRQ_GROUP0_FROM_MAIN2MCU_PLS_INTRTR0</td>
+<td>TISCI_DEV_MAIN2MCU_PLS_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>AM6_DEV_MCU_ARMSS0_CPU1</td>
+<td>TISCI_RESASG_SUBTYPE_MCU_ARMSS0_CPU1_INTR_IRQ_GROUP0_FROM_MCU_NAVSS0_INTR_ROUTER_0</td>
+<td>TISCI_DEV_MCU_NAVSS0_INTR_ROUTER_0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_MCU_ARMSS0_CPU1_INTR_IRQ_GROUP0_FROM_WKUP_GPIOMUX_INTRTR0</td>
+<td>TISCI_DEV_WKUP_GPIOMUX_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_MCU_ARMSS0_CPU1_INTR_IRQ_GROUP0_FROM_MAIN2MCU_LVL_INTRTR0</td>
+<td>TISCI_DEV_MAIN2MCU_LVL_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_MCU_ARMSS0_CPU1_INTR_IRQ_GROUP0_FROM_MAIN2MCU_PLS_INTRTR0</td>
+<td>TISCI_DEV_MAIN2MCU_PLS_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="j721e-sciclient-interrupt-resource-type-migration-table">
+<h4>2.9.3.7.3. J721E Sciclient Interrupt Resource Type Migration Table<a class="headerlink" href="#j721e-sciclient-interrupt-resource-type-migration-table" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="18%" />
+<col width="48%" />
+<col width="18%" />
+<col width="16%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Old Resource Type</th>
+<th class="head">Old Resource Subtype</th>
+<th class="head">New Resource Type</th>
+<th class="head">New Resource Subtype</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>TISCI_DEV_COMPUTE_CLUSTER0_CLEC</td>
+<td>TISCI_RESASG_SUBTYPE_COMPUTE_CLUSTER0_CLEC_SOC_EVENTS_IN_IRQ_GROUP0_FROM_NAVSS0_INTR_ROUTER_0</td>
+<td>TISCI_DEV_NAVSS0_INTR_ROUTER_0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_COMPUTE_CLUSTER0_CLEC_SOC_EVENTS_IN_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0</td>
+<td>TISCI_DEV_GPIOMUX_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_COMPUTE_CLUSTER0_CLEC_SOC_EVENTS_IN_IRQ_GROUP1_FROM_NAVSS0_INTR_ROUTER_0</td>
+<td>TISCI_DEV_NAVSS0_INTR_ROUTER_0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_COMPUTE_CLUSTER0_CLEC_SOC_EVENTS_IN_IRQ_GROUP0_FROM_CMPEVENT_INTRTR0</td>
+<td>TISCI_DEV_CMPEVENT_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_COMPUTE_CLUSTER0_CLEC_SOC_EVENTS_IN_IRQ_GROUP2_FROM_NAVSS0_INTR_ROUTER_0</td>
+<td>TISCI_DEV_NAVSS0_INTR_ROUTER_0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_COMPUTE_CLUSTER0_CLEC_SOC_EVENTS_IN_IRQ_GROUP0_FROM_WKUP_GPIOMUX_INTRTR0</td>
+<td>TISCI_DEV_WKUP_GPIOMUX_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>TISCI_DEV_COMPUTE_CLUSTER0_GIC500SS</td>
+<td>TISCI_RESASG_SUBTYPE_COMPUTE_CLUSTER0_GIC500SS_SPI_IRQ_GROUP0_FROM_NAVSS0_INTR_ROUTER_0</td>
+<td>TISCI_DEV_NAVSS0_INTR_ROUTER_0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_COMPUTE_CLUSTER0_GIC500SS_SPI_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0</td>
+<td>TISCI_DEV_GPIOMUX_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_COMPUTE_CLUSTER0_GIC500SS_SPI_IRQ_GROUP1_FROM_NAVSS0_INTR_ROUTER_0</td>
+<td>TISCI_DEV_NAVSS0_INTR_ROUTER_0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_COMPUTE_CLUSTER0_GIC500SS_SPI_IRQ_GROUP0_FROM_CMPEVENT_INTRTR0</td>
+<td>TISCI_DEV_CMPEVENT_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_COMPUTE_CLUSTER0_GIC500SS_SPI_IRQ_GROUP2_FROM_NAVSS0_INTR_ROUTER_0</td>
+<td>TISCI_DEV_NAVSS0_INTR_ROUTER_0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_COMPUTE_CLUSTER0_GIC500SS_SPI_IRQ_GROUP0_FROM_WKUP_GPIOMUX_INTRTR0</td>
+<td>TISCI_DEV_WKUP_GPIOMUX_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>TISCI_DEV_MCU_CPSW0</td>
+<td>TISCI_RESASG_SUBTYPE_MCU_CPSW0_CPTS_HW3_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0</td>
+<td>TISCI_DEV_TIMESYNC_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_MCU_CPSW0_CPTS_HW4_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0</td>
+<td>TISCI_DEV_TIMESYNC_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>TISCI_DEV_CPSW0</td>
+<td>TISCI_RESASG_SUBTYPE_CPSW0_CPTS_HW1_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0</td>
+<td>TISCI_DEV_TIMESYNC_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_CPSW0_CPTS_HW2_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0</td>
+<td>TISCI_DEV_TIMESYNC_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_CPSW0_CPTS_HW3_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0</td>
+<td>TISCI_DEV_TIMESYNC_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_CPSW0_CPTS_HW4_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0</td>
+<td>TISCI_DEV_TIMESYNC_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_CPSW0_CPTS_HW5_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0</td>
+<td>TISCI_DEV_TIMESYNC_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_CPSW0_CPTS_HW6_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0</td>
+<td>TISCI_DEV_TIMESYNC_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_CPSW0_CPTS_HW7_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0</td>
+<td>TISCI_DEV_TIMESYNC_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_CPSW0_CPTS_HW8_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0</td>
+<td>TISCI_DEV_TIMESYNC_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>TISCI_DEV_ESM0</td>
+<td>TISCI_RESASG_SUBTYPE_ESM0_ESM_PLS_EVENT0_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0</td>
+<td>TISCI_DEV_GPIOMUX_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_ESM0_ESM_PLS_EVENT1_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0</td>
+<td>TISCI_DEV_GPIOMUX_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_ESM0_ESM_PLS_EVENT2_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0</td>
+<td>TISCI_DEV_GPIOMUX_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>TISCI_DEV_WKUP_ESM0</td>
+<td>TISCI_RESASG_SUBTYPE_WKUP_ESM0_ESM_PLS_EVENT0_IRQ_GROUP0_FROM_WKUP_GPIOMUX_INTRTR0</td>
+<td>TISCI_DEV_WKUP_GPIOMUX_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_WKUP_ESM0_ESM_PLS_EVENT1_IRQ_GROUP0_FROM_WKUP_GPIOMUX_INTRTR0</td>
+<td>TISCI_DEV_WKUP_GPIOMUX_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_WKUP_ESM0_ESM_PLS_EVENT2_IRQ_GROUP0_FROM_WKUP_GPIOMUX_INTRTR0</td>
+<td>TISCI_DEV_WKUP_GPIOMUX_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>TISCI_DEV_PRU_ICSSG0</td>
+<td>TISCI_RESASG_SUBTYPE_PRU_ICSSG0_PR1_EDC0_LATCH0_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0</td>
+<td>TISCI_DEV_TIMESYNC_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_PRU_ICSSG0_PR1_EDC0_LATCH1_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0</td>
+<td>TISCI_DEV_TIMESYNC_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_PRU_ICSSG0_PR1_EDC1_LATCH0_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0</td>
+<td>TISCI_DEV_TIMESYNC_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_PRU_ICSSG0_PR1_EDC1_LATCH1_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0</td>
+<td>TISCI_DEV_TIMESYNC_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_PRU_ICSSG0_PR1_IEP0_CAP_INTR_REQ_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0</td>
+<td>TISCI_DEV_GPIOMUX_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_PRU_ICSSG0_PR1_IEP1_CAP_INTR_REQ_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0</td>
+<td>TISCI_DEV_GPIOMUX_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_PRU_ICSSG0_PR1_SLV_INTR_IRQ_GROUP0_FROM_NAVSS0_INTR_ROUTER_0</td>
+<td>TISCI_DEV_NAVSS0_INTR_ROUTER_0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>TISCI_DEV_PRU_ICSSG1</td>
+<td>TISCI_RESASG_SUBTYPE_PRU_ICSSG1_PR1_EDC0_LATCH0_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0</td>
+<td>TISCI_DEV_TIMESYNC_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_PRU_ICSSG1_PR1_EDC0_LATCH1_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0</td>
+<td>TISCI_DEV_TIMESYNC_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_PRU_ICSSG1_PR1_EDC1_LATCH0_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0</td>
+<td>TISCI_DEV_TIMESYNC_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_PRU_ICSSG1_PR1_EDC1_LATCH1_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0</td>
+<td>TISCI_DEV_TIMESYNC_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_PRU_ICSSG1_PR1_IEP0_CAP_INTR_REQ_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0</td>
+<td>TISCI_DEV_GPIOMUX_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_PRU_ICSSG1_PR1_IEP1_CAP_INTR_REQ_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0</td>
+<td>TISCI_DEV_GPIOMUX_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_PRU_ICSSG1_PR1_SLV_INTR_IRQ_GROUP0_FROM_NAVSS0_INTR_ROUTER_0</td>
+<td>TISCI_DEV_NAVSS0_INTR_ROUTER_0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>TISCI_DEV_C66SS0_CORE0</td>
+<td>TISCI_RESASG_SUBTYPE_C66SS0_CORE0_C66_EVENT_IN_SYNC_IRQ_GROUP0_FROM_C66SS0_INTROUTER0</td>
+<td>TISCI_DEV_C66SS0_INTROUTER0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_C66SS0_CORE0_C66_EVENT_IN_SYNC_IRQ_GROUP1_FROM_C66SS0_INTROUTER0</td>
+<td>TISCI_DEV_C66SS0_INTROUTER0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_C66SS0_CORE0_C66_EVENT_IN_SYNC_IRQ_GROUP2_FROM_C66SS0_INTROUTER0</td>
+<td>TISCI_DEV_C66SS0_INTROUTER0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_C66SS0_CORE0_C66_EVENT_IN_SYNC_IRQ_GROUP3_FROM_C66SS0_INTROUTER0</td>
+<td>TISCI_DEV_C66SS0_INTROUTER0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_C66SS0_CORE0_C66_EVENT_IN_SYNC_IRQ_GROUP4_FROM_C66SS0_INTROUTER0</td>
+<td>TISCI_DEV_C66SS0_INTROUTER0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>TISCI_DEV_C66SS1_CORE0</td>
+<td>TISCI_RESASG_SUBTYPE_C66SS1_CORE0_C66_EVENT_IN_SYNC_IRQ_GROUP0_FROM_C66SS1_INTROUTER0</td>
+<td>TISCI_DEV_C66SS1_INTROUTER0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_C66SS1_CORE0_C66_EVENT_IN_SYNC_IRQ_GROUP1_FROM_C66SS1_INTROUTER0</td>
+<td>TISCI_DEV_C66SS1_INTROUTER0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_C66SS1_CORE0_C66_EVENT_IN_SYNC_IRQ_GROUP2_FROM_C66SS1_INTROUTER0</td>
+<td>TISCI_DEV_C66SS1_INTROUTER0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_C66SS1_CORE0_C66_EVENT_IN_SYNC_IRQ_GROUP3_FROM_C66SS1_INTROUTER0</td>
+<td>TISCI_DEV_C66SS1_INTROUTER0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_C66SS1_CORE0_C66_EVENT_IN_SYNC_IRQ_GROUP4_FROM_C66SS1_INTROUTER0</td>
+<td>TISCI_DEV_C66SS1_INTROUTER0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>TISCI_DEV_NAVSS512L_MAIN_0</td>
+<td>TISCI_RESASG_SUBTYPE_NAVSS512L_MAIN_0_CPTS0_HW1_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0</td>
+<td>TISCI_DEV_TIMESYNC_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_NAVSS512L_MAIN_0_CPTS0_HW2_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0</td>
+<td>TISCI_DEV_TIMESYNC_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_NAVSS512L_MAIN_0_CPTS0_HW3_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0</td>
+<td>TISCI_DEV_TIMESYNC_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_NAVSS512L_MAIN_0_CPTS0_HW4_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0</td>
+<td>TISCI_DEV_TIMESYNC_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_NAVSS512L_MAIN_0_CPTS0_HW5_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0</td>
+<td>TISCI_DEV_TIMESYNC_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_NAVSS512L_MAIN_0_CPTS0_HW6_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0</td>
+<td>TISCI_DEV_TIMESYNC_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_NAVSS512L_MAIN_0_CPTS0_HW7_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0</td>
+<td>TISCI_DEV_TIMESYNC_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_NAVSS512L_MAIN_0_CPTS0_HW8_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0</td>
+<td>TISCI_DEV_TIMESYNC_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>TISCI_DEV_NAVSS0_UDMASS_INTAGGR_0</td>
+<td>TISCI_RESASG_SUBTYPE_NAVSS0_UDMASS_INTAGGR_0_INTAGGR_LEVI_PEND_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0</td>
+<td>TISCI_DEV_TIMESYNC_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_NAVSS0_UDMASS_INTAGGR_0_INTAGGR_LEVI_PEND_IRQ_GROUP0_FROM_CMPEVENT_INTRTR0</td>
+<td>TISCI_DEV_CMPEVENT_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_NAVSS0_UDMASS_INTAGGR_0_INTAGGR_LEVI_PEND_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0</td>
+<td>TISCI_DEV_GPIOMUX_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>TISCI_DEV_MCU_NAVSS0_INTAGGR_0</td>
+<td>TISCI_RESASG_SUBTYPE_MCU_NAVSS0_INTAGGR_0_INTAGGR_LEVI_PEND_IRQ_GROUP0_FROM_WKUP_GPIOMUX_INTRTR0</td>
+<td>TISCI_DEV_WKUP_GPIOMUX_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>TISCI_DEV_PCIE0</td>
+<td>TISCI_RESASG_SUBTYPE_PCIE0_PCIE_CPTS_HW2_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0</td>
+<td>TISCI_DEV_TIMESYNC_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>TISCI_DEV_PCIE1</td>
+<td>TISCI_RESASG_SUBTYPE_PCIE1_PCIE_CPTS_HW2_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0</td>
+<td>TISCI_DEV_TIMESYNC_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>TISCI_DEV_PCIE2</td>
+<td>TISCI_RESASG_SUBTYPE_PCIE2_PCIE_CPTS_HW2_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0</td>
+<td>TISCI_DEV_TIMESYNC_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>TISCI_DEV_PCIE3</td>
+<td>TISCI_RESASG_SUBTYPE_PCIE3_PCIE_CPTS_HW2_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0</td>
+<td>TISCI_DEV_TIMESYNC_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>TISCI_DEV_R5FSS0_CORE0</td>
+<td>TISCI_RESASG_SUBTYPE_R5FSS0_CORE0_INTR_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0</td>
+<td>TISCI_DEV_GPIOMUX_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_R5FSS0_CORE0_INTR_IRQ_GROUP0_FROM_NAVSS0_INTR_ROUTER_0</td>
+<td>TISCI_DEV_NAVSS0_INTR_ROUTER_0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_R5FSS0_CORE0_INTR_IRQ_GROUP0_FROM_R5FSS0_INTROUTER0</td>
+<td>TISCI_DEV_R5FSS0_INTROUTER0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>TISCI_DEV_R5FSS0_CORE1</td>
+<td>TISCI_RESASG_SUBTYPE_R5FSS0_CORE1_INTR_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0</td>
+<td>TISCI_DEV_GPIOMUX_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_R5FSS0_CORE1_INTR_IRQ_GROUP0_FROM_NAVSS0_INTR_ROUTER_0</td>
+<td>TISCI_DEV_NAVSS0_INTR_ROUTER_0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_R5FSS0_CORE1_INTR_IRQ_GROUP0_FROM_R5FSS0_INTROUTER0</td>
+<td>TISCI_DEV_R5FSS0_INTROUTER0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>TISCI_DEV_R5FSS1_CORE0</td>
+<td>TISCI_RESASG_SUBTYPE_R5FSS1_CORE0_INTR_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0</td>
+<td>TISCI_DEV_GPIOMUX_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_R5FSS1_CORE0_INTR_IRQ_GROUP0_FROM_NAVSS0_INTR_ROUTER_0</td>
+<td>TISCI_DEV_NAVSS0_INTR_ROUTER_0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_R5FSS1_CORE0_INTR_IRQ_GROUP0_FROM_R5FSS1_INTROUTER0</td>
+<td>TISCI_DEV_R5FSS1_INTROUTER0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>TISCI_DEV_R5FSS1_CORE1</td>
+<td>TISCI_RESASG_SUBTYPE_R5FSS1_CORE1_INTR_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0</td>
+<td>TISCI_DEV_GPIOMUX_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_R5FSS1_CORE1_INTR_IRQ_GROUP0_FROM_NAVSS0_INTR_ROUTER_0</td>
+<td>TISCI_DEV_NAVSS0_INTR_ROUTER_0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_R5FSS1_CORE1_INTR_IRQ_GROUP0_FROM_R5FSS1_INTROUTER0</td>
+<td>TISCI_DEV_R5FSS1_INTROUTER0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>TISCI_DEV_MCU_R5FSS0_CORE0</td>
+<td>TISCI_RESASG_SUBTYPE_MCU_R5FSS0_CORE0_INTR_IRQ_GROUP0_FROM_MCU_NAVSS0_INTR_ROUTER_0</td>
+<td>TISCI_DEV_MAIN2MCU_LVL_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_MCU_R5FSS0_CORE0_INTR_IRQ_GROUP0_FROM_WKUP_GPIOMUX_INTRTR0</td>
+<td>TISCI_DEV_WKUP_GPIOMUX_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_MCU_R5FSS0_CORE0_INTR_IRQ_GROUP0_FROM_MAIN2MCU_LVL_INTRTR0</td>
+<td>TISCI_DEV_MAIN2MCU_LVL_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_MCU_R5FSS0_CORE0_INTR_IRQ_GROUP0_FROM_MAIN2MCU_PLS_INTRTR0</td>
+<td>TISCI_DEV_MAIN2MCU_PLS_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_MCU_R5FSS0_CORE0_INTR_IRQ_GROUP0_FROM_NAVSS0_INTR_ROUTER_0</td>
+<td>TISCI_DEV_NAVSS0_INTR_ROUTER_0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>TISCI_DEV_MCU_R5FSS0_CORE1</td>
+<td>TISCI_RESASG_SUBTYPE_MCU_R5FSS0_CORE1_INTR_IRQ_GROUP0_FROM_MCU_NAVSS0_INTR_ROUTER_0</td>
+<td>TISCI_DEV_MCU_NAVSS0_INTR_ROUTER_0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_MCU_R5FSS0_CORE1_INTR_IRQ_GROUP0_FROM_WKUP_GPIOMUX_INTRTR0</td>
+<td>TISCI_DEV_WKUP_GPIOMUX_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_MCU_R5FSS0_CORE1_INTR_IRQ_GROUP0_FROM_MAIN2MCU_LVL_INTRTR0</td>
+<td>TISCI_DEV_MAIN2MCU_LVL_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_MCU_R5FSS0_CORE1_INTR_IRQ_GROUP0_FROM_MAIN2MCU_PLS_INTRTR0</td>
+<td>TISCI_DEV_MAIN2MCU_PLS_INTRTR0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>TISCI_RESASG_SUBTYPE_MCU_R5FSS0_CORE1_INTR_IRQ_GROUP0_FROM_NAVSS0_INTR_ROUTER_0</td>
+<td>TISCI_DEV_NAVSS0_INTR_ROUTER_0</td>
+<td>TISCI_RESASG_SUBTYPE_IR_OUTPUT</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="section" id="device-support">
+<h2>2.9.4. Device Support<a class="headerlink" href="#device-support" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>AM65xx EVM, AM65xx IDK, AM65xx-HS EVM (BOARD=am65xx_evm, am65xx_idk)</li>
+<li>J721E EVM, J721E-HS EVM (BOARD=j721e_evm)</li>
+</ul>
+</div>
+<div class="section" id="validation-information">
+<h2>2.9.5. Validation Information<a class="headerlink" href="#validation-information" title="Permalink to this headline">¶</a></h2>
+<p>This release is validated on above devices for the applicable components.
+For details on the validated examples refer to the platform specific test report present in <strong>PDK_INSTALL_DIR/docs/test_report</strong> folder.</p>
+</div>
+<div class="section" id="tool-chain-information">
+<h2>2.9.6. Tool Chain Information<a class="headerlink" href="#tool-chain-information" title="Permalink to this headline">¶</a></h2>
+<p>Refer to SDK level documentation for Tool Chain and dependent component version used to validate this release.</p>
+</div>
+<div class="section" id="fixed-issues">
+<h2>2.9.7. Fixed Issues<a class="headerlink" href="#fixed-issues" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="52%" />
+<col width="8%" />
+<col width="10%" />
+<col width="22%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ID</th>
+<th class="head">Head Line</th>
+<th class="head">Module</th>
+<th class="head">Affected Versions</th>
+<th class="head">Affected Platforms</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>PDK-5764</td>
+<td>R5F MPU configuration for ATCM and BTCM is wrong in r5_mpu.xs for J721E and J7200</td>
+<td>BUILD</td>
+<td>06.02.00</td>
+<td>j721e-evm</td>
+</tr>
+<tr class="row-odd"><td>PDK-5759</td>
+<td>Incorrect status for memory attributes in r5_mpu.xs for j721e and j7200 for DDR</td>
+<td>BUILD</td>
+<td>06.02.00</td>
+<td>j721e-evm</td>
+</tr>
+<tr class="row-even"><td>PRSDK-7244</td>
+<td>CSL Serdes configuration for PCIE Gen2 is unreliable</td>
+<td>CSL</td>
+<td>06.01.00</td>
+<td>am654x-evm, am654x-idk</td>
+</tr>
+<tr class="row-odd"><td>PRSDK-7754</td>
+<td>LPDDR CSL-FL: Missing API to read and write thermal monitor</td>
+<td>CSL</td>
+<td>06.02.00</td>
+<td>j721e-evm</td>
+</tr>
+<tr class="row-even"><td>PDK-4959</td>
+<td>[Boot App]Compilation Error During Boot App Build</td>
+<td>CSL</td>
+<td>06.02.00</td>
+<td>j721e-evm</td>
+</tr>
+<tr class="row-odd"><td>PDK-5070</td>
+<td>Latest Uniflash documentation is not included in the release</td>
+<td>COMMON</td>
+<td>06.02.00</td>
+<td>j721e-evm</td>
+</tr>
+<tr class="row-even"><td>PDK-6378</td>
+<td>[DSS]DSS sample application crashes with DMSC flow</td>
+<td>DSS</td>
+<td>06.02.00</td>
+<td>am654x-evm</td>
+</tr>
+<tr class="row-odd"><td>PRSDK-7735</td>
+<td>am65xx: Need to optimize time it takes to polll for packets from udma rings on R5</td>
+<td>EMAC</td>
+<td>06.02.00</td>
+<td>am654x-idk</td>
+</tr>
+<tr class="row-even"><td>PRSDK-8081</td>
+<td>GPIO instance is hardcoded in GPIO driver</td>
+<td>GPIO</td>
+<td>06.02.00</td>
+<td>j721e-evm</td>
+</tr>
+<tr class="row-odd"><td>PRSDK-7933</td>
+<td>Mailbox irq does not work on mcu1_1 using dynamic allocation</td>
+<td>IPC</td>
+<td>06.01.00</td>
+<td>j721e-evm</td>
+</tr>
+<tr class="row-even"><td>PRSDK-8481</td>
+<td>OSAL: Timer API wrongly uses HWIP clear and disable interrupts, instead of OSAL clear and disable APIs</td>
+<td>OSAL</td>
+<td>06.03.00</td>
+<td>am654x-evm, am654x-hsevm, am654x-idk, j721e-evm</td>
+</tr>
+<tr class="row-odd"><td>PDK-5588</td>
+<td>OSAL API TimerP_Params_init() initializes the Timer with wrong default clock (25MHz)</td>
+<td>OSAL</td>
+<td>06.02.00</td>
+<td>j721e-evm</td>
+</tr>
+<tr class="row-even"><td>PRSDK-8426</td>
+<td>OSAL: SemaphoreP_postfromISR() API does not work for baremetal</td>
+<td>OSAL</td>
+<td>06.02.00</td>
+<td>j721e-evm</td>
+</tr>
+<tr class="row-odd"><td>PDK-6685</td>
+<td>Timer osal - noos - Uninitialized variable</td>
+<td>OSAL</td>
+<td>06.02.00</td>
+<td>j721e-evm</td>
+</tr>
+<tr class="row-even"><td>PRSDK-5415</td>
+<td>RTOS: K3: fix issue in OSPI INDAC mode with interrupt enabled for J7</td>
+<td>OSPI</td>
+<td>05.02.00</td>
+<td>j721e-evm</td>
+</tr>
+<tr class="row-odd"><td>PRSDK-8301</td>
+<td>OSPI configured in SDR mode is not stable for SBL image copies</td>
+<td>OSPI</td>
+<td>06.02.00</td>
+<td>j721e-evm</td>
+</tr>
+<tr class="row-even"><td>PDK-5600</td>
+<td>OSPI FLash timing optimization</td>
+<td>OSPI</td>
+<td>06.02.00</td>
+<td>j721e-evm</td>
+</tr>
+<tr class="row-odd"><td>PDK-6294</td>
+<td>SA: AM65x: Unit test aborts due to memory allocation failure</td>
+<td>SA2UL</td>
+<td>06.02.00</td>
+<td>am654x-evm</td>
+</tr>
+<tr class="row-even"><td>PRSDK-8302</td>
+<td>Board config for SBL is not setting proper value for GTC clock in MAIN domain</td>
+<td>SBL</td>
+<td>06.02.00</td>
+<td>j721e-evm</td>
+</tr>
+<tr class="row-odd"><td>PDK-5733</td>
+<td>[Boot] Certificate Parsing for X509 SBL is not fool proof</td>
+<td>SBL</td>
+<td>06.02.00</td>
+<td>j721e-evm</td>
+</tr>
+<tr class="row-even"><td>PDK-5645</td>
+<td>SBL configures MCU DMTimer0 for 250MHz while BIOS Timer.xs expects it to be at 19.2MHz</td>
+<td>SBL</td>
+<td>06.02.00</td>
+<td>j721e-evm</td>
+</tr>
+<tr class="row-odd"><td>PDK-5574</td>
+<td>ipc: messages coming twice unexpectedly</td>
+<td>IPC</td>
+<td>06.02.00</td>
+<td>j721e-evm</td>
+</tr>
+<tr class="row-even"><td>PDK-5573</td>
+<td>ipc: heapAlloc is not returning NULL when allocation fails</td>
+<td>IPC</td>
+<td>06.02.00</td>
+<td>j721e-evm</td>
+</tr>
+<tr class="row-odd"><td>PDK-5572</td>
+<td>ipc: echo tests: Linux vrings not properly configured for non-cached for some cores</td>
+<td>IPC</td>
+<td>06.02.00</td>
+<td>am654x-evm, j721e-evm</td>
+</tr>
+<tr class="row-even"><td>PDK-5146</td>
+<td>IPC: tests: Board_init with pinmux config is conflicting with other test firmware</td>
+<td>IPC</td>
+<td>06.02.00</td>
+<td>j721e-evm</td>
+</tr>
+<tr class="row-odd"><td>PDK-5261</td>
+<td>[SCICLIENT] Sciclient PM functions send NULL request payloads</td>
+<td>SCICLIENT</td>
+<td>06.02.00</td>
+<td>am654x-evm</td>
+</tr>
+<tr class="row-even"><td>PDK-5033</td>
+<td>[SCICLIENT] Alignment mismatches in C66x causes the response to not be captured correctly</td>
+<td>SCICLIENT</td>
+<td>06.02.00</td>
+<td>j721e-evm</td>
+</tr>
+<tr class="row-odd"><td>PDK-4963</td>
+<td>{SCICLIENT] Build fails intermittendly</td>
+<td>SCICLIENT</td>
+<td>06.02.00</td>
+<td>j721e-evm</td>
+</tr>
+<tr class="row-even"><td>PDK-4948</td>
+<td>Launch.js file fails when running OSPI boot mode</td>
+<td>SCICLIENT</td>
+<td>06.02.00</td>
+<td>j721e-evm</td>
+</tr>
+<tr class="row-odd"><td>PDK-4994</td>
+<td>[UDMA] Proxy access fails when using CPSW LLD from QNX</td>
+<td>UDMA</td>
+<td>06.02.00</td>
+<td>am654x-evm, j721e-evm</td>
+</tr>
+<tr class="row-even"><td>PDK-6522</td>
+<td>udma - Ring occupancy becoming negative</td>
+<td>UDMA</td>
+<td>06.02.00</td>
+<td>j721e-evm</td>
+</tr>
+<tr class="row-odd"><td>PDK-5221</td>
+<td>Spurious Interrupts observed for MSC &amp; other modules in VPAC</td>
+<td>VHWA</td>
+<td>06.01.00</td>
+<td>j721e-evm</td>
+</tr>
+<tr class="row-even"><td>PDK-5804</td>
+<td>VPAC VISS H3A driver does not check for invalid parameters</td>
+<td>VHWA</td>
+<td>06.02.00</td>
+<td>j721e-evm</td>
+</tr>
+<tr class="row-odd"><td>PDK-6701</td>
+<td>[VISS]:Edge Enhancer does not work for YUV422 output</td>
+<td>VHWA</td>
+<td>06.02.00</td>
+<td>j721e-evm</td>
+</tr>
+<tr class="row-even"><td>PRSDK-7492</td>
+<td>Uniflash requires extra Serial-Cable Unplug/Re-plug step during operation</td>
+<td>UNIFLASH</td>
+<td>06.01.00</td>
+<td>am654x-evm, am654x-hsevm, am654x-idk</td>
+</tr>
+<tr class="row-odd"><td>PDK-5262</td>
+<td>[BOARD LIB]UB960 pattern generation API programs UB960 in case of error</td>
+<td>BOARD</td>
+<td>06.02.00</td>
+<td>j721e-evm</td>
+</tr>
+<tr class="row-even"><td>PDK-5147</td>
+<td>[Board Lib]Board lib does not support more the 1 active I2C instances</td>
+<td>BOARD</td>
+<td>06.02.00</td>
+<td>j721e-evm</td>
+</tr>
+<tr class="row-odd"><td>PDK-5016</td>
+<td>[j721e board] Serdes config function uses serdesInstance value for phyInstance</td>
+<td>BOARD</td>
+<td>06.02.00</td>
+<td>j721e-evm</td>
+</tr>
+<tr class="row-even"><td>PRSDK-7908</td>
+<td>R5 Board Diagnostics Apploader crashes</td>
+<td>BOARD DIAG</td>
+<td>06.02.00</td>
+<td>am654x-evm, am654x-hsevm, am654x-idk, j721e-evm</td>
+</tr>
+<tr class="row-odd"><td>PRSDK-7889</td>
+<td>Audio DC diagnostic test failure</td>
+<td>BOARD DIAG</td>
+<td>06.01.00</td>
+<td>j721e-evm</td>
+</tr>
+<tr class="row-even"><td>PRSDK-7176</td>
+<td>AM65x R5 diagnostic tests are hanging while running from diag framework</td>
+<td>BOARD DIAG</td>
+<td>06.01.00</td>
+<td>am654x-evm, am654x-idk</td>
+</tr>
+<tr class="row-odd"><td>PRSDK-4661</td>
+<td>AM65x: Board diagnostics LCD touchscreen test reports incorrect number of touch events</td>
+<td>BOARD DIAG</td>
+<td>05.01.00</td>
+<td>am654x-evm, am654x-hsevm, am654x-idk</td>
+</tr>
+<tr class="row-even"><td>ETHFW-1570</td>
+<td>CPSW DMA - Ring monitor not allocated even though enabled by an application</td>
+<td>CPSW</td>
+<td>06.02.00</td>
+<td>j721e-evm</td>
+</tr>
+<tr class="row-odd"><td>ETHFW-1564</td>
+<td>ETHFW-1564 - Examples - Sciclient_rmIrqSet fails for mcu2_1 examples due IR conflict</td>
+<td>CPSW</td>
+<td>06.02.00</td>
+<td>j721e-evm</td>
+</tr>
+<tr class="row-even"><td>ETHFW-1496</td>
+<td>CPSW PHY: dp83867: Robust auto-mdix is disabled for non-loopback mode</td>
+<td>CPSW</td>
+<td>06.02.00</td>
+<td>j721e-evm</td>
+</tr>
+<tr class="row-odd"><td>ETHFW-1497</td>
+<td>CPSW - MAC reset is not released in SGMII 100/10 Mbps mode</td>
+<td>CPSW</td>
+<td>06.02.00</td>
+<td>j721e-evm</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="known-issues">
+<h2>2.9.8. Known Issues<a class="headerlink" href="#known-issues" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="6%" />
+<col width="33%" />
+<col width="6%" />
+<col width="8%" />
+<col width="9%" />
+<col width="20%" />
+<col width="18%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ID</th>
+<th class="head">Head Line</th>
+<th class="head">Module</th>
+<th class="head">Reported in Release</th>
+<th class="head">Affected Platforms</th>
+<th class="head">Impact</th>
+<th class="head">Workaround in this release</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>PDK-6549</td>
+<td>MCU2 core diagnostic tests not running through sbl</td>
+<td>BOARD</td>
+<td>07.00.00</td>
+<td>j721e_evm</td>
+<td>None</td>
+<td>Use CCS/JTAG to run the tests</td>
+</tr>
+<tr class="row-odd"><td>PDK-6548</td>
+<td>Display port (eDP) diagnostic test failure</td>
+<td>BOARD</td>
+<td>07.00.00</td>
+<td>j721e_evm</td>
+<td>None</td>
+<td>Use display sample application</td>
+</tr>
+<tr class="row-even"><td>PDK-6707</td>
+<td>PCIe diagnostic test failure</td>
+<td>BOARD</td>
+<td>07.00.00</td>
+<td>am65xx_evm, am65xx_idk</td>
+<td>None</td>
+<td>Use PCIe driver sample application</td>
+</tr>
+<tr class="row-odd"><td>PRSDK-7891</td>
+<td>CPSW RGMII diagnostic test failure</td>
+<td>BOARD</td>
+<td>06.01.00</td>
+<td>j721e-evm</td>
+<td>None</td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td>PRSDK-8607</td>
+<td>Board_init(SBL_PLL_INIT) is configuring PLL directly without going through SYSFW.</td>
+<td>BOARD</td>
+<td>06.03.00</td>
+<td>am654x-idk, am64x-evm</td>
+<td>None</td>
+<td>Comment below lines of code from Board_PLLInitAll()
+(pdk/packages/ti/board/src/evmKeystone3)
+Board_PLLConfig(&amp;pllcConfigs[CSL_PER0_PLL]);
+Board_PLLConfig(&amp;pllcConfigs[CSL_MCU_PLL]);
+Board_PLLConfig(&amp;pllcConfigs[CSL_CPSW_PLL]);</td>
+</tr>
+<tr class="row-odd"><td>PDK-6762</td>
+<td>CSL: UART test fails for MCU 1_0</td>
+<td>CSL</td>
+<td>07.00.00</td>
+<td>am65xx_evm, j721e_evm</td>
+<td>Low. There are other CSL examples that output to UART
+without any issue. Additionally, this test works fine for
+MPU1_0. Suspect this is a CSL example application.</td>
+<td>Use UART driver in baremetal mode</td>
+</tr>
+<tr class="row-even"><td>PDK-6800</td>
+<td>AM65: Watchdog timer diagnostic test fails</td>
+<td>DIAG</td>
+<td>07.00.00</td>
+<td>am65xx_evm</td>
+<td>The watchdog timer has been tested successfully on AM65
+using CSL test. Suspect the diagnostics test may have a
+timing issue</td>
+<td>None</td>
+</tr>
+<tr class="row-odd"><td>PDK-5224</td>
+<td>Active DP -&gt; HDMI adapter doesn&#8217;t work</td>
+<td>DSS</td>
+<td>00.09.01</td>
+<td>j721e_evm</td>
+<td>DP to HDMI adapter for display cannot be used.</td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td>PDK-5040</td>
+<td>Display stops working if two pipelines are started back to back</td>
+<td>DSS</td>
+<td>06.02.00</td>
+<td>j721e_evm</td>
+<td>None, if the workaround is in place.</td>
+<td>Wait for a frame to go out from a pipeline before
+starting the next one</td>
+</tr>
+<tr class="row-odd"><td>PDK-6734</td>
+<td>am65xx: emac: Driver updates to support wire clock feature in TX CFG</td>
+<td>EMAC</td>
+<td>07.00.00</td>
+<td>am65xx_idk</td>
+<td>There will be jitter in the inter arrival packet gap
+when transmitting packets at a high data rate</td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td>PRSDK-5022</td>
+<td>am65xx: Running emac unit test on R5 core from ddrless SBL at times does not complete execution</td>
+<td>EMAC</td>
+<td>05.02.00</td>
+<td>am654x-evm, am654x-idk</td>
+<td>Running emac unit test which does not access DDR from SBL
+does not finish execution, this unit test only added to
+run on R5 core</td>
+<td>None</td>
+</tr>
+<tr class="row-odd"><td>PDK-6791</td>
+<td>i2c eeprom smp testapp load fails</td>
+<td>I2C</td>
+<td>07.00.00</td>
+<td>am65xx_evm</td>
+<td>The issue is most likely a application configuration or
+test setup issue as other SMP applications are working
+fine</td>
+<td>None. Use non-SMP mode</td>
+</tr>
+<tr class="row-even"><td>PDK-6742</td>
+<td>McASP regression test app some tests are failing</td>
+<td>McASP</td>
+<td>07.00.00</td>
+<td>am65xx_evm</td>
+<td>The issue is most likely a application configuration</td>
+<td>None</td>
+</tr>
+<tr class="row-odd"><td>PDK-6743</td>
+<td>McASP SMP tests fails</td>
+<td>McASP</td>
+<td>07.00.00</td>
+<td>am65xx_evm, j721e_evm</td>
+<td>The issue is most likely a application configuration or
+test setup issue as other SMP applications are working
+fine</td>
+<td>None. Use non-SMP mode</td>
+</tr>
+<tr class="row-even"><td>PRSDK-5074</td>
+<td>McASP driver hangs with small buffer size</td>
+<td>McASP</td>
+<td>05.01.00</td>
+<td>am654x-evm, j721e-evm</td>
+<td>None</td>
+<td>Use packet size 32 samples or greater</td>
+</tr>
+<tr class="row-odd"><td>PDK-6649</td>
+<td>Timer osal - noos - Timer delete doesn&#8217;t &#8220;free&#8221; timer</td>
+<td>OSAL</td>
+<td>06.02.00</td>
+<td>j721e_evm</td>
+<td>Resource leak if create/delete called in a loop.
+But typically this is not done for Timer.</td>
+<td>Use the same timer in the application without
+create/deleting multiple times</td>
+</tr>
+<tr class="row-even"><td>PDK-6534</td>
+<td>Timer osal - noos - Timer should be reset first before registering interrupts</td>
+<td>OSAL</td>
+<td>06.02.00</td>
+<td>j721e_evm</td>
+<td>None if the workaround is in place</td>
+<td>Reset the timer before using</td>
+</tr>
+<tr class="row-odd"><td>PDK-6758</td>
+<td>pcie qos examples fails for 2 lane configuration</td>
+<td>PCIE</td>
+<td>07.00.00</td>
+<td>am65xx_idk</td>
+<td>None</td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td>PRSDK-8036</td>
+<td>PCIE-0: Intermittent failures during Gen 3 mode on AM65x PG2.0</td>
+<td>PCIE</td>
+<td>06.02.00</td>
+<td>am654x-evm, am654x-idk</td>
+<td>None</td>
+<td>None</td>
+</tr>
+<tr class="row-odd"><td>PDK-6415</td>
+<td>PMIC: Need to support asynchronous interrupts</td>
+<td>PMIC</td>
+<td>07.00.00</td>
+<td>j721e_evm</td>
+<td>Asynchronous Interrupt feature is not supported</td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td>PDK-6440</td>
+<td>PMIC: SBL test for GPIO Interrupts on Pins 3 and 4 are causing Hang on J721 EVM</td>
+<td>PMIC</td>
+<td>07.00.00</td>
+<td>j721e_evm</td>
+<td>GPIO Pin 3 and 4 is not supported while testing with SBL</td>
+<td>GPIO Pin 3 and 4 functionalities can be tested using
+CCS</td>
+</tr>
+<tr class="row-odd"><td>PDK-6439</td>
+<td>PMIC: GPIO Interrupt tests on Pin 7, 9 and 11 are failing</td>
+<td>PMIC</td>
+<td>07.00.00</td>
+<td>j721e_evm</td>
+<td>GPIO Interrupt feature for Pin 7, 9 11 is not supported</td>
+<td>GPIO Interrupt feature for other Pins except 7, 9 11
+is supported</td>
+</tr>
+<tr class="row-even"><td>PDK-6757</td>
+<td>PMIC: SBL test for RTC unit tests results in hang for mcu1_1 core</td>
+<td>PMIC</td>
+<td>07.00.00</td>
+<td>j721e_evm</td>
+<td>PMIC RTC Test application fails while testing with SBL</td>
+<td>PMIC RTC Test application is supported on muc1_1 core
+using CCS</td>
+</tr>
+<tr class="row-odd"><td>PRSDK-6382</td>
+<td>SBL: R5F: Core 1 boot is not working with unsigned binary with ipc images</td>
+<td>SBL</td>
+<td>06.01.00</td>
+<td>am654x-evm</td>
+<td>None</td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td>PRSDK-5448</td>
+<td>SBL boot from MMCSD fails intermittently</td>
+<td>SBL</td>
+<td>05.02.00</td>
+<td>am654x-evm, am654x-idk</td>
+<td>None</td>
+<td><p class="first">The workaround involves configuring the MMCSD driver
+in DS mode instead of the default HS mode. This can
+be done by making the below change in SBL&#8217;s mmcsd
+config file
+pdk/packages/ti/boot/sbl/src/mmcsd/sbl_mmcsd.c#n232</p>
+<p>Before calling the function MMCSD_socSetInitCfg(),
+insert the below line
+hwAttrsConfig.supportedModes = MMCSD_SUPPORT_SD_DS;
+Rebuild the MMCSD SBL image (sbl_mmcsd_img)
+cd pdk_&lt;ver&gt;/packages/ti/build
+make sbl_mmcsd_img_clean BOARD=&lt;board&gt; CORE=mcu1_0
+make sbl_mmcsd_img BOARD=&lt;board&gt; CORE=mcu1_0</p>
+<p class="last">Use the sbl_mmcsd_img built above</p>
+</td>
+</tr>
+<tr class="row-odd"><td>PRSDK-5626</td>
+<td>OSPI Read using UDMA fails on AM65x HS devices.</td>
+<td>SBL</td>
+<td>05.03.00</td>
+<td>am654x-hsevm</td>
+<td>None</td>
+<td>Non-DMA mode could be used for the read operation</td>
+</tr>
+<tr class="row-even"><td>PDK-6789</td>
+<td>MCU/Main NAVSS UDMA memcpy from L2SRAM fails</td>
+<td>UDMA</td>
+<td>07.00.00</td>
+<td>j721e_evm</td>
+<td>Transfer works fine when source buffer, destination
+buffer and TRPD buffers are in L2SRAM. The issue happens
+only when the ring memory is in L2SRAM location</td>
+<td>Use ring memory from non-L2SRAM location</td>
+</tr>
+<tr class="row-odd"><td>PRSDK-5989</td>
+<td>USB Host MSC test hangs in SMP mode on AM65xx IDK board</td>
+<td>USB</td>
+<td>06.00.00</td>
+<td>am654x-idk</td>
+<td>None</td>
+<td>None. Use non-SMP mode</td>
+</tr>
+<tr class="row-even"><td>PDK-5228</td>
+<td>Output mismatch when each region requiring 3 TRs</td>
+<td>VHWA</td>
+<td>01.00.00</td>
+<td>j721e_evm</td>
+<td>In multi-region mode with more then 3 TR per region
+can&#8217;t be used</td>
+<td>In multi-region mode for each region less than 3
+TR should be used</td>
+</tr>
+<tr class="row-odd"><td>PDK-5226</td>
+<td>DOF generated wrong output with SOF if pixel in all row are not enabled</td>
+<td>VHWA</td>
+<td>01.00.00, 00.09.01</td>
+<td>j721e_evm</td>
+<td>When using the SOF if the Paxel rows without any pixel
+enabled is not in consecutive pair with lead to lead to
+output mismatch</td>
+<td>This issue is due to shift in flowvector out buffer.
+While generating the SOF binary map make sure that
+Paxel rows without any pixel enabled should be in
+consecutive pair</td>
+</tr>
+<tr class="row-even"><td>PDK-5217</td>
+<td>VPAC VISS driver doesn&#8217;t support several valid mux combinations for outputs</td>
+<td>VHWA</td>
+<td>01.00.00, 00.09.01</td>
+<td>j721e_evm</td>
+<td>VISS output with Chroma only and one of the RGB component
+enabled may not work</td>
+<td>Enable YUV420 instead of Chroma only while using RGB
+component</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="limitations">
+<h2>2.9.9. Limitations<a class="headerlink" href="#limitations" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Active DP -&gt; HDMI adapter doesn&#8217;t work. As a workaround use the display that supports Active DP</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="release_notes_06_02_00.html" class="btn btn-neutral float-right" title="2.10. Release Notes - 06_02_00" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="release_notes_07_01_00.html" class="btn btn-neutral" title="2.8. Release Notes - 07_01_00" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="http://www.ti.com/corp/docs/legal/copyright.shtml">&copy; Copyright 1995-2020</a>, Texas Instruments Incorporated. All rights reserved. <br>
+      <a href="http://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="http://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="http://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="http://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'08_06_01',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

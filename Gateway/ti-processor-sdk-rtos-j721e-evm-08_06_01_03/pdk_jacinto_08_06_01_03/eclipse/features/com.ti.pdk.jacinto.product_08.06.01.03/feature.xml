@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="com.ti.pdk.jacinto.product_08.06.01.03"
+      label="jacinto PDK"
+      version="08.06.01.03"
+      provider-name="Texas Instruments Inc.">
+
+   <description url="http://www.ti.com">
+      Platform Development Kit
+   </description>
+
+   <copyright>
+      Copyright Texas Instruments 2020
+   </copyright>
+
+   <license>
+      Released under the Eclipse Public License 1.0 (http://www.eclipse.org/legal/epl-v10.html)
+   </license>
+
+   <plugin
+        id="com.ti.pdk.jacinto.product_08.06.01.03"
+        version="08.06.01.03"
+        unpack="false" />
+
+</feature>

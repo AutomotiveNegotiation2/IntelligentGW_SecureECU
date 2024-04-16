@@ -1,0 +1,493 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4.12. PM &mdash; Platform Development Kit (PDK) - JACINTO User Guide</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Platform Development Kit (PDK) - JACINTO User Guide" href="../index.html"/>
+        <link rel="up" title="4. Modules" href="../family_cfg/jacinto/index_modules_jacinto.html"/>
+        <link rel="next" title="4.13. SA" href="sa.html"/>
+        <link rel="prev" title="4.11. McASP" href="mcasp.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index_jacinto.html" class="icon icon-home"> Platform Development Kit (PDK) - JACINTO User Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                08_06_01
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">1. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_release_notes_jacinto.html">2. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">3. Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../family_cfg/jacinto/index_modules_jacinto.html">4. Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="csl.html">4.1. CSL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="freertos.html">4.2. FreeRTOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../family_cfg/jacinto/index_modules_safertos_jacinto.html">4.3. SafeRTOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="osal.html">4.4. OSAL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss.html">4.5. DSS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="enet.html">4.6. ENET</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fvid2.html">4.7. FVID2 User Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gpio.html">4.8. GPIO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i2c.html">4.9. I2C</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipc.html">4.10. IPC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mcasp.html">4.11. McASP</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">4.12. PM</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">4.12.1. Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#user-interface">4.12.2. User Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#driver-configuration">4.12.2.1. Driver Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#apis">4.12.2.2. APIs</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#application">4.12.3. Application</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#examples">4.12.3.1. Examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sa.html">4.13. SA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../family_cfg/jacinto/index_modules_sciclient_jacinto.html">4.14. SCICLIENT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="keywriter.html">4.15. OTP KEYWRITER</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spi.html">4.16. SPI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uart.html">4.17. UART</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../family_cfg/jacinto/index_modules_udma_jacinto.html">4.18. UDMA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pmic.html">4.19. PMIC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mmcsd.html">4.20. MMCSD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../family_cfg/jacinto/index_modules_lpm_jacinto.html">4.21. Low Power Manager (LPM)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_boot_jacinto.html">5. Bootloader (SBL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_board_jacinto.html">6. Board/EVM Abstraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_howto_jacinto.html">7. How to Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_faq_jacinto.html">8. Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_developer_notes_jacinto.html">9. Developer Notes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index_jacinto.html">Platform Development Kit (PDK) - JACINTO User Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index_jacinto.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../family_cfg/jacinto/index_modules_jacinto.html">4. Modules</a> &raquo;</li>
+      
+    <li>4.12. PM</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pm">
+<h1>4.12. PM<a class="headerlink" href="#pm" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>4.12.1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>The Power Management (PM) low level driver provide power and thermal
+management capabilities for RTOS applications.</p>
+<p class="rubric" id="pm-supported-devices"><strong>Supported Devices</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="7%" />
+<col width="7%" />
+<col width="9%" />
+<col width="7%" />
+<col width="7%" />
+<col width="27%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>Device</strong></td>
+<td><strong>A72</strong></td>
+<td><strong>A53</strong></td>
+<td><strong>A15</strong></td>
+<td><strong>A8</strong></td>
+<td><strong>A9</strong></td>
+<td><strong>C66x</strong></td>
+<td><strong>M4</strong></td>
+<td><strong>R5F</strong></td>
+<td><strong>Tested On</strong></td>
+</tr>
+<tr class="row-even"><td>AM65xx</td>
+<td>&nbsp;</td>
+<td>X</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>X</td>
+<td>AM65x EVM, AM65x IDK</td>
+</tr>
+<tr class="row-odd"><td>AM57xx</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>X</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>X</td>
+<td>X</td>
+<td>&nbsp;</td>
+<td>AM572x GP EVM, AM571x GP EVM</td>
+</tr>
+<tr class="row-even"><td>AM335x</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>X</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>AM335x GP EVM</td>
+</tr>
+<tr class="row-odd"><td>AM437x</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>X</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>AM437x GP EVM</td>
+</tr>
+<tr class="row-even"><td>K2G</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>X</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>X</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>K2G EVM</td>
+</tr>
+<tr class="row-odd"><td>J721E</td>
+<td>X</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>X</td>
+<td>&nbsp;</td>
+<td>X</td>
+<td>J721E GP EVM</td>
+</tr>
+<tr class="row-even"><td>J7200</td>
+<td>X</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>X</td>
+<td>J7200 GP EVM</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="user-interface">
+<h2>4.12.2. User Interface<a class="headerlink" href="#user-interface" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="driver-configuration">
+<h3>4.12.2.1. Driver Configuration<a class="headerlink" href="#driver-configuration" title="Permalink to this headline">¶</a></h3>
+<p class="rubric" id="pm-board-specific-configuration"><strong>Board Specific Configuration</strong></p>
+<p>The following board-specific actions must take place prior to calling
+any PM Power APIs:</p>
+<ul class="simple">
+<li>A board-specific I2C implementation must be registered with the PM
+HAL layer</li>
+<li>The PMIC Ops structure matching the executing device&#8217;s PMIC must be
+registered with PM HAL layer</li>
+<li>Device clock rates must be initialized through the PM LIB layer</li>
+</ul>
+<p>For working examples of how to implement the listed items, see the
+&#8220;main&#8221; functions of any PM example in
+<code class="docutils literal"><span class="pre">[PDK_INSTALL_DIR]\packages\ti\drv\pm\examples</span></code>.</p>
+<p class="rubric" id="pm-configuration-structure"><strong>PM Configuration Structure</strong></p>
+<p>The pmsrcpmrtosprcmPowerDevice.c file configures the PM driver
+through the PowerDevice_config structure. This structure must be
+provided to PM driver. The structure is a global defined within
+PowerDevice.c and must be initialized prior to calling Power_init(). The
+structure cannot be changed after calling Power_init().</p>
+<p>For details about individual fields of this library structure, see the
+PDK doxygen documentation</p>
+</div>
+<div class="section" id="apis">
+<h3>4.12.2.2. APIs<a class="headerlink" href="#apis" title="Permalink to this headline">¶</a></h3>
+<p>The following lists the main application interfaces; see the end of this
+page for a link to the API Reference Manual with full details.</p>
+<p>PM RTOS base API reference for applications can be found in below
+file:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include</span> <span class="cpf">&lt;ti/drv/pm/Power.h&gt;  /* Contains the core RTOS Power implementation APIs */</span><span class="cp"></span>
+</pre></div>
+</div>
+<p>PM RTOS extended API reference for applications can be found in the
+below file:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include</span> <span class="cpf">&lt;ti/drv/pm/PowerExtended.h&gt;  /* Contains RTOS Power API extensions such as thermal management */</span><span class="cp"></span>
+</pre></div>
+</div>
+<p>PM RTOS device-specific API reference for applications can be found
+in the below file:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include</span> <span class="cpf">&lt;ti/drv/pm/PowerDevice.h&gt;  /* Contains device-specific RTOS Power API definitions and structures */</span><span class="cp"></span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+</div>
+<div class="section" id="application">
+<h2>4.12.3. Application<a class="headerlink" href="#application" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="examples">
+<h3>4.12.3.1. Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="25%" />
+<col width="58%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Description</th>
+<th class="head">Expected Results</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>PM RTOS Application</td>
+<td>Example demonstarting power management use cases. Reference example for developers</td>
+<td>Application cycles the processor running the application through various power states using the PM APIs. User observes the output printed over the device&#8217;s UART connection. <strong>Note:</strong> The example should be run in <em>Free Run</em> mode when loaded and executed in Code Composer Studio in order to prevent sleep API testing interruptions from the JTAG.  Use the following  steps to execute the application on the    AM57xx&#8217;s M4 and C66 processors in Code Composer Studio:  -  Connect to CortexA15_0 waiting until the GEL file initialization completes -  Run the GEL: Scripts&#8211;&gt;AM572x MULTICORE  Initialization&#8211;&gt;AM572x_MULTICORE_EnableAllCores -  Connect to M4_IPU1_C0 or the C66xx_DSP1  -  Load the PM RTOS application&#8217;s M4 or c66 executable -  Free run the M4_IPU1_C0 or the C66xx_DSP1</td>
+</tr>
+<tr class="row-odd"><td>PM RTOS Thermal Application</td>
+<td>Example demonstrating thermal management use case. Reference example for developers</td>
+<td>Application sets high and low thermal set points using the PM APIs.The set points are triggered by     internally heating up the processor.User observes the output printed over the device&#8217;s UART connection. Use the following steps to execute the application on the AM57xx&#8217;s M4 and C66 processors in Code Composer Studio:   -  Connect to CortexA15_0 waiting until the GEL file initialization completes -  Run the GEL:Scripts&#8211;&gt;AM572x MULTICORE Initialization&#8211;&gt;AM572x_MULTICORE_EnableAllCores -  Connect to M4_IPU1_C0 or the C66xx_DSP1 -     Load the PM RTOS Thermal application&#8217;s M4 or c66 executable -  Run the M4_IPU1_C0 or the C66xx_DSP1</td>
+</tr>
+<tr class="row-even"><td>PM Measurement Application</td>
+<td>Menu-based application allowing selection of processor OPPs and benchmark tests.</td>
+<td>Application allows the user to control the processor&#8217;s OPP settings via the PM driver. The application  also allows the user to select execution of the Dhrystone benchmark for performance and power profiling under different OPP settings. The application&#8217;s menu is printed over the device&#8217;s UART connection. <strong>Note:</strong> The     measurement application is only supported on the AM335x device at the moment.</td>
+</tr>
+<tr class="row-odd"><td>PM System Configuration Test</td>
+<td>Example demonstrating system configuration use-case</td>
+<td>This example is available at &#8216;&lt;install_path&gt;/packages /ti/drv/pm/examples/systemconfig&#8217;. The PM System Configuration test is an  example running on tda2xx A15 core, tda2xx M4 core,tda3xx IPU (M4) core and AM65xx(A53 and R5). This example demonstrates the ability to configure the desired power state for a given module based on the entries in the   power spread sheet.The example loops through the different modules and power states and tries to program the same for each module using PM LIB sysconfig APIs before declaring pass or fail.The example illustrates the   use of Power Management LIB which allows system configuration.</td>
+</tr>
+<tr class="row-even"><td>PM CLock Rate Configuration Test</td>
+<td>Example demonstrating clockrate configuration use-case</td>
+<td>This example is available at &#8216;&lt;install_path&gt;/packages/ti/drv/pm/ examples/clkrate_manager&#8217; The Clock Rate Configuration test is an example running on A15 core and IPU (M4) Core for tda2xx/tda2ex/tda2px ,IPU (M4) core for tda3xx ,A53(MPU) and R5(MCU) for AM65xx. This example demonstrates the ability to read the clock rate for different clocks for a given CPU (MPU/IPU/DSP/GPU/IVA/EVE). The example first reads the current clock configuration and then checks for OPP_NOM, OPP_OD and OPP_HIGH frequencies along with voltage changes by using the PMLIB clock rate APIs before declaring pass or fail. The example illustrates the use of Power Management LIB which allows changing the CPU OPP. For AM65xx, this example first loops through all modules and gets the clockrate for all of their clocks.Then, it tries to set the frequencies for some clocks of different modules.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="sa.html" class="btn btn-neutral float-right" title="4.13. SA" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="mcasp.html" class="btn btn-neutral" title="4.11. McASP" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="http://www.ti.com/corp/docs/legal/copyright.shtml">&copy; Copyright 1995-2020</a>, Texas Instruments Incorporated. All rights reserved. <br>
+      <a href="http://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="http://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="http://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="http://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'08_06_01',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

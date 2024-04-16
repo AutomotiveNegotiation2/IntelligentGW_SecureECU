@@ -1,0 +1,89 @@
+%%{
+/*!
+ *  This template implements the Webgen Make file
+ */  
+  /* Versioning */
+  var ver = this.version;
+  var PKGVERSION = "\"" + ver[0] + "_" + ver[1] + "_" + ver[2] + "_" + ver[3];
+  switch (ver[4]) {
+    case 0: quality = "_pre-alpha";
+            break;
+    case 1: quality = "_alpha";
+            break; 
+    case 2: quality = "_beta";
+            break; 
+    case 3: quality = "";
+            break; 
+  }  
+  PKGVERSION = PKGVERSION.concat (quality + "\"");
+%%}
+#
+#  ============ Makefile ============
+#  Makefile for VXLIB download page
+#
+#  Notes:  None
+#
+
+MK_NOISY=1
+TYPE=ENG
+PRODUCT="VXLIB"
+FULLVER=`PKGVERSION`
+REPOSITORY="/data/tigt_dev/html/dev"
+TITLE="VXLIB"
+PRODUCT_NAME="VXLIB"
+EMAIL=""
+URL="http://e2e.ti.com/support/embedded/f/355.aspx"
+PRODUCT_OR_COMPONENT=COMPONENT
+DOWNLOAD_TEXT=""
+
+.all-files: .exports .wget .md5
+
+.wget:
+	cp ../output/vxlib_c66x_obj_$(FULLVER)_Win32.exe ./exports 
+	cp ../output/vxlib_c66x_obj_$(FULLVER)_Linux.bin ./exports
+	cp ../output/vxlib_c64Px_obj_$(FULLVER)_Win32.exe ./exports 
+	cp ../output/vxlib_c64Px_obj_$(FULLVER)_Linux.bin ./exports
+	cp ../output/vxlib_c674x_obj_$(FULLVER)_Win32.exe ./exports 
+	cp ../output/vxlib_c674x_obj_$(FULLVER)_Linux.bin ./exports
+	cp ../output/VXLIB_C66_Function_Reference.chm ./exports
+	cp ../output/VXLIB_C64P_Function_Reference.chm ./exports
+	cp ../output/VXLIB_C674_Function_Reference.chm ./exports
+	cp ../output/Software_Manifest.html ./exports
+
+.exports:
+	rm -rf exports imports
+	mkdir exports
+	mkdir imports
+
+VERSTRUNDER=$(shell echo $(VERSION) | sed -e 's/\./_/g' )
+
+  .prod_links:
+	$(call add-divider,"Vision Library \(VXLIB\) Downloads")
+    $(call add-divider,"VXLIB Documentation")
+    $(call add-tspa-link,"VXLIB_C64P_Function_Reference.chm","VXLIB_C64P_Function_Reference.chm",VXLIB C64x+ Function Reference")
+    $(call add-tspa-link,"VXLIB_C66_Function_Reference.chm","VXLIB_C66_Function_Reference.chm",VXLIB C66x Function Reference")
+    $(call add-tspa-link,"VXLIB_C674_Function_Reference.chm","VXLIB_C674_Function_Reference.chm",VXLIB C674x Function Reference")
+    $(call add-tspa-link,"Software_Manifest.html","Software_Manifest.html","VXLIB Software Manifest")
+	$(call add-divider,"C66x VXLIB \(little-endian\)")
+	$(call add-tspa-link,"vxlib_c66x_obj_$(FULLVER)_Win32.exe","vxlib_c66x_obj_$(FULLVER)_Win32.exe","VXLIB for C66x Windows Installer")
+	$(call add-tspa-link,"vxlib_c66x_obj_$(FULLVER)_Linux.bin","vxlib_c66x_obj_$(FULLVER)_Linux.bin","VXLIB for C66x Linux Installer")
+	$(call add-divider,"C64x+ VXLIB \(little-endian\)")
+	$(call add-tspa-link,"vxlib_c64Px_obj_$(FULLVER)_Win32.exe","vxlib_c64Px_obj_$(FULLVER)_Win32.exe","VXLIB for C64x+ Windows Installer")
+	$(call add-tspa-link,"vxlib_c64Px_obj_$(FULLVER)_Linux.bin","vxlib_c64Px_obj_$(FULLVER)_Linux.bin","VXLIB for C64x+ Linux Installer")
+	$(call add-divider,"C674x VXLIB \(little-endian\)")
+	$(call add-tspa-link,"vxlib_c674x_obj_$(FULLVER)_Win32.exe","vxlib_c674x_obj_$(FULLVER)_Win32.exe","VXLIB for C674x Windows Installer")
+	$(call add-tspa-link,"vxlib_c674x_obj_$(FULLVER)_Linux.bin","vxlib_c674x_obj_$(FULLVER)_Linux.bin","VXLIB for C674x Linux Installer")
+	$(call add-divider,"Checksums")
+	$(call add-link,"md5sum.txt","MD5 Checksums")
+
+.md5:
+	@echo "Generating md5sum.txt"
+	rm -f exports/md5sum.*
+	@cd exports; ../genmd5 ../imports/md5sum.txt; mv ../imports/md5sum.txt .
+
+.clean: my-clean
+
+my-clean:
+	rm -rf imports
+	rm -rf exports
+	rm -f .wget

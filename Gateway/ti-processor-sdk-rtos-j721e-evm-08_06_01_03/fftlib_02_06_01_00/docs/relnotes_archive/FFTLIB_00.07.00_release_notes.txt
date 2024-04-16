@@ -1,0 +1,201 @@
+gedit Aug 31st,  2018 FFTLIB_00.07.00 kernel Release is now updated in the repository, the prebuilt binary release and test report is attached.
+ 
+Summary
+All
+•	[new] Prebuilt binary and source code build scripts
+•	[new] Use of Peeling for reduced code size support for program cache
+•	Loki Tested 
+•	[updated] RTL/QT Testing
+•	C with C++ style template 
+•	Latest library style and directory structure
+ 
+CNN
+•	[new] Row Convolution 1x1 stride by 2
+•	[new] Optimized Row convolution 8 bit K < 3 for strided and non strided cases
+•	[new] Column convolution 3x3 stride by 2
+•	[new] Fully connected layer and utility to generate Bias predicate registers
+•	[new] Static performance test cases of row, columns convolution and fully connected. Static input test generated using Caffe
+•	8 bit, 16 bit signed support
+•	FFTLIB_CNN_convolve_row_ixX_ixX_oxX 
+•	FFTLIB_CNN_convolve_row_1x1stride2_ixX_ixX_oxX
+•	FFTLIB_CNN_convolve_row_3x3stride2_ixX_ixX_oxX 
+•	FFTLIB_CNN_convolve_row_5x5stride2_ixX_ixX_oxX 
+•	FFTLIB_CNN_convolve_row_7x7stride2_ixX_ixX_oxX 
+•	FFTLIB_CNN_convolve_row_11x11stride4_ixX_ixX_oxX 
+•	FFTLIB_CNN_convolve_col_smallNo_ixX_ixX_oxX 
+•	FFTLIB_CNN_fullyConnected_ixX_ixX_oxX
+•	FFTLIB_CNN_generateFillSeamPredicateRegisters 
+•	FFTLIB_CNN_generateFillBiasPredicateRegisters
+ 
+LINALG
+•	8, 16 and 32 bit signed integer support
+•	FFTLIB_LINALG_matrixMatrixMultiply_ixX_ixX_oxX   
+•	FFTLIB_LINALG_pointwiseMatrixMatrixMultiply_ixX_ixX_oxX   
+•	FFTLIB_LINALG_matrixMatrixMultiplyAccumulate_ixX_ixX_ixX_oxX
+ 
+FFT
+•	[New] High radix decomposition implementation of FFT for FFT sizes ranging from MMA_SIZE*2 through 8192, and batches 1, 2, 4, 8, 16, 32 and 64
+•	16-bit and 32-bit signed complex input/output support
+•	Interleaved and non-interleaved real and imaginary input support
+•	FFTLIB_FFT_dftSmall_ixX_cxX_oxX
+•	FFTLIB_FFT_dftLarge_ixX_cxX_oxX
+•	FFTLIB_FFT_fft4StepSmallOneBlock_ixX_cxX_oxX
+•	FFTLIB_FFT_fft4StepSmallMultiBlock_ixX_cxX_oxX
+•	FFTLIB_FFT_fft4StepLarge_ixX_cxX_oxX
+•	FFTLIB_FFT_fft_ixX_cxX_oxX
+•	Utility function (with the suffix _compMatGen) to compute the relevant computational matrices (DFT matrices and twiddle factor matrices)
+ 
+The label for bitbucket repository is FFTLIB_00.07.00
+https://bitbucket.itg.ti.com/projects/MMA/repos/fftlib/browse?at=refs%2Ftags%2FFFTLIB_00.07.00
+ 
+Link for Jira
+https://jira.itg.ti.com/projects/FFTLIB/versions/30978
+ 
+The Linux build is supported with compiler version ti_cgt_c7000_1.0.0A18233. 
+http://syntaxerror.dal.design.ti.com/wiki/index.php/ProjInfo:C7x_CGT_1_0
+ 
+The compiler defects in JIRA open and resolved are on below link
+https://jira.itg.ti.com/browse/CODEGEN-3623
+ 
+Details
+Dilation
+   D = 1:  works
+   D > 1:  untested
+ 
+CNN style 2D convolution FxF stride by 1
+   K = 1:  optimized 8 bit, 16 bit works with natural C
+   K = 2:  optimized 8 bit, 16 bit works with natural C
+   K = 3:  optimized 8 bit, 16 bit works with natural C
+   K > 3:  optimized
+          1x1  : supported as regular convolution
+ 
+CNN style 2D convolution 1x1 stride by 2 
+   K = 1:  currently natural C
+   K = 2:  optimized 8 bit, 16 bit works with natural C
+   K = 3:  optimized 8 bit, 16 bit works with natural C
+   K > 3:  optimized
+         
+CNN style 2D convolution 3x3 stride by 2
+   K = 1:  optimized 8 bit, 16 bit works with natural C
+   K = 2:  optimized 8 bit, 16 bit works with natural C
+   K = 3:  optimized 8 bit, 16 bit works with natural C
+   K > 3:  optimized
+ 
+CNN style 2D convolution 5x5 stride by 2
+   K = 1:  optimized 8 bit, 16 bit works with natural C
+   K = 2:  optimized 8 bit, 16 bit works with natural C
+   K = 3:  optimized 8 bit, 16 bit works with natural C
+   K > 3:  optimized
+ 
+CNN style 2D convolution 7x7 stride by 2
+   K = 1:  currently natural C
+   K = 2:  currently natural C
+   K = 3:  optimized 8 bit, 16 bit works with natural C
+   K > 3:  optimized
+ 
+CNN style 2D convolution 11x11 stride by 4
+   K = 1:  currently natural C
+   K = 2:  currently natural C
+   K = 3:  currently natural C
+   K > 3:  optimized
+ 
+Optimized code runs the natural C version for the cases not optimized. Wait on further two stage PE scheduling from compiler
+Bias Rows flexible and use of DECDIM feature
+Use of LEZR feature for optimization of K < 3 cases.
+Strided convolution expects every kernel call to give fixed number of columns. Last column processing will be handled in following release.
+ 
+CNN style 2D convolution 3x3 5x5 7x7 Ni = No = 1
+   stride-by-1    
+	optimized-C and natural-C for data arrangement case 1.A.0 (even number of block columns to process)
+   [new]3x3 stride-by-2
+	optimized-C and natural-C for data arrangement case 1.A.0 (even number of block columns to process)
+	optimized-C requires the number of rows in a feature map to be even
+   All:
+	[new] multiple groups processed in single kernel call
+	[new] supports multiple rows of bias provided the rows do not push the computation beyond the MMA block size
+        
+CNN style 2D convolution 3x3 5x5 7x7 Ni, No = small
+   All:    not yet implemented
+       
+[New] Fully Connected
+  Supports 8- and 16-bit datatypes
+  Supports signed and unsigned combinations of datatypes with kernel matrix always assumed to be signed
+  Support of multiple Bias rows using 2D DECDIM feature
+
+DFT building blocks
+         16-bit, interleaved/non-interleaved, 1 <= FFT_SIZE <= 16, any BATCH_SIZE: works
+         32-bit, interleaved/non-interleaved, 1 <= FFT_SIZE <= 8, any BATCH_SIZE: works
+         16-bit, interleaved/non-interleaved, FFT_SIZE >= 17, any BATCH_SIZE: works 
+         32-bit, interleaved/non-interleaved, FFT_SIZE >= 9, any BATCH_SIZE: works
+ 
+FFT building blocks
+           Support for data types: 16-bit and 32-bit
+           Support for data formats: interleaved and non-interleaved
+           High radix decomposition implementation of FFT for FFT sizes ranging from MMA_SIZE*2 through 8192, and batches 1, 2, 4, 8, 16, 32 and 64
+
+FFT coordination
+optimization of FFT building blocks
+ 
+Build and Test command for modules
+
+Scripts: Use the scripts located from scripts folder for cloning and creating the library packages.
+   Generate object code : ./ti/vxlib/scripts/make_release_package_obj.sh
+   Generate Source code: ./ti/vxlib/scripts/make_release_package_src.sh
+ 
+Move to the vxlib folder where makefile resides
+    cd mma/fftlib/vxlib
+Build all test cases on Loki
+  make scrub; make -j8 cnn_c7xmma/FFTLIB_CNN_convolve_row_ixX_ixX_oxX FLAT_MEM=1 TEST_ENV=LOKI 
+Build Individual Test on RTL
+   make scrub; make -j8 cnn_c7xmma/FFTLIB_CNN_convolve_row_ixX_ixX_oxX FLAT_MEM=1 TEST_ENV=RTL 
+Build Individual Test on QT
+   make scrub; make -j8 cnn_c7xmma/FFTLIB_CNN_convolve_row_ixX_ixX_oxX FLAT_MEM=1 TEST_ENV=QT 
+ 
+Build  Individual Test on Loki
+   make scrub; make -j8 cnn_c7xmma/FFTLIB_CNN_convolve_row_ixX_ixX_oxX  FLAT_MEM=1 TEST_ENV=LOKI TEST_CASE=1
+ 
+Build a Test category on Loki
+   make scrub; make -j8 cnn_c7xmma/FFTLIB_CNN_convolve_row_ixX_ixX_oxX FLAT_MEM=1 TEST_ENV=LOKI TEST_CATEGORY=1
+ 
+make the libraries
+   make optimized CNN library fftlib_c71.lib
+      make fftlib SRC_DIR=cnn
+   make natural C CNN library fftlib_cn_c71.lib
+     make fftlib_cn SRC_DIR=cnn
+   make common library common_c71.lib
+    make common
+  include the \ti\vxlib\src\cnn_c7xmma\fftlib_cnn.h header file path
+ 
+Linux Host Build
+   Environment
+     export C7X_HOST_EMULATION_PATH=$CGT7X_ROOT/host_emulation
+Compile 
+  make scrub; make -j8 cnn_c7xmma/FFTLIB_CNN_convolve_row_ixX_ixX_oxX SRC_DIR=cnn BUILD_DEBUG=1 TARGET_CPU=x86_64 TARGET_SCPU=C71 TARGET_PLATFORM=PC TARGET_BUILD=debug TEST_CASE=1
+    make scrub; make -j8 cnn_c7xmma/FFTLIB_CNN_convolve_col_smallNo_ixX_ixX_oxX SRC_DIR=cnn TARGET_CPU=x86_64 TARGET_SCPU=C71 TARGET_PLATFORM=PC TARGET_BUILD=debug TEST_CATEGORY=0
+Run
+  ./out/x86_64/debug/cnn_c7xmma/FFTLIB_CNN_convolve_row_ixX_ixX_oxX _x86_64 
+ 
+Test Case Category for running in batch mode
+   TEST_CATEGORY == 0 : static test cases
+   TEST_CATEGORY == 1: random data/fixed dimension (constant cycle count) test cases focused on functionality
+   TEST_CATEGORY == 2: static performance test cases
+   TEST_CATEGORY == 3: random data/fixed dimension performance test cases
+   TEST_CATEGORY >= 4:  programmer’s choice.
+   TEST_CATEGORY == 100 : compiler test cases
+   TEST_CATEGORY == 200 : QT test cases
+ 
+FFTLIB_CNN_convolve_row_ixX_ixX_oxX Tests
+  Static and Performance test cases to run with PERFORMANCE_TEST=1 flag 
+     Loki: make -j8 cnn_c7xmma/FFTLIB_CNN_convolve_row_ixX_ixX_oxX FLAT_MEM=1 TEST_ENV=LOKI PERFORMANCE_TEST=1 TEST_CASE=123
+     QT:   make -j8 cnn_c7xmma/FFTLIB_CNN_convolve_row_ixX_ixX_oxX  TEST_ENV=QT PERFORMANCE_TEST=1 TEST_CATEGORY=0
+     QT:   make -j8 cnn_c7xmma/FFTLIB_CNN_convolve_row_ixX_ixX_oxX  TEST_ENV=QT PERFORMANCE_TEST=1 TEST_CASE=133
+ 
+   Random test cases require natural C comparison
+     Loki: make -j8 cnn_c7xmma/FFTLIB_CNN_convolve_row_ixX_ixX_oxX FLAT_MEM=1 TEST_ENV=LOKI PERFORMANCE_TEST=1 TEST_CATEGORY=1
+ 
+  PERFORMANCE_TEST=1 can be used with any test case not required to run with natural C and comparison of reference data.
+  
+
+Run the test cases
+    loki7x -initial_mem_value 0xffffffff out/C71/release/cnn_c7xmma/FFTLIB_CNN_convolve_row_ixX_ixX_oxX_C71.out --use_c7x_internal_memory
+    loki7x -initial_mem_value 0xffffffff out/C71/release/cnn_c7xmma/ FFTLIB_CNN_convolve_col_smallNo_ixX_ixX_oxX_C71.out --use_c7x_internal_memory

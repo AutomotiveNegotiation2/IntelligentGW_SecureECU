@@ -1,0 +1,122 @@
+.. _freertos_to_safertos_migration_guidelines:
+
+SafeRTOS Usage and Migration Guidelines
+=======================================
+
+This section provides information on migrating to SafeRTOS from FreeRTOS on PDK.
+
+
+.. overview_of_safertos
+
+Overview of SafeRTOS
+--------------------
+
+SafeRTOS is a functional safety, pre-certified, Real Time Operating System (RTOS) for embedded processors. 
+It is a derivative of FreeRTOS. SafeRTOS is developped by WITTENSTEIN high integrity systems (WHIS) \ :sup:`®`.
+SafeRTOS is based on the functional model of FreeRTOS, however, it is not the FreeRTOS kernel, 
+and therefore, migration to SaferRTOS from FreeRTOS should be thought of as integrating a whole new RTOS.
+
+.. safertos_and_osal
+
+SafeRTOS and the OS Abstraction Layer
+-------------------------------------
+
+SDK had already taken care of SafeRTOS recommendations when using SafeRTOS APIs.
+All drivers in the SDK are OS agnostic with the usage of OSAL APIs. 
+This make sure TI drivers and SW built on top of FreeRTOS can be reused with SafeRTOS.
+
+The Processor SDK provides an Operating System Abstraction Layer(OSAL). 
+OSAL tries to take in all the OS specific function calls and provides a uniform view to the application. 
+For the migration from FreeRTOS to SafeRTOS, OSAL takes in all the required changes. 
+If OSAL is not used by the application, then the application needs to take care of the required changes 
+for the migration to SafeRTOS. IF not using the OSAL, then please refer the WHIS documentation on
+FreeRTOS to SafeRTOS migration which can be found here: 
+<SAFERTOS_INSTALL_DIR>/Documentation/Manuals/\`Upgrading from FreeRTOS to SafeRTOS.pdf\`.
+
+Following sections discuss about key care-abouts when migrating from FreeRTOS to SafeRTOS in Processor SDK using the OSAL.
+
+
+.. safertos_migration
+
+SafeRTOS migration from FreeRTOS
+--------------------------------
+
+**Changes in R5 Applications due to SafeRTOS migration**
+
+
+- SafeRTOS provides Freedom From Interferance(FFI), by virtue of which tasks can be created in User Mode, 
+  or in Privileged Mode. Also, two task specific MPU regions can also be provided.
+
+- To provide FFI support, SafeRTOS owns the MPU configuration.
+
+ - This means, the application needs to use SafeRTOS APIs to configure various MPU regions.
+
+ - For programming the MPU regions in FreeRTOS, CSL structure, ```CSL_ArmR5MpuRegionCfg``` was used, 
+   which the applications could override and provide their own configurations.
+
+    - OSAL SafeRTOS provides a structure implementation for configuring the MPU regions that is very similar 
+      to the CSL counterpart in FreeRTOS: ```xMPU_CONFIG_PARAMETERS```. The default MPU configurations is
+      defined in ```gMPUConfigParms```, which is weakly defined here: **<SDK_INSTALL_DIR>/pdk/packages/ti/osal/src/safertos/SafeRTOS_mpu_r5f.c**.
+      This definition of the MPU table can also be overriden by the application.
+
+
+- SafeRTOS applications have only 9 programmable MPU regions as opposed to 16 configurable MPU regions in FreeRTOS.
+
+ - SafeRTOS reserves MPU configurations for the following:
+
+  - 1 Global region.
+
+  - 3 Kernel specific regions.
+
+  - 1 Task stack region.
+
+  - 2 Task specific regions.
+
+- The task stack needs to be an entry in the MPU configuration table. 
+  This mandates the **task stack to be aligned with the stack size**.
+
+- To enable CCS debugging, user needs to set permission for the portmpuREGION_SYS_CONFIGURATION 
+  to READ_WRITE in the <SAFERTOS_INSTALL_DIR>/source_code_and_projects/SafeRTOS/portable/199_TI_CR5/portmpu.h
+  Refer WHIS Documentation at 
+  `<SAFERTOS_VERSION> EVAL - TI CLANG <BOARD>-<ISA> readme.rtf` in <SAFERTOS_INSTALL_DIR> for more details.
+
+.. ifconfig:: CONFIG_family in ('jacinto')
+
+  **Changes in C66X Applications due to SafeRTOS migration**    
+
+  - There are no changes related to SafeRTOS for C66x.
+
+.. ifconfig:: CONFIG_family in ('jacinto')
+
+  **Changes in C7X Applications due to SafeRTOS migration**
+  
+  - The SafeRTOS package for C7x uses ```.asmfunc``` and ```.endasmfunc``` directives. 
+    For this reason, ```--symdebug:dwarf``` compiler flag should be set.
+   
+    - The PDK build infrastructure already handles this. If users are using external compiler makefile, this update should be included.
+
+
+
+**Common changes due to SafeRTOS migration**
+
+- For all the cores, the linker command files need to take care of the additional sections that SafeRTOS requires.
+
+  - The common linker files can be found in <PSDK_RTOS>/pdk/packages/ti/build/<SOC>/linker_<ISA>_safertos.<cmd or lds>.
+
+  - User can refer this linker file as a reference for creating new linker command files.
+
+  - The SafeRTOS demo linker file can also be referred which can be found in: 
+    <SAFERTOS_INSTALL_DIR>/source_code_and_projects/demo_projects/SafeRTOS_<BOARD>_<ISA>_Demo/linker_core_<ISA>.lds
+
+Limitations
+~~~~~~~~~~~
+
+- OSAL FreeRTOS had an implemention for the LoadP API, which calculates the CPU and Task load. 
+  For SafeRTOS this implementation is not provided in the OSAL.
+
+  - For Load measurements / run-time stats, please refer WHIS SafeRTOS User Guide, or contact WHIS.
+
+- CCS ROV is not supported for SafeRTOS.
+
+  - SafeRTOS debug awareness is supported in Lauterbach.
+

@@ -1,0 +1,867 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>6.4. UNIFLASH &mdash; Platform Development Kit (PDK) - JACINTO User Guide</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Platform Development Kit (PDK) - JACINTO User Guide" href="../index.html"/>
+        <link rel="up" title="6. Board/EVM Abstraction" href="../family_cfg/jacinto/index_board_jacinto.html"/>
+        <link rel="next" title="7. How to Guides" href="../family_cfg/jacinto/index_howto_jacinto.html"/>
+        <link rel="prev" title="6.3. Board Diagnostic Execution" href="board_diag_execution.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index_jacinto.html" class="icon icon-home"> Platform Development Kit (PDK) - JACINTO User Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                08_06_01
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">1. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_release_notes_jacinto.html">2. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">3. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_modules_jacinto.html">4. Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_boot_jacinto.html">5. Bootloader (SBL)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../family_cfg/jacinto/index_board_jacinto.html">6. Board/EVM Abstraction</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="board_support.html">6.1. Board Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="board_diag.html">6.2. Board Diagnostic Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="board_diag_execution.html">6.3. Board Diagnostic Execution</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">6.4. UNIFLASH</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">6.4.1. Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#supported-platforms">6.4.2. Supported Platforms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#getting-started-with-uniflash">6.4.3. Getting Started with Uniflash</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#downloads">6.4.3.1. Downloads</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#command-options">6.4.3.2. Command Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#uniflash-execution-steps">6.4.3.3. Uniflash Execution Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#downloading-flash-programmer">6.4.4. Downloading Flash Programmer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#uart-load">6.4.4.1. UART Load</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#jtag-load">6.4.4.2. JTAG Load</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#programming-the-flash-device">6.4.5. Programming the Flash Device</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#erasing-the-flash-device">6.4.6. Erasing the Flash Device</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#platform-specific-information">6.4.7. Platform Specific Information</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#part-default-soc-caps">6.4.7.1. J721E</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#uniflash-faq">6.4.8. Uniflash FAQ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rebuilding-uniflash-flash-programmer">6.4.9. Rebuilding Uniflash Flash Programmer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#upgrading-uniflash-flash-programmer-from-sdk">6.4.10. Upgrading Uniflash Flash Programmer from SDK</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_howto_jacinto.html">7. How to Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_faq_jacinto.html">8. Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_developer_notes_jacinto.html">9. Developer Notes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index_jacinto.html">Platform Development Kit (PDK) - JACINTO User Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index_jacinto.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../family_cfg/jacinto/index_board_jacinto.html">6. Board/EVM Abstraction</a> &raquo;</li>
+      
+    <li>6.4. UNIFLASH</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="uniflash">
+<h1>6.4. UNIFLASH<a class="headerlink" href="#uniflash" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>6.4.1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>Uniflash is an Unified Flashing tool which provides utilities for flashing the application software
+images to non-removable flash devices on TI hardware platforms.</p>
+<p>Uniflash for TI processors platform includes two components</p>
+<blockquote>
+<div><ul class="simple">
+<li>Flash Programmer</li>
+<li>Host utility</li>
+</ul>
+</div></blockquote>
+<p>Flash porgrammer runs on target platform which takes care of receiving the images from Uniflash host
+utility and programming them onto flash devices. Flash programmer communicates with Uniflash host utility
+over the UART interface.</p>
+<p>Flash programmer which is part of the Uniflash release can be found at - &#8220;&lt;Uniflash Root&gt;/processors/FlashWriter/&lt;Board Name&gt;&#8221;</p>
+<p>Host utility runs on host machine which provides Command-line Interface (CLI) to communicate with flash programmer.
+Windows and Linux are the supported OS platforms for running Uniflash host utility. Host utility uses UART or JTAG
+interface to download the flash programmer to the target platform. All data transfers between
+Uniflash host utility and Flash programmer happens over UART interface.</p>
+<p>Refer to <a class="reference external" href="https://software-dl.ti.com/ccs/esd/uniflash/docs/uniflash.html">Uniflash Documentation</a>
+for more details on Uniflash tool.</p>
+</div>
+<div class="section" id="supported-platforms">
+<h2>6.4.2. Supported Platforms<a class="headerlink" href="#supported-platforms" title="Permalink to this headline">¶</a></h2>
+<p>Below table shows the platforms supported by Uniflash and flash devices supported on each platform.
+Download mode indicates the mode of communication for downloading flash programmer to target platform.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="16%" />
+<col width="18%" />
+<col width="7%" />
+<col width="7%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="12%" />
+<col width="7%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" rowspan="3">SOC</th>
+<th class="head" rowspan="3">SOC Core</th>
+<th class="head" rowspan="3">PLATFORM</th>
+<th class="head" colspan="4">FLASH DEVICE</th>
+<th class="head" colspan="3">DOWNLOAD MODE</th>
+</tr>
+<tr class="row-even"><th class="head" rowspan="2">SPI</th>
+<th class="head" rowspan="2">QSPI</th>
+<th class="head" rowspan="2">OSPI</th>
+<th class="head" rowspan="2">EMMC</th>
+<th class="head" rowspan="2">UART</th>
+<th class="head" colspan="2">JTAG</th>
+</tr>
+<tr class="row-odd"><th class="head">Uniflash CLI</th>
+<th class="head">Manual</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>J721E</td>
+<td>Cortex-R5</td>
+<td>J721E EVM</td>
+<td>&nbsp;</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+<td>&nbsp;</td>
+<td>X</td>
+</tr>
+</tbody>
+</table>
+<p>where,</p>
+<blockquote>
+<div><ul class="simple">
+<li>X  : Supported</li>
+</ul>
+</div></blockquote>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For the platforms which support both UART and JTAG mode, UART is the recommended mode for
+downloading flash programmer. JTAG mode is supported along with UART for debug purpose.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">eMMC flashing through Uniflash writes the boot images into eMMC boot partitions for raw boot mode.
+There is no support for filesystem flashing.</p>
+</div>
+</div>
+<div class="section" id="getting-started-with-uniflash">
+<h2>6.4.3. Getting Started with Uniflash<a class="headerlink" href="#getting-started-with-uniflash" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="downloads">
+<h3>6.4.3.1. Downloads<a class="headerlink" href="#downloads" title="Permalink to this headline">¶</a></h3>
+<p>Latest version of Uniflash can be downloaded <a class="reference external" href="http://www.ti.com/tool/download/UNIFLASH">here</a></p>
+</div>
+<div class="section" id="command-options">
+<h3>6.4.3.2. Command Options<a class="headerlink" href="#command-options" title="Permalink to this headline">¶</a></h3>
+<p>Uniflash CLI supports set of commands and configuration flags which are provided through dslite script.
+Run the help command as described below to see all the options supported by Uniflash.</p>
+<p>For Windows</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp"># cd &lt;Path to Uniflash Root Folder&gt;</span>
+<span class="cp"># dslite.bat --mode processors -h</span>
+</pre></div>
+</div>
+<p>For Linux</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp"># cd &lt;Path to Uniflash Root Folder&gt;</span>
+<span class="cp"># sudo ./dslite.sh --mode processors -h</span>
+</pre></div>
+</div>
+<p>This will display help menu.
+Following is the sample output for help command.</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">For</span> <span class="n">more</span> <span class="n">details</span> <span class="n">and</span> <span class="n">examples</span><span class="p">,</span> <span class="n">please</span> <span class="n">refer</span> <span class="n">to</span> <span class="n">the</span> <span class="n">UniFlash</span> <span class="n">Quick</span> <span class="n">Start</span> <span class="n">guide</span><span class="p">.</span>
+
+
+    <span class="o">----------------------------------------------------------------------------</span>
+    <span class="n">ProcessorSDKSerialFlash</span> <span class="n">CLI</span> <span class="n">Tool</span>
+    <span class="n">Copyright</span> <span class="p">(</span><span class="n">C</span><span class="p">)</span> <span class="mi">2017</span><span class="o">-</span><span class="mi">2021</span> <span class="n">Texas</span> <span class="n">Instruments</span> <span class="n">Incorporated</span> <span class="o">-</span> <span class="nl">http</span><span class="p">:</span><span class="c1">//www.ti.com/</span>
+    <span class="n">Version</span> <span class="mf">1.6.0.0</span>
+    <span class="o">----------------------------------------------------------------------------</span>
+
+    <span class="n">Displaying</span> <span class="n">Help</span><span class="p">..</span>
+
+    <span class="nl">Usage</span><span class="p">:</span>
+    <span class="n">dslite</span><span class="p">.</span><span class="n">bat</span> <span class="o">--</span><span class="n">mode</span> <span class="n">processors</span> <span class="o">-</span><span class="n">c</span> <span class="o">&lt;</span><span class="n">COM_Port</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">f</span> <span class="o">&lt;</span><span class="n">Path_to_the_file_to_be_transfered</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">d</span> <span class="o">&lt;</span><span class="n">Device_Type</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">i</span> <span class="o">&lt;</span><span class="n">Image_Type</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">e</span> <span class="o">&lt;</span><span class="n">erase_length</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">o</span> <span class="o">&lt;</span><span class="n">Offset</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">fc</span> <span class="o">&lt;</span><span class="mi">1</span><span class="o">/</span><span class="mi">0</span><span class="o">&gt;</span>
+
+    <span class="nl">Device_Type</span><span class="p">:</span>
+    <span class="mi">0</span> <span class="o">-</span> <span class="n">NAND</span>
+    <span class="mi">1</span> <span class="o">-</span> <span class="n">SPI</span>
+    <span class="mi">2</span> <span class="o">-</span> <span class="n">QSPI</span>
+    <span class="mi">3</span> <span class="o">-</span> <span class="n">OSPI</span>
+    <span class="mi">4</span> <span class="o">-</span> <span class="n">eMMC</span>
+    <span class="mi">5</span> <span class="o">-</span> <span class="n">HyperFlash</span>
+    <span class="mi">6</span> <span class="o">-</span> <span class="n">UFS</span>
+
+    <span class="nl">Image_Type</span><span class="p">:</span>
+    <span class="mi">0</span> <span class="o">-</span> <span class="n">Flash</span>
+    <span class="mi">1</span> <span class="o">-</span> <span class="n">MLO</span>
+    <span class="mi">2</span> <span class="o">-</span> <span class="n">Uboot</span>
+    <span class="mi">3</span> <span class="o">-</span> <span class="n">UImage</span>
+    <span class="mi">4</span> <span class="o">-</span> <span class="n">Firmware</span>
+    <span class="mi">5</span> <span class="o">-</span> <span class="n">Custom</span> <span class="n">Image</span>
+
+    <span class="nl">erase_length</span><span class="p">:</span><span class="n">Length</span> <span class="n">in</span> <span class="n">Bytes</span>
+
+    <span class="nl">fc</span><span class="p">:</span> <span class="n">Flow</span> <span class="n">control</span> <span class="n">enable</span> <span class="n">flag</span><span class="p">.</span> <span class="mi">1</span><span class="o">-</span><span class="n">Enables</span> <span class="n">flow</span> <span class="n">control</span><span class="p">,</span> <span class="mi">0</span><span class="o">-</span><span class="n">Disables</span> <span class="n">flow</span> <span class="n">control</span>
+
+    <span class="nl">Note</span><span class="p">:</span> <span class="n">File</span> <span class="n">Path</span> <span class="n">should</span> <span class="n">not</span> <span class="n">be</span> <span class="n">specified</span> <span class="k">for</span> <span class="n">Flash</span> <span class="n">Erase</span> <span class="n">command</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Offset option(-o) expects hexadecimal value by default.
+The offset value can be provided with or without &#8220;0x&#8221;</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Flow control is not supported on all the platforms.
+Refer to <a class="reference internal" href="#platform-specific-information">Platform Specific Information</a> section for more details.</p>
+</div>
+</div>
+<div class="section" id="uniflash-execution-steps">
+<h3>6.4.3.3. Uniflash Execution Steps<a class="headerlink" href="#uniflash-execution-steps" title="Permalink to this headline">¶</a></h3>
+<p>Uniflash provides two modes of communication for downloading the flash programmer - UART and JTAG.
+In JTAG mode Uniflash commnad-line interface is supported for most of the platforms.
+Manual loading of the flash programmer through CCS is required for few cases.
+Below diagram shows the execution steps for flashing the application images based on the Uniflash
+supported mode for downloading the flash programmer.</p>
+<a class="reference internal image-reference" href="../_images/uniflash_execution_steps.png"><img alt="../_images/uniflash_execution_steps.png" class="align-center" src="../_images/uniflash_execution_steps.png" style="width: 650px; height: 1000px;" /></a>
+<p>Check the <a class="reference internal" href="#supported-platforms">Supported Platforms</a> for details of the mode of communication supported for
+downloading the flash programmer on each platform.</p>
+</div>
+</div>
+<div class="section" id="downloading-flash-programmer">
+<h2>6.4.4. Downloading Flash Programmer<a class="headerlink" href="#downloading-flash-programmer" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="uart-load">
+<h3>6.4.4.1. UART Load<a class="headerlink" href="#uart-load" title="Permalink to this headline">¶</a></h3>
+<p>Follow below steps for downloading the flash programer over UART. Refer the HW Board user guide for boot mode settings.</p>
+<blockquote>
+<div><ul class="simple">
+<li>Confgure boot mode of the target platform to UART boot.</li>
+<li>Connect UART serial port of the target platform to host PC</li>
+<li>Power cycle the target platform</li>
+<li>Open a serial console application (Minicom, TeraTerm etc) on host PC and configure it for 115200 baud 8n1.</li>
+<li>Make a note of the COM port number on which character &#8216;C&#8217; is getting printed. This COM port number shall be used
+in all the command inputs to Uniflash host utility.</li>
+<li>Close all the serial console applications on host PC.</li>
+<li>If the host PC is running Windows OS, disconnect the serial console cable from the board and reconnet before proceeding to next steps.</li>
+<li>Run below commands on the Host PC from Uniflash root folder</li>
+</ul>
+</div></blockquote>
+<p>For Windows</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp"># cd &lt;Path to Uniflash Root Folder&gt;</span>
+<span class="cp"># dslite.bat --mode processors -c &lt;COM Port&gt; -f &lt;Flash Programmer Binary with Full Path&gt; -i 0</span>
+<span class="nl">Example</span><span class="p">:</span>
+<span class="cp"># dslite.bat --mode processors -c COM7 -f &lt;Uniflash Root&gt;\processors\FlashWriter\&lt;board&gt;\uart_&lt;board&gt;_flash_programmer_release.tiimage -i 0</span>
+</pre></div>
+</div>
+<p>For Linux</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp"># cd &lt;Path to Uniflash Root Folder&gt;</span>
+<span class="cp"># sudo ./dslite.sh --mode processors -c &lt;COM Port&gt; -f &lt;Flash Programmer Binary with Full Path&gt; -i 0</span>
+<span class="nl">Example</span><span class="p">:</span>
+<span class="cp"># sudo ./dslite.sh --mode processors -c /dev/ttyUSB1 -f &lt;Uniflash Root&gt;/processors/FlashWriter/&lt;board&gt;/uart_&lt;board&gt;_flash_programmer_release.tiimage -i 0</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Specifying the image type with -i option is mandatory while downloading the flash programmer.</p>
+</div>
+<p>Uniflash CLI shows the progress of file transfer on the command console.
+Following is the sample output for downloading Flash programmer over UART.</p>
+<div class="highlight-cpp"><div class="highlight"><pre>C:\ti\uniflash_7.2.0&gt;dslite.bat --mode processors -c COM7 -f C:\ti\uniflash_7.2.0\processors\FlashWriter\&lt;board&gt;\uart_&lt;board&gt;_flash_programmer_release.tiimage -i 0
+Executing the following command:
+&gt; C:\ti\uniflash_7.2.0\processors\ProcessorSDKSerialFlash.exe -c COM7 -f C:\ti\uniflash_7.2.0\processors\FlashWriter\&lt;board&gt;\uart_&lt;board&gt;_flash_programmer_release.tiimage -i 0
+
+For more details and examples, please refer to the UniFlash Quick Start guide.
+
+
+----------------------------------------------------------------------------
+ProcessorSDKSerialFlash CLI Tool
+Copyright (C) 2017-2021 Texas Instruments Incorporated - http://www.ti.com/
+Version 1.6.0.0
+----------------------------------------------------------------------------
+Downloading Flash Programmer..
+
+Enabling SysFw transfer!!!
+
+Transferring File of size 215005 bytes
+File Transfer complete!
+Header Transfer complete
+Transferring System Firmware..
+Transferring File of size 263083 bytes
+File Transfer complete!
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ul class="simple">
+<li>After successful download of the flash programmer, <a class="reference external" href="uniflash.html#programming-the-flash-device">Program the flash device</a>
+or <a class="reference external" href="uniflash.html#erasing-the-flash-device">Erase the flash device</a>
+by following the steps described in the corresponding secions.</li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="jtag-load">
+<h3>6.4.4.2. JTAG Load<a class="headerlink" href="#jtag-load" title="Permalink to this headline">¶</a></h3>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The below description for JTAG load is for reference only, TI will ONLY test UART Load for Flash Programmer.</p>
+</div>
+<div class="section" id="manual-jtag-load">
+<h4>6.4.4.2.1. Manual JTAG Load<a class="headerlink" href="#manual-jtag-load" title="Permalink to this headline">¶</a></h4>
+<p>Follow below steps for downloading the flash programer over JTAG manually</p>
+<ul class="simple">
+<li>Confgure boot mode of the target platform to &#8216;No Boot&#8217; or &#8216;JTAG mode&#8217;</li>
+<li>Connect UART serial port of the target platform to host PC</li>
+<li>Setup the CCS target configuration file for the platform under test and JTAG emulator being used.</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Refer the <a class="reference internal" href="#platform-specific-information">Platform Specific Information</a> for more details on
+additional setup needed for CCS target configuration.</p>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ul class="simple">
+<li>Connect the JTAG port of the board to host PC running CCS.</li>
+<li>Power ON the board</li>
+<li>Launch the target configuration file from CCS</li>
+<li>Connect to the target SoC core on which flash programmer is supported.</li>
+<li>Load and run the flash programmer binary</li>
+<li>Open a serial console application (Minicom, TeraTerm etc) on host PC and configure it for 115200 baud 8n1.</li>
+<li>Make a note of the COM port number on which character &#8216;C&#8217; is getting printed. This COM port number shall be used
+in all the command inputs to Uniflash host utility.</li>
+<li>Close all the serial console applications on host PC.</li>
+<li>If the host PC is running Windows OS, disconnect the serial console cable from the board and reconnet before proceeding to next steps.</li>
+<li>After successful download of the flash programmer, <a class="reference external" href="uniflash.html#programming-the-flash-device">Program the flash device</a>
+or <a class="reference external" href="uniflash.html#erasing-the-flash-device">Erase the flash device</a>
+by following the steps described in the corresponding secions.</li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="programming-the-flash-device">
+<h2>6.4.5. Programming the Flash Device<a class="headerlink" href="#programming-the-flash-device" title="Permalink to this headline">¶</a></h2>
+<p>Download the flash programmer using the steps described in section <a class="reference internal" href="#downloading-flash-programmer">Downloading Flash Programmer</a>
+before start programming application binaries to flash device.</p>
+<p>Once the Flash Programmer is loaded and executed, use the following commands to program binaries onto the Flash Device.</p>
+<p>For Windows</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp"># cd &lt;Path to Uniflash Root Folder&gt;</span>
+<span class="cp"># dslite.bat --mode processors -c &lt;COM Port&gt; -f &lt;Path to the binary to be flashed&gt; -d  &lt;Flash Device Type&gt; -o &lt;offset&gt;</span>
+<span class="nl">Example</span><span class="p">:</span>
+<span class="cp"># dslite.bat --mode processors -c COM7 -f C:\ti\pdk\packages\ti\boot\sbl\binary\j721e_evm\ospi\bin\sbl_ospi_img_mcu1_0_release.tiimage -d 3 -o 0</span>
+</pre></div>
+</div>
+<p>For Linux</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp"># cd &lt;Path to Uniflash Root Folder&gt;</span>
+<span class="cp"># sudo ./dslite.sh --mode processors -c &lt;COM Port&gt; -f &lt;Path to the binary to be flashed&gt; -d  &lt;Flash Device Type&gt; -o &lt;offset&gt;</span>
+<span class="nl">Example</span><span class="p">:</span>
+<span class="cp"># sudo ./dslite.sh --mode processors -c /dev/ttyUSB1 -f /home/user/ti/pdk/packages/ti/boot/sbl/binary/j721e_evm/ospi/bin/sbl_ospi_img_mcu1_0_release.tiimage -d 3 -o 0</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Refer to <a class="reference internal" href="#command-options">Command Options</a> Section for more details on command parameters.</p>
+<p>Uniflash CLI shows the progress of file transfer on the command console.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Multiple images like bootloader, system firmware and application etc should be flashed to get the application
+booting from the boot device. Refer to the <a class="reference internal" href="#uniflash-faq">Uniflash FAQ</a> Section for additional references.</p>
+</div>
+<p>Following is the sample output for flashing RTOS application images on J721E platform.</p>
+<div class="highlight-cpp"><div class="highlight"><pre>C:\ti\uniflash_7.2.0&gt;dslite.bat --mode processors -c COM7 -f C:\ti\pdk\packages\ti\boot\sbl\binary\j721e_evm\ospi\bin\sbl_ospi_img_mcu1_0_release.tiimage -d 3 -o 0
+Executing the following command:
+&gt; C:\ti\uniflash_7.2.0\processors\ProcessorSDKSerialFlash.exe -c COM7 -f C:\ti\pdk\packages\ti\boot\sbl\binary\j721e_evm\ospi\bin\sbl_ospi_img_mcu1_0_release.tiimage -d 3 -o 0
+
+For more details and examples, please refer to the UniFlash Quick Start guide.
+
+
+----------------------------------------------------------------------------
+ProcessorSDKSerialFlash CLI Tool
+Copyright (C) 2017-2021 Texas Instruments Incorporated - http://www.ti.com/
+Version 1.6.0.0
+----------------------------------------------------------------------------
+Transferring the Image to Flash Programmer..
+
+Transferring Header Information..
+Header Transfer Complete!
+
+Flashing Image of size 164284 bytes
+Flash Programming Success!
+
+C:\ti\uniflash_7.2.0&gt;dslite.bat --mode processors -c COM7 -f C:\ti\pdk\packages\ti\drv\sciclient\soc\V1\tifs.bin -d 3 -o 80000
+Executing the following command:
+&gt; C:\ti\uniflash_7.2.0\processors\ProcessorSDKSerialFlash.exe -c COM7 -f C:\ti\pdk\packages\ti\drv\sciclient\soc\V1\tifs.bin -d 3 -o 80000
+
+For more details and examples, please refer to the UniFlash Quick Start guide.
+
+
+----------------------------------------------------------------------------
+ProcessorSDKSerialFlash CLI Tool
+Copyright (C) 2017-2021 Texas Instruments Incorporated - http://www.ti.com/
+Version 1.6.0.0
+----------------------------------------------------------------------------
+Transferring the Image to Flash Programmer..
+
+Transferring Header Information..
+Header Transfer Complete!
+
+Flashing Image of size 263072 bytes
+Flash Programming Success!
+
+C:\ti\uniflash_7.2.0&gt;dslite.bat --mode processors -c COM7 -f C:\ti\pdk\packages\ti\binary\udma_baremetal_memcpy_testapp\bin\j721e_evm\udma_baremetal_memcpy_testapp_mcu1_0_release.appimage -d 3 -o 100000
+Executing the following command:
+&gt; C:\ti\uniflash_7.2.0\processors\ProcessorSDKSerialFlash.exe -c COM7 -f C:\ti\pdk\packages\ti\binary\udma_baremetal_memcpy_testapp\bin\j721e_evm\udma_baremetal_memcpy_testapp_mcu1_0_release.appimage -d 3 -o 100000
+
+For more details and examples, please refer to the UniFlash Quick Start guide.
+
+
+----------------------------------------------------------------------------
+ProcessorSDKSerialFlash CLI Tool
+Copyright (C) 2017-2021 Texas Instruments Incorporated - http://www.ti.com/
+Version 1.6.0.0
+----------------------------------------------------------------------------
+Transferring the Image to Flash Programmer..
+
+Transferring Header Information..
+Header Transfer Complete!
+
+Flashing Image of size 114592 bytes
+Flash Programming Success!
+
+C:\ti\uniflash_7.2.0&gt;dslite.bat --mode processors -c COM7 -f C:\ti\uniflash_7.2.0\processors\FlashWriter\j721e_evm\nor_spi_patterns.bin -d 3 -o 3FE0000
+Executing the following command:
+&gt; C:\ti\uniflash_7.2.0\processors\ProcessorSDKSerialFlash.exe -c COM7 -f C:\ti\uniflash_7.2.0\processors\FlashWriter\j721e_evm\nor_spi_patterns.bin -d 3 -o 3FE0000
+
+For more details and examples, please refer to the UniFlash Quick Start guide.
+
+----------------------------------------------------------------------------
+ProcessorSDKSerialFlash CLI Tool
+Copyright (C) 2017-2021 Texas Instruments Incorporated - http://www.ti.com/
+Version 1.6.0.0
+----------------------------------------------------------------------------
+Transferring the Image to Flash Programmer..
+
+Transferring Header Information..
+Header Transfer Complete!
+
+Flashing Image of size 128 bytes
+Flash Programming Success!
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="erasing-the-flash-device">
+<h2>6.4.6. Erasing the Flash Device<a class="headerlink" href="#erasing-the-flash-device" title="Permalink to this headline">¶</a></h2>
+<p>Download the flash programmer using the steps described in section <a class="reference internal" href="#downloading-flash-programmer">Downloading Flash Programmer</a>
+before start executing erase command.</p>
+<p>Once the Flash programmer is loaded and executed, use the following commands to erase the Flash Device on the target platform</p>
+<p>For Windows</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp"># cd &lt;Path to Uniflash Root Folder&gt;</span>
+<span class="cp"># dslite.bat --mode processors -c &lt;COM Port&gt; -e &lt;Erase Length in Bytes&gt; -d &lt;Flash Device Type&gt; -o &lt;Erase Offset&gt;</span>
+<span class="nl">Example</span><span class="p">:</span>
+<span class="cp"># dslite.bat --mode processors -c COM7 -e 10000 -d 3 -o 20000</span>
+</pre></div>
+</div>
+<p>For Linux</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp"># cd &lt;Path to Uniflash Root Folder&gt;</span>
+<span class="cp"># sudo ./dslite.sh --mode processors -c &lt;COM Port&gt; -e &lt;Erase Length in Bytes&gt; -d &lt;Device Type&gt; -o &lt;Erase Offset&gt;</span>
+<span class="nl">Example</span><span class="p">:</span>
+<span class="cp"># sudo ./dslite.sh  --mode processors -c /dev/ttyUSB1 -e 10000 -d 3 -o 20000</span>
+</pre></div>
+</div>
+<p>The application will output the status to the console on the Host PC.
+Following is the sample output on Windows.</p>
+<div class="highlight-cpp"><div class="highlight"><pre>C:\ti\uniflash_7.2.0&gt;dslite.bat --mode processors -c COM7 -e 10000 -d 3 -o 0
+Executing the following command:
+&gt; C:\ti\uniflash_7.2.0\processors\ProcessorSDKSerialFlash.exe -c COM7 -e 10000 -d 3 -o 0
+
+For more details and examples, please refer to the UniFlash Quick Start guide.
+
+
+----------------------------------------------------------------------------
+ProcessorSDKSerialFlash CLI Tool
+Copyright (C) 2017-2021 Texas Instruments Incorporated - http://www.ti.com/
+Version 1.6.0.0
+----------------------------------------------------------------------------
+Erasing Flash....
+
+Transferring Header information..
+Header Transfer Complete!!
+Flash Erase Success!
+</pre></div>
+</div>
+</div>
+<div class="section" id="platform-specific-information">
+<h2>6.4.7. Platform Specific Information<a class="headerlink" href="#platform-specific-information" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="part-default-soc-caps">
+<h3>6.4.7.1. J721E<a class="headerlink" href="#part-default-soc-caps" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Flash programmer requires system firmware while downloading the flash programmer through UART on J721E platform.
+Uniflash host CLI loads the system firmware automatically while loading the flash programmer on these platforms.
+Flash programmer and system firmware binary (tifs.bin) should be kept in the same folder for successful downloading
+of flash programmer and system firmware.</li>
+<li>System firmware should be loaded through CCS script while loading the flash programmer through JTAG.
+Refer the <a class="reference external" href="http://software-dl.ti.com/jacinto7/esd/processor-sdk-rtos-jacinto7/latest/exports/docs/psdk_rtos_auto/docs/user_guide/ccs_setup_j721e.html">J721E EVM CCS Setup Documentation</a> section for details of setting up the CCS target configuration with system firmware download.</li>
+</ul>
+<ul class="simple">
+<li>Set the dip switch SW3.1 on CP board to OFF while running the flash programmer for OSPI flashing.</li>
+</ul>
+<ul class="simple">
+<li>Set the dip switch SW3.1 on CP board to ON while running the flash programmer for Hyperflash flashing.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="uniflash-faq">
+<h2>6.4.8. Uniflash FAQ<a class="headerlink" href="#uniflash-faq" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>#  How do I confirm my HW setup is proper for image download over UART?</dt>
+<dd>Board should be configured for UART boot mode for downloading the images over UART.
+RoM bootloader sends a character &#8216;C&#8217; at regular intervals on serial port in UART boot mode.
+Connect a serial console application on host PC to the UART port used for booting and veirfy
+the character &#8216;C&#8217; is getting displayed, which confirms the HW setup needed for image download over UART is proper.</dd>
+<dt>#  How do I verify which COM number to be used for Uniflash image download?</dt>
+<dd>There may be multiple UART ports supported on the board but Uniflash image download happens on
+one specific UART port which is meant for UART boot.
+RoM bootloader and Uniflash flash programmer sends a character &#8216;C&#8217; at regular intervals
+on the UART port used for image download. COM port number to be used for image download
+can be identified by checking for the character &#8216;C&#8217; displayed on host PC.</dd>
+<dt>#  I am running Uniflash on Windows host and Uniflash CLI is not able to open COM port. What could be the reason?</dt>
+<dd>Some of the serial console application like TeraTerm on Windows changes the COM port settings which
+causes the COM port open failure from Uniflash. Disconnect the UART cable and reconnet before running
+the Uniflash commands everytime a serial console application is used to access the COM port on Windows.</dd>
+<dt>#  Should the flash device be erased using Uniflash erase command before flashing the images?</dt>
+<dd>No, Uniflash Erase command is provided to explicity erase the images on the flash device.
+Uniflash flash programmer erases the flash by default before flashing the images.</dd>
+<dt>#  What all the images that need to be flashed to get my application boot?</dt>
+<dd><p class="first">It depends on the SoC flamily and OS being used by the application.
+In general, a secondary bootloader, any configuration files needed for system configuration and an application image
+are the minimum images that need to be flashed for booting to happen.
+Refer below documentation for more details</p>
+<blockquote class="last">
+<div><ul class="simple">
+<li><a class="reference external" href="../boot/boot.html#sbl-overview">RTOS</a></li>
+<li><a class="reference external" href="http://software-dl.ti.com/processor-sdk-linux/esd/docs/latest/linux/Foundational_Components_U-Boot.html#u-boot">Linux</a></li>
+</ul>
+</div></blockquote>
+</dd>
+</dl>
+</div>
+<div class="section" id="rebuilding-uniflash-flash-programmer">
+<h2>6.4.9. Rebuilding Uniflash Flash Programmer<a class="headerlink" href="#rebuilding-uniflash-flash-programmer" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Run the following command from &#8216;&lt;pdk_install_path&gt;/packages/ti/build&#8217; folder to rebuild Uniflash on GP platform</li>
+</ul>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp"># make BOARD=&lt;Board Name&gt; board_utils_uart_flash_programmer</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ul class="simple">
+<li>Run the following command from &#8216;&lt;pdk_install_path&gt;/packages/ti/build&#8217; folder to rebuild Uniflash on HS platform. Please make a note of
+<strong>_hs</strong> in the flash programmer target name.</li>
+</ul>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp"># make BOARD=&lt;Board Name&gt; board_utils_uart_flash_programmer_hs</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<ul class="last simple">
+<li>Use gmake in the above command for building the Uniflash programmer on Windows.</li>
+<li>&lt;Board Name&gt; is name of the platform</li>
+</ul>
+</div>
+</div></blockquote>
+<p>Example build commands:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">make</span> <span class="n">BOARD</span><span class="o">=</span><span class="n">j721e_evm</span> <span class="n">board_utils_uart_flash_programmer</span>          <span class="o">--&gt;&gt;</span> <span class="n">J721E</span> <span class="n">GP</span> <span class="n">EVM</span>
+<span class="n">make</span> <span class="n">BOARD</span><span class="o">=</span><span class="n">j721e_evm</span> <span class="n">board_utils_uart_flash_programmer_hs</span>       <span class="o">--&gt;&gt;</span> <span class="n">J721E</span> <span class="n">HS</span> <span class="n">EVM</span>
+</pre></div>
+</div>
+<p>OSPI devices on K3 platform depends on the PHY tuning parameters flashed to OSPI flash memory for tuning the
+PHY timing parameters. This is mandatory requirement for booting to happen properly.
+Tuning parameters need to be flashed while flashing the boot images to OSPI memory.
+Refer to the section <a class="reference external" href="board_support.html#ospi-flash-tuning">OSPI Flash Tuning</a> for more details</p>
+<ul class="simple">
+<li>Uniflash binaries will be created under the folder &lt;pdk_install_path&gt;/packages/ti/board/utils/uniflash/bin/&lt;Board Name&gt; for GP platform and
+&lt;pdk_install_path&gt;/packages/ti/board/utils/uniflash/bin/&lt;Board Name&gt;_hs for HS platform.</li>
+</ul>
+</div>
+<div class="section" id="upgrading-uniflash-flash-programmer-from-sdk">
+<h2>6.4.10. Upgrading Uniflash Flash Programmer from SDK<a class="headerlink" href="#upgrading-uniflash-flash-programmer-from-sdk" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Follow below steps to upgrade the flash programmer in the Uniflash to latest from SDK</dt>
+<dd><ul class="first simple">
+<li>Download and install the latest Uniflash package</li>
+<li>Copy the flash programmer binary &#8216;pdk/packages/ti/board/utils/uniflash/target/bin/&lt;Board_Name&gt;/uart_&lt;Board_Name&gt;_flash_programmer_release.tiimage&#8217;
+to &#8216;&lt;Uniflash Root&gt;/processors/FlashWriter/&lt;Board_Name&gt;&#8217;</li>
+<li>Copy the system firmware binary &#8216;&#8217;pdk/packages/ti/drv/sciclient/soc/&lt;SoC Version&gt;/tifsxxx.bin&#8217;
+to &#8216;&lt;Uniflash Root&gt;/processors/FlashWriter/&lt;Board_Name&gt;&#8217; with the name &#8216;tifs.bin&#8217;</li>
+</ul>
+<div class="last admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Uniflash flash programmer pre-built binaries are provided as part of SDK.
+Follow the steps mentioned in section <a class="reference external" href="uniflash.html#rebuilding-uniflash-flash-programmer">Rebuilding Uniflash Flash Programmer</a>
+for rebuilding the flash programmer.</p>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../family_cfg/jacinto/index_howto_jacinto.html" class="btn btn-neutral float-right" title="7. How to Guides" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="board_diag_execution.html" class="btn btn-neutral" title="6.3. Board Diagnostic Execution" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="http://www.ti.com/corp/docs/legal/copyright.shtml">&copy; Copyright 1995-2020</a>, Texas Instruments Incorporated. All rights reserved. <br>
+      <a href="http://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="http://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="http://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="http://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'08_06_01',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

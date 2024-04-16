@@ -1,0 +1,631 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4.19. PMIC &mdash; Platform Development Kit (PDK) - JACINTO User Guide</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Platform Development Kit (PDK) - JACINTO User Guide" href="../index.html"/>
+        <link rel="up" title="4. Modules" href="../family_cfg/jacinto/index_modules_jacinto.html"/>
+        <link rel="next" title="4.20. MMCSD" href="mmcsd.html"/>
+        <link rel="prev" title="4.18. UDMA" href="../family_cfg/jacinto/index_modules_udma_jacinto.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index_jacinto.html" class="icon icon-home"> Platform Development Kit (PDK) - JACINTO User Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                08_06_01
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">1. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_release_notes_jacinto.html">2. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">3. Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../family_cfg/jacinto/index_modules_jacinto.html">4. Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="csl.html">4.1. CSL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="freertos.html">4.2. FreeRTOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../family_cfg/jacinto/index_modules_safertos_jacinto.html">4.3. SafeRTOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="osal.html">4.4. OSAL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss.html">4.5. DSS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="enet.html">4.6. ENET</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fvid2.html">4.7. FVID2 User Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gpio.html">4.8. GPIO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i2c.html">4.9. I2C</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipc.html">4.10. IPC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mcasp.html">4.11. McASP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pm.html">4.12. PM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sa.html">4.13. SA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../family_cfg/jacinto/index_modules_sciclient_jacinto.html">4.14. SCICLIENT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="keywriter.html">4.15. OTP KEYWRITER</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spi.html">4.16. SPI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uart.html">4.17. UART</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../family_cfg/jacinto/index_modules_udma_jacinto.html">4.18. UDMA</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">4.19. PMIC</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#overview">4.19.1. Overview</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#introduction">4.19.1.1. Introduction</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#supported-pmics">4.19.2. Supported PMICS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#directory-structure">4.19.3. Directory Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#build-and-run">4.19.4. Build and Run</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#build-targets">4.19.4.1. Build targets</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#user-interface">4.19.5. User Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#api-descriptions">4.19.5.1. API descriptions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#unit-test-code">4.19.6. Unit Test code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#additional-references">4.19.7. Additional References</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="mmcsd.html">4.20. MMCSD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../family_cfg/jacinto/index_modules_lpm_jacinto.html">4.21. Low Power Manager (LPM)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_boot_jacinto.html">5. Bootloader (SBL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_board_jacinto.html">6. Board/EVM Abstraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_howto_jacinto.html">7. How to Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_faq_jacinto.html">8. Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_developer_notes_jacinto.html">9. Developer Notes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index_jacinto.html">Platform Development Kit (PDK) - JACINTO User Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index_jacinto.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../family_cfg/jacinto/index_modules_jacinto.html">4. Modules</a> &raquo;</li>
+      
+    <li>4.19. PMIC</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pmic">
+<h1>4.19. PMIC<a class="headerlink" href="#pmic" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview">
+<h2>4.19.1. Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="introduction">
+<h3>4.19.1.1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h3>
+<p>The power-management integrated circuit (PMIC) is designed for powering
+embedded systems or system on chip(SoC) in Automotive or Industrial
+applications.</p>
+<p>The PMIC Driver supports Leo PMIC TPS65941. The Leo PMIC contains eleven GPIOs
+each with multiple functions and configurable features. The Leo PMIC includes
+Real Time Clock (RTC) which provides the alarm and time-keeping functions. It
+provides time information and calendar information. RTC can generate timer
+interrupts(periodic interrupts) and alarm interrupts (precise interrupts).
+GPIO can generate interrupts which indicates the High/Rising-Edge or the
+Low/Falling-Edge detection at the GPIO1 through GPIO11 pins.</p>
+<p>The Leo PMIC contains two I2C interface channels. I2C channel 1 (I2C1)
+is the main channel with access to the registers which control the  RTC and GPIO
+registers. I2C channel 2 (I2C2), which is available through GPIO1 and GPIO2 pins,
+is dedicated for accessing the Q&amp;A Watchdog communication registers.</p>
+</div>
+</div>
+<div class="section" id="supported-pmics">
+<h2>4.19.2. Supported PMICS<a class="headerlink" href="#supported-pmics" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Leo PMIC - TPS65941 (Texas Instruments)</li>
+</ol>
+</div>
+<div class="section" id="directory-structure">
+<h2>4.19.3. Directory Structure<a class="headerlink" href="#directory-structure" title="Permalink to this headline">¶</a></h2>
+<p>The directory structure of PMIC is as follows:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="80%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Directory</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>include</td>
+<td>Contains the interface files for PMIC Driver</td>
+</tr>
+<tr class="row-odd"><td>src</td>
+<td>Contains source(.c) files for the driver</td>
+</tr>
+<tr class="row-even"><td>test</td>
+<td>Contains Unit test code for utilizing PMIC interfaces</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="build-and-run">
+<h2>4.19.4. Build and Run<a class="headerlink" href="#build-and-run" title="Permalink to this headline">¶</a></h2>
+<p>This section assumes that PDK has been installed at PDK_INSTALL_DIR.</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">PDK_ROOT_PATH</span> <span class="o">=</span> <span class="n">PDK_INSTALL_DIR</span><span class="o">/</span><span class="n">packages</span>
+<span class="n">PDK_BUILD_PATH</span> <span class="o">=</span> <span class="n">PDK_INSTALL_DIR</span><span class="o">/</span><span class="n">packages</span><span class="o">/</span><span class="n">ti</span><span class="o">/</span><span class="n">build</span>
+<span class="n">PMIC_PATH</span> <span class="o">=</span> <span class="n">PDK_INSTALL_DIR</span><span class="o">/</span><span class="n">drv</span><span class="o">/</span><span class="n">pmic</span>
+</pre></div>
+</div>
+<div class="section" id="build-targets">
+<h3>4.19.4.1. Build targets<a class="headerlink" href="#build-targets" title="Permalink to this headline">¶</a></h3>
+<p>The driver provides targets for building library and unit tests.
+The library and unit tests can be built from PDK_BUILD_PATH.</p>
+<ul class="simple">
+<li>Change directory to Processor SDK root path
+cd &lt;PROCESSOR_PDK_ROOT_PATH&gt;</li>
+<li>Run the setup script to setup build environment
+setupenv.bat  (Windows OS)  /
+source ./setupenv.sh (Linux OS)</li>
+<li>change directory to build folder
+cd &lt;PDK_BUILD_PATH&gt;</li>
+</ul>
+<p>Windows OS</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="40%" />
+<col width="41%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Target</th>
+<th class="head">Command</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Library</td>
+<td>gmake -s COMP=pmic CORE=mcu1_0</td>
+<td>PMIC Driver library
+#Supported for mcu1_0(R5F) and mcu1_1(R5F)core</td>
+</tr>
+<tr class="row-odd"><td>pmic_rtc_testapp</td>
+<td>gmake -s pmic_rtc_testapp CORE=mcu1_0</td>
+<td>PMIC RTC Unit test code
+#Supported for mcu1_0(R5F) and mcu1_1(R5F)core</td>
+</tr>
+<tr class="row-even"><td>pmic_gpio_testapp</td>
+<td>gmake -s pmic_gpio_testapp CORE=mcu1_0</td>
+<td>PMIC GPIO Unit test code
+#Supported for mcu1_0(R5F) and mcu1_1(R5F)core</td>
+</tr>
+</tbody>
+</table>
+<p>Linux OS</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="42%" />
+<col width="39%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Target</th>
+<th class="head">Command</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Library</td>
+<td>make -s COMP=pmic CORE=mcu1_0 OS=linux</td>
+<td>PMIC Driver library
+#Supported for mcu1_0(R5F) and mcu1_1(R5F)core</td>
+</tr>
+<tr class="row-odd"><td>pmic_rtc_testapp</td>
+<td>make -s pmic_rtc_testapp CORE=mcu1_0 OS=linux</td>
+<td>PMIC RTC Unit test code
+#Supported for mcu1_0(R5F) and mcu1_1(R5F)core</td>
+</tr>
+<tr class="row-even"><td>pmic_gpio_testapp</td>
+<td>make -s pmic_gpio_testapp CORE=mcu1_0 OS=linux</td>
+<td>PMIC GPIO Unit test code
+#Supported for mcu1_0(R5F) and mcu1_1(R5F)core</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="user-interface">
+<h2>4.19.5. User Interface<a class="headerlink" href="#user-interface" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="api-descriptions">
+<h3>4.19.5.1. API descriptions<a class="headerlink" href="#api-descriptions" title="Permalink to this headline">¶</a></h3>
+<p>API reference for application:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include</span> <span class="cpf">&lt;pmic.h&gt;</span><span class="cp"></span>
+</pre></div>
+</div>
+<p class="rubric">PMIC Initialization for Main I2C Bus</p>
+<p>Steps to be followed for PMIC Initialization of Main I2C Bus</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">Pmic_CoreCfg_t</span>        <span class="n">pmicConfigData</span> <span class="o">=</span>
+<span class="p">{</span>
+    <span class="n">PMIC_CFG_DEVICE_TYPE_VALID_SHIFT</span> <span class="o">|</span> <span class="n">PMIC_CFG_COMM_MODE_VALID_SHIFT</span> \
+    <span class="n">PMIC_CFG_SLAVEADDR_VALID_SHIFT</span> <span class="o">|</span> <span class="n">PMIC_CFG_COMM_HANDLE_VALID_SHIFT</span> \
+    <span class="n">PMIC_CFG_COMM_IO_WR_VALID_SHIFT</span> <span class="o">|</span> <span class="n">PMIC_CFG_COMM_IO_RD_VALID_SHIFT</span> \
+    <span class="n">PMIC_CFG_CRITSEC_START_VALID_SHIFT</span> <span class="o">|</span> <span class="n">PMIC_CFG_CRITSEC_STOP_VALID_SHIFT</span> <span class="p">,</span>
+    <span class="n">PMIC_MAIN_INST</span><span class="p">,</span>
+    <span class="n">PMIC_DEV_LEO_TPS6594</span><span class="p">,</span> <span class="c1">// Leo PMIC TPS65941 Slave device</span>
+    <span class="n">PMIC_INTF_DUAL_I2C</span><span class="p">,</span>
+    <span class="n">LEO_PMICA_SLAVE_ADDR</span><span class="p">,</span>
+    <span class="mi">0</span><span class="p">,</span>
+    <span class="nb">false</span><span class="p">,</span>
+    <span class="n">Pmic_regRead</span><span class="p">,</span>
+    <span class="n">Pmic_regWrite</span><span class="p">,</span>
+    <span class="nb">NULL</span><span class="p">,</span>
+    <span class="nb">NULL</span><span class="p">,</span>
+    <span class="n">Pmic_criticalSectionStartFn</span><span class="p">,</span>
+    <span class="n">Pmic_crit</span>   <span class="n">icalSectionStopFn</span><span class="p">,</span>
+<span class="p">};</span>
+
+<span class="c1">// For I2C Interface</span>
+<span class="n">pmicStatus</span> <span class="o">=</span> <span class="n">Pmic_i2c_lld_intf_setup</span><span class="p">(</span><span class="n">pmicConfigData</span><span class="p">,</span> <span class="n">PMIC_MAIN_INST</span><span class="p">);</span>
+<span class="p">...</span>
+<span class="n">or</span>
+<span class="c1">// For SPI Interface</span>
+<span class="n">pmicStatus</span> <span class="o">=</span> <span class="n">Pmic_spi_lld_intf_setup</span><span class="p">(</span><span class="n">pmicConfigData</span><span class="p">);</span>
+<span class="p">...</span>
+<span class="n">Pmic_init</span><span class="p">(</span><span class="n">pmicConfigData</span><span class="p">,</span> <span class="n">pPmicCoreHandle</span><span class="p">);</span>
+</pre></div>
+</div>
+<p class="rubric">PMIC Initialization for QA I2C Bus</p>
+<p>Steps to be followed for PMIC Initialization of QA I2C Bus</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">Pmic_CoreCfg_t</span>        <span class="n">pmicCfgData</span> <span class="o">=</span>
+<span class="p">{</span>
+    <span class="n">PMIC_CFG_QASLAVEADDR_VALID_SHIFT</span> <span class="o">|</span> <span class="n">PMIC_CFG_QACOMM_HANDLE_VALID_SHIFT</span>  <span class="p">,</span>
+    <span class="n">PMIC_QA_INST</span><span class="p">,</span>
+    <span class="mi">0</span><span class="p">,</span>
+    <span class="mi">0</span><span class="p">,</span>
+    <span class="n">LEO_PMICA_WDG_SLAVE_ADDR</span><span class="p">,</span>
+    <span class="nb">false</span><span class="p">,</span>
+    <span class="nb">NULL</span><span class="p">,</span>
+    <span class="nb">NULL</span><span class="p">,</span>
+    <span class="nb">NULL</span><span class="p">,</span>
+    <span class="nb">NULL</span><span class="p">,</span>
+    <span class="nb">NULL</span><span class="p">,</span>
+    <span class="nb">NULL</span><span class="p">,</span>
+<span class="p">};</span>
+
+<span class="n">Pmic_dual_i2c_pin_setup</span><span class="p">(</span><span class="n">pmicHandle</span><span class="p">);</span>
+<span class="p">.....</span>
+<span class="n">pmicStatus</span> <span class="o">=</span> <span class="n">Pmic_i2c_lld_intf_setup</span><span class="p">(</span><span class="n">pmicCfgData</span><span class="p">,</span> <span class="n">PMIC_QA_INST</span><span class="p">);</span>
+<span class="p">...</span>
+<span class="n">Pmic_init</span><span class="p">(</span><span class="n">pmicCfgData</span><span class="p">,</span> <span class="n">pPmicCoreHandle</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>Pmic_init()</strong> API is called for creating <em>pPmicCoreHandle</em> to be able to talk
+to driver.</p>
+<p>The <strong>Pmic_init()</strong> API takes a pointer to <em>Pmic_CoreCfg_t</em> as an input. The
+parameter <em>Pmic_CoreCfg_t</em> contains various parameters which are needed to
+prepare PMIC driver handle</p>
+<p>Definition:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">Defined</span> <span class="n">in</span> <span class="n">pimc</span><span class="p">.</span><span class="n">h</span> <span class="n">interface</span> <span class="n">file</span> <span class="n">as</span> <span class="o">**</span><span class="n">Pmic_init</span><span class="p">()</span><span class="o">**</span>
+</pre></div>
+</div>
+<p><strong>Pmic_init()</strong> API provides a software initialization for the driver.
+Any application using PMIC Driver must call this API.</p>
+<ul class="simple">
+<li>Application need to initialize pmicCorehandle structure in two steps for
+Dual I2C and one step for Single I2C or SPI Interface using validParams
+struture member</li>
+<li>Application needs to be provide these functions to PMIC driver. After
+PMIC driver initialization these function will called by PMIC driver
+for PMIC register read and write</li>
+<li>Application need to create pmicCorehandle structure for each PMIC device.
+For example - Application can create a pmicLeoCorehandle for Leo PMIC device
+and pmicHeraCorehandle for Hera PMIC device</li>
+</ul>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">Pmic_regRead</span>                <span class="o">-</span> <span class="n">PMIC</span> <span class="n">I2C</span><span class="o">/</span><span class="n">SPI</span> <span class="n">read</span> <span class="n">function</span>
+
+<span class="n">Pmic_regWrite</span>               <span class="o">-</span> <span class="n">PMIC</span> <span class="n">I2C</span><span class="o">/</span><span class="n">SPI</span> <span class="n">write</span> <span class="n">function</span>
+
+<span class="n">Pmic_criticalSectionStartFn</span> <span class="o">-</span> <span class="n">Critical</span> <span class="n">section</span> <span class="n">start</span> <span class="n">function</span>
+
+<span class="n">Pmic_criticalSectionStopFn</span>  <span class="o">-</span> <span class="n">Critical</span> <span class="n">section</span> <span class="n">stop</span> <span class="n">function</span>
+
+<span class="n">Pmic_i2c_lld_intf_setup</span>     <span class="o">-</span> <span class="n">Interface</span> <span class="n">setup</span> <span class="n">function</span> <span class="k">for</span> <span class="n">PMIC</span> <span class="n">to</span> <span class="n">create</span>
+<span class="n">instance</span> <span class="n">and</span> <span class="n">initialise</span> <span class="n">the</span> <span class="n">Main</span><span class="o">/</span><span class="n">QA</span> <span class="n">I2C</span> <span class="n">Bus</span> <span class="k">for</span> <span class="n">PMIC</span> <span class="n">Communication</span> <span class="n">based</span> <span class="n">on</span>
+<span class="n">instance</span> <span class="n">type</span>
+
+<span class="n">Pmic_dual_i2c_pin_setup</span>     <span class="o">-</span> <span class="n">Configures</span> <span class="n">GPIO1</span> <span class="n">and</span> <span class="n">GPIO2</span> <span class="n">pins</span> <span class="n">as</span> <span class="n">I2C</span> <span class="n">pins</span>
+<span class="k">for</span> <span class="n">QA</span> <span class="n">I2C</span> <span class="n">Bus</span> <span class="n">interface</span> <span class="n">setup</span>
+
+<span class="n">Pmic_spi_lld_intf_setup</span>     <span class="o">-</span> <span class="n">Interface</span> <span class="n">setup</span> <span class="n">function</span> <span class="k">for</span> <span class="n">PMIC</span> <span class="n">to</span> <span class="n">create</span>
+<span class="n">instance</span> <span class="n">and</span> <span class="n">initialise</span> <span class="n">the</span> <span class="n">SPI</span> <span class="n">Bus</span> <span class="k">for</span> <span class="n">PMIC</span> <span class="n">Communication</span>
+</pre></div>
+</div>
+<p class="rubric">PMIC I2C interface setup for Main I2C Bus - Pmic_i2c_lld_intf_setup()</p>
+<p>Interface setup function for PMIC to create instance and initialise the
+Main/QA I2C Bus for PMIC Communication based on instance type</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">setConfigI2C</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">CSL_WKUP_I2C0_CFG_BASE</span><span class="p">);</span>
+<span class="p">...</span>
+<span class="n">I2C_init</span><span class="p">();</span>
+<span class="p">...</span>
+<span class="n">I2C_Params_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">i2cParams</span><span class="p">);</span>
+<span class="p">...</span>
+<span class="n">i2cHandle</span> <span class="o">=</span> <span class="n">I2C_open</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">i2cParams</span><span class="p">);</span>
+<span class="p">...</span>
+<span class="n">pPmicConfigData</span><span class="o">-&gt;</span><span class="n">pCommHandle</span> <span class="o">=</span> <span class="n">i2cHandle</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Similarly we need to define PMIC I2C interface setup for QA I2C Bus</p>
+<p class="rubric">PMIC de-initialization - Pmic_deinit()</p>
+<ul class="simple">
+<li>De-initialization of PMIC - This de-initialization is specific
+to the application.</li>
+<li>It only de-initializes the LLD being used for this Instance</li>
+</ul>
+<p>Definition:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">Defined</span> <span class="n">in</span> <span class="n">pimc</span><span class="p">.</span><span class="n">h</span> <span class="n">interface</span> <span class="n">file</span> <span class="n">as</span> <span class="o">**</span><span class="n">Pmic_deinit</span><span class="p">()</span><span class="o">**</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="unit-test-code">
+<h2>4.19.6. Unit Test code<a class="headerlink" href="#unit-test-code" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="26%" />
+<col width="26%" />
+<col width="26%" />
+<col width="23%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Description</th>
+<th class="head">Expected Results</th>
+<th class="head">SoC Supported</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>RTC test code</td>
+<td>Verify the
+features of PMIC
+RTC Sub System</td>
+<td>The test code tests
+all the rtc test cases
+and prints pass on
+successful completion</td>
+<td>SOC_J721E
+SOC_J7200</td>
+</tr>
+<tr class="row-odd"><td>GPIO test code</td>
+<td>Verify the
+features of PMIC
+GPIO Sub System</td>
+<td>The test code tests
+all the gpio testcases
+and prints pass on
+successful completion</td>
+<td>SOC_J721E
+SOC_J7200</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="additional-references">
+<h2>4.19.7. Additional References<a class="headerlink" href="#additional-references" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="35%" />
+<col width="65%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Document</th>
+<th class="head">Location</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>API Reference Manual</td>
+<td>$(TI_PDK_INSTALL_DIR)\packages\ti
+\drv\PMIC\docs\doxygen\html\index.
+html</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="mmcsd.html" class="btn btn-neutral float-right" title="4.20. MMCSD" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../family_cfg/jacinto/index_modules_udma_jacinto.html" class="btn btn-neutral" title="4.18. UDMA" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="http://www.ti.com/corp/docs/legal/copyright.shtml">&copy; Copyright 1995-2020</a>, Texas Instruments Incorporated. All rights reserved. <br>
+      <a href="http://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="http://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="http://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="http://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'08_06_01',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,746 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>8.3. FAQ - FVID2 &mdash; Platform Development Kit (PDK) - JACINTO User Guide</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Platform Development Kit (PDK) - JACINTO User Guide" href="../index.html"/>
+        <link rel="up" title="8. Frequently Asked Questions" href="../family_cfg/jacinto/index_faq_jacinto.html"/>
+        <link rel="next" title="8.4. FAQ - C7x : Steps to switch C7x SysBIOS application from secure mode to non-secure mode" href="c7x_non_secure_mode.html"/>
+        <link rel="prev" title="8.2. FAQ - CAN" href="faq_can.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index_jacinto.html" class="icon icon-home"> Platform Development Kit (PDK) - JACINTO User Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                08_06_01
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">1. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_release_notes_jacinto.html">2. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">3. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_modules_jacinto.html">4. Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_boot_jacinto.html">5. Bootloader (SBL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_board_jacinto.html">6. Board/EVM Abstraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_howto_jacinto.html">7. How to Guides</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../family_cfg/jacinto/index_faq_jacinto.html">8. Frequently Asked Questions</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="faq_common.html">8.1. FAQ - Common</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq_can.html">8.2. FAQ - CAN</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">8.3. FAQ - FVID2</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#data-formats-support-on-video-ips-isp-on-jacinto-7-devices">8.3.1. Data Formats Support on Video IPs/ISP on Jacinto-7 Devices</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#data-format-support-on-csirx-csitx-viss-and-dss-modules">8.3.1.1. Data Format Support on CSIRX, CSITX, VISS, and DSS Modules:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#data-format-compatibility-on-csirx-csitx-viss-and-dss-modules">8.3.1.2. Data Format Compatibility on CSIRX, CSITX, VISS, and DSS Modules:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="c7x_non_secure_mode.html">8.4. FAQ - C7x : Steps to switch C7x SysBIOS application from secure mode to non-secure mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resource_int_jacinto.html">8.5. FAQ - Used Resources - Interrupt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq_binlist_jacinto.html">8.6. FAQ - Supported Cores by example applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq_module_clocking.html">8.7. FAQ - How to set the clock for a given module and clock</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apps_on_secure_devices.html">8.8. FAQ - Running Apps on secure devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq_csi2rx.html">8.9. FAQ - CSI2RX</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_developer_notes_jacinto.html">9. Developer Notes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index_jacinto.html">Platform Development Kit (PDK) - JACINTO User Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index_jacinto.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../family_cfg/jacinto/index_faq_jacinto.html">8. Frequently Asked Questions</a> &raquo;</li>
+      
+    <li>8.3. FAQ - FVID2</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="faq-fvid2">
+<h1>8.3. FAQ - FVID2<a class="headerlink" href="#faq-fvid2" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="data-formats-support-on-video-ips-isp-on-jacinto-7-devices">
+<h2>8.3.1. Data Formats Support on Video IPs/ISP on Jacinto-7 Devices<a class="headerlink" href="#data-formats-support-on-video-ips-isp-on-jacinto-7-devices" title="Permalink to this headline">¶</a></h2>
+<p>This section talks about different data formats supported on Jacinto-7 devices.</p>
+<div class="section" id="data-format-support-on-csirx-csitx-viss-and-dss-modules">
+<h3>8.3.1.1. Data Format Support on CSIRX, CSITX, VISS, and DSS Modules:<a class="headerlink" href="#data-format-support-on-csirx-csitx-viss-and-dss-modules" title="Permalink to this headline">¶</a></h3>
+<p>This section lists data formats supported on different modules on Jacinto-7 devices.</p>
+<table border="1" class="docutils" id="id1">
+<caption><span class="caption-number">Table 8.1 </span><span class="caption-text">Data Format Support</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="21%" />
+<col width="13%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="36%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Data Format</th>
+<th class="head">FVID2 Data Type/Format</th>
+<th class="head">CSIRX Support</th>
+<th class="head">CSITX Support</th>
+<th class="head">VISS Support</th>
+<th class="head">DSS Support</th>
+<th class="head">Comments</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>ARGB16-4444, ABGR16-4444, RGBA16-4444, RGB16-565, BGR16-565, ARGB16-1555,ABGR16-1555</td>
+<td>FVID2_DF_ARGB16_4444, FVID2_DF_ABGR16_4444, FVID2_DF_RGBA16_4444, FVID2_DF_RGB16_565, FVID2_DF_BGR16_565, FVID2_DF_ARGB16_1555, FVID2_DF_ABGR16_1555</td>
+<td>No</td>
+<td>No</td>
+<td>NA</td>
+<td>Yes</td>
+<td>ARGB —&gt; xRGB for DSS</td>
+</tr>
+<tr class="row-odd"><td>ARGB32-8888, ABGR32-8888, BGRA32-8888, RGBA32-8888, RGBA32-1010102, BGRA32-1010102</td>
+<td>FVID2_DF_ARGB32_8888, FVID2_DF_ABGR32_8888, FVID2_DF_BGRA32_8888, FVID2_DF_RGBA32_8888, FVID2_DF_RGBA32_1010102, FVID2_DF_BGRA32_1010102</td>
+<td>No</td>
+<td>No</td>
+<td>NA</td>
+<td>Yes</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>ARGB64-16161616, RGBA64-16161616</td>
+<td>FVID2_DF_ABGR64_16161616, FVID2_DF_BGRA64_16161616</td>
+<td>No</td>
+<td>No</td>
+<td>NA</td>
+<td>No</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>BGR24-888</td>
+<td>FVID2_DF_BGR24_888</td>
+<td>No</td>
+<td>No</td>
+<td>NA</td>
+<td>Yes</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>RAW6-8 Unpacked into 8 bits (LSB Aligned)</td>
+<td>FVID2_DF_RAW06-08, FVID2_CSI2_DF_RAW6-8</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>NA</td>
+<td>No</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>RAW9-16 Unpacked into 16 bits (LSB Aligned)</td>
+<td>FVID2_DF_RAW10-16, FVID2_CSI2_DF_RAW9-16</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>NA</td>
+<td>No</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>RAW12 Packed</td>
+<td>FVID2_DF_RAW12, FVID2_CSI2_DF_RAW12</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>NA</td>
+<td>No</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>RAW20 Unpacked into 32 bits (LSB Aligned)</td>
+<td>FVID2_CSI2_DF_RAW20</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>NA</td>
+<td>No</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>RGB16-565/BGR16-565 with a separate A8 plane</td>
+<td>FVID2_DF_RGB16_565_A8, FVID2_DF_BGR16_565_A8</td>
+<td>No</td>
+<td>No</td>
+<td>NA</td>
+<td>Yes</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>RGB444 Unpacked into 16 bits (xRGB)</td>
+<td>FVID2_DF_ARGB16_4444, FVID2_CSI2_DF_RGB444</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+<td>Yes</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>RGB555 Unpacked into 16 bits (xRGB)</td>
+<td>FVID2_DF_ARGB16_1555, FVID2_CSI2_DF_RGB555</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+<td>Yes</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>RGB666 Unpacked into 32bits (xRGB)</td>
+<td>FVID2_CSI2_DF_RGB666</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+<td>No</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>RGB888 Packed</td>
+<td>FVID2_DF_RGB24_888</td>
+<td>No</td>
+<td>No</td>
+<td>No</td>
+<td>Yes</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>RGB888 Planar</td>
+<td>FVID2_DF_RGB24_888_PLANAR</td>
+<td>No</td>
+<td>No</td>
+<td>No</td>
+<td>No</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>RGB888 Unpacked into 32bits (xRGB)</td>
+<td>FVID2_DF_XRGB32_8888, FVID2_CSI2_DF_RGB888</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+<td>Yes</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>YUV420 8 bit&nbsp;Interleaved</td>
+<td>FVID2_CSI2_DF_YUV420_8B</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>NA</td>
+<td>No</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>YUV420 8 bit Semi-Planer Packed/NV21</td>
+<td>FVID2_DF_YUV420SP_UV /FVID2_DF_YUV420SP_VU</td>
+<td>No</td>
+<td>No</td>
+<td>NA</td>
+<td>Yes</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>YUV420 10 bit Interleaved</td>
+<td>FVID2_CSI2_DF_YUV420_10B</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+<td>No</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>YUV420 10 bit Semi-Planer Packed/NV21</td>
+<td>FVID2_DF_YUV420SP_UV /FVID2_DF_YUV420SP_VU</td>
+<td>No</td>
+<td>No</td>
+<td>No</td>
+<td>Yes</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>YUV420 12 bit Semi-Planer &amp; packed</td>
+<td>FVID2_DF_YUV420SP_UV /FVID2_DF_YUV420SP_VU</td>
+<td>No</td>
+<td>No</td>
+<td>NA</td>
+<td>No</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>YUV422 8 bit&nbsp;Interleaved</td>
+<td>FVID2_DF_YUV422I_xxxx, FVID2_CSI2_DF_YUV422_8B</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>NA</td>
+<td>Yes</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>YUV422 8 bit Semi-Planer/NV12</td>
+<td>FVID2_DF_YUV422SP_UV / FVID2_DF_YUV422SP_VU</td>
+<td>No</td>
+<td>No</td>
+<td>NA</td>
+<td>Yes</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>YUV422 10 bit&nbsp;Interleaved</td>
+<td>FVID2_DF_YUV422I_xxxx, FVID2_CSI2_DF_YUV422_10B</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+<td>Yes</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>YUV422 10 bit Semi-Planer/NV12</td>
+<td>FVID2_DF_YUV422SP_UV / FVID2_DF_YUV422SP_VU</td>
+<td>No</td>
+<td>No</td>
+<td>No</td>
+<td>Yes</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="data-format-compatibility-on-csirx-csitx-viss-and-dss-modules">
+<h3>8.3.1.2. Data Format Compatibility on CSIRX, CSITX, VISS, and DSS Modules:<a class="headerlink" href="#data-format-compatibility-on-csirx-csitx-viss-and-dss-modules" title="Permalink to this headline">¶</a></h3>
+<p>This section lists data formats compatible on different paths between modules
+on Jacinto-7 devices.</p>
+<table border="1" class="docutils" id="id2">
+<caption><span class="caption-number">Table 8.2 </span><span class="caption-text">Data Format Compatibility</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="21%" />
+<col width="13%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="36%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Data Format</th>
+<th class="head">FVID2 Data Type/Format</th>
+<th class="head">CSIRX to VISS</th>
+<th class="head">VISS to DSS</th>
+<th class="head">CSIRX to DSS</th>
+<th class="head">CSIRX to CSITX Direct Path(re-trans pads) <sup>2</sup></th>
+<th class="head">Comments</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>RAW8 Packed</td>
+<td>FVID2_CSI2_DF_RAW8</td>
+<td>Compatible</td>
+<td>NA</td>
+<td>NA</td>
+<td>Compatible<sup>1</sup></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>RAW10 Unpacked into 16bits</td>
+<td>FVID2_CSI2_DF_RAW10</td>
+<td>Not Compatible</td>
+<td>NA</td>
+<td>NA</td>
+<td>Compatible<sup>1</sup></td>
+<td>VISS does not support RAW10, but can be treated as RAW12 and can be processed</td>
+</tr>
+<tr class="row-even"><td>RAW12 Packed</td>
+<td>FVID2_CSI2_DF_RAW12</td>
+<td>Compatible</td>
+<td>NA</td>
+<td>NA</td>
+<td>Compatible<sup>1</sup></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>RAW12 Unpacked into 16bits (LSB Aligned)</td>
+<td>FVID2_CSI2_DF_RAW12</td>
+<td>Compatible</td>
+<td>NA</td>
+<td>NA</td>
+<td>Compatible<sup>1</sup></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>RAW12 Unpacked into 16bits (MSB Aligned)</td>
+<td>FVID2_DF_RAW12</td>
+<td>Not Compatible</td>
+<td>NA</td>
+<td>NA</td>
+<td>Compatible<sup>1</sup></td>
+<td>Not supported in CSI2 Rx</td>
+</tr>
+<tr class="row-odd"><td>RAW14 Unpacked into 16bits (LSB Aligned)</td>
+<td>FVID2_CSI2_DF_RAW14</td>
+<td>Compatible</td>
+<td>NA</td>
+<td>NA</td>
+<td>Compatible<sup>1</sup></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>RAW16 Packed/unpacked into 16 bits(both are same)</td>
+<td>FVID2_CSI2_DF_RAW16</td>
+<td>Compatible</td>
+<td>NA</td>
+<td>NA</td>
+<td>Compatible<sup>1</sup></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>RAW12/16/20 Unpacked into 32bits</td>
+<td>FVID2_CSI2_DF_RAW16</td>
+<td>No</td>
+<td>NA</td>
+<td>NA</td>
+<td>Compatible<sup>1</sup></td>
+<td>Not supported in CSI2 Rx/VISS</td>
+</tr>
+<tr class="row-even"><td>RGB444 Unpacked into 16 bits (xRGB)</td>
+<td>FVID2_DF_ARGB16_4444</td>
+<td>NA</td>
+<td>NA</td>
+<td>Compatible</td>
+<td>NA</td>
+<td>Not supported in VISS output</td>
+</tr>
+<tr class="row-odd"><td>RGB555 Unpacked into 16 bits (xRGB)</td>
+<td>FVID2_DF_ARGB16_1555</td>
+<td>NA</td>
+<td>NA</td>
+<td>Compatible</td>
+<td>NA</td>
+<td>Not supported in VISS output</td>
+</tr>
+<tr class="row-even"><td>RGB565 Unpacked into 16 bits</td>
+<td>FVID2_DF_RGB16_565</td>
+<td>NA</td>
+<td>NA</td>
+<td>Compatible</td>
+<td>NA</td>
+<td>Not supported in VISS output</td>
+</tr>
+<tr class="row-odd"><td>RGB666 Unpacked into 32bits (xRGB)</td>
+<td>FVID2_CSI2_DF_RGB666</td>
+<td>NA</td>
+<td>NA</td>
+<td>Not Compatible</td>
+<td>NA</td>
+<td>Not supported in VISS output and CSI2-Rx</td>
+</tr>
+<tr class="row-even"><td>RGB888 Unpacked into 32bits (xRGB)</td>
+<td>FVID2_CSI2_DF_RGB888</td>
+<td>NA</td>
+<td>NA</td>
+<td>Compatible</td>
+<td>NA</td>
+<td>Not supported in VISS output</td>
+</tr>
+<tr class="row-odd"><td>RGB888 Packed</td>
+<td>FVID2_DF_RGB24_888</td>
+<td>NA</td>
+<td>NA</td>
+<td>Not Compatible</td>
+<td>NA</td>
+<td>Not supported in CSI2 Rx</td>
+</tr>
+<tr class="row-even"><td>RGB888 Planar</td>
+<td>FVID2_DF_RGB24_888_PLANAR</td>
+<td>NA</td>
+<td>Not Compatible</td>
+<td>NA</td>
+<td>NA</td>
+<td>VISS outputs, but DSS cannot display</td>
+</tr>
+<tr class="row-odd"><td>YUV422&nbsp; 8bit Interleaved&nbsp; Packed</td>
+<td>FVID2_DF_YUV422I_xxxx, FVID2_CSI2_DF_YUV422_8B</td>
+<td>NA</td>
+<td>Compatible</td>
+<td>Compatible</td>
+<td>NA</td>
+<td>Both YUYV and UYVY formats are supported in VISS and DSS. CSI2-Rx supports all four combinations</td>
+</tr>
+<tr class="row-even"><td>YUV422 8bit Semi-Planer Packed</td>
+<td>FVID2_DF_YUV422SP_UV / FVID2_DF_YUV422SP_VU</td>
+<td>NA</td>
+<td>Compatible</td>
+<td>Not Compatible</td>
+<td>NA</td>
+<td>Not supported in CSI2 Rx</td>
+</tr>
+<tr class="row-odd"><td>YUV422 8bit Interleaved Unpacked in 16bit container</td>
+<td>NA</td>
+<td>NA</td>
+<td>Not Compatible</td>
+<td>NA</td>
+<td>NA</td>
+<td>Not supported in DSS &amp; CSI2-Rx</td>
+</tr>
+<tr class="row-even"><td>YUV422 10bit Interleaved Unpacked in 16 bits LSB aligned</td>
+<td>FVID2_DF_YUV422I_xxxx, FVID2_CSI2_DF_YUV422_10B</td>
+<td>NA</td>
+<td>NA</td>
+<td>Compatible</td>
+<td>NA</td>
+<td>VISS does not support YUV422 in 10bit</td>
+</tr>
+<tr class="row-odd"><td>YUV420 8bit Interleaved</td>
+<td>FVID2_CSI2_DF_YUV420_8B</td>
+<td>NA</td>
+<td>NA</td>
+<td>Not Compatible</td>
+<td>NA</td>
+<td>Not supported in DSS</td>
+</tr>
+<tr class="row-even"><td>YUV420 8bit Semi-Planer</td>
+<td>FVID2_DF_YUV420SP_UV /FVID2_DF_YUV420SP_VU</td>
+<td>NA</td>
+<td>Compatible</td>
+<td>Not Compatible</td>
+<td>NA</td>
+<td>Not supported in CSI2 Rx</td>
+</tr>
+<tr class="row-odd"><td>YUV420 10bit Interleaved</td>
+<td>FVID2_CSI2_DF_YUV420_10B</td>
+<td>NA</td>
+<td>NA</td>
+<td>Not Compatible</td>
+<td>NA</td>
+<td>Not supported in DSS and VISS</td>
+</tr>
+<tr class="row-even"><td>YUV420 10bit Semi-Planer</td>
+<td>FVID2_DF_YUV420SP_UV /FVID2_DF_YUV420SP_VU</td>
+<td>NA</td>
+<td>NA</td>
+<td>Not Compatible</td>
+<td>NA</td>
+<td>Not supported in CSI2 Rx and VISS</td>
+</tr>
+<tr class="row-odd"><td>YUV420 12bit Semi-Planer &amp; packed</td>
+<td>NA</td>
+<td>NA</td>
+<td>Not Compatible</td>
+<td>NA</td>
+<td>NA</td>
+<td>Not supported in CSI2-Rx and DSS</td>
+</tr>
+<tr class="row-even"><td>YUV420 12bit Semi-Planer &amp; unpacked</td>
+<td>NA</td>
+<td>NA</td>
+<td>Compatible</td>
+<td>NA</td>
+<td>NA</td>
+<td>Not supported in CSI2 Rx</td>
+</tr>
+<tr class="row-odd"><td>YUV420 12bit Unpacked MSB aligned &amp; Semi-planar</td>
+<td>NA</td>
+<td>NA</td>
+<td>Compatible</td>
+<td>NA</td>
+<td>NA</td>
+<td>Not supported in CSI2 Rx</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Legends:</strong></p>
+<table class="hlist"><tr><td><ul class="simple">
+<li><sup>1</sup> - Since this is a direct path, packed &amp; unpacked does not matter as these are storage identifiers and not related to lane data. CSIRX to CSITX direct path support all RAW formats.</li>
+<li><sup>2</sup> - CSIRX to CSITX direct path is support for only one channel i.e. the number of Virtual Channels (VCs) = 1</li>
+</ul>
+</td></tr></table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">DSS supports many other RGB formats, ie RGB48, but none of the other modules support these formats.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="c7x_non_secure_mode.html" class="btn btn-neutral float-right" title="8.4. FAQ - C7x : Steps to switch C7x SysBIOS application from secure mode to non-secure mode" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="faq_can.html" class="btn btn-neutral" title="8.2. FAQ - CAN" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="http://www.ti.com/corp/docs/legal/copyright.shtml">&copy; Copyright 1995-2020</a>, Texas Instruments Incorporated. All rights reserved. <br>
+      <a href="http://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="http://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="http://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="http://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'08_06_01',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,109 @@
+Relocation of sections at runtime
+=================================
+
+.. _run_time_placement_of_sections:
+
+Need / Problem Statament
+------------------------
+
+Run time relocation of code and/or data could be employed for optimal utilization of fast memories.
+
+Consider ExecuteInPlace (XIP) where in a secodary memory device would hold code and data and allows
+execute in place. Most of the external device would be slower compared to internal memory it would
+be benificial to place highly used code/data in the internal memory.
+
+Situations where memories are not setup by boot loader
+    - e.g. As in case of AM65xx device, the TCM's contents are lost with reset of MCU R5.
+        This renders TCM's un-useable by applications.
+
+Solution
+---------
+
+To support run-time relocation of code/data would require 3 distinct steps
+
+#. Identification memory section that would be used for loading and section to run from
+#. Listing of code/data that would require to loaded and run/used from different locations
+#. Moving of sections from loaded area to run/used areas
+
+Would rely on TI's compilers copy table to implement #1 & #2 and copy in functions to implement #3. 
+Refer for details `Advanced Linker Techniques <https://www.ti.com/litv/pdf/spraa46a>`__. on *COPY TABLE* and *COPY IN*
+
+Consider the below for convience
+
+* MSMC3 - Memory location where .text and .data would be loaded by SBL
+* MCU0_ATCM_TXT_RUN_TIME_LOAD - Memory location where text section of the program would be executed from 
+* MCU0_ATCM_DAT_RUN_TIME_LOAD - Memory location where data section of the program would be used from
+* TI RTOS/sysbios is deployed on Cotex R5F
+
+
+#1 & #2 - Define Copy Table
+---------------------------
+
+Below list the section of linker command
+
+Text Section:
+::
+
+    .text_run_time_load : {
+                    *ti.csl*aer5f(.text)
+                 } palign(8) load = MSMC3,
+                    run = MCU0_ATCM_TXT_RUN_TIME_LOAD,
+                    table(_text_run_time_load_section)
+
+* *_text_run_time_load_section* - Defines copy table for text section
+    * *ti.csl aer5f(.text)* - text segement of the object
+    * *MSMC3* - Location where code is loaded by SBL
+    * *MCU0_ATCM_TXT_RUN_TIME_LOAD* - Location from it would be executed
+
+
+Data Section:
+::
+
+    .data_run_time_load : {
+                    *ti.drv*aer5f(.data)
+                 } palign(8) load = MSMC3,
+                    run = MCU0_ATCM_DAT_RUN_TIME_LOAD,
+                    table(_data_run_time_load_section)
+
+* *_data_run_time_load_section* - Defines copy table for data section
+    * *ti.drv aer5f(.data)* - data segement of the object
+    * *MSMC3* - Location where data is loaded by SBL
+    * *MCU0_ATCM_DAT_RUN_TIME_LOAD* - Location from it would accessed at runtime
+
+Copy TABLE Section:
+::
+
+    /* This is the region which will have all the copy tables */
+    .ovly       : {} palign(128) load = MSMC3
+
+* ovly is the section that would be host all the copy tables
+
+#3 - Copy at run time
+------------------------
+
+Before the text/data defined by these two tables are used, these requires to be moved from *MSMC3* to *MCU0_ATCM_TXT_RUN_TIME_LOAD* or *MCU0_ATCM_DAT_RUN_TIME_LOAD* and this can be achived with compiler runtime-support function **copy_in()**
+
+copy in example:
+::
+
+    copy_in(&_text_run_time_load_section);
+    copy_in(&_data_run_time_load_section);
+
+Example
+--------
+
+The method described above is implemented for UDMA example
+
+* Linker Command File - Defined COPY TABLE - PDK_INSTALL_DIR/packages/ti/drv/udma/examples/udma_adc_test/build/am65xx/linker_r5_sysbios.lds
+* Example - Reference copy in useage - PDK_INSTALL_DIR/packages/ti/drv/udma/examples/udma_adc_test/main_tirtos.c
+
+MCU_OCMC_RAM usage by applications:
+-----------------------------------
+
+The first 512 KB of MCU OCM RAM is used by the bootloader and can be re-claimed once SBL has finished execution.
+Application can put any no-load section (e.g. .bss) in this region (from 0x41C0_0000 to 0x41C8_0000).
+User can look at the following linker command files for reference:
+
+LPM Linker - <PDK_base>/packages/ti/drv/lpm/examples/lpm_example/overrides/j721e/mcu1_0/linker_r5_freertos.lds 
+
+Boot App's Linker - <mcusw_base>/mcuss_demos/boot_app_mcu_rtos/overrides/j721e/mcu1_0/linker_r5_freertos.lds 

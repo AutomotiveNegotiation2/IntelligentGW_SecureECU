@@ -1,0 +1,150 @@
+IPC LLD Migration Guide
+=======================
+
+.. _ipc-lld-migration-guide:
+
+Introduction
+------------
+
+IPC LLD is a light-weight IPC stack that provides a common transport mechanism (rpmsg-based transport)
+to communicate between all cores regardless of the OS running on the core. IPC LLD is the only
+supported IPC stack for AM6x/J7 devices starting with SDK 7.0 releases.
+This guide describes the differences between IPC3.x and IPC LLD and gives information on how to
+migrate existing applications which use IPC3.x to IPC LLD.
+
+For an overview of IPC LLD, see the PDK documentation here `IPC LLD <../modules/ipc.html>`_.
+
+The main software components for IPC are:
+
+1. PDK IPC LLD (IPC low-level driver) for RTOS, baremetal or QNX
+2. Linux kernel IPC driver suite for Linux (rpmsg_char, rpmsg, vring and mailbox driver).
+
+The messaging API is different for Linux vs. other OSes and is provided through the rpmsg_char driver.
+All other OSes communicating via IPC LLD use the RPMessage API for communication.
+
+.. _ipc-lld-migration-guide-feature-support:
+
+Feature Support
+---------------
+
+The following table gives a guide for feature support between IPC3.x and IPC LLD.
+
+IPC LLD is the low-lever driver used for applications built with BIOS, baremetal, or QNX.
+The corresponding Linux-side interface is provided by the kernel rpmsg_char driver.
+
+===================================   ============================================================================    =========================================================================================
+Feature                               IPC3.x                                                                          IPC LLD
+===================================   ============================================================================    =========================================================================================
+Remote Core Loading                   Remote cores are loaded on demand, currently without a user API                 Same
+Low-level primatives (BIOS-to-BIOS)   MultiProc, Notify, Heap*MP, Gate*MP, SharedRegion, NameServer (BIOS-to-BIOS)    Removed. Multi-core heap functionality is managed by application if needed. GateMP functionality can be achieved by using spinlock driver from CSL.
+Messaging                             MessageQ                                                                        RPMessage (BIOS/baremetal/QNX), rpmsg_char driver (Linux)
+Messaging Transport                   Shared memory (BIOS-to-BIOS), rpmsg (Linux-to-BIOS, QNX-to-BIOS)                rpmsg
+OS support                            Linux, QNX, RTOS                                                                Linux, QNX, RTOS, baremetal
+===================================   ============================================================================    =========================================================================================
+
+
+.. _ipc-lld-migration-guide-remote-core-loading:
+
+Remote Core Loading
+-------------------
+
+Remote core loading is the same as with IPC3.x. Images may be loaded through bootloader or through Linux remoteproc.
+For remote core images that are to communicate with Linux IPC, a resource table is required to be included in the firmware image. IPC3.x also required a resource table be defined in this case.
+
+
+.. _ipc-lld-migration-guide-setup:
+
+Setup
+-----
+
+In IPC3.x, the remote core and host APIs were brought into alignment from previous IPC versions, and both sides called IPC_start() and IPC_stop() to enable/disable use of IPC services.
+
+In IPC LLD, the cores running BIOS/baremetal need to call Ipc_mpSetConfig(), Ipc_init(), Ipc_initVirtio(), and RPMessage_init() to initialize the IPC virtio and rpmsg modules for IPC communication. On Linux, the same APIs are not needed and the virtio and rpmsg are setup when the kernel drivers are probed.
+
+
+.. _ipc-lld-migration-guide-message-transport:
+
+Message Transport
+-----------------
+
+In IPC3.x, the underlying messaging transport was different between BIOS<->BIOS and Linux<->BIOS communication. For BIOS<->BIOS, Shared memory (SharedRegion) was used for the transport, while Linux<->BIOS used rpmsg transport.
+
+In IPC LLD, both BIOS<->BIOS and Linux<->BIOS (as well as combinations with QNX and baremetal) use a common transport. The transport used is rpmsg between all cores.
+In rpmsg, the messages are copied from the processor's local memory buffer that is passed by the application in RPMessage_send, to the vring shared memory. On the receiving side, the message is copied from the vring shared memory to the receiving processor's local memory buffer. This means that APIs for allocating and freeing shared memory (like MessageQ_alloc/MessageQ_free in IPC3.x) are no longer provided, as they are not needed with IPC LLD.
+
+
+.. _ipc-lld-migration-guide-api-migration:
+
+Messaging API Migration
+-----------------------
+
+With IPC3.x, the Messaging API was the same between Linux and RTOS (MessageQ). However, when using IPC LLD, the RPMessage API is not provided on Linux, and users can instead use the rpmsg_char interface. The rpmsg_char provides Linux applications with a file IO interface to read and write messages to different CPUs.
+
+The following table provides a guide for migration of the Messaging APIs from IPC3.x to IPC LLD for RTOS/baremetal/QNX
+
++-------------------+---------------------------------------------------------------------------------------------------------------------+
+| | IPC3.x          | | IPC LLD                                                                                                           |
++===================+=====================================================================================================================+
+| | MessageQ_create | | RPMessage_create() to create the endpoint                                                                         |
+| |                 | | RPMessage_announce() to announce the created endpoint to other cores                                              |
++-------------------+---------------------------------------------------------------------------------------------------------------------+
+| | MessageQ_delete | | RPMessage_delete                                                                                                  |
++-------------------+---------------------------------------------------------------------------------------------------------------------+
+| | MessageQ_open   | | RPMessage_getRemoteEndpt                                                                                          |
++-------------------+---------------------------------------------------------------------------------------------------------------------+
+| | MessageQ_close  | | N/A (since RPMessage_getRemoteEndpt doesn't allocate/use any resources, just returns the requested endpoint info) |
++-------------------+---------------------------------------------------------------------------------------------------------------------+
+| | MessageQ_alloc  | | N/A                                                                                                               |
++-------------------+---------------------------------------------------------------------------------------------------------------------+
+| | MessageQ_free   | | N/A                                                                                                               |
++-------------------+---------------------------------------------------------------------------------------------------------------------+
+| | MessageQ_put    | | RPMessage_send                                                                                                    |
++-------------------+---------------------------------------------------------------------------------------------------------------------+
+| | MessageQ_get    | | RPMessage_recv                                                                                                    |
++-------------------+---------------------------------------------------------------------------------------------------------------------+
+
+
+The following table provides a guide for migration of the Messaging APIs from Linux IPC3.x to Linux rpmsg_char. There is a small ti_rpmsg_char utility
+library available that provides an easy means to identify rpmsg character devies created by the Linux kernel rpmsg-char driver using the virtio-rpmsg-bus
+transport back-end.
+The ti_rpmsg_char userspace library source code is located at https://git.ti.com/cgit/rpmsg/ti-rpmsg-char/
+For more details regarding the ti_rpmsg_char library, see the the README at https://git.ti.com/cgit/rpmsg/ti-rpmsg-char/about/
+For more details regarding the rpmsg_char kernel driver on which ti_rpmsg_char is built, please refer to include/uapi/linux/rpmsg.h for
+the rpmsg-char drivers' userspace interfaces.
+
++-------------------+------------------------------------------------------------------------------------------------------------------------------+
+| | IPC3.x          | | ti_rpmsg_char                                                                                                              |
++===================+==============================================================================================================================+
+| | MessageQ_create | | rcdev = rpmsg_char_open()                                                                                                  |
++-------------------+------------------------------------------------------------------------------------------------------------------------------+
+| | MessageQ_delete | | rpmsg_char_close(rcdev)                                                                                                    |
++-------------------+------------------------------------------------------------------------------------------------------------------------------+
+| | MessageQ_open   | | Same as MessageQ_create                                                                                                    |
++-------------------+------------------------------------------------------------------------------------------------------------------------------+
+| | MessageQ_close  | | Same as MessageQ_delete                                                                                                    |
++-------------------+------------------------------------------------------------------------------------------------------------------------------+
+| | MessageQ_alloc  | | N/A                                                                                                                        |
++-------------------+------------------------------------------------------------------------------------------------------------------------------+
+| | MessageQ_free   | | N/A                                                                                                                        |
++-------------------+------------------------------------------------------------------------------------------------------------------------------+
+| | MessageQ_put    | | write(rcdev->fd, msg, len)                                                                                                 |
++-------------------+------------------------------------------------------------------------------------------------------------------------------+
+| | MessageQ_get    | | read(rcdev->fd, reply_msg, len) (note that Linux user space APIs like "select" can be used to wait on multiple end points) |
++-------------------+------------------------------------------------------------------------------------------------------------------------------+
+
+.. _ipc-lld-migration-guide-large-buffers:
+
+Large Buffer Support
+--------------------
+
+Maximum payload/user message size that can be transferred by RPMessage is 496 bytes. 
+For large buffers, it is recomended to pass a pointer/offset to the buffer in a shared memory location.
+
+
+.. _ipc-lld-migration-guide-examples:
+
+IPC LLD Examples
+----------------
+
+Please refer to the IPC LLD examples provided in pdk/packages/ti/drv/ipc/examples/ for detailed examples of how to create applications
+with IPC LLD.

@@ -1,0 +1,19 @@
+.. include:: index_header.rst.inc
+
+.. toctree::
+   :maxdepth: 2
+   :numbered:
+   :caption: Table of Contents
+
+   overview
+   family_cfg/jacinto/index_release_notes_jacinto
+   getting_started
+   family_cfg/jacinto/index_modules_jacinto
+   family_cfg/jacinto/index_boot_jacinto
+   family_cfg/jacinto/index_board_jacinto
+   family_cfg/jacinto/index_howto_jacinto
+   family_cfg/jacinto/index_faq_jacinto
+   family_cfg/jacinto/index_developer_notes_jacinto
+
+.. include:: family_cfg/jacinto/dummy_ref_jacinto.rst.inc
+.. include:: index_support.rst.inc

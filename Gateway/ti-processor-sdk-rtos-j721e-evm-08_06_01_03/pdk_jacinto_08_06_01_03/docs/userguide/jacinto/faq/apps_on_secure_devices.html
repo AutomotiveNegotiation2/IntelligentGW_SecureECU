@@ -1,0 +1,419 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>8.8. FAQ - Running Apps on secure devices &mdash; Platform Development Kit (PDK) - JACINTO User Guide</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Platform Development Kit (PDK) - JACINTO User Guide" href="../index.html"/>
+        <link rel="up" title="8. Frequently Asked Questions" href="../family_cfg/jacinto/index_faq_jacinto.html"/>
+        <link rel="next" title="8.9. FAQ - CSI2RX" href="faq_csi2rx.html"/>
+        <link rel="prev" title="8.7. FAQ - How to set the clock for a given module and clock" href="faq_module_clocking.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index_jacinto.html" class="icon icon-home"> Platform Development Kit (PDK) - JACINTO User Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                08_06_01
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">1. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_release_notes_jacinto.html">2. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">3. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_modules_jacinto.html">4. Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_boot_jacinto.html">5. Bootloader (SBL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_board_jacinto.html">6. Board/EVM Abstraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_howto_jacinto.html">7. How to Guides</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../family_cfg/jacinto/index_faq_jacinto.html">8. Frequently Asked Questions</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="faq_common.html">8.1. FAQ - Common</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq_can.html">8.2. FAQ - CAN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq_fvid2.html">8.3. FAQ - FVID2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c7x_non_secure_mode.html">8.4. FAQ - C7x : Steps to switch C7x SysBIOS application from secure mode to non-secure mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resource_int_jacinto.html">8.5. FAQ - Used Resources - Interrupt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq_binlist_jacinto.html">8.6. FAQ - Supported Cores by example applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq_module_clocking.html">8.7. FAQ - How to set the clock for a given module and clock</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">8.8. FAQ - Running Apps on secure devices</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">8.8.1. Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#device-types">8.8.1.1. Device Types</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#jtag-connectivity">8.8.1.2. JTAG Connectivity</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#signing">8.8.2. Signing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#building-pdk-applications">8.8.3. Building PDK Applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#references">8.8.4. References</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="faq_csi2rx.html">8.9. FAQ - CSI2RX</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_developer_notes_jacinto.html">9. Developer Notes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index_jacinto.html">Platform Development Kit (PDK) - JACINTO User Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index_jacinto.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../family_cfg/jacinto/index_faq_jacinto.html">8. Frequently Asked Questions</a> &raquo;</li>
+      
+    <li>8.8. FAQ - Running Apps on secure devices</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="toctree-wrapper compound" id="apps-on-secure-devices">
+<ul class="simple">
+</ul>
+</div>
+<div class="section" id="faq-running-apps-on-secure-devices">
+<h1>8.8. FAQ - Running Apps on secure devices<a class="headerlink" href="#faq-running-apps-on-secure-devices" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>8.8.1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>This note assume that reader is conversant in using General Purpose device and would like to switch to HS-SE device.
+As a precursor, it&#8217;s recommended to go over TIFS detailed in <a class="reference external" href="http://downloads.ti.com/tisci/esd/latest/1_intro/TISCI.html">TIFS Documentation</a>
+This document assumes an <strong>HS-ES</strong> device is being used</p>
+<div class="section" id="device-types">
+<h3>8.8.1.1. Device Types<a class="headerlink" href="#device-types" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="26%" />
+<col width="29%" />
+<col width="45%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Device Type</td>
+<td>Variant</td>
+<td>Comment</td>
+</tr>
+<tr class="row-even"><td>General Purpose (GP)</td>
+<td>NA</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>High Security (HS)</td>
+<td>Field Securable (FS)</td>
+<td>Would require additional steps
+before it can be used. Contact TI
+FAE supporting for details</td>
+</tr>
+<tr class="row-even"><td>High Security (HS)</td>
+<td>Security Enforced (SE)</td>
+<td>Expected device type, that can host
+applications. Refereed as <strong>HS-SE</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="jtag-connectivity">
+<h3>8.8.1.2. JTAG Connectivity<a class="headerlink" href="#jtag-connectivity" title="Permalink to this headline">¶</a></h3>
+<p>JTAG cannot be connected to all compute cores, refer <a class="reference external" href="http://downloads.ti.com/tisci/esd/latest/6_topic_user_guides/secure_debug.html">Secure Debug</a> for details.</p>
+</div>
+</div>
+<div class="section" id="signing">
+<h2>8.8.2. Signing<a class="headerlink" href="#signing" title="Permalink to this headline">¶</a></h2>
+<p>The applications that are expected to be hosted on compute cores and board configurations requires to be signed.</p>
+<blockquote>
+<div><ul>
+<li><p class="first">Refer <a class="reference external" href="http://downloads.ti.com/tisci/esd/latest/6_topic_user_guides/secure_boot_signing.html#">To Sign Applications</a></p>
+</li>
+<li><p class="first">Refer <a class="reference external" href="http://downloads.ti.com/tisci/esd/latest/6_topic_user_guides/secure_boot_signing.html#">To Sign Board Configuration</a></p>
+</li>
+<li><dl class="first docutils">
+<dt>Signing PDK&#8217;s applications</dt>
+<dd><ul class="first last simple">
+<li>PDK&#8217;s build infrastructure supports signing of applications</li>
+<li>Manufacturer encryption keys is defined in <strong>(SDK_Install_Dir)/(pdk_version)/packages/ti/build/makerules/k3_dev_mek.txt</strong></li>
+<li>Manufacturer private keys is defined in <strong>(SDK_Install_Dir)/(pdk_version)/packages/ti/build/makerules/k3_dev_mpk.pem</strong></li>
+<li>Please update these files with specific your specific keys</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="building-pdk-applications">
+<h2>8.8.3. Building PDK Applications<a class="headerlink" href="#building-pdk-applications" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul>
+<li><dl class="first docutils">
+<dt>PDK SBL <span class="classifier-delimiter">:</span> <span class="classifier">SBL should be built for secure devices</span></dt>
+<dd><ul class="first last simple">
+<li>Build using the command <strong>make sbl_(BOOT MEDIA)_img_hs BOARD=(DEVICE)_evm -sj</strong></li>
+<li>e.g. 1 : make sbl_uart_img_hs BOARD=j721e_evm -sj to boot from UART</li>
+<li>e.g. 2 : make sbl_mmcsd_img_hs BOARD=j721e_evm -sj to boot from MMC/SD</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>PDK examples <span class="classifier-delimiter">:</span> <span class="classifier">No specific commands are required</span></dt>
+<dd><ul class="first last">
+<li><p class="first">Follow steps detailed in module specific user guides</p>
+</li>
+<li><dl class="first docutils">
+<dt>Ensure to use <strong>(module example binary name).appimage.signed</strong></dt>
+<dd><ul class="first last simple">
+<li>e.g. <strong>udma_memcpy_testapp_freertos_mcu1_0_release.appimage.signed</strong></li>
+<li>e.g. <strong>MMCSD_TestApp_freertos_mcu1_0_release.appimage.signed</strong></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>TIFS <span class="classifier-delimiter">:</span> <span class="classifier">Use tifs for HS devices</span></dt>
+<dd><ul class="first last">
+<li><p class="first"><strong>tifs_sr1.1-hs-enc.bin</strong></p>
+</li>
+<li><dl class="first docutils">
+<dt>available at (SDK_Install_Dir)/(pdk_version)/packages/ti/drv/sciclient/soc/Vx</dt>
+<dd><ul class="first last simple">
+<li>V1 for j721e</li>
+<li><strong>tifs_sr1.1-hs-enc.bin</strong> sr1.1 refer to silicon ES 1.1</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Running PDK</dt>
+<dd><ul class="first last simple">
+<li>For the steps detailed in module specific user guides. No additional steps are required</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="references">
+<h2>8.8.4. References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="https://software-dl.ti.com/jacinto7/esd/processor-sdk-rtos-jacinto7/latest/exports/docs/psdk_rtos/docs/user_guide/index.html">RTOS SDK Documentation</a></li>
+<li><cite>RTOS SDK Component Documentation &lt;https://software-dl.ti.com/jacinto7/esd/processor-sdk-rtos-jacinto7/latest/exports/docs/psdk_rtos/docs/user_guide/sdk_components_j721e.html#platform-development-kit-pdk&gt;__</cite></li>
+<li><a class="reference external" href="http://downloads.ti.com/tisci/esd/latest/1_intro/TISCI.html">TIFS Documentation</a></li>
+<li><a class="reference external" href="http://downloads.ti.com/tisci/esd/latest/6_topic_user_guides/secure_boot_signing.html#">To Sign Applications</a></li>
+<li><a class="reference external" href="http://downloads.ti.com/tisci/esd/latest/6_topic_user_guides/secure_boot_signing.html#">To Sign Board Configuration</a></li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="faq_csi2rx.html" class="btn btn-neutral float-right" title="8.9. FAQ - CSI2RX" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="faq_module_clocking.html" class="btn btn-neutral" title="8.7. FAQ - How to set the clock for a given module and clock" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="http://www.ti.com/corp/docs/legal/copyright.shtml">&copy; Copyright 1995-2020</a>, Texas Instruments Incorporated. All rights reserved. <br>
+      <a href="http://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="http://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="http://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="http://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'08_06_01',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

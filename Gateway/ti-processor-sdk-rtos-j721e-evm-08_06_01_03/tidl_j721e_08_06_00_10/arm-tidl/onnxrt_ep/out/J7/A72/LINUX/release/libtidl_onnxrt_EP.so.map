@@ -1,0 +1,534 @@
+
+Discarded input sections
+
+ .note.GNU-stack
+                0x0000000000000000        0x0 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../lib/gcc/aarch64-none-linux-gnu/9.2.1/crtbeginS.o
+ .group         0x0000000000000000        0x8 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/onnxrt_ep/out/J7/A72/LINUX/release/module/src.armv8/../onnxrt_ep.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/onnxrt_ep/out/J7/A72/LINUX/release/module/src.armv8/../onnxrt_ep.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/onnxrt_ep/out/J7/A72/LINUX/release/module/src.armv8/../onnxrt_ep.o
+ .group         0x0000000000000000       0x14 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/onnxrt_ep/out/J7/A72/LINUX/release/module/src.armv8/../onnxrt_ep.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/onnxrt_ep/out/J7/A72/LINUX/release/module/src.armv8/../onnxrt_ep.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/onnxrt_ep/out/J7/A72/LINUX/release/module/src.armv8/../onnxrt_ep.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/onnxrt_ep/out/J7/A72/LINUX/release/module/src.armv8/../onnxrt_ep.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/onnxrt_ep/out/J7/A72/LINUX/release/module/src.armv8/../../../common/tidl_runtimes_infer_common.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/onnxrt_ep/out/J7/A72/LINUX/release/module/src.armv8/../../../common/tidl_runtimes_infer_common.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/onnxrt_ep/out/J7/A72/LINUX/release/module/src.armv8/../../../common/tidl_runtimes_infer_common.o
+ .data.rel.local.DW.ref.__gxx_personality_v0
+                0x0000000000000000        0x8 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/onnxrt_ep/out/J7/A72/LINUX/release/module/src.armv8/../../../common/tidl_runtimes_infer_common.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/onnxrt_ep/out/J7/A72/LINUX/release/module/src.armv8/../../../common/tidl_runtimes_infer_common.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/onnxrt_ep/out/J7/A72/LINUX/release/module/src.armv8/../../../common/tidl_onnxrt_common.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/onnxrt_ep/out/J7/A72/LINUX/release/module/src.armv8/../../../common/tidl_onnxrt_common.o
+ .data.rel.local.DW.ref.__gxx_personality_v0
+                0x0000000000000000        0x8 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/onnxrt_ep/out/J7/A72/LINUX/release/module/src.armv8/../../../common/tidl_onnxrt_common.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/onnxrt_ep/out/J7/A72/LINUX/release/module/src.armv8/../../../common/tidl_onnxrt_common.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../lib/gcc/aarch64-none-linux-gnu/9.2.1/crtendS.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crtn.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+LOAD /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+LOAD /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../lib/gcc/aarch64-none-linux-gnu/9.2.1/crtbeginS.o
+LOAD /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/onnxrt_ep/out/J7/A72/LINUX/release/module/src.armv8/../onnxrt_ep.o
+LOAD /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/onnxrt_ep/out/J7/A72/LINUX/release/module/src.armv8/../../../common/tidl_runtimes_infer_common.o
+LOAD /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/onnxrt_ep/out/J7/A72/LINUX/release/module/src.armv8/../../../common/tidl_onnxrt_common.o
+START GROUP
+END GROUP
+LOAD /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/libdl.so
+LOAD /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../lib/gcc/aarch64-none-linux-gnu/9.2.1/../../../../aarch64-none-linux-gnu/lib/../lib64/libstdc++.so
+LOAD /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/libm.so
+LOAD /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../lib/gcc/aarch64-none-linux-gnu/9.2.1/../../../../aarch64-none-linux-gnu/lib/../lib64/libgcc_s.so
+LOAD /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/libc.so
+START GROUP
+LOAD /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/lib64/libc.so.6
+LOAD /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib64/libc_nonshared.a
+LOAD /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/lib/ld-linux-aarch64.so.1
+END GROUP
+LOAD /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../lib/gcc/aarch64-none-linux-gnu/9.2.1/../../../../aarch64-none-linux-gnu/lib/../lib64/libgcc_s.so
+LOAD /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../lib/gcc/aarch64-none-linux-gnu/9.2.1/crtendS.o
+LOAD /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crtn.o
+                0x0000000000000190                . = (SEGMENT_START ("text-segment", 0x0) + SIZEOF_HEADERS)
+
+.note.gnu.build-id
+ *(.note.gnu.build-id)
+
+.hash           0x0000000000000190      0x344
+ *(.hash)
+ .hash          0x0000000000000190      0x344 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+
+.gnu.hash       0x00000000000004d8       0xf4
+ *(.gnu.hash)
+ .gnu.hash      0x00000000000004d8       0xf4 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+
+.dynsym         0x00000000000005d0      0xa50
+ *(.dynsym)
+ .dynsym        0x00000000000005d0      0xa50 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+
+.dynstr         0x0000000000001020      0xe92
+ *(.dynstr)
+ .dynstr        0x0000000000001020      0xe92 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+
+.gnu.version    0x0000000000001eb2       0xdc
+ *(.gnu.version)
+ .gnu.version   0x0000000000001eb2       0xdc /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+
+.gnu.version_d  0x0000000000001f90        0x0
+ *(.gnu.version_d)
+ .gnu.version_d
+                0x0000000000001f90        0x0 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+
+.gnu.version_r  0x0000000000001f90       0x60
+ *(.gnu.version_r)
+ .gnu.version_r
+                0x0000000000001f90       0x60 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+
+.rela.dyn       0x0000000000001ff0      0x240
+ *(.rela.init)
+ *(.rela.text .rela.text.* .rela.gnu.linkonce.t.*)
+ *(.rela.fini)
+ *(.rela.rodata .rela.rodata.* .rela.gnu.linkonce.r.*)
+ *(.rela.data .rela.data.* .rela.gnu.linkonce.d.*)
+ .rela.data.rel.local
+                0x0000000000001ff0       0x18 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+ .rela.data.rel.local.DW.ref.__gxx_personality_v0
+                0x0000000000002008       0x18 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+ *(.rela.tdata .rela.tdata.* .rela.gnu.linkonce.td.*)
+ *(.rela.tbss .rela.tbss.* .rela.gnu.linkonce.tb.*)
+ *(.rela.ctors)
+ *(.rela.dtors)
+ *(.rela.got)
+ .rela.got      0x0000000000002020      0x198 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+ *(.rela.bss .rela.bss.* .rela.gnu.linkonce.b.*)
+ *(.rela.ifunc)
+ .rela.ifunc    0x00000000000021b8        0x0 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+ .rela.init_array
+                0x00000000000021b8       0x60 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+ .rela.fini_array
+                0x0000000000002218       0x18 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+
+.rela.plt       0x0000000000002230      0x798
+ *(.rela.plt)
+ .rela.plt      0x0000000000002230      0x798 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+ *(.rela.iplt)
+
+.init           0x00000000000029c8       0x14
+ *(SORT_NONE(.init))
+ .init          0x00000000000029c8        0xc /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+                0x00000000000029c8                _init
+ .init          0x00000000000029d4        0x8 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crtn.o
+
+.plt            0x00000000000029e0      0x530
+ *(.plt)
+ .plt           0x00000000000029e0      0x530 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+ *(.iplt)
+
+.text           0x0000000000002f10     0x6218
+ *(.text.unlikely .text.*_unlikely .text.unlikely.*)
+ *(.text.exit .text.exit.*)
+ *(.text.startup .text.startup.*)
+ .text.startup  0x0000000000002f10       0x74 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/onnxrt_ep/out/J7/A72/LINUX/release/module/src.armv8/../onnxrt_ep.o
+ *fill*         0x0000000000002f84        0xc 1f2003d5
+ .text.startup  0x0000000000002f90       0x3c /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/onnxrt_ep/out/J7/A72/LINUX/release/module/src.armv8/../../../common/tidl_runtimes_infer_common.o
+ *fill*         0x0000000000002fcc        0x4 1f2003d5
+ .text.startup  0x0000000000002fd0       0x3c /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/onnxrt_ep/out/J7/A72/LINUX/release/module/src.armv8/../../../common/tidl_onnxrt_common.o
+ *(.text.hot .text.hot.*)
+ *(.text .stub .text.* .gnu.linkonce.t.*)
+ .text          0x000000000000300c       0x14 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+ .text          0x0000000000003020       0xbc /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../lib/gcc/aarch64-none-linux-gnu/9.2.1/crtbeginS.o
+ *fill*         0x00000000000030dc        0x4 1f2003d5
+ .text          0x00000000000030e0     0x3ef4 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/onnxrt_ep/out/J7/A72/LINUX/release/module/src.armv8/../onnxrt_ep.o
+                0x00000000000030e0                TIDL_computeImportFunc
+                0x00000000000030f0                TIDLEP_getDdrStats
+                0x0000000000003110                TIDL_computeInvokeFunc
+                0x0000000000003130                TIDL_releaseRtFunc
+                0x0000000000003150                TIDL_populateOptions
+                0x0000000000004320                TIDL_splitStringWithDelimiter(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)
+                0x00000000000046c0                TIDL_readOnnxRtMetaDataForInference
+                0x00000000000061e0                TIDL_createStateInferFunc
+                0x0000000000006420                TIDL_getSupportedNodesInfer
+ *fill*         0x0000000000006fd4        0xc 1f2003d5
+ .text._ZNKSt5ctypeIcE8do_widenEc
+                0x0000000000006fe0        0x8 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/onnxrt_ep/out/J7/A72/LINUX/release/module/src.armv8/../onnxrt_ep.o
+                0x0000000000006fe0                std::ctype<char>::do_widen(char) const
+ *fill*         0x0000000000006fe8        0x8 1f2003d5
+ .text._ZN9__gnu_cxx12__to_xstringINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEcEET_PFiPT0_mPKS8_St9__va_listEmSB_z
+                0x0000000000006ff0      0x150 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/onnxrt_ep/out/J7/A72/LINUX/release/module/src.armv8/../onnxrt_ep.o
+                0x0000000000006ff0                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > __gnu_cxx::__to_xstring<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, char>(int (*)(char*, unsigned long, char const*, std::__va_list), unsigned long, char const*, ...)
+ .text._ZNSt6vectorINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESaIS5_EED2Ev
+                0x0000000000007140       0x80 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/onnxrt_ep/out/J7/A72/LINUX/release/module/src.armv8/../onnxrt_ep.o
+                0x0000000000007140                std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::~vector()
+                0x0000000000007140                std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::~vector()
+ .text._ZNSt7__cxx1115basic_stringbufIcSt11char_traitsIcESaIcEED2Ev
+                0x00000000000071c0       0x54 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/onnxrt_ep/out/J7/A72/LINUX/release/module/src.armv8/../onnxrt_ep.o
+                0x00000000000071c0                std::__cxx11::basic_stringbuf<char, std::char_traits<char>, std::allocator<char> >::~basic_stringbuf()
+                0x00000000000071c0                std::__cxx11::basic_stringbuf<char, std::char_traits<char>, std::allocator<char> >::~basic_stringbuf()
+ *fill*         0x0000000000007214        0xc 1f2003d5
+ .text._ZNSt7__cxx1115basic_stringbufIcSt11char_traitsIcESaIcEED0Ev
+                0x0000000000007220       0x5c /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/onnxrt_ep/out/J7/A72/LINUX/release/module/src.armv8/../onnxrt_ep.o
+                0x0000000000007220                std::__cxx11::basic_stringbuf<char, std::char_traits<char>, std::allocator<char> >::~basic_stringbuf()
+ *fill*         0x000000000000727c        0x4 1f2003d5
+ .text._ZNSt6vectorINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESaIS5_EE17_M_realloc_insertIJS5_EEEvN9__gnu_cxx17__normal_iteratorIPS5_S7_EEDpOT_
+                0x0000000000007280      0x228 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/onnxrt_ep/out/J7/A72/LINUX/release/module/src.armv8/../onnxrt_ep.o
+                0x0000000000007280                void std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::_M_realloc_insert<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(__gnu_cxx::__normal_iterator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >*, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&)
+ *fill*         0x00000000000074a8        0x8 1f2003d5
+ .text          0x00000000000074b0      0xfe8 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/onnxrt_ep/out/J7/A72/LINUX/release/module/src.armv8/../../../common/tidl_runtimes_infer_common.o
+                0x00000000000074b0                TIDL_readBinFromFile
+                0x0000000000007530                TIDL_osrtDebugPrint
+                0x00000000000075d0                TIDL_checkIsDir
+                0x0000000000007640                TIDL_printSubgraphStats
+                0x00000000000076c0                TIDL_subgraphRtCreate
+                0x0000000000007e90                TIDL_subgraphRtDelete
+                0x0000000000007f10                TIDL_rtLoadSymbols
+                0x0000000000007ff0                TIDL_readAllowedNodesList
+ *fill*         0x0000000000008498        0x8 1f2003d5
+ .text._ZNSt6vectorIiSaIiEE17_M_realloc_insertIJRKiEEEvN9__gnu_cxx17__normal_iteratorIPiS1_EEDpOT_
+                0x00000000000084a0      0x128 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/onnxrt_ep/out/J7/A72/LINUX/release/module/src.armv8/../../../common/tidl_runtimes_infer_common.o
+                0x00000000000084a0                void std::vector<int, std::allocator<int> >::_M_realloc_insert<int const&>(__gnu_cxx::__normal_iterator<int*, std::vector<int, std::allocator<int> > >, int const&)
+ *fill*         0x00000000000085c8        0x8 1f2003d5
+ .text._ZNSt6vectorIS_IiSaIiEESaIS1_EE17_M_realloc_insertIJRKS1_EEEvN9__gnu_cxx17__normal_iteratorIPS1_S3_EEDpOT_
+                0x00000000000085d0      0x338 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/onnxrt_ep/out/J7/A72/LINUX/release/module/src.armv8/../../../common/tidl_runtimes_infer_common.o
+                0x00000000000085d0                void std::vector<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::_M_realloc_insert<std::vector<int, std::allocator<int> > const&>(__gnu_cxx::__normal_iterator<std::vector<int, std::allocator<int> >*, std::vector<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > > >, std::vector<int, std::allocator<int> > const&)
+ *fill*         0x0000000000008908        0x8 1f2003d5
+ .text          0x0000000000008910      0x6e4 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/onnxrt_ep/out/J7/A72/LINUX/release/module/src.armv8/../../../common/tidl_onnxrt_common.o
+                0x0000000000008910                TIDL_ortGetType(long, int*)
+                0x00000000000089e0                TIDL_subgraphRtInvoke(int, OnnxTIDLSubGraphParams*, sTIDL_tidlRtDynamicLoading_t*, int)
+                0x0000000000008c60                TIDL_getOutputShape
+                0x0000000000008e70                TIDLEP_getSubGraphStats
+ *fill*         0x0000000000008ff4        0xc 1f2003d5
+ .text._ZNSt6vectorImSaImEE17_M_realloc_insertIJmEEEvN9__gnu_cxx17__normal_iteratorIPmS1_EEDpOT_
+                0x0000000000009000      0x128 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/onnxrt_ep/out/J7/A72/LINUX/release/module/src.armv8/../../../common/tidl_onnxrt_common.o
+                0x0000000000009000                void std::vector<unsigned long, std::allocator<unsigned long> >::_M_realloc_insert<unsigned long>(__gnu_cxx::__normal_iterator<unsigned long*, std::vector<unsigned long, std::allocator<unsigned long> > >, unsigned long&&)
+ .text          0x0000000000009128        0x0 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../lib/gcc/aarch64-none-linux-gnu/9.2.1/crtendS.o
+ .text          0x0000000000009128        0x0 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crtn.o
+ *(.gnu.warning)
+
+.fini           0x0000000000009128       0x10
+ *(SORT_NONE(.fini))
+ .fini          0x0000000000009128        0x8 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+                0x0000000000009128                _fini
+ .fini          0x0000000000009130        0x8 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crtn.o
+                [!provide]                        PROVIDE (__etext = .)
+                [!provide]                        PROVIDE (_etext = .)
+                [!provide]                        PROVIDE (etext = .)
+
+.rodata         0x0000000000009138      0x847
+ *(.rodata .rodata.* .gnu.linkonce.r.*)
+ .rodata.str1.8
+                0x0000000000009138      0x400 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/onnxrt_ep/out/J7/A72/LINUX/release/module/src.armv8/../onnxrt_ep.o
+ .rodata._ZNSt6vectorINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESaIS5_EE17_M_realloc_insertIJS5_EEEvN9__gnu_cxx17__normal_iteratorIPS5_S7_EEDpOT_.str1.8
+                0x0000000000009538       0x1a /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/onnxrt_ep/out/J7/A72/LINUX/release/module/src.armv8/../onnxrt_ep.o
+ *fill*         0x0000000000009552        0x6 
+ .rodata.str1.8
+                0x0000000000009558      0x2dc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/onnxrt_ep/out/J7/A72/LINUX/release/module/src.armv8/../../../common/tidl_runtimes_infer_common.o
+                                        0x324 (size before relaxing)
+ .rodata._ZNSt6vectorIiSaIiEE17_M_realloc_insertIJRKiEEEvN9__gnu_cxx17__normal_iteratorIPiS1_EEDpOT_.str1.8
+                0x0000000000009834       0x1a /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/onnxrt_ep/out/J7/A72/LINUX/release/module/src.armv8/../../../common/tidl_runtimes_infer_common.o
+ *fill*         0x0000000000009834        0x4 
+ .rodata.str1.8
+                0x0000000000009838      0x147 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/onnxrt_ep/out/J7/A72/LINUX/release/module/src.armv8/../../../common/tidl_onnxrt_common.o
+ .rodata._ZNSt6vectorImSaImEE17_M_realloc_insertIJmEEEvN9__gnu_cxx17__normal_iteratorIPmS1_EEDpOT_.str1.8
+                0x000000000000997f       0x1a /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/onnxrt_ep/out/J7/A72/LINUX/release/module/src.armv8/../../../common/tidl_onnxrt_common.o
+
+.rodata1
+ *(.rodata1)
+
+.eh_frame_hdr   0x0000000000009980      0x134
+ *(.eh_frame_hdr)
+ .eh_frame_hdr  0x0000000000009980      0x134 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../lib/gcc/aarch64-none-linux-gnu/9.2.1/crtbeginS.o
+                0x0000000000009980                __GNU_EH_FRAME_HDR
+ *(.eh_frame_entry .eh_frame_entry.*)
+
+.eh_frame       0x0000000000009ab8      0x87c
+ *(.eh_frame)
+ .eh_frame      0x0000000000009ab8       0x78 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../lib/gcc/aarch64-none-linux-gnu/9.2.1/crtbeginS.o
+ .eh_frame      0x0000000000009b30      0x3d0 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/onnxrt_ep/out/J7/A72/LINUX/release/module/src.armv8/../onnxrt_ep.o
+                                        0x3e8 (size before relaxing)
+ .eh_frame      0x0000000000009f00      0x288 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/onnxrt_ep/out/J7/A72/LINUX/release/module/src.armv8/../../../common/tidl_runtimes_infer_common.o
+                                        0x2b8 (size before relaxing)
+ .eh_frame      0x000000000000a188      0x1a8 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/onnxrt_ep/out/J7/A72/LINUX/release/module/src.armv8/../../../common/tidl_onnxrt_common.o
+                                        0x1d8 (size before relaxing)
+ .eh_frame      0x000000000000a330        0x4 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../lib/gcc/aarch64-none-linux-gnu/9.2.1/crtendS.o
+ *(.eh_frame.*)
+
+.gcc_except_table
+                0x000000000000a334      0x42c
+ *(.gcc_except_table .gcc_except_table.*)
+ .gcc_except_table
+                0x000000000000a334      0x328 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/onnxrt_ep/out/J7/A72/LINUX/release/module/src.armv8/../onnxrt_ep.o
+ .gcc_except_table
+                0x000000000000a65c       0xf4 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/onnxrt_ep/out/J7/A72/LINUX/release/module/src.armv8/../../../common/tidl_runtimes_infer_common.o
+ .gcc_except_table
+                0x000000000000a750       0x10 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/onnxrt_ep/out/J7/A72/LINUX/release/module/src.armv8/../../../common/tidl_onnxrt_common.o
+
+.gnu_extab
+ *(.gnu_extab*)
+
+.exception_ranges
+ *(.exception_ranges*)
+                0x000000000001ad10                . = DATA_SEGMENT_ALIGN (CONSTANT (MAXPAGESIZE), CONSTANT (COMMONPAGESIZE))
+
+.eh_frame
+ *(.eh_frame)
+ *(.eh_frame.*)
+
+.gnu_extab
+ *(.gnu_extab)
+
+.gcc_except_table
+ *(.gcc_except_table .gcc_except_table.*)
+
+.exception_ranges
+ *(.exception_ranges*)
+
+.tdata
+ *(.tdata .tdata.* .gnu.linkonce.td.*)
+
+.tbss
+ *(.tbss .tbss.* .gnu.linkonce.tb.*)
+ *(.tcommon)
+
+.preinit_array
+ *(.preinit_array)
+
+.init_array     0x000000000001ad10       0x20
+ *(SORT_BY_INIT_PRIORITY(.init_array.*) SORT_BY_INIT_PRIORITY(.ctors.*))
+ *(.init_array EXCLUDE_FILE(*crtend?.o *crtend.o *crtbegin?.o *crtbegin.o) .ctors)
+ .init_array    0x000000000001ad10        0x8 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../lib/gcc/aarch64-none-linux-gnu/9.2.1/crtbeginS.o
+ .init_array    0x000000000001ad18        0x8 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/onnxrt_ep/out/J7/A72/LINUX/release/module/src.armv8/../onnxrt_ep.o
+ .init_array    0x000000000001ad20        0x8 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/onnxrt_ep/out/J7/A72/LINUX/release/module/src.armv8/../../../common/tidl_runtimes_infer_common.o
+ .init_array    0x000000000001ad28        0x8 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/onnxrt_ep/out/J7/A72/LINUX/release/module/src.armv8/../../../common/tidl_onnxrt_common.o
+
+.fini_array     0x000000000001ad30        0x8
+ *(SORT_BY_INIT_PRIORITY(.fini_array.*) SORT_BY_INIT_PRIORITY(.dtors.*))
+ *(.fini_array EXCLUDE_FILE(*crtend?.o *crtend.o *crtbegin?.o *crtbegin.o) .dtors)
+ .fini_array    0x000000000001ad30        0x8 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../lib/gcc/aarch64-none-linux-gnu/9.2.1/crtbeginS.o
+
+.ctors
+ *crtbegin.o(.ctors)
+ *crtbegin?.o(.ctors)
+ *(EXCLUDE_FILE(*crtend?.o *crtend.o) .ctors)
+ *(SORT_BY_NAME(.ctors.*))
+ *(.ctors)
+
+.dtors
+ *crtbegin.o(.dtors)
+ *crtbegin?.o(.dtors)
+ *(EXCLUDE_FILE(*crtend?.o *crtend.o) .dtors)
+ *(SORT_BY_NAME(.dtors.*))
+ *(.dtors)
+
+.jcr
+ *(.jcr)
+
+.data.rel.ro    0x000000000001ad38        0x0
+ *(.data.rel.ro.local* .gnu.linkonce.d.rel.ro.local.*)
+ *(.data.rel.ro .data.rel.ro.* .gnu.linkonce.d.rel.ro.*)
+ .data.rel.ro   0x000000000001ad38        0x0 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+
+.dynamic        0x000000000001ad38      0x220
+ *(.dynamic)
+ .dynamic       0x000000000001ad38      0x220 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+                0x000000000001ad38                _DYNAMIC
+
+.got            0x000000000001af58       0x90
+ *(.got)
+ .got           0x000000000001af58       0x90 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+                0x000000000001af58                _GLOBAL_OFFSET_TABLE_
+ *(.igot)
+                0x000000000001afe8                . = DATA_SEGMENT_RELRO_END (., 0x18)
+
+.got.plt        0x000000000001afe8      0x2a0
+ *(.got.plt)
+ .got.plt       0x000000000001afe8      0x2a0 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+ *(.igot.plt)
+
+.data           0x000000000001b288       0x10
+                [!provide]                        PROVIDE (__data_start = .)
+ *(.data .data.* .gnu.linkonce.d.*)
+ .data          0x000000000001b288        0x0 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+ .data          0x000000000001b288        0x0 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../lib/gcc/aarch64-none-linux-gnu/9.2.1/crtbeginS.o
+ .data.rel.local
+                0x000000000001b288        0x8 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../lib/gcc/aarch64-none-linux-gnu/9.2.1/crtbeginS.o
+                0x000000000001b288                __dso_handle
+ .data          0x000000000001b290        0x0 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/onnxrt_ep/out/J7/A72/LINUX/release/module/src.armv8/../onnxrt_ep.o
+ .data.rel.local.DW.ref.__gxx_personality_v0
+                0x000000000001b290        0x8 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/onnxrt_ep/out/J7/A72/LINUX/release/module/src.armv8/../onnxrt_ep.o
+                0x000000000001b290                DW.ref.__gxx_personality_v0
+ .data          0x000000000001b298        0x0 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/onnxrt_ep/out/J7/A72/LINUX/release/module/src.armv8/../../../common/tidl_runtimes_infer_common.o
+ .data          0x000000000001b298        0x0 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/onnxrt_ep/out/J7/A72/LINUX/release/module/src.armv8/../../../common/tidl_onnxrt_common.o
+ .data          0x000000000001b298        0x0 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../lib/gcc/aarch64-none-linux-gnu/9.2.1/crtendS.o
+ .data          0x000000000001b298        0x0 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crtn.o
+
+.tm_clone_table
+                0x000000000001b298        0x0
+ .tm_clone_table
+                0x000000000001b298        0x0 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../lib/gcc/aarch64-none-linux-gnu/9.2.1/crtbeginS.o
+ .tm_clone_table
+                0x000000000001b298        0x0 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../lib/gcc/aarch64-none-linux-gnu/9.2.1/crtendS.o
+
+.data1
+ *(.data1)
+                [!provide]                        PROVIDE (_edata = .)
+                [!provide]                        PROVIDE (edata = .)
+                0x000000000001b298                . = .
+                [!provide]                        PROVIDE (__bss_start = .)
+                [!provide]                        PROVIDE (__bss_start__ = .)
+
+.bss            0x000000000001b298       0x28
+ *(.dynbss)
+ .dynbss        0x000000000001b298        0x0 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+ *(.bss .bss.* .gnu.linkonce.b.*)
+ .bss           0x000000000001b298        0x0 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+ .bss           0x000000000001b298        0x1 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../lib/gcc/aarch64-none-linux-gnu/9.2.1/crtbeginS.o
+ *fill*         0x000000000001b299        0x7 
+ .bss           0x000000000001b2a0        0x9 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/onnxrt_ep/out/J7/A72/LINUX/release/module/src.armv8/../onnxrt_ep.o
+ *fill*         0x000000000001b2a9        0x7 
+ .bss           0x000000000001b2b0        0x1 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/onnxrt_ep/out/J7/A72/LINUX/release/module/src.armv8/../../../common/tidl_runtimes_infer_common.o
+ *fill*         0x000000000001b2b1        0x7 
+ .bss           0x000000000001b2b8        0x1 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/onnxrt_ep/out/J7/A72/LINUX/release/module/src.armv8/../../../common/tidl_onnxrt_common.o
+ .bss           0x000000000001b2b9        0x0 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../lib/gcc/aarch64-none-linux-gnu/9.2.1/crtendS.o
+ .bss           0x000000000001b2b9        0x0 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crtn.o
+ *(COMMON)
+                0x000000000001b2c0                . = ALIGN ((. != 0x0)?0x8:0x1)
+ *fill*         0x000000000001b2b9        0x7 
+                [!provide]                        PROVIDE (_bss_end__ = .)
+                [!provide]                        PROVIDE (__bss_end__ = .)
+                0x000000000001b2c0                . = ALIGN (0x8)
+                0x000000000001b2c0                . = SEGMENT_START ("ldata-segment", .)
+                0x000000000001b2c0                . = ALIGN (0x8)
+                [!provide]                        PROVIDE (__end__ = .)
+                [!provide]                        PROVIDE (_end = .)
+                [!provide]                        PROVIDE (end = .)
+                0x000000000001b2c0                . = DATA_SEGMENT_END (.)
+
+.stab
+ *(.stab)
+
+.stabstr
+ *(.stabstr)
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.comment        0x0000000000000000       0x5a
+ *(.comment)
+ .comment       0x0000000000000000       0x5a /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../lib/gcc/aarch64-none-linux-gnu/9.2.1/crtbeginS.o
+                                         0x5b (size before relaxing)
+ .comment       0x000000000000005a       0x5b /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/onnxrt_ep/out/J7/A72/LINUX/release/module/src.armv8/../onnxrt_ep.o
+ .comment       0x000000000000005a       0x5b /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/onnxrt_ep/out/J7/A72/LINUX/release/module/src.armv8/../../../common/tidl_runtimes_infer_common.o
+ .comment       0x000000000000005a       0x5b /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/onnxrt_ep/out/J7/A72/LINUX/release/module/src.armv8/../../../common/tidl_onnxrt_common.o
+ .comment       0x000000000000005a       0x5b /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../lib/gcc/aarch64-none-linux-gnu/9.2.1/crtendS.o
+
+.gnu.build.attributes
+ *(.gnu.build.attributes .gnu.build.attributes.*)
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges  0x0000000000000000       0x90
+ *(.debug_aranges)
+ .debug_aranges
+                0x0000000000000000       0x50 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+ .debug_aranges
+                0x0000000000000050       0x40 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crtn.o
+
+.debug_pubnames
+ *(.debug_pubnames)
+
+.debug_info     0x0000000000000000       0x44
+ *(.debug_info .gnu.linkonce.wi.*)
+ .debug_info    0x0000000000000000       0x22 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+ .debug_info    0x0000000000000022       0x22 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crtn.o
+
+.debug_abbrev   0x0000000000000000       0x24
+ *(.debug_abbrev)
+ .debug_abbrev  0x0000000000000000       0x12 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+ .debug_abbrev  0x0000000000000012       0x12 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crtn.o
+
+.debug_line     0x0000000000000000       0xde
+ *(.debug_line .debug_line.* .debug_line_end)
+ .debug_line    0x0000000000000000       0x7c /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+ .debug_line    0x000000000000007c       0x62 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crtn.o
+
+.debug_frame
+ *(.debug_frame)
+
+.debug_str      0x0000000000000000       0xa8
+ *(.debug_str)
+ .debug_str     0x0000000000000000       0x8e /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+ .debug_str     0x000000000000008e       0x1a /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crtn.o
+                                         0x8e (size before relaxing)
+
+.debug_loc
+ *(.debug_loc)
+
+.debug_macinfo
+ *(.debug_macinfo)
+
+.debug_weaknames
+ *(.debug_weaknames)
+
+.debug_funcnames
+ *(.debug_funcnames)
+
+.debug_typenames
+ *(.debug_typenames)
+
+.debug_varnames
+ *(.debug_varnames)
+
+.debug_pubtypes
+ *(.debug_pubtypes)
+
+.debug_ranges   0x0000000000000000       0x90
+ *(.debug_ranges)
+ .debug_ranges  0x0000000000000000       0x50 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+ .debug_ranges  0x0000000000000050       0x40 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crtn.o
+
+.debug_macro
+ *(.debug_macro)
+
+.debug_addr
+ *(.debug_addr)
+
+.ARM.attributes
+ *(.ARM.attributes)
+ *(.gnu.attributes)
+
+.note.gnu.arm.ident
+ *(.note.gnu.arm.ident)
+
+/DISCARD/
+ *(.note.GNU-stack)
+ *(.gnu_debuglink)
+ *(.gnu.lto_*)
+OUTPUT(/opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/onnxrt_ep/out/J7/A72/LINUX/release/libtidl_onnxrt_EP.so.1.0 elf64-littleaarch64)

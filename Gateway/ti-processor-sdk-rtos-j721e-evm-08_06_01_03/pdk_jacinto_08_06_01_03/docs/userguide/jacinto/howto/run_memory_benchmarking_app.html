@@ -1,0 +1,724 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>7.3. Building and Running Memory Benchmarking Configurations &mdash; Platform Development Kit (PDK) - JACINTO User Guide</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Platform Development Kit (PDK) - JACINTO User Guide" href="../index.html"/>
+        <link rel="up" title="7. How to Guides" href="../family_cfg/jacinto/index_howto_jacinto.html"/>
+        <link rel="next" title="8. Frequently Asked Questions" href="../family_cfg/jacinto/index_faq_jacinto.html"/>
+        <link rel="prev" title="7.2. Relocation of sections at runtime" href="run_time_placement_sections.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index_jacinto.html" class="icon icon-home"> Platform Development Kit (PDK) - JACINTO User Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                08_06_01
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">1. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_release_notes_jacinto.html">2. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">3. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_modules_jacinto.html">4. Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_boot_jacinto.html">5. Bootloader (SBL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_board_jacinto.html">6. Board/EVM Abstraction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../family_cfg/jacinto/index_howto_jacinto.html">7. How to Guides</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="run_apps_from_ddr_on_r5.html">7.1. Run a Application from DDR on R5 Cores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run_time_placement_sections.html">7.2. Relocation of sections at runtime</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">7.3. Building and Running Memory Benchmarking Configurations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#demo-overview">7.3.1. Demo Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#supported-configurations">7.3.2. Supported Configurations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-build">7.3.3. How to Build</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#single-core-benchmarking">7.3.3.1. Single Core Benchmarking</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#multicore-core-benchmarking">7.3.3.2. Multicore Core Benchmarking</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-run-linux-host-machine-assumed">7.3.4. How to Run (Linux Host Machine Assumed)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#via-ospi">7.3.4.1. Via OSPI</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#addtional-notes">7.3.5. Addtional Notes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_faq_jacinto.html">8. Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_developer_notes_jacinto.html">9. Developer Notes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index_jacinto.html">Platform Development Kit (PDK) - JACINTO User Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index_jacinto.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../family_cfg/jacinto/index_howto_jacinto.html">7. How to Guides</a> &raquo;</li>
+      
+    <li>7.3. Building and Running Memory Benchmarking Configurations</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="building-and-running-memory-benchmarking-configurations">
+<h1>7.3. Building and Running Memory Benchmarking Configurations<a class="headerlink" href="#building-and-running-memory-benchmarking-configurations" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="demo-overview">
+<h2>7.3.1. Demo Overview<a class="headerlink" href="#demo-overview" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>This demo provides a means of measuring the performance of a
+realistic application where the text of the application is sitting in
+various memory locations and the data is sitting in On-Chip-Memory
+RAM (referred to as OCM, OCMC or OCMRAM).</li>
+<li>The application executes 10 different configurations of the same text
+varying by data vs. instruction cache intensity. Each test calls 16
+separate functions 500 total times in random order.</li>
+<li>The most instruction intensive example achieves a instruction cache
+miss rate (ICM/sec) of ~3-4 million per second when run entirely from
+OCMRAM. This is a rate that we have similarly seen in real-world
+customer examples.</li>
+<li>More data instensive tests have more repetitive code, achieving much
+lower ICM rates.</li>
+</ul>
+<table border="1" class="docutils">
+<colgroup>
+<col width="40%" />
+<col width="60%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Application Output</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">Mem</span> <span class="pre">Cpy</span> <span class="pre">size</span>&nbsp;&nbsp;&nbsp; <span class="pre">=&gt;</span> <span class="pre">100</span></code></td>
+<td>Size of the memcpy in bytes executed by each task</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">Exec</span> <span class="pre">Time</span> <span class="pre">in</span> <span class="pre">usec</span> <span class="pre">=&gt;</span> <span class="pre">2567</span></code></td>
+<td>Amount of time in microseconds</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">Iter</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="pre">=&gt;</span> <span class="pre">1</span></code></td>
+<td>Number of times the test was run</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">Task</span> <span class="pre">calls</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="pre">=&gt;</span> <span class="pre">500</span></code></td>
+<td>Number of randomly ordered calls to the 16 tasks</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">Inst</span> <span class="pre">Cache</span> <span class="pre">miss</span> <span class="pre">=&gt;</span> <span class="pre">11421</span></code></td>
+<td>Total instruction cache misses</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">Inst</span> <span class="pre">Cache</span> <span class="pre">acc</span>&nbsp; <span class="pre">=&gt;</span> <span class="pre">650207</span></code></td>
+<td>Total instruction cache accesses</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">num</span> <span class="pre">switches</span>&nbsp;&nbsp;&nbsp; <span class="pre">=&gt;</span> <span class="pre">1469</span></code></td>
+<td>Number of total context switches</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">num</span> <span class="pre">instr</span> <span class="pre">exec</span>&nbsp; <span class="pre">=&gt;</span> <span class="pre">1029260</span></code></td>
+<td>Total number of executed instructions</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">ICM/sec</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="pre">=&gt;</span> <span class="pre">4449162</span></code></td>
+<td>Instruction cache misses per second</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">INST/sec</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="pre">=&gt;</span> <span class="pre">400958317</span></code></td>
+<td>Instructions executed per second</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="supported-configurations">
+<h2>7.3.2. Supported Configurations<a class="headerlink" href="#supported-configurations" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="30%" />
+<col width="13%" />
+<col width="57%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Core</th>
+<th class="head">SOC</th>
+<th class="head">Supported Memory Configs (MEM_CONF)</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>mcu1_0</td>
+<td>j721e</td>
+<td>ocmc msmc ddr xip</td>
+</tr>
+<tr class="row-odd"><td>mcu2_0</td>
+<td>j721e</td>
+<td>ocmc msmc ddr xip</td>
+</tr>
+<tr class="row-even"><td>mcu1_0 + mcu2_0</td>
+<td>j721e</td>
+<td>ocmc ddr xip</td>
+</tr>
+<tr class="row-odd"><td>mcu1_0</td>
+<td>j7200</td>
+<td>ocmc msmc ddr xip</td>
+</tr>
+<tr class="row-even"><td>mcu2_0</td>
+<td>j7200</td>
+<td>ocmc msmc ddr xip</td>
+</tr>
+<tr class="row-odd"><td>mcu1_0 + mcu2_0</td>
+<td>j7200</td>
+<td>ocmc ddr xip</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="how-to-build">
+<h2>7.3.3. How to Build<a class="headerlink" href="#how-to-build" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Go to the build folder, namely, /packages/ti/build/</li>
+</ul>
+<div class="section" id="single-core-benchmarking">
+<h3>7.3.3.1. Single Core Benchmarking<a class="headerlink" href="#single-core-benchmarking" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic">
+<li><p class="first">OCMC Single Core Benchmarking</p>
+</li>
+<li><p class="first">XIP Single Core Benchmarking</p>
+</li>
+<li><p class="first">MSMC Single Core Benchmarking</p>
+</li>
+<li><p class="first">DDR Single Core Benchmarking</p>
+<p><strong>OCMC Single Core Benchmarking</strong></p>
+<blockquote>
+<div><ul>
+<li><p class="first">Build the bootloader</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">make</span> <span class="pre">sbl_lib_cust_clean</span> <span class="pre">SOC=j721e</span> <span class="pre">BOARD=j721e_evm</span> <span class="pre">CORE=mcu1_0</span> <span class="pre">-sj</span></code></li>
+<li><code class="docutils literal"><span class="pre">make</span> <span class="pre">sbl_cust_img</span> <span class="pre">SOC=j721e</span> <span class="pre">BOARD=j721e_evm</span> <span class="pre">CORE=mcu1_0</span> <span class="pre">-sj</span></code></li>
+</ul>
+</li>
+<li><p class="first">Build the application</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">make</span> <span class="pre">ocmc_memory_benchmarking_app_freertos</span> <span class="pre">CORE=[CORE]</span> <span class="pre">SOC=j721e</span> <span class="pre">BOARD=j721e_evm</span> <span class="pre">-sj</span></code></li>
+</ul>
+</li>
+<li><p class="first">Note : If ocmc memory benchmarking app is running on mcu2_0 then SBL need to RAT map main OCM RAM to 32 bit address so instead of sbl_cust_img use sbl_cust_rat_main_ocm_img</p>
+<blockquote>
+<div></div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+<p><strong>XIP Single Core Benchmarking</strong></p>
+<blockquote>
+<div><ul>
+<li><p class="first">Build the bootloader</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">make</span> <span class="pre">sbl_lib_cust_clean</span> <span class="pre">SOC=j721e</span> <span class="pre">BOARD=j721e_evm</span> <span class="pre">CORE=mcu1_0</span> <span class="pre">-sj</span></code></li>
+<li><code class="docutils literal"><span class="pre">make</span> <span class="pre">sbl_xip_img</span> <span class="pre">SOC=j721e</span> <span class="pre">BOARD=j721e_evm</span> <span class="pre">CORE=mcu1_0</span> <span class="pre">-sj</span></code></li>
+</ul>
+</li>
+<li><p class="first">Build the application</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">make</span> <span class="pre">xip_memory_benchmarking_app_freertos</span> <span class="pre">CORE=[CORE]</span> <span class="pre">SOC=j721e</span> <span class="pre">BOARD=j721e_evm</span> <span class="pre">-sj</span></code></li>
+</ul>
+</li>
+<li><p class="first">Note : If xip memory benchmarking app is benchmarking for 133 MHz then OSPI should be configured for 133 MHz in SBL. Use sbl_xip_133_img instead of sbl_xip_img</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">make</span> <span class="pre">sbl_lib_cust_clean</span> <span class="pre">SOC=j721e</span> <span class="pre">BOARD=j721e_evm</span> <span class="pre">CORE=mcu1_0</span> <span class="pre">-sj</span></code></li>
+<li><code class="docutils literal"><span class="pre">make</span> <span class="pre">sbl_xip_133_img</span> <span class="pre">SOC=j721e</span> <span class="pre">BOARD=j721e_evm</span> <span class="pre">CORE=mcu1_0</span> <span class="pre">-sj</span></code></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+<p><strong>MSMC Single Core Benchmarking</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li>Build the bootloader<ul>
+<li><code class="docutils literal"><span class="pre">make</span> <span class="pre">sbl_lib_cust_clean</span> <span class="pre">SOC=j721e</span> <span class="pre">BOARD=j721e_evm</span> <span class="pre">CORE=mcu1_0</span> <span class="pre">-sj</span></code></li>
+<li><code class="docutils literal"><span class="pre">make</span> <span class="pre">sbl_cust_img</span> <span class="pre">SOC=j721e</span> <span class="pre">BOARD=j721e_evm</span> <span class="pre">CORE=mcu1_0</span> <span class="pre">-sj</span></code></li>
+</ul>
+</li>
+<li>Build the application<ul>
+<li><code class="docutils literal"><span class="pre">make</span> <span class="pre">msmc_memory_benchmarking_app_freertos</span> <span class="pre">CORE=[CORE]</span> <span class="pre">SOC=j721e</span> <span class="pre">BOARD=j721e_evm</span> <span class="pre">-sj</span></code></li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+<p><strong>DDR Single Core Benchmarking</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li>Build the bootloader<ul>
+<li><code class="docutils literal"><span class="pre">make</span> <span class="pre">sbl_lib_cust_clean</span> <span class="pre">SOC=j721e</span> <span class="pre">BOARD=j721e_evm</span> <span class="pre">CORE=mcu1_0</span> <span class="pre">-sj</span></code></li>
+<li><code class="docutils literal"><span class="pre">make</span> <span class="pre">sbl_cust_img</span> <span class="pre">SOC=j721e</span> <span class="pre">BOARD=j721e_evm</span> <span class="pre">CORE=mcu1_0</span> <span class="pre">-sj</span></code></li>
+</ul>
+</li>
+<li>Build the application<ul>
+<li><code class="docutils literal"><span class="pre">make</span> <span class="pre">ddr_memory_benchmarking_app_freertos</span> <span class="pre">CORE=[CORE]</span> <span class="pre">SOC=j721e</span> <span class="pre">BOARD=j721e_evm</span> <span class="pre">-sj</span></code></li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ol>
+</div>
+<div class="section" id="multicore-core-benchmarking">
+<h3>7.3.3.2. Multicore Core Benchmarking<a class="headerlink" href="#multicore-core-benchmarking" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic">
+<li><p class="first">OCMC Multicore Core Benchmarking</p>
+</li>
+<li><p class="first">XIP Multicore Core Benchmarking</p>
+</li>
+<li><p class="first">MSMC Multicore Core Benchmarking</p>
+</li>
+<li><p class="first">DDR Multicore Core Benchmarking</p>
+<p><strong>OCMC Multicore Core Benchmarking</strong></p>
+<blockquote>
+<div><ul>
+<li><p class="first">Build the bootloader</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">make</span> <span class="pre">sbl_lib_cust_clean</span> <span class="pre">SOC=j721e</span> <span class="pre">BOARD=j721e_evm</span> <span class="pre">CORE=mcu1_0</span> <span class="pre">-sj</span></code></li>
+<li><code class="docutils literal"><span class="pre">make</span> <span class="pre">sbl_cust_img</span> <span class="pre">SOC=j721e</span> <span class="pre">BOARD=j721e_evm</span> <span class="pre">CORE=mcu1_0</span> <span class="pre">-sj</span></code></li>
+</ul>
+</li>
+<li><p class="first">Build the applications and generate multicore image</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">make</span> <span class="pre">sbl_cust_img</span> <span class="pre">SOC=j721e</span> <span class="pre">BOARD=j721e_evm</span> <span class="pre">-sj</span></code></li>
+<li><code class="docutils literal"><span class="pre">make</span> <span class="pre">ocmc_memory_benchmarking_app_freertos</span> <span class="pre">CORE=mcu1_0</span> <span class="pre">SOC=j721e</span> <span class="pre">BOARD=j721e_evm</span> <span class="pre">MULTICORE=1</span> <span class="pre">-sj</span></code></li>
+<li><code class="docutils literal"><span class="pre">make</span> <span class="pre">ocmc_memory_benchmarking_app_freertos</span> <span class="pre">CORE=mcu2_0</span> <span class="pre">SOC=j721e</span> <span class="pre">BOARD=j721e_evm</span> <span class="pre">MULTICORE=1</span> <span class="pre">-sj</span></code></li>
+<li><code class="docutils literal"><span class="pre">../boot/sbl/tools/multicoreImageGen/bin/MulticoreImageGen</span> <span class="pre">LE</span> <span class="pre">55</span> <span class="pre">ocmc_multicore.appimage</span> <span class="pre">8</span> <span class="pre">../binary/ocmc_memory_benchmarking_app_freertos/bin/j721e_evm/ocmc_memory_benchmarking_app_freertos_mcu1_0_release.rprc</span>&nbsp; <span class="pre">10</span> <span class="pre">../binary/ocmc_memory_benchmarking_app_freertos/bin/j721e_evm/ocmc_memory_benchmarking_app_freertos_mcu2_0_release.rprc</span></code></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+<p><strong>XIP Multicore Core Benchmarking</strong></p>
+<blockquote>
+<div><ul>
+<li><p class="first">Build the bootloader</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">make</span> <span class="pre">sbl_lib_cust_clean</span> <span class="pre">SOC=j721e</span> <span class="pre">BOARD=j721e_evm</span> <span class="pre">CORE=mcu1_0</span> <span class="pre">-sj</span></code></li>
+<li><code class="docutils literal"><span class="pre">make</span> <span class="pre">sbl_xip_img</span> <span class="pre">SOC=j721e</span> <span class="pre">BOARD=j721e_evm</span> <span class="pre">CORE=mcu1_0</span> <span class="pre">-sj</span></code></li>
+</ul>
+</li>
+<li><p class="first">Build the applications and generate multicore image</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">make</span> <span class="pre">sbl_cust_img</span> <span class="pre">SOC=j721e</span> <span class="pre">BOARD=j721e_evm</span> <span class="pre">-sj</span></code></li>
+<li><code class="docutils literal"><span class="pre">make</span> <span class="pre">xip_memory_benchmarking_app_freertos</span> <span class="pre">CORE=mcu1_0</span> <span class="pre">SOC=j721e</span> <span class="pre">BOARD=j721e_evm</span> <span class="pre">MULTICORE=1</span> <span class="pre">-sj</span></code></li>
+<li><code class="docutils literal"><span class="pre">make</span> <span class="pre">xip_memory_benchmarking_app_freertos</span> <span class="pre">CORE=mcu2_0</span> <span class="pre">SOC=j721e</span> <span class="pre">BOARD=j721e_evm</span> <span class="pre">MULTICORE=1</span> <span class="pre">-sj</span></code></li>
+<li><code class="docutils literal"><span class="pre">../boot/sbl/tools/multicoreImageGen/bin/MulticoreImageGen</span> <span class="pre">LE</span> <span class="pre">55</span> <span class="pre">xip_multicore.appimage</span> <span class="pre">8</span> <span class="pre">../binary/xip_memory_benchmarking_app_freertos/bin/j721e_evm/xip_memory_benchmarking_app_freertos_mcu1_0_release.rprc</span>&nbsp; <span class="pre">10</span> <span class="pre">../binary/xip_memory_benchmarking_app_freertos/bin/j721e_evm/xip_memory_benchmarking_app_freertos_mcu2_0_release.rprc</span></code></li>
+<li><code class="docutils literal"><span class="pre">../boot/sbl/tools/multicoreImageGen/bin/MulticoreImageGen</span> <span class="pre">LE</span> <span class="pre">55</span> <span class="pre">[MEM_CONF]_multicore.appimage</span> <span class="pre">8</span> <span class="pre">../binary/[MEM_CONF]_memory_benchmarking_app_freertos/bin/j721e_evm/[MEM_CONF]_memory_benchmarking_app_freertos_mcu1_0_release.rprc</span>&nbsp; <span class="pre">10</span> <span class="pre">../binary/[MEM_CONF]_memory_benchmarking_app_freertos/bin/j721e_evm/[MEM_CONF]_memory_benchmarking_app_freertos_mcu2_0_release.rprc</span></code></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">Note : If xip memory benchmarking app is benchmarking for 133 MHz then OSPI should be configured for 133 MHz in SBL. Use sbl_xip_133_img instead of sbl_xip_img</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">make</span> <span class="pre">sbl_lib_cust_clean</span> <span class="pre">SOC=j721e</span> <span class="pre">BOARD=j721e_evm</span> <span class="pre">CORE=mcu1_0</span> <span class="pre">-sj</span></code></li>
+<li><code class="docutils literal"><span class="pre">make</span> <span class="pre">sbl_xip_133_img</span> <span class="pre">SOC=j721e</span> <span class="pre">BOARD=j721e_evm</span> <span class="pre">CORE=mcu1_0</span> <span class="pre">-sj</span></code></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+<p><strong>MSMC Multicore Core Benchmarking</strong></p>
+<blockquote>
+<div><ul>
+<li><p class="first">Build the bootloader</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">make</span> <span class="pre">sbl_lib_cust_clean</span> <span class="pre">SOC=j721e</span> <span class="pre">BOARD=j721e_evm</span> <span class="pre">CORE=mcu1_0</span> <span class="pre">-sj</span></code></li>
+<li><code class="docutils literal"><span class="pre">make</span> <span class="pre">sbl_cust_img</span> <span class="pre">SOC=j721e</span> <span class="pre">BOARD=j721e_evm</span> <span class="pre">CORE=mcu1_0</span> <span class="pre">-sj</span></code></li>
+</ul>
+</li>
+<li><p class="first">Build the applications and generate multicore image</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">make</span> <span class="pre">sbl_cust_img</span> <span class="pre">SOC=j721e</span> <span class="pre">BOARD=j721e_evm</span> <span class="pre">-sj</span></code></li>
+<li><code class="docutils literal"><span class="pre">make</span> <span class="pre">msmc_memory_benchmarking_app_freertos</span> <span class="pre">CORE=mcu1_0</span> <span class="pre">SOC=j721e</span> <span class="pre">BOARD=j721e_evm</span> <span class="pre">MULTICORE=1</span> <span class="pre">-sj</span></code></li>
+<li><code class="docutils literal"><span class="pre">make</span> <span class="pre">msmc_memory_benchmarking_app_freertos</span> <span class="pre">CORE=mcu2_0</span> <span class="pre">SOC=j721e</span> <span class="pre">BOARD=j721e_evm</span> <span class="pre">MULTICORE=1</span> <span class="pre">-sj</span></code></li>
+<li><code class="docutils literal"><span class="pre">../boot/sbl/tools/multicoreImageGen/bin/MulticoreImageGen</span> <span class="pre">LE</span> <span class="pre">55</span> <span class="pre">msmc_multicore.appimage</span> <span class="pre">8</span> <span class="pre">../binary/msmc_memory_benchmarking_app_freertos/bin/j721e_evm/msmc_memory_benchmarking_app_freertos_mcu1_0_release.rprc</span>&nbsp; <span class="pre">10</span> <span class="pre">../binary/msmc_memory_benchmarking_app_freertos/bin/j721e_evm/msmc_memory_benchmarking_app_freertos_mcu2_0_release.rprc</span></code></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+<p><strong>DDR Multicore Core Benchmarking</strong></p>
+<blockquote>
+<div><ul>
+<li><p class="first">Build the bootloader</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">make</span> <span class="pre">sbl_lib_cust_clean</span> <span class="pre">SOC=j721e</span> <span class="pre">BOARD=j721e_evm</span> <span class="pre">CORE=mcu1_0</span> <span class="pre">-sj</span></code></li>
+<li><code class="docutils literal"><span class="pre">make</span> <span class="pre">sbl_cust_img</span> <span class="pre">SOC=j721e</span> <span class="pre">BOARD=j721e_evm</span> <span class="pre">CORE=mcu1_0</span> <span class="pre">-sj</span></code></li>
+</ul>
+</li>
+<li><p class="first">Build the applications and generate multicore image</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">make</span> <span class="pre">sbl_cust_img</span> <span class="pre">SOC=j721e</span> <span class="pre">BOARD=j721e_evm</span> <span class="pre">-sj</span></code></li>
+<li><code class="docutils literal"><span class="pre">make</span> <span class="pre">ddr_memory_benchmarking_app_freertos</span> <span class="pre">CORE=mcu1_0</span> <span class="pre">SOC=j721e</span> <span class="pre">BOARD=j721e_evm</span> <span class="pre">MULTICORE=1</span> <span class="pre">-sj</span></code></li>
+<li><code class="docutils literal"><span class="pre">make</span> <span class="pre">ddr_memory_benchmarking_app_freertos</span> <span class="pre">CORE=mcu2_0</span> <span class="pre">SOC=j721e</span> <span class="pre">BOARD=j721e_evm</span> <span class="pre">MULTICORE=1</span> <span class="pre">-sj</span></code></li>
+<li><code class="docutils literal"><span class="pre">../boot/sbl/tools/multicoreImageGen/bin/MulticoreImageGen</span> <span class="pre">LE</span> <span class="pre">55</span> <span class="pre">ddr_multicore.appimage</span> <span class="pre">8</span> <span class="pre">../binary/ddr_memory_benchmarking_app_freertos/bin/j721e_evm/ddr_memory_benchmarking_app_freertos_mcu1_0_release.rprc</span>&nbsp; <span class="pre">10</span> <span class="pre">../binary/ddr_memory_benchmarking_app_freertos/bin/j721e_evm/ddr_memory_benchmarking_app_freertos_mcu2_0_release.rprc</span></code></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="how-to-run-linux-host-machine-assumed">
+<h2>7.3.4. How to Run (Linux Host Machine Assumed)<a class="headerlink" href="#how-to-run-linux-host-machine-assumed" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="via-ospi">
+<h3>7.3.4.1. Via OSPI<a class="headerlink" href="#via-ospi" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Put the EVM in UART boot mode</li>
+<li>Download and install the <a class="reference external" href="https://www.ti.com/tool/UNIFLASH">uniflashOSPI_FREQ_133
+tool</a></li>
+<li>For mcu1_0: Attach USB cable to UART Terminal 1 <em>of the MCU UART
+port</em> (<code class="docutils literal"><span class="pre">sudo</span> <span class="pre">minicom</span> <span class="pre">-D</span> <span class="pre">/dev/ttyUSB1</span></code>) to see the output of the
+application</li>
+<li>For mcu2_0: Attach USB cable to UART Terminal 0 <em>of the Main UART
+port</em> (<code class="docutils literal"><span class="pre">sudo</span> <span class="pre">minicom</span> <span class="pre">-D</span> <span class="pre">/dev/ttyUSB0</span></code>) to see the output of the
+application</li>
+<li>Power on the EVM in OSPI boot mode after flashing the below images in UART boot mode</li>
+</ul>
+<ol class="arabic">
+<li><p class="first">OCMC Single Core Benchmarking</p>
+</li>
+<li><p class="first">XIP Single Core Benchmarking</p>
+</li>
+<li><p class="first">MSMC Single Core Benchmarking</p>
+</li>
+<li><p class="first">DDR Single Core Benchmarking</p>
+</li>
+<li><p class="first">OCMC Multicore Core Benchmarking</p>
+</li>
+<li><p class="first">XIP Multicore Core Benchmarking</p>
+</li>
+<li><p class="first">MSMC Multicore Core Benchmarking</p>
+</li>
+<li><p class="first">DDR Multicore Core Benchmarking</p>
+<p><strong>OCMC Single Core Benchmarking</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">&lt;uniflash_directory&gt;/dslite.sh</span> <span class="pre">--mode</span> <span class="pre">processors</span> <span class="pre">-c</span> <span class="pre">/dev/ttyUSB1</span> <span class="pre">-f</span> <span class="pre">&lt;uniflash_directory&gt;/processors/FlashWriter/j721e_evm/uart_j721e_evm_flash_programmer_release.tiimage</span> <span class="pre">-i</span> <span class="pre">0</span></code></li>
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">&lt;uniflash_directory&gt;/dslite.sh</span> <span class="pre">--mode</span> <span class="pre">processors</span> <span class="pre">-c</span> <span class="pre">/dev/ttyUSB1</span> <span class="pre">-f</span> <span class="pre">&lt;pdk_path&gt;/packages/ti/boot/sbl/binary/j721e_evm/cust/bin/sbl_cust_img_mcu1_0_release.tiimage</span> <span class="pre">-d</span> <span class="pre">3</span> <span class="pre">-o</span> <span class="pre">0</span></code></li>
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">&lt;uniflash_directory&gt;/dslite.sh</span> <span class="pre">--mode</span> <span class="pre">processors</span> <span class="pre">-c</span> <span class="pre">/dev/ttyUSB1</span> <span class="pre">-f</span> <span class="pre">&lt;pdk_path&gt;/packages/ti/drv/sciclient/soc/V1/tifs.bin</span> <span class="pre">-d</span> <span class="pre">3</span> <span class="pre">-o</span> <span class="pre">80000</span></code></li>
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">&lt;uniflash_directory&gt;/dslite.sh</span> <span class="pre">--mode</span> <span class="pre">processors</span> <span class="pre">-c</span> <span class="pre">/dev/ttyUSB1</span> <span class="pre">-f</span> <span class="pre">&lt;pdk_path&gt;/packages/ti/binary/ocmc_memory_benchmarking_app_freertos/bin/j721e_evm/ocmc_memory_benchmarking_app_[CORE]_freertos_release.appimage</span> <span class="pre">-d</span> <span class="pre">3</span> <span class="pre">-o</span> <span class="pre">100000</span></code></li>
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">&lt;uniflash_directory&gt;/dslite.sh</span> <span class="pre">--mode</span> <span class="pre">processors</span> <span class="pre">-c</span> <span class="pre">/dev/ttyUSB1</span> <span class="pre">-f</span> <span class="pre">&lt;pdk_path&gt;/packages/ti/board/src/flash/nor/ospi/nor_spi_patterns.bin</span> <span class="pre">-d</span> <span class="pre">3</span> <span class="pre">-o</span> <span class="pre">3FE0000</span></code></li>
+</ul>
+</div></blockquote>
+<p><strong>XIP Single Core Benchmarking</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">&lt;uniflash_directory&gt;/dslite.sh</span> <span class="pre">--mode</span> <span class="pre">processors</span> <span class="pre">-c</span> <span class="pre">/dev/ttyUSB1</span> <span class="pre">-f</span> <span class="pre">&lt;uniflash_directory&gt;/processors/FlashWriter/j721e_evm/uart_j721e_evm_flash_programmer_release.tiimage</span> <span class="pre">-i</span> <span class="pre">0</span></code></li>
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">&lt;uniflash_directory&gt;/dslite.sh</span> <span class="pre">--mode</span> <span class="pre">processors</span> <span class="pre">-c</span> <span class="pre">/dev/ttyUSB1</span> <span class="pre">-f</span> <span class="pre">&lt;pdk_path&gt;/packages/ti/boot/sbl/binary/j721e_evm/cust/bin/sbl_cust_img_mcu1_0_release.tiimage</span> <span class="pre">-d</span> <span class="pre">3</span> <span class="pre">-o</span> <span class="pre">0</span></code></li>
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">&lt;uniflash_directory&gt;/dslite.sh</span> <span class="pre">--mode</span> <span class="pre">processors</span> <span class="pre">-c</span> <span class="pre">/dev/ttyUSB1</span> <span class="pre">-f</span> <span class="pre">&lt;pdk_path&gt;/packages/ti/drv/sciclient/soc/V1/tifs.bin</span> <span class="pre">-d</span> <span class="pre">3</span> <span class="pre">-o</span> <span class="pre">80000</span></code></li>
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">&lt;uniflash_directory&gt;/dslite.sh</span> <span class="pre">--mode</span> <span class="pre">processors</span> <span class="pre">-c</span> <span class="pre">/dev/ttyUSB1</span> <span class="pre">-f</span> <span class="pre">&lt;pdk_path&gt;/packages/ti/binary/xip_memory_benchmarking_app_freertos/bin/j721e_evm/xip_memory_benchmarking_app_[CORE]_freertos_release.appimage</span> <span class="pre">-d</span> <span class="pre">3</span> <span class="pre">-o</span> <span class="pre">100000</span></code></li>
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">&lt;uniflash_directory&gt;/dslite.sh</span> <span class="pre">--mode</span> <span class="pre">processors</span> <span class="pre">-c</span> <span class="pre">/dev/ttyUSB1</span> <span class="pre">-f</span> <span class="pre">&lt;pdk_path&gt;/packages/ti/binary/xip_memory_benchmarking_app_freertos/bin/j721e_evm/xip_memory_benchmarking_app_[CORE]_freertos_release.appimage_xip</span> <span class="pre">-d</span> <span class="pre">3</span></code></li>
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">&lt;uniflash_directory&gt;/dslite.sh</span> <span class="pre">--mode</span> <span class="pre">processors</span> <span class="pre">-c</span> <span class="pre">/dev/ttyUSB1</span> <span class="pre">-f</span> <span class="pre">&lt;pdk_path&gt;/packages/ti/board/src/flash/nor/ospi/nor_spi_patterns.bin</span> <span class="pre">-d</span> <span class="pre">3</span> <span class="pre">-o</span> <span class="pre">3FE0000</span></code></li>
+</ul>
+<ul>
+<li><p class="first">Note : if OSPI clock to be configured at 133 MHz flash sbl_xip_133_img instead of sbl_xip_img</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">&lt;uniflash_directory&gt;/dslite.sh</span> <span class="pre">--mode</span> <span class="pre">processors</span> <span class="pre">-c</span> <span class="pre">/dev/ttyUSB1</span> <span class="pre">-f</span> <span class="pre">&lt;pdk_path&gt;/packages/ti/boot/sbl/binary/j721e_evm/xip/bin/sbl_xip_133_img_mcu1_0_release.tiimage</span> <span class="pre">-d</span> <span class="pre">3</span> <span class="pre">-o</span> <span class="pre">0</span></code></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+<p><strong>MSMC Single Core Benchmarking</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">&lt;uniflash_directory&gt;/dslite.sh</span> <span class="pre">--mode</span> <span class="pre">processors</span> <span class="pre">-c</span> <span class="pre">/dev/ttyUSB1</span> <span class="pre">-f</span> <span class="pre">&lt;uniflash_directory&gt;/processors/FlashWriter/j721e_evm/uart_j721e_evm_flash_programmer_release.tiimage</span> <span class="pre">-i</span> <span class="pre">0</span></code></li>
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">&lt;uniflash_directory&gt;/dslite.sh</span> <span class="pre">--mode</span> <span class="pre">processors</span> <span class="pre">-c</span> <span class="pre">/dev/ttyUSB1</span> <span class="pre">-f</span> <span class="pre">&lt;pdk_path&gt;/packages/ti/boot/sbl/binary/j721e_evm/cust/bin/sbl_cust_img_mcu1_0_release.tiimage</span> <span class="pre">-d</span> <span class="pre">3</span> <span class="pre">-o</span> <span class="pre">0</span></code></li>
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">&lt;uniflash_directory&gt;/dslite.sh</span> <span class="pre">--mode</span> <span class="pre">processors</span> <span class="pre">-c</span> <span class="pre">/dev/ttyUSB1</span> <span class="pre">-f</span> <span class="pre">&lt;pdk_path&gt;/packages/ti/drv/sciclient/soc/V1/tifs.bin</span> <span class="pre">-d</span> <span class="pre">3</span> <span class="pre">-o</span> <span class="pre">80000</span></code></li>
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">&lt;uniflash_directory&gt;/dslite.sh</span> <span class="pre">--mode</span> <span class="pre">processors</span> <span class="pre">-c</span> <span class="pre">/dev/ttyUSB1</span> <span class="pre">-f</span> <span class="pre">&lt;pdk_path&gt;/packages/ti/binary/msmc_memory_benchmarking_app_freertos/bin/j721e_evm/msmc_memory_benchmarking_app_[CORE]_freertos_release.appimage</span> <span class="pre">-d</span> <span class="pre">3</span> <span class="pre">-o</span> <span class="pre">100000</span></code></li>
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">&lt;uniflash_directory&gt;/dslite.sh</span> <span class="pre">--mode</span> <span class="pre">processors</span> <span class="pre">-c</span> <span class="pre">/dev/ttyUSB1</span> <span class="pre">-f</span> <span class="pre">&lt;pdk_path&gt;/packages/ti/board/src/flash/nor/ospi/nor_spi_patterns.bin</span> <span class="pre">-d</span> <span class="pre">3</span> <span class="pre">-o</span> <span class="pre">3FE0000</span></code></li>
+</ul>
+</div></blockquote>
+<p><strong>DDR Single Core Benchmarking</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">&lt;uniflash_directory&gt;/dslite.sh</span> <span class="pre">--mode</span> <span class="pre">processors</span> <span class="pre">-c</span> <span class="pre">/dev/ttyUSB1</span> <span class="pre">-f</span> <span class="pre">&lt;uniflash_directory&gt;/processors/FlashWriter/j721e_evm/uart_j721e_evm_flash_programmer_release.tiimage</span> <span class="pre">-i</span> <span class="pre">0</span></code></li>
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">&lt;uniflash_directory&gt;/dslite.sh</span> <span class="pre">--mode</span> <span class="pre">processors</span> <span class="pre">-c</span> <span class="pre">/dev/ttyUSB1</span> <span class="pre">-f</span> <span class="pre">&lt;pdk_path&gt;/packages/ti/boot/sbl/binary/j721e_evm/cust/bin/sbl_cust_img_mcu1_0_release.tiimage</span> <span class="pre">-d</span> <span class="pre">3</span> <span class="pre">-o</span> <span class="pre">0</span></code></li>
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">&lt;uniflash_directory&gt;/dslite.sh</span> <span class="pre">--mode</span> <span class="pre">processors</span> <span class="pre">-c</span> <span class="pre">/dev/ttyUSB1</span> <span class="pre">-f</span> <span class="pre">&lt;pdk_path&gt;/packages/ti/drv/sciclient/soc/V1/tifs.bin</span> <span class="pre">-d</span> <span class="pre">3</span> <span class="pre">-o</span> <span class="pre">80000</span></code></li>
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">&lt;uniflash_directory&gt;/dslite.sh</span> <span class="pre">--mode</span> <span class="pre">processors</span> <span class="pre">-c</span> <span class="pre">/dev/ttyUSB1</span> <span class="pre">-f</span> <span class="pre">&lt;pdk_path&gt;/packages/ti/binary/ddr_memory_benchmarking_app_freertos/bin/j721e_evm/ddr_memory_benchmarking_app_[CORE]_freertos_release.appimage</span> <span class="pre">-d</span> <span class="pre">3</span> <span class="pre">-o</span> <span class="pre">100000</span></code></li>
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">&lt;uniflash_directory&gt;/dslite.sh</span> <span class="pre">--mode</span> <span class="pre">processors</span> <span class="pre">-c</span> <span class="pre">/dev/ttyUSB1</span> <span class="pre">-f</span> <span class="pre">&lt;pdk_path&gt;/packages/ti/board/src/flash/nor/ospi/nor_spi_patterns.bin</span> <span class="pre">-d</span> <span class="pre">3</span> <span class="pre">-o</span> <span class="pre">3FE0000</span></code></li>
+</ul>
+</div></blockquote>
+<p><strong>OCMC Multicore Core Benchmarking</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">&lt;uniflash_directory&gt;/dslite.sh</span> <span class="pre">--mode</span> <span class="pre">processors</span> <span class="pre">-c</span> <span class="pre">/dev/ttyUSB1</span> <span class="pre">-f</span> <span class="pre">&lt;uniflash_directory&gt;/processors/FlashWriter/j721e_evm/uart_j721e_evm_flash_programmer_release.tiimage</span> <span class="pre">-i</span> <span class="pre">0</span></code></li>
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">&lt;uniflash_directory&gt;/dslite.sh</span> <span class="pre">--mode</span> <span class="pre">processors</span> <span class="pre">-c</span> <span class="pre">/dev/ttyUSB1</span> <span class="pre">-f</span> <span class="pre">&lt;pdk_path&gt;/packages/ti/boot/sbl/binary/j721e_evm/cust/bin/sbl_cust_img_mcu1_0_release.tiimage</span> <span class="pre">-d</span> <span class="pre">3</span> <span class="pre">-o</span> <span class="pre">0</span></code></li>
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">&lt;uniflash_directory&gt;/dslite.sh</span> <span class="pre">--mode</span> <span class="pre">processors</span> <span class="pre">-c</span> <span class="pre">/dev/ttyUSB1</span> <span class="pre">-f</span> <span class="pre">&lt;pdk_path&gt;/packages/ti/drv/sciclient/soc/V2/tifs.bin</span> <span class="pre">-d</span> <span class="pre">3</span> <span class="pre">-o</span> <span class="pre">80000</span></code></li>
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">&lt;uniflash_directory&gt;/dslite.sh</span> <span class="pre">--mode</span> <span class="pre">processors</span> <span class="pre">-c</span> <span class="pre">/dev/ttyUSB1</span> <span class="pre">-f</span> <span class="pre">&lt;pdk_path&gt;/packages/ti/build/ocmc_multicore.appimage</span> <span class="pre">-d</span> <span class="pre">3</span> <span class="pre">-o</span> <span class="pre">100000</span></code></li>
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">&lt;uniflash_directory&gt;/dslite.sh</span> <span class="pre">--mode</span> <span class="pre">processors</span> <span class="pre">-c</span> <span class="pre">/dev/ttyUSB1</span> <span class="pre">-f</span> <span class="pre">&lt;pdk_path&gt;/packages/ti/board/src/flash/nor/ospi/nor_spi_patterns.bin</span> <span class="pre">-d</span> <span class="pre">3</span> <span class="pre">-o</span> <span class="pre">3FE0000</span></code></li>
+</ul>
+</div></blockquote>
+<p><strong>XIP Multicore Core Benchmarking</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">&lt;uniflash_directory&gt;/dslite.sh</span> <span class="pre">--mode</span> <span class="pre">processors</span> <span class="pre">-c</span> <span class="pre">/dev/ttyUSB1</span> <span class="pre">-f</span> <span class="pre">&lt;uniflash_directory&gt;/processors/FlashWriter/j721e_evm/uart_j721e_evm_flash_programmer_release.tiimage</span> <span class="pre">-i</span> <span class="pre">0</span></code></li>
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">&lt;uniflash_directory&gt;/dslite.sh</span> <span class="pre">--mode</span> <span class="pre">processors</span> <span class="pre">-c</span> <span class="pre">/dev/ttyUSB1</span> <span class="pre">-f</span> <span class="pre">&lt;pdk_path&gt;/packages/ti/boot/sbl/binary/j721e_evm/xip/bin/sbl_xip_img_mcu1_0_release.tiimage</span> <span class="pre">-d</span> <span class="pre">3</span> <span class="pre">-o</span> <span class="pre">0</span></code></li>
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">&lt;uniflash_directory&gt;/dslite.sh</span> <span class="pre">--mode</span> <span class="pre">processors</span> <span class="pre">-c</span> <span class="pre">/dev/ttyUSB1</span> <span class="pre">-f</span> <span class="pre">&lt;pdk_path&gt;/packages/ti/drv/sciclient/soc/V2/tifs.bin</span> <span class="pre">-d</span> <span class="pre">3</span> <span class="pre">-o</span> <span class="pre">80000</span></code></li>
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">&lt;uniflash_directory&gt;/dslite.sh</span> <span class="pre">--mode</span> <span class="pre">processors</span> <span class="pre">-c</span> <span class="pre">/dev/ttyUSB1</span> <span class="pre">-f</span> <span class="pre">&lt;pdk_path&gt;/packages/ti/build/xip_multicore.appimage</span> <span class="pre">-d</span> <span class="pre">3</span> <span class="pre">-o</span> <span class="pre">100000</span></code></li>
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">&lt;uniflash_directory&gt;/dslite.sh</span> <span class="pre">--mode</span> <span class="pre">processors</span> <span class="pre">-c</span> <span class="pre">/dev/ttyUSB1</span> <span class="pre">-f</span> <span class="pre">&lt;pdk_path&gt;/packages/ti/build/xip_multicore.appimage_xip</span> <span class="pre">-d</span> <span class="pre">3</span></code></li>
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">&lt;uniflash_directory&gt;/dslite.sh</span> <span class="pre">--mode</span> <span class="pre">processors</span> <span class="pre">-c</span> <span class="pre">/dev/ttyUSB1</span> <span class="pre">-f</span> <span class="pre">&lt;pdk_path&gt;/packages/ti/board/src/flash/nor/ospi/nor_spi_patterns.bin</span> <span class="pre">-d</span> <span class="pre">3</span> <span class="pre">-o</span> <span class="pre">3FE0000</span></code></li>
+</ul>
+</div></blockquote>
+<ul>
+<li><p class="first">Note : if OSPI clock to be configured at 133 MHz flash sbl_xip_133_img instead of sbl_xip_img</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">&lt;uniflash_directory&gt;/dslite.sh</span> <span class="pre">--mode</span> <span class="pre">processors</span> <span class="pre">-c</span> <span class="pre">/dev/ttyUSB1</span> <span class="pre">-f</span> <span class="pre">&lt;pdk_path&gt;/packages/ti/boot/sbl/binary/j721e_evm/xip/bin/sbl_xip_133_img_mcu1_0_release.tiimage</span> <span class="pre">-d</span> <span class="pre">3</span> <span class="pre">-o</span> <span class="pre">0</span></code></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<p><strong>MSMC Multicore Core Benchmarking</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">&lt;uniflash_directory&gt;/dslite.sh</span> <span class="pre">--mode</span> <span class="pre">processors</span> <span class="pre">-c</span> <span class="pre">/dev/ttyUSB1</span> <span class="pre">-f</span> <span class="pre">&lt;uniflash_directory&gt;/processors/FlashWriter/j721e_evm/uart_j721e_evm_flash_programmer_release.tiimage</span> <span class="pre">-i</span> <span class="pre">0</span></code></li>
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">&lt;uniflash_directory&gt;/dslite.sh</span> <span class="pre">--mode</span> <span class="pre">processors</span> <span class="pre">-c</span> <span class="pre">/dev/ttyUSB1</span> <span class="pre">-f</span> <span class="pre">&lt;pdk_path&gt;/packages/ti/boot/sbl/binary/j721e_evm/cust/bin/sbl_cust_img_mcu1_0_release.tiimage</span> <span class="pre">-d</span> <span class="pre">3</span> <span class="pre">-o</span> <span class="pre">0</span></code></li>
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">&lt;uniflash_directory&gt;/dslite.sh</span> <span class="pre">--mode</span> <span class="pre">processors</span> <span class="pre">-c</span> <span class="pre">/dev/ttyUSB1</span> <span class="pre">-f</span> <span class="pre">&lt;pdk_path&gt;/packages/ti/drv/sciclient/soc/V2/tifs.bin</span> <span class="pre">-d</span> <span class="pre">3</span> <span class="pre">-o</span> <span class="pre">80000</span></code></li>
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">&lt;uniflash_directory&gt;/dslite.sh</span> <span class="pre">--mode</span> <span class="pre">processors</span> <span class="pre">-c</span> <span class="pre">/dev/ttyUSB1</span> <span class="pre">-f</span> <span class="pre">&lt;pdk_path&gt;/packages/ti/build/msmc_multicore.appimage</span> <span class="pre">-d</span> <span class="pre">3</span> <span class="pre">-o</span> <span class="pre">100000</span></code></li>
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">&lt;uniflash_directory&gt;/dslite.sh</span> <span class="pre">--mode</span> <span class="pre">processors</span> <span class="pre">-c</span> <span class="pre">/dev/ttyUSB1</span> <span class="pre">-f</span> <span class="pre">&lt;pdk_path&gt;/packages/ti/board/src/flash/nor/ospi/nor_spi_patterns.bin</span> <span class="pre">-d</span> <span class="pre">3</span> <span class="pre">-o</span> <span class="pre">3FE0000</span></code></li>
+</ul>
+</div></blockquote>
+<p><strong>DDR Multicore Core Benchmarking</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">&lt;uniflash_directory&gt;/dslite.sh</span> <span class="pre">--mode</span> <span class="pre">processors</span> <span class="pre">-c</span> <span class="pre">/dev/ttyUSB1</span> <span class="pre">-f</span> <span class="pre">&lt;uniflash_directory&gt;/processors/FlashWriter/j721e_evm/uart_j721e_evm_flash_programmer_release.tiimage</span> <span class="pre">-i</span> <span class="pre">0</span></code></li>
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">&lt;uniflash_directory&gt;/dslite.sh</span> <span class="pre">--mode</span> <span class="pre">processors</span> <span class="pre">-c</span> <span class="pre">/dev/ttyUSB1</span> <span class="pre">-f</span> <span class="pre">&lt;pdk_path&gt;/packages/ti/boot/sbl/binary/j721e_evm/cust/bin/sbl_cust_img_mcu1_0_release.tiimage</span> <span class="pre">-d</span> <span class="pre">3</span> <span class="pre">-o</span> <span class="pre">0</span></code></li>
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">&lt;uniflash_directory&gt;/dslite.sh</span> <span class="pre">--mode</span> <span class="pre">processors</span> <span class="pre">-c</span> <span class="pre">/dev/ttyUSB1</span> <span class="pre">-f</span> <span class="pre">&lt;pdk_path&gt;/packages/ti/drv/sciclient/soc/V2/tifs.bin</span> <span class="pre">-d</span> <span class="pre">3</span> <span class="pre">-o</span> <span class="pre">80000</span></code></li>
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">&lt;uniflash_directory&gt;/dslite.sh</span> <span class="pre">--mode</span> <span class="pre">processors</span> <span class="pre">-c</span> <span class="pre">/dev/ttyUSB1</span> <span class="pre">-f</span> <span class="pre">&lt;pdk_path&gt;/packages/ti/build/ddr_multicore.appimage</span> <span class="pre">-d</span> <span class="pre">3</span> <span class="pre">-o</span> <span class="pre">100000</span></code></li>
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">&lt;uniflash_directory&gt;/dslite.sh</span> <span class="pre">--mode</span> <span class="pre">processors</span> <span class="pre">-c</span> <span class="pre">/dev/ttyUSB1</span> <span class="pre">-f</span> <span class="pre">&lt;pdk_path&gt;/packages/ti/board/src/flash/nor/ospi/nor_spi_patterns.bin</span> <span class="pre">-d</span> <span class="pre">3</span> <span class="pre">-o</span> <span class="pre">3FE0000</span></code></li>
+</ul>
+</div></blockquote>
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="addtional-notes">
+<h2>7.3.5. Addtional Notes<a class="headerlink" href="#addtional-notes" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Again, XIP <strong>cannot run via CCS</strong> due to the location in memory where the application code sits.</li>
+<li>When building the sbl_cust_img, if you would like to see more verbose output, you may change the flag in /packages/ti/boot/sbl/sbl_component.mk CUST_SBL_TEST_FLAGS called &#8220;-DSBL_LOG_LEVEL&#8221; from 1 to 3. <strong>However</strong>, this will cause the cache miss rate to increase substantially and performance times to decrease. So only use this for debugging reasons, but not for actual performance benchmarking.</li>
+<li>A &#8220;Mem Cpy size&#8221; of 0, means that no memcpy occurred and the application test was strictly instructions-based.</li>
+<li>When building different memory configurations, it is always a good idea to do a clean build. Some consecutive builds will work, but some also will not, so it is best to be safe by building cleanly.</li>
+<li>Problems have been noted with running at 166Mhz and a chip select of delay of 2. Symptoms can be the uart output being junk characters or the test stopping after simply executing a few of the tasks, but not all of them. This is intermittent and unlikely, but a potential when executing. If you are seeing this issue, change the clock speed to 133M or the CSDA value to 3 in the sbl_ospi.c file.</li>
+<li>The offset for flashing the nor_spi_patterns.bin is SOC dependednt. Please check SOC specific documentation for the same.</li>
+<li>ttyUSB1 is used as the MCU UART terminal and ttyUSB0 is used as Main UART Terminal. This might not always be the case, please check the same after connecting to the UART.</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../family_cfg/jacinto/index_faq_jacinto.html" class="btn btn-neutral float-right" title="8. Frequently Asked Questions" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="run_time_placement_sections.html" class="btn btn-neutral" title="7.2. Relocation of sections at runtime" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="http://www.ti.com/corp/docs/legal/copyright.shtml">&copy; Copyright 1995-2020</a>, Texas Instruments Incorporated. All rights reserved. <br>
+      <a href="http://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="http://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="http://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="http://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'08_06_01',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

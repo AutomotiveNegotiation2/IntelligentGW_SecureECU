@@ -1,0 +1,45 @@
+var group__IPC__TOP__LEVEL =
+[
+    [ "ipc.h", "ipc_8h.html", null ],
+    [ "Ipc_InitPrms", "structIpc__InitPrms.html", [
+      [ "instId", "structIpc__InitPrms.html#aca4c1098eaa058069752fdd24c48b3bb", null ],
+      [ "phyToVirtFxn", "structIpc__InitPrms.html#a428abb485bf132c43f78fd7498502f74", null ],
+      [ "virtToPhyFxn", "structIpc__InitPrms.html#ad75793a4f18e9844a574af9d9448b157", null ],
+      [ "osalPrms", "structIpc__InitPrms.html#ac06a4e83a179e65f36ee76365f27b598", null ],
+      [ "newMsgFxn", "structIpc__InitPrms.html#a8a64f81f3ea384a113cf7e2cade5c304", null ],
+      [ "printFxn", "structIpc__InitPrms.html#a5a188d55d327e56d45fd27440c40fd6a", null ]
+    ] ],
+    [ "RPMessage_Params", "structRPMessage__Params.html", [
+      [ "requestedEndpt", "structRPMessage__Params.html#a6fb7dd6a3b66ada580f936c95f00400f", null ],
+      [ "numBufs", "structRPMessage__Params.html#a9aa50a4a455d7557cd7d90799f2a6d24", null ],
+      [ "buf", "structRPMessage__Params.html#a1ce5ceda554d8f093b615065e820b431", null ],
+      [ "bufSize", "structRPMessage__Params.html#a29fcbeb138e98a67d58ccebf0bfce93a", null ],
+      [ "stackBuffer", "structRPMessage__Params.html#a8bc63bfeea15e88ca1a3be17a70be875", null ],
+      [ "stackSize", "structRPMessage__Params.html#adb2cab842453c1e4e4b78b6febfac9eb", null ]
+    ] ],
+    [ "RPMessage_Handle", "group__IPC__TOP__LEVEL.html#ga8fc09c7932b1afa7ee5db4be3b51f9e0", null ],
+    [ "RPMessage_Callback", "group__IPC__TOP__LEVEL.html#ga8eaf88bb0c4f9e8dfb2634ee4650bfbb", null ],
+    [ "IpcInitPrms_init", "group__IPC__TOP__LEVEL.html#gaf072e85ec93737374f0d2b2279fc1808", null ],
+    [ "Ipc_init", "group__IPC__TOP__LEVEL.html#gadfbeb86bdb0d09eb164da03cf9c840fe", null ],
+    [ "Ipc_deinit", "group__IPC__TOP__LEVEL.html#ga4ca50f6bada570fe3ee804e3e47556e7", null ],
+    [ "RPMessage_getMessageBufferSize", "group__IPC__TOP__LEVEL.html#gaec7f4a845705f5347cf80c64555dfd8f", null ],
+    [ "RPMessage_getObjMemRequired", "group__IPC__TOP__LEVEL.html#gac5f14ffc5de235fa3adaf34b85b0299d", null ],
+    [ "RPMessage_init", "group__IPC__TOP__LEVEL.html#ga7c369860747829e257e23d789c15cbc8", null ],
+    [ "RPMessage_lateInit", "group__IPC__TOP__LEVEL.html#ga48cbdcb39638463eb51192a914a90b18", null ],
+    [ "RPMessage_deInit", "group__IPC__TOP__LEVEL.html#ga08d1eaf4f61b1ae1d6cf6c88d4c43905", null ],
+    [ "RPMessageParams_init", "group__IPC__TOP__LEVEL.html#gaaa559e5c53236be904ea5c8f5a5e9e9d", null ],
+    [ "RPMessage_create", "group__IPC__TOP__LEVEL.html#ga4abf0f5c831a6b27218ea5d6d708f1b6", null ],
+    [ "RPMessage_setCallback", "group__IPC__TOP__LEVEL.html#ga2655638731f9fcc2a5ccbfa85b9d2654", null ],
+    [ "RPMessage_recv", "group__IPC__TOP__LEVEL.html#ga7898d1a2241f0ece74b72091d510a944", null ],
+    [ "RPMessage_recvNb", "group__IPC__TOP__LEVEL.html#ga3c9bbb405880858457da3c8470d89253", null ],
+    [ "RPMessage_send", "group__IPC__TOP__LEVEL.html#ga26ec208da298d85c27ca185fd4e2bbf7", null ],
+    [ "RPMessage_delete", "group__IPC__TOP__LEVEL.html#ga9dcd66fe9178f79a75ad872bbb148ae6", null ],
+    [ "RPMessage_unblock", "group__IPC__TOP__LEVEL.html#gad40415d9fe269a82b225cf680eca5b7d", null ],
+    [ "RPMessage_getRemoteEndPt", "group__IPC__TOP__LEVEL.html#ga410f590bdcdea26d0b5e62793fb0b2b5", null ],
+    [ "RPMessage_getRemoteEndPtToken", "group__IPC__TOP__LEVEL.html#gae2adcbd50fa8f31eb5a8084b6c5d12ab", null ],
+    [ "RPMessage_unblockGetRemoteEndPt", "group__IPC__TOP__LEVEL.html#ga13884948054455afbf35d196d8c21e6c", null ],
+    [ "RPMessage_announce", "group__IPC__TOP__LEVEL.html#gac3b967a1779f47cbb8f2d3098c3ca4c0", null ],
+    [ "Ipc_newMessageIsr", "group__IPC__TOP__LEVEL.html#ga56d13da55a2dd87439d06b778c483d8b", null ],
+    [ "Ipc_mailboxEnableNewMsgInt", "group__IPC__TOP__LEVEL.html#ga9c6454a0ec119bfc3bc6c28560ac2f91", null ],
+    [ "Ipc_mailboxDisableNewMsgInt", "group__IPC__TOP__LEVEL.html#gab38ddd04cccf632db04ad38aea94204d", null ]
+];

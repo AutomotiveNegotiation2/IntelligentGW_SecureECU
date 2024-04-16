@@ -1,0 +1,593 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3. Getting Started &mdash; Platform Development Kit (PDK) - JACINTO User Guide</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Platform Development Kit (PDK) - JACINTO User Guide" href="index.html"/>
+        <link rel="next" title="4. Modules" href="family_cfg/jacinto/index_modules_jacinto.html"/>
+        <link rel="prev" title="2.11. Release Notes - 06_01_00" href="release_notes/release_notes_06_01_00.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index_jacinto.html" class="icon icon-home"> Platform Development Kit (PDK) - JACINTO User Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                08_06_01
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">1. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="family_cfg/jacinto/index_release_notes_jacinto.html">2. Release Notes</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">3. Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#building-the-pdk">3.1. Building the PDK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#supported-boards-socs">3.2. Supported Boards/SOCs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#build-steps">3.3. Build Steps</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#for-running-from-pdk-install-dir-packages-ti-build">3.3.1. For running from <strong>PDK_INSTALL_DIR/packages/ti/build</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#for-make-from-pdk-install-dir-packages">3.3.2. For make from <strong>PDK_INSTALL_DIR/packages</strong></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#library-path-and-naming-convention">3.4. Library Path and Naming Convention</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="family_cfg/jacinto/index_modules_jacinto.html">4. Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="family_cfg/jacinto/index_boot_jacinto.html">5. Bootloader (SBL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="family_cfg/jacinto/index_board_jacinto.html">6. Board/EVM Abstraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="family_cfg/jacinto/index_howto_jacinto.html">7. How to Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="family_cfg/jacinto/index_faq_jacinto.html">8. Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="family_cfg/jacinto/index_developer_notes_jacinto.html">9. Developer Notes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index_jacinto.html">Platform Development Kit (PDK) - JACINTO User Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index_jacinto.html">Docs</a> &raquo;</li>
+      
+    <li>3. Getting Started</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="getting-started">
+<h1>3. Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="building-the-pdk">
+<h2>3.1. Building the PDK<a class="headerlink" href="#building-the-pdk" title="Permalink to this headline">¶</a></h2>
+<p>The PDK comes with pre-built libraries for running the demos/examples and everything you need to
+start writing an application (Note: This is part of the binary package and not available with source only package).
+However, one may want to customize and rebuild the source.</p>
+<p>Inside the PDK there is a top-level makefile at <strong>PDK_INSTALL_DIR/packages/ti/build</strong> that can be
+used to build some of the sub-components found within the PDK.</p>
+<p>Prior to calling this makefile, user needs to get the correct tool chains and setup the environment
+by updating pdk_tools_path.mk available at <strong>PDK_INSTALL_DIR/packages/ti/build</strong>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">By default this is updated as per the SDK tool version. This change is only required in case
+of different tool chains</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Also there is an alternate option to build PDK from <strong>PDK_INSTALL_DIR/packages</strong> which in turn
+calls the <strong>PDK_INSTALL_DIR/packages/ti/build</strong> makefile.
+Both these methods use the same underlying makefiles. Each one serve a slightly different purpose.
+User are free to use any method that suits them. Run make -s help in each folder to know the list of
+options supported by both methods.
+For example</p>
+<blockquote class="last">
+<div><ul class="simple">
+<li>makefile at <strong>PDK_INSTALL_DIR/packages/ti/build</strong> supports granular build targets
+like specific library and examples.</li>
+<li>makefile at <strong>PDK_INSTALL_DIR/packages</strong> supports build of all possible boards and cores
+based on PDK_SOC variable.</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="supported-boards-socs">
+<h2>3.2. Supported Boards/SOCs<a class="headerlink" href="#supported-boards-socs" title="Permalink to this headline">¶</a></h2>
+<p>Below list of supported SOC or BOARD that needs to passed to the BOARD variable for building.
+The supported cores for each of the SOC is provided under each platform</p>
+<ul>
+<li><dl class="first docutils">
+<dt>Jacinto Family of Devices</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>BOARD = j721e_evm</dt>
+<dd><ul class="first last simple">
+<li>CORE = &lt; mpu1_0, mcu1_0, mcu1_1, mcu2_0, mcu2_1, mcu3_0, mcu3_1, c66xdsp_1, c66xdsp_2, c7x_1 &gt;</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="build-steps">
+<h2>3.3. Build Steps<a class="headerlink" href="#build-steps" title="Permalink to this headline">¶</a></h2>
+<p>This section describes the steps to build the PDK package.
+For Windows machine, the package is built using the gmake from TI XDC package.
+For Linux machine, make can be used. In all below commands &#8220;gmake&#8221; can be replaced with &#8220;make&#8221; for Linux machine build.
+Also makefile internally uses some binaries like rm, mkdir echo from Cygwin.</p>
+<div class="section" id="for-running-from-pdk-install-dir-packages-ti-build">
+<h3>3.3.1. For running from <strong>PDK_INSTALL_DIR/packages/ti/build</strong><a class="headerlink" href="#for-running-from-pdk-install-dir-packages-ti-build" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><div class="code bash highlight-cpp"><div class="highlight"><pre><span class="n">cd</span> <span class="n">PDK_INSTALL_DIR</span><span class="o">/</span><span class="n">packages</span><span class="o">/</span><span class="n">ti</span><span class="o">/</span><span class="n">build</span>
+</pre></div>
+</div>
+</div></blockquote>
+<ul>
+<li><p class="first">Build all PDK libraries for all cores:</p>
+<blockquote>
+<div><div class="code bash highlight-cpp"><div class="highlight"><pre><span class="n">make</span> <span class="o">-</span><span class="n">s</span> <span class="n">pdk_libs_allcores</span> <span class="n">BOARD</span><span class="o">=&lt;</span><span class="n">board</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">Build all PDK applications and libraries for all cores:</p>
+<blockquote>
+<div><div class="code bash highlight-cpp"><div class="highlight"><pre><span class="n">make</span> <span class="o">-</span><span class="n">s</span> <span class="n">allcores</span> <span class="n">BOARD</span><span class="o">=&lt;</span><span class="n">board</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">Build all PDK libraries for a given cores:</p>
+<blockquote>
+<div><div class="code bash highlight-cpp"><div class="highlight"><pre><span class="n">make</span> <span class="o">-</span><span class="n">s</span> <span class="n">pdk_libs</span> <span class="n">BOARD</span><span class="o">=&lt;</span><span class="n">board</span><span class="o">&gt;</span> <span class="n">CORE</span><span class="o">=&lt;</span><span class="n">core</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">Build all PDK applications and libraries for a given cores:</p>
+<blockquote>
+<div><div class="code bash highlight-cpp"><div class="highlight"><pre><span class="n">make</span> <span class="o">-</span><span class="n">s</span> <span class="n">all</span> <span class="n">BOARD</span><span class="o">=&lt;</span><span class="n">board</span><span class="o">&gt;</span> <span class="n">CORE</span><span class="o">=&lt;</span><span class="n">core</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">Build individual targets (use help menu to see all targets):</p>
+<blockquote>
+<div><div class="code bash highlight-cpp"><div class="highlight"><pre><span class="n">make</span> <span class="o">-</span><span class="n">s</span> <span class="o">&lt;</span><span class="n">target</span><span class="o">&gt;</span> <span class="n">BOARD</span><span class="o">=&lt;</span><span class="n">board</span><span class="o">&gt;</span> <span class="n">CORE</span><span class="o">=&lt;</span><span class="n">core</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">Clean everything (all cores and all platforms/boards):</p>
+<blockquote>
+<div><div class="code bash highlight-cpp"><div class="highlight"><pre><span class="n">make</span> <span class="o">-</span><span class="n">s</span> <span class="n">allclean</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">Clean all targets for a given board:</p>
+<blockquote>
+<div><div class="code bash highlight-cpp"><div class="highlight"><pre><span class="n">make</span> <span class="o">-</span><span class="n">s</span> <span class="n">allcores_clean</span> <span class="n">BOARD</span><span class="o">=&lt;</span><span class="n">board</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">Clean individual targets:</p>
+<blockquote>
+<div><div class="code bash highlight-cpp"><div class="highlight"><pre><span class="n">make</span> <span class="o">-</span><span class="n">s</span> <span class="o">&lt;</span><span class="n">target</span><span class="o">&gt;</span><span class="n">_clean</span> <span class="n">BOARD</span><span class="o">=&lt;</span><span class="n">board</span><span class="o">&gt;</span> <span class="n">CORE</span><span class="o">=&lt;</span><span class="n">core</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">To know more build options:</p>
+<blockquote>
+<div><div class="code bash highlight-cpp"><div class="highlight"><pre><span class="n">make</span> <span class="o">-</span><span class="n">s</span> <span class="n">help</span> <span class="n">BOARD</span><span class="o">=&lt;</span><span class="n">board</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>e.g. make help BOARD = j721e_evm</p>
+<p>The above command could be used to list the application supported for a given
+platform/SoC</p>
+</div></blockquote>
+</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>To build FreeRTOS version of an application, &lt;target_name&gt; will be <strong>&lt;APP_NAME&gt;_freertos</strong>.
+For example to build <strong>udma_memcpy_testapp</strong> for FreeRTOS,</p>
+<div class="last highlight-cpp"><div class="highlight"><pre><span class="n">make</span> <span class="o">-</span><span class="n">s</span> <span class="n">udma_memcpy_testapp_freertos</span> <span class="n">BOARD</span><span class="o">=&lt;</span><span class="n">board</span><span class="o">&gt;</span> <span class="n">CORE</span><span class="o">=&lt;</span><span class="n">core</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">To build different profiles, provide variable BUILD_PROFILE=&lt;release/debug&gt; while invoking above commands</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The executable will be generated under PDK_INSTALL_DIR/packages/ti/binary/&lt;example&gt; folder.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The library will be generated under PDK_INSTALL_DIR/packages/ti/&lt;component&gt;/lib/&lt;soc&gt;/&lt;core&gt;/&lt;debug/release&gt;/ folder.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>If a library is not applicable for a given core or board, the make system will print message like below</p>
+<div class="code bash last highlight-cpp"><div class="highlight"><pre><span class="n">Nothing</span> <span class="n">to</span> <span class="n">be</span> <span class="n">done</span> <span class="k">for</span> <span class="o">&lt;</span><span class="n">BOARD</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">CORE</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">target</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">If the installation folder depth is high then windows cmd prompt fails with error that it cannot find a file,
+even if the file is present in mentioned path, this is because Windows has a limitation of 8191 characters
+for the commands that can execute. In such situation as a work around either restrict the folder depth to
+d:/ or if it cannot be restricted use git bash to build.
+Refer https://support.microsoft.com/en-in/kb/830473 for more details.
+(Always point to xdc path gmake only)</p>
+</div>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">If &#8216;-j&#8217; option is used in windows build and build fails then clean that particular application target and run the same command again w/o &#8216;-j&#8217; option.</p>
+</div>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p>By default the application dependency to build library is disabled. In case user changes any library the following flag should be set to no while invoking make
+or set this variable in <strong>PDK_INSTALL_DIR/packages/ti/build/Rules.make</strong></p>
+<div class="code bash last highlight-cpp"><div class="highlight"><pre><span class="n">make</span> <span class="o">-</span><span class="n">s</span> <span class="o">&lt;</span><span class="n">target</span><span class="o">&gt;</span> <span class="n">DISABLE_RECURSE_DEPS</span><span class="o">=</span><span class="n">no</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="for-make-from-pdk-install-dir-packages">
+<h3>3.3.2. For make from <strong>PDK_INSTALL_DIR/packages</strong><a class="headerlink" href="#for-make-from-pdk-install-dir-packages" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><div class="code bash highlight-cpp"><div class="highlight"><pre><span class="n">cd</span> <span class="n">PDK_INSTALL_DIR</span><span class="o">/</span><span class="n">packages</span>
+</pre></div>
+</div>
+</div></blockquote>
+<ul>
+<li><p class="first">Below sets the default environmental variables like PDK path, SDK path and default PDK_SOC - This is optional step</p>
+<blockquote>
+<div><div class="code bash highlight-cpp"><div class="highlight"><pre><span class="cp">#source in case of Linux</span>
+<span class="n">source</span> <span class="n">pdksetupenv</span><span class="p">.</span><span class="n">sh</span>
+
+<span class="cp">#Run in case of Windows</span>
+<span class="n">pdksetupenv</span><span class="p">.</span><span class="n">bat</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">Build all targets including libraries and examples</p>
+<blockquote>
+<div><div class="code bash highlight-cpp"><div class="highlight"><pre><span class="n">make</span> <span class="o">-</span><span class="n">s</span> <span class="n">all</span> <span class="n">PDK_SOC</span><span class="o">=&lt;</span><span class="n">desired</span> <span class="n">SOC</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">Build all libraries</p>
+<blockquote>
+<div><div class="code bash highlight-cpp"><div class="highlight"><pre><span class="n">make</span> <span class="o">-</span><span class="n">s</span> <span class="n">all_libs</span> <span class="n">PDK_SOC</span><span class="o">=&lt;</span><span class="n">desired</span> <span class="n">SOC</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">Run below to know the list of options supported</p>
+<blockquote>
+<div><div class="code bash highlight-cpp"><div class="highlight"><pre><span class="n">make</span> <span class="o">-</span><span class="n">s</span> <span class="n">help</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="library-path-and-naming-convention">
+<h2>3.4. Library Path and Naming Convention<a class="headerlink" href="#library-path-and-naming-convention" title="Permalink to this headline">¶</a></h2>
+<p>This section describes the location and naming convetion of the pre-built libraries inside the PDK packages. The prebuilt library
+is located at .../&lt;module&gt;/lib/&lt;board/soc&gt;/&lt;core&gt;/&lt;build_type&gt;/&lt;library&gt; as described at the table below:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="85%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Item</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>&lt;module&gt;</td>
+<td><div class="first last line-block">
+<div class="line">module name for this library.</div>
+<div class="line">Examples: ti/csl, ti/osal, ti/drv/i2c, ti/drv/uart</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td>&lt;board/soc&gt;</td>
+<td><div class="first last line-block">
+<div class="line">board name if BOARD_DEPENDENCY = yes. Example: j721e_evm</div>
+<div class="line">SOC name if SOC_DEPENDENCY = yes. Example: j721e</div>
+<div class="line">Empty if both BOARD_DEPENDENCY = no and SOC_DEPENDENCY = no</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td>&lt;core&gt;</td>
+<td><div class="first last line-block">
+<div class="line">core name such as c66, r5f or c66xdsp_1, mcu1_0 when CORE_DEPENDENCY = yes</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td>&lt;build_type&gt;</td>
+<td><div class="first last line-block">
+<div class="line">build_type is either release or debug</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td>&lt;library&gt;</td>
+<td><div class="first last line-block">
+<div class="line">library such as ti.csl.ae66, esm.aer5f</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The full library name consists of its name and extension shown as &lt;LIBNAME&gt;.&lt;LIBEXT&gt; where LIBEXT is constructed as a&lt;FORMAT_EXT&gt;&lt;ISA_EXT&gt;&lt;ENDIAN_EXT&gt;
+as described at the following table</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="85%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Variable</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>&lt;LIBMAME&gt;</td>
+<td><div class="first last line-block">
+<div class="line">Library name will be the module name or the &lt;mod name&gt;_LIBNAME if it is specified at the makefile.</div>
+<div class="line">Examples: csl_LIBNAME = ti.csl ==&gt; ti.csl.ae66, MODULE_NAME = esm ==&gt; esm.aer5f</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td>&lt;FORMAT_EXT&gt;</td>
+<td><div class="first last line-block">
+<div class="line">Format extension.</div>
+<div class="line">For example, ELF file is indicated as &#8220;e&#8221;</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td>&lt;ISA_EXT&gt;</td>
+<td><div class="first last line-block">
+<div class="line">ISA extension.</div>
+<div class="line">For example, a8, a9, a15, a53, a72, m4, r5f, 66, 71</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td>&lt;ENDIAN_EXT&gt;</td>
+<td><div class="first last line-block">
+<div class="line">ENDIAN extension which is core-specific.</div>
+<div class="line">For example, &#8220;e&#8221; is usually used to indicate big endianness
+and &#8220;fg&#8221; indicates little endianness for MPU A8, A9, A15, A53 and A72</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Here are some examples of pre-built library with its relative path to &#8220;PDK_INSTALL_DIR/packages&#8221;:</p>
+<ul class="simple">
+<li>ti/drv/udma/lib/j721e/mcu1_0/release/udma.aer5f</li>
+<li>ti/osal/lib/freertos/j721e/r5f/release/ti.osal.aer5f</li>
+<li>ti/drv/i2c/ib/j721e/a72/debug/ti.drv.i2c.aa53fg</li>
+<li>ti/board/lib/j721e_evm/c66/release/ti.board.ae66</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="family_cfg/jacinto/index_modules_jacinto.html" class="btn btn-neutral float-right" title="4. Modules" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="release_notes/release_notes_06_01_00.html" class="btn btn-neutral" title="2.11. Release Notes - 06_01_00" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="http://www.ti.com/corp/docs/legal/copyright.shtml">&copy; Copyright 1995-2020</a>, Texas Instruments Incorporated. All rights reserved. <br>
+      <a href="http://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="http://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="http://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="http://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'08_06_01',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

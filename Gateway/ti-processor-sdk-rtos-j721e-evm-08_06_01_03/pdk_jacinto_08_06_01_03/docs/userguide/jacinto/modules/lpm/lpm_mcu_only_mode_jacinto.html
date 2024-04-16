@@ -1,0 +1,798 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4.21.1. MCU Only mode &mdash; Platform Development Kit (PDK) - JACINTO User Guide</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Platform Development Kit (PDK) - JACINTO User Guide" href="../../index.html"/>
+        <link rel="up" title="4.21. Low Power Manager (LPM)" href="../../family_cfg/jacinto/index_modules_lpm_jacinto.html"/>
+        <link rel="next" title="5. Bootloader (SBL)" href="../../family_cfg/jacinto/index_boot_jacinto.html"/>
+        <link rel="prev" title="4.21. Low Power Manager (LPM)" href="../../family_cfg/jacinto/index_modules_lpm_jacinto.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index_jacinto.html" class="icon icon-home"> Platform Development Kit (PDK) - JACINTO User Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                08_06_01
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html">1. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../family_cfg/jacinto/index_release_notes_jacinto.html">2. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started.html">3. Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../family_cfg/jacinto/index_modules_jacinto.html">4. Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../csl.html">4.1. CSL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../freertos.html">4.2. FreeRTOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../family_cfg/jacinto/index_modules_safertos_jacinto.html">4.3. SafeRTOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../osal.html">4.4. OSAL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dss.html">4.5. DSS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../enet.html">4.6. ENET</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fvid2.html">4.7. FVID2 User Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gpio.html">4.8. GPIO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../i2c.html">4.9. I2C</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ipc.html">4.10. IPC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mcasp.html">4.11. McASP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pm.html">4.12. PM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sa.html">4.13. SA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../family_cfg/jacinto/index_modules_sciclient_jacinto.html">4.14. SCICLIENT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../keywriter.html">4.15. OTP KEYWRITER</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../spi.html">4.16. SPI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../uart.html">4.17. UART</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../family_cfg/jacinto/index_modules_udma_jacinto.html">4.18. UDMA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pmic.html">4.19. PMIC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mmcsd.html">4.20. MMCSD</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../family_cfg/jacinto/index_modules_lpm_jacinto.html">4.21. Low Power Manager (LPM)</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="">4.21.1. MCU Only mode</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#definitions">4.21.1.1. Definitions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#use-care-requirements-overview">4.21.1.2. Use care requirements &amp; Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#scope-of-work">4.21.1.3. Scope of work</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#low-power-mode-transition">4.21.1.4. Low power Mode Transition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sw-architecture">4.21.1.5. SW Architecture</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pmic-state-diagram">4.21.1.6. PMIC State diagram</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#call-sequence-diagram">4.21.1.7. Call sequence diagram</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#verification-that-soc-is-in-mcu-only-mode">4.21.1.8. Verification that SoC is in MCU only mode</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#details-on-call-sequence">4.21.1.9. Details on call sequence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#build-commands">4.21.1.10. Build commands</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#how-to-run-the-demo">4.21.1.11. How to run the demo</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../family_cfg/jacinto/index_boot_jacinto.html">5. Bootloader (SBL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../family_cfg/jacinto/index_board_jacinto.html">6. Board/EVM Abstraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../family_cfg/jacinto/index_howto_jacinto.html">7. How to Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../family_cfg/jacinto/index_faq_jacinto.html">8. Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../family_cfg/jacinto/index_developer_notes_jacinto.html">9. Developer Notes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index_jacinto.html">Platform Development Kit (PDK) - JACINTO User Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index_jacinto.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../family_cfg/jacinto/index_modules_jacinto.html">4. Modules</a> &raquo;</li>
+      
+          <li><a href="../../family_cfg/jacinto/index_modules_lpm_jacinto.html">4.21. Low Power Manager (LPM)</a> &raquo;</li>
+      
+    <li>4.21.1. MCU Only mode</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="mcu-only-mode">
+<h1>4.21.1. MCU Only mode<a class="headerlink" href="#mcu-only-mode" title="Permalink to this headline">¶</a></h1>
+<p>LPM library provides APIs to transistion the SoC and PMIC from ACTIVE to MCU only mode and vice-versa.</p>
+<div class="section" id="definitions">
+<h2>4.21.1.1. Definitions<a class="headerlink" href="#definitions" title="Permalink to this headline">¶</a></h2>
+<p><strong>ACTIVE mode</strong>: WKUP and MCU along with MAIN SoC side voltage domains are ON.</p>
+<p><strong>MCU Only mode</strong>: WKUP and MCU voltage domains are ON, and MAIN SoC side voltage domains are OFF.</p>
+</div>
+<div class="section" id="use-care-requirements-overview">
+<h2>4.21.1.2. Use care requirements &amp; Overview<a class="headerlink" href="#use-care-requirements-overview" title="Permalink to this headline">¶</a></h2>
+<p><strong>SoC</strong>: J721e</p>
+<p><strong>PDN</strong>: Dual Leo</p>
+<ul class="simple">
+<li>Userguide: <a class="reference external" href="https://www.ti.com/lit/ug/slvuc32/slvuc32.pdf">https://www.ti.com/lit/ug/slvuc32/slvuc32.pdf</a></li>
+<li>Data Sheet: <a class="reference external" href="https://www.ti.com/lit/ds/symlink/tps6594-q1.pdf">https://www.ti.com/lit/ds/symlink/tps6594-q1.pdf</a></li>
+</ul>
+<div class="section" id="introduction">
+<h3>4.21.1.2.1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h3>
+<p>SoC&#8217;s such as J721E, integrates a Micro Controller Unit Subsystem (MCU SS) as a chip-in-chip. It can operate fully isolated from rest of the chip using a separate voltage supply, clock sources and resets and
+include the components needed for device management. This allows the MCU SS to function continuously regardless of the state of the rest of the device.SoC&#8217;s such as J721E, integrates a
+Micro Controller Unit Subsystem (MCU SS) as a chip-in-chip. It can operate fully isolated from rest of the chip using a separate voltage supply,clock sources and resets and include the components needed for device
+management. This allows the MCU SS to function continuously regardless of the state of the rest of the device.</p>
+<p>Depending on the application needs, MCU only mode can be used for:</p>
+<ol class="arabic simple">
+<li>Reset &amp; recovery of main domain functionality in case of detected failure</li>
+<li>As a low power mode of operation where  in functionality implemented in MCU mode continues to be operational while rest of chip is powered down. In this case Software running on MCU domain can detect and process wakeup  events and in response can reload and restart applications running in Main domain</li>
+</ol>
+<p>We will focus on low power mode implementation using <strong>MCU only mode</strong> in this document.</p>
+</div>
+</div>
+<div class="section" id="scope-of-work">
+<h2>4.21.1.3. Scope of work<a class="headerlink" href="#scope-of-work" title="Permalink to this headline">¶</a></h2>
+<p>Scope would be to implement a Low Power Manager (LPM) running on MCU R5 core, with APIs to switch to and from MCU only mode to ACTIVE mode on J721E device with dual Leo (TPS6594-Q1) PDN.
+When we come back from MCU only to ACTIVE mode the MCU application bootstraps all cores.Bootstrapping happens using the SBL boot lib.</p>
+<p><strong>Following Table summarizes the scope of work:</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="35%" />
+<col width="65%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Is</th>
+<th class="head">Is Not</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Boot in ACITVE mode and then switch to MCU only mode</td>
+<td>Boot in MCU only mode and switch to ACTIVE mode (may be added later)</td>
+</tr>
+<tr class="row-odd"><td>Switch from MCU only mode to ACTIVE mode and vice-versa</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>Low power mode trigger - both entry and exit from LP modes are handled
+in response to timer events</td>
+<td>CAN message trigger</td>
+</tr>
+<tr class="row-odd"><td>Support for A72 running Linux and other cores running FreeRTOS</td>
+<td>Support for QNX on A72</td>
+</tr>
+<tr class="row-even"><td>Assumes strict isolation of access - MCU SW only access MCU domain
+resources and Main domain SW accesses Main domain resources</td>
+<td>Cross domain access - MCU SW accessing Main domain resources or Main
+Domain SW accessing MCU domain resources</td>
+</tr>
+<tr class="row-odd"><td>FreeRTOS based app showcasing use of LPM running on MCU1_0</td>
+<td>AutoSAR on MCU1_0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="low-power-mode-transition">
+<h2>4.21.1.4. Low power Mode Transition<a class="headerlink" href="#low-power-mode-transition" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="mcu-only-mode-entry-sequence">
+<h3>4.21.1.4.1. MCU only mode entry sequence<a class="headerlink" href="#mcu-only-mode-entry-sequence" title="Permalink to this headline">¶</a></h3>
+<a class="reference internal image-reference" href="../../_images/MCU_only_entry_sequence.png"><img alt="../../_images/MCU_only_entry_sequence.png" src="../../_images/MCU_only_entry_sequence.png" style="width: 200px;" /></a>
+</div>
+<div class="section" id="mcu-only-mode-exit-sequence">
+<h3>4.21.1.4.2. MCU only mode exit sequence<a class="headerlink" href="#mcu-only-mode-exit-sequence" title="Permalink to this headline">¶</a></h3>
+<a class="reference internal image-reference" href="../../_images/MCU_only_exit_sequence.png"><img alt="../../_images/MCU_only_exit_sequence.png" src="../../_images/MCU_only_exit_sequence.png" style="width: 250px;" /></a>
+</div>
+</div>
+<div class="section" id="sw-architecture">
+<h2>4.21.1.5. SW Architecture<a class="headerlink" href="#sw-architecture" title="Permalink to this headline">¶</a></h2>
+<p>Below is the intended SW distribution diagram</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="14%" />
+<col width="31%" />
+<col width="43%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Core</td>
+<td>OS</td>
+<td>Memory
+used</td>
+<td>Peripheral/Functionality
+needed</td>
+</tr>
+<tr class="row-even"><td>MCU1_0</td>
+<td>FreeRTOS</td>
+<td>MCU OCMC,
+DDR (Resource Table)</td>
+<td>IPC</td>
+</tr>
+<tr class="row-odd"><td>MCU2_0</td>
+<td>FreeRTOS</td>
+<td>DDR</td>
+<td>IPC, EthFw</td>
+</tr>
+<tr class="row-even"><td>MCU2_1</td>
+<td>FreeRTOS</td>
+<td>DDR</td>
+<td>IPC</td>
+</tr>
+<tr class="row-odd"><td>MCU3_0</td>
+<td>FreeRTOS</td>
+<td>DDR</td>
+<td>IPC</td>
+</tr>
+<tr class="row-even"><td>MCU3_1</td>
+<td>FreeRTOS</td>
+<td>DDR</td>
+<td>IPC</td>
+</tr>
+<tr class="row-odd"><td>A72</td>
+<td>Linux</td>
+<td>MSMC, DDR</td>
+<td>UART, CPSW9G Virtual driver,
+IPC</td>
+</tr>
+</tbody>
+</table>
+<a class="reference internal image-reference" href="../../_images/SW_diagram.png"><img alt="../../_images/SW_diagram.png" src="../../_images/SW_diagram.png" style="width: 1500px;" /></a>
+</div>
+<div class="section" id="pmic-state-diagram">
+<h2>4.21.1.6. PMIC State diagram<a class="headerlink" href="#pmic-state-diagram" title="Permalink to this headline">¶</a></h2>
+<p>Below is a simplified state diagram fop PMIC, for more detailed diagram refer Figure 3 in User guide (<a class="reference external" href="https://www.ti.com/lit/pdf/slvubr0">https://www.ti.com/lit/pdf/slvubr0</a>).</p>
+<a class="reference internal image-reference" href="../../_images/state_diagram.png"><img alt="../../_images/state_diagram.png" src="../../_images/state_diagram.png" style="width: 800px;" /></a>
+</div>
+<div class="section" id="call-sequence-diagram">
+<h2>4.21.1.7. Call sequence diagram<a class="headerlink" href="#call-sequence-diagram" title="Permalink to this headline">¶</a></h2>
+<a class="reference internal image-reference" href="../../_images/sequence_diagram.png"><img alt="../../_images/sequence_diagram.png" src="../../_images/sequence_diagram.png" style="width: 1800px;" /></a>
+</div>
+<div class="section" id="verification-that-soc-is-in-mcu-only-mode">
+<h2>4.21.1.8. Verification that SoC is in MCU only mode<a class="headerlink" href="#verification-that-soc-is-in-mcu-only-mode" title="Permalink to this headline">¶</a></h2>
+<p>There are two test points on the J721e EVM&#8217;s SoM board which can be used to validate the PMIC state.</p>
+<ul class="simple">
+<li>TP133 → H_MCU_PORz</li>
+<li>TP134 → H_SOC_PORz</li>
+</ul>
+<table border="1" class="docutils">
+<colgroup>
+<col width="37%" />
+<col width="26%" />
+<col width="37%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Mode</td>
+<td>Test
+Point</td>
+<td>Expected
+Voltage</td>
+</tr>
+<tr class="row-even"><td>ACTIVE</td>
+<td>TP133</td>
+<td>1.8 V</td>
+</tr>
+<tr class="row-odd"><td>ACTIVE</td>
+<td>TP134</td>
+<td>1.8 V</td>
+</tr>
+<tr class="row-even"><td>MCU Only</td>
+<td>TP133</td>
+<td>1.8 V</td>
+</tr>
+<tr class="row-odd"><td>MCU Only</td>
+<td>TP134</td>
+<td>0 V</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="details-on-call-sequence">
+<h2>4.21.1.9. Details on call sequence<a class="headerlink" href="#details-on-call-sequence" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="2%" />
+<col width="31%" />
+<col width="7%" />
+<col width="18%" />
+<col width="43%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td>Description</td>
+<td>Executed from</td>
+<td>Affects</td>
+<td>Comments</td>
+</tr>
+<tr class="row-even"><td>1</td>
+<td>Boot in ACTIVE mode</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>Cold boot in ACTIVE mode</td>
+</tr>
+<tr class="row-odd"><td>2</td>
+<td>Bootstrap all cores in the SoC</td>
+<td>MCU1_0</td>
+<td><ul class="first last simple">
+<li>A72, C6x, C7x, MCU2_x and MCU3_x</li>
+<li>On board peripherals</li>
+<li>Internal and external memories</li>
+</ul>
+</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>3</td>
+<td>IPC cleanup for MCU to MAIN domain communication</td>
+<td>MCU1_0</td>
+<td>MCU1_0</td>
+<td><ul class="first last simple">
+<li>Save MCU1_0 resource table, this needs to be restored later.</li>
+<li>IPC cleanup</li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td>4</td>
+<td>SW reset to MAIN domain</td>
+<td>MCU1_0</td>
+<td><ul class="first last simple">
+<li>A72, C6x, C7x, MCU2_x and MCU3_x</li>
+<li>WKUPMCU2MAIN VD</li>
+<li>MAIN2WKUPMCU VD</li>
+</ul>
+</td>
+<td>Service: TISCI_MSG_SYS_RESET
+<a class="reference external" href="http://software-dl.ti.com/tisci/esd/latest/2_tisci_msgs/pm/sysreset.html">http://software-dl.ti.com/tisci/esd/latest/2_tisci_msgs/pm/sysreset.html</a>
+TISCI_MSG_SYS_RESET message handler for this disables WKUPMCU2MAIN VD and MAIN2WKUPMCU VD</td>
+</tr>
+<tr class="row-even"><td>5</td>
+<td>Disable temperature sensors in MAIN domain</td>
+<td>MCU1_0</td>
+<td>VTM_TMPSENS1:4</td>
+<td>Before entering MCU_ONLY mode disable all VTM temperature sensors that are
+on the MAIN domain</td>
+</tr>
+<tr class="row-odd"><td>6</td>
+<td>Trigger PMIC sequence for ACTIVE to MCU only transition</td>
+<td>MCU1_0</td>
+<td>PMIC</td>
+<td><ul class="first last simple">
+<li>Enter low power state</li>
+<li>Refer <a class="reference external" href="https://www.ti.com/lit/ug/slvuc32/slvuc32.pdf">https://www.ti.com/lit/ug/slvuc32/slvuc32.pdf</a> section 6.1 for state transition diagram</li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td>7</td>
+<td>Showcase MCU is alive</td>
+<td>MCU1_0</td>
+<td>MCU1_0</td>
+<td>This can be done by simply printing to UART from MCU1_0</td>
+</tr>
+<tr class="row-odd"><td>8</td>
+<td>Trigger PMIC sequence for MCU only to ACTIVE transition</td>
+<td>MCU1_0</td>
+<td>PMIC</td>
+<td><ul class="first last simple">
+<li>Exit low power state</li>
+<li>Refer <a class="reference external" href="https://www.ti.com/lit/ug/slvuc32/slvuc32.pdf">https://www.ti.com/lit/ug/slvuc32/slvuc32.pdf</a> section 6.1 for state transition diagram</li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td>9</td>
+<td>Establish communication between MCU and MAIN</td>
+<td>MCU1_0</td>
+<td><ul class="first last simple">
+<li>WKUPMCU2MAIN VD</li>
+<li>MAIN2WKUPMCU VD</li>
+</ul>
+</td>
+<td>Re-enable WKUPMCU2MAIN VD and MAIN2WKUPMCU VD.
+This will be needed to pass the common, RM, PM and Security board configuration.</td>
+</tr>
+<tr class="row-odd"><td>10</td>
+<td>Pass RM, PM, Security and common board configuration for MAIN domain</td>
+<td>MCU1_0</td>
+<td>A72, C6x, C7x, MCU2_x and MCU3_x</td>
+<td>Passing the board configuration for MAIN domain will initialize the MAIN domain PLLs, PSCs etc.</td>
+</tr>
+<tr class="row-even"><td>11</td>
+<td>Initialize MAIN domain</td>
+<td>MCU1_0</td>
+<td>MAIN domain peripherals (UART, DDR etc.)</td>
+<td>Use Board_init() calls for MAIN domain</td>
+</tr>
+<tr class="row-odd"><td>12</td>
+<td>Bootstrap MAIN domain cores and reload firmwares</td>
+<td>MCU1_0</td>
+<td>A72, C6x, C7x, MCU2_x and MCU3_x</td>
+<td>Use SBL boot library</td>
+</tr>
+<tr class="row-even"><td>13</td>
+<td>Re-establishing IPC communication between MAIN and MCU</td>
+<td>MCU1_0</td>
+<td>MCU1_0, A72, MCU2_x and MCU3_x</td>
+<td>MCU1_0&#8217;s hot attach to A72, MCU2_x and MCU3_x</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="build-commands">
+<h2>4.21.1.10. Build commands<a class="headerlink" href="#build-commands" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><div class="code bash highlight-cpp"><div class="highlight"><pre><span class="n">make</span> <span class="n">lpm_example_freertos</span> <span class="n">BOARD</span><span class="o">=</span><span class="n">j721e_evm</span> <span class="n">CORE</span><span class="o">=</span><span class="n">mcu1_0</span> <span class="o">-</span><span class="n">sj8</span> <span class="n">BUILD_PROFILE</span><span class="o">=</span><span class="n">release</span>
+</pre></div>
+</div>
+</div></blockquote>
+<ul class="simple">
+<li>Then generate a multicore image with any other appimages that you would like for cores other than mcu1_0</li>
+<li>Fetch the atf_optee, tikernelimage_linux and tidtb_linux appimages</li>
+</ul>
+</div>
+<div class="section" id="how-to-run-the-demo">
+<h2>4.21.1.11. How to run the demo<a class="headerlink" href="#how-to-run-the-demo" title="Permalink to this headline">¶</a></h2>
+<p>To run the demo you need to flash both OSPI flash and SD card.</p>
+<ul class="simple">
+<li>OSPI flash contains the bootloader images and the remote core firmwares</li>
+<li>SD card contains the Linux file system</li>
+</ul>
+<div class="section" id="flashing-boot-binaries-to-ospi">
+<h3>4.21.1.11.1. Flashing boot binaries to OSPI<a class="headerlink" href="#flashing-boot-binaries-to-ospi" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><div class="code bash highlight-cpp"><div class="highlight"><pre><span class="n">sudo</span> <span class="o">~/</span><span class="n">ti</span><span class="o">/</span><span class="n">uniflash_6</span><span class="mf">.4.0</span><span class="o">/</span><span class="n">dslite</span><span class="p">.</span><span class="n">sh</span> <span class="o">--</span><span class="n">mode</span> <span class="n">processors</span> <span class="o">-</span><span class="n">c</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">ttyUSB1</span> <span class="o">-</span><span class="n">f</span> <span class="o">&lt;</span><span class="n">path</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">uart_j721e_evm_flash_programmer_release</span><span class="p">.</span><span class="n">tiimage</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">i</span> <span class="mi">0</span>
+<span class="n">sudo</span> <span class="o">~/</span><span class="n">ti</span><span class="o">/</span><span class="n">uniflash_6</span><span class="mf">.4.0</span><span class="o">/</span><span class="n">dslite</span><span class="p">.</span><span class="n">sh</span> <span class="o">--</span><span class="n">mode</span> <span class="n">processors</span> <span class="o">-</span><span class="n">c</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">ttyUSB1</span> <span class="o">-</span><span class="n">f</span> <span class="o">&lt;</span><span class="n">path</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">sbl_cust_img_mcu1_0_release</span><span class="p">.</span><span class="n">tiimage</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">d</span> <span class="mi">3</span> <span class="o">-</span><span class="n">o</span> <span class="mi">0</span>
+<span class="n">sudo</span> <span class="o">~/</span><span class="n">ti</span><span class="o">/</span><span class="n">uniflash_6</span><span class="mf">.4.0</span><span class="o">/</span><span class="n">dslite</span><span class="p">.</span><span class="n">sh</span> <span class="o">--</span><span class="n">mode</span> <span class="n">processors</span> <span class="o">-</span><span class="n">c</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">ttyUSB1</span> <span class="o">-</span><span class="n">f</span> <span class="o">&lt;</span><span class="n">path</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">tifs</span><span class="p">.</span><span class="n">bin</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">d</span> <span class="mi">3</span> <span class="o">-</span><span class="n">o</span> <span class="mi">80000</span>
+<span class="n">sudo</span> <span class="o">~/</span><span class="n">ti</span><span class="o">/</span><span class="n">uniflash_6</span><span class="mf">.4.0</span><span class="o">/</span><span class="n">dslite</span><span class="p">.</span><span class="n">sh</span> <span class="o">--</span><span class="n">mode</span> <span class="n">processors</span> <span class="o">-</span><span class="n">c</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">ttyUSB1</span> <span class="o">-</span><span class="n">f</span> <span class="o">&lt;</span><span class="n">path</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">lpm_example_freertos_mcu1_0_release</span><span class="p">.</span><span class="n">appimage</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">d</span> <span class="mi">3</span> <span class="o">-</span><span class="n">o</span> <span class="mi">100000</span>
+<span class="n">sudo</span> <span class="o">~/</span><span class="n">ti</span><span class="o">/</span><span class="n">uniflash_6</span><span class="mf">.4.0</span><span class="o">/</span><span class="n">dslite</span><span class="p">.</span><span class="n">sh</span> <span class="o">--</span><span class="n">mode</span> <span class="n">processors</span> <span class="o">-</span><span class="n">c</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">ttyUSB1</span> <span class="o">-</span><span class="n">f</span> <span class="o">&lt;</span><span class="n">path</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">multicore_MCU2_0_MCU2_1_stage1</span><span class="p">.</span><span class="n">appimage</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">d</span> <span class="mi">3</span> <span class="o">-</span><span class="n">o</span> <span class="mf">1F</span><span class="n">C0000</span>
+<span class="n">sudo</span> <span class="o">~/</span><span class="n">ti</span><span class="o">/</span><span class="n">uniflash_6</span><span class="mf">.4.0</span><span class="o">/</span><span class="n">dslite</span><span class="p">.</span><span class="n">sh</span> <span class="o">--</span><span class="n">mode</span> <span class="n">processors</span> <span class="o">-</span><span class="n">c</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">ttyUSB1</span> <span class="o">-</span><span class="n">f</span> <span class="o">&lt;</span><span class="n">path</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">multicore_DSPs_MCU3_0_MCU3_1_stage2</span><span class="p">.</span><span class="n">appimage</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">d</span> <span class="mi">3</span> <span class="o">-</span><span class="n">o</span> <span class="mi">27</span><span class="n">C0000</span>
+<span class="n">sudo</span> <span class="o">~/</span><span class="n">ti</span><span class="o">/</span><span class="n">uniflash_6</span><span class="mf">.4.0</span><span class="o">/</span><span class="n">dslite</span><span class="p">.</span><span class="n">sh</span> <span class="o">--</span><span class="n">mode</span> <span class="n">processors</span> <span class="o">-</span><span class="n">c</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">ttyUSB1</span> <span class="o">-</span><span class="n">f</span> <span class="o">&lt;</span><span class="n">path</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">multicore_MPU1_0_stage3</span><span class="p">.</span><span class="n">appimage</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">d</span> <span class="mi">3</span> <span class="o">-</span><span class="n">o</span> <span class="mi">37</span><span class="n">C0000</span>
+<span class="n">sudo</span> <span class="o">~/</span><span class="n">ti</span><span class="o">/</span><span class="n">uniflash_6</span><span class="mf">.4.0</span><span class="o">/</span><span class="n">dslite</span><span class="p">.</span><span class="n">sh</span> <span class="o">--</span><span class="n">mode</span> <span class="n">processors</span> <span class="o">-</span><span class="n">c</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">ttyUSB1</span> <span class="o">-</span><span class="n">f</span> <span class="o">&lt;</span><span class="n">path</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">atf_optee</span><span class="p">.</span><span class="n">appimage</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">d</span> <span class="mi">3</span> <span class="o">-</span><span class="n">o</span> <span class="mi">1</span><span class="n">C0000</span>
+<span class="n">sudo</span> <span class="o">~/</span><span class="n">ti</span><span class="o">/</span><span class="n">uniflash_6</span><span class="mf">.4.0</span><span class="o">/</span><span class="n">dslite</span><span class="p">.</span><span class="n">sh</span> <span class="o">--</span><span class="n">mode</span> <span class="n">processors</span> <span class="o">-</span><span class="n">c</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">ttyUSB1</span> <span class="o">-</span><span class="n">f</span> <span class="o">&lt;</span><span class="n">path</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">tikernelimage_linux</span><span class="p">.</span><span class="n">appimage</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">d</span> <span class="mi">3</span> <span class="o">-</span><span class="n">o</span> <span class="mi">7</span><span class="n">C0000</span>
+<span class="n">sudo</span> <span class="o">~/</span><span class="n">ti</span><span class="o">/</span><span class="n">uniflash_6</span><span class="mf">.4.0</span><span class="o">/</span><span class="n">dslite</span><span class="p">.</span><span class="n">sh</span> <span class="o">--</span><span class="n">mode</span> <span class="n">processors</span> <span class="o">-</span><span class="n">c</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">ttyUSB1</span> <span class="o">-</span><span class="n">f</span> <span class="o">&lt;</span><span class="n">path</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">tidtb_linux</span><span class="p">.</span><span class="n">appimage</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">d</span> <span class="mi">3</span> <span class="o">-</span><span class="n">o</span> <span class="mi">1</span><span class="n">EC0000</span>
+<span class="n">sudo</span> <span class="o">~/</span><span class="n">ti</span><span class="o">/</span><span class="n">uniflash_6</span><span class="mf">.4.0</span><span class="o">/</span><span class="n">dslite</span><span class="p">.</span><span class="n">sh</span> <span class="o">--</span><span class="n">mode</span> <span class="n">processors</span> <span class="o">-</span><span class="n">c</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">ttyUSB1</span> <span class="o">-</span><span class="n">f</span> <span class="o">&lt;</span><span class="n">path</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">nor_spi_patterns</span><span class="p">.</span><span class="n">bin</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">d</span> <span class="mi">3</span> <span class="o">-</span><span class="n">o</span> <span class="mf">3F</span><span class="n">E0000</span>
+</pre></div>
+</div>
+</div></blockquote>
+<ul class="simple">
+<li>Refer the Section <strong>Building main domain applications</strong> in <strong>CAN Response and Bootloader Demo Application</strong> in MCUSW documentation for details on how to create MAIN domain appimages. Recommendation is to use the SDK default firmwares as present in the prebuilt Linux filesystem.</li>
+</ul>
+</div>
+<div class="section" id="flashing-file-system-in-sd-card">
+<h3>4.21.1.11.2. Flashing file system in SD card<a class="headerlink" href="#flashing-file-system-in-sd-card" title="Permalink to this headline">¶</a></h3>
+<p>For booting linux on A72, a valid filesystem needs to be present in the rootfs (EXT4) parition of the SD Card.
+Linux SDK comes with a pre-built file system which can be used for this purpose along with documentation on how to prepare an SD card.</p>
+</div>
+<div class="section" id="changes-required-on-the-linux-device-tree">
+<h3>4.21.1.11.3. Changes required on the Linux Device tree<a class="headerlink" href="#changes-required-on-the-linux-device-tree" title="Permalink to this headline">¶</a></h3>
+<p>Update the Linux Device Tree with the below patch, refer commit message description for details on why these changes are needed.</p>
+<blockquote>
+<div><div class="code bash highlight-cpp"><div class="highlight"><pre>From b9ddca5f87f1518afd7f3672b08317916499ea01 Mon Sep 17 00:00:00 2001
+From: Karan Saxena &lt;karan@ti.com&gt;
+Date: Fri, 26 Nov 2021 07:54:36 -0500
+Subject: [PATCH] arch: arm64: dts: Update device tree for MCU only mode demo
+
+- Remove the MCU domain nodes from the device tree
+  This is needed as when showcasing MCU only mode entry / exit, there needs to be
+  a clean separation between MCU and MAIN domain resources.
+  If A72 running Linux is accessing some MCU domain resources when issueing a
+  SW reset to the MAIN domain then it cause undesirable behaviour on MCU R5F.
+
+- Hard code root node to get root filesystem from SD card
+  As there is no u-boot in the boot flow when demonstrating MCU only mode
+  entry / exit, we need to hard code the root node in the bootargs from the
+  device tree.
+
+Signed-off-by: Karan Saxena &lt;karan@ti.com&gt;
+---
+ .../boot/dts/ti/k3-j721e-common-proc-board.dts     | 14 +++++++++++++-
+ 1 file changed, 13 insertions(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
+index 5ad19a4fc..f4b519feb 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
++++ b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
+@@ -14,7 +14,7 @@
+ / {
+        chosen {
+                stdout-path = &quot;serial2:115200n8&quot;;
+-               bootargs = &quot;console=ttyS2,115200n8 earlycon=ns16550a,mmio32,0x02800000&quot;;
++               bootargs = &quot;console=ttyS2,115200n8 earlycon=ns16550a,mmio32,0x02800000 root=/dev/mmcblk1p2 rw rootfstype=ext4 rootwait&quot;;
+        };
+
+        gpio_keys: gpio-keys {
+@@ -427,6 +427,10 @@
+        status = &quot;reserved&quot;;
+ };
+
++&amp;mcu_uart0 {
++       status = &quot;disabled&quot;;
++};
++
+ &amp;main_uart0 {
+        power-domains = &lt;&amp;k3_pds 146 TI_SCI_PD_SHARED&gt;;
+ };
+@@ -563,7 +567,12 @@
+        maximum-speed = &quot;high-speed&quot;;
+ };
+
++&amp;ospi0 {
++        status = &quot;disabled&quot;;
++};
++
+ &amp;ospi1 {
++        status = &quot;disabled&quot;;
+        pinctrl-names = &quot;default&quot;;
+        pinctrl-0 = &lt;&amp;mcu_fss0_ospi1_pins_default&gt;;
+
+@@ -818,6 +827,7 @@
+ };
+
+ &amp;mcu_cpsw {
++        status = &quot;disabled&quot;;
+        pinctrl-names = &quot;default&quot;;
+        pinctrl-0 = &lt;&amp;mcu_cpsw_pins_default &amp;mcu_mdio_pins_default&gt;;
+ };
+@@ -1084,12 +1094,14 @@
+ };
+
+ &amp;mcu_mcan0 {
++        status = &quot;disabled&quot;;
+        pinctrl-names = &quot;default&quot;;
+        pinctrl-0 = &lt;&amp;mcu_mcan0_pins_default&gt;;
+        phys = &lt;&amp;transceiver1&gt;;
+ };
+
+ &amp;mcu_mcan1 {
++        status = &quot;disabled&quot;;
+        pinctrl-names = &quot;default&quot;;
+        pinctrl-0 = &lt;&amp;mcu_mcan1_pins_default&gt;;
+        phys = &lt;&amp;transceiver2&gt;;
+--
+2.17.1
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="unload-remoteproc-modules-from-kernel-before-going-to-mcu-only-mode">
+<h3>4.21.1.11.4. Unload remoteproc modules from Kernel before going to MCU only mode<a class="headerlink" href="#unload-remoteproc-modules-from-kernel-before-going-to-mcu-only-mode" title="Permalink to this headline">¶</a></h3>
+<p>During the MCU only mode demo, requirement is to reload firmwares on all MAIN
+cores after exiting low power mode. To reload firmwares, MCU R5 needs to call
+TISCI_MSG_PROC_REQUEST.</p>
+<p>On a cold boot when the cores are being loaded for the first time, if A72 is
+running Linux then kernel will try to attach to the already booted cores
+(by MCU R5) in IPC-only mode. The attach internally does a TISCI_MSG_PROC_REQUEST.
+Now in steady state the ownership of all MAIN cores lies with A72 Linux as it has
+requested for the processors, now when the trigger is made to a low power state
+a SW reset (TISCI_MSG_SYS_RESET) is issued to the MAIN domain and then PMIC
+state is changed.</p>
+<p>When doing a MAIN domain restart after a trigger is made to exit the low power
+state, all MAIN cores need to be reloaded by MCU R5. Now in this process when
+the MCU R5 tries to request access for the MAIN cores, it will get an error as
+the access control list for these cores still has A72 as the current owner.</p>
+<p>For MCU R5 to be able to boot MAIN core after exiting the MCU only mode we need to
+call TISCI_MSG_PROC_RELEASE for these cores. This can simply be done by removing
+the remoteproc modules from Linux user space before going into the MCU only mode.
+This deinitializes the remotepocs and calls TISCI_MSG_PROC_RELEASE which enables
+MCU R5 to request for processor on subsequent restart of MAIN domain.</p>
+<p>To unload the remoteprocs, run the below commands when Linux is booted.</p>
+<blockquote>
+<div><div class="code bash highlight-cpp"><div class="highlight"><pre><span class="n">modprobe</span> <span class="o">-</span><span class="n">r</span> <span class="n">ti_k3_r5_remoteproc</span>
+<span class="n">modprobe</span> <span class="o">-</span><span class="n">r</span> <span class="n">ti_k3_dsp_remoteproc</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p><strong>Note</strong>: For the purpose of the demo the time-out after Linux is booted on A72 is kept 30 seconds. This can be changed by updating the lpm_boot.c as below.</p>
+<div class="code bash highlight-cpp"><div class="highlight"><pre>diff --git a/packages/ti/drv/lpm/src/lpm_boot.c b/packages/ti/drv/lpm/src/lpm_boot.c
+index 6beef2bae..0e0578ea9 100644
+--- a/packages/ti/drv/lpm/src/lpm_boot.c
++++ b/packages/ti/drv/lpm/src/lpm_boot.c
+@@ -786,8 +786,8 @@ int32_t Lpm_bootApp()
+         if(j == NUM_BOOT_STAGES-1)
+         {
+             AppUtils_Printf(MSG_NORMAL,
+-                        &quot;Sleeping for 30 seconds after each stage\n&quot;);
+-            TaskP_sleep(30*1000);
++                        &quot;Sleeping for 2 minutes after each stage\n&quot;);
++            TaskP_sleep(2*60*1000);
+         }
+         else
+         {
+</pre></div>
+</div>
+</div>
+<div class="section" id="how-to-test-ipc-between-cores-with-default-sdk-firmwares">
+<h3>4.21.1.11.5. How to test IPC between cores with default SDK firmwares<a class="headerlink" href="#how-to-test-ipc-between-cores-with-default-sdk-firmwares" title="Permalink to this headline">¶</a></h3>
+<p>When all cores are booted in ACTIVE mode, run the below command from the Linux user space.</p>
+<div class="code bash highlight-cpp"><div class="highlight"><pre>insmod /lib/modules/`uname -r`/kernel/samples/rpmsg/rpmsg_client_sample.ko
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../family_cfg/jacinto/index_boot_jacinto.html" class="btn btn-neutral float-right" title="5. Bootloader (SBL)" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../../family_cfg/jacinto/index_modules_lpm_jacinto.html" class="btn btn-neutral" title="4.21. Low Power Manager (LPM)" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="http://www.ti.com/corp/docs/legal/copyright.shtml">&copy; Copyright 1995-2020</a>, Texas Instruments Incorporated. All rights reserved. <br>
+      <a href="http://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="http://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="http://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="http://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'08_06_01',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

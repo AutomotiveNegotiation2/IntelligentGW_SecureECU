@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-SymbolicName: com.ti.pdk.jacinto.product_08.06.01.03;singleton:
+ =true
+Bundle-Name: jacinto PDK 08.06.01.03
+Bundle-Version: 08.06.01.03
+Require-Bundle: org.eclipse.ui,org.eclipse.core.runtime,org.eclipse.he
+ lp,org.eclipse.rtsc.xdctools.ui
+Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.rtsc.xdctools.ui.CCSActivator
+Bundle-Vendor: Texas Instruments Inc.
+Created-By: 1.8.0_181 (Oracle Corporation)
+Eclipse-LazyStart: true
+
+Name: plugin.xml
+SHA-256-Digest: Hmep3TVeUtlQNFrLIoufc6nBimxJ2aFHEO00jypliqg=
+

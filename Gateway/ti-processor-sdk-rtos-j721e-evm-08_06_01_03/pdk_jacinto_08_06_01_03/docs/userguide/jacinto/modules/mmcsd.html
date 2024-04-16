@@ -1,0 +1,517 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4.20. MMCSD &mdash; Platform Development Kit (PDK) - JACINTO User Guide</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Platform Development Kit (PDK) - JACINTO User Guide" href="../index.html"/>
+        <link rel="up" title="4. Modules" href="../family_cfg/jacinto/index_modules_jacinto.html"/>
+        <link rel="next" title="4.21. Low Power Manager (LPM)" href="../family_cfg/jacinto/index_modules_lpm_jacinto.html"/>
+        <link rel="prev" title="4.19. PMIC" href="pmic.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index_jacinto.html" class="icon icon-home"> Platform Development Kit (PDK) - JACINTO User Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                08_06_01
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">1. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_release_notes_jacinto.html">2. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">3. Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../family_cfg/jacinto/index_modules_jacinto.html">4. Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="csl.html">4.1. CSL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="freertos.html">4.2. FreeRTOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../family_cfg/jacinto/index_modules_safertos_jacinto.html">4.3. SafeRTOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="osal.html">4.4. OSAL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss.html">4.5. DSS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="enet.html">4.6. ENET</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fvid2.html">4.7. FVID2 User Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gpio.html">4.8. GPIO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i2c.html">4.9. I2C</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipc.html">4.10. IPC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mcasp.html">4.11. McASP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pm.html">4.12. PM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sa.html">4.13. SA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../family_cfg/jacinto/index_modules_sciclient_jacinto.html">4.14. SCICLIENT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="keywriter.html">4.15. OTP KEYWRITER</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spi.html">4.16. SPI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uart.html">4.17. UART</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../family_cfg/jacinto/index_modules_udma_jacinto.html">4.18. UDMA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pmic.html">4.19. PMIC</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">4.20. MMCSD</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">4.20.1. Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#user-interface">4.20.2. User Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#driver-configuration">4.20.2.1. Driver Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#application">4.20.3. Application</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#examples-unit-tests">4.20.3.1. Examples &amp; Unit tests</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#building-mmcsd-test-applications-via-makefiles">4.20.4. Building MMCSD Test applications via makefiles</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../family_cfg/jacinto/index_modules_lpm_jacinto.html">4.21. Low Power Manager (LPM)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_boot_jacinto.html">5. Bootloader (SBL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_board_jacinto.html">6. Board/EVM Abstraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_howto_jacinto.html">7. How to Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_faq_jacinto.html">8. Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_developer_notes_jacinto.html">9. Developer Notes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index_jacinto.html">Platform Development Kit (PDK) - JACINTO User Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index_jacinto.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../family_cfg/jacinto/index_modules_jacinto.html">4. Modules</a> &raquo;</li>
+      
+    <li>4.20. MMCSD</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="mmcsd">
+<h1>4.20. MMCSD<a class="headerlink" href="#mmcsd" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>4.20.1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>MMCSD module provides an interface between CPU and any
+MMCSD-bus-compatible device that connects via MMCSD serial bus. External
+components attached to MMCSD bus can serially transmit/receive data
+to/from the CPU device through two-wire interface</p>
+<p class="rubric" id="key-features">Key Features</p>
+<div class="line-block">
+<div class="line">Type of transfers</div>
+</div>
+<blockquote>
+<div><ul class="simple">
+<li>&nbsp;Read</li>
+<li>&nbsp;Write</li>
+<li>&nbsp;Write followed by read</li>
+</ul>
+</div></blockquote>
+<div class="line-block">
+<div class="line">Operating modes</div>
+</div>
+<blockquote>
+<div><ul class="simple">
+<li>&nbsp;Blocking(interrupt or Non interrupt)</li>
+<li>&nbsp;Callback mode(interrupt)</li>
+</ul>
+</div></blockquote>
+<div class="line-block">
+<div class="line">Supports only master mode. Slave mode is not supported</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="user-interface">
+<h2>4.20.2. User Interface<a class="headerlink" href="#user-interface" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="driver-configuration">
+<h3>4.20.2.1. Driver Configuration<a class="headerlink" href="#driver-configuration" title="Permalink to this headline">¶</a></h3>
+<p class="rubric" id="board-specific-configuration"><strong>Board Specific Configuration</strong></p>
+<p>All board specific configurations eg:enabling clock and pin-mux for
+UART pins are required before calling any driver APIs.By default
+Board_Init() API supports all initialization sequence for TI supported
+EVMs. In addition it initializes UART instance for Console/STDIO.
+Once board specific configuration is complete
+MMCSD_init() API&nbsp;can be called to initialize driver.</p>
+<p class="rubric" id="mmcsd-configuration-structure"><strong>MMCSD Configuration Structure</strong></p>
+<p>The MMCSD_soc.c file binds driver with hardware attributes on the
+board through MMCSD_config structure. This structure must be
+initialized before the MMCSD_init() function is called and cannot be
+changed afterwards. For details about the individual fields of this
+structure, see the API Guide.</p>
+</div>
+</div>
+<div class="section" id="application">
+<h2>4.20.3. Application<a class="headerlink" href="#application" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="examples-unit-tests">
+<h3>4.20.3.1. Examples &amp; Unit tests<a class="headerlink" href="#examples-unit-tests" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="29%" />
+<col width="26%" />
+<col width="19%" />
+<col width="14%" />
+<col width="12%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Description</th>
+<th class="head">Expected Results</th>
+<th class="head">Supported SOCs</th>
+<th class="head">Build Type</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>MMCSD_TestApp</td>
+<td>Unit Test
+application
+demonstrating write
+and read a fixed
+number of bytes
+into MMCSD card.
+Verifies written
+data pattern to
+conclude PASS/FAIL.</td>
+<td>Prints on console
+All tests have passed</td>
+<td>AM65x
+J721e
+J7200
+AM64x</td>
+<td>Makefile</td>
+</tr>
+<tr class="row-odd"><td>MMCSD_DMA_TestApp</td>
+<td>Functionally same
+as MMCSD_TestApp
+but with DMA enabled</td>
+<td>Prints on console
+All tests have passed</td>
+<td>AM65x
+J721e
+J7200
+AM64x</td>
+<td>Makefile</td>
+</tr>
+<tr class="row-even"><td>MMCSD_EMMC_TestApp</td>
+<td>Unit Test
+application
+demonstrating write
+and read a fixed
+number of bytes
+into the onboard
+EMMC.Verifies written
+data pattern to
+conclude PASS/FAIL.</td>
+<td>Prints  on console
+All tests have passed</td>
+<td>AM65x
+J721e
+J7200
+AM64x</td>
+<td>Makefile</td>
+</tr>
+<tr class="row-odd"><td>MMCSD_EMMC_DMA_TestApp</td>
+<td>Functionally
+Same as EMMC_TestApp
+but using  DMA mode</td>
+<td>Prints on console
+All tests have passed</td>
+<td>J7200
+AM65x
+J721e
+AM64x</td>
+<td>Makefile</td>
+</tr>
+<tr class="row-even"><td>MMCSD_Baremetal_TestApp</td>
+<td>Baremetal version of
+MMCSD_TestApp</td>
+<td>Prints on console
+All tests have passed</td>
+<td>J7200
+AM65x
+J721e
+AM64x</td>
+<td>Makefile</td>
+</tr>
+<tr class="row-odd"><td>MMCSD_Baremetal_DMA_TestApp</td>
+<td>Baremetal version of
+MMCSD_EMMC_TestApp</td>
+<td>Prints on console
+All tests have passed</td>
+<td>J7200
+AM65x
+J721e
+AM64x</td>
+<td>Makefile</td>
+</tr>
+<tr class="row-even"><td>MMCSD_Baremetal_EMMC_TestApp</td>
+<td>Baremetal version of
+MMCSD_EMMC_TestApp</td>
+<td>Prints on console
+All tests have passed</td>
+<td>J7200
+AM65x
+J721e
+AM64x</td>
+<td>Makefile</td>
+</tr>
+<tr class="row-odd"><td>MMCSD_Baremetal_EMMC_DMA_TestApp</td>
+<td>Functionally same as
+MMCSD_Baremetal_EMMC_TestApp
+but with DMA enabled</td>
+<td>Prints on console
+All tests have passed</td>
+<td>J7200
+AM65x
+J721e
+AM64x</td>
+<td>Makefile</td>
+</tr>
+<tr class="row-even"><td>MMCSD_Regression_TestApp</td>
+<td>Menu driven regression test
+which tests various
+configurations of SD card</td>
+<td>Prints on console
+All tests have passed</td>
+<td>J7200
+AM65x
+J721e
+AM64x</td>
+<td>Makefile</td>
+</tr>
+<tr class="row-odd"><td>MMCSD_EMMC_Regression_TestApp</td>
+<td>Menu driven regression test
+which tests various
+configurations of EMMC</td>
+<td>Prints on console
+All tests have passed</td>
+<td>J7200
+AM65x
+J721e
+AM64x</td>
+<td>Makefile</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="building-mmcsd-test-applications-via-makefiles">
+<h2>4.20.4. Building MMCSD Test applications via makefiles<a class="headerlink" href="#building-mmcsd-test-applications-via-makefiles" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>MMCSD Test applications and dependent libraries are built from the top level mmcsd makefile</li>
+<li>Refer to the <a class="reference external" href="index_overview.html#setup-environment">Processor SDK RTOS Getting Started Guide</a>  for details
+of how to setup the build environment. Once you have setup the build environment, issue the following commands:<ul>
+<li>cd &lt;pdk&gt;/packages/</li>
+<li>To build: make mmcsd</li>
+<li>To clean: make mmcsd_clean</li>
+</ul>
+</li>
+<li>Similarly, to build at the module level, issue the following commands for rebuilding :<ul>
+<li>cd &lt;pdk&gt;/packages/ti/drv/mmcsd</li>
+<li>To build: make all</li>
+<li>To clean: make clean</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../family_cfg/jacinto/index_modules_lpm_jacinto.html" class="btn btn-neutral float-right" title="4.21. Low Power Manager (LPM)" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pmic.html" class="btn btn-neutral" title="4.19. PMIC" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="http://www.ti.com/corp/docs/legal/copyright.shtml">&copy; Copyright 1995-2020</a>, Texas Instruments Incorporated. All rights reserved. <br>
+      <a href="http://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="http://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="http://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="http://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'08_06_01',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,384 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>7.2. Relocation of sections at runtime &mdash; Platform Development Kit (PDK) - JACINTO User Guide</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Platform Development Kit (PDK) - JACINTO User Guide" href="../index.html"/>
+        <link rel="up" title="7. How to Guides" href="../family_cfg/jacinto/index_howto_jacinto.html"/>
+        <link rel="next" title="7.3. Building and Running Memory Benchmarking Configurations" href="run_memory_benchmarking_app.html"/>
+        <link rel="prev" title="7.1. Run a Application from DDR on R5 Cores" href="run_apps_from_ddr_on_r5.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index_jacinto.html" class="icon icon-home"> Platform Development Kit (PDK) - JACINTO User Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                08_06_01
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">1. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_release_notes_jacinto.html">2. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">3. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_modules_jacinto.html">4. Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_boot_jacinto.html">5. Bootloader (SBL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_board_jacinto.html">6. Board/EVM Abstraction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../family_cfg/jacinto/index_howto_jacinto.html">7. How to Guides</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="run_apps_from_ddr_on_r5.html">7.1. Run a Application from DDR on R5 Cores</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">7.2. Relocation of sections at runtime</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#need-problem-statament">7.2.1. Need / Problem Statament</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#solution">7.2.2. Solution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#define-copy-table">7.2.3. #1 &amp; #2 - Define Copy Table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#copy-at-run-time">7.2.4. #3 - Copy at run time</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example">7.2.5. Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mcu-ocmc-ram-usage-by-applications">7.2.6. MCU_OCMC_RAM usage by applications:</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="run_memory_benchmarking_app.html">7.3. Building and Running Memory Benchmarking Configurations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_faq_jacinto.html">8. Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_developer_notes_jacinto.html">9. Developer Notes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index_jacinto.html">Platform Development Kit (PDK) - JACINTO User Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index_jacinto.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../family_cfg/jacinto/index_howto_jacinto.html">7. How to Guides</a> &raquo;</li>
+      
+    <li>7.2. Relocation of sections at runtime</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="relocation-of-sections-at-runtime">
+<h1>7.2. Relocation of sections at runtime<a class="headerlink" href="#relocation-of-sections-at-runtime" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="need-problem-statament">
+<span id="run-time-placement-of-sections"></span><h2>7.2.1. Need / Problem Statament<a class="headerlink" href="#need-problem-statament" title="Permalink to this headline">¶</a></h2>
+<p>Run time relocation of code and/or data could be employed for optimal utilization of fast memories.</p>
+<p>Consider ExecuteInPlace (XIP) where in a secodary memory device would hold code and data and allows
+execute in place. Most of the external device would be slower compared to internal memory it would
+be benificial to place highly used code/data in the internal memory.</p>
+<dl class="docutils">
+<dt>Situations where memories are not setup by boot loader</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>e.g. As in case of AM65xx device, the TCM&#8217;s contents are lost with reset of MCU R5.</dt>
+<dd><p class="first last">This renders TCM&#8217;s un-useable by applications.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="solution">
+<h2>7.2.2. Solution<a class="headerlink" href="#solution" title="Permalink to this headline">¶</a></h2>
+<p>To support run-time relocation of code/data would require 3 distinct steps</p>
+<ol class="arabic simple">
+<li>Identification memory section that would be used for loading and section to run from</li>
+<li>Listing of code/data that would require to loaded and run/used from different locations</li>
+<li>Moving of sections from loaded area to run/used areas</li>
+</ol>
+<p>Would rely on TI&#8217;s compilers copy table to implement #1 &amp; #2 and copy in functions to implement #3.
+Refer for details <a class="reference external" href="https://www.ti.com/litv/pdf/spraa46a">Advanced Linker Techniques</a>. on <em>COPY TABLE</em> and <em>COPY IN</em></p>
+<p>Consider the below for convience</p>
+<ul class="simple">
+<li>MSMC3 - Memory location where .text and .data would be loaded by SBL</li>
+<li>MCU0_ATCM_TXT_RUN_TIME_LOAD - Memory location where text section of the program would be executed from</li>
+<li>MCU0_ATCM_DAT_RUN_TIME_LOAD - Memory location where data section of the program would be used from</li>
+<li>TI RTOS/sysbios is deployed on Cotex R5F</li>
+</ul>
+</div>
+<div class="section" id="define-copy-table">
+<h2>7.2.3. #1 &amp; #2 - Define Copy Table<a class="headerlink" href="#define-copy-table" title="Permalink to this headline">¶</a></h2>
+<p>Below list the section of linker command</p>
+<p>Text Section:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="p">.</span><span class="nl">text_run_time_load</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="o">*</span><span class="n">ti</span><span class="p">.</span><span class="n">csl</span><span class="o">*</span><span class="n">aer5f</span><span class="p">(.</span><span class="n">text</span><span class="p">)</span>
+             <span class="p">}</span> <span class="n">palign</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span> <span class="n">load</span> <span class="o">=</span> <span class="n">MSMC3</span><span class="p">,</span>
+                <span class="n">run</span> <span class="o">=</span> <span class="n">MCU0_ATCM_TXT_RUN_TIME_LOAD</span><span class="p">,</span>
+                <span class="n">table</span><span class="p">(</span><span class="n">_text_run_time_load_section</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul>
+<li><dl class="first docutils">
+<dt><em>_text_run_time_load_section</em> - Defines copy table for text section</dt>
+<dd><ul class="first last simple">
+<li><em>ti.csl aer5f(.text)</em> - text segement of the object</li>
+<li><em>MSMC3</em> - Location where code is loaded by SBL</li>
+<li><em>MCU0_ATCM_TXT_RUN_TIME_LOAD</em> - Location from it would be executed</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Data Section:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="p">.</span><span class="nl">data_run_time_load</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="o">*</span><span class="n">ti</span><span class="p">.</span><span class="n">drv</span><span class="o">*</span><span class="n">aer5f</span><span class="p">(.</span><span class="n">data</span><span class="p">)</span>
+             <span class="p">}</span> <span class="n">palign</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span> <span class="n">load</span> <span class="o">=</span> <span class="n">MSMC3</span><span class="p">,</span>
+                <span class="n">run</span> <span class="o">=</span> <span class="n">MCU0_ATCM_DAT_RUN_TIME_LOAD</span><span class="p">,</span>
+                <span class="n">table</span><span class="p">(</span><span class="n">_data_run_time_load_section</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul>
+<li><dl class="first docutils">
+<dt><em>_data_run_time_load_section</em> - Defines copy table for data section</dt>
+<dd><ul class="first last simple">
+<li><em>ti.drv aer5f(.data)</em> - data segement of the object</li>
+<li><em>MSMC3</em> - Location where data is loaded by SBL</li>
+<li><em>MCU0_ATCM_DAT_RUN_TIME_LOAD</em> - Location from it would accessed at runtime</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Copy TABLE Section:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cm">/* This is the region which will have all the copy tables */</span>
+<span class="p">.</span><span class="nl">ovly</span>       <span class="p">:</span> <span class="p">{}</span> <span class="n">palign</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span> <span class="n">load</span> <span class="o">=</span> <span class="n">MSMC3</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>ovly is the section that would be host all the copy tables</li>
+</ul>
+</div>
+<div class="section" id="copy-at-run-time">
+<h2>7.2.4. #3 - Copy at run time<a class="headerlink" href="#copy-at-run-time" title="Permalink to this headline">¶</a></h2>
+<p>Before the text/data defined by these two tables are used, these requires to be moved from <em>MSMC3</em> to <em>MCU0_ATCM_TXT_RUN_TIME_LOAD</em> or <em>MCU0_ATCM_DAT_RUN_TIME_LOAD</em> and this can be achived with compiler runtime-support function <strong>copy_in()</strong></p>
+<p>copy in example:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">copy_in</span><span class="p">(</span><span class="o">&amp;</span><span class="n">_text_run_time_load_section</span><span class="p">);</span>
+<span class="n">copy_in</span><span class="p">(</span><span class="o">&amp;</span><span class="n">_data_run_time_load_section</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="example">
+<h2>7.2.5. Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<p>The method described above is implemented for UDMA example</p>
+<ul class="simple">
+<li>Linker Command File - Defined COPY TABLE - PDK_INSTALL_DIR/packages/ti/drv/udma/examples/udma_adc_test/build/am65xx/linker_r5_sysbios.lds</li>
+<li>Example - Reference copy in useage - PDK_INSTALL_DIR/packages/ti/drv/udma/examples/udma_adc_test/main_tirtos.c</li>
+</ul>
+</div>
+<div class="section" id="mcu-ocmc-ram-usage-by-applications">
+<h2>7.2.6. MCU_OCMC_RAM usage by applications:<a class="headerlink" href="#mcu-ocmc-ram-usage-by-applications" title="Permalink to this headline">¶</a></h2>
+<p>The first 512 KB of MCU OCM RAM is used by the bootloader and can be re-claimed once SBL has finished execution.
+Application can put any no-load section (e.g. .bss) in this region (from 0x41C0_0000 to 0x41C8_0000).
+User can look at the following linker command files for reference:</p>
+<p>LPM Linker - &lt;PDK_base&gt;/packages/ti/drv/lpm/examples/lpm_example/overrides/j721e/mcu1_0/linker_r5_freertos.lds</p>
+<p>Boot App&#8217;s Linker - &lt;mcusw_base&gt;/mcuss_demos/boot_app_mcu_rtos/overrides/j721e/mcu1_0/linker_r5_freertos.lds</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="run_memory_benchmarking_app.html" class="btn btn-neutral float-right" title="7.3. Building and Running Memory Benchmarking Configurations" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="run_apps_from_ddr_on_r5.html" class="btn btn-neutral" title="7.1. Run a Application from DDR on R5 Cores" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="http://www.ti.com/corp/docs/legal/copyright.shtml">&copy; Copyright 1995-2020</a>, Texas Instruments Incorporated. All rights reserved. <br>
+      <a href="http://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="http://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="http://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="http://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'08_06_01',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

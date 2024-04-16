@@ -1,0 +1,704 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4.9. I2C &mdash; Platform Development Kit (PDK) - JACINTO User Guide</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Platform Development Kit (PDK) - JACINTO User Guide" href="../index.html"/>
+        <link rel="up" title="4. Modules" href="../family_cfg/jacinto/index_modules_jacinto.html"/>
+        <link rel="next" title="4.10. IPC" href="ipc.html"/>
+        <link rel="prev" title="4.8. GPIO" href="gpio.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index_jacinto.html" class="icon icon-home"> Platform Development Kit (PDK) - JACINTO User Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                08_06_01
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">1. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_release_notes_jacinto.html">2. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">3. Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../family_cfg/jacinto/index_modules_jacinto.html">4. Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="csl.html">4.1. CSL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="freertos.html">4.2. FreeRTOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../family_cfg/jacinto/index_modules_safertos_jacinto.html">4.3. SafeRTOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="osal.html">4.4. OSAL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss.html">4.5. DSS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="enet.html">4.6. ENET</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fvid2.html">4.7. FVID2 User Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gpio.html">4.8. GPIO</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">4.9. I2C</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">4.9.1. Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#user-interface">4.9.2. User Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#driver-configuration">4.9.2.1. Driver Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#apis">4.9.2.2. APIs</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#application">4.9.3. Application</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#examples">4.9.3.1. Examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ipc.html">4.10. IPC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mcasp.html">4.11. McASP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pm.html">4.12. PM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sa.html">4.13. SA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../family_cfg/jacinto/index_modules_sciclient_jacinto.html">4.14. SCICLIENT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="keywriter.html">4.15. OTP KEYWRITER</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spi.html">4.16. SPI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uart.html">4.17. UART</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../family_cfg/jacinto/index_modules_udma_jacinto.html">4.18. UDMA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pmic.html">4.19. PMIC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mmcsd.html">4.20. MMCSD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../family_cfg/jacinto/index_modules_lpm_jacinto.html">4.21. Low Power Manager (LPM)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_boot_jacinto.html">5. Bootloader (SBL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_board_jacinto.html">6. Board/EVM Abstraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_howto_jacinto.html">7. How to Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_faq_jacinto.html">8. Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_developer_notes_jacinto.html">9. Developer Notes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index_jacinto.html">Platform Development Kit (PDK) - JACINTO User Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index_jacinto.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../family_cfg/jacinto/index_modules_jacinto.html">4. Modules</a> &raquo;</li>
+      
+    <li>4.9. I2C</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="i2c">
+<h1>4.9. I2C<a class="headerlink" href="#i2c" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>4.9.1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>I2C module provides an interface to any I2C-bus-compatible device
+accessible via I2C serial bus. External components attached to I2C bus
+can serially transmit/receive data to/from the CPU through two-wire
+interface. Driver supports three types of transfers in I2C master
+mode</p>
+<ul class="simple">
+<li>Read</li>
+<li>Write</li>
+<li>Write followed by read</li>
+</ul>
+<p>In addition driver supports following modes of operation:</p>
+<ul class="simple">
+<li><strong>I2C_MODE_BLOCKING:</strong> By default, driver operates in blocking mode.
+In blocking mode, a Task’s code execution is blocked until
+transaction is complete. This ensures only one transaction operates
+at a given time. Driver supports both interrupt or non-interrupt
+based blocking modes.</li>
+<li><strong>I2C_MODE_CALLBACK</strong> In callback mode, an I2C transaction functions
+asynchronously, which means that it does not block a Task’s code
+execution. After an I2C transaction is complete, I2C driver calls a
+user-provided hook function. Only interrupt based callback is
+supported.</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If I2C peripheral is in reset during a transfer, it can cause the I2C
+bus to hang. I2C V0 IP (Keystone SoCs) does not have hardware support to
+recover the I2C bus from hanging, user needs to power cycle the board as
+a workaround. For I2C V1 IP (AM3/4/5 SoCs), the application can call
+I2C_control() API and use I2C_CMD_RECOVER_BUS to recover the I2C bus.</p>
+</div>
+<p class="rubric" id="i2c-firmware">Firmware</p>
+<p>TI PRU-ICSS cores (Programmable Real-Time Unit Industrial Communication
+Subsystem) is firmware programmable and can take on various
+personalities. Processor SDK package includes I2C Firmware support.
+Refer <a class="reference external" href="index_pru_icss_fw.html#pru-icss-i2c">I2C FW</a> for
+additional details.</p>
+</div>
+<div class="section" id="user-interface">
+<h2>4.9.2. User Interface<a class="headerlink" href="#user-interface" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="driver-configuration">
+<h3>4.9.2.1. Driver Configuration<a class="headerlink" href="#driver-configuration" title="Permalink to this headline">¶</a></h3>
+<p class="rubric" id="i2c-board-specific-configuration"><strong>Board Specific Configuration</strong></p>
+<p>All the board specific configurations eg:enabling and pin-mux of I2C
+pins should be performed before calling any driver APIs.By default
+Board_Init() API supports all initialization sequence for TI supported
+EVMs.Refer <a class="reference external" href="../board/board_support.html#board-support">PDK Board Support</a> for additional
+details.</p>
+<p>Once the board specific configuration is complete driver API I2C_init()
+can be called to initialize driver</p>
+<p class="rubric" id="i2c-configuration-structure"><strong>I2C Configuration Structure</strong></p>
+<p>I2C_soc.c file binds driver with hardware attributes on the board
+through I2C_config structure. This structure must be provided to I2C
+driver. It must be initialized before the I2C_init() function is called
+and cannot be changed afterwards.</p>
+<p>For details about individual fields of this library structure, see the
+PDK doxygen documentation</p>
+</div>
+<div class="section" id="apis">
+<h3>4.9.2.2. APIs<a class="headerlink" href="#apis" title="Permalink to this headline">¶</a></h3>
+<p>API reference for application:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include</span> <span class="cpf">&lt;ti/drv/i2c/I2C.h&gt;</span><span class="cp"></span>
+</pre></div>
+</div>
+<p>&nbsp;Sample code for initiating I2C&nbsp;transaction:</p>
+<div class="highlight-cpp"><div class="highlight"><pre>...
+Board_init(boardCfg);
+...
+I2C_socGetInitCfg(peripheralNum, &amp;i2c_cfg);
+...
+I2C_socSetInitCfg(peripheralNum, &amp;i2c_cfg);
+...
+i2c = I2C_open(peripheralNum, &amp;i2cParams);
+...
+...
+
+/* Initiate I2C transfers. Refer Example for details
+*/
+I2C_transactionInit(&amp;i2cTransaction);
+transaction.masterMode   = true;
+...
+...
+transferOK = I2C_transfer(i2c, &amp;i2cTransaction);
+if (transferOK != I2C_STS_SUCCESS) {
+/* I2C transaction failed */
+}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="application">
+<h2>4.9.3. Application<a class="headerlink" href="#application" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="examples">
+<h3>4.9.3.1. Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
+<p>Refer Release Note for I2C support across different EVMs</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="21%" />
+<col width="21%" />
+<col width="19%" />
+<col width="19%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><div class="first last line-block">
+<div class="line">Name</div>
+</div>
+</th>
+<th class="head"><div class="first last line-block">
+<div class="line">Description</div>
+</div>
+</th>
+<th class="head"><div class="first last line-block">
+<div class="line">Expected Results</div>
+</div>
+</th>
+<th class="head">SoC Supported</th>
+<th class="head">Build Type</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>I2C_EepromRead
+Example application</td>
+<td><div class="first last line-block">
+<div class="line">Simple example to
+read fixed number
+of bytes from
+EEPROM on board and
+compares it with
+expected data.</div>
+</div>
+</td>
+<td><div class="first last line-block">
+<div class="line">Following prints will
+come on console based
+on pass/fail
+criteria:</div>
+<div class="line"><br /></div>
+<div class="line"><strong>Pass criteria:</strong></div>
+<div class="line"><br /></div>
+<div class="line">EEPROM data matched
+All tests have
+passed.</div>
+</div>
+</td>
+<td>AM335x,
+AM437x,
+AM571x,
+AM572x,
+AM574x,
+k2g,
+k2hk,k2l,k2e,k2l
+c6657,c6678
+omapl137,</td>
+<td>CCS project</td>
+</tr>
+<tr class="row-odd"><td>I2C_Eeprom_Test
+Application</td>
+<td><div class="first last line-block">
+<div class="line">Simple example to
+read fixed number
+of bytes from
+EEPROM on board and
+compares it with
+expected data.</div>
+</div>
+</td>
+<td><div class="first last line-block">
+<div class="line">Following prints will
+come on console based
+on pass/fail
+criteria:</div>
+<div class="line"><br /></div>
+<div class="line"><strong>Pass criteria:</strong></div>
+<div class="line">I2C bit rate test in
+interrupt mode
+have passed</div>
+<div class="line"><br /></div>
+<div class="line">I2C probe bus freq
+test in interrupt
+mode have passed</div>
+<div class="line"><br /></div>
+<div class="line">I2C timeout test in
+interrupt mode
+have passed</div>
+<div class="line"><br /></div>
+<div class="line">All tests have
+passed.</div>
+</div>
+</td>
+<td>am65xx
+j721e
+j7200
+am64x</td>
+<td>makefile</td>
+</tr>
+<tr class="row-even"><td rowspan="2">I2C_TestApplication</td>
+<td rowspan="2"><div class="first last line-block">
+<div class="line">Driver&nbsp;Unit Test
+application for
+additional I2C
+speed and other tests</div>
+</div>
+</td>
+<td rowspan="2"><div class="first last line-block">
+<div class="line">Following prints will
+come on console based
+on pass/fail
+criteria:</div>
+<div class="line"><br /></div>
+<div class="line"><strong>Pass criteria:</strong></div>
+<div class="line"><br /></div>
+<div class="line">I2C Test: 100Kbps:
+PASS</div>
+<div class="line"><br /></div>
+<div class="line">I2C Test: 400Kbps:
+PASS</div>
+<div class="line"><br /></div>
+<div class="line">I2C Test: timeout
+test passed</div>
+<div class="line"><br /></div>
+<div class="line">All tests have
+passed.</div>
+</div>
+</td>
+<td>AM335x,
+AM437x,
+AM571x,
+AM572x,
+AM574x,
+k2g,
+k2hk,
+k2l,
+k2e,
+c6657,
+c6678,
+omapl137,</td>
+<td>CCS project</td>
+</tr>
+<tr class="row-odd"><td>am65xx
+j721e
+j7200</td>
+<td>makefile</td>
+</tr>
+<tr class="row-even"><td rowspan="2">I2C_SMP_Test
+Application</td>
+<td rowspan="2"><div class="first last line-block">
+<div class="line">Driver&nbsp;Unit Test
+application for
+additional I2C
+speed and other tests
+with SMP enabled.
+(A15 and A53 cores)</div>
+</div>
+</td>
+<td rowspan="2"><div class="first last line-block">
+<div class="line">Following prints will
+come on console based
+on pass/fail
+criteria:</div>
+<div class="line"><br /></div>
+<div class="line"><strong>Pass criteria:</strong></div>
+<div class="line"><br /></div>
+<div class="line">I2C Test: 100Kbps:
+PASS</div>
+<div class="line"><br /></div>
+<div class="line">I2C Test: 400Kbps:
+PASS</div>
+<div class="line"><br /></div>
+<div class="line">I2C Test: timeout
+test passed</div>
+<div class="line"><br /></div>
+<div class="line">All tests have
+passed.</div>
+</div>
+</td>
+<td>am572x-evm</td>
+<td>CCS project</td>
+</tr>
+<tr class="row-odd"><td>am65xx
+j721e</td>
+<td>makefile</td>
+</tr>
+<tr class="row-even"><td>I2C_TemperatureSensor</td>
+<td><div class="first last line-block">
+<div class="line">Example to get the
+temperature value
+from the temperature
+sensor and displays
+on the serial
+console.</div>
+</div>
+</td>
+<td><div class="first last line-block">
+<div class="line">Following prints will
+come on console based
+on pass/fail
+criteria:</div>
+<div class="line"><br /></div>
+<div class="line"><strong>Pass criteria:</strong></div>
+<div class="line"><br /></div>
+<div class="line">Temperature =
+&#8220;value in
+centigrades&#8221; C
+All tests have
+passed.</div>
+</div>
+</td>
+<td>AM572x,</td>
+<td>CCS project</td>
+</tr>
+<tr class="row-odd"><td rowspan="2">I2C_master/slave</td>
+<td rowspan="2"><div class="first line-block">
+<div class="line">Application
+demonstrates
+master/slave
+transfer of I2C.
+Application use
+case requires two
+EVMs. One acts as
+Master and the
+other as slave. I2C
+connections
+information and
+addtional details
+are as follows:</div>
+<div class="line"><br /></div>
+<div class="line">AM57xx boards I2C bus
+connection on J9
+(master board &lt;&#8211;&gt;
+slave board)</div>
+<div class="line"><br /></div>
+<div class="line">pin22 (SCL)&lt;&#8211;&gt;
+pin22 (SCL)</div>
+<div class="line"><br /></div>
+<div class="line">pin24 (SDA)&lt;&#8211;&gt; pin24
+(SDA)</div>
+<div class="line"><br /></div>
+<div class="line">pin21 (GND)&lt;&#8211;&gt; pin21
+(GND)</div>
+<div class="line"><br /></div>
+<div class="line">K2G boards I2C bus
+connection on J12
+(master board &lt;&#8211;&gt;
+slave board)
+pin28 (SCL)&lt;&#8211;&gt;
+pin28 (SCL)
+pin30 (SDA)&lt;&#8211;&gt;
+pin30 (SDA)
+pin50 (GND)&lt;&#8211;&gt;
+pin50 (GND)</div>
+<div class="line"><br /></div>
+</div>
+<div class="last line-block">
+<div class="line">OMAPL138/C6748
+boards I2C bus
+connection on J15
+(master board &lt;&#8211;&gt;
+slave board)
+pin13 (SCL)&lt;&#8211;&gt;
+pin13 (SCL)
+pin15 (SDA)&lt;&#8211;&gt;
+pin15 (SDA)
+pin35 (GND)&lt;&#8211;&gt;
+pin35 (GND)</div>
+<div class="line"><br /></div>
+<div class="line">Run
+&#8220;I2C_Slave_&lt;BoardTy
+pe&gt;_&lt;arm/c66x/m4&gt;Test
+Project&#8221;
+first on Slave EVM
+and then
+&#8220;I2C_Master_&lt;BoardT
+ype&gt;_&lt;arm/c66x/m4&gt;Tes
+tProject&#8221;
+on Master EVM.</div>
+</div>
+</td>
+<td rowspan="2"><div class="first last line-block">
+<div class="line">Following prints will
+come on console based
+on pass/fail
+criteria:</div>
+<div class="line"><br /></div>
+<div class="line"><strong>Pass criteria:</strong></div>
+<div class="line"><br /></div>
+<div class="line">All tests have
+passed.</div>
+</div>
+</td>
+<td>AM572x,
+AM574x,
+k2g,
+omapl138,</td>
+<td>CCS project</td>
+</tr>
+<tr class="row-even"><td>tpr12</td>
+<td>makefile</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">I2C_Test Application supports write test on Keystone II EVMs, by default
+write test is disabled, user can enable the write test by defining
+I2C_EEPROM_WRITE_ENABLE in test/eeprom_read/src/I2C_board.h.
+I2C_TemperatureSensor Application is supported only on AM572x GP EVM.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ipc.html" class="btn btn-neutral float-right" title="4.10. IPC" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="gpio.html" class="btn btn-neutral" title="4.8. GPIO" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="http://www.ti.com/corp/docs/legal/copyright.shtml">&copy; Copyright 1995-2020</a>, Texas Instruments Incorporated. All rights reserved. <br>
+      <a href="http://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="http://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="http://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="http://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'08_06_01',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

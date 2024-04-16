@@ -1,0 +1,293 @@
+SPI
+===
+
+Introduction
+------------
+
+SPI driver enables communication for general SPI, MCSPI (Multichannel
+SPI), QSPI (Quad SPI) and OSPI (Octal SPI) based peripherals on board
+through common API to application.
+MCSPI is a generic full-duplex interface supporting transmit and
+receive of data over SPI bus. QSPI/OSPI is a variant of SPI supports four/eight
+receive data lanes. Driver supports configuration for either single,
+dual, quad or octal data lines
+
+Modes of Operation
+^^^^^^^^^^^^^^^^^^
+
+Following modes of operations are supported:
+
+**SPI_MODE_BLOCKING**
+*SPI_transfer()* API blocks code execution until transaction has
+completed. By default, SPI driver operates in blocking mode. This
+ensures only one SPI transaction operates at a given time. This mode
+is supported in both interrupt or non-interrupt configurations.
+
+**SPI_MODE_CALLBACK**
+*SPI_transfer()* API returns without waiting for completion of
+transaction in this case. Callback function registered by application
+is invoked once transaction is complete.This mode is supported only in
+interrupt configuration.
+
+Driver Configuration
+--------------------
+
+Board Specific Configuration
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+All board specific configurations eg:enabling clock and pin-mux for SPI
+pins are required before calling any driver APIs.By default Board_Init()
+API supports all initialization sequence for TI supported EVMs. In
+addition it initializes UART instance for Console/STDIO.Refer `PDK Board Support <../board/board_support.html#board-support>`__
+for additional details.Once board specific configuration is
+complete \ *SPI_init()* API should be called to initialize driver.
+
+SoC Specific Configuration
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+All SoC specific configurations (eg: SPI module registers base address,
+interrupt configurations, etc.) can be set using SPI_socSetInitCfg() SoC
+driver API before calling any SPI driver APIs. The default SoC specific
+configurations can be retrieved using SPI_socGetInitCfg() SoC driver
+API. Use the APIs OSPI_socSetInitCfg and OSPI_socGetInitCfg for changing
+the SoC specific configurations for OSPI.
+
+SPI Configuration Structure
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The *SPI_soc.c* file binds driver with hardware attributes on the board
+through *SPI_config[]* structure. This structure must be provided to the
+SPI driver. It must be initialized before the *SPI_init()* function is
+called and cannot be changed afterwards.
+
+Driver  requires common *SPI_config[]*  to configure hardware attributes
+of MCSPI and QSPI/OSPI peripherals on SOC and board. First all MCSPI related
+hardware attributes is defined followed by QSPI/OSPI hardware attributes.
+Application will need to include appropriate offset to instance while
+invoking *SPI_open()* API..
+
+For details about individual fields of this library structure, see the
+PDK doxygen documentation
+
+APIs
+----
+
+API Reference for application:
+
+::
+
+    #include <ti/drv/spi/SPI.h>
+
+SPI IP V1 driver also supports multi-channel API's:
+
+::
+
+    #include <ti/drv/spi/MCSPI.h>
+
+.. rubric::  *Description*
+   :name: spi-section
+
+Open SPI
+^^^^^^^^
+
+::
+
+    ...
+    Board_init(boardCfg);
+    ...
+    SPI_socGetInitCfg(SPI_MCSPI_DOMAIN_MCU, peripheralNum, &spi_cfg);
+    ...
+    SPI_socSetInitCfg(SPI_MCSPI_DOMAIN_MCU, peripheralNum, &spi_cfg);
+    SPI_Params_init(&spiParams);
+    spiParams.transferMode = SPI_MODE_BLOCKING;
+    spiParams.transferCallbackFxn = NULL;
+    handle = SPI_open(SPI_MCSPI_DOMAIN_MCU, peripheralNum, &spiParams);
+
+Use below sequence for opening the OSPI instance:
+
+::
+
+    ...
+    OSPI_Params ospiParams;
+    Board_init(boardCfg);
+    ...
+    OSPI_socGetInitCfg(SPI_OSPI_DOMAIN_MCU, peripheralNum, &spi_cfg);
+    ...
+    OSPI_socSetInitCfg(SPI_OSPI_DOMAIN_MCU, peripheralNum, &spi_cfg);
+    OSPI_Params_init(&ospiParams);
+    ospiParams.transferMode = OSPI_MODE_BLOCKING;
+    ospiParams.transferCallbackFxn = NULL;
+    handle = OSPI_open(SPI_OSPI_DOMAIN_MCU, peripheralNum, &ospiParams);
+
+SPI IP V1 driver also supports multi-channel open API's:
+
+::
+
+    ...
+    Board_init(boardCfg);
+    ...
+    MCSPI_Params_init(&spiParams);
+    spiParams.transferMode = SPI_MODE_BLOCKING;
+    spiParams.transferCallbackFxn = NULL;
+    handle = MCSPI_open(SPI_MCSPI_DOMAIN_MCU, peripheralNum, channel, &spiParams);
+
+At this point SPI driver is ready for data transfer in blocking mode
+on specific instance identified by handle. Pseudo/Sample code for
+SPI read/write transaction is included below. Refer example for
+additional details
+
+::
+
+    ...
+    spiTransaction.count = n;    /* Transfer Length */
+    spiTransaction. txBuf = transmitBuffer; /* Buffer to be written */
+    spiTransaction.rxBuf = NULL;  /* Buffer holding the received data */
+    transferOK = SPI_transfer(spi, &spiTransaction); /* Perform SPI transfer */
+    if (!transferOK) {
+    /* SPI transaction failed */
+    }
+
+Use below sequence for initiating the transfer with OSPI:
+
+::
+
+    ...
+    OSPI_Transaction ospiTransaction;
+    ospiTransaction.count = n;    /* Transfer Length */
+    ospiTransaction.txBuf = transmitBuffer; /* Buffer to be written */
+    ospiTransaction.rxBuf = NULL;  /* Buffer holding the received data */
+    transferOK = OSPI_transfer(ospi, &ospiTransaction); /* Perform OSPI transfer */
+    if (!transferOK) {
+    /* OSPI transaction failed */
+    }
+
+SPI IP V1 driver also supports multi-channel transfer API's:
+
+::
+
+    ...
+    spiTransaction.count = n;    /* Transfer Length */
+    spiTransaction. txBuf = transmitBuffer; /* Buffer to be written */
+    spiTransaction.rxBuf = NULL;  /* Buffer holding the received data */
+    transferOK = MCSPI_transfer(spi, &spiTransaction); /* Perform SPI transfer */
+    if (!transferOK) {
+    /* SPI transaction failed */
+    }
+
+.. note::
+
+  SPI_open API supports configuration of data word length in the
+  SPI_Params. Currently IP V1 driver supports 8/16/32-bit word length.
+  8/16-bit word length.
+
+Examples
+--------
+
+OSPI
+^^^^
+
++-----------------------+-----------------------+-----------------------+---------------------+---------------------+
+| Name                  | Description           | Expected Results      | SoC Supported       | Build Type          |
++=======================+=======================+=======================+=====================+=====================+
+| OSPI_TestApplication  |                       | Following prints on   | |  j721e            | makefile            |
+|                       | Driver unit test      | console expected:     | |  j7200            |                     |
+|                       | application to        | **Pass criteria:**    | |  j721s2           |                     |
+|                       | validate features     | All tests have        | |  j784s4           |                     |
+|                       | and interfaces for    | passed.               |                     |                     |
+|                       | OSPI driver           |                       |                     |                     |
++-----------------------+-----------------------+-----------------------+---------------------+---------------------+
+
+
+MCSPI
+^^^^^
+
++-----------------+-----------------+----------------------------------------+------------------+---------------------+---------------------+
+| Name            | Description     | Additional EVM                         | Expected         | SoC Supported       | Build Type          |
+|                 |                 | Configuration                          | Results          |                     |                     |
++=================+=================+========================================+==================+=====================+=====================+
+| MCSPI_slavemode | Application     | **Core usage:**                        | | **On           | |  j721e            | makefile            |
+| example         | demonstrates    |                                        |   slave Core     | |  j7200            |                     |
+| application     | slave recieve   |                                        |   console:**     | |  j721s2           |                     |
+|                 | and transmit    | | **J721E EVM:**                       |   Starting SPI   | |  j784s4           |                     |
+|                 | features of     | | MCU2_0 (master) ====== MCU2_1(slave) |   Slave test.    |                     |                     |
+|                 | McSPI.          | |                                      | | All tests      |                     |                     |
+|                 | Application use | | **J7200 EVM:**                       |   have passed.   |                     |                     |
+|                 | case requires   | | MCU2_0 (master) ====== MCU2_1(slave) |                  |                     |                     |
+|                 | two cores. One  | |                                      | |                |                     |                     |
+|                 | acts as Master  | | **J721S2 EVM:**                      | | **On Master    |                     |                     |
+|                 | and Another as  | | MCU2_0 (master) ====== MCU2_1(slave) |   Core console:**|                     |                     |
+|                 | slave.          | |                                      |   Starting SPI   |                     |                     |
+|                 | connections     | | **J784S4 EVM:**                      |   Master test    |                     |                     |
+|                 | information and | | MCU2_0 (master) ====== MCU2_1(slave) |                  |                     |                     |
+|                 | addtional       |                                        | | All tests      |                     |                     |
+|                 | details are as  |                                        |   have passed.   |                     |                     |
+|                 | follows.        |                                        |                  |                     |                     |
+|                 |                 |                                        |                  |                     |                     |
+|                 | Note: Run the   |                                        |                  |                     |                     |
+|                 | slave mode test |                                        |                  |                     |                     |
+|                 | and then master |                                        |                  |                     |                     |
+|                 | mode test for   |                                        |                  |                     |                     |
+|                 | proper execution|                                        |                  |                     |                     |
+|                 | of the test.    |                                        |                  |                     |                     |
++-----------------+-----------------+----------------------------------------+------------------+---------------------+---------------------+
+
+
+OSPI Driver Configuration to support QSPI flash
+-----------------------------------------------
+
+If the board has a QSPI flash, the PDK driver needs to be updated to support the QSPI flash:
+
+-  Board QSPI Flash Instance Configuration in board_cfg.h
+
+::
+
+    #define BOARD_QSPI_NOR_INSTANCE  <OSPI instance connected to QSPI flash>
+
+-  SPI SoC Driver Configurations:
+
+::
+
+    ...
+    OSPI_v0_HwAttrs ospi_cfg;
+
+    SPI_init();
+
+    OSPI_socGetInitCfg(SPI_OSPI_DOMAIN_MCU, BOARD_QSPI_NOR_INSTANCE, &ospi_cfg);
+    ospi_cfg.xferLines      = OSPI_XFER_LINES_QUAD;
+    ospi_cfg.pageSize       = <QSPI flash page size>;
+    ospi_cfg.devDelays[0]   = <QSPI device delay>;
+    ospi_cfg.devDelays[1]   = <QSPI device delay>;
+    ospi_cfg.devDelays[2]   = <QSPI device delay>;
+    ospi_cfg.devDelays[3]   = <QSPI device delay>;
+    ospi_cfg.rdDataCapDelay = <QSPI read capture delay>;
+    OSPI_socSetInitCfg(SPI_OSPI_DOMAIN_MCU, BOARD_OSPI_NOR_INSTANCE, &ospi_cfg);
+
+Support for Benchmark Testing
+------------------------------
+
++-----------------------+-----------------------+-----------------------------------------+-----------------------+-----------------------+
+| Name                  | Description           | Expected Results                        | SOC/Core Suppported   | Build Type            |
++=======================+=======================+=========================================+=======================+=======================+
+| OSPI flash Test App   | Test application used | Test application                        |  j721e/mcux_0         | make                  |
+|                       | for performance       | will print on the UART console:         |  j721e/mcux_1         |                       |
+|                       | benchmarking          |                                         |  j7200/mcux_0         |                       |
+|                       |                       | Board_flashWrite ### bytes at transfer  |  j7200/mcux_1         |                       |
+|                       |                       | rate #### Kbps                          |  j721s2/mcux_0        |                       |
+|                       |                       |                                         |  j721s2/mcux_1        |                       |
+|                       |                       | Board_flashRead ### bytes at transfer   |  j784s4/mcux_0        |                       |
+|                       |                       | rate #### Mbps                          |  j784s4/mcux_1        |                       |
+|                       |                       |                                         |                       |                       |
+|                       |                       | Board_flashWrite CPU Load %##           |                       |                       |
+|                       |                       |                                         |                       |                       |
+|                       |                       | Board_flashRead CPU Load %##            |                       |                       |
++-----------------------+-----------------------+-----------------------------------------+-----------------------+-----------------------+
+
+.. note::
+
+  1. Data transfer between DDR and OSPI flash memory, performance measurement does not include time to invalidate/write back cache
+  2. GTC counter (200MHz) used for throughput measurement on A53, and PMU cycle counter (400MHz) on R5
+  3. sysbios load moduel used for load measurement
+  4. Pipeline PHY enabled, DDR mode enabled in DAC mode
+  5. Pipeline PHY disabled, DDR mode disabled in INDAC mode with ospi clock divider of 32
+  6. Read/write transfer size of 1M bytes
+  7. Write transfer size 1M bytes with DMA chunk size of 16 bytes in DAC DMA mode

@@ -1,0 +1,555 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>9.3. IPC LLD Migration Guide &mdash; Platform Development Kit (PDK) - JACINTO User Guide</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Platform Development Kit (PDK) - JACINTO User Guide" href="../index.html"/>
+        <link rel="up" title="9. Developer Notes" href="../family_cfg/jacinto/index_developer_notes_jacinto.html"/>
+        <link rel="next" title="9.4. XIP Using Dummy App" href="xip_using_dummy_app.html"/>
+        <link rel="prev" title="9.2. FreeRTOS Real-time Object View (ROV)" href="freertos_ccs_rov.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index_jacinto.html" class="icon icon-home"> Platform Development Kit (PDK) - JACINTO User Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                08_06_01
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">1. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_release_notes_jacinto.html">2. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">3. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_modules_jacinto.html">4. Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_boot_jacinto.html">5. Bootloader (SBL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_board_jacinto.html">6. Board/EVM Abstraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_howto_jacinto.html">7. How to Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_faq_jacinto.html">8. Frequently Asked Questions</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../family_cfg/jacinto/index_developer_notes_jacinto.html">9. Developer Notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="freertos_guidelines.html">9.1. FreeRTOS Usage and Migration Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="freertos_ccs_rov.html">9.2. FreeRTOS Real-time Object View (ROV)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">9.3. IPC LLD Migration Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">9.3.1. Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#feature-support">9.3.2. Feature Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#remote-core-loading">9.3.3. Remote Core Loading</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#setup">9.3.4. Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#message-transport">9.3.5. Message Transport</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#messaging-api-migration">9.3.6. Messaging API Migration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#large-buffer-support">9.3.7. Large Buffer Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ipc-lld-examples">9.3.8. IPC LLD Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="xip_using_dummy_app.html">9.4. XIP Using Dummy App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xip_using_two_appimages.html">9.5. XIP Using Two Appimages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ticlang_Migrationguidelines.html">9.6. TI ARM CLANG Usage and Migration Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="freertos_to_safertos_migration.html">9.7. SafeRTOS Usage and Migration Guidelines</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index_jacinto.html">Platform Development Kit (PDK) - JACINTO User Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index_jacinto.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../family_cfg/jacinto/index_developer_notes_jacinto.html">9. Developer Notes</a> &raquo;</li>
+      
+    <li>9.3. IPC LLD Migration Guide</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="ipc-lld-migration-guide">
+<h1>9.3. IPC LLD Migration Guide<a class="headerlink" href="#ipc-lld-migration-guide" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<span id="id1"></span><h2>9.3.1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>IPC LLD is a light-weight IPC stack that provides a common transport mechanism (rpmsg-based transport)
+to communicate between all cores regardless of the OS running on the core. IPC LLD is the only
+supported IPC stack for AM6x/J7 devices starting with SDK 7.0 releases.
+This guide describes the differences between IPC3.x and IPC LLD and gives information on how to
+migrate existing applications which use IPC3.x to IPC LLD.</p>
+<p>For an overview of IPC LLD, see the PDK documentation here <a class="reference external" href="../modules/ipc.html">IPC LLD</a>.</p>
+<p>The main software components for IPC are:</p>
+<ol class="arabic simple">
+<li>PDK IPC LLD (IPC low-level driver) for RTOS, baremetal or QNX</li>
+<li>Linux kernel IPC driver suite for Linux (rpmsg_char, rpmsg, vring and mailbox driver).</li>
+</ol>
+<p>The messaging API is different for Linux vs. other OSes and is provided through the rpmsg_char driver.
+All other OSes communicating via IPC LLD use the RPMessage API for communication.</p>
+</div>
+<div class="section" id="feature-support">
+<span id="ipc-lld-migration-guide-feature-support"></span><h2>9.3.2. Feature Support<a class="headerlink" href="#feature-support" title="Permalink to this headline">¶</a></h2>
+<p>The following table gives a guide for feature support between IPC3.x and IPC LLD.</p>
+<p>IPC LLD is the low-lever driver used for applications built with BIOS, baremetal, or QNX.
+The corresponding Linux-side interface is provided by the kernel rpmsg_char driver.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="29%" />
+<col width="57%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Feature</th>
+<th class="head">IPC3.x</th>
+<th class="head">IPC LLD</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Remote Core Loading</td>
+<td>Remote cores are loaded on demand, currently without a user API</td>
+<td>Same</td>
+</tr>
+<tr class="row-odd"><td>Low-level primatives (BIOS-to-BIOS)</td>
+<td>MultiProc, Notify, Heap*MP, Gate*MP, SharedRegion, NameServer (BIOS-to-BIOS)</td>
+<td>Removed. Multi-core heap functionality is managed by application if needed. GateMP functionality can be achieved by using spinlock driver from CSL.</td>
+</tr>
+<tr class="row-even"><td>Messaging</td>
+<td>MessageQ</td>
+<td>RPMessage (BIOS/baremetal/QNX), rpmsg_char driver (Linux)</td>
+</tr>
+<tr class="row-odd"><td>Messaging Transport</td>
+<td>Shared memory (BIOS-to-BIOS), rpmsg (Linux-to-BIOS, QNX-to-BIOS)</td>
+<td>rpmsg</td>
+</tr>
+<tr class="row-even"><td>OS support</td>
+<td>Linux, QNX, RTOS</td>
+<td>Linux, QNX, RTOS, baremetal</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="remote-core-loading">
+<span id="ipc-lld-migration-guide-remote-core-loading"></span><h2>9.3.3. Remote Core Loading<a class="headerlink" href="#remote-core-loading" title="Permalink to this headline">¶</a></h2>
+<p>Remote core loading is the same as with IPC3.x. Images may be loaded through bootloader or through Linux remoteproc.
+For remote core images that are to communicate with Linux IPC, a resource table is required to be included in the firmware image. IPC3.x also required a resource table be defined in this case.</p>
+</div>
+<div class="section" id="setup">
+<span id="ipc-lld-migration-guide-setup"></span><h2>9.3.4. Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
+<p>In IPC3.x, the remote core and host APIs were brought into alignment from previous IPC versions, and both sides called IPC_start() and IPC_stop() to enable/disable use of IPC services.</p>
+<p>In IPC LLD, the cores running BIOS/baremetal need to call Ipc_mpSetConfig(), Ipc_init(), Ipc_initVirtio(), and RPMessage_init() to initialize the IPC virtio and rpmsg modules for IPC communication. On Linux, the same APIs are not needed and the virtio and rpmsg are setup when the kernel drivers are probed.</p>
+</div>
+<div class="section" id="message-transport">
+<span id="ipc-lld-migration-guide-message-transport"></span><h2>9.3.5. Message Transport<a class="headerlink" href="#message-transport" title="Permalink to this headline">¶</a></h2>
+<p>In IPC3.x, the underlying messaging transport was different between BIOS&lt;-&gt;BIOS and Linux&lt;-&gt;BIOS communication. For BIOS&lt;-&gt;BIOS, Shared memory (SharedRegion) was used for the transport, while Linux&lt;-&gt;BIOS used rpmsg transport.</p>
+<p>In IPC LLD, both BIOS&lt;-&gt;BIOS and Linux&lt;-&gt;BIOS (as well as combinations with QNX and baremetal) use a common transport. The transport used is rpmsg between all cores.
+In rpmsg, the messages are copied from the processor&#8217;s local memory buffer that is passed by the application in RPMessage_send, to the vring shared memory. On the receiving side, the message is copied from the vring shared memory to the receiving processor&#8217;s local memory buffer. This means that APIs for allocating and freeing shared memory (like MessageQ_alloc/MessageQ_free in IPC3.x) are no longer provided, as they are not needed with IPC LLD.</p>
+</div>
+<div class="section" id="messaging-api-migration">
+<span id="ipc-lld-migration-guide-api-migration"></span><h2>9.3.6. Messaging API Migration<a class="headerlink" href="#messaging-api-migration" title="Permalink to this headline">¶</a></h2>
+<p>With IPC3.x, the Messaging API was the same between Linux and RTOS (MessageQ). However, when using IPC LLD, the RPMessage API is not provided on Linux, and users can instead use the rpmsg_char interface. The rpmsg_char provides Linux applications with a file IO interface to read and write messages to different CPUs.</p>
+<p>The following table provides a guide for migration of the Messaging APIs from IPC3.x to IPC LLD for RTOS/baremetal/QNX</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="86%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><div class="first last line-block">
+<div class="line">IPC3.x</div>
+</div>
+</th>
+<th class="head"><div class="first last line-block">
+<div class="line">IPC LLD</div>
+</div>
+</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><div class="first last line-block">
+<div class="line">MessageQ_create</div>
+<div class="line"><br /></div>
+</div>
+</td>
+<td><div class="first last line-block">
+<div class="line">RPMessage_create() to create the endpoint</div>
+<div class="line">RPMessage_announce() to announce the created endpoint to other cores</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><div class="first last line-block">
+<div class="line">MessageQ_delete</div>
+</div>
+</td>
+<td><div class="first last line-block">
+<div class="line">RPMessage_delete</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><div class="first last line-block">
+<div class="line">MessageQ_open</div>
+</div>
+</td>
+<td><div class="first last line-block">
+<div class="line">RPMessage_getRemoteEndpt</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><div class="first last line-block">
+<div class="line">MessageQ_close</div>
+</div>
+</td>
+<td><div class="first last line-block">
+<div class="line">N/A (since RPMessage_getRemoteEndpt doesn&#8217;t allocate/use any resources, just returns the requested endpoint info)</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><div class="first last line-block">
+<div class="line">MessageQ_alloc</div>
+</div>
+</td>
+<td><div class="first last line-block">
+<div class="line">N/A</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><div class="first last line-block">
+<div class="line">MessageQ_free</div>
+</div>
+</td>
+<td><div class="first last line-block">
+<div class="line">N/A</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><div class="first last line-block">
+<div class="line">MessageQ_put</div>
+</div>
+</td>
+<td><div class="first last line-block">
+<div class="line">RPMessage_send</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><div class="first last line-block">
+<div class="line">MessageQ_get</div>
+</div>
+</td>
+<td><div class="first last line-block">
+<div class="line">RPMessage_recv</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The following table provides a guide for migration of the Messaging APIs from Linux IPC3.x to Linux rpmsg_char. There is a small ti_rpmsg_char utility
+library available that provides an easy means to identify rpmsg character devies created by the Linux kernel rpmsg-char driver using the virtio-rpmsg-bus
+transport back-end.
+The ti_rpmsg_char userspace library source code is located at <a class="reference external" href="https://git.ti.com/cgit/rpmsg/ti-rpmsg-char/">https://git.ti.com/cgit/rpmsg/ti-rpmsg-char/</a>
+For more details regarding the ti_rpmsg_char library, see the the README at <a class="reference external" href="https://git.ti.com/cgit/rpmsg/ti-rpmsg-char/about/">https://git.ti.com/cgit/rpmsg/ti-rpmsg-char/about/</a>
+For more details regarding the rpmsg_char kernel driver on which ti_rpmsg_char is built, please refer to include/uapi/linux/rpmsg.h for
+the rpmsg-char drivers&#8217; userspace interfaces.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="87%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><div class="first last line-block">
+<div class="line">IPC3.x</div>
+</div>
+</th>
+<th class="head"><div class="first last line-block">
+<div class="line">ti_rpmsg_char</div>
+</div>
+</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><div class="first last line-block">
+<div class="line">MessageQ_create</div>
+</div>
+</td>
+<td><div class="first last line-block">
+<div class="line">rcdev = rpmsg_char_open()</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><div class="first last line-block">
+<div class="line">MessageQ_delete</div>
+</div>
+</td>
+<td><div class="first last line-block">
+<div class="line">rpmsg_char_close(rcdev)</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><div class="first last line-block">
+<div class="line">MessageQ_open</div>
+</div>
+</td>
+<td><div class="first last line-block">
+<div class="line">Same as MessageQ_create</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><div class="first last line-block">
+<div class="line">MessageQ_close</div>
+</div>
+</td>
+<td><div class="first last line-block">
+<div class="line">Same as MessageQ_delete</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><div class="first last line-block">
+<div class="line">MessageQ_alloc</div>
+</div>
+</td>
+<td><div class="first last line-block">
+<div class="line">N/A</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><div class="first last line-block">
+<div class="line">MessageQ_free</div>
+</div>
+</td>
+<td><div class="first last line-block">
+<div class="line">N/A</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><div class="first last line-block">
+<div class="line">MessageQ_put</div>
+</div>
+</td>
+<td><div class="first last line-block">
+<div class="line">write(rcdev-&gt;fd, msg, len)</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><div class="first last line-block">
+<div class="line">MessageQ_get</div>
+</div>
+</td>
+<td><div class="first last line-block">
+<div class="line">read(rcdev-&gt;fd, reply_msg, len) (note that Linux user space APIs like &#8220;select&#8221; can be used to wait on multiple end points)</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="large-buffer-support">
+<span id="ipc-lld-migration-guide-large-buffers"></span><h2>9.3.7. Large Buffer Support<a class="headerlink" href="#large-buffer-support" title="Permalink to this headline">¶</a></h2>
+<p>Maximum payload/user message size that can be transferred by RPMessage is 496 bytes.
+For large buffers, it is recomended to pass a pointer/offset to the buffer in a shared memory location.</p>
+</div>
+<div class="section" id="ipc-lld-examples">
+<span id="ipc-lld-migration-guide-examples"></span><h2>9.3.8. IPC LLD Examples<a class="headerlink" href="#ipc-lld-examples" title="Permalink to this headline">¶</a></h2>
+<p>Please refer to the IPC LLD examples provided in pdk/packages/ti/drv/ipc/examples/ for detailed examples of how to create applications
+with IPC LLD.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="xip_using_dummy_app.html" class="btn btn-neutral float-right" title="9.4. XIP Using Dummy App" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="freertos_ccs_rov.html" class="btn btn-neutral" title="9.2. FreeRTOS Real-time Object View (ROV)" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="http://www.ti.com/corp/docs/legal/copyright.shtml">&copy; Copyright 1995-2020</a>, Texas Instruments Incorporated. All rights reserved. <br>
+      <a href="http://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="http://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="http://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="http://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'08_06_01',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

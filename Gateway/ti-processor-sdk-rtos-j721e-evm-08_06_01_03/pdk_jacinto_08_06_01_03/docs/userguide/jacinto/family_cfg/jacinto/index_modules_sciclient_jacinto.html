@@ -1,0 +1,1524 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4.14. SCICLIENT &mdash; Platform Development Kit (PDK) - JACINTO User Guide</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Platform Development Kit (PDK) - JACINTO User Guide" href="../../index.html"/>
+        <link rel="up" title="4. Modules" href="index_modules_jacinto.html"/>
+        <link rel="next" title="4.14.7.1. J721e Peripheral Interrupt Source Descriptions" href="../../modules/sciclient/irq_sources_jacinto.html"/>
+        <link rel="prev" title="4.13. SA" href="../../modules/sa.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index_jacinto.html" class="icon icon-home"> Platform Development Kit (PDK) - JACINTO User Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                08_06_01
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html">1. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_release_notes_jacinto.html">2. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started.html">3. Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index_modules_jacinto.html">4. Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../modules/csl.html">4.1. CSL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/freertos.html">4.2. FreeRTOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index_modules_safertos_jacinto.html">4.3. SafeRTOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/osal.html">4.4. OSAL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/dss.html">4.5. DSS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/enet.html">4.6. ENET</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/fvid2.html">4.7. FVID2 User Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/gpio.html">4.8. GPIO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/i2c.html">4.9. I2C</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/ipc.html">4.10. IPC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/mcasp.html">4.11. McASP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/pm.html">4.12. PM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/sa.html">4.13. SA</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">4.14. SCICLIENT</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">4.14.1. Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#terms-and-abbreviation">4.14.1.1. Terms and Abbreviation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#directory-structure">4.14.1.2. Directory Structure</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#build-and-run">4.14.2. Build and Run</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#build-targets">4.14.2.1. Build targets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#changing-your-board-configuration">4.14.2.2. Changing your board configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#load-using-a-boot-media">4.14.2.3. Load using a boot-media</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#load-using-ccs">4.14.2.4. Load using CCS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#handling-two-or-more-ccxml-files">4.14.2.5. Handling Two or more ccxml files</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#system-firmware-logs-parse">4.14.3. System Firmware Logs Parse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sbl-loading-of-applications-sciclient-sciserver-careabouts">4.14.4. SBL loading of applications + Sciclient/Sciserver careabouts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#api-descriptions">4.14.5. API descriptions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#sciclient-core">4.14.5.1. Sciclient Core</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sciclient-shim-layer">4.14.5.2. Sciclient Shim Layer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sciserver-core">4.14.5.3. SCIServer Core</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sciserver-rtos">4.14.5.4. SCIServer RTOS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rm-pm-hal">4.14.5.5. RM/PM HAL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#order-of-functions-to-call-for-sciserver">4.14.5.6. Order of Functions to Call for Sciserver</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#board-configuration-passing-between-spl-sbl-and-mcu1-0-applications">4.14.6. Board configuration passing between SPL/SBL and MCU1_0 applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#irq-sources-and-destinations">4.14.7. IRQ Sources and Destinations</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../modules/sciclient/irq_sources_jacinto.html">4.14.7.1. J721e Peripheral Interrupt Source Descriptions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../modules/sciclient/irq_dsts_jacinto.html">4.14.7.2. J721e Peripheral Interrupt Destination Descriptions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/keywriter.html">4.15. OTP KEYWRITER</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/spi.html">4.16. SPI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/uart.html">4.17. UART</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index_modules_udma_jacinto.html">4.18. UDMA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/pmic.html">4.19. PMIC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/mmcsd.html">4.20. MMCSD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index_modules_lpm_jacinto.html">4.21. Low Power Manager (LPM)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="index_boot_jacinto.html">5. Bootloader (SBL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_board_jacinto.html">6. Board/EVM Abstraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_howto_jacinto.html">7. How to Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_faq_jacinto.html">8. Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_developer_notes_jacinto.html">9. Developer Notes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index_jacinto.html">Platform Development Kit (PDK) - JACINTO User Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index_jacinto.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index_modules_jacinto.html">4. Modules</a> &raquo;</li>
+      
+    <li>4.14. SCICLIENT</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="sciclient">
+<h1>4.14. SCICLIENT<a class="headerlink" href="#sciclient" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>4.14.1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>Traditional Texas Instruments SoCs implement system control functions such as
+power management on each of the processing units (ARM/DSP etc).
+However, the traditional approach had tremendous challenges
+to ensure system stability. A few of the challenges include:</p>
+<ul class="simple">
+<li>Complex interactions between Operating Systems on heterogeneous SoCs for
+generic features.</li>
+<li>Lack of centralized knowledge of system state.</li>
+<li>Complex implementation challenges with regards to implementation of
+workarounds for system quirks.</li>
+<li>Equivalent system capability entitlement on all variations of operation
+conditions.</li>
+</ul>
+<p>K3 devices introduces the concept of a centralized Power, Resource and Security
+Management to allow mitigating the challenges of the traditional approach to
+system control.</p>
+<p>System Firmware is a collective term used to describe the TI Foundational Security (TIFS)
+and Resource Management (RM)/ Power Management (PM) services.</p>
+<p>System Firmware executes on the Security Manager and Device Manager Core.
+On K3 devices, the DMSC subsystem is the Security Manager Core in the SoC.
+The Device Manager core can be on the DMSC itself or the MCU R5F.
+The choice of whether this runs on the DMSC or the
+MCU R5F is based on the kind of applications the device is targeting.
+If the device is targetting applications, where there is a need for a dedicated
+HSM, the Device manager core is independent of the DMSC (which is exclusively
+kept for Security functions). For devices which do not have need for a dedicated
+security island or HSM, the device manager runs on the DMSC.</p>
+<p>The following table highlights the variations
+of where the RM and PM execute versus the TIFS on the different K3 family of
+devices.</p>
+<table border="1" class="docutils" id="id1">
+<caption><span class="caption-number">Table 4.1 </span><span class="caption-text">TI Foundational Security Software and RM/PM SCI Server Mapping</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="18%" />
+<col width="29%" />
+<col width="29%" />
+<col width="24%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Device</th>
+<th class="head">TI Foundation Security</th>
+<th class="head">3rd Party HSM/SHE stack</th>
+<th class="head">RM/PM SCI Server</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>AM65x/ DRA80x,
+AM64x</td>
+<td>DMSC (M3 based)</td>
+<td>NA</td>
+<td>DMSC (M3 based)</td>
+</tr>
+<tr class="row-odd"><td>J721E, J7200</td>
+<td>DMSC (M3 based)</td>
+<td>DMSC (M3 based)</td>
+<td>Library on MCU R5*</td>
+</tr>
+</tbody>
+</table>
+<p>More information regarding the TI-SCI is given <a class="reference external" href="http://software-dl.ti.com/tisci/esd/latest/index.html">here</a> .</p>
+<p>The Sciclient is an interface to the TI-SCI protocol for RTOS and non-OS based applications.
+It exposes the core message details, valid module/clock IDs to the higher level software and
+abstracts the communication with SYSFW based on the TI-SCI protocol. These APIs can be called
+by power, resource and security RTOS drivers or any other non-OS or RTOS based higher level
+software to be able to communicate with DMSC for its services. The higher level software is
+expected to populate the necessary message core parameters.</p>
+<p>The Sciclient components running on different cores are given in the figure below:</p>
+<div class="figure" id="id2">
+<img alt="../../_images/sciclient_sw_components.png" src="../../_images/sciclient_sw_components.png" />
+<p class="caption"><span class="caption-number">Fig. 4.1 </span><span class="caption-text">Sciclient on different cores</span></p>
+</div>
+<p>Every core in the device can be secure or non secure. Based on the secure and non-secure nature
+of the core or context of the core, it can use the secure threads or non-secure threads of
+communication. All non-secure requests are sent to the MCU R5F when the RM/PM services are running
+on the MCU R5F. All secure requests are sent to the DMSC.</p>
+<p>The flow of control for a secure host making a secure message processing request is as shown in the figure below.
+The flow is the same for non-secure cores for devices like AM65xx and AM64x where the RM/PM
+services run on the DMSC M3.</p>
+<div class="figure" id="id3">
+<img alt="../../_images/secure_comm.png" src="../../_images/secure_comm.png" />
+<p class="caption"><span class="caption-number">Fig. 4.2 </span><span class="caption-text">Sequence Diagram (Secure) – All Cores</span></p>
+</div>
+<p>The flow of control for a non secure message running from the MCU R5F is as below:</p>
+<div class="figure" id="id4">
+<img alt="../../_images/mcu_r5f_sciclient_direct.png" src="../../_images/mcu_r5f_sciclient_direct.png" />
+<p class="caption"><span class="caption-number">Fig. 4.3 </span><span class="caption-text">Sequence Diagram (Non Secure) – MCU R5F</span></p>
+</div>
+<p>For the MCU R5F can link the following libraries when it is the only core running software in the entire device.
+This scenario is only applicable for certain PDK examples.</p>
+<p>In the following table, <strong>SCI_PATH</strong>=&#8221;pdk_&lt;soc&gt;_&lt;version&gt;/packages/ti/drv/sciclient&#8221;</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="39%" />
+<col width="23%" />
+<col width="25%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Library Name</th>
+<th class="head">Library Path</th>
+<th class="head">Include Header</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>sciclient_direct</strong></td>
+<td><cite>$(SCI_PATH)/lib/&lt;soc&gt;/mcu1_0/&lt;profile&gt;/sciclient_direct.aer5f</cite></td>
+<td><cite>$(SCI_PATH)/sciclient.h</cite></td>
+<td>Direct function calls to RM/PM
+HAL services. Applicable to
+baremetal, TI-RTOS or other OS
+based applications.</td>
+</tr>
+<tr class="row-odd"><td><strong>rm_pm_hal</strong></td>
+<td><cite>$(SCI_PATH)/lib/&lt;soc&gt;/mcu1_0/&lt;profile&gt;/rm_pm_hal.aer5f</cite></td>
+<td>NA - Always call via sciclient APIs.</td>
+<td>Actual implementation of the
+RM/PM HAL operations. Applicable
+to baremetal, TI-RTOS or other OS
+based applications.</td>
+</tr>
+</tbody>
+</table>
+<p>For typical applications where there is software running on other non-MCU1_0 cores the MCU1_0 needs to link the following libraries.</p>
+<p>In the following table, <strong>SCI_PATH</strong>=&#8221;pdk_&lt;soc&gt;_&lt;version&gt;/packages/ti/drv/sciclient&#8221;</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="39%" />
+<col width="23%" />
+<col width="25%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Library Name</th>
+<th class="head">Library Path</th>
+<th class="head">Include Header</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>sciserver_tirtos</strong></td>
+<td><cite>$(SCI_PATH)/lib/&lt;soc&gt;/mcu1_0/&lt;profile&gt;/sciserver_tirtos.aer5f</cite></td>
+<td><cite>$(SCI_PATH)/sciserver_tirtos.h</cite></td>
+<td>Applicable when RTOS is
+executing on the MCU1_0</td>
+</tr>
+<tr class="row-odd"><td><strong>sciclient_direct</strong></td>
+<td><cite>$(SCI_PATH)/lib/&lt;soc&gt;/mcu1_0/&lt;profile&gt;/sciclient_direct.aer5f</cite></td>
+<td><cite>$(SCI_PATH)/sciclient.h</cite></td>
+<td>Direct function calls to RM/PM
+HAL services. Applicable to
+baremetal, RTOS or other OS
+based applications.</td>
+</tr>
+<tr class="row-even"><td><strong>rm_pm_hal</strong></td>
+<td><cite>$(SCI_PATH)/lib/&lt;soc&gt;/mcu1_0/&lt;profile&gt;/rm_pm_hal.aer5f</cite></td>
+<td>NA - Always call via sciclient APIs.</td>
+<td>Actual implementation of the
+RM/PM HAL operations. Applicable
+to baremetal, RTOS or other OS
+based applications.</td>
+</tr>
+</tbody>
+</table>
+<p>The above table assumes that the application developer is running RTOS on the MCU1_0. In cases where the MCU1_0 is not running RTOS but an OS like AUTOSAR for eaxmple, the application developer should use the below library and also create, build and link an equivalent file as sciserver_tirtos.c.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="42%" />
+<col width="17%" />
+<col width="26%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Library Name</th>
+<th class="head">Library Path</th>
+<th class="head">Include Header</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>sciserver_baremetal</strong></td>
+<td><cite>$(SCI_PATH)/lib/&lt;soc&gt;/mcu1_0/&lt;profile&gt;/sciserver_baremetal.aer5f</cite></td>
+<td><cite>$(SCI_PATH)/sciserver.h</cite></td>
+<td>This is the bare-metal barebones
+functions of Sciserver. Note you
+cannot run sciserver without an OS.
+The application developer must develop
+their own version of
+<cite>$(SCI_PATH)/src/
+sciserver/sciserver_tirtos.c</cite>
+for the OS you are using before working
+with Sciserver on the MCU1_0.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">sciserver_tirtos library supports FreeRTOS as well. Some Sciserver APIs are also named as Sciserver_tirtos**, but it actually supportes FreeRTOS too.
+The naming is misleading, but the name is not changed due to compatibility issues.</p>
+</div>
+<p>The flow of control for a non secure message running from a non MCU1_0 core is as below:</p>
+<div class="figure" id="id5">
+<img alt="../../_images/sciclient_indirect.png" src="../../_images/sciclient_indirect.png" />
+<p class="caption"><span class="caption-number">Fig. 4.4 </span><span class="caption-text">Sequence Diagram (Non Secure) – Other Cores</span></p>
+</div>
+<p>For a non-secure entity requesting a secure service like setting up firewalls the message is routed from the non-secure MCU1_0 to the DMSC and after the DMSC processes the message it is sent back to the MCU1_0 which forwards the response to the host requesting the message.</p>
+<p>Similarly for a secure entity requesting a non-secure service like Power management, the message is routed from the DMSC to the MCU1_0 and after the MCU1_0 processes the message it is sent back to the DMSC which forwards the response to the host requesting the message.</p>
+<div class="section" id="terms-and-abbreviation">
+<h3>4.14.1.1. Terms and Abbreviation<a class="headerlink" href="#terms-and-abbreviation" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="84%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">term</th>
+<th class="head">definition or explanation</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>DMSC</td>
+<td>Device Management and Security Controller</td>
+</tr>
+<tr class="row-odd"><td>BOARDCFG</td>
+<td>Board configuration for DMSC initialization data</td>
+</tr>
+<tr class="row-even"><td>SCI</td>
+<td>System Control Interface</td>
+</tr>
+<tr class="row-odd"><td>SYSFW</td>
+<td>System Firmware</td>
+</tr>
+<tr class="row-even"><td>PM</td>
+<td>Power Management</td>
+</tr>
+<tr class="row-odd"><td>RM</td>
+<td>Resource Management</td>
+</tr>
+<tr class="row-even"><td>RM/PM HAL</td>
+<td>Implementation of RM and PM</td>
+</tr>
+<tr class="row-odd"><td>HSM</td>
+<td>Hardware Security Module</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="directory-structure">
+<h3>4.14.1.2. Directory Structure<a class="headerlink" href="#directory-structure" title="Permalink to this headline">¶</a></h3>
+<p>The directory structure of Sciclient is as follows:</p>
+<div class="highlight-cpp"><div class="highlight"><pre>.
+├── ./docs
+│   ├── ./docs/design                                   /* Contains Sciclient design documentation */
+│   │   └── ./docs/design/images
+│   └── ./docs/doxygen                                  /* Doxygen for Sciclient */
+├── ./examples
+│   ├── ./examples/common                               /* Common functions used for examples */
+│   ├── ./examples/sciclient_ccs_init                   /* Example used to init board config for SYSFW with CCS based debug */
+│   ├── ./examples/sciclient_firmware_boot_TestApp      /* Example showcasing how to load DMSC M3 software */
+│   ├── ./examples/sciclient_fw_testapp                 /* Example showcasing firewall setting and memory access control */
+│   ├── ./examples/sciclient_rtos_app                   /* Example on RTOS for showing Sciclient usage */
+│   ├── ./examples/sciclient_unit_testapp               /* Example on RTOS for different sciclient APIs */
+│   └── ./examples/sciserver_testapp                    /* Example on RTOS showing Sciserver initialization.
+|                                                        *  This is used with other PDK apps for servicing RM and PM */
+├── ./include                                           /* Include folders for Sciclient */
+├── ./soc
+│   ├── ./soc/sysfw
+│   │   ├── ./soc/sysfw/binaries                        /* TIFS and SYSFW binaries for GP and HS kept here */
+│   │   └── ./soc/sysfw/include                         /* TISCI interface Headers are kept here */
+│   └── ./soc/V0                                        /* AM65x SoC specific headers/files */
+│   └── ./soc/V1                                        /* J721E SoC specific headers/files */
+│   └── ./soc/V2                                        /* J7200 SoC specific headers/files */
+│   └── ./soc/V3                                        /* AM64x SoC specific headers/files */
+├── ./src
+│   ├── ./src/priv                                      /* Sciclient specific private files */
+│   │   ├── ./src/priv/drivers
+│   │   └── ./src/priv/osal
+│   ├── ./src/rm_pm_hal                                 /* RM/PM HAL source folder */
+│   │   ├── ./src/rm_pm_hal/build
+│   │   ├── ./src/rm_pm_hal/common
+│   │   ├── ./src/rm_pm_hal/include
+│   │   ├── ./src/rm_pm_hal/pm
+│   │   ├── ./src/rm_pm_hal/rm
+│   │   ├── ./src/rm_pm_hal/scripts
+│   │   └── ./src/rm_pm_hal/utils
+│   ├── ./src/sciclient                                 /* Sciclient direct and Indirect source folder */
+│   └── ./src/sciserver                                 /* Sciserver source folder */
+│       ├── ./src/sciserver/j7200
+│       └── ./src/sciserver/j721e
+└── ./tools
+    ├── ./tools/bin2c
+    └── ./tools/ccsLoadDmsc                             /* CCS loadable executables and launch scripts */
+        ├── ./tools/ccsLoadDmsc/am64x
+        ├── ./tools/ccsLoadDmsc/am65xx
+        ├── ./tools/ccsLoadDmsc/j7200
+        └── ./tools/ccsLoadDmsc/j721e
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="build-and-run">
+<h2>4.14.2. Build and Run<a class="headerlink" href="#build-and-run" title="Permalink to this headline">¶</a></h2>
+<p>This section assumes that you have PDK at PDK_INSTALL_DIR .</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">PDK_ROOT_PATH</span> <span class="o">=</span> <span class="n">PDK_INSTALL_DIR</span><span class="o">/</span><span class="n">packages</span>
+<span class="n">PDK_BUILD_PATH</span> <span class="o">=</span> <span class="n">PDK_INSTALL_DIR</span><span class="o">/</span><span class="n">packages</span><span class="o">/</span><span class="n">ti</span><span class="o">/</span><span class="n">build</span>
+<span class="n">SCICLIENT_PATH</span> <span class="o">=</span> <span class="n">PDK_INSTALL_DIR</span><span class="o">/</span><span class="n">drv</span><span class="o">/</span><span class="n">sciclient</span>
+</pre></div>
+</div>
+<div class="section" id="build-targets">
+<h3>4.14.2.1. Build targets<a class="headerlink" href="#build-targets" title="Permalink to this headline">¶</a></h3>
+<p>The driver provides targets for building library, unit tests and docs .
+The library and unit tests can be built from PDK_BUILD_PATH or SCICLIENT_PATH . The docs can only be built from SCICLIENT_PATH .</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="51%" />
+<col width="39%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Target</th>
+<th class="head">Command</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Library</td>
+<td>make PDK_INSTALL_PATH=&lt;your PDK_ROOT_PATH&gt; BOARD= j721e_evm  CORE=&lt;mcu1_0 or mpu1_0&gt; sciclient</td>
+<td>Sciclient library</td>
+</tr>
+<tr class="row-odd"><td>Library</td>
+<td>make PDK_INSTALL_PATH=&lt;your PDK_ROOT_PATH&gt; BOARD= j721e_evm  CORE=mcu1_0 sciserver</td>
+<td>Sciserver library</td>
+</tr>
+<tr class="row-even"><td>Boardcfgs</td>
+<td>make PDK_INSTALL_PATH=&lt;your PDK_ROOT_PATH&gt; BOARD= j721e_evm  sciclient_boardcfg</td>
+<td>Board configuration data binaries (base, RM, PM, and security) for GP devices</td>
+</tr>
+<tr class="row-odd"><td>HS boardcfgs</td>
+<td>make PDK_INSTALL_PATH=&lt;your PDK_ROOT_PATH&gt; BOARD= j721e_evm  sciclient_boardcfg_hs</td>
+<td>Signed Board configuration data binaries for HS devices</td>
+</tr>
+<tr class="row-even"><td>sciclient_ccs_init</td>
+<td>make PDK_INSTALL_PATH=&lt;your PDK_ROOT_PATH&gt;  BOARD= j721e_evm  CORE=&lt;mcu1_0 or mpu1_0&gt;  sciclient_ccs_init</td>
+<td>Sciclient application that loads the firmware during ccs load.(No need to build this normally.)</td>
+</tr>
+<tr class="row-odd"><td>sciclient_firmware_boot</td>
+<td>make PDK_INSTALL_PATH=&lt;your PDK_ROOT_PATH&gt;  BOARD= j721e_evm  CORE=&lt;mcu1_0 or mpu1_0&gt;  sciclient_firmware_boot</td>
+<td>Sciclient example application</td>
+</tr>
+<tr class="row-even"><td>Design Doc</td>
+<td>make PDK_INSTALL_PATH=&lt;your PDK_ROOT_PATH&gt; designdoc</td>
+<td>Sciclient design documentation</td>
+</tr>
+</tbody>
+</table>
+<p>Note</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">For</span> <span class="n">building</span> <span class="n">the</span> <span class="n">example</span> <span class="s">&quot;sciclient_firmware_boot&quot;</span> <span class="n">or</span> <span class="s">&quot;your application&quot;</span> <span class="k">using</span> <span class="n">Sciclient</span> <span class="n">lib</span><span class="p">,</span> <span class="n">make</span> <span class="n">sure</span> <span class="n">you</span> <span class="n">have</span> <span class="n">a</span> <span class="n">section</span> <span class="s">&quot;boardcfg_data&quot;</span> <span class="n">defined</span> <span class="n">in</span> <span class="n">your</span> <span class="n">linker</span> <span class="n">cmd</span> <span class="n">file</span> <span class="n">which</span> <span class="n">resides</span> <span class="n">in</span> <span class="n">OC</span><span class="o">-</span><span class="n">MSRAM</span> <span class="p">.</span>
+</pre></div>
+</div>
+<p>The next sections will explain how to load the system firmware using sciclient.</p>
+</div>
+<div class="section" id="changing-your-board-configuration">
+<h3>4.14.2.2. Changing your board configuration<a class="headerlink" href="#changing-your-board-configuration" title="Permalink to this headline">¶</a></h3>
+<p>The PDK provides a standard board configuration which is validated with the SDK
+tests and applications. If any changes are to be made to the board configuration
+elements, for example reassignment of resource entires for RM or update to
+security policy, the board configurations must be rebuilt for consumption by the
+boot binary.</p>
+<p>To rebuild, follow the steps listed above for building the boardcfg targets
+based on the device type you are using and ensure that the boot application
+consumes the new binary data by rebuilding/relinking the relevant sections.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For security-enforced devices, the board configurations must be authenticated
+by TIFS/SYSFW and hence must be signed with the active customer key in order
+to fully boot the device. For compatibility across all devices, always ensure
+the software revision (SWREV) extension is set to at least 1 with a fresh
+device. This will need to be incremented across the device life-cycle to
+match <strong>at least</strong> the current value set into the dmsc_fw_cfgrev efuse to
+enforce anti-rollback checks on the board configurations.</p>
+</div>
+</div>
+<div class="section" id="load-using-a-boot-media">
+<h3>4.14.2.3. Load using a boot-media<a class="headerlink" href="#load-using-a-boot-media" title="Permalink to this headline">¶</a></h3>
+<p>Follow these steps to load the <strong>sciclient_firmware_boot</strong> application through a boot media:</p>
+<ul class="simple">
+<li>Build the example: sciclient_firmware_boot_TestApp</li>
+<li>Ensure to create a tiboot3.bin file from the sciclient application.</li>
+<li>Refer the section <a class="reference external" href="index_Foundational_Components.html#boot-modes">Boot-Modes</a> for details on how to use a bootmedia.</li>
+<li>You can also use the SBL to load the system firmware and initialize the SoC. Refer to the SBL user guide for more details.</li>
+</ul>
+</div>
+<div class="section" id="load-using-ccs">
+<h3>4.14.2.4. Load using CCS<a class="headerlink" href="#load-using-ccs" title="Permalink to this headline">¶</a></h3>
+<p>Follow these steps to load the <strong>sciclient_ccs_init</strong> application through CCS</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This boot method is not valid security-enforced devices due to the JTAG port
+being locked at device boot.</p>
+</div>
+<ul class="simple" id="sciclient-loadusing-ccs">
+<li>Update the File SCICLIENT_PATH/sciclient/tools/ccsLoadDmsc/&lt;soc&gt;/launch.js for the following variables to your PC location .</li>
+</ul>
+<p>Modify for J721E :</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="c1">//PDK path. Edit this</span>
+<span class="n">pdkPath</span> <span class="o">=</span> <span class="s">&quot;PDK_INSTALL_DIR&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<ul>
+<li><p class="first">Connect the Javascript to the CCXML file with the steps shown below: (Note: this step needs to be repeated if you switch workspaces or clean your workspace).The Javascript is run on re-launch of the ccxml. If you would like to run the Javascript without relaunch then you can look ahead to the section: &#8220;Re-running the script once ccxml is already launched.&#8221; Click on Debug Configurations from the button as follows:</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="../../_images/sciclient_ccsLoad1.png"><img alt="../../_images/sciclient_ccsLoad1.png" src="../../_images/sciclient_ccsLoad1.png" style="width: 600px; height: 300px;" /></a>
+</div></blockquote>
+</li>
+<li><p class="first">Select the CCXML file from the left-hand side and populate the path to the launch_am65xx.js file in the &#8220;Initialization Script&#8221; free form field and click on &#8220;Apply&#8221;.</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="../../_images/sciclient_ccsLoad2.png"><img alt="../../_images/sciclient_ccsLoad2.png" src="../../_images/sciclient_ccsLoad2.png" style="width: 600px; height: 300px;" /></a>
+</div></blockquote>
+</li>
+<li><p class="first">Once you Launch the ccxml the java script would automatically run and connect to R5F.</p>
+</li>
+</ul>
+<p class="rubric"><strong>Re-running the script once ccxml is already launched</strong></p>
+<p>In CCS, go to <strong>View</strong> &gt; <strong>Scripting Console</strong>.
+Type in the CCS Scripting Console:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">load</span><span class="p">(</span><span class="s">&quot;SCICLIENT_PATH/tools/ccsLoadDmsc/&lt;soc&gt;/launch.js&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Available SOC_NAMEs: am65xx, am64x, j721e, j7200
+This would give the following output on the scripting console</p>
+<p>For J721E :</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="nl">js</span><span class="p">:</span><span class="o">&gt;</span> <span class="n">load</span><span class="p">(</span><span class="s">&quot;SCICLIENT_PATH/tools/ccsLoadDmsc/&lt;soc&gt;/launch.js&quot;</span><span class="p">)</span>
+<span class="n">Connecting</span> <span class="n">to</span> <span class="n">DMSC_Cortex_M3_0</span><span class="o">!</span>
+<span class="n">Fill</span> <span class="n">R5F</span> <span class="n">ATCM</span> <span class="n">memory</span><span class="p">...</span>
+<span class="n">Writing</span> <span class="n">While</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">R5F</span>
+<span class="n">Loading</span> <span class="n">DMSC</span> <span class="n">Firmware</span> <span class="p">...</span> <span class="n">SCICLIENT_PATH</span><span class="o">/</span><span class="n">sciclient</span><span class="o">/</span><span class="n">soc</span><span class="o">/</span><span class="n">sysfw</span><span class="o">/</span><span class="n">binaries</span><span class="o">/</span><span class="n">ti</span><span class="o">-</span><span class="n">fs</span><span class="o">-</span><span class="n">firmware</span><span class="o">-&lt;</span><span class="n">soc</span><span class="o">&gt;-</span><span class="n">gp</span><span class="p">.</span><span class="n">bin</span>
+<span class="n">DMSC</span> <span class="n">Firmware</span> <span class="n">Load</span> <span class="n">Done</span><span class="p">...</span>
+<span class="n">DMSC</span> <span class="n">Firmware</span> <span class="n">run</span> <span class="n">starting</span> <span class="n">now</span><span class="p">...</span>
+<span class="n">Connecting</span> <span class="n">to</span> <span class="n">MCU</span> <span class="n">Cortex_R5_0</span><span class="o">!</span>
+ <span class="n">WKUP</span> <span class="n">Boot</span> <span class="n">Mode</span> <span class="n">is</span> <span class="mi">56</span>
+ <span class="n">Main</span> <span class="n">Boot</span> <span class="n">Mode</span> <span class="n">is</span> <span class="mi">17</span>
+<span class="n">Running</span> <span class="n">the</span> <span class="n">board</span> <span class="n">configuration</span> <span class="n">initialization</span> <span class="n">from</span> <span class="n">R5</span><span class="o">!</span>
+<span class="n">Running</span> <span class="n">the</span> <span class="n">DDR</span> <span class="n">configuration</span><span class="p">...</span> <span class="n">Wait</span> <span class="n">till</span> <span class="n">it</span> <span class="n">completes</span><span class="o">!</span>
+<span class="n">Running</span> <span class="n">DDR</span> <span class="n">Memory</span> <span class="n">Checks</span><span class="p">....</span>
+<span class="cp">######################################################################################</span>
+<span class="n">Loading</span> <span class="n">Sciserver</span> <span class="n">Application</span> <span class="n">on</span> <span class="n">MCU1_0</span><span class="p">.</span> <span class="n">This</span> <span class="n">will</span> <span class="n">service</span> <span class="n">RM</span><span class="o">/</span><span class="n">PM</span> <span class="n">messages</span>
+<span class="n">If</span> <span class="n">you</span> <span class="k">do</span> <span class="n">not</span> <span class="n">want</span> <span class="k">this</span> <span class="n">to</span> <span class="n">be</span> <span class="n">loaded</span> <span class="n">update</span> <span class="n">the</span> <span class="n">launch</span> <span class="n">script</span> <span class="n">to</span> <span class="n">make</span> <span class="n">loadSciserverFlag</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">If</span> <span class="n">you</span> <span class="n">want</span> <span class="n">to</span> <span class="n">load</span> <span class="n">and</span> <span class="n">run</span> <span class="n">other</span> <span class="n">cores</span><span class="p">,</span> <span class="n">please</span> <span class="n">run</span> <span class="n">the</span> <span class="n">MCU1_0</span> <span class="n">core</span> <span class="n">after</span> <span class="n">Sciserver</span> <span class="n">is</span> <span class="n">loaded</span><span class="p">.</span>
+<span class="cp">######################################################################################</span>
+<span class="n">Happy</span> <span class="n">Debugging</span><span class="o">!!</span>
+</pre></div>
+</div>
+<p>In order to load examples via CCS the following sub usecases should be kept in mind for devices where
+RM/PM run on the MCU1_0:.</p>
+<dl class="docutils">
+<dt>Loading Applications on MCU1_0</dt>
+<dd><p class="first">When loading applications on the MCU1_0 the Sciclient_direct
+(in baremetal case and TI RTOS case) and Sciserver (in TI RTOS case) are
+assumed to be a part of the MCU1_0 application.
+Use the <cite>pdk/packages/ti/drv/sciclient/tools/ccsLoadDmsc/&lt;soc&gt;/launch.js</cite>
+file as descibed above to launch the TIFS on the DMSC M3 and run
+the board configuration for the secure proxy setup and the security board
+configuration via <cite>sciclient_ccs_init</cite> app.</p>
+<p class="last"><strong>A special configuration flag has been added to the `launch.js` file `loadSciserverFlag`.
+The default value of this flag is 1. When running your own application on the
+MCU1_0, please make sure to change this flag to 0.</strong></p>
+</dd>
+<dt>For other cpus</dt>
+<dd><p class="first">When loading applications on other CPU cores apart from MCU1_0 which link the
+sciclient library which sends the TISCI messages over secure proxy use the <cite>launch.js</cite> file
+to load the TIFS on the DMSC M3, run the common and security board configuration via the
+<cite>sciclient_ccs_init</cite> app and then load the <cite>sciserver_testapp</cite> on the MCU1_0.</p>
+<p>The MCU1_0 is left at the main() function of the <cite>sciserver_testapp</cite> before giving control
+back to the user. At this point one can load the non MCU1_0 core with the application of
+interest and then run both the MCU1_0 and the application core of choice.</p>
+<p class="last"><strong>A special configuration flag has been added to the `launch.js` file `loadSciserverFlag`.
+The default value of this flag is 1. When running your own application on the non-MCU1_0 core,
+please make sure to keep this flag as 1.</strong></p>
+</dd>
+</dl>
+</div>
+<div class="section" id="handling-two-or-more-ccxml-files">
+<h3>4.14.2.5. Handling Two or more ccxml files<a class="headerlink" href="#handling-two-or-more-ccxml-files" title="Permalink to this headline">¶</a></h3>
+<p>In case you need to connect two or more board to the same CCS session and use the launch script, please follow the steps below:</p>
+<ul class="simple">
+<li>When you use 2 or more CCXML files with similar debugger (e.g. connect 2 boards XDS110 on-board debugger to the PC), CCS would enumerate the debuggers as below:</li>
+</ul>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">Texas</span> <span class="n">Instruments</span> <span class="n">XDS110</span> <span class="n">USB</span> <span class="n">Debug</span> <span class="n">Probe_0</span>
+<span class="n">Texas</span> <span class="n">Instruments</span> <span class="n">XDS110</span> <span class="n">USB</span> <span class="n">Debug</span> <span class="n">Probe_1</span>
+</pre></div>
+</div>
+<p>Notice the suffix &#8220;_0&#8221; and &#8220;_1&#8221;.
+- In order to use the same launch.js file with this, please create a second copy of the launch.js file. Update the first launch.js files as below:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">function</span> <span class="nf">updateScriptVars</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">//Open a debug session</span>
+    <span class="n">dsMCU1_0</span> <span class="o">=</span> <span class="n">debugServer</span><span class="p">.</span><span class="n">openSession</span><span class="p">(</span> <span class="s">&quot;*_0.*MCU_PULSAR_Cortex_R5_0&quot;</span> <span class="p">);</span>
+    <span class="n">dsDMSC_0</span> <span class="o">=</span> <span class="n">debugServer</span><span class="p">.</span><span class="n">openSession</span><span class="p">(</span> <span class="s">&quot;*_0.*DMSC_Cortex_M3_0&quot;</span> <span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Update the second launch.js as below:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">function</span> <span class="nf">updateScriptVars</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">//Open a debug session</span>
+    <span class="n">dsMCU1_0</span> <span class="o">=</span> <span class="n">debugServer</span><span class="p">.</span><span class="n">openSession</span><span class="p">(</span> <span class="s">&quot;*_1.*MCU_PULSAR_Cortex_R5_0&quot;</span> <span class="p">);</span>
+    <span class="n">dsDMSC_0</span> <span class="o">=</span> <span class="n">debugServer</span><span class="p">.</span><span class="n">openSession</span><span class="p">(</span> <span class="s">&quot;*_1.*DMSC_Cortex_M3_0&quot;</span> <span class="p">);</span>
+<span class="p">}</span>
+<span class="n">Notice</span> <span class="n">the</span> <span class="n">addition</span> <span class="n">of</span> <span class="s">&quot;*_0&quot;</span> <span class="n">and</span> <span class="s">&quot;*_1&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="system-firmware-logs-parse">
+<span id="pdk-sysfw-logs-parse"></span><h2>4.14.3. System Firmware Logs Parse<a class="headerlink" href="#system-firmware-logs-parse" title="Permalink to this headline">¶</a></h2>
+<p>In many cases you may need to understand and debug if a System Firmware API fails due to incorrect parameters or some genuine issue in the firmware. In order to debug when the API is failing, you need to follow the steps below:</p>
+<ul class="simple">
+<li>Enable logs in the system firmware by modifying the below structure:</li>
+</ul>
+<p>File: sciclientsocVxsciclient_defaultBoardcfg.c
+Structure: const struct tisci_boardcfg gBoardConfigLow
+Update the structure to have trace enabled:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cm">/* This enables the trace for DMSC logging. Should be used only for</span>
+<span class="cm"> * debug.</span>
+<span class="cm"> */</span>
+<span class="p">.</span><span class="n">trace_dst_enables</span> <span class="o">=</span> <span class="p">(</span><span class="n">TISCI_BOARDCFG_TRACE_DST_UART0</span> <span class="o">|</span>
+                      <span class="n">TISCI_BOARDCFG_TRACE_DST_ITM</span> <span class="o">|</span>
+                      <span class="n">TISCI_BOARDCFG_TRACE_DST_MEM</span><span class="p">),</span>
+<span class="p">.</span><span class="n">trace_src_enables</span> <span class="o">=</span> <span class="p">(</span><span class="n">TISCI_BOARDCFG_TRACE_SRC_PM</span> <span class="o">|</span>
+                      <span class="n">TISCI_BOARDCFG_TRACE_SRC_RM</span> <span class="o">|</span>
+                      <span class="n">TISCI_BOARDCFG_TRACE_SRC_SEC</span> <span class="o">|</span>
+                      <span class="n">TISCI_BOARDCFG_TRACE_SRC_BASE</span> <span class="o">|</span>
+                      <span class="n">TISCI_BOARDCFG_TRACE_SRC_USER</span> <span class="o">|</span>
+                      <span class="n">TISCI_BOARDCFG_TRACE_SRC_SUPR</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In the case where rm_pm_hal runs on the MCU R5F, one needs to explicitly enable
+the trace and recompile the sciserver app. The steps are:</p>
+<p><em>STEP 1</em>: Uncomment the following lines in the file <cite>packages/ti/drv/sciclient/src/rm_pm_hal_build.mk</cite></p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp"># CONFIG_TRACE=y</span>
+<span class="cp"># CONFIG_TRACE_BUFFER=y</span>
+<span class="cp"># CONFIG_TRACE_UART=y</span>
+</pre></div>
+</div>
+<p>In order to enable trace on UART only do the following:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">CONFIG_TRACE</span><span class="o">=</span><span class="n">y</span>
+<span class="cp"># CONFIG_TRACE_BUFFER=y</span>
+<span class="n">CONFIG_TRACE_UART</span><span class="o">=</span><span class="n">y</span>
+</pre></div>
+</div>
+<p>In order to enable trace on Memory only only do the following:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">CONFIG_TRACE</span><span class="o">=</span><span class="n">y</span>
+<span class="n">CONFIG_TRACE_BUFFER</span><span class="o">=</span><span class="n">y</span>
+<span class="cp"># CONFIG_TRACE_UART=y</span>
+</pre></div>
+</div>
+<p>To enable both trace to memory and to UART do the following:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">CONFIG_TRACE</span><span class="o">=</span><span class="n">y</span>
+<span class="n">CONFIG_TRACE_BUFFER</span><span class="o">=</span><span class="n">y</span>
+<span class="n">CONFIG_TRACE_UART</span><span class="o">=</span><span class="n">y</span>
+</pre></div>
+</div>
+<p>After this build the rm_pm_hal library and the sciserver_testapp using the
+command:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">make</span> <span class="o">-</span><span class="n">j</span> <span class="o">-</span><span class="n">s</span> <span class="n">sciserver_testapp_freertos</span>
+</pre></div>
+</div>
+<p>Once the build is complete, copy the sciserver_testapp_freertos_mcu1_0_release.rprc from
+<cite>pdk/packages/ti/binary/sciserver_testapp_freertos/bin/&lt;soc&gt;/</cite> to
+<cite>pdk/packages/drv/sciclient/tools/ccsLoadDmsc/&lt;soc&gt;/</cite>.</p>
+<p>Build the application of your interest to include the
+<cite>sciserver_testapp_freertos_mcu1_0_release.rprc</cite>.
+Note this happens automatically when building the app with PDK.</p>
+<ul class="simple">
+<li>Capture the System firmware logs from the WKUP_USART0.</li>
+<li>Get the parsed logs from <strong>sciclient/soc/sysfw/binaries/scripts/sysfw_trace_parser.py</strong></li>
+</ul>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="nl">usage</span><span class="p">:</span> <span class="n">python3</span> <span class="p">.</span><span class="o">/</span><span class="n">sysfw_trace_parser</span><span class="p">.</span><span class="n">py</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">(</span><span class="o">-</span><span class="n">l</span> <span class="n">LOG_FILE</span> <span class="o">|</span> <span class="o">-</span><span class="n">d</span> <span class="n">SERIAL_PORT</span><span class="p">)</span>
+                            <span class="p">(</span><span class="o">-</span><span class="n">o</span> <span class="n">OUTPUT_FILE</span> <span class="o">|</span> <span class="o">-</span><span class="n">O</span><span class="p">)</span> <span class="p">[</span><span class="o">-</span><span class="n">t</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">r</span> <span class="n">RULES_FILE</span><span class="p">]</span>
+                            <span class="p">[</span><span class="o">-</span><span class="n">Pm</span><span class="p">]</span>
+
+<span class="n">System</span> <span class="n">Firmware</span> <span class="n">Log</span> <span class="n">Parse</span> <span class="n">utility</span> <span class="nl">URL</span><span class="p">:</span> <span class="nl">http</span><span class="p">:</span><span class="c1">//software-</span>
+<span class="n">dl</span><span class="p">.</span><span class="n">ti</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">tisci</span><span class="o">/</span><span class="n">esd</span><span class="o">/</span><span class="n">latest</span><span class="o">/</span><span class="mi">4</span><span class="n">_trace</span><span class="o">/</span><span class="n">trace</span><span class="p">.</span><span class="n">html</span>
+
+<span class="n">Required</span> <span class="n">arguments</span> <span class="o">-</span> <span class="n">Choose</span> <span class="n">one</span> <span class="n">of</span> <span class="n">the</span> <span class="nl">inputs</span><span class="p">:</span>
+<span class="o">-</span><span class="n">l</span> <span class="n">LOG_FILE</span><span class="p">,</span> <span class="o">--</span><span class="n">log_file</span> <span class="n">LOG_FILE</span>
+                        <span class="n">Log</span> <span class="n">File</span> <span class="n">provided</span> <span class="n">as</span> <span class="n">input</span> <span class="p">(</span><span class="k">default</span><span class="o">:</span> <span class="n">None</span><span class="p">)</span>
+<span class="o">-</span><span class="n">d</span> <span class="n">SERIAL_PORT</span><span class="p">,</span> <span class="o">--</span><span class="n">serial_port</span> <span class="n">SERIAL_PORT</span>
+                        <span class="n">Provide</span> <span class="n">Device</span> <span class="n">as</span> <span class="nl">input</span><span class="p">:</span> <span class="n">Requires</span> <span class="n">pyserial</span> <span class="n">package</span>
+                        <span class="nl">installed</span><span class="p">:</span> <span class="n">See</span> <span class="nl">https</span><span class="p">:</span><span class="c1">//pyserial.readthedocs.io/</span>
+                        <span class="p">(</span><span class="k">default</span><span class="o">:</span> <span class="n">None</span><span class="p">)</span>
+
+<span class="n">Required</span> <span class="n">arguments</span> <span class="o">-</span> <span class="n">Choose</span> <span class="n">one</span> <span class="n">of</span> <span class="n">the</span> <span class="nl">outputs</span><span class="p">:</span>
+<span class="o">-</span><span class="n">o</span> <span class="n">OUTPUT_FILE</span><span class="p">,</span> <span class="o">--</span><span class="n">output_file</span> <span class="n">OUTPUT_FILE</span>
+                        <span class="n">Parse</span> <span class="n">out</span> <span class="n">the</span> <span class="n">output</span> <span class="n">to</span> <span class="n">a</span> <span class="n">file</span> <span class="p">(</span><span class="k">default</span><span class="o">:</span> <span class="n">None</span><span class="p">)</span>
+<span class="o">-</span><span class="n">O</span><span class="p">,</span> <span class="o">--</span><span class="n">output_console</span>  <span class="n">Log</span> <span class="n">File</span> <span class="n">to</span> <span class="n">parse</span> <span class="n">and</span> <span class="n">report</span> <span class="n">results</span> <span class="n">to</span> <span class="n">console</span>
+                        <span class="p">(</span><span class="k">default</span><span class="o">:</span> <span class="n">False</span><span class="p">)</span>
+
+<span class="n">optional</span> <span class="nl">arguments</span><span class="p">:</span>
+<span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>            <span class="n">show</span> <span class="k">this</span> <span class="n">help</span> <span class="n">message</span> <span class="n">and</span> <span class="n">exit</span>
+<span class="o">-</span><span class="n">t</span><span class="p">,</span> <span class="o">--</span><span class="n">time_stamp_relative</span>
+                        <span class="n">Add</span> <span class="n">TimeStamp</span> <span class="n">to</span> <span class="n">output</span> <span class="n">in</span> <span class="n">relative</span> <span class="n">milliseconds</span><span class="p">(</span><span class="k">this</span>
+                        <span class="n">is</span> <span class="n">approximation</span> <span class="n">ONLY</span><span class="p">)</span> <span class="p">(</span><span class="k">default</span><span class="o">:</span> <span class="n">False</span><span class="p">)</span>
+<span class="o">-</span><span class="n">r</span> <span class="n">RULES_FILE</span><span class="p">,</span> <span class="o">--</span><span class="n">rules_file</span> <span class="n">RULES_FILE</span>
+                        <span class="n">Alternate</span> <span class="n">Rules</span> <span class="n">file</span> <span class="p">(</span><span class="k">default</span><span class="o">:</span> <span class="p">.</span><span class="o">/</span><span class="n">sysfw_trace_rules</span><span class="p">.</span><span class="n">json</span><span class="p">)</span>
+<span class="o">-</span><span class="n">Pm</span><span class="p">,</span> <span class="o">--</span><span class="n">print_match_only</span>
+                        <span class="n">Print</span> <span class="n">just</span> <span class="n">decoded</span> <span class="n">data</span><span class="p">,</span> <span class="p">(</span><span class="k">default</span><span class="o">:</span> <span class="n">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="sbl-loading-of-applications-sciclient-sciserver-careabouts">
+<h2>4.14.4. SBL loading of applications + Sciclient/Sciserver careabouts<a class="headerlink" href="#sbl-loading-of-applications-sciclient-sciserver-careabouts" title="Permalink to this headline">¶</a></h2>
+<p>When running PDK applications, the SBL will load the binaries corresponding to the application
+core which has the appropriate images in the AppImage file in SD Card, or flashed in OSPI, or sent
+via UART. In the case of MCU1_0 applications, the AppImage should contain the binary corresponding
+to the MCU application the developer has built along with the <cite>sciclient_direct</cite>, <cite>sciserver</cite>, <cite>rm_pm_hal</cite>
+libraries.</p>
+<p>In the case of non MCU1_0 applications, in case the developer has no application running on MCU1_0, they
+must load the <cite>sciserver_testapp</cite> on the MCU1_0 core. If they have an application running on the MCU1_0,
+they must integrate the <cite>sciclient_direct</cite>, <cite>sciserver</cite>, <cite>rm_pm_hal</cite> libraries and also call the set
+of APIs from their MCU1_0 app. In summary, an MCU1_0 application is mandatory with an OS running when there
+are multiple cores.</p>
+<p>In the PDK examples, the makefile is setup to always include the MCU1_0 sciserver_testapp_freertos_mcu1_0_release.rprc
+image in the Appimage if the MCU1_0 app is not present.</p>
+<p>SBL by itself links the <cite>sciclient_direct</cite> and the <cite>rm_pm_hal</cite> libraries to be able to initialize the system.</p>
+<p>The TI Foundational Security (TIFS) security code loading to the DMSC remains the same as it was before. API
+calls to the processor boot and security services remain the same as what it was before.</p>
+</div>
+<div class="section" id="api-descriptions">
+<h2>4.14.5. API descriptions<a class="headerlink" href="#api-descriptions" title="Permalink to this headline">¶</a></h2>
+<p>The driver is split into 4 parts :</p>
+<ul class="simple">
+<li><a class="reference internal" href="#sciclient-core">Sciclient Core</a> : This has APIs for loading SYSFW ,initialization, de-initialization and SYSFW communication .These are defined in sciclient.h .<ul>
+<li>sciclient: This is the default library used for Sciclient functionalities.</li>
+<li>sciclient_direct: For systems that support the HSM software stack, this
+library is used for MCU R5F applications (e.g. sciserver_testapp).</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sciclient-shim-layer">Sciclient Shim Layer</a> : This thin layer abstracts the message requests and responses sent to SYSW for <a class="reference internal" href="#power-management">Power_management</a>  ,  <a class="reference internal" href="#resource-management">Resource_management</a> and <a class="reference internal" href="#processor-boot-api-interface">Processor_BOOT_API_Interface</a> which the user can use without worrying about the request and response structures used .</li>
+<li>SCIServer: Support HSM applications. Run on MCU R5 core for J721E and J7200.<ul>
+<li><a class="reference internal" href="#sciserver-core">SCIServer Core</a> : The APIs are defined in sciserver.h. The sciserver
+must run on an OS. Reference <a class="reference internal" href="#sciserver-rtos">SCIServer RTOS</a> implementation for
+your own OS.</li>
+<li><a class="reference internal" href="#sciserver-rtos">SCIServer RTOS</a> : This is <a class="reference internal" href="#sciserver-core">SCIServer Core</a> running on RTOS. The
+initialization API contains registering interrupts, creating semaphore
+handles, and creating tasks.</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#rm-pm-hal">RM/PM HAL</a> : This library has APIs for processing the <a class="reference internal" href="#power-management">Power_management</a>
+and <a class="reference internal" href="#resource-management">Resource_management</a> messages.</li>
+</ul>
+<div class="section" id="sciclient-core">
+<h3>4.14.5.1. Sciclient Core<a class="headerlink" href="#sciclient-core" title="Permalink to this headline">¶</a></h3>
+<p>The following core APIs for Sciclient are declared in sciclient.h.</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include</span> <span class="cpf">&lt;ti/drv/sciclient/sciclient.h&gt;</span><span class="cp"></span>
+</pre></div>
+</div>
+<p class="rubric">Firmware Load</p>
+<p id="sciclient-loadfirmware">This API loads SYSFW.The image must be loaded through a boot media for this API to succeed (Refer <a class="reference internal" href="#build-and-run">Build and Run</a>). Hence, this is typically called by SBL. Load
+firmware call does not require <a class="reference internal" href="#sciclient-init">Sciclient_init</a> to be done before.</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">Defined</span> <span class="n">in</span> <span class="n">sciclient</span><span class="p">.</span><span class="n">h</span> <span class="n">as</span> <span class="n">Sciclient_loadFirmware</span><span class="p">.</span>
+</pre></div>
+</div>
+<p>Typical usage</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="k">static</span> <span class="k">const</span> <span class="kt">uint32_t</span> <span class="n">gSciclient_firmware</span><span class="p">[</span><span class="n">BINARY_FILE_SIZE_IN_BYTES</span> <span class="o">/</span> <span class="mi">4U</span><span class="p">]</span> <span class="o">=</span><span class="n">SCICLIENT_FIRMWARE</span><span class="p">;</span>
+<span class="p">.</span>
+<span class="p">.</span>
+<span class="p">.</span>
+<span class="n">Sciclient_loadFirmware</span><span class="p">(</span><span class="n">gSciclient_firmware</span><span class="p">);</span>
+</pre></div>
+</div>
+<p class="rubric">Sciclient initialization</p>
+<p id="sciclient-init">This API is called once for registering interrupts and creating
+semaphore handles to be able to talk to the firmware.
+The application should assume that the firmware is pre-loaded while
+calling this API.
+The firmware should have been loaded either via GEL or via the SBL
+(refer <a class="reference internal" href="#sciclient-loadfirmware">Sciclient_loadFirmware</a> ) prior to the application calling this.</p>
+<p>The API <strong>Sciclient_init</strong> takes a pointer to <em>Sciclient_ConfigPrms_t</em> as input.</p>
+<ul>
+<li><p class="first">The parameter <em>opModeFlag</em> allows 2 operation modes for <a class="reference internal" href="#sciclient-service">Sciclient_service</a> :</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="26%" />
+<col width="74%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">opModeFlag</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Polling based</td>
+<td>Invoked using   SCICLIENT_SERVICE_OPERATION_MODE_POLLED</td>
+</tr>
+<tr class="row-odd"><td>Interrupt based</td>
+<td>Invoked using   SCICLIENT_SERVICE_OPERATION_MODE_INTERRUPT</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+</ul>
+<p>Definition</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">Defined</span> <span class="n">in</span> <span class="n">sciclient</span><span class="p">.</span><span class="n">h</span> <span class="n">as</span> <span class="o">**</span><span class="n">Sciclient_init</span><span class="o">**</span><span class="p">.</span>
+</pre></div>
+</div>
+<p>Note</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="o">-</span> <span class="n">This</span> <span class="n">API</span> <span class="n">provides</span> <span class="n">a</span> <span class="n">software</span> <span class="n">initialization</span> <span class="k">for</span> <span class="n">the</span> <span class="n">driver</span><span class="p">.</span> <span class="n">Any</span> <span class="n">application</span> <span class="k">using</span> <span class="n">Sciclient</span> <span class="n">must</span> <span class="n">call</span> <span class="k">this</span> <span class="n">API</span><span class="p">.</span>
+<span class="o">-</span> <span class="n">SCICLIENT_SERVICE_OPERATION_MODE_INTERRUPT</span> <span class="n">is</span> <span class="n">not</span> <span class="n">supported</span> <span class="n">as</span> <span class="n">of</span> <span class="n">now</span><span class="p">.</span>
+</pre></div>
+</div>
+<p>Typical usage</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">Sciclient_ConfigPrms_t</span>        <span class="n">config</span> <span class="o">=</span>
+<span class="p">{</span>
+    <span class="n">SCICLIENT_SERVICE_OPERATION_MODE_POLLED</span><span class="p">,</span>
+    <span class="nb">NULL</span>
+<span class="p">};</span>
+<span class="n">Sciclient_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">config</span><span class="p">);</span>
+</pre></div>
+</div>
+<p class="rubric">SYSFW communication</p>
+<p id="sciclient-service">This API allows communicating with the System firmware which can be
+called to perform various functions in the system.
+Core Sciclient function for transmitting payload and recieving
+the response.
+The caller is expected to allocate memory for the input request
+parameter <strong>Sciclient_ReqPrm_t</strong> . This involves setting the
+message type being communicated to the firmware, the response flags,
+populate the payload of the message based on the inputs in the
+files located at include/tisci/ .
+Since the payload in considered a stream of bytes in this API,
+the caller should also populate the size of this stream in
+reqPayloadSize. The timeout is used to determine for what amount
+of iterations the API would wait for their operation to complete.</p>
+<p>To make sure the response is captured correctly the caller should
+also allocate the space for <strong>Sciclient_RespPrm_t</strong> parameters. The
+caller should populate the pointer to the pRespPayload and the size
+respPayloadSize. The API would populate the response flags to
+indicate any firmware specific errors and also populate the memory
+pointed by pRespPayload till the size given in respPayloadSize.</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">Defined</span> <span class="n">in</span> <span class="n">sciclient</span><span class="p">.</span><span class="n">h</span> <span class="n">as</span> <span class="o">**</span><span class="n">Sciclient_service</span><span class="o">**</span> <span class="p">.</span>
+</pre></div>
+</div>
+<p>Typical usage</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="k">const</span> <span class="n">Sciclient_ReqPrm_t</span>      <span class="n">reqPrm</span> <span class="o">=</span>
+<span class="p">{</span>
+    <span class="n">TISCI_MSG_VERSION</span><span class="p">,</span>
+    <span class="n">TISCI_MSG_FLAG_AOP</span><span class="p">,</span>
+    <span class="nb">NULL</span><span class="p">,</span>
+    <span class="mi">0</span><span class="p">,</span>
+    <span class="n">SCICLIENT_SERVICE_WAIT_FOREVER</span>
+<span class="p">};</span>
+
+<span class="k">struct</span> <span class="n">tisci_msg_version_resp</span> <span class="n">response</span><span class="p">;</span>
+<span class="n">Sciclient_RespPrm_t</span>           <span class="n">respPrm</span> <span class="o">=</span>
+<span class="p">{</span>
+    <span class="mi">0</span><span class="p">,</span>
+    <span class="p">(</span><span class="kt">uint8_t</span> <span class="o">*</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">response</span><span class="p">,</span>
+    <span class="k">sizeof</span> <span class="p">(</span><span class="n">response</span><span class="p">)</span>
+<span class="p">};</span>
+<span class="n">status</span> <span class="o">=</span> <span class="n">Sciclient_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">config</span><span class="p">);</span>
+<span class="n">status</span> <span class="o">=</span> <span class="n">Sciclient_service</span><span class="p">(</span><span class="o">&amp;</span><span class="n">reqPrm</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">respPrm</span><span class="p">);</span>
+</pre></div>
+</div>
+<p class="rubric">Sciclient de-initialization</p>
+<p id="sciclient-deinit">De-initialization of sciclient. This de-initialization is specific
+to the application. It only de-initializes the semaphores,
+interrupts etc. which are initialized using <a class="reference internal" href="#sciclient-init">Sciclient_init</a> . It does
+not de-initialize the system firmware.</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">Defined</span> <span class="n">in</span> <span class="n">sciclient</span><span class="p">.</span><span class="n">h</span> <span class="n">as</span> <span class="o">**</span><span class="n">Sciclient_deinit</span><span class="o">**</span> <span class="p">.</span>
+</pre></div>
+</div>
+<p>Typical usage</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">Sciclient_deinit</span><span class="p">();</span>
+</pre></div>
+</div>
+<p class="rubric">Board configuration</p>
+<p>One time board configuration needs to be done from R5 for rm,pm and
+security to communicate with SYSFW. It is normally done by SBL, so user doesn&#8217;t need to call these APIs.</p>
+<p>User needs to define a section &#8221;.boardcfg_data&#8221; in the
+linker file for the default configuration (NULL pointer to <em>Sciclient_BoardCfgPrms_t</em> is passed to the APIs), which needs to be present
+in OCMRAM . If user provides custom board_cfg, then the data must
+be present on OCMRAM.</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">Board</span> <span class="n">configuration</span> <span class="n">structure</span> <span class="n">is</span> <span class="n">defined</span> <span class="n">in</span> <span class="n">include</span><span class="o">/</span><span class="n">V0</span><span class="o">/</span><span class="n">sciclient_boardcfg</span><span class="p">.</span><span class="n">h</span> <span class="n">as</span> <span class="n">Sciclient_BoardCfgPrms_t</span><span class="p">.</span>
+</pre></div>
+</div>
+<p>Typical usage</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">status</span> <span class="o">=</span> <span class="n">Sciclient_boardCfg</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">CSL_PASS</span> <span class="o">==</span> <span class="n">status</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">status</span> <span class="o">=</span> <span class="n">Sciclient_boardCfgPm</span><span class="p">(</span><span class="nb">NULL</span><span class="p">)</span> <span class="o">+</span>
+            <span class="n">Sciclient_boardCfgRm</span><span class="p">(</span><span class="nb">NULL</span><span class="p">)</span> <span class="o">+</span>
+            <span class="n">Sciclient_boardCfgSec</span><span class="p">(</span><span class="nb">NULL</span><span class="p">)</span> <span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="sciclient-shim-layer">
+<h3>4.14.5.2. Sciclient Shim Layer<a class="headerlink" href="#sciclient-shim-layer" title="Permalink to this headline">¶</a></h3>
+<p class="rubric">Power management</p>
+<p id="power-management">The APIs in include/sciclient_pm.h provide declarations of Sciclient APIs for power management of the SOC .</p>
+<p class="rubric">Resource management</p>
+<p id="resource-management">The APIs in include/sciclient_rm.h provide declarations of Sciclient APIs for resource management of the SOC .</p>
+<p class="rubric">Processor BOOT API Interface</p>
+<p id="processor-boot-api-interface">The APIs in include/sciclient_procboot.h provide declarations of Sciclient APIs for processor boot and control.</p>
+<p>APIs are divided into the following two sets</p>
+<ul class="simple">
+<li>Book keeping APIs - Meant to control access to allow a reasonable usage scenario of processors.</li>
+<li>Processor Control APIs - Meant to be the actual Processor Corecontrols.</li>
+</ul>
+</div>
+<div class="section" id="sciserver-core">
+<h3>4.14.5.3. SCIServer Core<a class="headerlink" href="#sciserver-core" title="Permalink to this headline">¶</a></h3>
+<p>The following core APIs for SCIServer are declared in sciserver.h.</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include</span> <span class="cpf">&lt;ti/drv/sciclient/sciserver.h&gt;</span><span class="cp"></span>
+</pre></div>
+</div>
+<p class="rubric">SCIServer initialization</p>
+<p id="sciserver-init">This API configures the state machine in the sciserver.</p>
+<p>Typical usage</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">Sciserver_CfgPrms_t</span> <span class="n">prms</span><span class="p">;</span>
+<span class="n">Sciserver_initPrms_Init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">prms</span><span class="p">);</span>
+<span class="n">Sciserver_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">prms</span><span class="p">);</span>
+</pre></div>
+</div>
+<p class="rubric">SCIServer de-initialization</p>
+<p id="sciserver-deinit">This API de-initializes the state machine in the sciserver.</p>
+<p>Typical usage</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">Sciserver_deinit</span><span class="p">();</span>
+</pre></div>
+</div>
+<p class="rubric">SCIServer process task</p>
+<p id="sciserver-processtask">This API is the core function that processes messages sent to the SCIserver. It
+processes the power management and resource mangement messages, and it performs
+message forwarding for processor boot control or firewall configuration
+messages.</p>
+<p>The API <strong>Sciserver_processtask</strong> takes a pointer to <em>Sciserver_taskData</em> as
+input.</p>
+<p>Note</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="o">-</span> <span class="n">This</span> <span class="n">API</span> <span class="n">serves</span> <span class="n">as</span> <span class="n">a</span> <span class="n">building</span> <span class="n">block</span> <span class="k">for</span> <span class="n">the</span> <span class="n">SCIServer</span> <span class="n">running</span> <span class="n">on</span> <span class="n">non</span><span class="o">-</span><span class="n">TI</span><span class="o">-</span><span class="n">RTOS</span><span class="p">.</span>
+<span class="o">-</span> <span class="n">Reference</span> <span class="n">Sciserver_tirtosInit</span><span class="p">()</span> <span class="n">on</span> <span class="n">how</span> <span class="k">this</span> <span class="n">API</span> <span class="n">is</span> <span class="n">used</span><span class="p">.</span>
+</pre></div>
+</div>
+<p>Typical usage</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="kt">void</span> <span class="nf">Sciserver_UserMsgTask</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">arg0</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">Sciserver_taskData</span> <span class="o">*</span><span class="n">utd</span> <span class="o">=</span> <span class="p">(</span><span class="n">Sciserver_taskData</span> <span class="o">*</span><span class="p">)</span> <span class="n">arg0</span><span class="p">;</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">loopForever</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">Semaphore_pend</span><span class="p">(</span><span class="n">semHandle</span><span class="p">[</span><span class="n">utd</span><span class="o">-&gt;</span><span class="n">semaphore_id</span><span class="p">]);</span>
+        <span class="n">Sciserver_processtask</span> <span class="p">(</span><span class="n">utd</span><span class="p">);</span>
+        <span class="o">&lt;</span><span class="n">Enable</span> <span class="n">interrupt</span> <span class="n">that</span> <span class="n">calls</span> <span class="n">Semaphore_post</span><span class="p">(</span><span class="n">semHandle</span><span class="p">[</span><span class="n">utd</span><span class="o">-&gt;</span><span class="n">semaphore_id</span><span class="p">])</span><span class="o">&gt;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="sciserver-rtos">
+<h3>4.14.5.4. SCIServer RTOS<a class="headerlink" href="#sciserver-rtos" title="Permalink to this headline">¶</a></h3>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Some APIs/Files are named as sciserver_tirtos**, but it actually supports FreeRTOS too.
+The naming is misleading, but the name is not changed due to compatibility issues.</p>
+</div>
+<p>The following core APIs for SCIServer are declared in sciserver_tirtos.h.</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include</span> <span class="cpf">&lt;ti/drv/sciclient/sciserver_tirtos.h&gt;</span><span class="cp"></span>
+</pre></div>
+</div>
+<p class="rubric">SCIServer initialization in RTOS</p>
+<p id="sciserver-tirtosinit">This API is called once to initialize the sciserver, register interrupts,
+create semaphore handles, and create tasks in the RTOS. All OS related
+settings are configured and the SCIServer is ready for the following:</p>
+<ul class="simple">
+<li>Process power management and resource management messages from secure and
+non-secure hosts. Handled by <a class="reference internal" href="#rm-pm-hal">RM/PM HAL</a> .</li>
+<li>Forward non-secure host requests to DMSC to set the processor boot control
+or firewall configuration for safety applications.</li>
+<li>Forward response recieved from DMSC to non-secure hosts for the above
+forwarded messages.</li>
+</ul>
+<p>The API <strong>Sciserver_tirtosInit</strong> takes a pointer to <em>Sciserver_TirtosCfgPrms_t</em>
+as input.</p>
+<ul class="simple">
+<li>The parameter <em>taskPriority</em> defines the priority of the high and low
+priority tasks.</li>
+<li>The task priority defaults to 1 for low priority task and 3 for high
+priority task. The application developer may change the priority for those
+tasks, especially if additional applications are running with SCIServer on
+the same core(mcu1_0). Make sure that the SCIServer tasks are not starved by
+other applications threads.</li>
+</ul>
+<p>Note</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="o">-</span> <span class="n">RTOS</span> <span class="n">use</span> <span class="k">case</span> <span class="n">only</span><span class="p">.</span> <span class="n">It</span> <span class="n">can</span> <span class="n">serve</span> <span class="n">as</span> <span class="n">a</span> <span class="n">reference</span> <span class="k">for</span> <span class="n">SCIServer</span> <span class="n">on</span> <span class="n">non</span><span class="o">-</span><span class="n">RTOS</span><span class="p">.</span>
+<span class="o">-</span> <span class="n">This</span> <span class="n">API</span> <span class="n">calls</span> <span class="n">Sciserver_init</span> <span class="n">and</span> <span class="n">Sciserver_processtask</span> <span class="n">underneath</span>
+</pre></div>
+</div>
+<p>Typical usage</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">Sciserver_TirtosCfgPrms_t</span> <span class="n">appPrms</span><span class="p">;</span>
+<span class="n">Sciserver_tirtosInitPrms_Init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">appPrms</span><span class="p">);</span>
+<span class="n">Sciserver_tirtosInit</span><span class="p">(</span><span class="o">&amp;</span><span class="n">appPrms</span><span class="p">);</span>
+</pre></div>
+</div>
+<p class="rubric">SCIServer de-initialization in RTOS</p>
+<p id="sciserver-tirtosdeinit">De-initialization of SCIServer. It also de-initializes the semaphores,
+interrupts etc. which are initialized using Sciserver_tirtosInit . It does
+not de-initialize the system firmware.</p>
+<p>Typical usage</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">Sciserver_tirtosDeinit</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="rm-pm-hal">
+<h3>4.14.5.5. RM/PM HAL<a class="headerlink" href="#rm-pm-hal" title="Permalink to this headline">¶</a></h3>
+<p>This library runs on the MCU R5F core. It contains the implementation of RM
+and PM message processing. When the SCIServer determines a message&#8217;s type
+belongs to RM or RM, this library&#8217;s functions are invoked to perform the
+message processing.</p>
+</div>
+<div class="section" id="order-of-functions-to-call-for-sciserver">
+<h3>4.14.5.6. Order of Functions to Call for Sciserver<a class="headerlink" href="#order-of-functions-to-call-for-sciserver" title="Permalink to this headline">¶</a></h3>
+<p>The typical set of APIs to be called by the application are given in the
+example file:
+<cite>pdk_&lt;soc&gt;_&lt;version&gt;/packages/ti/drv/sciclient/examples/sciserver_testapp/sciserver_testapp_main.c</cite>.</p>
+<p>The sequence is explained here for reference:</p>
+<ol class="arabic simple">
+<li>Sciclient initialization parameters are required for the Sciclient
+direct interface for MCU1_0 applications.</li>
+</ol>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">Sciclient_ConfigPrms_t</span> <span class="n">clientPrms</span><span class="p">;</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li>Sciserver initialization parameters are required for the Sciserver
+RTOS based applications. Note for other OSes the appPrms will be corresponding
+to your own implementation of the sciserver_tirtos.c file.</li>
+</ol>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">Sciserver_TirtosCfgPrms_t</span> <span class="n">appPrms</span><span class="p">;</span>
+</pre></div>
+</div>
+<ol class="arabic" start="3">
+<li><p class="first">The first API that needs to be called for initializing the default
+configuration of the Sciclient and Sciserver is as given below.
+If this step passes, then the code must proceed to read the board configuration
+left behind by the SBL.</p>
+<p>By default the Sciserver task is kept at a task priority of 3 - High priority
+task and 1 - Low priority task. Refer <cite>pdk_&lt;soc&gt;_&lt;version&gt;/packages/ti/drv/sciclient/sciserver_tirtos.h</cite>
+One can change this value after the default initialization.</p>
+</li>
+</ol>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">ret</span> <span class="o">=</span> <span class="n">Sciclient_configPrmsInit</span><span class="p">(</span><span class="o">&amp;</span><span class="n">clientPrms</span><span class="p">);</span>
+<span class="n">ret</span> <span class="o">=</span> <span class="n">Sciserver_tirtosInitPrms_Init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">appPrms</span><span class="p">);</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li>The <cite>Sciclient_boardCfgParseHeader</cite> should then be called to parse the content left behind by
+the SPL/SBL and populate the address for board configurations for the
+RM/PM services. To know more about the Board configurations which
+TISCI needs please refer TISCI documentation..</li>
+</ol>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#define SCISERVER_COMMON_X509_HEADER_ADDR (0x41cffb00)</span>
+
+<span class="n">ret</span> <span class="o">=</span> <span class="n">Sciclient_boardCfgParseHeader</span><span class="p">(</span>
+    <span class="p">(</span><span class="kt">uint8_t</span> <span class="o">*</span><span class="p">)</span> <span class="n">SCISERVER_COMMON_X509_HEADER_ADDR</span><span class="p">,</span>
+    <span class="o">&amp;</span><span class="n">clientPrms</span><span class="p">.</span><span class="n">inPmPrms</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">clientPrms</span><span class="p">.</span><span class="n">inRmPrms</span><span class="p">);</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li>The Init APIs should then be called to  initialize the Sciclient and
+also perform the board configuration for RM and PM.
+The <cite>Sciserver_tirtosInit</cite> will set up the Tasks and HWIs
+needed for the servicing of non-secure messsages for RM and PM.</li>
+</ol>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">ret</span> <span class="o">=</span> <span class="n">Sciclient_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">clientPrms</span><span class="p">);</span>
+<span class="n">ret</span> <span class="o">=</span> <span class="n">Sciserver_tirtosInit</span><span class="p">(</span><span class="o">&amp;</span><span class="n">appPrms</span><span class="p">);</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="6">
+<li>After OS_start is called the Sciserver task would start.</li>
+</ol>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">OS_start</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>For other cores, post this point the Sciserver on MCU1_0 will be ready to
+recieve and service messages. This can be checked from other cores by requesting
+for a get version on a non-secure Secure Proxy queue. The Get version message
+can be sent via TISCI_MSG_VERSION message.</p>
+</div>
+</div>
+<div class="section" id="board-configuration-passing-between-spl-sbl-and-mcu1-0-applications">
+<span id="sciclient-boardcfg-pass"></span><h2>4.14.6. Board configuration passing between SPL/SBL and MCU1_0 applications<a class="headerlink" href="#board-configuration-passing-between-spl-sbl-and-mcu1-0-applications" title="Permalink to this headline">¶</a></h2>
+<p>SBL/SPL reads the board configuration from the boot media. The SCISERVER also requires the board
+configuration data for setting up the RM and PM services. Hence the SPL/SBL needs to keep the board
+configuration data in an aligned memory location with a header which the SCISERVER can later
+read, check the header and if it finds the header, parse the board configuration and process it.</p>
+<p>The main responsibilities for the SBL/SPL are:</p>
+<ol class="arabic simple">
+<li>Read the board configuration from the boot media.</li>
+<li>Copy or store the configuration using the format shown Here</li>
+<li>Run the TIFS board configurations (Common board config and Security Board configuration)</li>
+</ol>
+<p>The main responsibilities of the SCISERVER APP are:</p>
+<ol class="arabic simple">
+<li>Look for the magic word in the aligned address.</li>
+<li>If the magic word matches, board configuration data is present and then read the board configuration address offsets</li>
+<li>Configure the config parameters for Sciclient init for the board configuration.</li>
+</ol>
+<p>The flow is as below:</p>
+<div class="figure" id="id6">
+<img alt="../../_images/SCISERVER_BOARDCFG.png" src="../../_images/SCISERVER_BOARDCFG.png" />
+<p class="caption"><span class="caption-number">Fig. 4.5 </span><span class="caption-text">Board configuration passing from SBL/SPL to SCISERVER</span></p>
+</div>
+<p>The format for the structure which is passed between SBL/SPL and the SCISERVER has 3 parts:</p>
+<ol class="arabic simple">
+<li>Common Header</li>
+<li>Board Configuration Header</li>
+<li>Board Configuration</li>
+</ol>
+<p>The Common Header format is as below:</p>
+<div class="figure" id="id7">
+<img alt="../../_images/SCISERVER_COMMON_HEADER.png" src="../../_images/SCISERVER_COMMON_HEADER.png" />
+<p class="caption"><span class="caption-number">Fig. 4.6 </span><span class="caption-text">Common Header Format</span></p>
+</div>
+<p>The Board configuration Header format is as below:</p>
+<div class="figure" id="id8">
+<img alt="../../_images/SCISERVER_BOARDCFG_HEADER.png" src="../../_images/SCISERVER_BOARDCFG_HEADER.png" />
+<p class="caption"><span class="caption-number">Fig. 4.7 </span><span class="caption-text">Board Configuration Header Format</span></p>
+</div>
+<p>The code version of the same formats are as below:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cm">/**</span>
+<span class="cm"> * \def EXTBOOT_X509_MAGIC_WORD_LEN</span>
+<span class="cm"> * Length of magic word for extended boot info table.</span>
+<span class="cm"> *</span>
+<span class="cm"> * \def EXTBOOT_X509_MIN_COMPONENTS</span>
+<span class="cm"> * Minimum number of components that should be present in combined image.</span>
+<span class="cm"> *</span>
+<span class="cm"> * \def EXTBOOT_X509_MAX_COMPONENTS</span>
+<span class="cm"> * Max number of components in extended boot info table.</span>
+<span class="cm"> *</span>
+<span class="cm"> * \def EXTBOOT_X509_ROM_INFO_BASE</span>
+<span class="cm"> * Base address where ROM loads the extended boot info.</span>
+<span class="cm"> *</span>
+<span class="cm"> * \def EXTBOOT_X509_COMPTYPE_SYSFW_DATA</span>
+<span class="cm"> * Component type corresponding to SYSFW data blob.</span>
+<span class="cm"> */</span>
+<span class="cp">#define EXTBOOT_X509_MAGIC_WORD_LEN             (8)</span>
+<span class="cp">#define EXTBOOT_X509_MIN_COMPONENTS             (3)</span>
+<span class="cp">#define EXTBOOT_X509_MAX_COMPONENTS             (8)</span>
+<span class="cp">#define EXTBOOT_X509_COMPTYPE_SYSFW_DATA        (0x12)</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * \def EXTBOOT_X509_MAGIC_WORD</span>
+<span class="cm"> * Magic word that specifies whether combined image is being used.</span>
+<span class="cm"> */</span>
+<span class="k">const</span> <span class="n">u8</span> <span class="n">EXTBOOT_X509_MAGIC_WORD</span><span class="p">[</span><span class="n">EXTBOOT_X509_MAGIC_WORD_LEN</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="sc">&#39;E&#39;</span><span class="p">,</span> <span class="sc">&#39;X&#39;</span><span class="p">,</span> <span class="sc">&#39;T&#39;</span><span class="p">,</span> <span class="sc">&#39;B&#39;</span><span class="p">,</span> <span class="sc">&#39;O&#39;</span><span class="p">,</span> <span class="sc">&#39;O&#39;</span><span class="p">,</span> <span class="sc">&#39;T&#39;</span><span class="p">,</span> <span class="mi">0</span> <span class="p">};</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * \brief Component information populated by ROM. The combined image has multiple components.</span>
+<span class="cm"> *                  ROM populates this information for each component.</span>
+<span class="cm"> *</span>
+<span class="cm"> * \param comp_type Type of component</span>
+<span class="cm"> * \param boot_core Core that loads or runs image</span>
+<span class="cm"> * \param comp_opts Component options. Not used for now.</span>
+<span class="cm"> * \param dest_addr Image destination address</span>
+<span class="cm"> * \param comp_size Size of the component in bytes</span>
+<span class="cm"> */</span>
+<span class="k">struct</span> <span class="n">extboot_x509_comp</span> <span class="p">{</span>
+    <span class="n">u32</span> <span class="n">comp_type</span><span class="p">;</span>
+    <span class="n">u32</span> <span class="n">boot_core</span><span class="p">;</span>
+    <span class="n">u32</span> <span class="n">comp_opts</span><span class="p">;</span>
+    <span class="n">u64</span> <span class="n">dest_addr</span><span class="p">;</span>
+    <span class="n">u32</span> <span class="n">comp_size</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * \brief Component information table populated by ROM.</span>
+<span class="cm"> *</span>
+<span class="cm"> * \param magic_word Magic word for extended boot</span>
+<span class="cm"> * \param num_comps Number of components present in extended boot info table</span>
+<span class="cm"> * \param comps Information for each component</span>
+<span class="cm"> */</span>
+<span class="k">struct</span> <span class="n">extboot_x509_table</span> <span class="p">{</span>
+    <span class="n">u8</span>              <span class="n">magic_word</span><span class="p">[</span><span class="n">EXTBOOT_X509_MAGIC_WORD_LEN</span><span class="p">];</span>
+    <span class="n">u32</span>             <span class="n">num_comps</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">extboot_x509_comp</span>    <span class="n">comps</span><span class="p">[</span><span class="n">EXTBOOT_X509_MAX_COMPONENTS</span><span class="p">];</span>
+<span class="p">};</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * \brief Describes the board config data</span>
+<span class="cm"> *</span>
+<span class="cm"> * \param type Type of board config data. This should map to corresponding TISCI</span>
+<span class="cm"> *      message type. For example, a PM boardcfg should have a descriptor</span>
+<span class="cm"> *      type TISCI_MSG_BOARD_CONFIG_PM.</span>
+<span class="cm"> * \param offset Offset for board config data from beginning of SYSFW data binary blob</span>
+<span class="cm"> * \param size Size of board config data</span>
+<span class="cm"> * \param devgrp Device group to be used by SYSFW for automatic board config processing</span>
+<span class="cm"> * \param reserved Reserved field. Not to be used.</span>
+<span class="cm"> */</span>
+<span class="k">struct</span> <span class="n">extboot_boardcfg_desc</span> <span class="p">{</span>
+    <span class="n">u16</span> <span class="n">type</span><span class="p">;</span>
+    <span class="n">u16</span> <span class="n">offset</span><span class="p">;</span>
+    <span class="n">u16</span> <span class="n">size</span><span class="p">;</span>
+    <span class="n">u8</span>  <span class="n">devgrp</span><span class="p">;</span>
+    <span class="n">u8</span>  <span class="n">reserved</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">__attribute__</span><span class="p">((</span><span class="n">__packed__</span><span class="p">));</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * \def EXTBOOT_BOARDCFG_NUM_DESCS</span>
+<span class="cm"> * Number of boardcfg data in SYSFW data blob.</span>
+<span class="cm"> */</span>
+<span class="cp">#define EXTBOOT_BOARDCFG_NUM_DESCS              (4)</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * \brief Boardcfg descriptor table provided by system integrator</span>
+<span class="cm"> *</span>
+<span class="cm"> * \param num_elems Number of elements in board config table.</span>
+<span class="cm"> * \param sw_rev SW revision populated by system integrator.</span>
+<span class="cm"> * \param descs Array of board config descriptors</span>
+<span class="cm"> */</span>
+<span class="k">struct</span> <span class="n">boardcfg_desc_table</span> <span class="p">{</span>
+    <span class="n">u8</span>              <span class="n">num_elems</span><span class="p">;</span>
+    <span class="n">u8</span>              <span class="n">sw_rev</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">extboot_boardcfg_desc</span>    <span class="n">descs</span><span class="p">[</span><span class="n">EXTBOOT_BOARDCFG_NUM_DESCS</span><span class="p">];</span>
+<span class="p">}</span> <span class="n">__attribute__</span><span class="p">((</span><span class="n">__packed__</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>The memory map for where the board configuration is left behind is as below:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="12%" />
+<col width="30%" />
+<col width="42%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Address</th>
+<th class="head">Size</th>
+<th class="head">Purpose</th>
+<th class="head">Persistence</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>0x41C0_0000</td>
+<td>512   KB</td>
+<td>Hold
+SPL/SBL Image</td>
+<td>Only   during SPL/SBL execution.
+Can be claimed once MCU1_0 app
+is jumped to.</td>
+</tr>
+<tr class="row-odd"><td>0x41C8_0000</td>
+<td>8 KB</td>
+<td>Hold the Board
+configuration passed
+between SPL/SBL and
+SCISERVER_APP</td>
+<td>Can be claimed once MCU1_0 app
+executes Sciclient_init on
+MCU1_0</td>
+</tr>
+<tr class="row-even"><td>0x41C8_2000</td>
+<td>502 KB</td>
+<td>Loadable application
+on OCMS RAM (including
+SCISERVER)</td>
+<td>Through out MCU1_0 app execution</td>
+</tr>
+<tr class="row-odd"><td>0x41cf_fb00</td>
+<td>~1.2 KB</td>
+<td>Common header used in
+ROM combined image
+format as well.</td>
+<td>Can be claimed once MCU1_0 app
+executes Sciclient_init on
+MCU1_0</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>For devices on which the ROM supports the combined image format support where
+a single X509 certificate can be used to load the TIFS and the MCU1_0 SPL, the ROM
+leaves a header with the details of which image went where. The 0x41cf_fb00 is
+the address where this table is left. The design of the table for the common
+header and ROM left behind table is the same to make sure any subsequent apps
+see the same format accross J721E, J7200 and future devices.</p>
+<p class="last">The choice of 0x41C8_0000 is to make sure multiple holes are not present in the
+loadable sections of the application.</p>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Please make sure to use the board configuration in the MCU SRAM memory left behind by
+the SPL/SBL. Any other board configuration built into the MCU1_0 App should not be used.
+Also, if the board configuration is kept in any other memory apart from MCU SRAM the TIFS
+will crash. The TIFS is needed to authenticate the board configuration in HS devices.
+TIFS also uses the RM board configuration to set up channelized firewalls.</p>
+</div>
+</div>
+<div class="section" id="irq-sources-and-destinations">
+<h2>4.14.7. IRQ Sources and Destinations<a class="headerlink" href="#irq-sources-and-destinations" title="Permalink to this headline">¶</a></h2>
+<p>The following tables give information regarding the IRQ sources and destinations
+used as part of the Sciclient_rmIrqSet function and Sciclient_rmIrqRelease function.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/sciclient/irq_sources_jacinto.html">4.14.7.1. J721e Peripheral Interrupt Source Descriptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/sciclient/irq_dsts_jacinto.html">4.14.7.2. J721e Peripheral Interrupt Destination Descriptions</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../modules/sciclient/irq_sources_jacinto.html" class="btn btn-neutral float-right" title="4.14.7.1. J721e Peripheral Interrupt Source Descriptions" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../../modules/sa.html" class="btn btn-neutral" title="4.13. SA" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="http://www.ti.com/corp/docs/legal/copyright.shtml">&copy; Copyright 1995-2020</a>, Texas Instruments Incorporated. All rights reserved. <br>
+      <a href="http://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="http://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="http://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="http://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'08_06_01',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,395 @@
+XIP Using Dummy App
+===================
+
+.. _xip-using-dummy-app-rom-an-application:
+
+Rom An Application
+-------------------
+ROMing an application or running from XIP is running from a read-only memory - essentially XIP boils down to running an application from a read-only memory.
+
+.. _xip-using-dummy-app-what-is-xip:
+
+What is XIP?
+------------
+.. Image:: ../../images/developer_notes/xip_comparison_flow_chart.png
+.. Image:: ../../images/developer_notes/xip_comparison_diagram.png
+
+In order to take advantage of the XIP mode, two conditions must be fulfilled:
+
+1. **The NOR flash (or flash device in general) device must support DAC mode**
+
+2. **The microcontroller's SPI controller must support XIP mode**
+    a. Burst mode of access - no byte access but a 32bit accesses only in XIP mode
+    b. As code must be in memory to be executed, XIP requires a memory-mappable device such as a RAM, ROM, or a NOR Flash.
+    c. The serial NOR flash memory is mapped in the microcontroller's memory space and is seen as another memory by the processor.
+
+.. _xip-using-dummy-app-difference-between-normal-mode-and-xip-mode:
+
+Normal Mode v/s XIP Mode
+^^^^^^^^^^^^^^^^^^^^^^^^^
+From a SPI protocol perspective, a READ command is composed of three phases: instruction opcode, address and data. XIP mode requires only an address (no instruction) to output data, improving random access time and eliminating the need to shadow code onto RAM for fast execution. 
+
+.. _xip-using-dummy-app-why-xip:
+
+Why XIP?
+---------
+
+* Improve startup/boot time - Initial time of copying code from flash to RAM is saved
+* Size of on-chip RAM will not limit the application size
+* NOTE: Slower than internal memory - 2.5 - 3x times worse than OCM
+
+.. _xip-using-dummy-app-how-to-run-an-application-in-xip:
+
+How to run an application in XIP (SYSBIOS)
+-------------------------------------------
+
+This section takes a deeper dive into the intricate details of loading applications into the Flash memory and executing them using XIP.
+
+NOTE : It is important to add the OSPI memory region to mpu.xs file - enable the memory region, mark it as cacheable and executable.
+
+.. _xip-using-dummy-app-section-placement:
+
+Section Placement
+^^^^^^^^^^^^^^^^^^
+
+Attributes: r-x or r--                  => Load & Run in Flash
+Attributes: rw-, Init Length: 0         => Load & Run from RAM + Designate “noload” in .bin file
+Attributes: rw-, Init Length: nonzero   => Load in Flash & Run from RAM
+
+Reasons to have separate Load & Run sections
+1. To restrict all write accesses to RAM.
+2. To have the a tight binary which loads only from RAM.
+
+The graphic below delineates the various section configurations appropriate for different applications.
+
+.. Image:: ../../images/developer_notes/xip_section_placement.png
+
+.. _xip-using-dummy-app-linker-file-usage:
+
+Linker File Usage
+^^^^^^^^^^^^^^^^^^
+NOTE: The "entry point" must be set as the (OSPI_base_address + Bin file offset) - e.g. 0x501C0000 for J721E
+
+The graphic below illustrates the bit translation and the memory section placement performed by the linker file.
+
+.. Image:: ../../images/developer_notes/xip_linker_file.png
+
+.. _xip-using-dummy-app-how-to-copy:
+
+How to copy from load to run section at runtime
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**The only case when you need to copy the data from the Flash to the RAM at run time is when you have Read-write data which is also initialized.**
+
+**You can do so by having different Load and Run addresses for a particular section.**
+
+1. The load address will be Flash (this will make the BIN small) and then the Run address will be in RAM (or any internal memory).
+2. The copy then needs to happen manually using a copy_in(&table_name) function. This will copy the section from the Load address to Run address. And then let us say that there was a variable X which was in that section - the program when referencing X, will always look at its run address. So you need to copy before you access X.
+
+Below is snippet for the main.c file where the copy happens and also the linker file where we mention different load and run sections.
+
+Linker File
+
+.. code-block:: c
+
+    ...
+    ...
+
+    --entry_point=_resetvectors
+
+    ...
+    ...
+
+
+    MEMORY
+    {
+        ...
+        ...
+    
+        XIP_FLASH_VECS (X)      : origin=0x501c0000 length=0x40
+        XIP_FLASH               : origin=0x501c0040 length=0x5C000 - 0x40
+        MSMC3_H (RWIX)          : origin=0x70100000 length=0xE2000               /* 1MB -56K */
+        OCMRAM  (RWIX)          : origin=0x41C60000 length=0x20000 - 0x1000      /* ~124KB */
+    
+        ...
+        ...
+    }
+    
+    SECTIONS
+    {
+        ...
+        ...
+    
+        .rstvectors    : {} palign(8)      > XIP_FLASH_VECS
+        .text_fast  : {
+                        *ti.board*aer5f(.text)
+                        *ti.csl*aer5f(.text)
+                        *ti.drv*aer5f(.text)
+                        *ti.osal.aer5f(.text)
+                        *ti.transport*aer5f(.text)
+                        *sciclient.aer5f*(.text)
+                        *(.text:ti_sysbios_family_arm_v7r_keystone3_Hwi*)
+                    } palign(8)  load = XIP_FLASH, run = OCMRAM, table(_text_fast_section)
+    
+        .text_fast2  : {
+                        *profinet_slave_stack_RT_MRP_AM65xx_r5f.lib*(.text)
+                    } palign(8)  load = XIP_FLASH , run = MSMC3_H, table(_text_fast2_section)
+    
+        .text_fast3  : {
+                        iPNDrv.obj(.text)
+                        iPNLegacy.obj(.text)
+                        iPNOs.obj(.text)
+                        iPtcpDrv.obj(.text)
+                        iRtcDrv.obj(.text)
+                        iRtcDrv2.obj(.text)
+                        *P_tirtos.obj(.text)
+                    } palign(8)  load = XIP_FLASH , run = OCMRAM_LOW, table(_text_fast3_section)
+    
+        /* This is the region which will have all the copy tables */
+        .ovly       : {} palign(128)  load = XIP_FLASH
+    
+        ...
+        ...
+    }
+
+main.c
+
+.. code-block:: c
+
+    /* Needed for copy_in() function */
+    #include <cpy_tbl.h>
+    
+    /* extern all the table sections */
+    extern COPY_TABLE _text_fast_section;
+    extern COPY_TABLE _text_fast2_section;
+    extern COPY_TABLE _text_fast3_section;
+    
+    int main(void)
+    {
+        /* First thing in main - copies by looking at entries from the table _text_fast_section */
+        copy_in(&_text_fast_section);
+        /* First thing in main - copies by looking at entries from the table _text_fast2_section */
+        copy_in(&_text_fast2_section);
+        /* First thing in main - copies by looking at entries from the table _text_fast3_section */
+        copy_in(&_text_fast3_section);
+    
+        :
+        :
+        /* Rest of the body */
+    }
+
+
+.. _xip-using-dummy-app-map-file:
+
+Map File Usage
+^^^^^^^^^^^^^^
+
+* Build your application normally (non-xip) and then look at the attributes of different sections.
+* Section attributes (R/W/X) tell you exactly what sections can be placed where.
+
+.. _xip-using-dummy-app-programming-how-to-flash:
+
+How To Flash
+^^^^^^^^^^^^^
+
+.. _xip-using-dummy-app-programming-insatllation:
+
+Installation
+~~~~~~~~~~~~~
+Install uniflash 6.1 from http://www.ti.com/tool/UNIFLASH
+
+.. _xip-using-dummy-app-programming-bootmodes:
+
+BootModes
+~~~~~~~~~~
+
+.. ifconfig:: CONFIG_family in ('am64x')
+
+    +----------+-----------------------------------+
+    | MODE     | Switch Settings                   |
+    +==========+===================================+
+    | UART     | SW2: 11011100, SW3: 00000000      |
+    +----------+-----------------------------------+
+    | OSPI     | SW2: 11001110, SW3: 01000000      |
+    +----------+-----------------------------------+
+
+.. ifconfig:: CONFIG_family in ('am65xx')
+
+    +----------+-----------------------------------+
+    | MODE     | Switch Settings                   |
+    +==========+===================================+
+    | UART     | SW2: 00100000, SW3: 01010000      |
+    +----------+-----------------------------------+
+    | OSPI     | SW2: 10000000, SW3: 10000000      |
+    +----------+-----------------------------------+
+
+.. ifconfig:: CONFIG_family in ('j7200')
+
+    +----------+---------------------------------------------+
+    | MODE     | Switch Settings                             |
+    +==========+=============================================+
+    | UART     | SW3: 0xxxxxxx, SW8: 00000000, SW9: 01110000 |
+    +----------+---------------------------------------------+
+    | OSPI     | SW2: 0xxxxxxx, SW3: 10000010, SW9: 00110000 |
+    +----------+---------------------------------------------+
+
+.. ifconfig:: CONFIG_family in ('jacinto')
+
+    +----------+---------------------------------------------+
+    | MODE     | Switch Settings                             |
+    +==========+=============================================+
+    | UART     | SW3: 0xxxxxxx, SW8: 00000000, SW9: 01110000 |
+    +----------+---------------------------------------------+
+    | OSPI     | SW2: 0xxxxxxx, SW3: 00000000, SW9: 01000000 |
+    +----------+---------------------------------------------+
+
+
+.. _xip-using-dummy-app-programming-steps-to-flash:
+
+Steps To Flash
+~~~~~~~~~~~~~~~
+
+1. **Change boot mode to UART boot mode.**
+
+.. ifconfig:: CONFIG_family in ('am64x')
+
+    2. **Connect to the 1st instance of UART (/dev/ttyUSB0 in linux) and power on**
+        * You should see 'CCC...' being printed on the console.
+        * Once validated, close this instance of the UART (the UART device needs to be free to transfer data)
+
+.. ifconfig:: CONFIG_family in ('am65xx')
+
+    2. **Connect to the 2nd instance of UART (/dev/ttyUSB1 in linux) and power on**
+        * You should see 'CCC...' being printed on the console.
+        * Once validated, close this instance of the UART (the UART device needs to be free to transfer data)
+
+.. ifconfig:: CONFIG_family in ('j7200')
+
+    2. **Connect to the 2nd instance of UART (/dev/ttyUSB1 in linux) and power on**
+        * You should see 'CCC...' being printed on the console.
+        * Once validated, close this instance of the UART (the UART device needs to be free to transfer data)
+
+.. ifconfig:: CONFIG_family in ('jacinto')
+
+    2. **Connect to the 2nd instance of UART (/dev/ttyUSB1 in linux) and power on**
+        * You should see 'CCC...' being printed on the console.
+        * Once validated, close this instance of the UART (the UART device needs to be free to transfer data)
+
+3. **Navigate to the uniflash installed directory**
+    * dslite.sh should be present here
+
+4. **Run the following commands to flash**
+    
+    .. ifconfig:: CONFIG_family in ('am64x')
+
+        .. code-block:: c
+
+            UART SBL and sysfw: ./dslite.sh --mode processors -c /dev/ttyUSB1 -f <pathToUniflashDirectory>/processors/FlashWriter/am64x_evm/uart_am64x_evm_flash_programmer_release.tiimage -i 0
+            CUST SBL:           ./dslite.sh --mode processors -c /dev/ttyUSB1 -f <pathToPDKRepo>/pdk/packages/ti/boot/sbl/binary/am64x_evm/cust/bin/sbl_cust_img_mcu1_0_release.tiimage -d 3 -o 0
+            sysfw.bin:          ./dslite.sh --mode processors -c /dev/ttyUSB1 -f <pathToPDKRepo>/pdk/packages/ti/drv/sciclient/soc/V3/sysfw.bin -d 3 -o 80000
+            sbl_boot_xip_entry: ./dslite.sh --mode processors -c /dev/ttyUSB1 -f <pathToPDKRepo>/pdk/packages/ti/boot/sbl/example/k3MulticoreApp/binary/am64x_evm/sbl_baremetal_boot_xip_entry_am64x_evm_mcu1_0TestApp_release.appimage -d 3 -o 100000
+            App:                ./dslite.sh --mode processors -c /dev/ttyUSB1 -f <pathToMcuswRepo>/mcusw/binary/can_boot_app/bin/am64x_evm/can_boot_app_mcu1_0_release.xer5f.bin -d 3 -o 1C0000
+    
+    .. ifconfig:: CONFIG_family in ('am65xx')
+
+        .. code-block:: c
+
+            UART SBL and sysfw: ./dslite.sh --mode processors -c /dev/ttyUSB1 -f <pathToUniflashDirectory>/processors/FlashWriter/am65xx_evm/uart_am65xx_evm_flash_programmer_release.tiimage -i 0
+            CUST SBL:           ./dslite.sh --mode processors -c /dev/ttyUSB1 -f <pathToPDKRepo>/pdk/packages/ti/boot/sbl/binary/am65xx_evm/cust/bin/sbl_cust_img_mcu1_0_release.tiimage -d 3 -o 0
+            sysfw.bin:          ./dslite.sh --mode processors -c /dev/ttyUSB1 -f <pathToPDKRepo>/pdk/packages/ti/drv/sciclient/soc/V0/sysfw.bin -d 3 -o 80000
+            sbl_boot_xip_entry: ./dslite.sh --mode processors -c /dev/ttyUSB1 -f <pathToPDKRepo>/pdk/packages/ti/boot/sbl/example/k3MulticoreApp/binary/am65xx_evm/sbl_baremetal_boot_xip_entry_am65xx_evm_mcu1_0TestApp_release.appimage -d 3 -o 100000
+            App:                ./dslite.sh --mode processors -c /dev/ttyUSB1 -f <pathToMcuswRepo>/mcusw/binary/can_boot_app/bin/am65xx_evm/can_boot_app_mcu1_0_release.xer5f.bin -d 3 -o 1C0000
+    
+    .. ifconfig:: CONFIG_family in ('j7200')
+
+        .. code-block:: c
+
+            UART SBL and sysfw: ./dslite.sh --mode processors -c /dev/ttyUSB1 -f <pathToUniflashDirectory>/processors/FlashWriter/j7200_evm/uart_j7200_evm_flash_programmer_release.tiimage -i 0
+            CUST SBL:           ./dslite.sh --mode processors -c /dev/ttyUSB1 -f <pathToPDKRepo>/pdk/packages/ti/boot/sbl/binary/j7200_evm/cust/bin/sbl_cust_img_mcu1_0_release.tiimage -d 3 -o 0
+            tifs.bin:           ./dslite.sh --mode processors -c /dev/ttyUSB1 -f <pathToPDKRepo>/pdk/packages/ti/drv/sciclient/soc/V2/tifs.bin -d 3 -o 80000
+            sbl_boot_xip_entry: ./dslite.sh --mode processors -c /dev/ttyUSB1 -f <pathToPDKRepo>/pdk/packages/ti/boot/sbl/example/k3MulticoreApp/binary/j7200_evm/sbl_baremetal_boot_xip_entry_j7200_evm_mcu1_0TestApp_release.appimage -d 3 -o 100000
+            App:                ./dslite.sh --mode processors -c /dev/ttyUSB1 -f <pathToMcuswRepo>/mcusw/binary/can_boot_app/bin/j7200_evm/can_boot_app_mcu1_0_release.xer5f.bin -d 3 -o 1C0000
+    
+    .. ifconfig:: CONFIG_family in ('jacinto')
+
+        .. code-block:: c
+
+            UART SBL and sysfw: ./dslite.sh --mode processors -c /dev/ttyUSB1 -f <pathToUniflashDirectory>/processors/FlashWriter/j721e_evm/uart_j721e_evm_flash_programmer_release.tiimage -i 0
+            CUST SBL:           ./dslite.sh --mode processors -c /dev/ttyUSB1 -f <pathToPDKRepo>/pdk/packages/ti/boot/sbl/binary/j721e_evm/cust/bin/sbl_cust_img_mcu1_0_release.tiimage -d 3 -o 0
+            tifs.bin:           ./dslite.sh --mode processors -c /dev/ttyUSB1 -f <pathToPDKRepo>/pdk/packages/ti/drv/sciclient/soc/V1/tifs.bin -d 3 -o 80000
+            sbl_boot_xip_entry: ./dslite.sh --mode processors -c /dev/ttyUSB1 -f <pathToPDKRepo>/pdk/packages/ti/boot/sbl/example/k3MulticoreApp/binary/j721e_evm/sbl_baremetal_boot_xip_entry_j721e_evm_mcu1_0TestApp_release.appimage -d 3 -o 100000
+            App:                ./dslite.sh --mode processors -c /dev/ttyUSB1 -f <pathToMcuswRepo>/mcusw/binary/can_boot_app/bin/j721e_evm/can_boot_app_mcu1_0_release.xer5f.bin -d 3 -o 1C0000
+    
+5. **Power off the board and change bootmode to OSPI.**
+
+6. **Power on the board**
+
+.. _xip-using-dummy-app-programming-debug-care-abouts:
+
+Debug Care Abouts
+^^^^^^^^^^^^^^^^^^
+
+* Always use HW breakpoints
+    * Putting a breakpoint in CCS will need to write a BKP instruction and writing to FLASH will cause a crash or the breakpoint will not be activated
+    * Sometimes SW breakpoints might work as the code might be in cache
+    * Note that there is a limit to the number of HW breakpoints one can set. Essentially the HW breakpoint is writing to some R5F register saying that halt if this address comes. Such registers are limited and hence the number of HW breakpoints.
+* Cache needs to be always ON
+    * OSPI controller in XIP mode can only do burst accesses and no Byte accesses and hence if there is a char constant (1 Byte) the behavior will be uncertain, but if we have cache in between then it'll bring in 1 Cache line and hence solve the issue.
+* Disable few options in Program/Memory Load Options
+    * Software breakpoints are not allowed. But in Program/Memory Load Options for the core (Right clock on core on Debug view→ Open GEL files view → Program/Memory Load Options), few defaults options need software breakpoints. They need to be disabled, otherwise you might see an error while loading symbols for debugging.
+    * Uncheck the following:
+    * "Halt at program exit for TI compilers (requires a breakpoint)"
+    * "Enable CIO function use (requires setting a breakpoint)"
+
+.. ifconfig:: CONFIG_family in ('jacinto')
+
+    .. _xip-using-dummy-app-programming-xip-application-on-j721e:
+
+    XIP Application on J721E
+    ^^^^^^^^^^^^^^^^^^^^^^^^
+
+    1. xip_testapp
+    2. can_profile_app
+
+
+.. _xip-using-dummy-app-programming-csl-startup-code:
+
+CSL startup code
+^^^^^^^^^^^^^^^^
+
+Declare a structure "const CSL_ArmR5MpuRegionCfg gCslR5MpuCfg[CSL_ARM_R5F_MPU_REGIONS_MAX] " to override the default structure present in csl/arch/r5/startup.c . This structure must have the OSPI memory region declared, mark it as cacheable and executable.
+The linker file must place the "entry point" as "reset vectors" which must be at the bin file location in flash
+
+E2E Thread: https://e2e.ti.com/support/processors/f/791/p/885969/3293718
+
+.. _xip-using-dummy-app-programming-faq:
+
+FAQ
+----
+
+1. Why is the sbl_boot_xip_entry application needed?
+    a. The application is nothing but a dummy application with it's entry point as the actual application running from XIP. 
+    b. Why can't the SBL run the xip application directly?
+    c. Reason for that is that the SBL always loads the application application to memory first before running and hence can not run an application directly from Flash. Hence it loads the dummy application which just jumps to the xip app.
+2. FLS app: Why can we read/erase/write/run-in-XIP even if the XIP flag was disabled in the FLS app?
+    a. When Flash and OSPI controller are programmed in DAC mode (Direct Access mode), the flash is memory mapped. So XIP application stored in flash is able to execute even with only DAC mode enabled (and XIP is disabled). In this same scenario, writes and erases are also possible. 
+    b. When DAC and XIP both are enabled, the XIP application will execute and Writes and Erase will fail.
+    c. The difference we see between XIP enabled and disabled is in the XIP application performance: with XIP enabled the there are some optimizations eg - read ahead buffer etc, these boost the performance in case of XIP enabled.
+
+.. _xip-using-dummy-app-programming-known-issues:
+
+Known Issues
+------------
+Closing the flash doesn't work if the OSPI controller is in XIP mode.
+
+.. _xip-using-dummy-app-programming-useful-links:
+
+Useful Links
+------------
+
+* XIP wiki: https://en.wikipedia.org/wiki/Execute_in_place
+* XIP blog: http://www.vlsiip.com/c/embedded_c/xip.html
+* Linker command file: http://downloads.ti.com/docs/esd/SPRU513J/Content/SPRU513J_HTML/linker_description.html
+* Linker command file basic: http://software-dl.ti.com/ccs/esd/documents/sdto_cgt_Linker-Command-File-Primer.html
+* Load and run section: http://downloads.ti.com/docs/esd/SPRU513/load-and-run-addresses-slau1317366.html
+* Micrium documentation: https://doc.micrium.com/display/TECHOV/NOR+Flash+XIP

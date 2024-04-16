@@ -1,0 +1,21 @@
+<map id="point.h" name="point.h">
+<area shape="rect" id="node2" href="$plane_8h.html" title="Declarations for PTK_Plane struct+functions. " alt="" coords="921,80,985,107"/>
+<area shape="rect" id="node3" href="$perception_8h.html" title="perception.h" alt="" coords="976,155,1069,181"/>
+<area shape="rect" id="node20" href="$pointCloud_8h.html" title="Declaration of structures and functions used to manipulate point clouds. " alt="" coords="1061,80,1155,107"/>
+<area shape="rect" id="node4" href="$stereo__algo_8h.html" title="stereo_algo.h" alt="" coords="602,229,702,256"/>
+<area shape="rect" id="node5" href="$stereo__ground__estimation_8h.html" title="stereo_ground_estimation.h" alt="" coords="778,304,961,331"/>
+<area shape="rect" id="node6" href="$run__stereo__ground__estimation_8h.html" title="run_stereo_ground_estimation.h" alt="" coords="759,379,966,405"/>
+<area shape="rect" id="node7" href="$algos_8h.html" title="algos.h" alt="" coords="901,453,965,480"/>
+<area shape="rect" id="node8" href="$vdisparity__ground__model_8h.html" title="vdisparity_ground_model.h" alt="" coords="1042,379,1219,405"/>
+<area shape="rect" id="node9" href="$stereo__object__detect_8h.html" title="stereo_object_detect.h" alt="" coords="451,304,605,331"/>
+<area shape="rect" id="node10" href="$highlight__obstacle_8h.html" title="highlight_obstacle.h" alt="" coords="301,379,438,405"/>
+<area shape="rect" id="node11" href="$obstacle__from__disparity_8h.html" title="obstacle_from_disparity.h" alt="" coords="513,379,684,405"/>
+<area shape="rect" id="node12" href="$run__stereo__object__detect_8h.html" title="run_stereo_object_detect.h" alt="" coords="97,379,276,405"/>
+<area shape="rect" id="node13" href="$create__og_8h.html" title="create_og.h" alt="" coords="1344,304,1435,331"/>
+<area shape="rect" id="node14" href="$create__pc_8h.html" title="create_pc.h" alt="" coords="1459,304,1549,331"/>
+<area shape="rect" id="node15" href="$disparity__merge_8h.html" title="disparity_merge.h" alt="" coords="5,304,131,331"/>
+<area shape="rect" id="node16" href="$hole__filling_8h.html" title="hole_filling.h" alt="" coords="933,229,1027,256"/>
+<area shape="rect" id="node17" href="$median__filter_8h.html" title="median_filter.h" alt="" coords="1161,229,1268,256"/>
+<area shape="rect" id="node18" href="$common__defs_8h.html" title="common_defs.h" alt="" coords="1445,229,1560,256"/>
+<area shape="rect" id="node19" href="$common__types_8h.html" title="common_types.h" alt="" coords="1584,229,1707,256"/>
+</map>

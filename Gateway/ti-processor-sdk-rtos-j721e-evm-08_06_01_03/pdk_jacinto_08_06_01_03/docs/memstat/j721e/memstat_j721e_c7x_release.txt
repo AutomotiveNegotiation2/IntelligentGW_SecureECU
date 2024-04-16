@@ -1,0 +1,29 @@
+
+Memstat for j721e c7x release build...
+
+Library Name                            :         CODE         DATA          BSS
+---------------------------------------------------------------------------------
+fvid2.ae71(c7x)                         :        23488        10150         5152
+ipc.ae71(c7x_1)                         :        29760         6521        10368
+ipc_baremetal.ae71(c7x_1)               :        27584         6346        10368
+pmic.ae71(c7x)                          :       101632         1780            0
+pm_lib.ae71(c7x)                        :         2752            0            0
+pm_lib_optimized.ae71(c7x)              :         2752            0            0
+sciclient.ae71(c7x_1)                   :        36416        30433           72
+sciclient_hs.ae71(c7x_1)                :        36416        30433           72
+ti.board.ae71(c7x)                      :       115392        78607          322
+ti.csl.ae71(c7x)                        :       439872        30887       131104
+ti.csl.init.ae71(c7x)                   :            0            0            0
+ti.drv.gpio.ae71(c7x)                   :         6848        21169         1152
+ti.drv.i2c.ae71(c7x)                    :        10048          820            0
+ti.drv.spi.ae71(c7x)                    :        20800         5600            0
+ti.drv.uart.ae71(c7x)                   :        17920         1594            0
+ti.drv.uart_console.ae71(c7x)           :         8768           67            0
+ti.drv.uart.dma.ae71(c7x)               :        21184         1594            0
+ti.kernel.freertos.ae71(c7x_1)          :        48192         1427       723184
+ti.osal.ae71(c7x)                       :        27072         3656       133372
+ti.osal.nonos.aer5f(c7x)                :        11584         3426            4
+udma.ae71(c7x_1)                        :        91392        14202            0
+---------------------------------------------------------------------------------
+Total Size                              :      1079872       248712      1015170
+---------------------------------------------------------------------------------

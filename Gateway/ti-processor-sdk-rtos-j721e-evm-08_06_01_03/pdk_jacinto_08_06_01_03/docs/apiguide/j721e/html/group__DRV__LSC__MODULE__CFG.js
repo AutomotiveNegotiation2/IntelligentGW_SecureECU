@@ -1,0 +1,106 @@
+var group__DRV__LSC__MODULE__CFG =
+[
+    [ "ldc_cfg.h", "ldc__cfg_8h.html", null ],
+    [ "Ldc_IndChPrms", "structLdc__IndChPrms.html", [
+      [ "enable", "structLdc__IndChPrms.html#a56d2480ae33a561e686ebfa611573cce", null ],
+      [ "pitch", "structLdc__IndChPrms.html#a68329167af552ba10b59086b40751233", null ],
+      [ "ccsf", "structLdc__IndChPrms.html#aea2b2c77718a4950117029303e00b2dd", null ]
+    ] ],
+    [ "Ldc_LutCfg", "structLdc__LutCfg.html", [
+      [ "address", "structLdc__LutCfg.html#a0b3eda568fefcae89398a8d4f084b04e", null ],
+      [ "lineOffset", "structLdc__LutCfg.html#a5f9bdbd4c9c4b43559cc09250c1eb2d1", null ],
+      [ "dsFactor", "structLdc__LutCfg.html#aa96a2d338a481c922c2d5744c8444e21", null ],
+      [ "width", "structLdc__LutCfg.html#af261888dbb01729e788b4db0fd69479f", null ],
+      [ "height", "structLdc__LutCfg.html#ac4b410cef6bbedd391dad8c30c1ba451", null ]
+    ] ],
+    [ "Ldc_PerspectiveTransformCfg", "structLdc__PerspectiveTransformCfg.html", [
+      [ "enableWarp", "structLdc__PerspectiveTransformCfg.html#aee0b52729e207db2963dbc5b11a06c3f", null ],
+      [ "coeffA", "structLdc__PerspectiveTransformCfg.html#a70f0afdf8c0245e32e019edf1c03d5f9", null ],
+      [ "coeffB", "structLdc__PerspectiveTransformCfg.html#aca593610f6b1b33dbed0f7e5ce815db8", null ],
+      [ "coeffC", "structLdc__PerspectiveTransformCfg.html#a4c1a2549f5ed1048a5f5600f9896b1f3", null ],
+      [ "coeffD", "structLdc__PerspectiveTransformCfg.html#a157f43811deb60273de9dfb6cabf4935", null ],
+      [ "coeffE", "structLdc__PerspectiveTransformCfg.html#a69925e16bd1987dc69bfd7a929ac1a9f", null ],
+      [ "coeffF", "structLdc__PerspectiveTransformCfg.html#a23cad588923c3e21d1ad76df24c4e392", null ],
+      [ "coeffG", "structLdc__PerspectiveTransformCfg.html#aea846af8b73431ae66645db4e5b1b3f0", null ],
+      [ "coeffH", "structLdc__PerspectiveTransformCfg.html#a8bfc47d9e8d2bb42a0850d0839c62248", null ]
+    ] ],
+    [ "Ldc_RegionConfig", "structLdc__RegionConfig.html", [
+      [ "enable", "structLdc__RegionConfig.html#aca94649f31b52b8a34147789934b05b3", null ],
+      [ "blockWidth", "structLdc__RegionConfig.html#afd6c7656ec040aec446c6014f0196eeb", null ],
+      [ "blockHeight", "structLdc__RegionConfig.html#a66a95a9b014ec1194ace991aec743d01", null ],
+      [ "pixelPad", "structLdc__RegionConfig.html#a56fedf0291a9b54cc0b0dd606c6a2560", null ],
+      [ "width", "structLdc__RegionConfig.html#ad918674dc64eb50dd2ac161f5d804ffc", null ],
+      [ "height", "structLdc__RegionConfig.html#a91f799e9ba0ea7be260907deea0c20b0", null ]
+    ] ],
+    [ "Ldc_Config", "structLdc__Config.html", [
+      [ "inFmt", "structLdc__Config.html#a12e703f78ee6c3be7b090ac6b8c9ba9a", null ],
+      [ "enableOutput", "structLdc__Config.html#ac90df2e57488604fa69327d60ffb5a7c", null ],
+      [ "outFmt", "structLdc__Config.html#a35a8252eb15112e54a0c3fd1af8ba169", null ],
+      [ "enableBackMapping", "structLdc__Config.html#a0afb8eccc54352d56349efd66c58d358", null ],
+      [ "lumaIntrType", "structLdc__Config.html#a9c07664e967da3a1ca6c36094da8006f", null ],
+      [ "perspTrnsformCfg", "structLdc__Config.html#a7827992dac6d0b4b27cb112cd8e27259", null ],
+      [ "lutCfg", "structLdc__Config.html#a66a11dfd290ec4026a89159dd3ff6779", null ],
+      [ "outputFrameWidth", "structLdc__Config.html#a1d61c293f284f6c90973483398f850d9", null ],
+      [ "outputFrameHeight", "structLdc__Config.html#ae58c627db69cd53418db5672695e4823", null ],
+      [ "pixelPad", "structLdc__Config.html#a7f93541ed132f9f5074acb3eafab36cc", null ],
+      [ "outputBlockWidth", "structLdc__Config.html#acd6ab22e13451b19d43b6dad6174c28d", null ],
+      [ "outputBlockHeight", "structLdc__Config.html#acd51b3da3d1ec22d617cfc35cbdf2e7a", null ],
+      [ "outputStartX", "structLdc__Config.html#a55ff59e987c4c4db30f01af2cebd849d", null ],
+      [ "outputStartY", "structLdc__Config.html#a0f52ad2dbbde4e5252bad5c84aa41662", null ],
+      [ "enableMultiRegions", "structLdc__Config.html#a33a51cc78ed409bcfe5c26fea7d6ea65", null ],
+      [ "regCfg", "structLdc__Config.html#a89616d7ece622f930e25c11298840499", null ],
+      [ "indChPrms", "structLdc__Config.html#ab7681859fb6ac5aa04b76913f2943025", null ],
+      [ "indOutChCcsf", "structLdc__Config.html#ad860e4d4fc918a9ce35bd8388ec61f21", null ]
+    ] ],
+    [ "Ldc_RdBwLimitConfig", "structLdc__RdBwLimitConfig.html", [
+      [ "rdBwLimit", "structLdc__RdBwLimitConfig.html#a2036517e655921e937fc40045ebd8866", null ],
+      [ "rdTagCnt", "structLdc__RdBwLimitConfig.html#aaa9a972957462cc4de8694c5449e352d", null ],
+      [ "rdMaxBurstLength", "structLdc__RdBwLimitConfig.html#a645a867563240d6f521eb0e23248aeb4", null ]
+    ] ],
+    [ "Ldc_ErrEventParams", "structLdc__ErrEventParams.html", [
+      [ "errEvents", "structLdc__ErrEventParams.html#a11585b14cadc8d425bea65129ad1191a", null ],
+      [ "cbFxn", "structLdc__ErrEventParams.html#ab28103ce465d7425c2ad3f490c1262dc", null ],
+      [ "appData", "structLdc__ErrEventParams.html#afb31af62cd61cb196c7ce0dec658b6f1", null ]
+    ] ],
+    [ "Ldc_RemapLutCfg", "structLdc__RemapLutCfg.html", [
+      [ "enable", "structLdc__RemapLutCfg.html#ab04d1be348e0cbd6475854951e54a201", null ],
+      [ "inputBits", "structLdc__RemapLutCfg.html#aed2c948a08c15109906899a8a82e6c20", null ],
+      [ "outputBits", "structLdc__RemapLutCfg.html#a316759a52491075fd2b5506e9e1a39d1", null ],
+      [ "tableAddr", "structLdc__RemapLutCfg.html#a4b7bb0a5842841a5866df08640e93d1e", null ]
+    ] ],
+    [ "IOCTL_LDC_SET_LUMA_TONEMAP_LUT_CFG", "group__DRV__LSC__MODULE__CFG.html#ga1eed0a08dc235468da93ed3955da171c", null ],
+    [ "IOCTL_LDC_SET_CHROMA_TONEMAP_LUT_CFG", "group__DRV__LSC__MODULE__CFG.html#ga4681d3e2e31ed5655bb96c813c4ddd9c", null ],
+    [ "LDC_MAX_OUTPUT", "group__DRV__LSC__MODULE__CFG.html#gafcb30849f83cea945d07d9112893d1bb", null ],
+    [ "LDC_MESH_BUF_ADDR_ALIGN", "group__DRV__LSC__MODULE__CFG.html#ga657e254e20dce973f25558c079507d1a", null ],
+    [ "LDC_MAX_HORZ_REGIONS", "group__DRV__LSC__MODULE__CFG.html#ga593bfe052068a906a3393d669c12f0b0", null ],
+    [ "LDC_MAX_VERT_REGIONS", "group__DRV__LSC__MODULE__CFG.html#gac31968b027eb5b1cd1677ad1eab61204", null ],
+    [ "LDC_MAX_REGIONS", "group__DRV__LSC__MODULE__CFG.html#gad6a25d80cc7282ae04d293f1fb1a5ac7", null ],
+    [ "LDC_REMAP_LUT_SIZE", "group__DRV__LSC__MODULE__CFG.html#ga96493247046950f11bc1c9e8803a678d", null ],
+    [ "VHWA_LDC_LUMA_INTRP_BICUBIC", "group__DRV__LSC__MODULE__CFG.html#ga247a7964c41a1c5741b48ab2f4ef10e8", null ],
+    [ "VHWA_LDC_LUMA_INTRP_BILINEAR", "group__DRV__LSC__MODULE__CFG.html#gac781309b00ce8068fce94f2c5137925a", null ],
+    [ "VHWA_LDC_LUMA_INTRP_MAX", "group__DRV__LSC__MODULE__CFG.html#ga15b56995f4bb90b7471bbdba5cc2a28e", null ],
+    [ "VHWA_LDC_LUT_DS_FACTOR_1", "group__DRV__LSC__MODULE__CFG.html#gaf2ce64cc492ce3c68053dcfe0bc34fc2", null ],
+    [ "VHWA_LDC_LUT_DS_FACTOR_2", "group__DRV__LSC__MODULE__CFG.html#gaa387604ae23f85ddbfd9d769b36b94c3", null ],
+    [ "VHWA_LDC_LUT_DS_FACTOR_4", "group__DRV__LSC__MODULE__CFG.html#ga8a508706ddf5abeb532c1dd44ca944f5", null ],
+    [ "VHWA_LDC_LUT_DS_FACTOR_8", "group__DRV__LSC__MODULE__CFG.html#ga0767ffe2ff84a0955a45757f2da102c5", null ],
+    [ "VHWA_LDC_LUT_DS_FACTOR_16", "group__DRV__LSC__MODULE__CFG.html#ga5e077eb5e5c84e58d6b0af2982c4d779", null ],
+    [ "VHWA_LDC_LUT_DS_FACTOR_32", "group__DRV__LSC__MODULE__CFG.html#gac49523496c2abe97ac7f6540223be638", null ],
+    [ "VHWA_LDC_LUT_DS_FACTOR_64", "group__DRV__LSC__MODULE__CFG.html#ga37b5744bc9548f7b0c3fe038cf2f2b81", null ],
+    [ "VHWA_LDC_LUT_DS_FACTOR_128", "group__DRV__LSC__MODULE__CFG.html#ga7a737d3f54659621c7194ecc9e938977", null ],
+    [ "VHWA_LDC_LUT_DS_FACTOR_MAX", "group__DRV__LSC__MODULE__CFG.html#ga2bd7327e8ebdf2fe63e369e50c32cd26", null ],
+    [ "VHWA_LDC_MAX_BURST_LENGTH_16", "group__DRV__LSC__MODULE__CFG.html#gac771849be23199a0a1a0a4e9430b8e63", null ],
+    [ "VHWA_LDC_MAX_BURST_LENGTH_8", "group__DRV__LSC__MODULE__CFG.html#gaa5046fa3e9795f9735c5d1c3d2267f59", null ],
+    [ "VHWA_LDC_MAX_BURST_LENGTH_4", "group__DRV__LSC__MODULE__CFG.html#gadf16cda0758c9f69531a4c4f8e9ec8d5", null ],
+    [ "VHWA_LDC_MAX_BURST_LENGTH_2", "group__DRV__LSC__MODULE__CFG.html#gaafc4db2b216bd3f05cc6041db3a68b31", null ],
+    [ "VHWA_LDC_MAX_BURST_LENGTH_MAX", "group__DRV__LSC__MODULE__CFG.html#gaa6938d9d10f9f1ab71cc5762be9471d1", null ],
+    [ "VHWA_LDC_PIX_IBLK_OUTOFBOUND_ERR", "group__DRV__LSC__MODULE__CFG.html#gac01e2e95eb6e9ddc1c359fa3cfc29628", null ],
+    [ "VHWA_LDC_MESH_IBLK_OUTOFBOUND", "group__DRV__LSC__MODULE__CFG.html#ga8e31790b1610f9e1c57970588ad95545", null ],
+    [ "VHWA_LDC_PIX_IBLK_MEMOVF", "group__DRV__LSC__MODULE__CFG.html#gab9981ccc525a8fe7637ea3d90f7e5757", null ],
+    [ "VHWA_LDC_MESH_IBLK_MEMOVF", "group__DRV__LSC__MODULE__CFG.html#ga0eb9031967800193fb0ddf3ee8917932", null ],
+    [ "VHWA_LDC_IFR_OUTOFBOUND", "group__DRV__LSC__MODULE__CFG.html#gaa1869eb64a430897cf474312f8190deb", null ],
+    [ "VHWA_LDC_INT_SZOVF", "group__DRV__LSC__MODULE__CFG.html#gac6dba80b5dc762ac7e3baa4e520f91aa", null ],
+    [ "VHWA_LDC_SL2_WR_ERR", "group__DRV__LSC__MODULE__CFG.html#ga3e392b64de4498565f38dabc1d5e095c", null ],
+    [ "VHWA_LDC_VBUSM_RD_ERR", "group__DRV__LSC__MODULE__CFG.html#ga7a857c0f88d6bf8f8c5aa1aa7ebcebec", null ],
+    [ "Ldc_ErrEventCbFxn", "group__DRV__LSC__MODULE__CFG.html#gab0c7892f0746b13bb5c511d08d4a39c8", null ],
+    [ "Ldc_ConfigInit", "group__DRV__LSC__MODULE__CFG.html#ga1e3c4c8c8016fd205fea601ecc373fc0", null ]
+];

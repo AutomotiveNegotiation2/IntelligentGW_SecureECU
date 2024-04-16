@@ -1,0 +1,3 @@
+dorprocboot=1
+name_overlays=k3-j721s2-vision-apps.dtbo
+

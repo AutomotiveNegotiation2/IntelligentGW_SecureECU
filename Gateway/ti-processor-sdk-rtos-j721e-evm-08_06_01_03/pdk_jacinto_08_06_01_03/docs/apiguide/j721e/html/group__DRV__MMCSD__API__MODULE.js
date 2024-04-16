@@ -1,0 +1,17 @@
+var group__DRV__MMCSD__API__MODULE =
+[
+    [ "MMCSD.h", "MMCSD_8h.html", null ],
+    [ "MMCSD_OK", "group__DRV__MMCSD__API__MODULE.html#ga256e2033f951e9b4756a8766c1b439b5", null ],
+    [ "MMCSD_CMD_RESERVED", "group__DRV__MMCSD__API__MODULE.html#ga258260298edc6ab8285322f2989a1b29", null ],
+    [ "MMCSD_ERR", "group__DRV__MMCSD__API__MODULE.html#ga4958c32529f0459d26544e502c1c8faa", null ],
+    [ "MMCSD_UNDEFINEDCMD", "group__DRV__MMCSD__API__MODULE.html#ga79b4b2a6e79375c6b23790ba3cadff42", null ],
+    [ "MMCSD_ERR_1P8V_SWITCH_CARD_NOT_RESPONDING", "group__DRV__MMCSD__API__MODULE.html#gabc9f8bedad4076bf6a8e35533616e8c2", null ],
+    [ "MMCSD_ERR_1P8V_SWITCH_MMCIO_SWITCH_FAILURE", "group__DRV__MMCSD__API__MODULE.html#ga2753c1237b8a64fca944424240f999d0", null ],
+    [ "MMCSD_ERR_1P8V_SWITCH_CARD_CMD11_FAILURE", "group__DRV__MMCSD__API__MODULE.html#gacd5966f56d4dd427bee2683d86126745", null ],
+    [ "MMCSD_ERR_INVALID_FREQ", "group__DRV__MMCSD__API__MODULE.html#ga57de4f6b6747ce80f03bb9506d9defa6", null ],
+    [ "MMCSD_ERR_FREQ_SWITCH_UNSUCCESSFUL", "group__DRV__MMCSD__API__MODULE.html#gaf675819fc6498a438bb077bff4e88832", null ],
+    [ "MMCSD_ERR_VOLTAGE_SWITCH_FAILURE", "group__DRV__MMCSD__API__MODULE.html#gad26a364bcda555898e777ea362f8a195", null ],
+    [ "MMCSD_ERR_SET_SOC_INTERRUPT_PATH", "group__DRV__MMCSD__API__MODULE.html#ga4143fd9fd49af3ab081fe31c8900f7c4", null ],
+    [ "MMCSD_ERR_REL_SOC_INTERRUPT_PATH", "group__DRV__MMCSD__API__MODULE.html#ga9e22b6d04e7eb056fcfd26e13ce55eca", null ],
+    [ "MMCSD_ERR_TUNING_CMD_ERROR", "group__DRV__MMCSD__API__MODULE.html#ga082cfe40d9d7f2e3b47169b7aee1cd05", null ]
+];

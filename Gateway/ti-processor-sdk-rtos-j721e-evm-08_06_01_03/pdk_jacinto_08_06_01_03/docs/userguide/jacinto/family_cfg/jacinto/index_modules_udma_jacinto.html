@@ -1,0 +1,533 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4.18. UDMA &mdash; Platform Development Kit (PDK) - JACINTO User Guide</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Platform Development Kit (PDK) - JACINTO User Guide" href="../../index.html"/>
+        <link rel="up" title="4. Modules" href="index_modules_jacinto.html"/>
+        <link rel="next" title="4.19. PMIC" href="../../modules/pmic.html"/>
+        <link rel="prev" title="4.17. UART" href="../../modules/uart.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index_jacinto.html" class="icon icon-home"> Platform Development Kit (PDK) - JACINTO User Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                08_06_01
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html">1. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_release_notes_jacinto.html">2. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started.html">3. Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index_modules_jacinto.html">4. Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../modules/csl.html">4.1. CSL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/freertos.html">4.2. FreeRTOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index_modules_safertos_jacinto.html">4.3. SafeRTOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/osal.html">4.4. OSAL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/dss.html">4.5. DSS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/enet.html">4.6. ENET</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/fvid2.html">4.7. FVID2 User Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/gpio.html">4.8. GPIO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/i2c.html">4.9. I2C</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/ipc.html">4.10. IPC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/mcasp.html">4.11. McASP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/pm.html">4.12. PM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/sa.html">4.13. SA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index_modules_sciclient_jacinto.html">4.14. SCICLIENT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/keywriter.html">4.15. OTP KEYWRITER</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/spi.html">4.16. SPI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/uart.html">4.17. UART</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">4.18. UDMA</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">4.18.1. Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#user-interface">4.18.2. User Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#apis">4.18.2.1. APIs</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#application">4.18.3. Application</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#examples">4.18.3.1. Examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/pmic.html">4.19. PMIC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/mmcsd.html">4.20. MMCSD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index_modules_lpm_jacinto.html">4.21. Low Power Manager (LPM)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="index_boot_jacinto.html">5. Bootloader (SBL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_board_jacinto.html">6. Board/EVM Abstraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_howto_jacinto.html">7. How to Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_faq_jacinto.html">8. Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_developer_notes_jacinto.html">9. Developer Notes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index_jacinto.html">Platform Development Kit (PDK) - JACINTO User Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index_jacinto.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index_modules_jacinto.html">4. Modules</a> &raquo;</li>
+      
+    <li>4.18. UDMA</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="udma">
+<h1>4.18. UDMA<a class="headerlink" href="#udma" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>4.18.1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>UDMA is the DMA engine used to do direct memory access (DMA) between different peripherals like McASP,
+SPI, UART and memory (DDR, L2, L3, MSMC) without CPU intervention in next generation TI SoCs like J721E.
+The DMA architecture specifies the data structures used by standard communications
+modules to facilitate direct memory access (DMA) and to provide a consistent application programming
+interface (API) to the host software in multi-core devices. The data structures and the API used to
+manipulate them will be jointly referred to as Navigator Subsystem (NAVSS).</p>
+<p>For more information on NAVSS DMA architecture, refer to <a class="reference external" href="http://www.ti.com/lit/pdf/spruil1">J721E Technical Reference Manual</a></p>
+<p>The UDMA driver provides API to program the DMA portion of the Navigator Subsystem (NAVSS)
+to setup and initiate transfers. Below are the high level features supported by the driver
+|</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ul class="simple">
+<li>Both Main and MCU NAVSS instances</li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ul class="simple">
+<li>Supports all DMA operations from these instances from all the cores in the SOC</li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ul class="simple">
+<li>UDMAP block copy using native NAVSS channels</li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ul class="simple">
+<li>DRU block copy using direct TR submission to DRU register</li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ul class="simple">
+<li>DRU block copy using indirect (PSIL) TR submission to UDMA external channels</li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ul class="simple">
+<li>PDMA module to initiate transfers to/from PDMA peripherals like UART, McASP, McSPI, ADC, MCAN</li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ul class="simple">
+<li>DMA transfer to/from from native PSIL peripherals like EMAC, CPSW, SA2UL</li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ul class="simple">
+<li>Event and interrupt management like DMA completion, channel chaining, interrupt sharing using IA</li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ul class="simple">
+<li>Resources management across instances and cores for UDMAP DMA channels,RX flow, External UTC channel (DRU),
+interrupt aggregators (IA), interrupt routers (IR),global events, ring accelerators (RA)</li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ul class="simple">
+<li>Interaction with DMSC RM module via SCICLIENT for all non-RealTime (NRT) configuration</li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ul class="simple">
+<li>Supports both RTOS and baremetal</li>
+</ul>
+<p><strong>Notes</strong></p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ul class="simple">
+<li>UDMA driver doesn&#8217;t manage/allocate the descriptor and RA memory.The caller need to allocate
+and provide the required memory.</li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ul class="simple">
+<li>UDMA driver doesn&#8217;t use any global variables. All the required object memory like channel,
+driver instance, event etc should be allocated by the caller</li>
+</ul>
+<p>This document has detailed API description that user can use
+to make use of the UDMA driver.</p>
+</div>
+<div class="section" id="user-interface">
+<h2>4.18.2. User Interface<a class="headerlink" href="#user-interface" title="Permalink to this headline">¶</a></h2>
+<p>For details about individual fields of this library structure, see the
+PDK doxygen documentation</p>
+<div class="section" id="apis">
+<h3>4.18.2.1. APIs<a class="headerlink" href="#apis" title="Permalink to this headline">¶</a></h3>
+<p>The UDMA driver API can be broadly divided into the following categories</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ul class="simple">
+<li>UDMAP native channel API</li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ul class="simple">
+<li>DRU (External UTC) channel API</li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ul class="simple">
+<li>PDMA channel operations</li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ul class="simple">
+<li>Event and interrupt API</li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ul class="simple">
+<li>Ring API</li>
+</ul>
+<p>In addition to above drivers the UDMA package also includes many sample
+examples which show how to use the drivers in different ways. Many of
+these sample examples use a common set of APIs which a user may find
+useful to refer to for use in their final application.</p>
+<p>API reference for application:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include</span> <span class="cpf">&lt;ti/drv/udma/udma.h&gt;</span><span class="cp"></span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="application">
+<h2>4.18.3. Application<a class="headerlink" href="#application" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="examples">
+<h3>4.18.3.1. Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="25%" />
+<col width="31%" />
+<col width="28%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Example</th>
+<th class="head">Application Name</th>
+<th class="head">Description</th>
+<th class="head">Expected Results</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>UDMA ADC RX</td>
+<td>udma_adc_testapp</td>
+<td>This performs PDMA RX data capture from ADC.
+ADC is configured in single shot mode and captures
+APP_ADC_NUM_CH channel of ADC data. The FIFO is
+configured to generate a DMA trigger after all
+channel data is captured</td>
+<td>The application checks the ADC channel ID and prints
+pass on successful completion</td>
+</tr>
+<tr class="row-odd"><td>UDMA Chaining</td>
+<td>udma_chaining_testapp</td>
+<td>UDMA chaining sample application  performing a chain
+of block copy using channel global trigger: CH0 -&gt; CH1
+-&gt; ... -&gt; CHx. The first channel doesn&#8217;t use a global
+trigger and each channel triggers the next channel&#8217;s global
+trigger through the channel&#8217;s TR event register.
+A channel&#8217;s source buffer is previous channel destination
+buffer. This ensures that chaining trigger worked in a
+synchronized manner when the memory compare matches</td>
+<td>The application checks the destination buffer with source buffer
+and prints pass on successful completion</td>
+</tr>
+<tr class="row-even"><td>UDMA CRC</td>
+<td>udma_crc_testapp</td>
+<td>This performs UDMA CRC operation</td>
+<td>The application checks the calculated CRC value with
+pre-calculated CRC value and prints pass on successful
+completion</td>
+</tr>
+<tr class="row-odd"><td>UDMA Direct TR DRU</td>
+<td>udma_dru_direct_tr_testapp</td>
+<td>UDMA DRU memcpy sample application performing block copy
+using direct TR submission via DRU registers</td>
+<td>The application checks the destination buffer with source buffer
+and prints pass on successful completion</td>
+</tr>
+<tr class="row-even"><td>UDMA In-Direct TR DRU</td>
+<td>udma_dru_testapp</td>
+<td>UDMA DRU memory copy sample application performing block copy
+using Type 15 Transfer Record (TR15) using Transfer Record
+Packet Descriptor (TRPD) for developers.</td>
+<td>The application checks the destination buffer with source buffer
+and prints pass on successful completion</td>
+</tr>
+<tr class="row-odd"><td>UDMA Blockcopy</td>
+<td>udma_memcpy_testapp</td>
+<td>UDMA memory copy sample application performing block copy using Type 15
+Transfer Record (TR15) using Transfer Record Packet Descriptor (TRPD)</td>
+<td>The application checks the destination buffer with source buffer and prints
+pass on successful completion</td>
+</tr>
+<tr class="row-even"><td>UDMA SW Trigger</td>
+<td>udma_sw_trigger_testapp</td>
+<td>UDMA SW trigger sample application performs 3D transfer using SW trigger method.
+(i) SW trigger CH 0 -&gt; Triggers DDR to IRAM
+(ii) Wait for CH 0 icnt0 x icnt1 to complete
+(iii) SW trigger Channel 1 -&gt; Triggers IRAM to DDR
+(iv) Wait for CH 1 icnt0 x icnt1 to complete.
+Loop (i)-(iv) N times (icnt2)
+Each loop transfers M (icnt0 x icnt1) bytes of data.
+DDR size is M x N and IRAM size is just M bytes.
+IRAM memory set to wrap around after M bytes of transfer</td>
+<td>The application checks the destination buffer with source buffer and prints
+pass on successful completion</td>
+</tr>
+<tr class="row-odd"><td>UDMA OSPI Flash</td>
+<td>udma_baremetal_ospi_flash_testapp</td>
+<td>UDMA OSPI Flash sample application performs DAC DMA mode ospi write and read
+at 133MHz RCLK and 166MHz RCLK with UDMA 3D transfer using SW trigger method.
+Here OSPI read illustrates TR Reload Feature in which TR Reload count is set
+as 0x1FFU for perpetual loop.</td>
+<td>The application checks the destination buffer with source buffer and prints
+pass on successful completion</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../modules/pmic.html" class="btn btn-neutral float-right" title="4.19. PMIC" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../../modules/uart.html" class="btn btn-neutral" title="4.17. UART" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="http://www.ti.com/corp/docs/legal/copyright.shtml">&copy; Copyright 1995-2020</a>, Texas Instruments Incorporated. All rights reserved. <br>
+      <a href="http://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="http://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="http://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="http://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'08_06_01',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

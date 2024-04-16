@@ -1,0 +1,578 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>9.5. XIP Using Two Appimages &mdash; Platform Development Kit (PDK) - JACINTO User Guide</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Platform Development Kit (PDK) - JACINTO User Guide" href="../index.html"/>
+        <link rel="up" title="9. Developer Notes" href="../family_cfg/jacinto/index_developer_notes_jacinto.html"/>
+        <link rel="next" title="9.6. TI ARM CLANG Usage and Migration Guidelines" href="ticlang_Migrationguidelines.html"/>
+        <link rel="prev" title="9.4. XIP Using Dummy App" href="xip_using_dummy_app.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index_jacinto.html" class="icon icon-home"> Platform Development Kit (PDK) - JACINTO User Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                08_06_01
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">1. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_release_notes_jacinto.html">2. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">3. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_modules_jacinto.html">4. Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_boot_jacinto.html">5. Bootloader (SBL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_board_jacinto.html">6. Board/EVM Abstraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_howto_jacinto.html">7. How to Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_faq_jacinto.html">8. Frequently Asked Questions</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../family_cfg/jacinto/index_developer_notes_jacinto.html">9. Developer Notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="freertos_guidelines.html">9.1. FreeRTOS Usage and Migration Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="freertos_ccs_rov.html">9.2. FreeRTOS Real-time Object View (ROV)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipc_lld_migration_guide.html">9.3. IPC LLD Migration Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xip_using_dummy_app.html">9.4. XIP Using Dummy App</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">9.5. XIP Using Two Appimages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rom-an-application">9.5.1. Rom An Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#what-is-xip">9.5.2. What is XIP?</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#normal-mode-v-s-xip-mode">9.5.2.1. Normal Mode v/s XIP Mode</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#why-xip">9.5.3. Why XIP?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#twin-appimage-generation">9.5.4. TWIN APPIMAGE GENERATION</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#multicore-appimage-generation">9.5.4.1. MULTICORE APPIMAGE GENERATION</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#section-placement">9.5.4.2. Section Placement</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#linker-file-usage">9.5.4.3. Linker File Usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#map-file-usage">9.5.4.4. Map File Usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cache-setting-change">9.5.4.5. Cache setting change</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#how-to-flash">9.5.4.6. How To Flash</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#debug-care-abouts">9.5.4.7. Debug Care Abouts</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#known-issues">9.5.5. Known Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#useful-links">9.5.6. Useful Links</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ticlang_Migrationguidelines.html">9.6. TI ARM CLANG Usage and Migration Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="freertos_to_safertos_migration.html">9.7. SafeRTOS Usage and Migration Guidelines</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index_jacinto.html">Platform Development Kit (PDK) - JACINTO User Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index_jacinto.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../family_cfg/jacinto/index_developer_notes_jacinto.html">9. Developer Notes</a> &raquo;</li>
+      
+    <li>9.5. XIP Using Two Appimages</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="xip-using-two-appimages">
+<span id="id1"></span><h1>9.5. XIP Using Two Appimages<a class="headerlink" href="#xip-using-two-appimages" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="rom-an-application">
+<span id="xip-using-two-appimages-rom-an-application"></span><h2>9.5.1. Rom An Application<a class="headerlink" href="#rom-an-application" title="Permalink to this headline">¶</a></h2>
+<p>ROMing an application or running from XIP is running from a read-only memory - essentially XIP boils down to running an application from a read-only memory.</p>
+</div>
+<div class="section" id="what-is-xip">
+<span id="xip-using-two-appimages-what-is-xip"></span><h2>9.5.2. What is XIP?<a class="headerlink" href="#what-is-xip" title="Permalink to this headline">¶</a></h2>
+<img alt="../_images/xip_comparison_flow_chart.png" src="../_images/xip_comparison_flow_chart.png" />
+<img alt="../_images/xip_comparison_diagram.png" src="../_images/xip_comparison_diagram.png" />
+<p>In order to take advantage of the XIP mode, two conditions must be fulfilled:</p>
+<ol class="arabic">
+<li><p class="first"><strong>The NOR flash (or flash device in general) device must support DAC mode</strong></p>
+</li>
+<li><dl class="first docutils">
+<dt><strong>The microcontroller&#8217;s SPI controller must support XIP mode</strong></dt>
+<dd><ol class="first last loweralpha simple">
+<li>Burst mode of access - no byte access but a 32bit accesses only in XIP mode</li>
+<li>As code must be in memory to be executed, XIP requires a memory-mappable device such as a RAM, ROM, or a NOR Flash.</li>
+<li>The serial NOR flash memory is mapped in the microcontroller&#8217;s memory space and is seen as another memory by the processor.</li>
+</ol>
+</dd>
+</dl>
+</li>
+</ol>
+<div class="section" id="normal-mode-v-s-xip-mode">
+<span id="xip-using-two-appimages-difference-between-normal-mode-and-xip-mode"></span><h3>9.5.2.1. Normal Mode v/s XIP Mode<a class="headerlink" href="#normal-mode-v-s-xip-mode" title="Permalink to this headline">¶</a></h3>
+<p>From a SPI protocol perspective, a READ command is composed of three phases: instruction opcode, address and data. XIP mode requires only an address (no instruction) to output data, improving random access time and eliminating the need to shadow code onto RAM for fast execution.</p>
+</div>
+</div>
+<div class="section" id="why-xip">
+<span id="xip-using-two-appimages-why-xip"></span><h2>9.5.3. Why XIP?<a class="headerlink" href="#why-xip" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Improve startup/boot time - Initial time of copying code from flash to RAM is saved</li>
+<li>Size of on-chip RAM will not limit the application size</li>
+<li>NOTE: Slower than internal memory - 2.5 - 3x times worse than OCM</li>
+</ul>
+</div>
+<div class="section" id="twin-appimage-generation">
+<span id="xip-using-two-appimages-twin-appimage-generation"></span><h2>9.5.4. TWIN APPIMAGE GENERATION<a class="headerlink" href="#twin-appimage-generation" title="Permalink to this headline">¶</a></h2>
+<p>The xx_component.mk must have these two present for twin appimage generation.</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="n">export</span> <span class="o">*</span><span class="n">_testapp_SBL_APPIMAGEGEN</span> <span class="o">=</span> <span class="n">yes</span>
+<span class="n">export</span> <span class="o">*</span><span class="n">_testapp_SBL_XIP_APPIMAGEGEN</span> <span class="o">=</span> <span class="n">yes</span>
+</pre></div>
+</div>
+<ul>
+<li><p class="first">For each CPU, the compiler+linker toolchain is used to create the application .out &#8220;ELF&#8221; file which can be loaded and run via CCS</p>
+</li>
+<li><dl class="first docutils">
+<dt>The below &#8220;post build&#8221; steps are then used to convert the application .out into a &#8220;flash&#8221; friendly format</dt>
+<dd><ul class="first last simple">
+<li>For each CPU, out2rpc is used to convert the ELF .out to a binary file containing only the loadable sections. This is called a RPRC file.</li>
+<li>For each CPU, xipGen is used to split this RPRC file into two RPRC files.</li>
+<li>One RPRC, containing the section that during boot need to be loaded to RAM</li>
+<li>Second RPRC, containing the section that during boot are not loaded to RAM but are instead &#8220;eXecuted In Place&#8221;, i.e XIP</li>
+<li>multiCoreGen is then used to combine all the non-XIP RPRC files per CPU into a single .appimage file which is a concatenation of the individual CPU specific RPRC files.</li>
+<li>multiCoreGen is used again to combine all the XIP RPRC files per CPU into a single .appimage_xip file which is a concatenation of the individual CPU specific RPRC XIP files.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">This .appimage and .appimage_xip is then flashed to the EVM</p>
+</li>
+</ul>
+<div class="section" id="multicore-appimage-generation">
+<h3>9.5.4.1. MULTICORE APPIMAGE GENERATION<a class="headerlink" href="#multicore-appimage-generation" title="Permalink to this headline">¶</a></h3>
+<p>Add this to your multicore generation script</p>
+<div class="highlight-c"><div class="highlight"><pre>MULTICORE_IMG_PARAMS_XIP = $(foreach SOC_CORE_ID, $(ipc_perf_test_$(SOC)_CORELIST), $(SBL_CORE_ID_$(SOC_CORE_ID)) $(BINDIR)/$(RPRC_PREFIX)_$(SOC_CORE_ID)_$(BUILD_PROFILE_$(CORE)).rprc_xip)
+$(ECHO) &quot;# MULTICORE_IMG_PARAMS_XIP are $(MULTICORE_IMG_PARAMS_XIP)&quot;
+$(SBL_IMAGE_GEN) LE $(SBL_DEV_ID) $(BINDIR)/$(RPRC_PREFIX)_all_cores_$(BUILD_PROFILE_$(CORE)).appimage_xip $(MULTICORE_IMG_PARAMS_XIP)
+$(ECHO) &quot;#&quot;
+$(ECHO) &quot;# Multicore IPC App image $(BINDIR)/$(RPRC_PREFIX)_all_cores_$(BUILD_PROFILE_$(CORE)).appimage_xip created.&quot;
+$(ECHO) &quot;#&quot;
+$(ECHO) &quot;# Signing the multicore image....&quot;
+</pre></div>
+</div>
+<img alt="../_images/xip_post_build_steps.png" src="../_images/xip_post_build_steps.png" />
+</div>
+<div class="section" id="section-placement">
+<span id="xip-using-two-appimages-section-placement"></span><h3>9.5.4.2. Section Placement<a class="headerlink" href="#section-placement" title="Permalink to this headline">¶</a></h3>
+<p>Attributes: r-x or r&#8211;                  =&gt; Flash</p>
+<p>Attributes: rw-                         =&gt; RAM</p>
+</div>
+<div class="section" id="linker-file-usage">
+<span id="xip-using-two-appimages-linker-file-usage"></span><h3>9.5.4.3. Linker File Usage<a class="headerlink" href="#linker-file-usage" title="Permalink to this headline">¶</a></h3>
+<p>Linker File</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="n">MEMORY</span>
+<span class="p">{</span>
+    <span class="p">...</span>
+    <span class="p">...</span>
+
+    <span class="nl">XIP_FLASH_1</span>               <span class="p">:</span> <span class="n">origin</span><span class="o">=</span><span class="mh">0x501C0000</span> <span class="n">length</span><span class="o">=</span><span class="mh">0x40000</span>
+    <span class="nl">XIP_FLASH_2</span>               <span class="p">:</span> <span class="n">origin</span><span class="o">=</span><span class="mh">0x50200000</span> <span class="n">length</span><span class="o">=</span><span class="mh">0x10000</span>
+
+    <span class="p">...</span>
+    <span class="p">...</span>
+<span class="p">}</span>
+
+<span class="n">SECTIONS</span>
+<span class="p">{</span>
+    <span class="p">...</span>
+    <span class="p">...</span>
+
+    <span class="p">.</span><span class="nl">text</span>       <span class="p">:</span> <span class="p">{}</span> <span class="n">palign</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>      <span class="o">&gt;</span> <span class="n">XIP_FLASH_1</span>
+    <span class="p">.</span><span class="k">const</span>      <span class="o">:</span> <span class="p">{}</span> <span class="n">palign</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>      <span class="o">&gt;</span> <span class="n">XIP_FLASH_2</span>
+
+    <span class="p">...</span>
+    <span class="p">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="map-file-usage">
+<span id="xip-using-two-appimages-map-file"></span><h3>9.5.4.4. Map File Usage<a class="headerlink" href="#map-file-usage" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Build your application normally (non-xip) and then look at the attributes of different sections.</li>
+<li>Section attributes (R/W/X) tell you exactly what sections can be placed where.</li>
+</ul>
+</div>
+<div class="section" id="cache-setting-change">
+<span id="xip-using-two-appimages-programming-bios-setting"></span><h3>9.5.4.5. Cache setting change<a class="headerlink" href="#cache-setting-change" title="Permalink to this headline">¶</a></h3>
+<p>The OSPI memory region must be marked as cacheable.</p>
+<div class="section" id="barermetal-freertos">
+<h4>9.5.4.5.1. Barermetal/FreeRTOS<a class="headerlink" href="#barermetal-freertos" title="Permalink to this headline">¶</a></h4>
+<p>Include a mpu_config.c file and add the following entry</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="cp">#include</span> <span class="cpf">&lt;ti/csl/arch/csl_arch.h&gt;</span><span class="cp"></span>
+<span class="k">const</span> <span class="n">CSL_ArmR5MpuRegionCfg</span> <span class="n">gCslR5MpuCfg</span><span class="p">[</span><span class="n">CSL_ARM_R5F_MPU_REGIONS_MAX</span><span class="p">]</span> <span class="o">=</span>
+<span class="p">{</span>
+    <span class="p">...</span>
+    <span class="p">...</span>
+
+    <span class="p">{</span>
+        <span class="c1">//Region x configuration: Covers first 64MB of EVM Flash (FSS DAT0) *</span>
+        <span class="p">.</span><span class="n">regionId</span>         <span class="o">=</span> <span class="n">xU</span><span class="p">,</span>
+        <span class="p">.</span><span class="n">enable</span>           <span class="o">=</span> <span class="mi">1U</span><span class="p">,</span>
+        <span class="p">.</span><span class="n">baseAddr</span>         <span class="o">=</span> <span class="mh">0x50000000</span><span class="p">,</span>
+        <span class="p">.</span><span class="n">size</span>             <span class="o">=</span> <span class="n">CSL_ARM_R5_MPU_REGION_SIZE_64MB</span><span class="p">,</span>
+        <span class="p">.</span><span class="n">subRegionEnable</span>  <span class="o">=</span> <span class="n">CSL_ARM_R5_MPU_SUB_REGION_ENABLE_ALL</span><span class="p">,</span>
+        <span class="p">.</span><span class="n">exeNeverControl</span>  <span class="o">=</span> <span class="mi">0U</span><span class="p">,</span>
+        <span class="p">.</span><span class="n">accessPermission</span> <span class="o">=</span> <span class="n">CSL_ARM_R5_ACC_PERM_PRIV_USR_RD_WR</span><span class="p">,</span>
+        <span class="p">.</span><span class="n">shareable</span>        <span class="o">=</span> <span class="mi">0U</span><span class="p">,</span>
+        <span class="p">.</span><span class="n">cacheable</span>        <span class="o">=</span> <span class="p">(</span><span class="kt">uint32_t</span><span class="p">)</span><span class="n">TRUE</span><span class="p">,</span>
+        <span class="p">.</span><span class="n">cachePolicy</span>      <span class="o">=</span> <span class="n">CSL_ARM_R5_CACHE_POLICY_WB_WA</span><span class="p">,</span>
+        <span class="p">.</span><span class="n">memAttr</span>          <span class="o">=</span> <span class="mi">0U</span><span class="p">,</span>
+    <span class="p">},</span>
+
+    <span class="p">...</span>
+    <span class="p">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="how-to-flash">
+<span id="xip-using-two-appimages-programming-how-to-flash"></span><h3>9.5.4.6. How To Flash<a class="headerlink" href="#how-to-flash" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="installation">
+<span id="xip-using-two-appimages-programming-insatllation"></span><h4>9.5.4.6.1. Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h4>
+<p>Install uniflash 6.3 from <a class="reference external" href="http://www.ti.com/tool/UNIFLASH">http://www.ti.com/tool/UNIFLASH</a></p>
+<p>Note : Uniflash 6.3 does not support .appimage_xip file. Support for this would be added in Uniflash 6.4. Please follow the below steps after installing Uniflash.</p>
+<div class="highlight-c"><div class="highlight"><pre>cd &lt;pathToPDKRepo&gt;/packages/ti/board/utils/uniflash/host/
+make all (Linux) or gmake all (Windows)
+copy ProcessorSDKSerialFlash (Linux) or ProcessorSDKSerialFlash.exe (Windows) to &lt;pathToUniflashDirectory&gt;\processors\
+cd &lt;pathToPDKRepo&gt;/packages/ti/build/
+make board_utils_uart_flash_programmer BOARD=j7xx_evm CORE=mcu1_0 -sj8
+copy &lt;pathToPDKRepo&gt;/packages/ti/binary/uart_j7xx_evm_flash_programmer_release.tiimage to &lt;pathToUniflashDirectory&gt;\processors\FlashWriter\j7xx_evm
+</pre></div>
+</div>
+</div>
+<div class="section" id="bootmodes">
+<span id="xip-using-two-appimages-programming-bootmodes"></span><h4>9.5.4.6.2. BootModes<a class="headerlink" href="#bootmodes" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="18%" />
+<col width="82%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">MODE</th>
+<th class="head">Switch Settings</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>UART</td>
+<td>SW3: 0xxxxxxx, SW8: 00000000, SW9: 01110000</td>
+</tr>
+<tr class="row-odd"><td>OSPI</td>
+<td>SW2: 0xxxxxxx, SW3: 00000000, SW9: 01000000</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="steps-to-flash">
+<span id="xip-using-two-appimages-programming-steps-to-flash"></span><h4>9.5.4.6.3. Steps To Flash<a class="headerlink" href="#steps-to-flash" title="Permalink to this headline">¶</a></h4>
+<ol class="arabic simple">
+<li><strong>Change boot mode to UART boot mode.</strong></li>
+</ol>
+<ol class="arabic" start="2">
+<li><dl class="first docutils">
+<dt><strong>Connect to the 2nd instance of MCU UART and power on</strong></dt>
+<dd><ul class="first last simple">
+<li>You should see &#8216;CCC...&#8217; being printed on the console.</li>
+<li>Once validated, close this instance of the UART (the UART device needs to be free to transfer data)</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
+<ol class="arabic" start="3">
+<li><dl class="first docutils">
+<dt><strong>Navigate to the uniflash installed directory</strong></dt>
+<dd><ul class="first last simple">
+<li>dslite.sh should be present here</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first"><strong>Run the following commands to flash</strong></p>
+<blockquote>
+<div><div class="highlight-c"><div class="highlight"><pre><span class="n">UART</span> <span class="n">SBL</span> <span class="n">and</span> <span class="nl">tifs</span>   <span class="p">:</span> <span class="p">.</span><span class="o">/</span><span class="n">dslite</span><span class="p">.</span><span class="n">sh</span> <span class="o">--</span><span class="n">mode</span> <span class="n">processors</span> <span class="o">-</span><span class="n">c</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">ttyUSB1</span> <span class="o">-</span><span class="n">f</span> <span class="o">&lt;</span><span class="n">pathToUniflashDirectory</span><span class="o">&gt;/</span><span class="n">processors</span><span class="o">/</span><span class="n">FlashWriter</span><span class="o">/</span><span class="n">am65xx_evm</span><span class="o">/</span><span class="n">uart_am65xx_evm_flash_programmer_release</span><span class="p">.</span><span class="n">tiimage</span> <span class="o">-</span><span class="n">i</span> <span class="mi">0</span>
+<span class="n">OSPI</span> <span class="nl">SBL</span>            <span class="p">:</span> <span class="p">.</span><span class="o">/</span><span class="n">dslite</span><span class="p">.</span><span class="n">sh</span> <span class="o">--</span><span class="n">mode</span> <span class="n">processors</span> <span class="o">-</span><span class="n">c</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">ttyUSB1</span> <span class="o">-</span><span class="n">f</span> <span class="o">&lt;</span><span class="n">pathToPDKRepo</span><span class="o">&gt;/</span><span class="n">pdk</span><span class="o">/</span><span class="n">packages</span><span class="o">/</span><span class="n">ti</span><span class="o">/</span><span class="n">boot</span><span class="o">/</span><span class="n">sbl</span><span class="o">/</span><span class="n">binary</span><span class="o">/</span><span class="n">am65xx_evm</span><span class="o">/</span><span class="n">ospi</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">sbl_ospi_img_mcu1_0_release</span><span class="p">.</span><span class="n">tiimage</span> <span class="o">-</span><span class="n">d</span> <span class="mi">3</span> <span class="o">-</span><span class="n">o</span> <span class="mi">0</span>
+<span class="nl">TIFS</span>                <span class="p">:</span> <span class="p">.</span><span class="o">/</span><span class="n">dslite</span><span class="p">.</span><span class="n">sh</span> <span class="o">--</span><span class="n">mode</span> <span class="n">processors</span> <span class="o">-</span><span class="n">c</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">ttyUSB1</span> <span class="o">-</span><span class="n">f</span> <span class="o">&lt;</span><span class="n">pathToPDKRepo</span><span class="o">&gt;/</span><span class="n">pdk</span><span class="o">/</span><span class="n">packages</span><span class="o">/</span><span class="n">ti</span><span class="o">/</span><span class="n">drv</span><span class="o">/</span><span class="n">sciclient</span><span class="o">/</span><span class="n">soc</span><span class="o">/</span><span class="n">V0</span><span class="o">/</span><span class="n">tifs</span><span class="p">.</span><span class="n">bin</span> <span class="o">-</span><span class="n">d</span> <span class="mi">3</span> <span class="o">-</span><span class="n">o</span> <span class="mi">80000</span>
+<span class="nl">Appimage</span>            <span class="p">:</span> <span class="p">.</span><span class="o">/</span><span class="n">dslite</span><span class="p">.</span><span class="n">sh</span> <span class="o">--</span><span class="n">mode</span> <span class="n">processors</span> <span class="o">-</span><span class="n">c</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">ttyUSB1</span> <span class="o">-</span><span class="n">f</span> <span class="o">&lt;</span><span class="n">pathToMcuswRepo</span><span class="o">&gt;/</span><span class="n">mcusw</span><span class="o">/</span><span class="n">binary</span><span class="o">/</span><span class="n">can_profile_xip_app</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">am65xx_evm</span><span class="o">/</span><span class="n">can_profiling_xip_app_mcu1_0_release</span><span class="p">.</span><span class="n">appimage</span> <span class="o">-</span><span class="n">d</span> <span class="mi">3</span> <span class="o">-</span><span class="n">o</span> <span class="mi">100000</span>
+<span class="nl">Appimage_xip</span>        <span class="p">:</span> <span class="p">.</span><span class="o">/</span><span class="n">dslite</span><span class="p">.</span><span class="n">sh</span> <span class="o">--</span><span class="n">mode</span> <span class="n">processors</span> <span class="o">-</span><span class="n">c</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">ttyUSB1</span> <span class="o">-</span><span class="n">f</span> <span class="o">&lt;</span><span class="n">pathToMcuswRepo</span><span class="o">&gt;/</span><span class="n">mcusw</span><span class="o">/</span><span class="n">binary</span><span class="o">/</span><span class="n">can_profile_xip_app</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">am65xx_evm</span><span class="o">/</span><span class="n">can_profiling_xip_app_mcu1_0_release</span><span class="p">.</span><span class="n">appimage_xip</span> <span class="o">-</span><span class="n">d</span> <span class="mi">3</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>Power off the board and change bootmode to OSPI.</strong></p>
+</li>
+<li><p class="first"><strong>Power on the board</strong></p>
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="debug-care-abouts">
+<span id="xip-using-two-appimages-programming-debug-care-abouts"></span><h3>9.5.4.7. Debug Care Abouts<a class="headerlink" href="#debug-care-abouts" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><dl class="first docutils">
+<dt>Debugging using CCS</dt>
+<dd><ul class="first simple">
+<li>Put a software loop in you program.</li>
+<li>Connect CCS and load symbols for your application.</li>
+<li>Clear the loop and debug further.</li>
+</ul>
+<img alt="../_images/xip_load_symbols.png" class="last" src="../_images/xip_load_symbols.png" />
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Disable few options in Program/Memory Load Options</dt>
+<dd><ul class="first last">
+<li><p class="first">Software breakpoints are not allowed. But in Program/Memory Load Options for the core (Right clock on core on Debug view→ Open GEL files view → Program/Memory Load Options), few defaults options need software breakpoints. They need to be disabled, otherwise you might see an error while loading symbols for debugging.</p>
+</li>
+<li><dl class="first docutils">
+<dt>Uncheck the following:</dt>
+<dd><ul class="first last simple">
+<li>&#8220;Halt at program exit for TI compilers (requires a breakpoint)&#8221;</li>
+<li>&#8220;Enable CIO function use (requires setting a breakpoint)&#8221;</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Always use HW breakpoints</dt>
+<dd><ul class="first simple">
+<li>Putting a breakpoint in CCS will need to write a BKP instruction and writing to FLASH will cause a crash or the breakpoint will not be activated</li>
+<li>Sometimes SW breakpoints might work as the code might be in cache</li>
+<li>Note that there is a limit to the number of HW breakpoints one can set. Essentially the HW breakpoint is writing to some R5F register saying that halt if this address comes. Such registers are limited and hence the number of HW breakpoints.</li>
+</ul>
+<img alt="../_images/xip_hw_break_point.png" class="last" src="../_images/xip_hw_break_point.png" />
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="known-issues">
+<span id="xip-using-two-appimages-programming-known-issues"></span><span id="xip-using-two-appimages-programming-xip-application-on-j721e"></span><h2>9.5.5. Known Issues<a class="headerlink" href="#known-issues" title="Permalink to this headline">¶</a></h2>
+<p>Closing the flash doesn&#8217;t work if the OSPI controller is in XIP mode.</p>
+</div>
+<div class="section" id="useful-links">
+<span id="xip-using-two-appimages-programming-useful-links"></span><h2>9.5.6. Useful Links<a class="headerlink" href="#useful-links" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>XIP wiki: <a class="reference external" href="https://en.wikipedia.org/wiki/Execute_in_place">https://en.wikipedia.org/wiki/Execute_in_place</a></li>
+<li>XIP blog: <a class="reference external" href="http://www.vlsiip.com/c/embedded_c/xip.html">http://www.vlsiip.com/c/embedded_c/xip.html</a></li>
+<li>Linker command file: <a class="reference external" href="http://downloads.ti.com/docs/esd/SPRU513J/Content/SPRU513J_HTML/linker_description.html">http://downloads.ti.com/docs/esd/SPRU513J/Content/SPRU513J_HTML/linker_description.html</a></li>
+<li>Linker command file basic: <a class="reference external" href="http://software-dl.ti.com/ccs/esd/documents/sdto_cgt_Linker-Command-File-Primer.html">http://software-dl.ti.com/ccs/esd/documents/sdto_cgt_Linker-Command-File-Primer.html</a></li>
+<li>Load and run section: <a class="reference external" href="http://downloads.ti.com/docs/esd/SPRU513/load-and-run-addresses-slau1317366.html">http://downloads.ti.com/docs/esd/SPRU513/load-and-run-addresses-slau1317366.html</a></li>
+<li>Micrium documentation: <a class="reference external" href="https://doc.micrium.com/display/TECHOV/NOR+Flash+XIP">https://doc.micrium.com/display/TECHOV/NOR+Flash+XIP</a></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ticlang_Migrationguidelines.html" class="btn btn-neutral float-right" title="9.6. TI ARM CLANG Usage and Migration Guidelines" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="xip_using_dummy_app.html" class="btn btn-neutral" title="9.4. XIP Using Dummy App" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="http://www.ti.com/corp/docs/legal/copyright.shtml">&copy; Copyright 1995-2020</a>, Texas Instruments Incorporated. All rights reserved. <br>
+      <a href="http://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="http://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="http://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="http://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'08_06_01',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

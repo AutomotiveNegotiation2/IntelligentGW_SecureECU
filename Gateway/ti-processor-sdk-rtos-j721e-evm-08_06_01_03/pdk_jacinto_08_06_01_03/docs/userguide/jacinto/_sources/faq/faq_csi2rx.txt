@@ -1,0 +1,187 @@
+FAQ - CSI2RX
+==================
+
+What is CSI2?
+------------------------
+
+The CSI2:
+
+- specification defines standard data transmission and control interfaces between transmitter and receiver.
+
+- is unidirectional differential serial interface with data and clock signals; the physical layer of this interface is the MIPI Alliance Specification for D-PHY.
+
+- also talks about 'The Control Interface (CCI)', and is a bi-directional control interface compatible with I2C standards.
+
+
+How is Lane Speed Band selected?
+---------------------------------------------------
+
+The formula is:
+
+.. code-block:: ruby
+
+   Required Bandwidth = (((Image Resolution) x bpp x fps x no. channels) x 1.2)
+   Lane Speed = ((Required Bandwidth) / no. of lanes)
+
+   bpp: bits per pixel
+   fps: frames per second
+
+   Select Lane Speed Band as following conditions:
+   where (Lane Speed >= lower limit of the Lane Speed Band) and (Lane Speed < upper limit of the Lane Speed Band)
+
+.. NOTE::
+
+   Required Bandwidth have multiplication factor of '1.2 (corresponding to 20%)', this is done to absorb protocol and other overheads in the system
+
+
+Things to consider/check before sending a frame over CSI2RX bus
+--------------------------------------------------------------------------------------------------------------------------
+
+Make sure following is done/checked before attempting communication on bus:
+
+- All the lanes are identical in the length (to be considered during EVM/Board design)
+- Number of lanes, lane ordering, lane polarity, and lane speed configurations are matching at both ends i.e. transmitter and receiver side
+- Receiver is configured and started before configuring and starting streaming from transmitter
+- Configuration/Enable sequence:
+
+  - CSI2RX Module (receiver)
+  - Deserialzer (if any) (transmitter)
+  - Serializer (if any)
+  - Sensor/s OR Camera/s modules (transmitter)
+
+- check if following connections are firm and proper:
+
+  - CSI2RX to Deserialzer (if any) OR Sensor (e.g. EVM to Fusion board/Sensor)
+  - Deserialzer to Serializer (if any) (e.g. Fusion board to Camera module through FPD cable)
+
+- Channel configurations like frame dimensions (Height and Width), data-type (DT) and virtual channel (VC) are matching for transmitter and receiver
+- Timing parameters configured at transmitter side meets the MIPI standards
+
+  - check this if all the above parameters are checked and are properly configured
+  - this needs to be measured on CSI protocol analyzer
+
+CSI2RX communication failed, where to start debug?
+-----------------------------------------------------------------------------------
+
+Check following before debugging for errors:
+  - There 3 sets of status bit given for each lane in `CSI_RX_IF_VBUS2APB_DPHY_STATUS` register
+
+    - For data reception check if this is toggling between '0x2' and '0x3' for each active data-lane and clock-lane
+
+  - check if Stream and Protocol FSM are in proper states:
+
+    - this can be done through `CSI_RX_IF_VBUS2APB_STREAM0_STATUS.bit0-1` and `CSI_RX_IF_VBUS2APB_STREAM0_STATUS.bit4-7`
+
+
+Following section talks about various errors/conditions occurred during communication failure.
+
+Errors detected during reception:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- **Front FIFO Overflow**
+
+  - Detected at: CSI2RX Core
+  - Level: Module Level Error
+  - Register: `CSI_RX_IF_VBUS2APB_ERROR_IRQS.bit0`
+  - Description: Overflow detected in resynchronization FIFO between DPHY Lane Management and Protocol blocks
+  - This will occur if `sys_clk` is not fast enough and should be increased since the `byte clock` frequency is fixed
+
+- **Payload CRC Error**
+
+  - Detected at: CSI2RX Core
+  - Level: Packet Level Error
+  - Register: `CSI_RX_IF_VBUS2APB_ERROR_IRQS.bit4`
+  - Description: CRC Error has been detected while receiving payload data.
+  - Asserted when the computed CRC code is different than the received CRC code.
+  - This could happen due to interference OR mismatch configurations at Tx and Rx sides.
+
+- **Header ECC Error**
+
+  - Detected at: CSI2RX Core
+  - Level: Packet Level Error
+  - Register: `CSI_RX_IF_VBUS2APB_ERROR_IRQS.bit5`
+  - Description: Unrecoverable ECC error has been detected during short packet reception.
+  - Asserted when an ECC signature was computed and the result is zero indicating a Packet Header that is considered to be without errors or has more than two bit-errors. CSI-2’s ECC mechanism cannot detect this type of error OR when an ECC signature was computed and two bit-errors are detected in the received Packet Header.
+  - This could happen due to interference OR mismatch configurations at Tx and Rx sides.
+
+- **Header Corrected ECC Error**
+
+  - Detected at: CSI2RX Core
+  - Level: Packet Level Error
+  - Register: `CSI_RX_IF_VBUS2APB_ERROR_IRQS.bit6`
+  - Description: Recoverable ECC error has been detected during short packet reception.
+  - Asserted when an ECC signature was computed and a single bit-error in the Packet Header was detected and corrected
+  - This could happen due to interference OR mismatch configurations at Tx and Rx sides.
+
+- **Data ID Error**
+
+  - Detected at: CSI2RX Core
+  - Level: Packet Level Error
+  - Register: `CSI_RX_IF_VBUS2APB_ERROR_IRQS.bit7`
+  - Description: Data ID error has been detected in the header packet.
+  - Asserted when a Packet Header is decoded with an unrecognized or unimplemented data ID.
+  - This is caused by the presence of an unimplemented or unrecognized ID in the header.
+
+- **Invalid Access**
+
+  - Detected at: CSI2RX Core
+  - Level: Module Level Error
+  - Register: `CSI_RX_IF_VBUS2APB_ERROR_IRQS.bit8`
+  - Description: Invalid access to the configuration register space.
+  - This could be caused by accessing reserved addresses within CSI2RX module registers.
+
+- **Invalid Short Packet**
+
+  - Detected at: CSI2RX Core
+  - Level: Protocol Decoding Level Error
+  - Register: `CSI_RX_IF_VBUS2APB_ERROR_IRQS.bit9`
+  - Description: A reserved or invalid short packet has been received
+
+- **No Payload Long Packet**
+
+  - Detected at: CSI2RX Core
+  - Level: Packet Level Error
+  - Register: `CSI_RX_IF_VBUS2APB_ERROR_IRQS.bit10`
+  - Description: No long packet has been received after receiving short packets for the payload start/stop.
+  - Check the Transmitter configurations. Use the protocol analyzer to make sure that transmitter is sending data in correspondence with CSI2 protocol.
+
+- **Truncated Long Packet**
+
+  - Detected at: CSI2RX Core
+  - Level: Packet Level Error
+  - Register: `CSI_RX_IF_VBUS2APB_ERROR_IRQS.bit11`
+  - Description: Too many/too few bytes has been received during payload reception.
+  - Check the Transmitter configurations. Use the protocol analyzer to make sure that transmitter is sending data in correspondence with CSI2 protocol.
+  - This can caused by improper physical connections. Make sure that connections are proper and firm & free from any kind of interference.
+
+- **Truncated Header**
+
+  - Detected at: CSI2RX Core
+  - Level: Packet Level Error
+  - Register: `CSI_RX_IF_VBUS2APB_ERROR_IRQS.bit12`
+  - Description: A truncated (short OR long) header has been received.
+  - Check the Transmitter configurations. Use the protocol analyzer to make sure that transmitter is sending data in correspondence with CSI2 protocol.
+  - This can caused by improper physical connections. Make sure that connections are proper and firm & free from any kind of interference.
+
+- **Stream FIFO Overflow**
+
+  - Detected at: CSI2RX Core
+  - Level: Stream Level Error
+  - Register: `CSI_RX_IF_VBUS2APB_ERROR_IRQS.bit16-19`
+  - Description: Stream FIFO overflow has been detected.
+  - There is dedicated bit for each stream.
+
+- **Start of Transmission Error (Error SoT)**
+
+  - Detected at: CSI2RX Core
+  - Level: DPHY Level Error
+  - Register: `CSI_RX_IF_VBUS2APB_DPHY_ERR_STATUS_IRQ.bit8/12/16/20`
+  - Description: Start of Transmission Error is detected on the respective data lane.
+  - There is dedicated bit for each data lane.
+  - There are two types of the errors for this category:
+
+    - the high-speed SoT leader sequence is corrupted, but in such a way that proper synchronization can still be achieved, this error signal is asserted for one cycle of `RxByteClkHS`. This is considered to be a **soft error** in the leader sequence and confidence in the payload data is reduced.
+    - the high-speed SoT leader sequence is corrupted in a way that proper synchronization cannot be expected, this error signal is asserted for one cycle of `RxByteClkHS`.
+
+  - Check for the signal integrity and signals are getting properly transmitted w/o any issues/interference.
+  - Check if timings are properly configured at transmitter and are adhering to CSI2 standards. These timings can be measured with the help of CSI2 protocol analyzer.
+

@@ -1,0 +1,475 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>9.2. FreeRTOS Real-time Object View (ROV) &mdash; Platform Development Kit (PDK) - JACINTO User Guide</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Platform Development Kit (PDK) - JACINTO User Guide" href="../index.html"/>
+        <link rel="up" title="9. Developer Notes" href="../family_cfg/jacinto/index_developer_notes_jacinto.html"/>
+        <link rel="next" title="9.3. IPC LLD Migration Guide" href="ipc_lld_migration_guide.html"/>
+        <link rel="prev" title="9.1. FreeRTOS Usage and Migration Guidelines" href="freertos_guidelines.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index_jacinto.html" class="icon icon-home"> Platform Development Kit (PDK) - JACINTO User Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                08_06_01
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">1. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_release_notes_jacinto.html">2. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">3. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_modules_jacinto.html">4. Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_boot_jacinto.html">5. Bootloader (SBL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_board_jacinto.html">6. Board/EVM Abstraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_howto_jacinto.html">7. How to Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_faq_jacinto.html">8. Frequently Asked Questions</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../family_cfg/jacinto/index_developer_notes_jacinto.html">9. Developer Notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="freertos_guidelines.html">9.1. FreeRTOS Usage and Migration Guidelines</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">9.2. FreeRTOS Real-time Object View (ROV)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">9.2.1. Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#features-supported">9.2.2. Features Supported</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ccs-setup-for-enabling-freertos-rov">9.2.3. CCS Setup for Enabling FreeRTOS ROV</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#set-xdcpath-as-pdk-install-path">9.2.3.1. Set XDCPATH as {PDK_INSTALL_PATH}</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#using-rov-with-pdk-examples-applications">9.2.4. Using ROV with PDK examples/applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#important-usage-guidelines">9.2.5. Important Usage Guidelines</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ipc_lld_migration_guide.html">9.3. IPC LLD Migration Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xip_using_dummy_app.html">9.4. XIP Using Dummy App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xip_using_two_appimages.html">9.5. XIP Using Two Appimages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ticlang_Migrationguidelines.html">9.6. TI ARM CLANG Usage and Migration Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="freertos_to_safertos_migration.html">9.7. SafeRTOS Usage and Migration Guidelines</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index_jacinto.html">Platform Development Kit (PDK) - JACINTO User Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index_jacinto.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../family_cfg/jacinto/index_developer_notes_jacinto.html">9. Developer Notes</a> &raquo;</li>
+      
+    <li>9.2. FreeRTOS Real-time Object View (ROV)</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="freertos-real-time-object-view-rov">
+<span id="freertos-ccs-rov"></span><h1>9.2. FreeRTOS Real-time Object View (ROV)<a class="headerlink" href="#freertos-real-time-object-view-rov" title="Permalink to this headline">¶</a></h1>
+<ol class="arabic simple">
+<li><a class="reference internal" href="#freertos-rov-intro"><span>Introduction</span></a></li>
+<li><a class="reference internal" href="#freertos-rov-features-supported"><span>Features Supported</span></a></li>
+<li><a class="reference internal" href="#freertos-rov-setup"><span>CCS Setup for Enabling FreeRTOS ROV</span></a></li>
+<li><a class="reference internal" href="#freertos-rov-usage-steps"><span>Using ROV with PDK examples/applications</span></a></li>
+<li><a class="reference internal" href="#freertos-rov-usage-guidelines"><span>Important Usage Guidelines</span></a></li>
+</ol>
+<div class="section" id="introduction">
+<span id="freertos-rov-intro"></span><h2>9.2.1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>Real-time Object View (ROV) in CCS IDE allows user to view the state of a executing application
+via different easy to understand views. These views are generated by reading information
+from the running SW program using the JTAG debugger port.</p>
+<dl class="docutils">
+<dt>This section explains,</dt>
+<dd><ul class="first last simple">
+<li>Using ROV with PDK examples/applications</li>
+<li>Other important usage guidelines</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="features-supported">
+<span id="freertos-rov-features-supported"></span><h2>9.2.2. Features Supported<a class="headerlink" href="#features-supported" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Some of the supported ROV views are listed below</dt>
+<dd><ul class="first last simple">
+<li>View task state, including free stack size</li>
+<li>View semaphore, mutex state, including which task is blocked on a semaphore and which task is holding onto a mutex</li>
+<li>View system heap and common stack information like ISR stack</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="ccs-setup-for-enabling-freertos-rov">
+<span id="freertos-rov-setup"></span><h2>9.2.3. CCS Setup for Enabling FreeRTOS ROV<a class="headerlink" href="#ccs-setup-for-enabling-freertos-rov" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<ul class="last simple">
+<li>PDK examples/application build generates <strong>syscfg_c.rov.xs</strong> to the same directory where the executables are generated.</li>
+<li>The ROV views are generated using the backend file <strong>{PDK_INSTALL_PATH}/packages/ti/kernel/freertos/rov/FreeRTOS.rov.js</strong> which is referenced by <strong>syscfg_c.rov.xs</strong>.</li>
+<li>Hence CCS needs to know the location of the <strong>{PDK_INSTALL_PATH}</strong>.</li>
+</ul>
+</div>
+<div class="section" id="set-xdcpath-as-pdk-install-path">
+<h3>9.2.3.1. Set XDCPATH as {PDK_INSTALL_PATH}<a class="headerlink" href="#set-xdcpath-as-pdk-install-path" title="Permalink to this headline">¶</a></h3>
+<p>User needs to set the <strong>CCS XDCPATH (XDCpath Package Repositories)</strong> as <strong>{PDK_INSTALL_PATH}</strong> to enable ROV. Follow the steps below to do this.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This setting needs to be done only once per CCS installation for a given PDK release.</p>
+</div>
+<ul>
+<li><p class="first">Click on <strong>CCS Menu &gt; Window &gt; Preferences</strong> as shown below</p>
+<div class="figure" id="id1">
+<a class="reference internal image-reference" href="../_images/freertos_ccs_rov_window_pref.png"><img alt="../_images/freertos_ccs_rov_window_pref.png" src="../_images/freertos_ccs_rov_window_pref.png" style="width: 450.4px; height: 218.4px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 9.1 </span><span class="caption-text">Open Preferences</span></p>
+</div>
+</li>
+<li><p class="first">You will see a &#8216;Preferences&#8217; window in CCS as shown below, expand <strong>Code Composer Studio &gt; Products</strong>
+and click on <strong>RTSC</strong></p>
+<div class="figure" id="id2">
+<a class="reference internal image-reference" href="../_images/freertos_ccs_rov_pref_products_rtsc.png"><img alt="../_images/freertos_ccs_rov_pref_products_rtsc.png" src="../_images/freertos_ccs_rov_pref_products_rtsc.png" style="width: 626.25px; height: 463.5px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 9.2 </span><span class="caption-text">CCS Preferences Window for RTSC</span></p>
+</div>
+</li>
+<li><p class="first">Now click on <strong>Add</strong> under <strong>Products and Repositories</strong>
+You will see a &#8216;Select a Product or Repository&#8217; window as shown below.</p>
+<div class="figure" id="id3">
+<a class="reference internal image-reference" href="../_images/freertos_ccs_rov_pref_browse.png"><img alt="../_images/freertos_ccs_rov_pref_browse.png" src="../_images/freertos_ccs_rov_pref_browse.png" style="width: 567.0px; height: 198.8px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 9.3 </span><span class="caption-text">Select a Product or Repository</span></p>
+</div>
+</li>
+<li><p class="first">Select <strong>Specify a repository</strong> and browse to <strong>{PDK_INSTALL_PATH}</strong></p>
+</li>
+<li><p class="first">Click <strong>OK</strong> in &#8216;Select a Product or Repository&#8217; window</p>
+</li>
+<li><p class="first">Now make sure <strong>{PDK_INSTALL_PATH}</strong> is listed under <strong>XDCpath Package Repositories</strong> under &#8216;Preferences &gt; RTSC&#8217; window.</p>
+</li>
+<li><p class="first">Click on <strong>Apply and Close</strong>  in &#8216;Preferences&#8217; window</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="using-rov-with-pdk-examples-applications">
+<span id="freertos-rov-usage-steps"></span><h2>9.2.4. Using ROV with PDK examples/applications<a class="headerlink" href="#using-rov-with-pdk-examples-applications" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">Make sure you are able to load and run PDK examples/applications as usual via CCS.</p>
+</li>
+<li><p class="first"><strong>Halt the program</strong> as shown below. This is important, since otherwise the JTAG debugger cannot read memory
+for the running CPU to get the state information that ROV needs.</p>
+<div class="figure" id="id4">
+<a class="reference internal image-reference" href="../_images/freertos_ccs_rov_00.png"><img alt="../_images/freertos_ccs_rov_00.png" src="../_images/freertos_ccs_rov_00.png" style="width: 357.75px; height: 50.25px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 9.4 </span><span class="caption-text">Halt the CPU</span></p>
+</div>
+</li>
+<li><p class="first">To launch ROV views, click on <strong>CCS Menu &gt; Tools &gt; Runtime Object View</strong> as shown below</p>
+<div class="figure" id="id5">
+<a class="reference internal image-reference" href="../_images/freertos_ccs_rov_01.png"><img alt="../_images/freertos_ccs_rov_01.png" src="../_images/freertos_ccs_rov_01.png" style="width: 195.0px; height: 354.75px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 9.5 </span><span class="caption-text">Start ROV from CCS Menu</span></p>
+</div>
+</li>
+<li><p class="first">Alternatively, you can click on the <strong>&#8220;ROV&#8221;</strong> button in the CCS toolbar as shown below</p>
+<div class="figure" id="id6">
+<a class="reference internal image-reference" href="../_images/freertos_ccs_rov_02.png"><img alt="../_images/freertos_ccs_rov_02.png" src="../_images/freertos_ccs_rov_02.png" style="width: 333.75px; height: 87.75px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 9.6 </span><span class="caption-text">Start ROV from CCS Toolbar</span></p>
+</div>
+</li>
+<li><p class="first">You will see a ROV window in CCS as shown below, click on <strong>&#8220;CONNECT&#8221;</strong></p>
+<div class="figure" id="id7">
+<a class="reference internal image-reference" href="../_images/freertos_ccs_rov_03.png"><img alt="../_images/freertos_ccs_rov_03.png" src="../_images/freertos_ccs_rov_03.png" style="width: 372.75px; height: 213.0px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 9.7 </span><span class="caption-text">ROV Window</span></p>
+</div>
+</li>
+<li><p class="first">This will launch the ROV viewer as shown below</p>
+<div class="figure" id="id8">
+<a class="reference internal image-reference" href="../_images/freertos_ccs_rov_04.png"><img alt="../_images/freertos_ccs_rov_04.png" src="../_images/freertos_ccs_rov_04.png" style="width: 473.25px; height: 155.25px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 9.8 </span><span class="caption-text">ROV after its started</span></p>
+</div>
+</li>
+<li><p class="first">You can click on various <strong>Viewable Modules</strong>. Currently, <strong>&#8220;FreeRTOS&#8221;</strong> is the one which
+has useful views</p>
+</li>
+<li><p class="first">After clicking on &#8220;FreeRTOS&#8221;, click on the <strong>drop down</strong> to see all the supported ROV views</p>
+<div class="figure" id="id9">
+<a class="reference internal image-reference" href="../_images/freertos_ccs_rov_05.png"><img alt="../_images/freertos_ccs_rov_05.png" src="../_images/freertos_ccs_rov_05.png" style="width: 469.5px; height: 216.0px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 9.9 </span><span class="caption-text">ROV views</span></p>
+</div>
+</li>
+<li><p class="first">Show below is a sample after <strong>&#8220;Task Instances&#8221;</strong> view is selected</p>
+<div class="figure" id="id10">
+<a class="reference internal image-reference" href="../_images/freertos_ccs_rov_06.png"><img alt="../_images/freertos_ccs_rov_06.png" src="../_images/freertos_ccs_rov_06.png" style="width: 676.5px; height: 174.75px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 9.10 </span><span class="caption-text">ROV task view</span></p>
+</div>
+</li>
+<li><p class="first">You can click on the <strong>copy</strong> button shown below to launch a new view keeping the previous view still visible</p>
+<div class="figure" id="id11">
+<a class="reference internal image-reference" href="../_images/freertos_ccs_rov_07.png"><img alt="../_images/freertos_ccs_rov_07.png" src="../_images/freertos_ccs_rov_07.png" style="width: 196.35px; height: 97.75px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 9.11 </span><span class="caption-text">ROV new view</span></p>
+</div>
+</li>
+<li><p class="first">Shown below is sample with many views shown in ROV</p>
+<div class="figure" id="id12">
+<a class="reference internal image-reference" href="../_images/freertos_ccs_rov_08.png"><img alt="../_images/freertos_ccs_rov_08.png" src="../_images/freertos_ccs_rov_08.png" style="width: 1477.8px; height: 391.5px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 9.12 </span><span class="caption-text">ROV multiple active views</span></p>
+</div>
+</li>
+<li><p class="first">You can run the halted program after you seen the state you want to see. After running for some time, to see updated state, simply halt the CPU again, the ROV window will show the updated state.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="important-usage-guidelines">
+<span id="freertos-rov-usage-guidelines"></span><h2>9.2.5. Important Usage Guidelines<a class="headerlink" href="#important-usage-guidelines" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">You need to be connected via JTAG for ROV to read and display information from the loaded program.</p>
+</li>
+<li><p class="first">The program needs to be in a halted state, else the JTAG debugger cannot read the SOC memory which it needs to update its views.</p>
+</li>
+<li><p class="first">When you reload and run the program again OR you load and run a new program, you need to close current ROV window and
+launch ROV again.</p>
+</li>
+<li><p class="first">Many of the FreeRTOS ROV views rely on certain FreeRTOS config to be enabled in order to show the information correctly.
+So if you are changing any of the below FreeRTOS config, the ROV views many NOT show all information correctly.</p>
+<ul>
+<li><dl class="first docutils">
+<dt><strong>configQUEUE_REGISTRY_SIZE</strong> controls the maximum semaphores, queues, mutex&#8217;s that can be viewed by ROV.</dt>
+<dd><p class="first last">If your semaphore, queue, mutex&#8217;s count is more than this value then the additional objects wont be seen. In this case go and increase
+this value in the FreeRTOSConfig.h (<strong>{PDK_INSTALL_PATH}/packages/ti/kernel/freertos/config/{soc}/{cpu}/FreeRTOSConfig.h</strong>).
+Note, this only affect the objects seen in ROV view and has no effect on functionality of the created object in the program.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><strong>configUSE_TRACE_FACILITY</strong> MUST be <strong>1</strong> for ROV to show estimated free stack size for tasks.</dt>
+<dd><p class="first last">This option writes a known pattern to the task stack and ROV then checks the point at which the pattern is overwritten to find the stack used so far by the task.
+If you disable <strong>configUSE_TRACE_FACILITY</strong>, the free stack size may show &#8220;STACK OVERFLOW&#8221;, but you can ignore this since it
+is not able to find a known pattern at the top of stack and concludes its a stack overflow. The other task information displayed will still be correct.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</li>
+<li><p class="first">To make a semaphore, mutex or queue visible in ROV, you need to register the object using the below function else
+this object wont be visible in ROV</p>
+<div class="code bash highlight-cpp"><div class="highlight"><pre><span class="n">vQueueAddToRegistry</span><span class="p">(</span><span class="n">gMySemHandle</span><span class="p">,</span> <span class="s">&quot;My object name&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">When using OSAL SemaphoreP APIs, internally it calls <strong>vQueueAddToRegistry</strong> to register semaphore&#8217;s and mutex&#8217;s with a default name.</p>
+</li>
+<li><p class="first">The free stack size shown for a task in ROV views, is a estimated value, and it should be used with care as listed below,</p>
+<ul class="simple">
+<li>To reduce the time needed to read the stack memory for a known pattern and compute the free stack size,
+the ROV logic reads 4 bytes every 128 bytes, this allows the stack free space computation to be fast but with a accuracy loss of 128 bytes at most.</li>
+<li>In some cases, if the stack truly has the pattern to be checked for  ( <cite>0xa5a5a5a5</cite> ), then ROV views may wrongly compute that 128 bytes stack chunk as &#8220;free&#8221; when really it is not free.</li>
+</ul>
+</li>
+<li><p class="first">If you have tasks with very large stacks or lot of tasks, then when task view is opened in ROV it may take a some time to compute the task stack size. In worst case, it may also timeout.</p>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ipc_lld_migration_guide.html" class="btn btn-neutral float-right" title="9.3. IPC LLD Migration Guide" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="freertos_guidelines.html" class="btn btn-neutral" title="9.1. FreeRTOS Usage and Migration Guidelines" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="http://www.ti.com/corp/docs/legal/copyright.shtml">&copy; Copyright 1995-2020</a>, Texas Instruments Incorporated. All rights reserved. <br>
+      <a href="http://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="http://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="http://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="http://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'08_06_01',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

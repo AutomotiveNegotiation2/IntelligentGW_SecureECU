@@ -1,0 +1,327 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>1. Overview &mdash; Platform Development Kit (PDK) - JACINTO User Guide</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Platform Development Kit (PDK) - JACINTO User Guide" href="index.html"/>
+        <link rel="next" title="2. Release Notes" href="family_cfg/jacinto/index_release_notes_jacinto.html"/>
+        <link rel="prev" title="Platform Development Kit (PDK)" href="index_jacinto.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index_jacinto.html" class="icon icon-home"> Platform Development Kit (PDK) - JACINTO User Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                08_06_01
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="">1. Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">1.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#scope">1.2. Scope</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#technical-support">1.3. Technical Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ti-disclaimer">1.4. TI Disclaimer</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="family_cfg/jacinto/index_release_notes_jacinto.html">2. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">3. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="family_cfg/jacinto/index_modules_jacinto.html">4. Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="family_cfg/jacinto/index_boot_jacinto.html">5. Bootloader (SBL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="family_cfg/jacinto/index_board_jacinto.html">6. Board/EVM Abstraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="family_cfg/jacinto/index_howto_jacinto.html">7. How to Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="family_cfg/jacinto/index_faq_jacinto.html">8. Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="family_cfg/jacinto/index_developer_notes_jacinto.html">9. Developer Notes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index_jacinto.html">Platform Development Kit (PDK) - JACINTO User Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index_jacinto.html">Docs</a> &raquo;</li>
+      
+    <li>1. Overview</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="overview">
+<h1>1. Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>1.1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>The Texas Instruments Platform Development Kit (PDK) is a single scalable software driver package that
+offers streamlined development on TI&#8217;s Processors. The PDK package contains device abstraction layer
+libraries and peripheral/board level sample/demo examples that demonstrate the capabilities of the
+peripherals for development, deployment and execution of applications.</p>
+<p>The high level block diagram of PDK is shown in below figure.</p>
+<div class="figure" id="id1">
+<img alt="_images/j721e_pdk_block_diagram.png" src="_images/j721e_pdk_block_diagram.png" />
+<p class="caption"><span class="caption-number">Fig. 1.1 </span><span class="caption-text">PDK Block Diagram</span></p>
+</div>
+</div>
+<div class="section" id="scope">
+<h2>1.2. Scope<a class="headerlink" href="#scope" title="Permalink to this headline">¶</a></h2>
+<p>The purpose of this guide is to quickly provide the information you need most while evaluating and
+developing applications on a TI embedded processor, specifically running embedded real-time operating system.
+It is not intended to be a thorough design document. As such, the focus is on
+application programming interfaces (API), build information, and examples to use as a template
+to start development.</p>
+</div>
+<div class="section" id="technical-support">
+<h2>1.3. Technical Support<a class="headerlink" href="#technical-support" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="75%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><img alt="_images/e2e.jpg" class="first last" src="_images/e2e.jpg" />
+</td>
+<td>For technical support please post your questions at <a class="reference external" href="http://e2e.ti.com/">http://e2e.ti.com</a>.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="ti-disclaimer">
+<h2>1.4. TI Disclaimer<a class="headerlink" href="#ti-disclaimer" title="Permalink to this headline">¶</a></h2>
+<p>Texas Instruments and its subsidiaries (TI) reserve the right to make changes to their products or to discontinue any
+product or service without notice, and advise customers to obtain the latest version of relevant information to verify, before
+placing orders, that information being relied on is current and complete. All products are sold subject to the terms and
+conditions of sale supplied at the time of order acknowledgment, including those pertaining to warranty, patent
+infringement, and limitation of liability.</p>
+<p>TI warrants performance of its products to the specifications applicable at the time of sale in accordance with TI&#8217;s
+standard warranty. Testing and other quality control techniques are utilized to the extent TI deems necessary to support
+this warranty. Specific testing of all parameters of each device is not necessarily performed, except those mandated by
+government requirements.</p>
+<p>Customers are responsible for their applications using TI components.
+In order to minimize risks associated with the customer&#8217;s applications, adequate design and operating safeguards must be
+provided by the customer to minimize inherent or procedural hazards.</p>
+<p>TI assumes no liability for applications assistance or customer product design. TI does not warrant or represent that any
+license, either express or implied, is granted under any patent right, copyright, mask work right, or other intellectual
+property right of TI covering or relating to any combination, machine, or process in which such products or services might
+be or are used. TI&#8217;s publication of information regarding any third party&#8217;s products or services does not constitute TI&#8217;s
+approval, license, warranty or endorsement thereof.</p>
+<p>Reproduction of information in TI data books or data sheets is permissible only if reproduction is without alteration and is
+accompanied by all associated warranties, conditions, limitations and notices. Representation or reproduction o f this
+information with alteration voids all warranties provided for an associated TI product or service, is an unfair and deceptive
+business practice, and TI is not responsible nor liable for any such use.</p>
+<p>Resale of TI&#8217;s products or services with statements different from or beyond the parameters stated by TI for that product
+or service voids all express and any implied warranties for the associated TI product or service, is an unfair and deceptive
+business practice, and TI is not responsible nor liable for any such use.</p>
+<p>Also see: Standard Terms and Conditions of Sale for Semiconductor Products <a class="reference external" href="http://www.ti.com/sc/docs/stdterms.htm">http://www.ti.com/sc/docs/stdterms.htm</a></p>
+<p>Mailing Address:
+Texas Instruments
+Post Office Box 655303
+Dallas, Texas 75265</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="family_cfg/jacinto/index_release_notes_jacinto.html" class="btn btn-neutral float-right" title="2. Release Notes" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index_jacinto.html" class="btn btn-neutral" title="Platform Development Kit (PDK)" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="http://www.ti.com/corp/docs/legal/copyright.shtml">&copy; Copyright 1995-2020</a>, Texas Instruments Incorporated. All rights reserved. <br>
+      <a href="http://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="http://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="http://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="http://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'08_06_01',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

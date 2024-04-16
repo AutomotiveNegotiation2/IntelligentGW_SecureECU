@@ -1,0 +1,594 @@
+Building and Running Memory Benchmarking Configurations
+=======================================================
+
+
+
+Demo Overview
+-------------
+
+-  This demo provides a means of measuring the performance of a
+   realistic application where the text of the application is sitting in
+   various memory locations and the data is sitting in On-Chip-Memory
+   RAM (referred to as OCM, OCMC or OCMRAM).
+-  The application executes 10 different configurations of the same text
+   varying by data vs. instruction cache intensity. Each test calls 16
+   separate functions 500 total times in random order.
+-  The most instruction intensive example achieves a instruction cache
+   miss rate (ICM/sec) of ~3-4 million per second when run entirely from
+   OCMRAM. This is a rate that we have similarly seen in real-world
+   customer examples.
+-  More data instensive tests have more repetitive code, achieving much
+   lower ICM rates.
+
++------------------------------------+-----------------------------------------------------+
+| Application Output                 | Description                                         |
++====================================+=====================================================+
+| ``Mem Cpy size    => 100``         | Size of the memcpy in bytes executed by each task   |
++------------------------------------+-----------------------------------------------------+
+| ``Exec Time in usec => 2567``      | Amount of time in microseconds                      |
++------------------------------------+-----------------------------------------------------+
+| ``Iter            => 1``           | Number of times the test was run                    |
++------------------------------------+-----------------------------------------------------+
+| ``Task calls      => 500``         | Number of randomly ordered calls to the 16 tasks    |
++------------------------------------+-----------------------------------------------------+
+| ``Inst Cache miss => 11421``       | Total instruction cache misses                      |
++------------------------------------+-----------------------------------------------------+
+| ``Inst Cache acc  => 650207``      | Total instruction cache accesses                    |
++------------------------------------+-----------------------------------------------------+
+| ``num switches    => 1469``        | Number of total context switches                    |
++------------------------------------+-----------------------------------------------------+
+| ``num instr exec  => 1029260``     | Total number of executed instructions               |
++------------------------------------+-----------------------------------------------------+
+| ``ICM/sec         => 4449162``     | Instruction cache misses per second                 |
++------------------------------------+-----------------------------------------------------+
+| ``INST/sec        => 400958317``   | Instructions executed per second                    |
++------------------------------------+-----------------------------------------------------+
+
+Supported Configurations
+------------------------
+
++---------------------+---------+---------------------------------------+
+| Core                | SOC     | Supported Memory Configs (MEM_CONF)   |
++=====================+=========+=======================================+
+| mcu1\_0             | j721e   | ocmc msmc ddr xip                     |
++---------------------+---------+---------------------------------------+
+| mcu2\_0             | j721e   | ocmc msmc ddr xip                     |
++---------------------+---------+---------------------------------------+
+| mcu1\_0 + mcu2\_0   | j721e   | ocmc ddr xip                          |
++---------------------+---------+---------------------------------------+
+| mcu1\_0             | j7200   | ocmc msmc ddr xip                     |
++---------------------+---------+---------------------------------------+
+| mcu2\_0             | j7200   | ocmc msmc ddr xip                     |
++---------------------+---------+---------------------------------------+
+| mcu1\_0 + mcu2\_0   | j7200   | ocmc ddr xip                          |
++---------------------+---------+---------------------------------------+
+
+How to Build
+------------
+
+-  Go to the build folder, namely, /packages/ti/build/
+
+Single Core Benchmarking
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+#. OCMC Single Core Benchmarking
+#. XIP Single Core Benchmarking
+#. MSMC Single Core Benchmarking
+#. DDR Single Core Benchmarking
+
+   **OCMC Single Core Benchmarking**
+
+      -  Build the bootloader
+
+         .. ifconfig:: CONFIG_family in ('j7200')
+
+            - ``make sbl_lib_cust_clean SOC=j7200 BOARD=j7200_evm CORE=mcu1_0 -sj``
+            - ``make sbl_cust_img SOC=j7200 BOARD=j7200_evm CORE=mcu1_0 -sj``
+
+         .. ifconfig:: CONFIG_family in ('jacinto')
+
+            - ``make sbl_lib_cust_clean SOC=j721e BOARD=j721e_evm CORE=mcu1_0 -sj``
+            - ``make sbl_cust_img SOC=j721e BOARD=j721e_evm CORE=mcu1_0 -sj``
+
+      -  Build the application
+
+         .. ifconfig:: CONFIG_family in ('jacinto')
+
+            - ``make ocmc_memory_benchmarking_app_freertos CORE=[CORE] SOC=j721e BOARD=j721e_evm -sj``
+
+         .. ifconfig:: CONFIG_family in ('j7200')
+
+            - ``make ocmc_memory_benchmarking_app_freertos CORE=[CORE] SOC=j7200 BOARD=j7200_evm -sj``
+      
+      - Note : If ocmc memory benchmarking app is running on mcu2_0 then SBL need to RAT map main OCM RAM to 32 bit address so instead of sbl_cust_img use sbl_cust_rat_main_ocm_img
+
+         .. ifconfig:: CONFIG_family in ('j7200')
+
+            - ``make sbl_lib_cust_clean SOC=j7200 BOARD=j7200_evm CORE=mcu1_0 -sj``
+            - ``make sbl_cust_rat_main_ocm_img SOC=j7200 BOARD=j7200_evm CORE=mcu1_0 -sj``
+   
+   **XIP Single Core Benchmarking**
+
+      -  Build the bootloader
+
+         .. ifconfig:: CONFIG_family in ('j7200')
+
+            - ``make sbl_lib_cust_clean SOC=j7200 BOARD=j7200_evm CORE=mcu1_0 -sj``
+            - ``make sbl_xip_img SOC=j7200 BOARD=j7200_evm CORE=mcu1_0 -sj``
+
+         .. ifconfig:: CONFIG_family in ('jacinto')
+
+            - ``make sbl_lib_cust_clean SOC=j721e BOARD=j721e_evm CORE=mcu1_0 -sj``
+            - ``make sbl_xip_img SOC=j721e BOARD=j721e_evm CORE=mcu1_0 -sj``
+
+      -  Build the application
+
+         .. ifconfig:: CONFIG_family in ('jacinto')
+
+            - ``make xip_memory_benchmarking_app_freertos CORE=[CORE] SOC=j721e BOARD=j721e_evm -sj``
+
+         .. ifconfig:: CONFIG_family in ('j7200')
+
+            - ``make xip_memory_benchmarking_app_freertos CORE=[CORE] SOC=j7200 BOARD=j7200_evm -sj``
+
+      - Note : If xip memory benchmarking app is benchmarking for 133 MHz then OSPI should be configured for 133 MHz in SBL. Use sbl_xip_133_img instead of sbl_xip_img
+
+         .. ifconfig:: CONFIG_family in ('j7200')
+
+            - ``make sbl_lib_cust_clean SOC=j7200 BOARD=j7200_evm CORE=mcu1_0 -sj``
+            - ``make sbl_xip_133_img SOC=j7200 BOARD=j7200_evm CORE=mcu1_0 -sj``
+         .. ifconfig:: CONFIG_family in ('jacinto')
+
+            - ``make sbl_lib_cust_clean SOC=j721e BOARD=j721e_evm CORE=mcu1_0 -sj``
+            - ``make sbl_xip_133_img SOC=j721e BOARD=j721e_evm CORE=mcu1_0 -sj``
+   
+   **MSMC Single Core Benchmarking**
+
+      -  Build the bootloader
+
+         .. ifconfig:: CONFIG_family in ('j7200')
+
+            - ``make sbl_lib_cust_clean SOC=j7200j7200 BOARD=j7200_evm CORE=mcu1_0 -sj``
+            - ``make sbl_cust_img SOC=j7200 BOARD=j7200_evm CORE=mcu1_0 -sj``
+
+         .. ifconfig:: CONFIG_family in ('jacinto')
+
+            - ``make sbl_lib_cust_clean SOC=j721e BOARD=j721e_evm CORE=mcu1_0 -sj``
+            - ``make sbl_cust_img SOC=j721e BOARD=j721e_evm CORE=mcu1_0 -sj``
+
+      -  Build the application
+
+         .. ifconfig:: CONFIG_family in ('jacinto')
+
+            - ``make msmc_memory_benchmarking_app_freertos CORE=[CORE] SOC=j721e BOARD=j721e_evm -sj``
+
+         .. ifconfig:: CONFIG_family in ('j7200')
+
+            - ``make msmc_memory_benchmarking_app_freertos CORE=[CORE] SOC=j7200 BOARD=j7200_evm -sj``
+   
+   **DDR Single Core Benchmarking**
+
+      -  Build the bootloader
+
+         .. ifconfig:: CONFIG_family in ('j7200')
+
+            - ``make sbl_lib_cust_clean SOC=j7200 BOARD=j7200_evm CORE=mcu1_0 -sj``
+            - ``make sbl_cust_img SOC=j7200 BOARD=j7200_evm CORE=mcu1_0 -sj``
+
+         .. ifconfig:: CONFIG_family in ('jacinto')
+
+            - ``make sbl_lib_cust_clean SOC=j721e BOARD=j721e_evm CORE=mcu1_0 -sj``
+            - ``make sbl_cust_img SOC=j721e BOARD=j721e_evm CORE=mcu1_0 -sj``
+
+      -  Build the application
+
+         .. ifconfig:: CONFIG_family in ('jacinto')
+
+            - ``make ddr_memory_benchmarking_app_freertos CORE=[CORE] SOC=j721e BOARD=j721e_evm -sj``
+
+         .. ifconfig:: CONFIG_family in ('j7200')
+
+            - ``make ddr_memory_benchmarking_app_freertos CORE=[CORE] SOC=j7200 BOARD=j7200_evm -sj``
+
+
+Multicore Core Benchmarking
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+#. OCMC Multicore Core Benchmarking
+#. XIP Multicore Core Benchmarking
+#. MSMC Multicore Core Benchmarking
+#. DDR Multicore Core Benchmarking
+
+   **OCMC Multicore Core Benchmarking**
+
+      -  Build the bootloader
+
+         .. ifconfig:: CONFIG_family in ('j7200')
+
+            - ``make sbl_lib_cust_clean SOC=j7200 BOARD=j7200_evm CORE=mcu1_0 -sj``
+            - ``make sbl_cust_img SOC=j7200 BOARD=j7200_evm CORE=mcu1_0 -sj``
+
+         .. ifconfig:: CONFIG_family in ('jacinto')
+
+            - ``make sbl_lib_cust_clean SOC=j721e BOARD=j721e_evm CORE=mcu1_0 -sj``
+            - ``make sbl_cust_img SOC=j721e BOARD=j721e_evm CORE=mcu1_0 -sj``
+      
+      - Build the applications and generate multicore image
+
+         .. ifconfig:: CONFIG_family in ('j7200')
+
+            - ``make sbl_cust_img SOC=j7200 BOARD=j7200_evm RAT=1 -sj``
+            - ``make ocmc_memory_benchmarking_app_freertos CORE=mcu1_0 SOC=j7200 BOARD=j7200_evm MULTICORE=1 -sj``
+            - ``make ocmc_memory_benchmarking_app_freertos CORE=mcu2_0 SOC=j7200 BOARD=j7200_evm MULTICORE=1 -sj``
+            - ``../boot/sbl/tools/multicoreImageGen/bin/MulticoreImageGen LE 55 ocmc_multicore.appimage 8 ../binary/ocmc_memory_benchmarking_app_freertos/bin/j7200_evm/ocmc_memory_benchmarking_app_freertos_mcu1_0_release.rprc  10 ../binary/ocmc_memory_benchmarking_app_freertos/bin/j7200_evm/ocmc_memory_benchmarking_app_freertos_mcu2_0_release.rprc``
+
+
+         .. ifconfig:: CONFIG_family in ('jacinto')
+
+            - ``make sbl_cust_img SOC=j721e BOARD=j721e_evm -sj``
+            - ``make ocmc_memory_benchmarking_app_freertos CORE=mcu1_0 SOC=j721e BOARD=j721e_evm MULTICORE=1 -sj``
+            - ``make ocmc_memory_benchmarking_app_freertos CORE=mcu2_0 SOC=j721e BOARD=j721e_evm MULTICORE=1 -sj``
+            - ``../boot/sbl/tools/multicoreImageGen/bin/MulticoreImageGen LE 55 ocmc_multicore.appimage 8 ../binary/ocmc_memory_benchmarking_app_freertos/bin/j721e_evm/ocmc_memory_benchmarking_app_freertos_mcu1_0_release.rprc  10 ../binary/ocmc_memory_benchmarking_app_freertos/bin/j721e_evm/ocmc_memory_benchmarking_app_freertos_mcu2_0_release.rprc``
+   
+   **XIP Multicore Core Benchmarking**
+
+      -  Build the bootloader
+
+         .. ifconfig:: CONFIG_family in ('j7200')
+
+            - ``make sbl_lib_cust_clean SOC=j7200 BOARD=j7200_evm CORE=mcu1_0 -sj``
+            - ``make sbl_xip_img SOC=j7200 BOARD=j7200_evm CORE=mcu1_0 -sj``
+
+         .. ifconfig:: CONFIG_family in ('jacinto')
+
+            - ``make sbl_lib_cust_clean SOC=j721e BOARD=j721e_evm CORE=mcu1_0 -sj``
+            - ``make sbl_xip_img SOC=j721e BOARD=j721e_evm CORE=mcu1_0 -sj``
+      
+      - Build the applications and generate multicore image
+
+         .. ifconfig:: CONFIG_family in ('j7200')
+
+            - ``make sbl_cust_img SOC=j7200 BOARD=j7200_evm RAT=1 -sj``
+            - ``make xip_memory_benchmarking_app_freertos CORE=mcu1_0 SOC=j7200 BOARD=j7200_evm MULTICORE=1 -sj``
+            - ``make xip_memory_benchmarking_app_freertos CORE=mcu2_0 SOC=j7200 BOARD=j7200_evm MULTICORE=1 -sj``
+            - ``../boot/sbl/tools/multicoreImageGen/bin/MulticoreImageGen LE 55 xip_multicore.appimage 8 ../binary/xip_memory_benchmarking_app_freertos/bin/j7200_evm/xip_memory_benchmarking_app_freertos_mcu1_0_release.rprc  10 ../binary/xip_memory_benchmarking_app_freertos/bin/j7200_evm/xip_memory_benchmarking_app_freertos_mcu2_0_release.rprc``
+            - ``../boot/sbl/tools/multicoreImageGen/bin/MulticoreImageGen LE 55 xip_multicore.appimage_xip 8 ../binary/xip_memory_benchmarking_app_freertos/bin/j7200_evm/xip_memory_benchmarking_app_freertos_mcu1_0_release.rprc_xip 10 ../binary/[MEM_CONF]_memory_benchmarking_app_freertos/bin/j7200_evm/xip_memory_benchmarking_app_freertos_mcu2_0_release.rprc_xip``
+
+
+         .. ifconfig:: CONFIG_family in ('jacinto')
+
+            - ``make sbl_cust_img SOC=j721e BOARD=j721e_evm -sj``
+            - ``make xip_memory_benchmarking_app_freertos CORE=mcu1_0 SOC=j721e BOARD=j721e_evm MULTICORE=1 -sj``
+            - ``make xip_memory_benchmarking_app_freertos CORE=mcu2_0 SOC=j721e BOARD=j721e_evm MULTICORE=1 -sj``
+            - ``../boot/sbl/tools/multicoreImageGen/bin/MulticoreImageGen LE 55 xip_multicore.appimage 8 ../binary/xip_memory_benchmarking_app_freertos/bin/j721e_evm/xip_memory_benchmarking_app_freertos_mcu1_0_release.rprc  10 ../binary/xip_memory_benchmarking_app_freertos/bin/j721e_evm/xip_memory_benchmarking_app_freertos_mcu2_0_release.rprc``
+            - ``../boot/sbl/tools/multicoreImageGen/bin/MulticoreImageGen LE 55 [MEM_CONF]_multicore.appimage 8 ../binary/[MEM_CONF]_memory_benchmarking_app_freertos/bin/j721e_evm/[MEM_CONF]_memory_benchmarking_app_freertos_mcu1_0_release.rprc  10 ../binary/[MEM_CONF]_memory_benchmarking_app_freertos/bin/j721e_evm/[MEM_CONF]_memory_benchmarking_app_freertos_mcu2_0_release.rprc``
+      
+      - Note : If xip memory benchmarking app is benchmarking for 133 MHz then OSPI should be configured for 133 MHz in SBL. Use sbl_xip_133_img instead of sbl_xip_img
+
+         .. ifconfig:: CONFIG_family in ('j7200')
+
+            - ``make sbl_lib_cust_clean SOC=j7200 BOARD=j7200_evm CORE=mcu1_0 -sj``
+            - ``make sbl_xip_133_img SOC=j7200 BOARD=j7200_evm CORE=mcu1_0 -sj``
+         .. ifconfig:: CONFIG_family in ('jacinto')
+
+            - ``make sbl_lib_cust_clean SOC=j721e BOARD=j721e_evm CORE=mcu1_0 -sj``
+            - ``make sbl_xip_133_img SOC=j721e BOARD=j721e_evm CORE=mcu1_0 -sj``
+   
+   **MSMC Multicore Core Benchmarking**
+
+      -  Build the bootloader
+
+         .. ifconfig:: CONFIG_family in ('j7200')
+
+            - ``make sbl_lib_cust_clean SOC=j7200 BOARD=j7200_evm CORE=mcu1_0 -sj``
+            - ``make sbl_cust_img SOC=j7200 BOARD=j7200_evm CORE=mcu1_0 -sj``
+
+         .. ifconfig:: CONFIG_family in ('jacinto')
+
+            - ``make sbl_lib_cust_clean SOC=j721e BOARD=j721e_evm CORE=mcu1_0 -sj``
+            - ``make sbl_cust_img SOC=j721e BOARD=j721e_evm CORE=mcu1_0 -sj``
+      
+      - Build the applications and generate multicore image
+
+         .. ifconfig:: CONFIG_family in ('j7200')
+
+            - ``make sbl_cust_img SOC=j7200 BOARD=j7200_evm RAT=1 -sj``
+            - ``make msmc_memory_benchmarking_app_freertos CORE=mcu1_0 SOC=j7200 BOARD=j7200_evm MULTICORE=1 -sj``
+            - ``make msmc_memory_benchmarking_app_freertos CORE=mcu2_0 SOC=j7200 BOARD=j7200_evm MULTICORE=1 -sj``
+            - ``../boot/sbl/tools/multicoreImageGen/bin/MulticoreImageGen LE 55 msmc_multicore.appimage 8 ../binary/msmc_memory_benchmarking_app_freertos/bin/j7200_evm/msmc_memory_benchmarking_app_freertos_mcu1_0_release.rprc  10 ../binary/msmc_memory_benchmarking_app_freertos/bin/j7200_evm/msmc_memory_benchmarking_app_freertos_mcu2_0_release.rprc``
+
+
+         .. ifconfig:: CONFIG_family in ('jacinto')
+
+            - ``make sbl_cust_img SOC=j721e BOARD=j721e_evm -sj``
+            - ``make msmc_memory_benchmarking_app_freertos CORE=mcu1_0 SOC=j721e BOARD=j721e_evm MULTICORE=1 -sj``
+            - ``make msmc_memory_benchmarking_app_freertos CORE=mcu2_0 SOC=j721e BOARD=j721e_evm MULTICORE=1 -sj``
+            - ``../boot/sbl/tools/multicoreImageGen/bin/MulticoreImageGen LE 55 msmc_multicore.appimage 8 ../binary/msmc_memory_benchmarking_app_freertos/bin/j721e_evm/msmc_memory_benchmarking_app_freertos_mcu1_0_release.rprc  10 ../binary/msmc_memory_benchmarking_app_freertos/bin/j721e_evm/msmc_memory_benchmarking_app_freertos_mcu2_0_release.rprc``
+
+   **DDR Multicore Core Benchmarking**
+
+      -  Build the bootloader
+
+         .. ifconfig:: CONFIG_family in ('j7200')
+
+            - ``make sbl_lib_cust_clean SOC=j7200 BOARD=j7200_evm CORE=mcu1_0 -sj``
+            - ``make sbl_cust_img SOC=j7200 BOARD=j7200_evm CORE=mcu1_0 -sj``
+
+         .. ifconfig:: CONFIG_family in ('jacinto')
+
+            - ``make sbl_lib_cust_clean SOC=j721e BOARD=j721e_evm CORE=mcu1_0 -sj``
+            - ``make sbl_cust_img SOC=j721e BOARD=j721e_evm CORE=mcu1_0 -sj``
+      
+      - Build the applications and generate multicore image
+
+         .. ifconfig:: CONFIG_family in ('j7200')
+
+            - ``make sbl_cust_img SOC=j7200 BOARD=j7200_evm RAT=1 -sj``
+            - ``make ddr_memory_benchmarking_app_freertos CORE=mcu1_0 SOC=j7200 BOARD=j7200_evm MULTICORE=1 -sj``
+            - ``make ddr_memory_benchmarking_app_freertos CORE=mcu2_0 SOC=j7200 BOARD=j7200_evm MULTICORE=1 -sj``
+            - ``../boot/sbl/tools/multicoreImageGen/bin/MulticoreImageGen LE 55 ddr_multicore.appimage 8 ../binary/ddr_memory_benchmarking_app_freertos/bin/j7200_evm/ddr_memory_benchmarking_app_freertos_mcu1_0_release.rprc  10 ../binary/ddr_memory_benchmarking_app_freertos/bin/j7200_evm/ddr_memory_benchmarking_app_freertos_mcu2_0_release.rprc``
+
+
+         .. ifconfig:: CONFIG_family in ('jacinto')
+
+            - ``make sbl_cust_img SOC=j721e BOARD=j721e_evm -sj``
+            - ``make ddr_memory_benchmarking_app_freertos CORE=mcu1_0 SOC=j721e BOARD=j721e_evm MULTICORE=1 -sj``
+            - ``make ddr_memory_benchmarking_app_freertos CORE=mcu2_0 SOC=j721e BOARD=j721e_evm MULTICORE=1 -sj``
+            - ``../boot/sbl/tools/multicoreImageGen/bin/MulticoreImageGen LE 55 ddr_multicore.appimage 8 ../binary/ddr_memory_benchmarking_app_freertos/bin/j721e_evm/ddr_memory_benchmarking_app_freertos_mcu1_0_release.rprc  10 ../binary/ddr_memory_benchmarking_app_freertos/bin/j721e_evm/ddr_memory_benchmarking_app_freertos_mcu2_0_release.rprc``
+
+
+How to Run (Linux Host Machine Assumed)
+---------------------------------------
+
+Via OSPI
+~~~~~~~~
+
+-  Put the EVM in UART boot mode
+-  Download and install the `uniflashOSPI_FREQ_133
+   tool <https://www.ti.com/tool/UNIFLASH>`__
+-  For mcu1\_0: Attach USB cable to UART Terminal 1 *of the MCU UART
+   port* (``sudo minicom -D /dev/ttyUSB1``) to see the output of the
+   application
+-  For mcu2\_0: Attach USB cable to UART Terminal 0 *of the Main UART
+   port* (``sudo minicom -D /dev/ttyUSB0``) to see the output of the
+   application
+-  Power on the EVM in OSPI boot mode after flashing the below images in UART boot mode
+
+#. OCMC Single Core Benchmarking
+#. XIP Single Core Benchmarking
+#. MSMC Single Core Benchmarking
+#. DDR Single Core Benchmarking
+#. OCMC Multicore Core Benchmarking
+#. XIP Multicore Core Benchmarking
+#. MSMC Multicore Core Benchmarking
+#. DDR Multicore Core Benchmarking
+
+   **OCMC Single Core Benchmarking**
+
+      .. ifconfig:: CONFIG_family in ('j7200')
+
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <uniflash_directory>/processors/FlashWriter/j7200_evm/uart_j7200_evm_flash_programmer_release.tiimage -i 0``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/boot/sbl/binary/j7200_evm/cust/bin/sbl_cust_img_mcu1_0_release.tiimage -d 3 -o 0``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/drv/sciclient/soc/V2/tifs.bin -d 3 -o 80000``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/binary/binary/ocmc_memory_benchmarking_app_freertos/bin/j7200_evm/ocmc_memory_benchmarking_app_[CORE]_freertos_release.appimage -d 3 -o 100000``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/board/src/flash/nor/ospi/nor_spi_patterns.bin -d 3 -o 3FC0000``
+
+      .. ifconfig:: CONFIG_family in ('jacinto')
+
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <uniflash_directory>/processors/FlashWriter/j721e_evm/uart_j721e_evm_flash_programmer_release.tiimage -i 0``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/boot/sbl/binary/j721e_evm/cust/bin/sbl_cust_img_mcu1_0_release.tiimage -d 3 -o 0``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/drv/sciclient/soc/V1/tifs.bin -d 3 -o 80000``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/binary/ocmc_memory_benchmarking_app_freertos/bin/j721e_evm/ocmc_memory_benchmarking_app_[CORE]_freertos_release.appimage -d 3 -o 100000``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/board/src/flash/nor/ospi/nor_spi_patterns.bin -d 3 -o 3FE0000``
+      
+      .. ifconfig:: CONFIG_family in ('j7200')
+      
+         - Note : if running on mcu2_0 flash sbl_cust_rat_main_ocm_img instead of sbl_cust_img
+
+            - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/boot/sbl/binary/j721e_evm/cust/bin/sbl_cust_rat_main_ocm_img_mcu1_0_release.tiimage -d 3 -o 0``
+   
+   **XIP Single Core Benchmarking**
+
+      .. ifconfig:: CONFIG_family in ('j7200')
+
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <uniflash_directory>/processors/FlashWriter/j7200_evm/uart_j7200_evm_flash_programmer_release.tiimage -i 0``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/boot/sbl/binary/j7200_evm/xip/bin/sbl_xip_img_mcu1_0_release.tiimage -d 3 -o 0``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/drv/sciclient/soc/V2/tifs.bin -d 3 -o 80000``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/binary/binary/xip_memory_benchmarking_app_freertos/bin/j7200_evm/xip_memory_benchmarking_app_[CORE]_freertos_release.appimage -d 3 -o 100000``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/binary/binary/xip_memory_benchmarking_app_freertos/bin/j7200_evm/xip_memory_benchmarking_app_[CORE]_freertos_release.appimage_xip -d 3``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/board/src/flash/nor/ospi/nor_spi_patterns.bin -d 3 -o 3FC0000``
+
+      .. ifconfig:: CONFIG_family in ('jacinto')
+
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <uniflash_directory>/processors/FlashWriter/j721e_evm/uart_j721e_evm_flash_programmer_release.tiimage -i 0``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/boot/sbl/binary/j721e_evm/cust/bin/sbl_cust_img_mcu1_0_release.tiimage -d 3 -o 0``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/drv/sciclient/soc/V1/tifs.bin -d 3 -o 80000``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/binary/xip_memory_benchmarking_app_freertos/bin/j721e_evm/xip_memory_benchmarking_app_[CORE]_freertos_release.appimage -d 3 -o 100000``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/binary/xip_memory_benchmarking_app_freertos/bin/j721e_evm/xip_memory_benchmarking_app_[CORE]_freertos_release.appimage_xip -d 3``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/board/src/flash/nor/ospi/nor_spi_patterns.bin -d 3 -o 3FE0000``
+      
+      .. ifconfig:: CONFIG_family in ('j7200')
+      
+         - Note : if OSPI clock to be configured at 133 MHz flash sbl_xip_133_img instead of sbl_xip_img  
+
+            - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/boot/sbl/binary/j7200_evm/xip/bin/sbl_xip_133_img_mcu1_0_release.tiimage -d 3 -o 0``
+      
+      .. ifconfig:: CONFIG_family in ('jacinto')
+         
+         - Note : if OSPI clock to be configured at 133 MHz flash sbl_xip_133_img instead of sbl_xip_img  
+
+            - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/boot/sbl/binary/j721e_evm/xip/bin/sbl_xip_133_img_mcu1_0_release.tiimage -d 3 -o 0``
+   
+   **MSMC Single Core Benchmarking**
+
+      .. ifconfig:: CONFIG_family in ('j7200')
+
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <uniflash_directory>/processors/FlashWriter/j7200_evm/uart_j7200_evm_flash_programmer_release.tiimage -i 0``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/boot/sbl/binary/j7200_evm/cust/bin/sbl_cust_img_mcu1_0_release.tiimage -d 3 -o 0``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/drv/sciclient/soc/V2/tifs.bin -d 3 -o 80000``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/binary/binary/msmc_memory_benchmarking_app_freertos/bin/j7200_evm/msmc_memory_benchmarking_app_[CORE]_freertos_release.appimage -d 3 -o 100000``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/board/src/flash/nor/ospi/nor_spi_patterns.bin -d 3 -o 3FC0000``
+
+      .. ifconfig:: CONFIG_family in ('jacinto')
+
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <uniflash_directory>/processors/FlashWriter/j721e_evm/uart_j721e_evm_flash_programmer_release.tiimage -i 0``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/boot/sbl/binary/j721e_evm/cust/bin/sbl_cust_img_mcu1_0_release.tiimage -d 3 -o 0``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/drv/sciclient/soc/V1/tifs.bin -d 3 -o 80000``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/binary/msmc_memory_benchmarking_app_freertos/bin/j721e_evm/msmc_memory_benchmarking_app_[CORE]_freertos_release.appimage -d 3 -o 100000``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/board/src/flash/nor/ospi/nor_spi_patterns.bin -d 3 -o 3FE0000``
+   
+   **DDR Single Core Benchmarking**
+
+      .. ifconfig:: CONFIG_family in ('j7200')
+
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <uniflash_directory>/processors/FlashWriter/j7200_evm/uart_j7200_evm_flash_programmer_release.tiimage -i 0``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/boot/sbl/binary/j7200_evm/cust/bin/sbl_cust_img_mcu1_0_release.tiimage -d 3 -o 0``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/drv/sciclient/soc/V2/tifs.bin -d 3 -o 80000``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/binary/binary/ddr_memory_benchmarking_app_freertos/bin/j7200_evm/ddr_memory_benchmarking_app_[CORE]_freertos_release.appimage -d 3 -o 100000``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/board/src/flash/nor/ospi/nor_spi_patterns.bin -d 3 -o 3FC0000``
+
+      .. ifconfig:: CONFIG_family in ('jacinto')
+
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <uniflash_directory>/processors/FlashWriter/j721e_evm/uart_j721e_evm_flash_programmer_release.tiimage -i 0``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/boot/sbl/binary/j721e_evm/cust/bin/sbl_cust_img_mcu1_0_release.tiimage -d 3 -o 0``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/drv/sciclient/soc/V1/tifs.bin -d 3 -o 80000``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/binary/ddr_memory_benchmarking_app_freertos/bin/j721e_evm/ddr_memory_benchmarking_app_[CORE]_freertos_release.appimage -d 3 -o 100000``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/board/src/flash/nor/ospi/nor_spi_patterns.bin -d 3 -o 3FE0000``
+   
+   **OCMC Multicore Core Benchmarking**
+
+      .. ifconfig:: CONFIG_family in ('jacinto')
+
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <uniflash_directory>/processors/FlashWriter/j721e_evm/uart_j721e_evm_flash_programmer_release.tiimage -i 0``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/boot/sbl/binary/j721e_evm/cust/bin/sbl_cust_img_mcu1_0_release.tiimage -d 3 -o 0``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/drv/sciclient/soc/V2/tifs.bin -d 3 -o 80000``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/build/ocmc_multicore.appimage -d 3 -o 100000``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/board/src/flash/nor/ospi/nor_spi_patterns.bin -d 3 -o 3FE0000``
+
+      .. ifconfig:: CONFIG_family in ('j7200')
+
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <uniflash_directory>/processors/FlashWriter/j7200_evm/uart_j7200_evm_flash_programmer_release.tiimage -i 0``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/boot/sbl/binary/j7200_evm/cust/bin/sbl_cust_rat_main_ocm_img_mcu1_0_release.tiimage -d 3 -o 0``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/drv/sciclient/soc/V2/tifs.bin -d 3 -o 80000``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/build/ocmc_multicore.appimage -d 3 -o 100000``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/board/src/flash/nor/ospi/nor_spi_patterns.bin -d 3 -o 3FC0000``
+   
+   **XIP Multicore Core Benchmarking**
+
+      .. ifconfig:: CONFIG_family in ('jacinto')
+
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <uniflash_directory>/processors/FlashWriter/j721e_evm/uart_j721e_evm_flash_programmer_release.tiimage -i 0``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/boot/sbl/binary/j721e_evm/xip/bin/sbl_xip_img_mcu1_0_release.tiimage -d 3 -o 0``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/drv/sciclient/soc/V2/tifs.bin -d 3 -o 80000``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/build/xip_multicore.appimage -d 3 -o 100000``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/build/xip_multicore.appimage_xip -d 3``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/board/src/flash/nor/ospi/nor_spi_patterns.bin -d 3 -o 3FE0000``
+
+      .. ifconfig:: CONFIG_family in ('j7200')
+
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <uniflash_directory>/processors/FlashWriter/j7200_evm/uart_j7200_evm_flash_programmer_release.tiimage -i 0``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/boot/sbl/binary/j7200_evm/xip/bin/sbl_xip_img_mcu1_0_release.tiimage -d 3 -o 0``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/drv/sciclient/soc/V2/tifs.bin -d 3 -o 80000``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/build/xip_multicore.appimage -d 3 -o 100000``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/build/xip_multicore.appimage_xip -d 3``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/board/src/flash/nor/ospi/nor_spi_patterns.bin -d 3 -o 3FC0000``
+   
+   .. ifconfig:: CONFIG_family in ('j7200')
+      
+      - Note : if OSPI clock to be configured at 133 MHz flash sbl_xip_133_img instead of sbl_xip_img  
+
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/boot/sbl/binary/j7200_evm/xip/bin/sbl_xip_133_img_mcu1_0_release.tiimage -d 3 -o 0``
+   
+   .. ifconfig:: CONFIG_family in ('jacinto')
+      
+      - Note : if OSPI clock to be configured at 133 MHz flash sbl_xip_133_img instead of sbl_xip_img  
+
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/boot/sbl/binary/j721e_evm/xip/bin/sbl_xip_133_img_mcu1_0_release.tiimage -d 3 -o 0``
+   
+   **MSMC Multicore Core Benchmarking**
+
+      .. ifconfig:: CONFIG_family in ('jacinto')
+
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <uniflash_directory>/processors/FlashWriter/j721e_evm/uart_j721e_evm_flash_programmer_release.tiimage -i 0``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/boot/sbl/binary/j721e_evm/cust/bin/sbl_cust_img_mcu1_0_release.tiimage -d 3 -o 0``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/drv/sciclient/soc/V2/tifs.bin -d 3 -o 80000``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/build/msmc_multicore.appimage -d 3 -o 100000``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/board/src/flash/nor/ospi/nor_spi_patterns.bin -d 3 -o 3FE0000``
+
+      .. ifconfig:: CONFIG_family in ('j7200')
+
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <uniflash_directory>/processors/FlashWriter/j7200_evm/uart_j7200_evm_flash_programmer_release.tiimage -i 0``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/boot/sbl/binary/j7200_evm/cust/bin/sbl_cust_img_mcu1_0_release.tiimage -d 3 -o 0``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/drv/sciclient/soc/V2/tifs.bin -d 3 -o 80000``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/build/msmc_multicore.appimage -d 3 -o 100000``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/board/src/flash/nor/ospi/nor_spi_patterns.bin -d 3 -o 3FC0000``
+   
+   **DDR Multicore Core Benchmarking**
+
+      .. ifconfig:: CONFIG_family in ('jacinto')
+
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <uniflash_directory>/processors/FlashWriter/j721e_evm/uart_j721e_evm_flash_programmer_release.tiimage -i 0``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/boot/sbl/binary/j721e_evm/cust/bin/sbl_cust_img_mcu1_0_release.tiimage -d 3 -o 0``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/drv/sciclient/soc/V2/tifs.bin -d 3 -o 80000``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/build/ddr_multicore.appimage -d 3 -o 100000``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/board/src/flash/nor/ospi/nor_spi_patterns.bin -d 3 -o 3FE0000``
+
+      .. ifconfig:: CONFIG_family in ('j7200')
+
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <uniflash_directory>/processors/FlashWriter/j7200_evm/uart_j7200_evm_flash_programmer_release.tiimage -i 0``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/boot/sbl/binary/j7200_evm/cust/bin/sbl_cust_img_mcu1_0_release.tiimage -d 3 -o 0``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/drv/sciclient/soc/V2/tifs.bin -d 3 -o 80000``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/build/ddr_multicore.appimage -d 3 -o 100000``
+         - ``sudo <uniflash_directory>/dslite.sh --mode processors -c /dev/ttyUSB1 -f <pdk_path>/packages/ti/board/src/flash/nor/ospi/nor_spi_patterns.bin -d 3 -o 3FC0000``
+
+..
+   Via CCS
+   ~~~~~~~
+
+   1.  Put the EVM in CCS (No boot) mode
+   2.  Execute launch.js script which runs the GEL files that setup the SoC
+
+   3. Go to “View” on the main toolbar banner and select “Scripting
+      Console”
+   4. This opens the scripting console, inside this console you will invoke
+      the launch.js via loadJSFile() command:
+
+      .. ifconfig:: CONFIG_family in ('j7200')
+
+         - ``js:>  loadJSFile(“<pdk_path>/pdk/packages/ti/drv/sciclient/tools/ccsLoadDmsc/j7200/launch.js”)``
+
+      .. ifconfig:: CONFIG_family in ('jacinto')
+
+         - ``js:>  loadJSFile(“<pdk_path>/pdk/packages/ti/drv/sciclient/tools/ccsLoadDmsc/j721e/launch.js”)``
+
+   -  This command will automatically load appropriate gels and put the SoC
+      in a state ready to run test cases
+
+   Running Single Core Test cases
+   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+   .. ifconfig:: CONFIG_family in ('j7200')
+
+      - If running on Main R5, load rat.gel first and run Configure\_RAT\_5000000() under “scripts” along top menu bar. No action is required for running on MCU R5.
+
+   - To run the benchmark application, browse to “Run” along the main tool bar and select "Load" and "Load Program".
+   - Select the benchmarking application that you would like to run
+
+
+   Enabling R5 MSMC as Cache
+   ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+   1. Follow directions for running on single core applications **via CCS** depending on which core you would like to load test on
+   2. Load rat.gel first and run either Configure\_MSMCcache\_MCUR5 or Configure\_MCMCcache\_MainR5 depending on which core you are testing.
+   3. Run benchmark app as described before - you should see an improvement in performance as compared to running the memory benchmark without configuring MSMC as cache.
+
+Addtional Notes
+---------------
+
+-  Again, XIP **cannot run via CCS** due to the location in memory where the application code sits.
+-  When building the sbl\_cust\_img, if you would like to see more verbose output, you may change the flag in /packages/ti/boot/sbl/sbl\_component.mk CUST\_SBL\_TEST\_FLAGS called "-DSBL\_LOG\_LEVEL" from 1 to 3. **However**, this will cause the cache miss rate to increase substantially and performance times to decrease. So only use this for debugging reasons, but not for actual performance benchmarking.
+-  A "Mem Cpy size" of 0, means that no memcpy occurred and the application test was strictly instructions-based.
+-  When building different memory configurations, it is always a good idea to do a clean build. Some consecutive builds will work, but some also will not, so it is best to be safe by building cleanly.
+-  Problems have been noted with running at 166Mhz and a chip select of delay of 2. Symptoms can be the uart output being junk characters or the test stopping after simply executing a few of the tasks, but not all of them. This is intermittent and unlikely, but a potential when executing. If you are seeing this issue, change the clock speed to 133M or the CSDA value to 3 in the sbl_ospi.c file.
+-  The offset for flashing the nor_spi_patterns.bin is SOC dependednt. Please check SOC specific documentation for the same.
+-  ttyUSB1 is used as the MCU UART terminal and ttyUSB0 is used as Main UART Terminal. This might not always be the case, please check the same after connecting to the UART.

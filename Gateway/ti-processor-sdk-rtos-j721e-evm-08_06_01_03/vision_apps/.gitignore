@@ -1,0 +1,10 @@
+tools/scripts/build-rgx.sh
+kernels/srv/gpu/3dsrv/
+utils/rpmsg_char_helper/src/
+concerto/
+lib/
+out/
+test_out/
+*.egg-info
+*.pyc
+__pycache__

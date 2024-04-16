@@ -1,0 +1,1799 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2.8. Release Notes - 07_01_00 &mdash; Platform Development Kit (PDK) - JACINTO User Guide</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Platform Development Kit (PDK) - JACINTO User Guide" href="../index.html"/>
+        <link rel="up" title="2. Release Notes" href="../family_cfg/jacinto/index_release_notes_jacinto.html"/>
+        <link rel="next" title="2.9. Release Notes - 07_00_00" href="release_notes_07_00_00.html"/>
+        <link rel="prev" title="2.7. Release Notes - 07_03_00" href="release_notes_07_03_00.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index_jacinto.html" class="icon icon-home"> Platform Development Kit (PDK) - JACINTO User Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                08_06_01
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">1. Overview</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../family_cfg/jacinto/index_release_notes_jacinto.html">2. Release Notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="release_notes_08_06_00.html">2.1. Release Notes - 08_06_00</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_08_05_00.html">2.2. Release Notes - 08_05_00</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_08_04_00.html">2.3. Release Notes - 08_04_00</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_08_02_00.html">2.4. Release Notes - 08_02_00</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_08_01_00.html">2.5. Release Notes - 08_01_00</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_08_00_00.html">2.6. Release Notes - 08_00_00</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_07_03_00.html">2.7. Release Notes - 07_03_00</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">2.8. Release Notes - 07_01_00</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">2.8.1. Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#what-s-new">2.8.2. What&#8217;s New</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#upgrade-and-compatibility">2.8.3. Upgrade and Compatibility</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#mcusw">2.8.3.1. MCUSW</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#build-and-packaging">2.8.3.2. Build and Packaging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#memory-map-and-linker-command">2.8.3.3. Memory Map and Linker Command</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ospi-flash-memory-map">2.8.3.4. OSPI Flash Memory Map</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sciclient">2.8.3.5. Sciclient</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mcu-r5f-atcm">2.8.3.6. MCU R5F ATCM</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#execution-of-apps-with-ccs">2.8.3.7. Execution of apps with CCS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sbl">2.8.3.8. SBL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sysbios-configuration">2.8.3.9. SYSBIOS Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#udma">2.8.3.10. UDMA</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#enet">2.8.3.11. ENET</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pmic">2.8.3.12. PMIC</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#device-support">2.8.4. Device Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#validation-information">2.8.5. Validation Information</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tool-chain-information">2.8.6. Tool Chain Information</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fixed-issues">2.8.7. Fixed Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#known-issues">2.8.8. Known Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#limitations">2.8.9. Limitations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_07_00_00.html">2.9. Release Notes - 07_00_00</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_06_02_00.html">2.10. Release Notes - 06_02_00</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_06_01_00.html">2.11. Release Notes - 06_01_00</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">3. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_modules_jacinto.html">4. Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_boot_jacinto.html">5. Bootloader (SBL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_board_jacinto.html">6. Board/EVM Abstraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_howto_jacinto.html">7. How to Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_faq_jacinto.html">8. Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_developer_notes_jacinto.html">9. Developer Notes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index_jacinto.html">Platform Development Kit (PDK) - JACINTO User Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index_jacinto.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../family_cfg/jacinto/index_release_notes_jacinto.html">2. Release Notes</a> &raquo;</li>
+      
+    <li>2.8. Release Notes - 07_01_00</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="release-notes-07-01-00">
+<h1>2.8. Release Notes - 07_01_00<a class="headerlink" href="#release-notes-07-01-00" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>2.8.1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>This release notes provides important information that will assist you in using the PDK software package for the Jacinto family of devices.
+This document provides the product information and known issues that are specific to the PDK software package.</p>
+</div>
+<div class="section" id="what-s-new">
+<h2>2.8.2. What&#8217;s New<a class="headerlink" href="#what-s-new" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="53%" />
+<col width="15%" />
+<col width="17%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ID</th>
+<th class="head">Description</th>
+<th class="head">Module</th>
+<th class="head">Supported Platforms</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>PDK-4928</td>
+<td>Support Firewall control layer for TISCI features</td>
+<td>SCICLIENT</td>
+<td>J721E, J7200, AM65xx</td>
+</tr>
+<tr class="row-odd"><td>PDK-5593</td>
+<td>Support use case of MPU/Linux and MCU/Baremetal</td>
+<td>IPC</td>
+<td>J721E, J7200, AM65xx</td>
+</tr>
+<tr class="row-even"><td>PDK-6734</td>
+<td>Support for wire clock feature in TX CFG in ICSSG</td>
+<td>EMAC</td>
+<td>J721E, J7200, AM65xx</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="53%" />
+<col width="15%" />
+<col width="17%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>PDK-5359</td>
+<td>Support J7200 Platform</td>
+<td>COMMON</td>
+<td>J7200</td>
+</tr>
+<tr class="row-even"><td>PDK-2409</td>
+<td>CSL-FL: Hyperflash Support</td>
+<td>CSL</td>
+<td>J7200</td>
+</tr>
+<tr class="row-odd"><td>PDK-7557</td>
+<td>Support for UDMA SW Trigger Example</td>
+<td>UDMA</td>
+<td>J721E, J7200</td>
+</tr>
+<tr class="row-even"><td>PDK-5071</td>
+<td>Support population of resource table by quering DMSC board config</td>
+<td>UDMA</td>
+<td>J721E</td>
+</tr>
+<tr class="row-odd"><td>PDK-5687</td>
+<td>Support virtual to physical address translation in DMAUtils</td>
+<td>UDMA</td>
+<td>J721E</td>
+</tr>
+<tr class="row-even"><td>PDK-6615</td>
+<td>Support tone mapping LUT programation of outputs 2/3</td>
+<td>VHWA LDC</td>
+<td>J721E</td>
+</tr>
+<tr class="row-odd"><td>PDK-5666</td>
+<td>Support run-time adding/removing of channels</td>
+<td>CSI-RX</td>
+<td>J721E</td>
+</tr>
+<tr class="row-even"><td>PDK-5528</td>
+<td>SBL: xSPI Flash Boot Media Support</td>
+<td>SBL</td>
+<td>J7200</td>
+</tr>
+<tr class="row-odd"><td>PDK-5530</td>
+<td>SBL: boot both RTOS and HLOS images in SD/MMC bootmode</td>
+<td>SBL</td>
+<td>J721E, J7200</td>
+</tr>
+<tr class="row-even"><td>PDK-5531</td>
+<td>SBL: boot SPL/U-boot on Cortex-A cores in SD/MMC bootmode</td>
+<td>SBL</td>
+<td>J721E, J7200</td>
+</tr>
+<tr class="row-odd"><td>PDK-5603</td>
+<td>SBL: boot both RTOS and HLOS images in OSPI/xSPI bootmode</td>
+<td>SBL</td>
+<td>J721E, J7200</td>
+</tr>
+<tr class="row-even"><td>PDK-5627</td>
+<td>SBL: boot SPL/U-boot on Cortex-A cores in OSPI/xSPI bootmode</td>
+<td>SBL</td>
+<td>J721E, J7200</td>
+</tr>
+<tr class="row-odd"><td>PDK-6133</td>
+<td>Safety Example: Watchdog Timer (WDT/RTI)</td>
+<td>Diagnostics</td>
+<td>J721E</td>
+</tr>
+<tr class="row-even"><td>PDK-5911</td>
+<td>Safety Example: Error Correcting Code (ECC)</td>
+<td>Diagnostics</td>
+<td>J721E</td>
+</tr>
+<tr class="row-odd"><td>PDK-5910</td>
+<td>Safety Example: MCU R5F - Error Signaling Module (ESM)</td>
+<td>Diagnostics</td>
+<td>J721E</td>
+</tr>
+<tr class="row-even"><td>PDK-5879</td>
+<td>MSMC3.RAM-T1 - Software test of memory parity</td>
+<td>Diagnostics</td>
+<td>J721E</td>
+</tr>
+<tr class="row-odd"><td>ETHFW-1626</td>
+<td>Enet LLD - support for J721E and J7VCL</td>
+<td>Enet</td>
+<td>J721E, J7200</td>
+</tr>
+<tr class="row-even"><td>PDK-5853</td>
+<td>Support for LP8764x(Hera) PMIC device</td>
+<td>PMIC</td>
+<td>J721E, J7200</td>
+</tr>
+<tr class="row-odd"><td>PDK-5839</td>
+<td>Support for PMIC Watchdog in trigger mode and Q&amp;A mode</td>
+<td>PMIC</td>
+<td>J721E, J7200</td>
+</tr>
+<tr class="row-even"><td>PDK-5849</td>
+<td>Support to execute runtime-BIST and to query Error Recovery Count</td>
+<td>PMIC</td>
+<td>J721E, J7200</td>
+</tr>
+<tr class="row-odd"><td>PDK-5837</td>
+<td>Support for NSLEEP configurations for Low-Power, Ultra low power</td>
+<td>PMIC</td>
+<td>J721E, J7200</td>
+</tr>
+<tr class="row-even"><td>PDK-5844</td>
+<td>Support for Standby with CAN Wake-Up and RTC Wake-Up</td>
+<td>PMIC</td>
+<td>J721E, J7200</td>
+</tr>
+<tr class="row-odd"><td>PDK-5841</td>
+<td>Support to configure/readback of BUCK/LDO regulator voltages</td>
+<td>PMIC</td>
+<td>J721E, J7200</td>
+</tr>
+<tr class="row-even"><td>PDK-5833</td>
+<td>Support to configure/readback of ESM_MCU/ESC_SoC error monitors</td>
+<td>PMIC</td>
+<td>J721E, J7200</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="upgrade-and-compatibility">
+<h2>2.8.3. Upgrade and Compatibility<a class="headerlink" href="#upgrade-and-compatibility" title="Permalink to this headline">¶</a></h2>
+<p>This release introduces the <strong>new</strong> architecture for System firmware where the TI Foundational Security (TIFS) is running
+on the DMSC on J7200 and J721E devices and Power Management &amp; Resource Management (collectively known as Device
+Management (DM)) runs as a library on the MCU1_0 R5F. For AM65xx device, the DM function continues to run on the DMSC.
+Refer individual sections below regarding the impact to each component.</p>
+<div class="section" id="mcusw">
+<h3>2.8.3.1. MCUSW<a class="headerlink" href="#mcusw" title="Permalink to this headline">¶</a></h3>
+<p>Refer MCUSW release notes for details</p>
+</div>
+<div class="section" id="build-and-packaging">
+<h3>2.8.3.2. Build and Packaging<a class="headerlink" href="#build-and-packaging" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul>
+<li><p class="first">The PDK package is now a separate package each platform, i.e. this package contains drivers required for Jacinto
+platform only.</p>
+</li>
+<li><p class="first">Only the files applicable to a particular platform is packaged. This is to done to reduce the overall
+package size, remove unwanted files for users for better file/folder navigation and also to
+ensure that a file which is not applicable for a platform is not included by application un-intentionally</p>
+<blockquote>
+<div><ul class="simple">
+<li>Due to this some of the application interface files may be missing from the package
+compared to last release. Users are advised to remove the inclusion of these files in
+their application for the respective platform builds</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="memory-map-and-linker-command">
+<h3>2.8.3.3. Memory Map and Linker Command<a class="headerlink" href="#memory-map-and-linker-command" title="Permalink to this headline">¶</a></h3>
+<p>System Firmware architecture has been updated for J7200 and J721E devices to run
+Device Management services on the MCU1_0 R5F. For details, see <a class="reference internal" href="#sciclient-upgrade-info"><span>Sciclient
+upgrade and compatibility information</span></a>.</p>
+<p>In order to support this new architecture, additional memory sections are
+reserved in MCU MSRAM for the boot and initialization sequence, and new data
+sections are introduced by the supporting libraries.</p>
+<p><strong>SoC-wide</strong></p>
+<p>A portion of the MCU SRAM is reserved for exchange of data between SBL and the
+Device Manager, summarized in the below table:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="12%" />
+<col width="30%" />
+<col width="42%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Address</th>
+<th class="head">Size</th>
+<th class="head">Purpose</th>
+<th class="head">Persistence</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>0x41C8_0000</td>
+<td>8 KB</td>
+<td>Hold the Board
+configuration passed
+between SPL/SBL and
+SCISERVER_APP</td>
+<td>Can be claimed once MCU1_0 app
+executes Sciclient_init on
+MCU1_0</td>
+</tr>
+<tr class="row-odd"><td>0x41cf_fb00</td>
+<td>1.25 KB</td>
+<td>Common header used in
+ROM combined image
+format as well.</td>
+<td>Can be claimed once MCU1_0 app
+executes Sciclient_init on
+MCU1_0</td>
+</tr>
+</tbody>
+</table>
+<p>For more information on the purpose and implementation of these reserved
+regions, refer to <a class="reference internal" href="../family_cfg/jacinto/index_modules_sciclient_jacinto.html#sciclient-boardcfg-pass"><span>Board configuration passing between SPL/SBL and MCU1_0 applications</span></a>.
+Also, PDK common linker command file could be used as reference
+PDK_INSTALL_DIR/packages/ti/build/j721e/linker_r5.lds</p>
+<p><strong>MCU1_0 Applications</strong></p>
+<p>Linker configuration files for MCU1_0 applications must be updated to comprehend
+placement of additional sections introduced by the Device Manager implementation</p>
+<ul class="simple">
+<li>Passing of the board configuration between SBL and the MCU1_0 application may
+optionally be replaced by referencing a local copy of the board configuration
+data structures within the Sciclient library. Regardless of which method for
+sending board configuration data, the .boardcfg_data section is defined by
+default for the placement of these structures in the application memory map.</li>
+</ul>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">The .boardcfg_data section must be placed in SoC-internal SRAM if the local
+board configuration data structures are used instead of what is passed by
+SBL. Do not place this section in DDR.</p>
+</div>
+<ul class="simple">
+<li>MCU1_0 R5F applications are expected to co-host Device Management services
+which are implemented via the RM/PM HAL library. This library introduces
+additional data sections, which are free to be placed anywhere as required by
+the integrating application:<ul>
+<li>.const.devgroup.MAIN</li>
+<li>.const.devgroup.MCU_WAKEUP</li>
+<li>.const.devgroup.DMSC_INTERNAL</li>
+<li>.bss.devgroup.MAIN</li>
+<li>.bss.devgroup.MCU_WAKEUP</li>
+<li>.bss.devgroup.DMSC_INTERNAL</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="ospi-flash-memory-map">
+<h3>2.8.3.4. OSPI Flash Memory Map<a class="headerlink" href="#ospi-flash-memory-map" title="Permalink to this headline">¶</a></h3>
+<p>The default flash memory layout used by the SBL to load multicore application
+images has been updated in this release.  It now uses the following flash address
+offsets:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="13%" />
+<col width="67%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Image Type</th>
+<th class="head">Flash Offset</th>
+<th class="head">Example Binary Name</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>SBL</td>
+<td>0x0</td>
+<td>OSPI/CUST SBL, E.g.: sbl_ospi_img_mcu1_0_release.tiimage</td>
+</tr>
+<tr class="row-odd"><td>TIFS</td>
+<td>0x80000</td>
+<td>tifs.bin for GP device, or tifs-hs-enc.bin for HS device</td>
+</tr>
+<tr class="row-even"><td>App Image</td>
+<td>0x100000</td>
+<td>Application image, E.g.: udma_memcpy_testapp_mcu2_0_release.appimage</td>
+</tr>
+<tr class="row-odd"><td>Optional: XIP bin</td>
+<td>0x1C0000</td>
+<td>XIP app binary, E.g.: can_profile_xip_app_mcu1_0_release.xer5f.bin</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="sciclient">
+<span id="sciclient-upgrade-info"></span><h3>2.8.3.5. Sciclient<a class="headerlink" href="#sciclient" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul>
+<li><p class="first">Sciclient supports the new split architecture for System Firmware, with TI Foundational Security (TIFS) running on the DMSC and the Device Management (DM) functions running on the MCU R5F</p>
+</li>
+<li><dl class="first docutils">
+<dt>Sciserver</dt>
+<dd><ul class="first last simple">
+<li>Runs on MCU R5F (mcu1_0) core</li>
+<li>Processes the power management (PM) and resource mangement (RM) messages in DM on MCU R5F</li>
+<li>Forwards processor boot control or firewall configuration to TIFS on DMSC</li>
+<li>Forwards TIFS responses back to non-secure hosts for the above forwarded messages</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>RM/PM HAL</dt>
+<dd><ul class="first last simple">
+<li>A library to process RM and PM messages</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Sciclient library</dt>
+<dd><ul class="first last simple">
+<li>Added sciclient_direct library for MCU R5F (mcu1_0) applications</li>
+<li>Applications on other cores remain to use the sciclient library</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p>In cases where multiple-core application is being deployed on j721e or j7200 and mcu 10 is hosting an application.
+<strong>The mcu 10 application shall start Sciserver</strong></p>
+<p>Example : IPC examples supports ipc demo app on multiple cores (including mcu 10), it initializes sciserver on mcu 10 before initializing ipc application.</p>
+<p class="last">Please refer PDK_INSTALL_DIR/packages/ti/drv/ipc/examples/common/src/main_tirtos.c and function ipc_initSciclient () &amp; Ipc_setupSciServer () for more details</p>
+</div>
+</div>
+<div class="section" id="mcu-r5f-atcm">
+<h3>2.8.3.6. MCU R5F ATCM<a class="headerlink" href="#mcu-r5f-atcm" title="Permalink to this headline">¶</a></h3>
+<p>Not Applicable</p>
+</div>
+<div class="section" id="execution-of-apps-with-ccs">
+<h3>2.8.3.7. Execution of apps with CCS<a class="headerlink" href="#execution-of-apps-with-ccs" title="Permalink to this headline">¶</a></h3>
+<p>The steps to run applications with CCS has been updated. Refer <a class="reference internal" href="../family_cfg/jacinto/index_modules_sciclient_jacinto.html#sciclient-loadusing-ccs"><span>Link</span></a> for detailed steps.</p>
+</div>
+<div class="section" id="sbl">
+<h3>2.8.3.8. SBL<a class="headerlink" href="#sbl" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li>The SBL provides support on J721E and J7200 for the new split architecture for System Firmware, with TI Foundational
+Security (TIFS) running on the DMSC and the Device Management (DM) functions running on the MCU R5F. Sciclient API
+requests for security related operations will continue to be sent to the DMSC, while other Sciclient API requests for
+the non-secure Resource Managment (RM) and Power Management (PM) operations will be handled directly on the MCU R5F.</li>
+<li>The OSPI PHY on the SoC requires a PHY tuning procedure to be performed to ensure good stability and performance
+is achieved for the high-speed transfers performed when the PHY is enabled. The BOARD library linked in with
+the SBL handles this procedure as part of the SBL boot sequence. However, a PHY tuning data binary must be flashed
+to the start address of the last flash sector of the OSPI/xSPI device on the board.  This data is used by
+the OSPI driver during the boot sequence for tuning the PHY.</li>
+<li>HLOS + RTOS boot is now supported by the SBL, with new SBL build targets for support of HLOS (or U-boot) boot
+on the Cortex-A cores in the MAIN domain.  MMC/SD boot and OSPI/xSPI flash boot options are supported.</li>
+<li>Tooling is provided to created a &#8220;combined&#8221; .appimage file with the desired HLOS &amp; RTOS images that the SBL can
+load, parse, and subsequently load &amp; start on each of the remote cores that have been targeted to boot.</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="sysbios-configuration">
+<h3>2.8.3.9. SYSBIOS Configuration<a class="headerlink" href="#sysbios-configuration" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul>
+<li><dl class="first docutils">
+<dt>Main Domain R5F Timer</dt>
+<dd><ul class="first last simple">
+<li>Updated to use DM Timers instance 6 &amp; 7 of main domain for Main Domain R5F. By default SYSBIOS uses instance 12 &amp; 13</li>
+<li>DM Timers instances 9 to 20 are not powered on by default, requires to be explicitly powered on</li>
+<li>Without this configuration, sysbios application would not be functional</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>The sysbios reserved interrupt number &#8220;0&#8221;</dt>
+<dd><ul class="first last simple">
+<li>MCAN instance 0 in MCU and interrupt line 0 cannot used with default sysbios configuration</li>
+<li>Recommend to re-configure sysbios to use a different interrupt number</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="udma">
+<h3>2.8.3.10. UDMA<a class="headerlink" href="#udma" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul>
+<li><dl class="first docutils">
+<dt>Update in Udma_RmInitPrms-&gt;startIrIntr and Udma_RmInitPrms-&gt;numIrIntr</dt>
+<dd><ul class="first last simple">
+<li>Earlier this parameters referred to the <strong>core interrupt</strong> range.</li>
+<li>Its updated to refer to <strong>IR Interrupt range</strong> for alligning with Sciclient BoardCfg RM.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Udma_eventUnregister for UDMA_EVENT_TYPE_RING / UDMA_EVENT_TYPE_DMA_COMPLETION will return failure when Ring Occupancy is non-zero.</dt>
+<dd><ul class="first last simple">
+<li>This is to make sure that there is no resource leak, because unregistering these events will reset the ring.</li>
+<li>All the unprocessed descriptors in the ring / processed descriptors returned to the ring, should be dequeued using Udma_ringFlushRaw / Udma_ringDequeueRaw before unregistering these events.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="enet">
+<h3>2.8.3.11. ENET<a class="headerlink" href="#enet" title="Permalink to this headline">¶</a></h3>
+<p>Low-level driver support for CPSW Ethernet peripherals has been migrated from CPSW LLD to Enet LLD.
+Enet LLD provides a unified interface for Ethernet peripherals available in TI processors, though
+this release currently supports only peripherals of the CPSW family, such as CPSW_2G, CPSW_5G and
+CPSW_9G.</p>
+<p>Enet LLD supports the following devices and processing cores:</p>
+<blockquote>
+<div><ul>
+<li><dl class="first docutils">
+<dt>J721E device</dt>
+<dd><ul class="first last simple">
+<li>CPSW_2G on MCU R5F (mcu1_0), Main R5F Core 1 (mcu2_1) and A72 core (mpu1_0).</li>
+<li>CPSW_9G on Main R5F Core 0 (mcu2_0).</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>J7200 device</dt>
+<dd><ul class="first last simple">
+<li>CPSW_2G on MCU R5F (mcu1_0), Main R5F Core 1 (mcu2_1) and A72 core (mpu1_0).</li>
+<li>CPSW_5G on Main R5F Core 0 (mcu2_0).</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<p>There are similarities between Enet LLD and CPSW LLD top-level APIs as both provide IOCTL-based APIs
+for control and configuration path, and direct call APIs for data path.</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="31%" />
+<col width="29%" />
+<col width="40%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>CPSW LLD</strong></td>
+<td><strong>ENET LLD</strong></td>
+<td><strong>Comments</strong></td>
+</tr>
+<tr class="row-even"><td>Cpsw_initParams()</td>
+<td>Enet_initCfg()</td>
+<td>Requires peripheral type and instance id</td>
+</tr>
+<tr class="row-odd"><td>Cpsw_init()</td>
+<td>Enet_init()</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>Cpsw_deinit()</td>
+<td>Enet_deinit()</td>
+<td>Requires peripheral inst id</td>
+</tr>
+<tr class="row-odd"><td>Cpsw_open()</td>
+<td>Enet_open()</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>Cpsw_close()</td>
+<td>Enet_close()</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>Cpsw_ioctl()</td>
+<td>Enet_ioctl()</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>Cpsw_periodicTick()</td>
+<td>Enet_periodicTick()</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>CpswDma_initRxFlowParams()</td>
+<td>EnetDma_initRxChParams()</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>CpswDma_pktInfoInit()</td>
+<td>EnetDma_initPktInfo()</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>CpswDma_openRxFlow()</td>
+<td>EnetDma_openRxCh()</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>CpswDma_closeRxFlow()</td>
+<td>EnetDma_closeRxCh()</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>CpswDma_initTxChParams()</td>
+<td>EnetDma_initTxChParams()</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>CpswDma_openTxCh()</td>
+<td>EnetDma_openTxCh()</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>CpswDma_closeTxCh()</td>
+<td>EnetDma_closeTxCh()</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>CpswDma_retrieveRxPackets()</td>
+<td>EnetDma_retrieveRxPktQ()
+EnetDma_retrieveRxPkt()</td>
+<td>Added new API for single packet
+reception</td>
+</tr>
+<tr class="row-odd"><td>CpswDma_submitRxPackets()</td>
+<td>EnetDma_submitRxPktQ()
+EnetDma_submitRxPkt()</td>
+<td>Added new API for single packet
+reception</td>
+</tr>
+<tr class="row-even"><td>CpswDma_retrieveTxDonePackets()</td>
+<td>EnetDma_retrieveTxPktQ()
+EnetDma_retrieveTxPkt()</td>
+<td>Added new API for single packet
+transmission</td>
+</tr>
+<tr class="row-odd"><td>CpswDma_submitTxReadyPackets()</td>
+<td>EnetDma_submitTxPktQ()
+EnetDma_submitTxPkt()</td>
+<td>Added new API for single packet
+transmission</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p>The following API changes with respect to CPSW LLD are worth noting:</p>
+<blockquote>
+<div><ul class="simple">
+<li>CPSW peripheral id was defined as a variable of type Cpsw_Type in CPSW LLD, as only Ethernet devices
+of the CPSW family were supported.  Enet LLD defines the peripheral id as a combination of the
+peripheral type (Enet_Type) and the instance number.</li>
+<li>MAC ports ids in CPSW LLD were 0-based (CPSW_MAC_PORT_0, CPSW_MAC_PORT_1 and so on), but Enet LLD has 1-based
+ids (ENET_MAC_PORT_1, ENET_MAC_PORT_2 and so on).</li>
+<li>Enet LLD uses <em>DMA RX channel</em> as a generic term for the RX data direction.  This refers to a UDMA RX flow
+in Jacinto 7 devices, but can refer to an actual DMA channel in other devices (i.e. CPDMA RX channel in TPR12).</li>
+<li>Enet LLD provides DMA APIs to transfer a single packet, in addition to the packet queue APIs which were also
+supported in CPSW LLD.  Single packet APIs should be used to reduce the overhead incurred if sending a single
+packet via packet queue APIs.</li>
+<li>Enet DMA submit queue APIs (EnetDma_submitRxPktQ() and EnetDma_submitTxPktQ()) no longer require a queue for
+unused packets unlike the corresponding CPSW LLD APIs. In Enet LLD, the unused packets are passed back to the
+submit queue.</li>
+</ul>
+</div></blockquote>
+<p>Enet LLD IOCTLs are grouped into generic and peripheral specific.  Generic IOCTLs are common for different types of
+peripherals, and peripheral specific IOCTLs are applicable only to certain peripheral or family of peripherals.
+Please refer to the Enet LLD driver API Guide for further details on new APIs and IOCTLs.</p>
+<p>A CPSW to Enet LLD migration document [<a href="../../../../packages/ti/drv/enet/docs/migration/CPSW_to_ENET_API_Migration_7.1.pdf" target="_blank">LINK</a>] and helper script is provided along with this
+release to facilitate the translation of CPSW LLD to Enet LLD APIs.  The helper script can be found at
+<strong>PDK_INSTALL_DIR/packages/ti/drv/enet/docs/migration/cpswtoenet.txt</strong>.</p>
+</div>
+<div class="section" id="pmic">
+<h3>2.8.3.12. PMIC<a class="headerlink" href="#pmic" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first">Initialize pmic core handle for PMIC LLD API has a parameter &#8220;pPmicConfigData&#8221; which is modified as &#8220;const Pmic_CoreCfg_t *pPmicConfigData&#8221; instead of
+&#8220;Pmic_CoreCfg_t *pPmicConfigData&#8221; struct type.</p>
+</li>
+<li><p class="first">Modified pPmic_SubSysInfo structure member of Pmic_CoreHandle_s structure as const Pmic_DevSubSysInfo_t *pPmic_SubSysInfo instead of Pmic_DevSubSysInfo_t *pPmic_SubSysInfo.</p>
+</li>
+<li><dl class="first docutils">
+<dt>Set Recovery Counter Configuration API</dt>
+<dd><ul class="first last simple">
+<li>Has a parameter &#8220;pRecovCnt&#8221; which is modified as &#8220;Pmic_RecovCntCfg_t  recovCntCfg&#8221; instead of &#8220;Pmic_RecovCntCfg_t *pRecovCnt&#8221;</li>
+<li>Modified Pmic_RecovCntCfg_s sturture members as validParams and clrCnt instead of cfgType and clrVal respectively.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Get Recovery Counter Configuration API</dt>
+<dd><ul class="first last simple">
+<li>Has a parameter &#8220;pRecovCntCfgVal&#8221; which is modified as &#8220;Pmic_RecovCntCfg_t *pRecovCntCfg&#8221; instead of &#8220;uint8_t  *pRecovCntCfgVal&#8221;</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Renamed the PMIC device specific sub folder name as tps6594x instead of tps65941 which is defined in the path &#8220;include/cfg&#8221; and also renamed the PMIC device specific file name as pmic_gpio_tps6594x.h instead of pmic_gpio_tps65941.h which is defined in the path &#8220;include/cfg/tps65941&#8221;</dt>
+<dd><ul class="first last simple">
+<li>This results in include path change in PMIC GPIO Interface file as &lt;cfg/tps6594x  pmic_gpio_tps6594x.h&gt; instead of <em>&lt;cfg/tps65941/pmic_gpio_tps65941.h&gt;</em>.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">Added new member configuration type <strong>PMIC_NPWRON_CFG_POLARITY_VALID</strong> and <strong>PMIC_ENABLE_CFG_POLARITY_VALID</strong> for the validParams member of Pmic_GpioCfg_s
+structure. Also added shift values for the  new member configuration type <strong>PMIC_NPWRON_CFG_POLARITY_VALID_SHIFT</strong> and
+<strong>PMIC_ENABLE_CFG_POLARITY_VALID_SHIFT</strong></p>
+</li>
+<li><p class="first">Removed Macro &#8220;<strong>PMIC_GPIO_PINFUNC_MAX</strong>&#8221; from PMIC GPIO Interface file</p>
+</li>
+<li><p class="first">Modified Macros names of PMIC device type as &#8220;<strong>PMIC_DEV_LEO_TPS6594X</strong>&#8221; or &#8220;<strong>PMIC_DEV_HERA_LP8764X</strong>&#8221; instead of &#8220;<strong>PMIC_DEV_LEO_TPS6594</strong>&#8221; or
+&#8220;<strong>PMIC_DEV_HERA_LP8764</strong>&#8221; respectively</p>
+</li>
+<li><dl class="first docutils">
+<dt>Pmic_GpioCfg_s structure</dt>
+<dd><ul class="first last simple">
+<li>Modified Valid values of pinFunc member of the Pmic_GpioCfg_s structure as &#8220;Pmic_Tps6594xLeo_GpioPinFunc&#8221; (for TPS6594x Leo Device) or
+&#8220;Pmic_Lp8764xHera_GpioPinFunc&#8221; (for LP8764x Hera Device) instead of Pmic_GpioPinFunc</li>
+<li>Modified Valid values of pullCtrl member of the Pmic_GpioCfg_s structure as &#8220;Pmic_GpioPinPullCtrl&#8221; instead of Pmic_Gpio_PU_PD_Sel</li>
+<li>pinPolarity member of the Pmic_GpioCfg_s structure is valid for Enable Pin when PMIC_ENABLE_CFG_POLARITY_VALID bit is set</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>For all GPIO APIs</dt>
+<dd><ul class="first last simple">
+<li>Has a parameter &#8220;pin&#8221; which is modified as &#8220;const uint8_t pin&#8221; instead of &#8220;uint8_t pin&#8221;.</li>
+<li>Has a parameter &#8220;pin&#8221; whose valid values as Pmic_Tps6594xLeo_GpioPin(for TPS6594x Leo Device)/ Pmic_Lp8764xHera_GpioPin(for LP8764x Hera Device) instead
+of Pmic_GpioPin</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>PMIC GPIO set configuration API</dt>
+<dd><ul class="first last simple">
+<li>Has a parameter &#8220;pGpioCfg&#8221; which is modified as &#8220;const Pmic_GpioCfg_t gpioCfg&#8221; instead of &#8220;Pmic_GpioCfg_t *pGpioCfg&#8221; struct type</li>
+<li>Has a parameter &#8220;pinValue&#8221; which is modified as &#8220;const uint8_t pinValue&#8221; instead of &#8220;uint8_t pinValue&#8221;.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>PMIC GPIO interrupt configuration API</dt>
+<dd><ul class="first last simple">
+<li>Has a parameter &#8220;maskPol&#8221; which is modified as &#8220;const uint8_t maskPol&#8221; instead of &#8220;uint8_t maskPol&#8221;.</li>
+<li>Has a parameter &#8220;intrType&#8221; which is modified as &#8220;const uint8_t intrType&#8221; instead of &#8220;uint8_t intrType&#8221;.</li>
+<li>Added a new value for the &#8220;intrType&#8221; parameter as &#8220;PMIC_GPIO_FALL_RISE_INTERRUPT&#8221; and PMIC_GPIO_DISABLE_INTERRUPT macro value is changed as &#8220;2&#8221; instead of &#8220;3&#8221;</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">Added new API to configure NPwron/Enable Pin - <strong>Pmic_gpioSetNPwronEnablePinConfiguration</strong> instead of Pmic_gpioSetConfiguration</p>
+</li>
+<li><p class="first">Added new API to readback NPwron/Enable Pin  - Pmic_gpioGetNPwronEnablePinConfiguration instead of Pmic_gpioGetConfiguration</p>
+</li>
+<li><dl class="first docutils">
+<dt>Pmic_RtcDate_s Structure</dt>
+<dd><ul class="first last simple">
+<li>Renamed &#8220;week&#8221; member as &#8220;weekday&#8221; of the Pmic_RtcDate_s structure</li>
+<li>Modified validParams member configuration type as <strong>PMIC_RTC_DATE_CFG_WEEKDAY_VALID</strong> instead of <strong>PMIC_RTC_DATE_CFG_WEEK_VALID</strong> of Pmic_RtcDate_s structure.
+Also modified shift values for the  validParams member configuration type as <strong>PMIC_RTC_DATE_CFG_WEEKDAY_VALID_SHIFT</strong> instead of <strong>PMIC_RTC_DATE_CFG_WEEK_VALID_SHIFT</strong></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Removed the below defined Macros from PMIC RTC Interface file</dt>
+<dd><p class="first last">PMIC_RTC_AUTO_COMP_ON, PMIC_RTC_MINUTE_SEC_MAX, PMIC_RTC_12HFMT_HR_MIN, PMIC_RTC_12HFMT_HR_MAX, PMIC_RTC_24HFMT_HR_MAX, PMIC_RTC_DAY_MIN, PMIC_RTC_YEAR_MIN, PMIC_RTC_YEAR_MAX, PMIC_RTC_NLPY_FEB_MNTH_DAY_MAX, PMIC_RTC_LPY_FEB_MNTH_DAY_MAX, PMIC_RTC_MNTH_DAY_MAX_30, PMIC_RTC_MNTH_DAY_MAX_31, PMIC_RTC_CONVERT_4BIT_MSB_TO_DEC, PMIC_RTC_EXTRACT_YEAR_DECIMAL_0_99, PMIC_RTC_OPS_FOR_RTC, PMIC_RTC_OPS_FOR_ALARM</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>PMIC RTC Set the alarm interrupt configurations API</dt>
+<dd><ul class="first last simple">
+<li>Renamed the API <strong>Pmic_rtcSetAlarmIntr</strong> as <strong>Pmic_rtcSetAlarmInfo</strong></li>
+<li>Has a parameter pTimeCfg which is modified as &#8220;const Pmic_RtcTime_t timeCfg&#8221; instead of &#8220;Pmic_RtcTime_t *pTimeCfg&#8221;.</li>
+<li>Has a parameter pDateCfg which is modified as &#8220;const Pmic_RtcDate_t dateCfg&#8221; instead of &#8220;Pmic_RtcDate_t *pDateCfg&#8221;</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>PMIC RTC Get the alarm interrupt configurations API</dt>
+<dd><ul class="first last simple">
+<li>Renamed the API <strong>Pmic_rtcGetAlarmIntr</strong> as <strong>Pmic_rtcGetAlarmInfo</strong></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>PMIC RTC Set the timer interrupt configurations API</dt>
+<dd><ul class="first last simple">
+<li>Renamed the API <strong>Pmic_rtcSetTimerIntr</strong> as <strong>Pmic_rtcSetTimerPeriod</strong></li>
+<li>Has a parameter timerPeriod which is modified as &#8220;const uint8_t timerPeriod&#8221; instead of &#8220;uint8_t *timerPeriod&#8221;</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>PMIC RTC Get the timer interrupt configurations API</dt>
+<dd><ul class="first last simple">
+<li>Renamed the API <strong>Pmic_rtcGetTimerIntr</strong> to <strong>Pmic_rtcGetTimerPeriod</strong></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>PMIC RTC Set date and time function API</dt>
+<dd><ul class="first last simple">
+<li>Has a parameter pTimeCfg which is modified as &#8220;const Pmic_RtcTime_t timeCfg&#8221; instead of &#8220;Pmic_RtcTime_t *pTimeCfg&#8221;.</li>
+<li>Has a parameter pDateCfg which is modified as &#8220;const Pmic_RtcDate_t dateCfg&#8221; instead of &#8220;Pmic_RtcDate_t *pDateCfg&#8221;.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>PMIC RTC Set frequency compensation API</dt>
+<dd><ul class="first last simple">
+<li>Has a parameter compensation which is modified as &#8220;const uint16_t compensation&#8221; instead of &#8220;uint16_t *compensation&#8221;.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>PMIC RTC Enable/Disable API</dt>
+<dd><ul class="first last simple">
+<li>Modified enableRtc parameter datatype as bool instead of 8 bit unsigned integer.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Removed these files included in PMIC IRQ Interface file</dt>
+<dd><ul class="first last simple">
+<li>pmic_core_priv.h, pmic_irq_tps65941_priv.h, pmic_irq_priv.h</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Removed IRQ relates macros as defined below</dt>
+<dd><ul class="first last simple">
+<li>Pmic_IrqID such as PMIC_IRQID, PMIC_IRQID_L1REG, PMIC_IRQID_L2REG, PMIC_IRQID_BITMASK</li>
+<li>Pmic_InterruptId such as PMIC_INT_ID_BUCK1_OV, PMIC_INT_ID_BUCK1_UV etc.,</li>
+<li>Pmic_IrqInterruptMask such as PMIC_IRQ_MASK_BUCK1_2_MASK, PMIC_IRQ_BUCK2_ILIM_MASK etc.,</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>PMIC IRQ Read Error Status API</dt>
+<dd><ul class="first last simple">
+<li>Has a parameter pErrStat which is modified as &#8220;Pmic_IrqStatus_t *pErrStat&#8221; instead of &#8220;uint16_t *pErrStat&#8221;.</li>
+<li>Added Pmic_IrqStatus_s structure which stores all available interrupts using bit fields.</li>
+<li>Has a parameter clearIRQ which is modified as &#8220;const bool clearIRQ&#8221; instead of &#8220;bool clearIRQ&#8221;.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>PMIC IRQ clear Error Status API</dt>
+<dd><ul class="first last simple">
+<li>Has a parameter errStat which is modified as &#8220;const uint8_t irqNum&#8221; instead of &#8220;const uint32_t errStat&#8221;
+irqNum valid values as Pmic_tps6594x_IrqNum (for TPS6594x Leo Device)/Pmic_lp8764x_IrqNum(for LP8764x Hera Device)/Pmic_IrqNum(for all interrupts except gpio)</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>PMIC IRQ MASK/UNMASK API</dt>
+<dd><ul class="first last simple">
+<li>Has a parameter interruptMask which is modified as &#8220;const uint8_t irqNum&#8221; instead of &#8220;uint16_t interruptMask&#8221;.
+irqNum valid values as Pmic_tps6594x_IrqNum (for TPS6594x Leo Device)/Pmic_lp8764x_IrqNum(for LP8764x Hera Device)/Pmic_IrqNum(for all interrupts except gpio)</li>
+<li>Has a parameter mask which is modified as &#8220;const bool mask&#8221; instead of &#8220;bool mask&#8221;.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">Added new API to mask/unmask GPIO interrupts - <strong>Pmic_irqGpioMaskIntr</strong> instead of Pmic_irqMaskIntr</p>
+</li>
+<li><p class="first">Added New Macros values related to appropriate error codes of PMIC APIs</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="20%" />
+<col width="47%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>Macro</strong></td>
+<td><strong>Value</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr class="row-even"><td>PMIC_ST_ERR_INV_WDG_ANSWER</td>
+<td>(-((int32_t)23))</td>
+<td>Error Code for Invalid Watchdog Answer</td>
+</tr>
+<tr class="row-odd"><td>PMIC_ST_ERR_WDG_EARLY_ANSWER</td>
+<td>(-((int32_t)24))</td>
+<td>Error Code for Watchdog early Answer</td>
+</tr>
+<tr class="row-even"><td>PMIC_ST_ERR_FAIL</td>
+<td>(-((int32_t)32))</td>
+<td>Error Code for any other failures</td>
+</tr>
+<tr class="row-odd"><td>PMIC_ST_ERR_ESM_STARTED</td>
+<td>(-((int32_t)33))</td>
+<td>Error Code for ESM in Start State</td>
+</tr>
+<tr class="row-even"><td>PMIC_ST_ERR_INV_ESM_VAL</td>
+<td>(-((int32_t)34))</td>
+<td>Error Code for Invalid ESM delay1,
+delay2, HMAX, HMIN, LMAX and LMIN values</td>
+</tr>
+<tr class="row-odd"><td>PMIC_ST_WARN_INV_DEVICE_ID</td>
+<td>(-((int32_t)35))</td>
+<td>Warning Code for Device ID mismatch</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+<li><p class="first">Modified Macros values related to appropriate error code of PMIC APIs.</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="49%" />
+<col width="26%" />
+<col width="26%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>Old Macro</strong></td>
+<td><strong>Old Value</strong></td>
+<td><strong>New Value</strong></td>
+</tr>
+<tr class="row-even"><td>PMIC_ST_ERR_INV_VOLTAGE</td>
+<td>(-((int32_t)2))</td>
+<td>(-((int32_t)14))</td>
+</tr>
+<tr class="row-odd"><td>PMIC_ST_ERR_INV_REGULATOR</td>
+<td>(-((int32_t)3))</td>
+<td>(-((int32_t)15))</td>
+</tr>
+<tr class="row-even"><td>PMIC_ST_ERR_I2C_COMM_FAIL</td>
+<td>(-((int32_t)4))</td>
+<td>(-((int32_t)8))</td>
+</tr>
+<tr class="row-odd"><td>PMIC_ST_ERR_SPI_COMM_FAIL</td>
+<td>(-((int32_t)5))</td>
+<td>(-((int32_t)9))</td>
+</tr>
+<tr class="row-even"><td>PMIC_ST_ERR_COMM_INTF_INIT_FAIL</td>
+<td>(-((int32_t)6))</td>
+<td>(-((int32_t)12))</td>
+</tr>
+<tr class="row-odd"><td>PMIC_ST_ERR_INV_GPIO</td>
+<td>(-((int32_t)7))</td>
+<td>(-((int32_t)18))</td>
+</tr>
+<tr class="row-even"><td>PMIC_ST_ERR_INV_GPIO_FUNC</td>
+<td>(-((int32_t)8))</td>
+<td>(-((int32_t)19))</td>
+</tr>
+<tr class="row-odd"><td>PMIC_ST_ERR_INV_GPIO_LINE_PARAMS</td>
+<td>(-((int32_t)9))</td>
+<td>(-((int32_t)20))</td>
+</tr>
+<tr class="row-even"><td>PMIC_ST_ERR_NULL_PARAM</td>
+<td>(-((int32_t)10))</td>
+<td>(-((int32_t)2))</td>
+</tr>
+<tr class="row-odd"><td>PMIC_ST_ERR_INV_PARAM</td>
+<td>(-((int32_t)11))</td>
+<td>(-((int32_t)3))</td>
+</tr>
+<tr class="row-even"><td>PMIC_ST_ERR_INV_ESM_TARGET</td>
+<td>(-((int32_t)12))</td>
+<td>(-((int32_t)25))</td>
+</tr>
+<tr class="row-odd"><td>PMIC_ST_ERR_INV_ESM_MODE</td>
+<td>(-((int32_t)13))</td>
+<td>(-((int32_t)26))</td>
+</tr>
+<tr class="row-even"><td>PMIC_ST_ERR_INTF_SETUP_FAILED</td>
+<td>(-((int32_t)14))</td>
+<td>(-((int32_t)11))</td>
+</tr>
+<tr class="row-odd"><td>PMIC_ST_ERR_INV_DEVICE</td>
+<td>(-((int32_t)15))</td>
+<td>(-((int32_t)4))</td>
+</tr>
+<tr class="row-even"><td>PMIC_ST_ERR_PIN_NOT_GPIO</td>
+<td>(-((int32_t)16))</td>
+<td>(-((int32_t)21))</td>
+</tr>
+<tr class="row-odd"><td>PMIC_ST_ERR_INV_WDG_MODE</td>
+<td>(-((int32_t)17))</td>
+<td><strong>Removed</strong></td>
+</tr>
+<tr class="row-even"><td>PMIC_ST_ERR_INV_WDG_WINDOW</td>
+<td>(-((int32_t)18))</td>
+<td>(-((int32_t)22))</td>
+</tr>
+<tr class="row-odd"><td>PMIC_ST_ERR_INV_TEMP_THRESHOLD</td>
+<td>(-((int32_t)19))</td>
+<td>(-((int32_t)17))</td>
+</tr>
+<tr class="row-even"><td>PMIC_ST_ERR_INV_PGOOD_LEVEL</td>
+<td>(-((int32_t)20))</td>
+<td>(-((int32_t)16))</td>
+</tr>
+<tr class="row-odd"><td>PMIC_ST_ERR_INV_INT</td>
+<td>(-((int32_t)21))</td>
+<td>(-((int32_t)27))</td>
+</tr>
+<tr class="row-even"><td>PMIC_ST_ERR_CLEAR_INT_FAILED</td>
+<td>(-((int32_t)22))</td>
+<td>(-((int32_t)28))</td>
+</tr>
+<tr class="row-odd"><td>PMIC_ST_ERR_UNINIT</td>
+<td>(-((int32_t)23))</td>
+<td>(-((int32_t)13))</td>
+</tr>
+<tr class="row-even"><td>PMIC_ST_ERR_DATA_IO_CRC</td>
+<td>(-((int32_t)24))</td>
+<td>(-((int32_t)10))</td>
+</tr>
+<tr class="row-odd"><td>PMIC_ST_ERR_NULL_FPTR</td>
+<td>(-((int32_t)25))</td>
+<td>(-((int32_t)5))</td>
+</tr>
+<tr class="row-even"><td>PMIC_ST_ERR_INV_TIME</td>
+<td>(-((int32_t)26))</td>
+<td>(-((int32_t)29))</td>
+</tr>
+<tr class="row-odd"><td>PMIC_ST_ERR_INV_DATE</td>
+<td>(-((int32_t)27))</td>
+<td>(-((int32_t)30))</td>
+</tr>
+<tr class="row-even"><td>PMIC_ST_ERR_RTC_STOP_FAIL</td>
+<td>(-((int32_t)28))</td>
+<td>(-((int32_t)31))</td>
+</tr>
+<tr class="row-odd"><td>PMIC_ST_ERR_INV_ANSWER_COUNT</td>
+<td>(-((int32_t)29))</td>
+<td><strong>Removed</strong></td>
+</tr>
+<tr class="row-even"><td>PMIC_ST_ERR_INV_SUBSYSTEM</td>
+<td>(-((int32_t)30))</td>
+<td>(-((int32_t)6))</td>
+</tr>
+<tr class="row-odd"><td>PMIC_ST_ERR_INSUFFICIENT_CFG</td>
+<td>(-((int32_t)31))</td>
+<td>(-((int32_t)7))</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="device-support">
+<h2>2.8.4. Device Support<a class="headerlink" href="#device-support" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>J721E EVM, J721E-HS EVM (BOARD=j721e_evm)</li>
+</ul>
+</div>
+<div class="section" id="validation-information">
+<h2>2.8.5. Validation Information<a class="headerlink" href="#validation-information" title="Permalink to this headline">¶</a></h2>
+<p>This release is validated on J7200 EVM for the applicable components.
+For details on the validated examples refer to the platform specific test report present in <strong>PDK_INSTALL_DIR/docs/test_report</strong> folder.</p>
+</div>
+<div class="section" id="tool-chain-information">
+<h2>2.8.6. Tool Chain Information<a class="headerlink" href="#tool-chain-information" title="Permalink to this headline">¶</a></h2>
+<p>Refer to SDK level documentation for Tool Chain and dependent component version used to validate this release.</p>
+</div>
+<div class="section" id="fixed-issues">
+<h2>2.8.7. Fixed Issues<a class="headerlink" href="#fixed-issues" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="52%" />
+<col width="8%" />
+<col width="10%" />
+<col width="22%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ID</th>
+<th class="head">Head Line</th>
+<th class="head">Module</th>
+<th class="head">Affected Versions</th>
+<th class="head">Affected Platforms</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>PDK-7479</td>
+<td>Luma and Chroma components are not properly stored</td>
+<td>CSI2RX, CSI2TX</td>
+<td>07.00.00</td>
+<td>J721E</td>
+</tr>
+<tr class="row-odd"><td>PDK-6852</td>
+<td>CSITX does not work in less than 4 lane mode</td>
+<td>CSI2TX</td>
+<td>07.00.00</td>
+<td>J721E</td>
+</tr>
+<tr class="row-even"><td>PDK-6762</td>
+<td>UART test fails for MCU 1_0</td>
+<td>CSL</td>
+<td>07.00.00</td>
+<td>AM65xx, J721E</td>
+</tr>
+<tr class="row-odd"><td>PDK-6925</td>
+<td>R5 cache function uses incorrect cache line size</td>
+<td>CSL</td>
+<td>07.00.00</td>
+<td>J721E, J7200, AM65xx</td>
+</tr>
+<tr class="row-even"><td>PDK-8203</td>
+<td>DCC source update not working</td>
+<td>CSL</td>
+<td>07.00.00</td>
+<td>J721E, J7200, AM65xx</td>
+</tr>
+<tr class="row-odd"><td>PDK-6839</td>
+<td>CSL_serdesEnableLanes does not configure torrent SERDES</td>
+<td>CSL</td>
+<td>07.00.00</td>
+<td>J721E</td>
+</tr>
+<tr class="row-even"><td>PDK-7573</td>
+<td>IPG setting for ICSSG does not take effect for 2nd port</td>
+<td>EMAC</td>
+<td>07.00.00</td>
+<td>AM65xx</td>
+</tr>
+<tr class="row-odd"><td>PDK-6734</td>
+<td>Driver updates to support wire clock feature in TX CFG</td>
+<td>EMAC</td>
+<td>07.00.00</td>
+<td>AM65xx</td>
+</tr>
+<tr class="row-even"><td>PDK-7536</td>
+<td>C6x: ipc examples: Trace buffer contents remain in the Cache upon a crash</td>
+<td>IPC</td>
+<td>07.00.00</td>
+<td>J721E</td>
+</tr>
+<tr class="row-odd"><td>PDK-7625</td>
+<td>Message reception is delayed if sent to core before it is booted</td>
+<td>IPC</td>
+<td>07.00.00</td>
+<td>J721E</td>
+</tr>
+<tr class="row-even"><td>PDK-8103</td>
+<td>TimerP_getTimeInUsecs API return wrong time value in Bare-metal</td>
+<td>OSAL</td>
+<td>07.00.00</td>
+<td>J721E</td>
+</tr>
+<tr class="row-odd"><td>PDK-5258</td>
+<td>OSPI PHY Mode Temperature Sensitivity</td>
+<td>OSPI</td>
+<td>06.02.00</td>
+<td>J721E</td>
+</tr>
+<tr class="row-even"><td>PDK-7402</td>
+<td>Typo in ICSS instance enums in PRUSS LLD</td>
+<td>PRUSS</td>
+<td>07.00.00</td>
+<td>J721E</td>
+</tr>
+<tr class="row-odd"><td>PDK-7091</td>
+<td>AM65 pruicss_intc.c interrupt initialization sequence doesn&#8217;t protect spurious interrupt</td>
+<td>PRUSS</td>
+<td>07.00.00</td>
+<td>AM65xx</td>
+</tr>
+<tr class="row-even"><td>PDK-7045</td>
+<td>Unable to set USE_DKEK flag in SA2UL security context</td>
+<td>SA2UL</td>
+<td>07.00.00</td>
+<td>J721E, AM65xx</td>
+</tr>
+<tr class="row-odd"><td>PRSDK-5448</td>
+<td>SBL boot from MMCSD fails intermittently</td>
+<td>SBL</td>
+<td>05.02.00</td>
+<td>AM65xx</td>
+</tr>
+<tr class="row-even"><td>PDK-8189</td>
+<td>SBL doesn&#8217;t allow an external app to use OSPI with DMA</td>
+<td>SBL</td>
+<td>07.00.00</td>
+<td>J721E</td>
+</tr>
+<tr class="row-odd"><td>PDK-7627</td>
+<td>Multi-Stage bootloading fails on HS device</td>
+<td>SBL</td>
+<td>07.00.00</td>
+<td>J721E</td>
+</tr>
+<tr class="row-even"><td>PRSDK-5626</td>
+<td>OSPI Read using UDMA fails on AM65x HS devices.</td>
+<td>SBL</td>
+<td>05.03.00</td>
+<td>AM65xx</td>
+</tr>
+<tr class="row-odd"><td>PRSDK-6382</td>
+<td>SBL: R5F: Core 1 boot is not working with unsigned binary with ipc images</td>
+<td>SBL</td>
+<td>06.01.00</td>
+<td>AM65xx</td>
+</tr>
+<tr class="row-even"><td>PDK-6980</td>
+<td>Inconsistent naming of TISCI defines in sciclient</td>
+<td>SCICLIENT</td>
+<td>07.00.00</td>
+<td>J721E, J7200, AM65xx</td>
+</tr>
+<tr class="row-odd"><td>PDK-7120</td>
+<td>Incorrect Error interrupt registration in scalar</td>
+<td>VHWA MSC</td>
+<td>07.00.00</td>
+<td>J721E</td>
+</tr>
+<tr class="row-even"><td>PDK-7024</td>
+<td>Incorrect max size of the LSC table</td>
+<td>VHWA VISS</td>
+<td>07.00.00</td>
+<td>J721E</td>
+</tr>
+<tr class="row-odd"><td>PDK-6800</td>
+<td>Watchdog timer diagnostic test fails</td>
+<td>DIAG</td>
+<td>07.00.00</td>
+<td>AM65xx</td>
+</tr>
+<tr class="row-even"><td>PRSDK-8607</td>
+<td>Board_init(SBL_PLL_INIT) is configuring PLL directly without going through SYSFW.</td>
+<td>BOARD</td>
+<td>06.03.00</td>
+<td>AM65xx</td>
+</tr>
+<tr class="row-odd"><td>PRSDK-7891</td>
+<td>CPSW RGMII diagnostic test failure</td>
+<td>BOARD</td>
+<td>06.01.00</td>
+<td>J721E</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="known-issues">
+<h2>2.8.8. Known Issues<a class="headerlink" href="#known-issues" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="18%" />
+<col width="29%" />
+<col width="5%" />
+<col width="7%" />
+<col width="8%" />
+<col width="17%" />
+<col width="16%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ID</th>
+<th class="head">Head Line</th>
+<th class="head">Module</th>
+<th class="head">Reported in Release</th>
+<th class="head">Affected Platforms</th>
+<th class="head">Impact</th>
+<th class="head">Workaround in this release</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><a class="reference external" href="https://sir.ext.ti.com/jira/browse/EXT_EP-10114">PDK-5224</a>.</td>
+<td>Active DP -&gt; HDMI adapter doesn&#8217;t work</td>
+<td>DSS</td>
+<td>00.09.01</td>
+<td>J721E</td>
+<td>DP to HDMI adapter for display cannot be used.</td>
+<td>None</td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="https://sir.ext.ti.com/jira/browse/EXT_EP-10050">PDK-5040</a>.</td>
+<td>Display stops working if two pipelines are started back to back</td>
+<td>DSS</td>
+<td>06.02.00</td>
+<td>J721E</td>
+<td>None, if the workaround is in place.</td>
+<td>Wait for a frame to go out from a pipeline before
+starting the next one</td>
+</tr>
+<tr class="row-even"><td><a class="reference external" href="https://sir.ext.ti.com/jira/browse/EXT_EP-10122">PDK-6992</a>.</td>
+<td>Display flickers for BT601 output format</td>
+<td>DSS</td>
+<td>07.00.00</td>
+<td>J721E</td>
+<td>&nbsp;</td>
+<td>None</td>
+</tr>
+<tr class="row-odd"><td>PDK-8320</td>
+<td>ICSS V1 CSL not up to date with ICSSG</td>
+<td>CSL</td>
+<td>07.00.00</td>
+<td>J721E, AM65xx</td>
+<td>None</td>
+<td>Patch available. Will be included in next release</td>
+</tr>
+<tr class="row-even"><td><a class="reference external" href="https://sir.ext.ti.com/jira/browse/EXT_EP-10118">PDK-6975</a>.</td>
+<td>Pulsar (R5F) : High priority interrupt is missed by VIM</td>
+<td>CSL, OSAL</td>
+<td>07.00.00</td>
+<td>J721E, J7200, AM65xx</td>
+<td>Baremetal implementation is pending</td>
+<td>Use SYSBIOS instead of baremetal</td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="https://sir.ext.ti.com/jira/browse/EXT_EP-10119">PDK-6649</a>.</td>
+<td>Timer osal - noos - Timer delete doesn&#8217;t &#8220;free&#8221; timer</td>
+<td>OSAL</td>
+<td>06.02.00</td>
+<td>J721E</td>
+<td>Resource leak if create/delete called in a loop.
+But typically this is not done for Timer.</td>
+<td>Use the same timer in the application without
+create/deleting multiple times</td>
+</tr>
+<tr class="row-even"><td><a class="reference external" href="https://sir.ext.ti.com/jira/browse/EXT_EP-10121">PDK-6534</a>.</td>
+<td>Timer osal - noos - Timer should be reset first before registering interrupts</td>
+<td>OSAL</td>
+<td>06.02.00</td>
+<td>J721E</td>
+<td>None if the workaround is in place</td>
+<td>Reset the timer before using</td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="https://sir.ext.ti.com/jira/browse/EXT_EP-10115">PDK-6758</a>.</td>
+<td>pcie qos examples fails for 2 lane configuration</td>
+<td>PCIE</td>
+<td>07.00.00</td>
+<td>AM65xx</td>
+<td>None</td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td>PRSDK-8036</td>
+<td>PCIE-0: Intermittent failures during Gen 3 mode on AM65x PG2.0</td>
+<td>PCIE</td>
+<td>06.02.00</td>
+<td>AM65xx</td>
+<td>None</td>
+<td>None</td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="https://sir.ext.ti.com/jira/browse/EXT_EP-10104">PDK-8407</a>.</td>
+<td>J721E: MCU Timer 0 is not usable from application (sysbios) with SBL</td>
+<td>OSAL, SBL</td>
+<td>07.01.00</td>
+<td>J721E</td>
+<td>None</td>
+<td>Use any other timer</td>
+</tr>
+<tr class="row-even"><td>PDK-8586</td>
+<td>Early CAN response measurement is beyond 50 ms for J721E</td>
+<td>SBL</td>
+<td>07.01.00</td>
+<td>J721E</td>
+<td>&nbsp;</td>
+<td>None</td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="https://sir.ext.ti.com/jira/browse/EXT_EP-10105">PDK-8300</a>.</td>
+<td>UDMA MCU NAVSS Channel Num 5 is not functional, when booting the application using the SBL
+bootloader.</td>
+<td>UDMA</td>
+<td>07.01.00</td>
+<td>J721E</td>
+<td>Low Impact. UDMA MCU NAVSS Channel 5 can&#8217;t be used when
+booting the application using the SBL bootloader.</td>
+<td>Use any other channel. In the defaultBoardCfg Channel
+no. 5 is not used. The issue will be seen only when
+the boardcfg is updated to use channel 5.</td>
+</tr>
+<tr class="row-even"><td><a class="reference external" href="https://sir.ext.ti.com/jira/browse/EXT_EP-10106">PDK-6789</a>.</td>
+<td>MCU/Main NAVSS UDMA memcpy from L2SRAM fails</td>
+<td>UDMA</td>
+<td>07.00.00</td>
+<td>J721E</td>
+<td>Transfer works fine when source buffer, destination
+buffer and TRPD buffers are in L2SRAM. The issue happens
+only when the ring memory is in L2SRAM location</td>
+<td>Use ring memory from non-L2SRAM location</td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="https://sir.ext.ti.com/jira/browse/EXT_EP-10076">PDK-5228</a>.</td>
+<td>Output mismatch when each region requiring 3 TRs</td>
+<td>VHWA</td>
+<td>01.00.00</td>
+<td>J721E</td>
+<td>In multi-region mode with more then 3 TR per region
+can&#8217;t be used</td>
+<td>In multi-region mode for each region less than 3
+TR should be used</td>
+</tr>
+<tr class="row-even"><td><a class="reference external" href="https://sir.ext.ti.com/jira/browse/EXT_EP-10078">PDK-5226</a>.</td>
+<td>DOF generated wrong output with SOF if pixel in all row are not enabled</td>
+<td>VHWA</td>
+<td>01.00.00, 00.09.01</td>
+<td>J721E</td>
+<td>When using the SOF if the Paxel rows without any pixel
+enabled is not in consecutive pair with lead to lead to
+output mismatch</td>
+<td>This issue is due to shift in flowvector out buffer.
+While generating the SOF binary map make sure that
+Paxel rows without any pixel enabled should be in
+consecutive pair</td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="https://sir.ext.ti.com/jira/browse/EXT_EP-10023">PDK-5217</a>.</td>
+<td>VPAC VISS driver doesn&#8217;t support several valid mux combinations for outputs</td>
+<td>VHWA</td>
+<td>01.00.00, 00.09.01</td>
+<td>J721E</td>
+<td>VISS output with Chroma only and one of the RGB component
+enabled may not work</td>
+<td>Enable YUV420 instead of Chroma only while using RGB
+component</td>
+</tr>
+<tr class="row-even"><td><a class="reference external" href="https://sir.ext.ti.com/jira/browse/EXT_EP-10120">PDK-7048</a>.</td>
+<td>Master Slave: Data corruption in mode 0</td>
+<td>McSPI</td>
+<td>07.01.00</td>
+<td>J7200</td>
+<td>None</td>
+<td>Most likely EVM looback routing issue. Debug pending</td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="https://sir.ext.ti.com/jira/browse/EXT_EP-10108">ETH-1534</a>.</td>
+<td>[CPSW] Packet drop with QSGMII ports IPerf</td>
+<td>Enet</td>
+<td>06.02.00</td>
+<td>J721E, J7200</td>
+<td>None</td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td><a class="reference external" href="https://sir.ext.ti.com/jira/browse/EXT_EP-10109">ETH-1670</a>.</td>
+<td>mcu2_1: loopback: Test fails to setup interrupts in iteration 2</td>
+<td>Enet</td>
+<td>07.01.00</td>
+<td>J721E</td>
+<td>None</td>
+<td>Avoid restarting Enet LLD on
+J721E mcu2_1 core</td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="https://sir.ext.ti.com/jira/browse/EXT_EP-10113">PDK-6742</a>.</td>
+<td>McASP regression test app some tests are failing</td>
+<td>McASP</td>
+<td>07.00.00</td>
+<td>AM65xx</td>
+<td>The issue is most likely a application configuration</td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td>PRSDK-5074</td>
+<td>McASP driver hangs with small buffer size</td>
+<td>McASP</td>
+<td>05.01.00</td>
+<td>J721E, AM65xx</td>
+<td>None</td>
+<td>Use packet size 32 samples or greater</td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="https://sir.ext.ti.com/jira/browse/EXT_EP-10117">PDK-8166</a>.</td>
+<td>MMCSD read/write failure with 1.8V</td>
+<td>MMCSD</td>
+<td>07.00.00</td>
+<td>AM65xx</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><a class="reference external" href="https://sir.ext.ti.com/jira/browse/EXT_EP-10103">PDK-8537</a>.</td>
+<td>Sciclient_rmIrqRelease API is failing</td>
+<td>SCICLIENT</td>
+<td>07.01.00</td>
+<td>J721E</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>PDK-8502</td>
+<td>Uniflash flash programmer failure in DMA mode</td>
+<td>BOARD</td>
+<td>07.01.00</td>
+<td>J721E, AM65xx</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><a class="reference external" href="https://sir.ext.ti.com/jira/browse/EXT_EP-10107">PDK-8311</a>.</td>
+<td>Recent DDR config update to 4266 MT/s causing DDR memory failures on some boards</td>
+<td>BOARD</td>
+<td>07.01.00</td>
+<td>J721E</td>
+<td>Occasional failures seen. Restart should work</td>
+<td>Issue seen with unqualified sample. Replace sample</td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="https://sir.ext.ti.com/jira/browse/EXT_EP-10110">PDK-6549</a>.</td>
+<td>MCU2 core diagnostic tests not running through sbl</td>
+<td>BOARD</td>
+<td>07.00.00</td>
+<td>J721E</td>
+<td>None</td>
+<td>Use CCS/JTAG to run the tests</td>
+</tr>
+<tr class="row-even"><td><a class="reference external" href="https://sir.ext.ti.com/jira/browse/EXT_EP-10111">PDK-6548</a>.</td>
+<td>Display port (eDP) diagnostic test failure</td>
+<td>BOARD</td>
+<td>07.00.00</td>
+<td>J721E</td>
+<td>None</td>
+<td>Use display sample application</td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="https://sir.ext.ti.com/jira/browse/EXT_EP-10112">PDK-6707</a>.</td>
+<td>PCIe diagnostic test failure</td>
+<td>BOARD</td>
+<td>07.00.00</td>
+<td>AM65xx</td>
+<td>None</td>
+<td>Use PCIe driver sample application</td>
+</tr>
+<tr class="row-even"><td>PDK-8131</td>
+<td>PMIC: Asynchronous Interrupt tests failure on Main domain R5 Cores</td>
+<td>BOARD</td>
+<td>07.01.00</td>
+<td>J7200</td>
+<td>None</td>
+<td>Use Polled mode</td>
+</tr>
+<tr class="row-odd"><td>PDK-8577</td>
+<td>PMIC: Asynchronous Interrupt tests failure on Main domain R5 Cores and mcu1_1 core</td>
+<td>BOARD</td>
+<td>07.01.00</td>
+<td>J721E</td>
+<td>None</td>
+<td>Use Polled mode</td>
+</tr>
+<tr class="row-even"><td>PDK-8667</td>
+<td>CSL : Baremetal : udma_baremetal_ospi_flash_testapp failing</td>
+<td>CSL</td>
+<td>07.01.00</td>
+<td>AM65xx</td>
+<td>None</td>
+<td>None mode</td>
+</tr>
+<tr class="row-odd"><td>PDK-8711</td>
+<td>SA Baremetal test application does not run on A53 core</td>
+<td>SA2UL</td>
+<td>07.01.00</td>
+<td>AM65xx</td>
+<td>None</td>
+<td>None mode</td>
+</tr>
+<tr class="row-even"><td>PDK-8841</td>
+<td>csl_cbass_baremetal_test_app fails on QoS Test</td>
+<td>CSL</td>
+<td>07.01.00</td>
+<td>AM65xx</td>
+<td>None</td>
+<td>None mode</td>
+</tr>
+<tr class="row-odd"><td>PDK-8875</td>
+<td>CUST SBL build not booting MCU1_1 core on AM65xx</td>
+<td>SBL</td>
+<td>07.01.00</td>
+<td>AM65xx</td>
+<td>None</td>
+<td>Use non cust SBL builds</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="limitations">
+<h2>2.8.9. Limitations<a class="headerlink" href="#limitations" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Active DP -&gt; HDMI adapter doesn&#8217;t work. As a workaround use the display that supports Active DP</li>
+<li>C7x TI RTOS : Task stack size shall be multiple of 16 KB (size less than 16 KB leads to unexpected behavior)</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="release_notes_07_00_00.html" class="btn btn-neutral float-right" title="2.9. Release Notes - 07_00_00" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="release_notes_07_03_00.html" class="btn btn-neutral" title="2.7. Release Notes - 07_03_00" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="http://www.ti.com/corp/docs/legal/copyright.shtml">&copy; Copyright 1995-2020</a>, Texas Instruments Incorporated. All rights reserved. <br>
+      <a href="http://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="http://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="http://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="http://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'08_06_01',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,923 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>8.5. FAQ - Used Resources - Interrupt &mdash; Platform Development Kit (PDK) - JACINTO User Guide</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Platform Development Kit (PDK) - JACINTO User Guide" href="../index.html"/>
+        <link rel="up" title="8. Frequently Asked Questions" href="../family_cfg/jacinto/index_faq_jacinto.html"/>
+        <link rel="next" title="8.6. FAQ - Supported Cores by example applications" href="faq_binlist_jacinto.html"/>
+        <link rel="prev" title="8.4. FAQ - C7x : Steps to switch C7x SysBIOS application from secure mode to non-secure mode" href="c7x_non_secure_mode.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index_jacinto.html" class="icon icon-home"> Platform Development Kit (PDK) - JACINTO User Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                08_06_01
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">1. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_release_notes_jacinto.html">2. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">3. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_modules_jacinto.html">4. Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_boot_jacinto.html">5. Bootloader (SBL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_board_jacinto.html">6. Board/EVM Abstraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_howto_jacinto.html">7. How to Guides</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../family_cfg/jacinto/index_faq_jacinto.html">8. Frequently Asked Questions</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="faq_common.html">8.1. FAQ - Common</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq_can.html">8.2. FAQ - CAN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq_fvid2.html">8.3. FAQ - FVID2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c7x_non_secure_mode.html">8.4. FAQ - C7x : Steps to switch C7x SysBIOS application from secure mode to non-secure mode</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">8.5. FAQ - Used Resources - Interrupt</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#j721e">8.5.1. J721E</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#mpu">8.5.1.1. MPU</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mcu-10-mcu-domain">8.5.1.2. MCU 10 (MCU Domain)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mcu-11-mcu-domain">8.5.1.3. MCU 11 (MCU Domain)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1">8.5.1.4. MCU 11 (MCU Domain)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mcu-20-main-domain">8.5.1.5. MCU 20 (Main Domain)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mcu-21-main-domain">8.5.1.6. MCU 21 (Main Domain)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mcu-30-main-domain">8.5.1.7. MCU 30 (Main Domain)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mcu-31-main-domain">8.5.1.8. MCU 31 (Main Domain)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c66x-1-main-domain">8.5.1.9. C66x 1 (Main Domain)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c66x-2-main-domain">8.5.1.10. C66x 2 (Main Domain)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c7x-1-main-domain">8.5.1.11. C7x 1 (Main Domain)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="faq_binlist_jacinto.html">8.6. FAQ - Supported Cores by example applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq_module_clocking.html">8.7. FAQ - How to set the clock for a given module and clock</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apps_on_secure_devices.html">8.8. FAQ - Running Apps on secure devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq_csi2rx.html">8.9. FAQ - CSI2RX</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_developer_notes_jacinto.html">9. Developer Notes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index_jacinto.html">Platform Development Kit (PDK) - JACINTO User Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index_jacinto.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../family_cfg/jacinto/index_faq_jacinto.html">8. Frequently Asked Questions</a> &raquo;</li>
+      
+    <li>8.5. FAQ - Used Resources - Interrupt</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="faq-used-resources-interrupt">
+<span id="int-list-1"></span><h1>8.5. FAQ - Used Resources - Interrupt<a class="headerlink" href="#faq-used-resources-interrupt" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul class="simple">
+</ul>
+</div>
+<p>This FAQ lists the interrupt used</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This list is not YET comprehensive</p>
+</div>
+<div class="section" id="j721e">
+<h2>8.5.1. J721E<a class="headerlink" href="#j721e" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="mpu">
+<h3>8.5.1.1. MPU<a class="headerlink" href="#mpu" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="3"><strong>MPU 10</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Interrupt No</td>
+<td>SW Usage</td>
+<td>SW</td>
+</tr>
+<tr class="row-odd"><td>35 to 37</td>
+<td>MMC/SD</td>
+<td>MMC/SD Driver</td>
+</tr>
+<tr class="row-even"><td>46 to 48</td>
+<td>CPSW</td>
+<td>CPSW Driver</td>
+</tr>
+<tr class="row-odd"><td>84 to 103</td>
+<td>UDMA Main</td>
+<td>UDMA Driver</td>
+</tr>
+<tr class="row-even"><td>216 to 220</td>
+<td>McSPI</td>
+<td>McSPI Driver</td>
+</tr>
+<tr class="row-odd"><td>224 to 231</td>
+<td>UART</td>
+<td>UART Driver</td>
+</tr>
+<tr class="row-even"><td>232 to 237</td>
+<td>I2C</td>
+<td>I2C Driver</td>
+</tr>
+<tr class="row-odd"><td>280 to 281</td>
+<td>UART</td>
+<td>UART Driver</td>
+</tr>
+<tr class="row-even"><td>392</td>
+<td>GPIO</td>
+<td>GPIO Driver</td>
+</tr>
+<tr class="row-odd"><td>448 to 451</td>
+<td>UDMA  MCU</td>
+<td>UDMA Driver</td>
+</tr>
+<tr class="row-even"><td>872 to 873</td>
+<td>OSPI</td>
+<td>OSPI Driver</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="mcu-10-mcu-domain">
+<h3>8.5.1.2. MCU 10 (MCU Domain)<a class="headerlink" href="#mcu-10-mcu-domain" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="3"><strong>MCU 10</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Interrupt No</td>
+<td>SW Usage</td>
+<td>SW</td>
+</tr>
+<tr class="row-odd"><td>0 to 4</td>
+<td>MCAN</td>
+<td>CSL Example
+CSL Unit Test</td>
+</tr>
+<tr class="row-even"><td>6</td>
+<td>ADC</td>
+<td>CSL Example</td>
+</tr>
+<tr class="row-odd"><td>18</td>
+<td>I2C</td>
+<td>I2C Driver</td>
+</tr>
+<tr class="row-even"><td>20 to 22</td>
+<td>McSPI</td>
+<td>McSPI Driver</td>
+</tr>
+<tr class="row-odd"><td>23</td>
+<td>I2C</td>
+<td>I2C Driver</td>
+</tr>
+<tr class="row-even"><td>24 to 25</td>
+<td>OSPI</td>
+<td>OSPI Driver</td>
+</tr>
+<tr class="row-odd"><td>30</td>
+<td>UART</td>
+<td>UART Driver</td>
+</tr>
+<tr class="row-even"><td>33 to 34</td>
+<td>ESM</td>
+<td>CSL Example</td>
+</tr>
+<tr class="row-odd"><td>49</td>
+<td>ESM</td>
+<td>CSL Example</td>
+</tr>
+<tr class="row-even"><td>50</td>
+<td>DCC</td>
+<td>CSL Example</td>
+</tr>
+<tr class="row-odd"><td>72 to 77</td>
+<td>UDMA MCU</td>
+<td>UDMA Driver</td>
+</tr>
+<tr class="row-even"><td>78 to 83</td>
+<td>UDMA Main</td>
+<td>UDMA Driver</td>
+</tr>
+<tr class="row-odd"><td>99</td>
+<td>MMC/SD</td>
+<td>MMCSD Driver</td>
+</tr>
+<tr class="row-even"><td>160</td>
+<td>GPIO</td>
+<td>GPIO Driver</td>
+</tr>
+<tr class="row-odd"><td>221 to 223</td>
+<td>CPSW</td>
+<td>CPSW Driver</td>
+</tr>
+<tr class="row-even"><td>226</td>
+<td>DDR Temp Mon</td>
+<td>Board</td>
+</tr>
+<tr class="row-odd"><td>256 to 257</td>
+<td>MMC/SD</td>
+<td>MMCSD Driver</td>
+</tr>
+<tr class="row-even"><td>257 to 260</td>
+<td>MCAN</td>
+<td>CSL Unit Test</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="mcu-11-mcu-domain">
+<h3>8.5.1.3. MCU 11 (MCU Domain)<a class="headerlink" href="#mcu-11-mcu-domain" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="3"><strong>MCU 11</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Interrupt No</td>
+<td>SW Usage</td>
+<td>SW</td>
+</tr>
+<tr class="row-odd"><td>18</td>
+<td>I2C</td>
+<td>I2C Driver</td>
+</tr>
+<tr class="row-even"><td>23</td>
+<td>I2C</td>
+<td>I2C Driver</td>
+</tr>
+<tr class="row-odd"><td>30</td>
+<td>UART</td>
+<td>UART Driver</td>
+</tr>
+<tr class="row-even"><td>33</td>
+<td>ESM</td>
+<td>CSL Example</td>
+</tr>
+<tr class="row-odd"><td>72 to 77</td>
+<td>UDMA MCU</td>
+<td>UDMA Driver</td>
+</tr>
+<tr class="row-even"><td>78 to 83</td>
+<td>UDMA Main</td>
+<td>UDMA Driver</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id1">
+<h3>8.5.1.4. MCU 11 (MCU Domain)<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="3"><strong>MCU 11</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Interrupt No</td>
+<td>SW Usage</td>
+<td>SW</td>
+</tr>
+<tr class="row-odd"><td>18</td>
+<td>I2C</td>
+<td>I2C Driver</td>
+</tr>
+<tr class="row-even"><td>23</td>
+<td>I2C</td>
+<td>I2C Driver</td>
+</tr>
+<tr class="row-odd"><td>30</td>
+<td>UART</td>
+<td>UART Driver</td>
+</tr>
+<tr class="row-even"><td>33</td>
+<td>ESM</td>
+<td>CSL Example</td>
+</tr>
+<tr class="row-odd"><td>72 to 77</td>
+<td>UDMA MCU</td>
+<td>UDMA Driver</td>
+</tr>
+<tr class="row-even"><td>78 to 83</td>
+<td>UDMA Main</td>
+<td>UDMA Driver</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="mcu-20-main-domain">
+<h3>8.5.1.5. MCU 20 (Main Domain)<a class="headerlink" href="#mcu-20-main-domain" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="3"><strong>MCU 20</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Interrupt No</td>
+<td>SW Usage</td>
+<td>SW</td>
+</tr>
+<tr class="row-odd"><td>18</td>
+<td>I2C</td>
+<td>I2C Driver</td>
+</tr>
+<tr class="row-even"><td>23</td>
+<td>I2C</td>
+<td>I2C Driver</td>
+</tr>
+<tr class="row-odd"><td>30</td>
+<td>UART</td>
+<td>UART Driver</td>
+</tr>
+<tr class="row-even"><td>18</td>
+<td>I2C</td>
+<td>I2C Driver</td>
+</tr>
+<tr class="row-odd"><td>23</td>
+<td>I2C</td>
+<td>I2C Driver</td>
+</tr>
+<tr class="row-even"><td>30</td>
+<td>UART</td>
+<td>UART Driver</td>
+</tr>
+<tr class="row-odd"><td>32 to 38</td>
+<td>VHWA</td>
+<td>VHWA Drivers</td>
+</tr>
+<tr class="row-even"><td>96 to 98</td>
+<td>CPSW</td>
+<td>CPSW Driver</td>
+</tr>
+<tr class="row-odd"><td>99</td>
+<td>MMC/SD</td>
+<td>MMCSD Driver</td>
+</tr>
+<tr class="row-even"><td>120 to 130</td>
+<td>MCAN</td>
+<td>CSL Example
+CSL Unit Test</td>
+</tr>
+<tr class="row-odd"><td>160</td>
+<td>GPIO</td>
+<td>GPIO Driver</td>
+</tr>
+<tr class="row-even"><td>228 to 247</td>
+<td>UDMA Main</td>
+<td>UDMA Driver</td>
+</tr>
+<tr class="row-odd"><td>248 to 255</td>
+<td>UDMA MCU</td>
+<td>UDMA Driver</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="mcu-21-main-domain">
+<h3>8.5.1.6. MCU 21 (Main Domain)<a class="headerlink" href="#mcu-21-main-domain" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="3"><strong>MCU 21</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Interrupt No</td>
+<td>SW Usage</td>
+<td>SW</td>
+</tr>
+<tr class="row-odd"><td>18</td>
+<td>I2C</td>
+<td>I2C Driver</td>
+</tr>
+<tr class="row-even"><td>23</td>
+<td>I2C</td>
+<td>I2C Driver</td>
+</tr>
+<tr class="row-odd"><td>30</td>
+<td>UART</td>
+<td>UART Driver</td>
+</tr>
+<tr class="row-even"><td>32 to 38</td>
+<td>VHWA</td>
+<td>VHWA Drivers</td>
+</tr>
+<tr class="row-odd"><td>96 to 98</td>
+<td>CPSW</td>
+<td>CPSW Driver</td>
+</tr>
+<tr class="row-even"><td>99</td>
+<td>MMC/SD</td>
+<td>MMCSD Driver</td>
+</tr>
+<tr class="row-odd"><td>120 to 130</td>
+<td>MCAN</td>
+<td>CSL Example
+CSL Unit Test</td>
+</tr>
+<tr class="row-even"><td>160</td>
+<td>GPIO</td>
+<td>GPIO Driver</td>
+</tr>
+<tr class="row-odd"><td>228 to 247</td>
+<td>UDMA Main</td>
+<td>UDMA Driver</td>
+</tr>
+<tr class="row-even"><td>248 to 255</td>
+<td>UDMA MCU</td>
+<td>UDMA Driver</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="mcu-30-main-domain">
+<h3>8.5.1.7. MCU 30 (Main Domain)<a class="headerlink" href="#mcu-30-main-domain" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="3"><strong>MCU 30</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Interrupt No</td>
+<td>SW Usage</td>
+<td>SW</td>
+</tr>
+<tr class="row-odd"><td>18</td>
+<td>I2C</td>
+<td>I2C Driver</td>
+</tr>
+<tr class="row-even"><td>23</td>
+<td>I2C</td>
+<td>I2C Driver</td>
+</tr>
+<tr class="row-odd"><td>30</td>
+<td>UART</td>
+<td>UART Driver</td>
+</tr>
+<tr class="row-even"><td>96 to 98</td>
+<td>CPSW</td>
+<td>CPSW Driver</td>
+</tr>
+<tr class="row-odd"><td>120 to 130</td>
+<td>MCAN</td>
+<td>CSL Example
+CSL Unit Test</td>
+</tr>
+<tr class="row-even"><td>160</td>
+<td>GPIO</td>
+<td>GPIO Driver</td>
+</tr>
+<tr class="row-odd"><td>228 to 247</td>
+<td>UDMA Main</td>
+<td>UDMA Driver</td>
+</tr>
+<tr class="row-even"><td>248 to 255</td>
+<td>UDMA MCU</td>
+<td>UDMA Driver</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="mcu-31-main-domain">
+<h3>8.5.1.8. MCU 31 (Main Domain)<a class="headerlink" href="#mcu-31-main-domain" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="3"><strong>MCU 31</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Interrupt No</td>
+<td>SW Usage</td>
+<td>SW</td>
+</tr>
+<tr class="row-odd"><td>18</td>
+<td>I2C</td>
+<td>I2C Driver</td>
+</tr>
+<tr class="row-even"><td>23</td>
+<td>I2C</td>
+<td>I2C Driver</td>
+</tr>
+<tr class="row-odd"><td>30</td>
+<td>UART</td>
+<td>UART Driver</td>
+</tr>
+<tr class="row-even"><td>96 to 98</td>
+<td>CPSW</td>
+<td>CPSW Driver</td>
+</tr>
+<tr class="row-odd"><td>120 to 130</td>
+<td>MCAN</td>
+<td>CSL Example
+CSL Unit Test</td>
+</tr>
+<tr class="row-even"><td>160</td>
+<td>GPIO</td>
+<td>GPIO Driver</td>
+</tr>
+<tr class="row-odd"><td>228 to 235</td>
+<td>UDMA Main</td>
+<td>UDMA Driver</td>
+</tr>
+<tr class="row-even"><td>248 to 255</td>
+<td>UDMA MCU</td>
+<td>UDMA Driver</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="c66x-1-main-domain">
+<h3>8.5.1.9. C66x 1 (Main Domain)<a class="headerlink" href="#c66x-1-main-domain" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="4"><strong>C66x 1</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Event Combiner</td>
+<td>Event No</td>
+<td>SW Usage</td>
+<td>SW</td>
+</tr>
+<tr class="row-odd"><td>16</td>
+<td>20 to 29</td>
+<td>UART</td>
+<td>UART Driver</td>
+</tr>
+<tr class="row-even"><td>16</td>
+<td>40 to 43</td>
+<td>UDMA MCU</td>
+<td>UDMA Driver</td>
+</tr>
+<tr class="row-odd"><td>16</td>
+<td>32 to 39</td>
+<td>UDMA Main</td>
+<td>UDMA Driver</td>
+</tr>
+<tr class="row-even"><td>16</td>
+<td>60 to 65</td>
+<td>I2C</td>
+<td>I2C Driver</td>
+</tr>
+<tr class="row-odd"><td>16</td>
+<td>70</td>
+<td>GPIO</td>
+<td>GPIO Driver</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="c66x-2-main-domain">
+<h3>8.5.1.10. C66x 2 (Main Domain)<a class="headerlink" href="#c66x-2-main-domain" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="4"><strong>C66x 1</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Event Combiner</td>
+<td>Event No</td>
+<td>SW Usage</td>
+<td>SW</td>
+</tr>
+<tr class="row-odd"><td>16</td>
+<td>20 to 29</td>
+<td>UART</td>
+<td>UART Driver</td>
+</tr>
+<tr class="row-even"><td>16</td>
+<td>40 to 43</td>
+<td>UDMA MCU</td>
+<td>UDMA Driver</td>
+</tr>
+<tr class="row-odd"><td>16</td>
+<td>32 to 39</td>
+<td>UDMA Main</td>
+<td>UDMA Driver</td>
+</tr>
+<tr class="row-even"><td>16</td>
+<td>60 to 65</td>
+<td>I2C</td>
+<td>I2C Driver</td>
+</tr>
+<tr class="row-odd"><td>16</td>
+<td>70</td>
+<td>GPIO</td>
+<td>GPIO Driver</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="c7x-1-main-domain">
+<h3>8.5.1.11. C7x 1 (Main Domain)<a class="headerlink" href="#c7x-1-main-domain" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="4"><strong>C7x 1</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>CLEC</td>
+<td>Event No</td>
+<td>SW Usage</td>
+<td>SW</td>
+</tr>
+<tr class="row-odd"><td>710 to 713</td>
+<td>40 to 43</td>
+<td>UDMA MCU</td>
+<td>UDMA Driver</td>
+</tr>
+<tr class="row-even"><td>700 to 709</td>
+<td>32 to 39</td>
+<td>UDMA Main</td>
+<td>UDMA Driver</td>
+</tr>
+<tr class="row-odd"><td>1216 to 1222</td>
+<td>21 to 27</td>
+<td>UART</td>
+<td>UART Driver</td>
+</tr>
+<tr class="row-even"><td>1224 to 1229</td>
+<td>30 to 35</td>
+<td>I2C</td>
+<td>I2C Driver</td>
+</tr>
+<tr class="row-odd"><td>1272 to 1273</td>
+<td>28 to 29</td>
+<td>UART</td>
+<td>UART Driver</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>392</td>
+<td>GPIO</td>
+<td>GPIO Driver</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="faq_binlist_jacinto.html" class="btn btn-neutral float-right" title="8.6. FAQ - Supported Cores by example applications" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="c7x_non_secure_mode.html" class="btn btn-neutral" title="8.4. FAQ - C7x : Steps to switch C7x SysBIOS application from secure mode to non-secure mode" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="http://www.ti.com/corp/docs/legal/copyright.shtml">&copy; Copyright 1995-2020</a>, Texas Instruments Incorporated. All rights reserved. <br>
+      <a href="http://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="http://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="http://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="http://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'08_06_01',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

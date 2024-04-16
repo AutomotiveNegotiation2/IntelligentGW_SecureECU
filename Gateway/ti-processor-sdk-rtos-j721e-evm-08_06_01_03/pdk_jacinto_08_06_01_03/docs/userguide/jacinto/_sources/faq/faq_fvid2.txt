@@ -1,0 +1,89 @@
+FAQ - FVID2
+====================
+
+Data Formats Support on Video IPs/ISP on Jacinto-7 Devices
+--------------------------------------------------------------
+This section talks about different data formats supported on Jacinto-7 devices.
+
+
+Data Format Support on CSIRX, CSITX, VISS, and DSS Modules:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+This section lists data formats supported on different modules on Jacinto-7 devices.
+
+.. csv-table:: Data Format Support
+   :header: "Data Format", "FVID2 Data Type/Format", "CSIRX Support", "CSITX Support", "VISS Support", "DSS Support", "Comments"
+   :widths: 40, 25, 15, 15, 15, 15, 70
+
+   "ARGB16-4444, ABGR16-4444, RGBA16-4444, RGB16-565, BGR16-565, ARGB16-1555,ABGR16-1555","FVID2_DF_ARGB16_4444, FVID2_DF_ABGR16_4444, FVID2_DF_RGBA16_4444, FVID2_DF_RGB16_565, FVID2_DF_BGR16_565, FVID2_DF_ARGB16_1555, FVID2_DF_ABGR16_1555","No","No","NA","Yes","ARGB —> xRGB for DSS"
+   "ARGB32-8888, ABGR32-8888, BGRA32-8888, RGBA32-8888, RGBA32-1010102, BGRA32-1010102","FVID2_DF_ARGB32_8888, FVID2_DF_ABGR32_8888, FVID2_DF_BGRA32_8888, FVID2_DF_RGBA32_8888, FVID2_DF_RGBA32_1010102, FVID2_DF_BGRA32_1010102","No","No","NA","Yes"
+   "ARGB64-16161616, RGBA64-16161616","FVID2_DF_ABGR64_16161616, FVID2_DF_BGRA64_16161616","No","No","NA","No"
+   "BGR24-888","FVID2_DF_BGR24_888","No","No","NA","Yes"
+   "RAW6-8 Unpacked into 8 bits (LSB Aligned)","FVID2_DF_RAW06-08, FVID2_CSI2_DF_RAW6-8","Yes","Yes","NA","No"
+   "RAW9-16 Unpacked into 16 bits (LSB Aligned)","FVID2_DF_RAW10-16, FVID2_CSI2_DF_RAW9-16","Yes","Yes","NA","No"
+   "RAW12 Packed","FVID2_DF_RAW12, FVID2_CSI2_DF_RAW12","Yes","Yes","NA","No"
+   "RAW20 Unpacked into 32 bits (LSB Aligned)","FVID2_CSI2_DF_RAW20","Yes","Yes","NA","No"
+   "RGB16-565/BGR16-565 with a separate A8 plane","FVID2_DF_RGB16_565_A8, FVID2_DF_BGR16_565_A8","No","No","NA","Yes"
+   "RGB444 Unpacked into 16 bits (xRGB)","FVID2_DF_ARGB16_4444, FVID2_CSI2_DF_RGB444","Yes","Yes","No","Yes"
+   "RGB555 Unpacked into 16 bits (xRGB)","FVID2_DF_ARGB16_1555, FVID2_CSI2_DF_RGB555","Yes","Yes","No","Yes"
+   "RGB666 Unpacked into 32bits (xRGB)","FVID2_CSI2_DF_RGB666","Yes","Yes","No","No"
+   "RGB888 Packed","FVID2_DF_RGB24_888","No","No","No","Yes"
+   "RGB888 Planar","FVID2_DF_RGB24_888_PLANAR","No","No","No","No"
+   "RGB888 Unpacked into 32bits (xRGB)","FVID2_DF_XRGB32_8888, FVID2_CSI2_DF_RGB888","Yes","Yes","No","Yes"
+   "YUV420 8 bit Interleaved","FVID2_CSI2_DF_YUV420_8B","Yes","Yes","NA","No"
+   "YUV420 8 bit Semi-Planer Packed/NV21","FVID2_DF_YUV420SP_UV /FVID2_DF_YUV420SP_VU","No","No","NA","Yes"
+   "YUV420 10 bit Interleaved","FVID2_CSI2_DF_YUV420_10B","Yes","Yes","No","No"
+   "YUV420 10 bit Semi-Planer Packed/NV21","FVID2_DF_YUV420SP_UV /FVID2_DF_YUV420SP_VU","No","No","No","Yes"
+   "YUV420 12 bit Semi-Planer & packed","FVID2_DF_YUV420SP_UV /FVID2_DF_YUV420SP_VU","No","No","NA","No"
+   "YUV422 8 bit Interleaved","FVID2_DF_YUV422I_xxxx, FVID2_CSI2_DF_YUV422_8B","Yes","Yes","NA","Yes"
+   "YUV422 8 bit Semi-Planer/NV12","FVID2_DF_YUV422SP_UV / FVID2_DF_YUV422SP_VU","No","No","NA","Yes"
+   "YUV422 10 bit Interleaved","FVID2_DF_YUV422I_xxxx, FVID2_CSI2_DF_YUV422_10B","Yes","Yes","No","Yes"
+   "YUV422 10 bit Semi-Planer/NV12","FVID2_DF_YUV422SP_UV / FVID2_DF_YUV422SP_VU","No","No","No","Yes"
+
+
+Data Format Compatibility on CSIRX, CSITX, VISS, and DSS Modules:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+This section lists data formats compatible on different paths between modules
+on Jacinto-7 devices.
+
+.. csv-table:: Data Format Compatibility
+   :header: "Data Format", "FVID2 Data Type/Format", "CSIRX to VISS", "VISS to DSS", "CSIRX to DSS", "CSIRX to CSITX Direct Path(re-trans pads)\ :sup:`2`", "Comments"
+   :widths: 40, 25, 15, 15, 15, 15, 70
+
+   "RAW8 Packed","FVID2_CSI2_DF_RAW8","Compatible","NA","NA","Compatible\ :sup:`1`"
+   "RAW10 Unpacked into 16bits","FVID2_CSI2_DF_RAW10","Not Compatible","NA","NA","Compatible\ :sup:`1`","VISS does not support RAW10, but can be treated as RAW12 and can be processed"
+   "RAW12 Packed","FVID2_CSI2_DF_RAW12","Compatible","NA","NA","Compatible\ :sup:`1`"
+   "RAW12 Unpacked into 16bits (LSB Aligned)","FVID2_CSI2_DF_RAW12","Compatible","NA","NA","Compatible\ :sup:`1`"
+   "RAW12 Unpacked into 16bits (MSB Aligned)","FVID2_DF_RAW12","Not Compatible","NA","NA","Compatible\ :sup:`1`","Not supported in CSI2 Rx"
+   "RAW14 Unpacked into 16bits (LSB Aligned)","FVID2_CSI2_DF_RAW14","Compatible","NA","NA","Compatible\ :sup:`1`"
+   "RAW16 Packed/unpacked into 16 bits(both are same)","FVID2_CSI2_DF_RAW16","Compatible","NA","NA","Compatible\ :sup:`1`"
+   "RAW12/16/20 Unpacked into 32bits","FVID2_CSI2_DF_RAW16","No","NA","NA","Compatible\ :sup:`1`","Not supported in CSI2 Rx/VISS"
+   "RGB444 Unpacked into 16 bits (xRGB)","FVID2_DF_ARGB16_4444","NA","NA","Compatible","NA","Not supported in VISS output"
+   "RGB555 Unpacked into 16 bits (xRGB)","FVID2_DF_ARGB16_1555","NA","NA","Compatible","NA","Not supported in VISS output"
+   "RGB565 Unpacked into 16 bits","FVID2_DF_RGB16_565","NA","NA","Compatible","NA","Not supported in VISS output"
+   "RGB666 Unpacked into 32bits (xRGB)","FVID2_CSI2_DF_RGB666","NA","NA","Not Compatible","NA","Not supported in VISS output and CSI2-Rx"
+   "RGB888 Unpacked into 32bits (xRGB)","FVID2_CSI2_DF_RGB888","NA","NA","Compatible","NA","Not supported in VISS output"
+   "RGB888 Packed","FVID2_DF_RGB24_888","NA","NA","Not Compatible","NA","Not supported in CSI2 Rx"
+   "RGB888 Planar","FVID2_DF_RGB24_888_PLANAR","NA","Not Compatible","NA","NA","VISS outputs, but DSS cannot display"
+   "YUV422  8bit Interleaved  Packed","FVID2_DF_YUV422I_xxxx, FVID2_CSI2_DF_YUV422_8B","NA","Compatible","Compatible","NA","Both YUYV and UYVY formats are supported in VISS and DSS. CSI2-Rx supports all four combinations"
+   "YUV422 8bit Semi-Planer Packed","FVID2_DF_YUV422SP_UV / FVID2_DF_YUV422SP_VU","NA","Compatible","Not Compatible","NA","Not supported in CSI2 Rx"
+   "YUV422 8bit Interleaved Unpacked in 16bit container","NA","NA","Not Compatible","NA","NA","Not supported in DSS & CSI2-Rx"
+   "YUV422 10bit Interleaved Unpacked in 16 bits LSB aligned","FVID2_DF_YUV422I_xxxx, FVID2_CSI2_DF_YUV422_10B","NA","NA","Compatible","NA","VISS does not support YUV422 in 10bit"
+   "YUV420 8bit Interleaved","FVID2_CSI2_DF_YUV420_8B","NA","NA","Not Compatible","NA","Not supported in DSS"
+   "YUV420 8bit Semi-Planer","FVID2_DF_YUV420SP_UV /FVID2_DF_YUV420SP_VU","NA","Compatible","Not Compatible","NA","Not supported in CSI2 Rx"
+   "YUV420 10bit Interleaved","FVID2_CSI2_DF_YUV420_10B","NA","NA","Not Compatible","NA","Not supported in DSS and VISS"
+   "YUV420 10bit Semi-Planer","FVID2_DF_YUV420SP_UV /FVID2_DF_YUV420SP_VU","NA","NA","Not Compatible","NA","Not supported in CSI2 Rx and VISS"
+   "YUV420 12bit Semi-Planer & packed","NA","NA","Not Compatible","NA","NA","Not supported in CSI2-Rx and DSS"
+   "YUV420 12bit Semi-Planer & unpacked","NA","NA","Compatible","NA","NA","Not supported in CSI2 Rx"
+   "YUV420 12bit Unpacked MSB aligned & Semi-planar","NA","NA","Compatible","NA","NA","Not supported in CSI2 Rx"
+
+
+**Legends:**
+
+.. hlist::
+    :columns: 1
+
+    * \ :sup:`1` - Since this is a direct path, packed & unpacked does not matter as these are storage identifiers and not related to lane data. CSIRX to CSITX direct path support all RAW formats.
+    * \ :sup:`2` - CSIRX to CSITX direct path is support for only one channel i.e. the number of Virtual Channels (VCs) = 1
+
+.. note::  DSS supports many other RGB formats, ie RGB48, but none of the other modules support these formats.
+

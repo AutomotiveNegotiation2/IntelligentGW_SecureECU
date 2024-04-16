@@ -1,0 +1,146 @@
+.. _bootapp_usage_and_migration_guidelines:
+
+Boot App
+--------
+
+Boot App is a tertiary bootloader which is booted by the SBL. It runs on mcu1_0, from mcu1_0 it boots other cores in different stages. It can boot high level OS like Linux or QNX on A72 cores via MMCSD or OSPI. This is supported on HS devices as well. 
+
+Boot stages
+~~~~~~~~~~~
+.. ifconfig:: CONFIG_family in ('j7200')
+
+   This application boots the main domain cores. In default boot sequence there are 2 stages. It can boot RTOS in both stages or RTOS in the stage1 and high level OS like QNX, Linux in the stage2. 
+   The specification of the cores to be included in each stage is given by the arrays "boot_order_first_stage" and "boot_order_second_stage" found in <PDK>/packages/ti/boot/sbl/example/boot_app/soc/$SOC/boot_core_defs.c
+
+.. ifconfig:: CONFIG_family in ('jacinto' 'j721s2' 'j784s4')
+
+   This application boots the main domain cores. In default boot sequence there are 3 stages. It can RTOS in all the three stages or RTOS in the stage1, stage2 and high level OS like QNX, Linux in the stage3. 
+   The specification of the cores to be included in each stage is given by the arrays "boot_order_first_stage", "boot_order_second_stage" and "boot_order_three_stage" found in <PDK>/packages/ti/boot/sbl/example/boot_app/soc/$SOC/boot_core_defs.c
+
+
+Steps to Boot Different OS via Different Boot Media
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+#. Booting lateapps via MMCSD
+#. Booting QNX via MMCSD
+#. Booting Linux via MMCSD
+#. Booting lateapps via OSPI
+#. Booting QNX via OSPI
+#. Booting Linux via OSPI
+
+   **Booting lateapps via MMCSD**
+
+      #. Generate lateapps by using the following commands
+
+         * goto <PDK>/packages/ti/boot/sbl/example/boot_app/scripts
+         * Run ./make_multicore_appimages.sh <board_name>
+         * Multicore images(lateapps) will be generated in <PDK>/packages/ti/boot/sbl/example/boot_app/multicore_images/$BOARD/. 
+         * Stage1 image corresponds to lateapp1, stage2 image corresponds to lateapp2 and stage3 image corresponds to lateapp3.
+      #. Copy sbl_mmcsd_img_mcu1_0_release.tiimage as tiboot3.bin to the boot partition of SD card
+      #. Copy tifs.bin to the boot partition of SD card
+      #. Build boot_app_mmcsd by using the following command
+
+         * make BOARD=<board_name> CORE=mcu1_0 boot_app_mmcsd -sj
+      #. Copy sbl_boot_app_mmcsd_<board_name>_mcu1_0_freertos_TestApp_release.appimage image as app to the boot partition of SD card 
+      #. Copy stage1 image as lateapp1, stage2 image as lateapp2 and stage3 image as lateapp3 to the boot partition of SD card
+
+   **Booting QNX via MMCSD**
+
+      #. Generate lateapps by using the following commands
+
+         * goto <PDK>/packages/ti/boot/sbl/example/boot_app/scripts
+         * Run ./make_multicore_appimages.sh <board_name>
+         * Multicore images(lateapps) will be generated in <PDK>/packages/ti/boot/sbl/example/boot_app/multicore_images/$BOARD/. 
+         * Stage1 image corresponds to lateapp1, stage2 image corresponds to lateapp2 and stage3 image corresponds to lateapp3.
+      #. Copy sbl_mmcsd_img_mcu1_0_release.tiimage as tiboot3.bin to the boot partition of SD card
+      #. Copy tifs.bin to the boot partition of SD card
+      #. Build boot_app_mmcsd by using the following command
+
+         * make BOARD=<board_name> CORE=mcu1_0 boot_app_mmcsd_qnx -sj
+      #. Copy sbl_boot_app_mmcsd_qnx_<board_name>_mcu1_0_freertos_TestApp_release.appimage image as app to the boot partition of SD card 
+      #. Copy stage1 image as lateapp1, stage2 image as lateapp2 to the boot partition of SD card
+      #. Copy ifs_qnx.appimage, atf_optee.appimage to the boot partition of SD card. Please find these images in the QNX daily build `here <https://jenkins-opbu1.dal.design.ti.com/job/J7ES_QNX_7.1_DB/>`__ 
+   
+   **Booting Linux via MMCSD**
+
+      #. Generate lateapps by using the following commands
+
+         * goto <PDK>/packages/ti/boot/sbl/example/boot_app/scripts
+         * Run ./make_multicore_appimages.sh <board_name>
+         * Multicore images(lateapps) will be generated in <PDK>/packages/ti/boot/sbl/example/boot_app/multicore_images/$BOARD/. 
+         * Stage1 image corresponds to lateapp1, stage2 image corresponds to lateapp2 and stage3 image corresponds to lateapp3.
+      #. Copy sbl_mmcsd_img_mcu1_0_release.tiimage as tiboot3.bin to the boot partition of SD card
+      #. Copy tifs.bin to the boot partition of SD card
+      #. Build boot_app_mmcsd_linux by using the following command
+
+         * make BOARD=<board_name> CORE=mcu1_0 boot_app_mmcsd_linux -sj
+      #. Copy sbl_boot_app_mmcsd_linux_<board_name>_mcu1_0_freertos_TestApp_release.appimage image as app to the boot partition of SD card 
+      #. Copy stage1 image as lateapp1, stage2 image as lateapp2 to the boot partition of SD card
+      #. Copy atf_optee.appimage, tidtb_linux.appimage, tikernelimage_linux.appimage to the boot partition of SD card.
+   
+   **Booting lateapps via OSPI**
+
+      #. Generate lateapps by using the following commands
+
+         * goto <PDK>/packages/ti/boot/sbl/example/boot_app/scripts
+         * Run ./make_multicore_appimages.sh <board_name>
+         * Multicore images(lateapps) will be generated in <PDK>/packages/ti/boot/sbl/example/boot_app/multicore_images/$BOARD/. 
+         * Stage1 image corresponds to lateapp1, stage2 image corresponds to lateapp2 and stage3 image corresponds to lateapp3.
+      #. Build boot_app_ospi by using the following command
+          
+         * make BOARD=<board_name> CORE=mcu1_0 boot_app_mmcsd_linux -sj
+      #. Flash images to ospi flash memory at specified address using uniflash tool
+
+         * sbl_cust_img_mcu1_0_release.tiimage at an offset of 0x0
+         * tifs.bin at an offset of 0x8000
+         * boot_app_ospi_<board_name>_mcu1_0_freertos_TestApp_release.appimage  at an offset of 0x100000
+         * stage1 image at an offset of 0x1fc0000
+         * stage2 image at an offset of 0x27c0000
+         * stage3 image at an offset of 0x37c0000
+   
+   **Booting QNX via OSPI**
+
+      #. Generate lateapps by using the following commands
+
+         * goto <PDK>/packages/ti/boot/sbl/example/boot_app/scripts
+         * Run ./make_multicore_appimages.sh <board_name>
+         * Multicore images(lateapps) will be generated in <PDK>/packages/ti/boot/sbl/example/boot_app/binary/$BOARD/. Stage1 image corresponds to lateapp1, stage2 image corresponds to lateapp2 and so on.
+      #. Build boot_app_ospi_qnx by using the following command
+          
+         * make BOARD=<board_name> CORE=mcu1_0 boot_app_mmcsd_qnx -sj
+      #. Flash images to ospi flash memory at specified address using uniflash tool
+
+         * sbl_cust_img_mcu1_0_release.tiimage at an offset of 0x0
+         * tifs.bin at an offset of 8000
+         * boot_app_ospi_qnx_<board_name>_mcu1_0_freertos_TestApp_release.appimage at an offset of 0x100000
+         * stage1 image at an offset of 0x1fc0000
+         * stage2 image at an offset of 0x27c0000
+         * atf_optee.appimage at an offset of 0x1c0000
+         * ifs_qnx.appimage at an offset of 0x7c0000
+   
+   **Booting Linux via OSPI**
+
+      #. Generate lateapps by using the following commands
+
+         * goto <PDK>/packages/ti/boot/sbl/example/boot_app/scripts
+         * Run ./make_multicore_appimages.sh <board_name>
+         * Multicore images(lateapps) will be generated in <PDK>/packages/ti/boot/sbl/example/boot_app/binary/$BOARD/. Stage1 image corresponds to lateapp1, stage2 image corresponds to lateapp2 and so on.
+      #. Build boot_app_ospi by using the following command
+          
+         * make BOARD=<board_name> CORE=mcu1_0 boot_app_mmcsd_linux -sj
+      #. Flash images to ospi flash memory at specified address using uniflash tool
+
+         * sbl_cust_img_mcu1_0_release.tiimage at an offset of 0x0
+         * tifs.bin at an offset of 0x8000
+         * boot_app_ospi_linux_<board_name>_mcu1_0_freertos_TestApp_release.appimage at an offset of 0x100000
+         * stage1 image at an offset of 0x1fc0000
+         * stage2 image at an offset of 0x27c0000
+         * atf_optee.appimage at an offset of 0x1c0000
+         * tidtb_linux.appimage at an offset of 0x7c0000
+         * tikernelimage_linux.appimage at an offset of 0x1ec0000
+
+Booting in HS devices
+~~~~~~~~~~~~~~~~~~~~~
+
+   #. To boot the boot app on HS devices add _hs while building boot app image i.e boot_app_mmcsd_hs or boot_app_ospi_hs.
+   #. Use .appimage.signed images instead of .appimage for HS devices.

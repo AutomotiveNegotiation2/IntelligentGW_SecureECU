@@ -1,0 +1,5 @@
+LIBLIST += fft_c7xmma/MMALIB_FFT_dftSmall_ixX_cxX_oxX \
+fft_c7xmma/MMALIB_FFT_dftLarge_ixX_cxX_oxX \
+fft_c7xmma/MMALIB_FFT_highRadixDecompositions_ixX_cxX_oxX \
+fft_c7xmma/MMALIB_FFT_fft_ixX_cxX_oxX \
+linalg_c7xmma/MMALIB_LINALG_matrixMatrixMultiply_ixX_ixX_oxX 

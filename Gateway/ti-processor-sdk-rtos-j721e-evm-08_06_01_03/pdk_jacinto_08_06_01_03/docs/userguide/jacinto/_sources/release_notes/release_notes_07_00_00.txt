@@ -1,0 +1,807 @@
+Release Notes - 07_00_00
+========================
+
+Introduction
+------------
+
+This release notes provides important information that will assist you in using the PDK software package.
+This document provides the product information and known issues that are specific to the PDK software package.
+
+
+What's New
+----------
+
++-------------+----------------------------------------------------------------------------------------------------------------------+-------------------+
+| ID          | Description                                                                                                          | Module            |
++=============+======================================================================================================================+===================+
+| PDK-4940    | SBL shall program the Thermal shutdown (TSHUT) values during boot                                                    | SBL               |
++-------------+----------------------------------------------------------------------------------------------------------------------+-------------------+
+| PDK-5246    | Boot time Security support on RTOS SDK for AM65xx and J721E Platforms                                                | SBL               |
++-------------+----------------------------------------------------------------------------------------------------------------------+-------------------+
+| PDK-6298    | SciClient: Update the Sciclient_rmIrqSet and Sciclient_rmIrqRelease APIs to perform interrupt routing                | Sciclient         |
++-------------+----------------------------------------------------------------------------------------------------------------------+-------------------+
+| PDK-5264    | Support Thumb2 mode on R5F                                                                                           | BUILD             |
++-------------+----------------------------------------------------------------------------------------------------------------------+-------------------+
+| PDK-5372    | Board: DDR software shall use EMIF/LPDDR chip support library                                                        | BOARD             |
++-------------+----------------------------------------------------------------------------------------------------------------------+-------------------+
+| PDK-5367    | DDR software shall support runtime refresh rate modification based on temperature feedback                           | BOARD             |
++-------------+----------------------------------------------------------------------------------------------------------------------+-------------------+
+| PDK-5866    | VTM: SW shall enable configuration of Temperature Warning                                                            | CSL VTM           |
++-------------+----------------------------------------------------------------------------------------------------------------------+-------------------+
+| PDK-5366    | CSL-FL: FSS Support                                                                                                  | CSL FSS           |
++-------------+----------------------------------------------------------------------------------------------------------------------+-------------------+
+| PDK-5149    | Support DSS, VHWA, CSI-RX, CSI-TX on mcu2_0 instead of mcu2_1                                                        | Video Drivers     |
++-------------+----------------------------------------------------------------------------------------------------------------------+-------------------+
+| PDK-5252    | AM65xx PG2: CAL Configuration option to route traffic through real time or non real time path                        | CAL               |
++-------------+----------------------------------------------------------------------------------------------------------------------+-------------------+
+| PDK-5204    | Fusion 2 board Support                                                                                               | CSIRX             |
++-------------+----------------------------------------------------------------------------------------------------------------------+-------------------+
+| PDK-5255    | CSIRX: YUV422 dataformat Support                                                                                     | CSIRX             |
++-------------+----------------------------------------------------------------------------------------------------------------------+-------------------+
+| PDK-5253    | CSI2 TX : Support for multiple virtual channel                                                                       | CSITX             |
++-------------+----------------------------------------------------------------------------------------------------------------------+-------------------+
+| PDK-4988    | AM65xx PG2: DSS Driver update required to support yuv2rgb                                                            | DSS               |
++-------------+----------------------------------------------------------------------------------------------------------------------+-------------------+
+| PDK-6486    | VPAC LDC driver shall support config updates after create time                                                       | VPAC              |
++-------------+----------------------------------------------------------------------------------------------------------------------+-------------------+
+| PDK-5811    | PMIC: Driver shall support TPS6594x (Leo)                                                                            | PMIC              |
++-------------+----------------------------------------------------------------------------------------------------------------------+-------------------+
+| PDK-4966    | SA2UL Driver shall be supported                                                                                      | SA2UL             |
++-------------+----------------------------------------------------------------------------------------------------------------------+-------------------+
+| ETHFW-1201  | CPSW Checksum offload support                                                                                        | CPSW              |
++-------------+----------------------------------------------------------------------------------------------------------------------+-------------------+
+| ETHFW-1163  | Directed packet support                                                                                              | CPSW              |
++-------------+----------------------------------------------------------------------------------------------------------------------+-------------------+
+| ETHFW-1139  | Tx packet control: Timestamp Enable, Domain, msg_type, sequence_id                                                   | CPSW              |
++-------------+----------------------------------------------------------------------------------------------------------------------+-------------------+
+
+SBL
+~~~
+
+    - Adds J721E-HS secure boot support for RTOS SDK
+    - Programs thermal limits for J721E to force the SoC into reset if the max temp is reached
+    - SBL "cust" build by default now only initializes MCU DOMAIN clocks & resources for a faster boot option for MCU R5 apps (J721E/J721E-HS only)
+    - Added an optional set of build flags for the SBL "cust" build specifically for testing Early CAN response
+    - Added a small-footprint SBL boot performance test app that works with the SBL "cust" build (MCU DOMAIN only usage)
+    - Optional SBL build flag added to allow subsequent software (e.g., HLOS) to take control of the OSPI flash
+    - Updated the default GTC clock rate to 200 MHz.  Matches the value expected by ARM Trusted Firmware build for the Cortex-A cores.
+    - SBL update added to fix occasional instability seen when the R5 reads from the OSPI flash
+
+
+SYSFW
+~~~~~
+
+    - Security Features:
+        - Official support for silicon tested J721e HS images.
+        - HS Devices: Support for configuring derived KEK (DKEK) in SA2UL and enabled host access to SA2UL
+        - Removed support of HSM-related features (TRNG, Asymmetric key services, and keystore)
+        - Global soft lock for extended OTP
+    - PM Features:
+        - HW PTSTAT silicon errata workaround
+    - RM Features:
+        - RM board configuration now allows up to two assignments of a resource per host.
+        - Added the TISCI_MSG_RM_UDMAP_FLOW_DELEGATE message to pass configuration control of common flows to other hosts.
+    - Boot Time Optimizations
+        - SYSFW Boot notification + Board Configuration = 6.39 ms (Within Budget of 5 ms (+/- 2 ms))
+        - ROM MCU Only Boot mode support.
+
+Upgrade and Compatibility
+-------------------------
+
+
+Build and Packaging
+~~~~~~~~~~~~~~~~~~~
+
+    - The PDK Jacinto package is now a combined package for both AM65xx and J721E platforms.
+      Hence the pdk folder name in SDK reflect the family name rather than the SOC name like am65xx or j721e.
+      Due to this the PDK_SOC variable derived from the pdk folder while sourcing pdksetupenv.sh/.bat
+      will default to one of the SOC in the family i.e. in this case am65xx
+
+        - This means user need to set PDK_SOC variable to the required SOC while calling
+          pdk makefile from **PDK_INSTALL_DIR/packages**
+
+    - Only the files applicable to a particular platform is packaged. This is to done to reduce the overall
+      package size, remove unwanted files for users for better file/folder navigation and also to
+      ensure that a file which is not applicable for a platform is not wrongly included by application
+
+        - Due to this some of the application interface files may be missing from the package
+          compared to last release. Users are advised to remove the inclusion of these files in
+          their application for the respective platform builds
+
+    - API guide for PDK is now generated for the entire PDK package instead of individual module
+      API guides. The generated API guide is now present in **PDK_INSTALL_DIR/docs/api_guide** folder.
+      This gives flexibility to give cross references across modules in PDK as well generate
+      SOC specific documentation. Due to this API_Documentation.html present in **PDK_INSTALL_DIR/packages**
+      is removed
+
+CPSW
+~~~~
+
+    - Hardware push instance number in CPTS events is now an enumeration of type CpswCpts_HwPush, not an 8-bit integer.
+    - CPSW DMA TX channel params (CpswDma_UdmaChTxPrms) added boolean flags to filter out extended and protocol specific info words.
+    - Exposed below UDMA ring and channel config params
+        - Added Ring mode config option in CpswDma_UdmaRingPrms
+        - CpswDma_UdmaFlowPrms - added boolean flags to indicate if extended or protocol specific info words.
+    - CpswDma_PktInfo now has fields for packet timestamp information (CpswDma_PktTsInfo) and directed port numbers.
+
+SBL
+~~~
+
+    - In case of AM65xx-HS build, the HS SBL image is generated under **PDK_INSTALL_DIR/packages/ti/boot/sbl/binary/am65xx_evm_hs**
+      folder instead of **PDK_INSTALL_DIR/packages/ti/boot/sbl/binary/am65xx_evm** folder.
+      This is done in order to support HS and GP builds in the same package.
+    - In case of HS build, BUILD_HS flag need not be passed while calling make. Both
+      the HS and GP SBL binaries gets generated by the default build procedures
+
+Sciclient
+~~~~~~~~~
+
+    - Due to a System Firmware ABI change, applications using the
+      Sciclient_rmGetResourceRange API to retrieve host processor IRQ ranges
+      need to update the processor through which processor IRQ ranges are
+      discovered.
+
+          System Firmware no longer directly manages host processor input IRQs
+          as a resource.  All resources of subtype
+          TISCI_RESASG_SUBTYPE_<destination processor IRQ interface>_IRQ_GROUPr*_FROM_<source interrupt router>
+          have been removed.
+
+          System Firmware now manages all interrupt router (IR) outputs directly
+          with SoC IR output ranges managed under the resource subtype
+          TISCI_RESASG_SUBTYPE_IR_OUTPUT
+
+          Applications that query System Firmware for the host processor input
+          IRQ range via the Sciclient_rmGetResourceRange() must update the types
+          and subtypes used in the query.  The processor IRQ subtypes have been
+          removed.  The query via Sciclient_rmGetResourceRange() now needs to
+          use SoC IR types and the IR output resource subtype.  Note, this
+          requires knowledge of which IR is directly connected to the processor
+          IRQ input range desired for configuration.  The linked tables below
+          show the resource type migration that an application using the
+          Sciclient_rmGetResourceRange() API should make when switching from the
+          old IRQ input resource types to the new IR output resource types.
+
+              `AM65X Sciclient Interrupt Resource Type Migration Table`_
+
+              `AM65X SR2 Sciclient Interrupt Resource Type Migration Table`_
+
+              `J721E Sciclient Interrupt Resource Type Migration Table`_
+
+          To facilitate backwards compatibility between the new IR output
+          resource and the Sciclient_rmIrqSet and Sciclient_rmIrqRelease APIs
+          which take a destination host IRQ (dst_host_irq parameter) as input
+          the Sciclient_rmIrqTranslateIrOutput() API has been added.
+
+              The Sciclient_rmIrqTranslateIrOutput API translates an IR output
+              to the destination processor input IRQ value.  The returned
+              value can be provided directly to the dst_host_irq parameter of
+              the Sciclient_rmIrqSet and Sciclient_rmIrqRelease APIs.
+
+    - New Sciclient_rmIrqSetRaw and Sciclient_rmIrqReleaseRaw APIs have been
+      added.  These APIs allow direct programming of SoC interrupt aggregators
+      (IA) and interrupt routers (IR) in accordance to new System Firmware
+      interrupt management functionality.
+
+         The existing Sciclient_rmIrqSet and Sciclient_rmIrqRelease APIs
+         continue to function as they did before.
+
+SYSFW
+~~~~~
+
+    - Interrupt management Simplification and Memory Optimization. (ABI 3.0)
+    - Board configuration updates for New Security features - DKEK, SA2UL sharing. (ABI 3.0)
+    - AM65x SR 1.0 RM resource assignment types are now aligned with AM65x SR 2.0 resource assignment types
+    - The TISCI_MSG_RM_GET_RESOURCE_RANGE has been updated to return an additional resource range - Backward compatible.
+
+.. ifconfig:: CONFIG_family in ('jacinto')
+
+  sysbios on C7x in non-secure mode
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      - sysbios v6.82.01.19 and later supports non-secure mode of operation on C7x
+      - PDK configures sysbios to operate in non-secure mode on C7x
+      - Refer :ref:`FAQ C7x non-secure mode configuration <c7x-non-secure-mode>` for details
+
+Executing sysbios applications via CCS (no-boot mode)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    - An additional step of copying interrupt vector to ATCM is necessary
+    - Refer :ref:`FAQ Copy Vecs to ATCM <copy-vectors-2-atcm>` for details
+
+BOARD Diagnostics
+~~~~~~~~~~~~~~~~~
+
+    - In case of AM65xx, the board diagnostics builds are now supported from PDK
+      top level makefile present in pdk/packages/makefile or from pdk/packages/ti/build folders
+    - Board diagnostic application image location is changed from 'pdk/packages/ti/board/bin' to 'pdk/packages/binary'. Refer to
+      `Board Diagnostics Documentation <../board/board_diag.html>`_ for more details.
+
+AM65X Sciclient Interrupt Resource Type Migration Table
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
++---------------------------+-------------------------------------------+------------------------------------+--------------------------------+
+| Old Resource Type         | Old Resource Subtype                      | New Resource Type                  | New Resource Subtype           |
++===========================+===========================================+====================================+================================+
+| RESASG_TYPE_GIC_IRQ       | RESASG_SUBTYPE_GIC_IRQ_MAIN_NAV_SET0      | TISCI_DEV_NAVSS0_INTR_ROUTER_0     | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++---------------------------+-------------------------------------------+------------------------------------+--------------------------------+
+|                           | RESASG_SUBTYPE_GIC_IRQ_MAIN_GPIO          | TISCI_DEV_GPIOMUX_INTRTR0          | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++---------------------------+-------------------------------------------+------------------------------------+--------------------------------+
+|                           | RESASG_SUBTYPE_GIC_IRQ_MAIN_NAV_SET1      | TISCI_DEV_NAVSS0_INTR_ROUTER_0     | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++---------------------------+-------------------------------------------+------------------------------------+--------------------------------+
+|                           | RESASG_SUBTYPE_GIC_IRQ_COMP_EVT           | TISCI_DEV_CMPEVENT_INTRTR0         | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++---------------------------+-------------------------------------------+------------------------------------+--------------------------------+
+|                           | RESASG_SUBTYPE_GIC_IRQ_WKUP_GPIO          | TISCI_DEV_WKUP_GPIOMUX_INTRTR0     | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++---------------------------+-------------------------------------------+------------------------------------+--------------------------------+
+| RESASG_TYPE_PULSAR_C0_IRQ | RESASG_SUBTYPE_PULSAR_C0_IRQ_MCU_NAV      | TISCI_DEV_MCU_NAVSS0_INTR_ROUTER_0 | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++---------------------------+-------------------------------------------+------------------------------------+--------------------------------+
+|                           | RESASG_SUBTYPE_PULSAR_C0_IRQ_WKUP_GPIO    | TISCI_DEV_WKUP_GPIOMUX_INTRTR0     | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++---------------------------+-------------------------------------------+------------------------------------+--------------------------------+
+|                           | RESASG_SUBTYPE_PULSAR_C0_IRQ_MAIN2MCU_LVL | TISCI_DEV_MAIN2MCU_LVL_INTRTR0     | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++---------------------------+-------------------------------------------+------------------------------------+--------------------------------+
+|                           | RESASG_SUBTYPE_PULSAR_C0_IRQ_MAIN2MCU_PLS | TISCI_DEV_MAIN2MCU_PLS_INTRTR0     | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++---------------------------+-------------------------------------------+------------------------------------+--------------------------------+
+| RESASG_TYPE_PULSAR_C1_IRQ | RESASG_SUBTYPE_PULSAR_C1_IRQ_MCU_NAV      | TISCI_DEV_MCU_NAVSS0_INTR_ROUTER_0 | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++---------------------------+-------------------------------------------+------------------------------------+--------------------------------+
+|                           | RESASG_SUBTYPE_PULSAR_C1_IRQ_WKUP_GPIO    | TISCI_DEV_WKUP_GPIOMUX_INTRTR0     | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++---------------------------+-------------------------------------------+------------------------------------+--------------------------------+
+|                           | RESASG_SUBTYPE_PULSAR_C1_IRQ_MAIN2MCU_LVL | TISCI_DEV_MAIN2MCU_LVL_INTRTR0     | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++---------------------------+-------------------------------------------+------------------------------------+--------------------------------+
+|                           | RESASG_SUBTYPE_PULSAR_C1_IRQ_MAIN2MCU_PLS | TISCI_DEV_MAIN2MCU_PLS_INTRTR0     | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++---------------------------+-------------------------------------------+------------------------------------+--------------------------------+
+| RESASG_TYPE_ICSSG0_IRQ    | RESASG_SUBTYPE_ICSSG0_IRQ_MAIN_NAV        | TISCI_DEV_NAVSS0_INTR_ROUTER_0     | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++---------------------------+-------------------------------------------+------------------------------------+--------------------------------+
+|                           | RESASG_SUBTYPE_ICSSG0_IRQ_MAIN_GPIO       | TISCI_DEV_GPIOMUX_INTRTR0          | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++---------------------------+-------------------------------------------+------------------------------------+--------------------------------+
+| RESASG_TYPE_ICSSG1_IRQ    | RESASG_SUBTYPE_ICSSG1_IRQ_MAIN_NAV        | TISCI_DEV_NAVSS0_INTR_ROUTER_0     | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++---------------------------+-------------------------------------------+------------------------------------+--------------------------------+
+|                           | RESASG_SUBTYPE_ICSSG1_IRQ_MAIN_GPIO       | TISCI_DEV_GPIOMUX_INTRTR0          | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++---------------------------+-------------------------------------------+------------------------------------+--------------------------------+
+| RESASG_TYPE_ICSSG2_IRQ    | RESASG_SUBTYPE_ICSSG1_IRQ_MAIN_NAV        | TISCI_DEV_NAVSS0_INTR_ROUTER_0     | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++---------------------------+-------------------------------------------+------------------------------------+--------------------------------+
+|                           | RESASG_SUBTYPE_ICSSG1_IRQ_MAIN_GPIO       | TISCI_DEV_GPIOMUX_INTRTR0          | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++---------------------------+-------------------------------------------+------------------------------------+--------------------------------+
+
+AM65X SR2 Sciclient Interrupt Resource Type Migration Table
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
++--------------------------------+---------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+| Old Resource Type              | Old Resource Subtype                                                                  | New Resource Type                  | New Resource Subtype           |
++================================+=======================================================================================+====================================+================================+
+| AM6_DEV_MCU_CPSW0              | TISCI_RESASG_SUBTYPE_MCU_CPSW0_CPTS_HW3_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0         | TISCI_DEV_TIMESYNC_INTRTR0         | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++--------------------------------+---------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                | TISCI_RESASG_SUBTYPE_MCU_CPSW0_CPTS_HW4_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0         | TISCI_DEV_TIMESYNC_INTRTR0         | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++--------------------------------+---------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+| AM6_DEV_WKUP_DMSC0_CORTEX_M3_0 | TISCI_RESASG_SUBTYPE_WKUP_DMSC0_CORTEX_M3_0_NVIC_IRQ_GROUP0_FROM_WKUP_GPIOMUX_INTRTR0 | TISCI_DEV_WKUP_GPIOMUX_INTRTR0     | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++--------------------------------+---------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+| AM6_DEV_ESM0                   | TISCI_RESASG_SUBTYPE_ESM0_ESM_PLS_EVENT0_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0              | TISCI_DEV_GPIOMUX_INTRTR0          | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++--------------------------------+---------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                | TISCI_RESASG_SUBTYPE_ESM0_ESM_PLS_EVENT1_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0              | TISCI_DEV_GPIOMUX_INTRTR0          | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++--------------------------------+---------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                | TISCI_RESASG_SUBTYPE_ESM0_ESM_PLS_EVENT2_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0              | TISCI_DEV_GPIOMUX_INTRTR0          | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++--------------------------------+---------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+| AM6_DEV_WKUP_ESM0              | TISCI_RESASG_SUBTYPE_WKUP_ESM0_ESM_PLS_EVENT0_IRQ_GROUP0_FROM_WKUP_GPIOMUX_INTRTR0    | TISCI_DEV_WKUP_GPIOMUX_INTRTR0     | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++--------------------------------+---------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                | TISCI_RESASG_SUBTYPE_WKUP_ESM0_ESM_PLS_EVENT1_IRQ_GROUP0_FROM_WKUP_GPIOMUX_INTRTR0    | TISCI_DEV_WKUP_GPIOMUX_INTRTR0     | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++--------------------------------+---------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                | TISCI_RESASG_SUBTYPE_WKUP_ESM0_ESM_PLS_EVENT2_IRQ_GROUP0_FROM_WKUP_GPIOMUX_INTRTR0    | TISCI_DEV_WKUP_GPIOMUX_INTRTR0     | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++--------------------------------+---------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+| AM6_DEV_GIC0                   | TISCI_RESASG_SUBTYPE_GIC0_SPI_IRQ_GROUP0_FROM_NAVSS0_INTR_ROUTER_0                    | TISCI_DEV_NAVSS0_INTR_ROUTER_0     | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++--------------------------------+---------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                | TISCI_RESASG_SUBTYPE_GIC0_SPI_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0                         | TISCI_DEV_GPIOMUX_INTRTR0          | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++--------------------------------+---------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                | TISCI_RESASG_SUBTYPE_GIC0_SPI_IRQ_GROUP1_FROM_NAVSS0_INTR_ROUTER_0                    | TISCI_DEV_NAVSS0_INTR_ROUTER_0     | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++--------------------------------+---------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                | TISCI_RESASG_SUBTYPE_GIC0_SPI_IRQ_GROUP0_FROM_CMPEVENT_INTRTR0                        | TISCI_DEV_CMPEVENT_INTRTR0         | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++--------------------------------+---------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                | TISCI_RESASG_SUBTYPE_GIC0_SPI_IRQ_GROUP0_FROM_WKUP_GPIOMUX_INTRTR0                    | TISCI_DEV_WKUP_GPIOMUX_INTRTR0     | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++--------------------------------+---------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+| AM6_DEV_PRU_ICSSG0             | TISCI_RESASG_SUBTYPE_PRU_ICSSG0_PR1_EDC0_LATCH0_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0   | TISCI_DEV_TIMESYNC_INTRTR0         | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++--------------------------------+---------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                | TISCI_RESASG_SUBTYPE_PRU_ICSSG0_PR1_EDC0_LATCH1_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0   | TISCI_DEV_TIMESYNC_INTRTR0         | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++--------------------------------+---------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                | TISCI_RESASG_SUBTYPE_PRU_ICSSG0_PR1_EDC1_LATCH0_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0   | TISCI_DEV_TIMESYNC_INTRTR0         | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++--------------------------------+---------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                | TISCI_RESASG_SUBTYPE_PRU_ICSSG0_PR1_EDC1_LATCH1_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0   | TISCI_DEV_TIMESYNC_INTRTR0         | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++--------------------------------+---------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                | TISCI_RESASG_SUBTYPE_PRU_ICSSG0_PR1_IEP0_CAP_INTR_REQ_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0 | TISCI_DEV_GPIOMUX_INTRTR0          | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++--------------------------------+---------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                | TISCI_RESASG_SUBTYPE_PRU_ICSSG0_PR1_IEP1_CAP_INTR_REQ_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0 | TISCI_DEV_GPIOMUX_INTRTR0          | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++--------------------------------+---------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                | TISCI_RESASG_SUBTYPE_PRU_ICSSG0_PR1_SLV_INTR_IRQ_GROUP0_FROM_NAVSS0_INTR_ROUTER_0     | TISCI_DEV_NAVSS0_INTR_ROUTER_0     | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++--------------------------------+---------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                | TISCI_RESASG_SUBTYPE_PRU_ICSSG0_PR1_SLV_INTR_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0          | TISCI_DEV_GPIOMUX_INTRTR0          | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++--------------------------------+---------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+| AM6_DEV_PRU_ICSSG1             | TISCI_RESASG_SUBTYPE_PRU_ICSSG1_PR1_EDC0_LATCH0_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0   | TISCI_DEV_TIMESYNC_INTRTR0         | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++--------------------------------+---------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                | TISCI_RESASG_SUBTYPE_PRU_ICSSG1_PR1_EDC0_LATCH1_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0   | TISCI_DEV_TIMESYNC_INTRTR0         | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++--------------------------------+---------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                | TISCI_RESASG_SUBTYPE_PRU_ICSSG1_PR1_EDC1_LATCH0_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0   | TISCI_DEV_TIMESYNC_INTRTR0         | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++--------------------------------+---------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                | TISCI_RESASG_SUBTYPE_PRU_ICSSG1_PR1_EDC1_LATCH1_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0   | TISCI_DEV_TIMESYNC_INTRTR0         | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++--------------------------------+---------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                | TISCI_RESASG_SUBTYPE_PRU_ICSSG1_PR1_IEP0_CAP_INTR_REQ_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0 | TISCI_DEV_GPIOMUX_INTRTR0          | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++--------------------------------+---------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                | TISCI_RESASG_SUBTYPE_PRU_ICSSG1_PR1_IEP1_CAP_INTR_REQ_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0 | TISCI_DEV_GPIOMUX_INTRTR0          | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++--------------------------------+---------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                | TISCI_RESASG_SUBTYPE_PRU_ICSSG1_PR1_SLV_INTR_IRQ_GROUP0_FROM_NAVSS0_INTR_ROUTER_0     | TISCI_DEV_NAVSS0_INTR_ROUTER_0     | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++--------------------------------+---------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                | TISCI_RESASG_SUBTYPE_PRU_ICSSG1_PR1_SLV_INTR_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0          | TISCI_DEV_GPIOMUX_INTRTR0          | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++--------------------------------+---------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+| AM6_DEV_PRU_ICSSG2             | TISCI_RESASG_SUBTYPE_PRU_ICSSG2_PR1_EDC0_LATCH0_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0   | TISCI_DEV_TIMESYNC_INTRTR0         | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++--------------------------------+---------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                | TISCI_RESASG_SUBTYPE_PRU_ICSSG2_PR1_EDC0_LATCH1_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0   | TISCI_DEV_TIMESYNC_INTRTR0         | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++--------------------------------+---------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                | TISCI_RESASG_SUBTYPE_PRU_ICSSG2_PR1_EDC1_LATCH0_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0   | TISCI_DEV_TIMESYNC_INTRTR0         | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++--------------------------------+---------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                | TISCI_RESASG_SUBTYPE_PRU_ICSSG2_PR1_EDC1_LATCH1_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0   | TISCI_DEV_TIMESYNC_INTRTR0         | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++--------------------------------+---------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                | TISCI_RESASG_SUBTYPE_PRU_ICSSG2_PR1_IEP0_CAP_INTR_REQ_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0 | TISCI_DEV_GPIOMUX_INTRTR0          | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++--------------------------------+---------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                | TISCI_RESASG_SUBTYPE_PRU_ICSSG2_PR1_IEP1_CAP_INTR_REQ_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0 | TISCI_DEV_GPIOMUX_INTRTR0          | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++--------------------------------+---------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                | TISCI_RESASG_SUBTYPE_PRU_ICSSG2_PR1_SLV_INTR_IRQ_GROUP0_FROM_NAVSS0_INTR_ROUTER_0     | TISCI_DEV_NAVSS0_INTR_ROUTER_0     | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++--------------------------------+---------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                | TISCI_RESASG_SUBTYPE_PRU_ICSSG2_PR1_SLV_INTR_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0          | TISCI_DEV_GPIOMUX_INTRTR0          | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++--------------------------------+---------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+| AM6_DEV_NAVSS0                 | TISCI_RESASG_SUBTYPE_NAVSS0_CPTS0_HW1_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0           | TISCI_DEV_TIMESYNC_INTRTR0         | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++--------------------------------+---------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                | TISCI_RESASG_SUBTYPE_NAVSS0_CPTS0_HW2_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0           | TISCI_DEV_TIMESYNC_INTRTR0         | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++--------------------------------+---------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                | TISCI_RESASG_SUBTYPE_NAVSS0_CPTS0_HW3_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0           | TISCI_DEV_TIMESYNC_INTRTR0         | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++--------------------------------+---------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                | TISCI_RESASG_SUBTYPE_NAVSS0_CPTS0_HW4_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0           | TISCI_DEV_TIMESYNC_INTRTR0         | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++--------------------------------+---------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                | TISCI_RESASG_SUBTYPE_NAVSS0_CPTS0_HW5_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0           | TISCI_DEV_TIMESYNC_INTRTR0         | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++--------------------------------+---------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                | TISCI_RESASG_SUBTYPE_NAVSS0_CPTS0_HW6_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0           | TISCI_DEV_TIMESYNC_INTRTR0         | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++--------------------------------+---------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                | TISCI_RESASG_SUBTYPE_NAVSS0_CPTS0_HW7_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0           | TISCI_DEV_TIMESYNC_INTRTR0         | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++--------------------------------+---------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                | TISCI_RESASG_SUBTYPE_NAVSS0_CPTS0_HW8_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0           | TISCI_DEV_TIMESYNC_INTRTR0         | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++--------------------------------+---------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+| AM6_DEV_PCIE0                  | TISCI_RESASG_SUBTYPE_PCIE0_PCIE_CPTS_HW2_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0        | TISCI_DEV_TIMESYNC_INTRTR0         | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++--------------------------------+---------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+| AM6_DEV_PCIE1                  | TISCI_RESASG_SUBTYPE_PCIE1_PCIE_CPTS_HW2_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0        | TISCI_DEV_TIMESYNC_INTRTR0         | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++--------------------------------+---------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+| AM6_DEV_PDMA1                  | TISCI_RESASG_SUBTYPE_PDMA1_LEVENT_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0                 | TISCI_DEV_TIMESYNC_INTRTR0         | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++--------------------------------+---------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                | TISCI_RESASG_SUBTYPE_PDMA1_LEVENT_IN_IRQ_GROUP0_FROM_CMPEVENT_INTRTR0                 | TISCI_DEV_CMPEVENT_INTRTR0         | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++--------------------------------+---------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+| AM6_DEV_MCU_ARMSS0_CPU0        | TISCI_RESASG_SUBTYPE_MCU_ARMSS0_CPU0_INTR_IRQ_GROUP0_FROM_MCU_NAVSS0_INTR_ROUTER_0    | TISCI_DEV_MCU_NAVSS0_INTR_ROUTER_0 | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++--------------------------------+---------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                | TISCI_RESASG_SUBTYPE_MCU_ARMSS0_CPU0_INTR_IRQ_GROUP0_FROM_WKUP_GPIOMUX_INTRTR0        | TISCI_DEV_WKUP_GPIOMUX_INTRTR0     | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++--------------------------------+---------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                | TISCI_RESASG_SUBTYPE_MCU_ARMSS0_CPU0_INTR_IRQ_GROUP0_FROM_MAIN2MCU_LVL_INTRTR0        | TISCI_DEV_MAIN2MCU_LVL_INTRTR0     | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++--------------------------------+---------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                | TISCI_RESASG_SUBTYPE_MCU_ARMSS0_CPU0_INTR_IRQ_GROUP0_FROM_MAIN2MCU_PLS_INTRTR0        | TISCI_DEV_MAIN2MCU_PLS_INTRTR0     | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++--------------------------------+---------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+| AM6_DEV_MCU_ARMSS0_CPU1        | TISCI_RESASG_SUBTYPE_MCU_ARMSS0_CPU1_INTR_IRQ_GROUP0_FROM_MCU_NAVSS0_INTR_ROUTER_0    | TISCI_DEV_MCU_NAVSS0_INTR_ROUTER_0 | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++--------------------------------+---------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                | TISCI_RESASG_SUBTYPE_MCU_ARMSS0_CPU1_INTR_IRQ_GROUP0_FROM_WKUP_GPIOMUX_INTRTR0        | TISCI_DEV_WKUP_GPIOMUX_INTRTR0     | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++--------------------------------+---------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                | TISCI_RESASG_SUBTYPE_MCU_ARMSS0_CPU1_INTR_IRQ_GROUP0_FROM_MAIN2MCU_LVL_INTRTR0        | TISCI_DEV_MAIN2MCU_LVL_INTRTR0     | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++--------------------------------+---------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                | TISCI_RESASG_SUBTYPE_MCU_ARMSS0_CPU1_INTR_IRQ_GROUP0_FROM_MAIN2MCU_PLS_INTRTR0        | TISCI_DEV_MAIN2MCU_PLS_INTRTR0     | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++--------------------------------+---------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+
+J721E Sciclient Interrupt Resource Type Migration Table
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+| Old Resource Type                   | Old Resource Subtype                                                                             | New Resource Type                  | New Resource Subtype           |
++=====================================+==================================================================================================+====================================+================================+
+| TISCI_DEV_COMPUTE_CLUSTER0_CLEC     | TISCI_RESASG_SUBTYPE_COMPUTE_CLUSTER0_CLEC_SOC_EVENTS_IN_IRQ_GROUP0_FROM_NAVSS0_INTR_ROUTER_0    | TISCI_DEV_NAVSS0_INTR_ROUTER_0     | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_COMPUTE_CLUSTER0_CLEC_SOC_EVENTS_IN_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0         | TISCI_DEV_GPIOMUX_INTRTR0          | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_COMPUTE_CLUSTER0_CLEC_SOC_EVENTS_IN_IRQ_GROUP1_FROM_NAVSS0_INTR_ROUTER_0    | TISCI_DEV_NAVSS0_INTR_ROUTER_0     | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_COMPUTE_CLUSTER0_CLEC_SOC_EVENTS_IN_IRQ_GROUP0_FROM_CMPEVENT_INTRTR0        | TISCI_DEV_CMPEVENT_INTRTR0         | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_COMPUTE_CLUSTER0_CLEC_SOC_EVENTS_IN_IRQ_GROUP2_FROM_NAVSS0_INTR_ROUTER_0    | TISCI_DEV_NAVSS0_INTR_ROUTER_0     | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_COMPUTE_CLUSTER0_CLEC_SOC_EVENTS_IN_IRQ_GROUP0_FROM_WKUP_GPIOMUX_INTRTR0    | TISCI_DEV_WKUP_GPIOMUX_INTRTR0     | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+| TISCI_DEV_COMPUTE_CLUSTER0_GIC500SS | TISCI_RESASG_SUBTYPE_COMPUTE_CLUSTER0_GIC500SS_SPI_IRQ_GROUP0_FROM_NAVSS0_INTR_ROUTER_0          | TISCI_DEV_NAVSS0_INTR_ROUTER_0     | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_COMPUTE_CLUSTER0_GIC500SS_SPI_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0               | TISCI_DEV_GPIOMUX_INTRTR0          | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_COMPUTE_CLUSTER0_GIC500SS_SPI_IRQ_GROUP1_FROM_NAVSS0_INTR_ROUTER_0          | TISCI_DEV_NAVSS0_INTR_ROUTER_0     | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_COMPUTE_CLUSTER0_GIC500SS_SPI_IRQ_GROUP0_FROM_CMPEVENT_INTRTR0              | TISCI_DEV_CMPEVENT_INTRTR0         | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_COMPUTE_CLUSTER0_GIC500SS_SPI_IRQ_GROUP2_FROM_NAVSS0_INTR_ROUTER_0          | TISCI_DEV_NAVSS0_INTR_ROUTER_0     | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_COMPUTE_CLUSTER0_GIC500SS_SPI_IRQ_GROUP0_FROM_WKUP_GPIOMUX_INTRTR0          | TISCI_DEV_WKUP_GPIOMUX_INTRTR0     | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+| TISCI_DEV_MCU_CPSW0                 | TISCI_RESASG_SUBTYPE_MCU_CPSW0_CPTS_HW3_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0                    | TISCI_DEV_TIMESYNC_INTRTR0         | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_MCU_CPSW0_CPTS_HW4_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0                    | TISCI_DEV_TIMESYNC_INTRTR0         | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+| TISCI_DEV_CPSW0                     | TISCI_RESASG_SUBTYPE_CPSW0_CPTS_HW1_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0                        | TISCI_DEV_TIMESYNC_INTRTR0         | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_CPSW0_CPTS_HW2_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0                        | TISCI_DEV_TIMESYNC_INTRTR0         | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_CPSW0_CPTS_HW3_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0                        | TISCI_DEV_TIMESYNC_INTRTR0         | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_CPSW0_CPTS_HW4_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0                        | TISCI_DEV_TIMESYNC_INTRTR0         | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_CPSW0_CPTS_HW5_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0                        | TISCI_DEV_TIMESYNC_INTRTR0         | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_CPSW0_CPTS_HW6_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0                        | TISCI_DEV_TIMESYNC_INTRTR0         | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_CPSW0_CPTS_HW7_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0                        | TISCI_DEV_TIMESYNC_INTRTR0         | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_CPSW0_CPTS_HW8_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0                        | TISCI_DEV_TIMESYNC_INTRTR0         | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+| TISCI_DEV_ESM0                      | TISCI_RESASG_SUBTYPE_ESM0_ESM_PLS_EVENT0_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0                         | TISCI_DEV_GPIOMUX_INTRTR0          | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_ESM0_ESM_PLS_EVENT1_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0                         | TISCI_DEV_GPIOMUX_INTRTR0          | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_ESM0_ESM_PLS_EVENT2_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0                         | TISCI_DEV_GPIOMUX_INTRTR0          | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+| TISCI_DEV_WKUP_ESM0                 | TISCI_RESASG_SUBTYPE_WKUP_ESM0_ESM_PLS_EVENT0_IRQ_GROUP0_FROM_WKUP_GPIOMUX_INTRTR0               | TISCI_DEV_WKUP_GPIOMUX_INTRTR0     | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_WKUP_ESM0_ESM_PLS_EVENT1_IRQ_GROUP0_FROM_WKUP_GPIOMUX_INTRTR0               | TISCI_DEV_WKUP_GPIOMUX_INTRTR0     | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_WKUP_ESM0_ESM_PLS_EVENT2_IRQ_GROUP0_FROM_WKUP_GPIOMUX_INTRTR0               | TISCI_DEV_WKUP_GPIOMUX_INTRTR0     | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+| TISCI_DEV_PRU_ICSSG0                | TISCI_RESASG_SUBTYPE_PRU_ICSSG0_PR1_EDC0_LATCH0_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0              | TISCI_DEV_TIMESYNC_INTRTR0         | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_PRU_ICSSG0_PR1_EDC0_LATCH1_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0              | TISCI_DEV_TIMESYNC_INTRTR0         | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_PRU_ICSSG0_PR1_EDC1_LATCH0_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0              | TISCI_DEV_TIMESYNC_INTRTR0         | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_PRU_ICSSG0_PR1_EDC1_LATCH1_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0              | TISCI_DEV_TIMESYNC_INTRTR0         | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_PRU_ICSSG0_PR1_IEP0_CAP_INTR_REQ_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0            | TISCI_DEV_GPIOMUX_INTRTR0          | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_PRU_ICSSG0_PR1_IEP1_CAP_INTR_REQ_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0            | TISCI_DEV_GPIOMUX_INTRTR0          | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_PRU_ICSSG0_PR1_SLV_INTR_IRQ_GROUP0_FROM_NAVSS0_INTR_ROUTER_0                | TISCI_DEV_NAVSS0_INTR_ROUTER_0     | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+| TISCI_DEV_PRU_ICSSG1                | TISCI_RESASG_SUBTYPE_PRU_ICSSG1_PR1_EDC0_LATCH0_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0              | TISCI_DEV_TIMESYNC_INTRTR0         | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_PRU_ICSSG1_PR1_EDC0_LATCH1_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0              | TISCI_DEV_TIMESYNC_INTRTR0         | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_PRU_ICSSG1_PR1_EDC1_LATCH0_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0              | TISCI_DEV_TIMESYNC_INTRTR0         | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_PRU_ICSSG1_PR1_EDC1_LATCH1_IN_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0              | TISCI_DEV_TIMESYNC_INTRTR0         | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_PRU_ICSSG1_PR1_IEP0_CAP_INTR_REQ_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0            | TISCI_DEV_GPIOMUX_INTRTR0          | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_PRU_ICSSG1_PR1_IEP1_CAP_INTR_REQ_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0            | TISCI_DEV_GPIOMUX_INTRTR0          | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_PRU_ICSSG1_PR1_SLV_INTR_IRQ_GROUP0_FROM_NAVSS0_INTR_ROUTER_0                | TISCI_DEV_NAVSS0_INTR_ROUTER_0     | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+| TISCI_DEV_C66SS0_CORE0              | TISCI_RESASG_SUBTYPE_C66SS0_CORE0_C66_EVENT_IN_SYNC_IRQ_GROUP0_FROM_C66SS0_INTROUTER0            | TISCI_DEV_C66SS0_INTROUTER0        | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_C66SS0_CORE0_C66_EVENT_IN_SYNC_IRQ_GROUP1_FROM_C66SS0_INTROUTER0            | TISCI_DEV_C66SS0_INTROUTER0        | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_C66SS0_CORE0_C66_EVENT_IN_SYNC_IRQ_GROUP2_FROM_C66SS0_INTROUTER0            | TISCI_DEV_C66SS0_INTROUTER0        | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_C66SS0_CORE0_C66_EVENT_IN_SYNC_IRQ_GROUP3_FROM_C66SS0_INTROUTER0            | TISCI_DEV_C66SS0_INTROUTER0        | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_C66SS0_CORE0_C66_EVENT_IN_SYNC_IRQ_GROUP4_FROM_C66SS0_INTROUTER0            | TISCI_DEV_C66SS0_INTROUTER0        | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+| TISCI_DEV_C66SS1_CORE0              | TISCI_RESASG_SUBTYPE_C66SS1_CORE0_C66_EVENT_IN_SYNC_IRQ_GROUP0_FROM_C66SS1_INTROUTER0            | TISCI_DEV_C66SS1_INTROUTER0        | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_C66SS1_CORE0_C66_EVENT_IN_SYNC_IRQ_GROUP1_FROM_C66SS1_INTROUTER0            | TISCI_DEV_C66SS1_INTROUTER0        | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_C66SS1_CORE0_C66_EVENT_IN_SYNC_IRQ_GROUP2_FROM_C66SS1_INTROUTER0            | TISCI_DEV_C66SS1_INTROUTER0        | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_C66SS1_CORE0_C66_EVENT_IN_SYNC_IRQ_GROUP3_FROM_C66SS1_INTROUTER0            | TISCI_DEV_C66SS1_INTROUTER0        | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_C66SS1_CORE0_C66_EVENT_IN_SYNC_IRQ_GROUP4_FROM_C66SS1_INTROUTER0            | TISCI_DEV_C66SS1_INTROUTER0        | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+| TISCI_DEV_NAVSS512L_MAIN_0          | TISCI_RESASG_SUBTYPE_NAVSS512L_MAIN_0_CPTS0_HW1_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0            | TISCI_DEV_TIMESYNC_INTRTR0         | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_NAVSS512L_MAIN_0_CPTS0_HW2_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0            | TISCI_DEV_TIMESYNC_INTRTR0         | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_NAVSS512L_MAIN_0_CPTS0_HW3_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0            | TISCI_DEV_TIMESYNC_INTRTR0         | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_NAVSS512L_MAIN_0_CPTS0_HW4_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0            | TISCI_DEV_TIMESYNC_INTRTR0         | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_NAVSS512L_MAIN_0_CPTS0_HW5_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0            | TISCI_DEV_TIMESYNC_INTRTR0         | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_NAVSS512L_MAIN_0_CPTS0_HW6_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0            | TISCI_DEV_TIMESYNC_INTRTR0         | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_NAVSS512L_MAIN_0_CPTS0_HW7_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0            | TISCI_DEV_TIMESYNC_INTRTR0         | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_NAVSS512L_MAIN_0_CPTS0_HW8_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0            | TISCI_DEV_TIMESYNC_INTRTR0         | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+| TISCI_DEV_NAVSS0_UDMASS_INTAGGR_0   | TISCI_RESASG_SUBTYPE_NAVSS0_UDMASS_INTAGGR_0_INTAGGR_LEVI_PEND_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0  | TISCI_DEV_TIMESYNC_INTRTR0         | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_NAVSS0_UDMASS_INTAGGR_0_INTAGGR_LEVI_PEND_IRQ_GROUP0_FROM_CMPEVENT_INTRTR0  | TISCI_DEV_CMPEVENT_INTRTR0         | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_NAVSS0_UDMASS_INTAGGR_0_INTAGGR_LEVI_PEND_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0   | TISCI_DEV_GPIOMUX_INTRTR0          | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+| TISCI_DEV_MCU_NAVSS0_INTAGGR_0      | TISCI_RESASG_SUBTYPE_MCU_NAVSS0_INTAGGR_0_INTAGGR_LEVI_PEND_IRQ_GROUP0_FROM_WKUP_GPIOMUX_INTRTR0 | TISCI_DEV_WKUP_GPIOMUX_INTRTR0     | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+| TISCI_DEV_PCIE0                     | TISCI_RESASG_SUBTYPE_PCIE0_PCIE_CPTS_HW2_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0                   | TISCI_DEV_TIMESYNC_INTRTR0         | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+| TISCI_DEV_PCIE1                     | TISCI_RESASG_SUBTYPE_PCIE1_PCIE_CPTS_HW2_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0                   | TISCI_DEV_TIMESYNC_INTRTR0         | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+| TISCI_DEV_PCIE2                     | TISCI_RESASG_SUBTYPE_PCIE2_PCIE_CPTS_HW2_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0                   | TISCI_DEV_TIMESYNC_INTRTR0         | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+| TISCI_DEV_PCIE3                     | TISCI_RESASG_SUBTYPE_PCIE3_PCIE_CPTS_HW2_PUSH_IRQ_GROUP0_FROM_TIMESYNC_INTRTR0                   | TISCI_DEV_TIMESYNC_INTRTR0         | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+| TISCI_DEV_R5FSS0_CORE0              | TISCI_RESASG_SUBTYPE_R5FSS0_CORE0_INTR_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0                           | TISCI_DEV_GPIOMUX_INTRTR0          | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_R5FSS0_CORE0_INTR_IRQ_GROUP0_FROM_NAVSS0_INTR_ROUTER_0                      | TISCI_DEV_NAVSS0_INTR_ROUTER_0     | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_R5FSS0_CORE0_INTR_IRQ_GROUP0_FROM_R5FSS0_INTROUTER0                         | TISCI_DEV_R5FSS0_INTROUTER0        | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+| TISCI_DEV_R5FSS0_CORE1              | TISCI_RESASG_SUBTYPE_R5FSS0_CORE1_INTR_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0                           | TISCI_DEV_GPIOMUX_INTRTR0          | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_R5FSS0_CORE1_INTR_IRQ_GROUP0_FROM_NAVSS0_INTR_ROUTER_0                      | TISCI_DEV_NAVSS0_INTR_ROUTER_0     | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_R5FSS0_CORE1_INTR_IRQ_GROUP0_FROM_R5FSS0_INTROUTER0                         | TISCI_DEV_R5FSS0_INTROUTER0        | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+| TISCI_DEV_R5FSS1_CORE0              | TISCI_RESASG_SUBTYPE_R5FSS1_CORE0_INTR_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0                           | TISCI_DEV_GPIOMUX_INTRTR0          | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_R5FSS1_CORE0_INTR_IRQ_GROUP0_FROM_NAVSS0_INTR_ROUTER_0                      | TISCI_DEV_NAVSS0_INTR_ROUTER_0     | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_R5FSS1_CORE0_INTR_IRQ_GROUP0_FROM_R5FSS1_INTROUTER0                         | TISCI_DEV_R5FSS1_INTROUTER0        | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+| TISCI_DEV_R5FSS1_CORE1              | TISCI_RESASG_SUBTYPE_R5FSS1_CORE1_INTR_IRQ_GROUP0_FROM_GPIOMUX_INTRTR0                           | TISCI_DEV_GPIOMUX_INTRTR0          | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_R5FSS1_CORE1_INTR_IRQ_GROUP0_FROM_NAVSS0_INTR_ROUTER_0                      | TISCI_DEV_NAVSS0_INTR_ROUTER_0     | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_R5FSS1_CORE1_INTR_IRQ_GROUP0_FROM_R5FSS1_INTROUTER0                         | TISCI_DEV_R5FSS1_INTROUTER0        | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+| TISCI_DEV_MCU_R5FSS0_CORE0          | TISCI_RESASG_SUBTYPE_MCU_R5FSS0_CORE0_INTR_IRQ_GROUP0_FROM_MCU_NAVSS0_INTR_ROUTER_0              | TISCI_DEV_MAIN2MCU_LVL_INTRTR0     | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_MCU_R5FSS0_CORE0_INTR_IRQ_GROUP0_FROM_WKUP_GPIOMUX_INTRTR0                  | TISCI_DEV_WKUP_GPIOMUX_INTRTR0     | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_MCU_R5FSS0_CORE0_INTR_IRQ_GROUP0_FROM_MAIN2MCU_LVL_INTRTR0                  | TISCI_DEV_MAIN2MCU_LVL_INTRTR0     | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_MCU_R5FSS0_CORE0_INTR_IRQ_GROUP0_FROM_MAIN2MCU_PLS_INTRTR0                  | TISCI_DEV_MAIN2MCU_PLS_INTRTR0     | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_MCU_R5FSS0_CORE0_INTR_IRQ_GROUP0_FROM_NAVSS0_INTR_ROUTER_0                  | TISCI_DEV_NAVSS0_INTR_ROUTER_0     | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+| TISCI_DEV_MCU_R5FSS0_CORE1          | TISCI_RESASG_SUBTYPE_MCU_R5FSS0_CORE1_INTR_IRQ_GROUP0_FROM_MCU_NAVSS0_INTR_ROUTER_0              | TISCI_DEV_MCU_NAVSS0_INTR_ROUTER_0 | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_MCU_R5FSS0_CORE1_INTR_IRQ_GROUP0_FROM_WKUP_GPIOMUX_INTRTR0                  | TISCI_DEV_WKUP_GPIOMUX_INTRTR0     | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_MCU_R5FSS0_CORE1_INTR_IRQ_GROUP0_FROM_MAIN2MCU_LVL_INTRTR0                  | TISCI_DEV_MAIN2MCU_LVL_INTRTR0     | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_MCU_R5FSS0_CORE1_INTR_IRQ_GROUP0_FROM_MAIN2MCU_PLS_INTRTR0                  | TISCI_DEV_MAIN2MCU_PLS_INTRTR0     | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+|                                     | TISCI_RESASG_SUBTYPE_MCU_R5FSS0_CORE1_INTR_IRQ_GROUP0_FROM_NAVSS0_INTR_ROUTER_0                  | TISCI_DEV_NAVSS0_INTR_ROUTER_0     | TISCI_RESASG_SUBTYPE_IR_OUTPUT |
++-------------------------------------+--------------------------------------------------------------------------------------------------+------------------------------------+--------------------------------+
+
+
+Device Support
+--------------
+
+- AM65xx EVM, AM65xx IDK, AM65xx-HS EVM (BOARD=am65xx_evm, am65xx_idk)
+- J721E EVM, J721E-HS EVM (BOARD=j721e_evm)
+
+
+Validation Information
+----------------------
+
+This release is validated on above devices for the applicable components.
+For details on the validated examples refer to the platform specific test report present in **PDK_INSTALL_DIR/docs/test_report** folder.
+
+
+Tool Chain Information
+----------------------
+
+Refer to SDK level documentation for Tool Chain and dependent component version used to validate this release.
+
+
+Fixed Issues
+------------
+
++-------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+| ID                | Head Line                                                                                                             | Module            | Affected Versions    | Affected Platforms                                |
++===================+=======================================================================================================================+===================+======================+===================================================+
+| PDK-5764          | R5F MPU configuration for ATCM and BTCM is wrong in r5_mpu.xs for J721E and J7200                                     | BUILD             | 06.02.00             | j721e-evm                                         |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+| PDK-5759          | Incorrect status for memory attributes in r5_mpu.xs for j721e and j7200 for DDR                                       | BUILD             | 06.02.00             | j721e-evm                                         |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+| PRSDK-7244        | CSL Serdes configuration for PCIE Gen2 is unreliable                                                                  | CSL               | 06.01.00             | am654x-evm, am654x-idk                            |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+| PRSDK-7754        | LPDDR CSL-FL: Missing API to read and write thermal monitor                                                           | CSL               | 06.02.00             | j721e-evm                                         |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+| PDK-4959          | [Boot App]Compilation Error During Boot App Build                                                                     | CSL               | 06.02.00             | j721e-evm                                         |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+| PDK-5070          | Latest Uniflash documentation is not included in the release                                                          | COMMON            | 06.02.00             | j721e-evm                                         |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+| PDK-6378          | [DSS]DSS sample application crashes with DMSC flow                                                                    | DSS               | 06.02.00             | am654x-evm                                        |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+| PRSDK-7735        | am65xx: Need to optimize time it takes to polll for packets from udma rings on R5                                     | EMAC              | 06.02.00             | am654x-idk                                        |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+| PRSDK-8081        | GPIO instance is hardcoded in GPIO driver                                                                             | GPIO              | 06.02.00             | j721e-evm                                         |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+| PRSDK-7933        | Mailbox irq does not work on mcu1_1 using dynamic allocation                                                          | IPC               | 06.01.00             | j721e-evm                                         |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+| PRSDK-8481        | OSAL: Timer API wrongly uses HWIP clear and disable interrupts, instead of OSAL clear and disable APIs                | OSAL              | 06.03.00             | am654x-evm, am654x-hsevm, am654x-idk, j721e-evm   |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+| PDK-5588          | OSAL API TimerP_Params_init() initializes the Timer with wrong default clock (25MHz)                                  | OSAL              | 06.02.00             | j721e-evm                                         |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+| PRSDK-8426        | OSAL: SemaphoreP_postfromISR() API does not work for baremetal                                                        | OSAL              | 06.02.00             | j721e-evm                                         |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+| PDK-6685          | Timer osal - noos - Uninitialized variable                                                                            | OSAL              | 06.02.00             | j721e-evm                                         |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+| PRSDK-5415        | RTOS: K3: fix issue in OSPI INDAC mode with interrupt enabled for J7                                                  | OSPI              | 05.02.00             | j721e-evm                                         |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+| PRSDK-8301        | OSPI configured in SDR mode is not stable for SBL image copies                                                        | OSPI              | 06.02.00             | j721e-evm                                         |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+| PDK-5600          | OSPI FLash timing optimization                                                                                        | OSPI              | 06.02.00             | j721e-evm                                         |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+| PDK-6294          | SA: AM65x: Unit test aborts due to memory allocation failure                                                          | SA2UL             | 06.02.00             | am654x-evm                                        |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+| PRSDK-8302        | Board config for SBL is not setting proper value for GTC clock in MAIN domain                                         | SBL               | 06.02.00             | j721e-evm                                         |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+| PDK-5733          | [Boot] Certificate Parsing for X509 SBL is not fool proof                                                             | SBL               | 06.02.00             | j721e-evm                                         |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+| PDK-5645          | SBL configures MCU DMTimer0 for 250MHz while BIOS Timer.xs expects it to be at 19.2MHz                                | SBL               | 06.02.00             | j721e-evm                                         |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+| PDK-5574          | ipc: messages coming twice unexpectedly                                                                               | IPC               | 06.02.00             | j721e-evm                                         |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+| PDK-5573          | ipc: heapAlloc is not returning NULL when allocation fails                                                            | IPC               | 06.02.00             | j721e-evm                                         |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+| PDK-5572          | ipc: echo tests: Linux vrings not properly configured for non-cached for some cores                                   | IPC               | 06.02.00             | am654x-evm, j721e-evm                             |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+| PDK-5146          | IPC: tests: Board_init with pinmux config is conflicting with other test firmware                                     | IPC               | 06.02.00             | j721e-evm                                         |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+| PDK-5261          | [SCICLIENT] Sciclient PM functions send NULL request payloads                                                         | SCICLIENT         | 06.02.00             | am654x-evm                                        |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+| PDK-5033          | [SCICLIENT] Alignment mismatches in C66x causes the response to not be captured correctly                             | SCICLIENT         | 06.02.00             | j721e-evm                                         |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+| PDK-4963          | {SCICLIENT] Build fails intermittendly                                                                                | SCICLIENT         | 06.02.00             | j721e-evm                                         |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+| PDK-4948          | Launch.js file fails when running OSPI boot mode                                                                      | SCICLIENT         | 06.02.00             | j721e-evm                                         |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+| PDK-4994          | [UDMA] Proxy access fails when using CPSW LLD from QNX                                                                | UDMA              | 06.02.00             | am654x-evm, j721e-evm                             |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+| PDK-6522          | udma - Ring occupancy becoming negative                                                                               | UDMA              | 06.02.00             | j721e-evm                                         |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+| PDK-5221          | Spurious Interrupts observed for MSC & other modules in VPAC                                                          | VHWA              | 06.01.00             | j721e-evm                                         |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+| PDK-5804          | VPAC VISS H3A driver does not check for invalid parameters                                                            | VHWA              | 06.02.00             | j721e-evm                                         |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+| PDK-6701          | [VISS]:Edge Enhancer does not work for YUV422 output                                                                  | VHWA              | 06.02.00             | j721e-evm                                         |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+| PRSDK-7492        | Uniflash requires extra Serial-Cable Unplug/Re-plug step during operation                                             | UNIFLASH          | 06.01.00             | am654x-evm, am654x-hsevm, am654x-idk              |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+| PDK-5262          | [BOARD LIB]UB960 pattern generation API programs UB960 in case of error                                               | BOARD             | 06.02.00             | j721e-evm                                         |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+| PDK-5147          | [Board Lib]Board lib does not support more the 1 active I2C instances                                                 | BOARD             | 06.02.00             | j721e-evm                                         |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+| PDK-5016          | [j721e board] Serdes config function uses serdesInstance value for phyInstance                                        | BOARD             | 06.02.00             | j721e-evm                                         |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+| PRSDK-7908        | R5 Board Diagnostics Apploader crashes                                                                                | BOARD DIAG        | 06.02.00             | am654x-evm, am654x-hsevm, am654x-idk, j721e-evm   |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+| PRSDK-7889        | Audio DC diagnostic test failure                                                                                      | BOARD DIAG        | 06.01.00             | j721e-evm                                         |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+| PRSDK-7176        | AM65x R5 diagnostic tests are hanging while running from diag framework                                               | BOARD DIAG        | 06.01.00             | am654x-evm, am654x-idk                            |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+| PRSDK-4661        | AM65x: Board diagnostics LCD touchscreen test reports incorrect number of touch events                                | BOARD DIAG        | 05.01.00             | am654x-evm, am654x-hsevm, am654x-idk              |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+| ETHFW-1570        | CPSW DMA - Ring monitor not allocated even though enabled by an application                                           | CPSW              | 06.02.00             | j721e-evm                                         |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+| ETHFW-1564        | ETHFW-1564 - Examples - Sciclient_rmIrqSet fails for mcu2_1 examples due IR conflict                                  | CPSW              | 06.02.00             | j721e-evm                                         |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+| ETHFW-1496        | CPSW PHY: dp83867: Robust auto-mdix is disabled for non-loopback mode                                                 | CPSW              | 06.02.00             | j721e-evm                                         |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+| ETHFW-1497        | CPSW - MAC reset is not released in SGMII 100/10 Mbps mode                                                            | CPSW              | 06.02.00             | j721e-evm                                         |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+
+
+Known Issues
+------------
+
++-------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| ID                | Head Line                                                                                         | Module            | Reported in Release   | Affected Platforms        | Impact                                                    |Workaround in this release                             |
++===================+===================================================================================================+===================+=======================+===========================+===========================================================+=======================================================+
+| PDK-6549          | MCU2 core diagnostic tests not running through sbl                                                | BOARD             | 07.00.00              | j721e_evm                 | None                                                      | Use CCS/JTAG to run the tests                         |
++-------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| PDK-6548          | Display port (eDP) diagnostic test failure                                                        | BOARD             | 07.00.00              | j721e_evm                 | None                                                      | Use display sample application                        |
++-------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| PDK-6707          | PCIe diagnostic test failure                                                                      | BOARD             | 07.00.00              | am65xx_evm, am65xx_idk    | None                                                      | Use PCIe driver sample application                    |
++-------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| PRSDK-7891        | CPSW RGMII diagnostic test failure                                                                | BOARD             | 06.01.00              | j721e-evm                 | None                                                      | None                                                  |
++-------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| PRSDK-8607        | Board_init(SBL_PLL_INIT) is configuring PLL directly without going through SYSFW.                 | BOARD             | 06.03.00              | am654x-idk, am64x-evm     | None                                                      | Comment below lines of code from Board_PLLInitAll()   |
+|                   |                                                                                                   |                   |                       |                           |                                                           | (pdk/packages/ti/board/src/evmKeystone3)              |
+|                   |                                                                                                   |                   |                       |                           |                                                           | Board_PLLConfig(&pllcConfigs[CSL_PER0_PLL]);          |
+|                   |                                                                                                   |                   |                       |                           |                                                           | Board_PLLConfig(&pllcConfigs[CSL_MCU_PLL]);           |
+|                   |                                                                                                   |                   |                       |                           |                                                           | Board_PLLConfig(&pllcConfigs[CSL_CPSW_PLL]);          |
++-------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| PDK-6762          | CSL: UART test fails for MCU 1_0                                                                  | CSL               | 07.00.00              | am65xx_evm, j721e_evm     | Low. There are other CSL examples that output to UART     | Use UART driver in baremetal mode                     |
+|                   |                                                                                                   |                   |                       |                           | without any issue. Additionally, this test works fine for |                                                       |
+|                   |                                                                                                   |                   |                       |                           | MPU1_0. Suspect this is a CSL example application.        |                                                       |
++-------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| PDK-6800          | AM65: Watchdog timer diagnostic test fails                                                        | DIAG              | 07.00.00              | am65xx_evm                | The watchdog timer has been tested successfully on AM65   | None                                                  |
+|                   |                                                                                                   |                   |                       |                           | using CSL test. Suspect the diagnostics test may have a   |                                                       |
+|                   |                                                                                                   |                   |                       |                           | timing issue                                              |                                                       |
++-------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| PDK-5224          | Active DP -> HDMI adapter doesn't work                                                            | DSS               | 00.09.01              | j721e_evm                 | DP to HDMI adapter for display cannot be used.            | None                                                  |
++-------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| PDK-5040          | Display stops working if two pipelines are started back to back                                   | DSS               | 06.02.00              | j721e_evm                 | None, if the workaround is in place.                      | Wait for a frame to go out from a pipeline before     |
+|                   |                                                                                                   |                   |                       |                           |                                                           | starting the next one                                 |
++-------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| PDK-6734          | am65xx: emac: Driver updates to support wire clock feature in TX CFG                              | EMAC              | 07.00.00              | am65xx_idk                | There will be jitter in the inter arrival packet gap      | None                                                  |
+|                   |                                                                                                   |                   |                       |                           | when transmitting packets at a high data rate             |                                                       |
++-------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| PRSDK-5022        | am65xx: Running emac unit test on R5 core from ddrless SBL at times does not complete execution   | EMAC              | 05.02.00              | am654x-evm, am654x-idk    | Running emac unit test which does not access DDR from SBL | None                                                  |
+|                   |                                                                                                   |                   |                       |                           | does not finish execution, this unit test only added to   |                                                       |
+|                   |                                                                                                   |                   |                       |                           | run on R5 core                                            |                                                       |
++-------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| PDK-6791          | i2c eeprom smp testapp load fails                                                                 | I2C               | 07.00.00              | am65xx_evm                | The issue is most likely a application configuration or   | None. Use non-SMP mode                                |
+|                   |                                                                                                   |                   |                       |                           | test setup issue as other SMP applications are working    |                                                       |
+|                   |                                                                                                   |                   |                       |                           | fine                                                      |                                                       |
++-------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| PDK-6742          | McASP regression test app some tests are failing                                                  | McASP             | 07.00.00              | am65xx_evm                | The issue is most likely a application configuration      | None                                                  |
++-------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| PDK-6743          | McASP SMP tests fails                                                                             | McASP             | 07.00.00              | am65xx_evm, j721e_evm     | The issue is most likely a application configuration or   | None. Use non-SMP mode                                |
+|                   |                                                                                                   |                   |                       |                           | test setup issue as other SMP applications are working    |                                                       |
+|                   |                                                                                                   |                   |                       |                           | fine                                                      |                                                       |
++-------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| PRSDK-5074        | McASP driver hangs with small buffer size                                                         | McASP             | 05.01.00              | am654x-evm, j721e-evm     | None                                                      | Use packet size 32 samples or greater                 |
++-------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| PDK-6649          | Timer osal - noos - Timer delete doesn't "free" timer                                             | OSAL              | 06.02.00              | j721e_evm                 | Resource leak if create/delete called in a loop.          | Use the same timer in the application without         |
+|                   |                                                                                                   |                   |                       |                           | But typically this is not done for Timer.                 | create/deleting multiple times                        |
++-------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| PDK-6534          | Timer osal - noos - Timer should be reset first before registering interrupts                     | OSAL              | 06.02.00              | j721e_evm                 | None if the workaround is in place                        | Reset the timer before using                          |
++-------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| PDK-6758          | pcie qos examples fails for 2 lane configuration                                                  | PCIE              | 07.00.00              | am65xx_idk                | None                                                      | None                                                  |
++-------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| PRSDK-8036        | PCIE-0: Intermittent failures during Gen 3 mode on AM65x PG2.0                                    | PCIE              | 06.02.00              | am654x-evm, am654x-idk    | None                                                      | None                                                  |
++-------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| PDK-6415          | PMIC: Need to support asynchronous interrupts                                                     | PMIC              | 07.00.00              | j721e_evm                 | Asynchronous Interrupt feature is not supported           | None                                                  |
++-------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| PDK-6440          | PMIC: SBL test for GPIO Interrupts on Pins 3 and 4 are causing Hang on J721 EVM                   | PMIC              | 07.00.00              | j721e_evm                 | GPIO Pin 3 and 4 is not supported while testing with SBL  | GPIO Pin 3 and 4 functionalities can be tested using  |
+|                   |                                                                                                   |                   |                       |                           |                                                           | CCS                                                   |
++-------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| PDK-6439          | PMIC: GPIO Interrupt tests on Pin 7, 9 and 11 are failing                                         | PMIC              | 07.00.00              | j721e_evm                 | GPIO Interrupt feature for Pin 7, 9 11 is not supported   | GPIO Interrupt feature for other Pins except 7, 9 11  |
+|                   |                                                                                                   |                   |                       |                           |                                                           | is supported                                          |
++-------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| PDK-6757          | PMIC: SBL test for RTC unit tests results in hang for mcu1_1 core                                 | PMIC              | 07.00.00              | j721e_evm                 | PMIC RTC Test application fails while testing with SBL    | PMIC RTC Test application is supported on muc1_1 core |
+|                   |                                                                                                   |                   |                       |                           |                                                           | using CCS                                             |
++-------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| PRSDK-6382        | SBL: R5F: Core 1 boot is not working with unsigned binary with ipc images                         | SBL               | 06.01.00              | am654x-evm                | None                                                      | None                                                  |
++-------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| PRSDK-5448        | SBL boot from MMCSD fails intermittently                                                          | SBL               | 05.02.00              | am654x-evm, am654x-idk    | None                                                      | The workaround involves configuring the MMCSD driver  |
+|                   |                                                                                                   |                   |                       |                           |                                                           | in DS mode instead of the default HS mode. This can   |
+|                   |                                                                                                   |                   |                       |                           |                                                           | be done by making the below change in SBL's mmcsd     |
+|                   |                                                                                                   |                   |                       |                           |                                                           | config file                                           |
+|                   |                                                                                                   |                   |                       |                           |                                                           | pdk/packages/ti/boot/sbl/src/mmcsd/sbl_mmcsd.c#n232   |
+|                   |                                                                                                   |                   |                       |                           |                                                           |                                                       |
+|                   |                                                                                                   |                   |                       |                           |                                                           | Before calling the function MMCSD_socSetInitCfg(),    |
+|                   |                                                                                                   |                   |                       |                           |                                                           | insert the below line                                 |
+|                   |                                                                                                   |                   |                       |                           |                                                           | hwAttrsConfig.supportedModes = MMCSD_SUPPORT_SD_DS;   |
+|                   |                                                                                                   |                   |                       |                           |                                                           | Rebuild the MMCSD SBL image (sbl_mmcsd_img)           |
+|                   |                                                                                                   |                   |                       |                           |                                                           | cd pdk_<ver>/packages/ti/build                        |
+|                   |                                                                                                   |                   |                       |                           |                                                           | make sbl_mmcsd_img_clean BOARD=<board> CORE=mcu1_0    |
+|                   |                                                                                                   |                   |                       |                           |                                                           | make sbl_mmcsd_img BOARD=<board> CORE=mcu1_0          |
+|                   |                                                                                                   |                   |                       |                           |                                                           |                                                       |
+|                   |                                                                                                   |                   |                       |                           |                                                           | Use the sbl_mmcsd_img built above                     |
++-------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| PRSDK-5626        | OSPI Read using UDMA fails on AM65x HS devices.                                                   | SBL               | 05.03.00              | am654x-hsevm              | None                                                      | Non-DMA mode could be used for the read operation     |
++-------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| PDK-6789          | MCU/Main NAVSS UDMA memcpy from L2SRAM fails                                                      | UDMA              | 07.00.00              | j721e_evm                 | Transfer works fine when source buffer, destination       | Use ring memory from non-L2SRAM location              |
+|                   |                                                                                                   |                   |                       |                           | buffer and TRPD buffers are in L2SRAM. The issue happens  |                                                       |
+|                   |                                                                                                   |                   |                       |                           | only when the ring memory is in L2SRAM location           |                                                       |
++-------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| PRSDK-5989        | USB Host MSC test hangs in SMP mode on AM65xx IDK board                                           | USB               | 06.00.00              | am654x-idk                | None                                                      | None. Use non-SMP mode                                |
++-------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| PDK-5228          | Output mismatch when each region requiring 3 TRs                                                  | VHWA              | 01.00.00              | j721e_evm                 | In multi-region mode with more then 3 TR per region       | In multi-region mode for each region less than 3      |
+|                   |                                                                                                   |                   |                       |                           | can't be used                                             | TR should be used                                     |
++-------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| PDK-5226          | DOF generated wrong output with SOF if pixel in all row are not enabled                           | VHWA              | 01.00.00, 00.09.01    | j721e_evm                 | When using the SOF if the Paxel rows without any pixel    | This issue is due to shift in flowvector out buffer.  |
+|                   |                                                                                                   |                   |                       |                           | enabled is not in consecutive pair with lead to lead to   | While generating the SOF binary map make sure that    |
+|                   |                                                                                                   |                   |                       |                           | output mismatch                                           | Paxel rows without any pixel enabled should be in     |
+|                   |                                                                                                   |                   |                       |                           |                                                           | consecutive pair                                      |
++-------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| PDK-5217          | VPAC VISS driver doesn't support several valid mux combinations for outputs                       | VHWA              | 01.00.00, 00.09.01    | j721e_evm                 | VISS output with Chroma only and one of the RGB component | Enable YUV420 instead of Chroma only while using RGB  |
+|                   |                                                                                                   |                   |                       |                           | enabled may not work                                      | component                                             |
++-------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+
+
+Limitations
+-----------
+
+- Active DP -> HDMI adapter doesn't work. As a workaround use the display that supports Active DP

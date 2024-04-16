@@ -1,0 +1,1355 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>6.2. Board Diagnostic Overview &mdash; Platform Development Kit (PDK) - JACINTO User Guide</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Platform Development Kit (PDK) - JACINTO User Guide" href="../index.html"/>
+        <link rel="up" title="6. Board/EVM Abstraction" href="../family_cfg/jacinto/index_board_jacinto.html"/>
+        <link rel="next" title="6.3. Board Diagnostic Execution" href="board_diag_execution.html"/>
+        <link rel="prev" title="6.1. Board Support" href="board_support.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index_jacinto.html" class="icon icon-home"> Platform Development Kit (PDK) - JACINTO User Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                08_06_01
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">1. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_release_notes_jacinto.html">2. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">3. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_modules_jacinto.html">4. Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_boot_jacinto.html">5. Bootloader (SBL)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../family_cfg/jacinto/index_board_jacinto.html">6. Board/EVM Abstraction</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="board_support.html">6.1. Board Support</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">6.2. Board Diagnostic Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#overview">6.2.1. Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#building-the-diagnostic-tests">6.2.2. Building the Diagnostic Tests</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pre-requisites-for-diagnostics-build">6.2.2.1. Pre-requisites for Diagnostics Build</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#build-commands">6.2.2.2. Build Commands</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#running-the-diagnostic-examples">6.2.3. Running the Diagnostic Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#loading-through-sd-card">6.2.3.1. Loading through SD Card</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#running-standalone-diagnostic-tests-through-sd-card">6.2.3.2. Running Standalone Diagnostic Tests through SD Card</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#loading-through-uart">6.2.3.3. Loading through UART</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#running-or-debugging-on-ccs">6.2.3.4. Running or debugging on CCS</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#diagnostic-applications-support">6.2.4. Diagnostic Applications Support</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="board_diag_execution.html">6.3. Board Diagnostic Execution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uniflash.html">6.4. UNIFLASH</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_howto_jacinto.html">7. How to Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_faq_jacinto.html">8. Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_developer_notes_jacinto.html">9. Developer Notes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index_jacinto.html">Platform Development Kit (PDK) - JACINTO User Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index_jacinto.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../family_cfg/jacinto/index_board_jacinto.html">6. Board/EVM Abstraction</a> &raquo;</li>
+      
+    <li>6.2. Board Diagnostic Overview</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="board-diagnostic-overview">
+<h1>6.2. Board Diagnostic Overview<a class="headerlink" href="#board-diagnostic-overview" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview">
+<h2>6.2.1. Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>The PDK Diagnostic package is designed to be a set of
+baremetal tests to run on a given board to provide data path continuity
+testing on peripherals.</p>
+<p>Primary goal of the diagnostic tests is to validate the interfaces on the HW boards
+to confirm there are no connectivity and assembly issues. Implementation of
+diagnostic tests will not cover the complete protocol or specification used by
+the interface under test. Board diagnostic tests serve as reference for board
+bring-up but they are not recommended to be used as reference for production
+software development.</p>
+</div>
+<div class="section" id="building-the-diagnostic-tests">
+<h2>6.2.2. Building the Diagnostic Tests<a class="headerlink" href="#building-the-diagnostic-tests" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="pre-requisites-for-diagnostics-build">
+<h3>6.2.2.1. Pre-requisites for Diagnostics Build<a class="headerlink" href="#pre-requisites-for-diagnostics-build" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Follow the steps provided in PDK userguide to setup the build environment.</li>
+<li>You will need the following libraries built:</li>
+</ol>
+<ul class="simple">
+<li>Board</li>
+<li>UART</li>
+<li>GPIO</li>
+<li>I2C</li>
+<li>SPI</li>
+<li>CSL</li>
+<li>ICSS</li>
+<li>PRUSS</li>
+<li>MMCSD</li>
+<li>ENET</li>
+<li>USB</li>
+<li>CPSW</li>
+<li>OSAL</li>
+<li>FatFS</li>
+</ul>
+<ul class="simple">
+<li>UDMA</li>
+<li>SCICLIENT</li>
+</ul>
+<ul class="simple">
+<li>PMIC</li>
+</ul>
+<ul class="simple">
+<li>DSS</li>
+<li>CSIRX</li>
+</ul>
+<p>(Note: not every library is used for every application, and these
+libraries should come pre-built with any fresh installation of the SDK)</p>
+</div>
+<div class="section" id="build-commands">
+<h3>6.2.2.2. Build Commands<a class="headerlink" href="#build-commands" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li>Build the diagnostic tests using the below command</li>
+</ul>
+</div></blockquote>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">make</span> <span class="n">BOARD</span><span class="o">=&lt;</span><span class="n">Board</span> <span class="n">Name</span><span class="o">&gt;</span> <span class="n">CORE</span><span class="o">=&lt;</span><span class="n">Core</span> <span class="n">Name</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">Diag</span> <span class="n">Build</span> <span class="n">Name</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">Board</span> <span class="n">Name</span><span class="o">&gt;</span> <span class="n">is</span> <span class="n">the</span> <span class="n">board</span> <span class="k">for</span> <span class="n">which</span> <span class="n">diagnostics</span> <span class="n">need</span> <span class="n">to</span> <span class="n">be</span> <span class="n">built</span> <span class="p">(</span><span class="nl">Ex</span><span class="p">:</span> <span class="o">|</span><span class="n">__PART_DEFAULT_BOARD__</span><span class="o">|</span> <span class="p">)</span>
+<span class="o">&lt;</span><span class="n">Core</span> <span class="n">Name</span><span class="o">&gt;</span> <span class="n">is</span> <span class="n">the</span> <span class="n">CORE</span> <span class="n">ID</span> <span class="p">(</span><span class="nl">Ex</span><span class="p">:</span> <span class="n">mcu1_0</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="n">Diag</span> <span class="n">Build</span> <span class="n">Name</span><span class="o">&gt;</span> <span class="n">is</span> <span class="n">the</span> <span class="n">diagnostic</span> <span class="n">build</span> <span class="n">target</span> <span class="n">name</span> <span class="n">as</span> <span class="n">defined</span> <span class="n">in</span> <span class="o">&lt;</span><span class="n">PDK</span><span class="o">&gt;/</span><span class="n">packages</span><span class="o">/</span><span class="n">ti</span><span class="o">/</span><span class="n">board</span><span class="o">/</span><span class="n">diag</span><span class="o">/</span><span class="n">board_diag_component</span><span class="p">.</span><span class="n">mk</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><ul class="simple">
+<li>Successful build creates the diagnostic application at <strong>&lt;PDK&gt;/packages/ti/binary/board_diag_&lt;Test Name&gt;/bin/&lt;Board Name&gt;</strong></li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="running-the-diagnostic-examples">
+<h2>6.2.3. Running the Diagnostic Examples<a class="headerlink" href="#running-the-diagnostic-examples" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="loading-through-sd-card">
+<h3>6.2.3.1. Loading through SD Card<a class="headerlink" href="#loading-through-sd-card" title="Permalink to this headline">¶</a></h3>
+<p>Diagnostic tests can be run through SD card either using standalone test binary
+or through menu based diagnostic framework application. Below sections describe the procedure
+for each method.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>SD card must be set up to a bootable format for running the diagnostic tests from SD card.
+Refer to the <a class="reference external" href="../boot/boot.html#sbl-overview">PDK Boot</a> page for information on how the SD card is handled.</p>
+</div>
+<div class="section" id="running-standalone-diagnostic-tests-through-sd-card">
+<h3>6.2.3.2. Running Standalone Diagnostic Tests through SD Card<a class="headerlink" href="#running-standalone-diagnostic-tests-through-sd-card" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li>Build diagnostic test application by following the steps described in section <a class="reference internal" href="#building-the-diagnostic-tests">Building the Diagnostic Tests</a></li>
+<li>Copy the diagnostic application image (.appimage) to SD card and rename it to &#8216;app&#8217;</li>
+<li>Copy the system firmware and bootloader images to SD card</li>
+<li>Insert the SD card into the board</li>
+<li>Connect the serial port of the board to host PC</li>
+<li>Open Terminal emulator program eg: Teraterm to connect to the board&#8217;s
+UART console</li>
+</ul>
+</div></blockquote>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Use MAIN UART0 console for running the tests on mpu1_0, mcu2_0 cores and MCU UART console
+for running the tests on mcu1_0 core.</p>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><ul class="simple">
+<li>Power ON the the board.</li>
+<li>Diagnostic test should start running and display the log on the console.</li>
+</ul>
+</div></blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="loading-through-uart">
+<h3>6.2.3.3. Loading through UART<a class="headerlink" href="#loading-through-uart" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li>Build diagnostic test application by following the steps described in section <a class="reference internal" href="#building-the-diagnostic-tests">Building the Diagnostic Tests</a></li>
+<li>Configure the board for UART boot</li>
+<li>Connect the serial port of the board to host PC</li>
+<li>Open Terminal emulator program eg: Teraterm to connect to the board&#8217;s
+UART console</li>
+</ul>
+</div></blockquote>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Use MAIN UART0 console for running the tests on mpu1_0, mcu2_0 cores and MCU UART console
+for running the tests on mcu1_0 core.</p>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><ul class="simple">
+<li>Power ON the the board, the console should show a sequence of CCC being printed</li>
+<li>Choose the X-Modem interface and send the SBL that was built for UART.
+After the transfer is completed, repeat the same step for sysfw.bin (or, for HS device, use the ‘sysfw-hs-enc.bin’)
+and the diagnostic application image (.appimage). You will see notifications to perform these actions.</li>
+<li>Check the console logs after diagnostic test is loaded through UART.</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="running-or-debugging-on-ccs">
+<h3>6.2.3.4. Running or debugging on CCS<a class="headerlink" href="#running-or-debugging-on-ccs" title="Permalink to this headline">¶</a></h3>
+<p>To debug your application, CCS can give you access to the chip&#8217;s memory
+and register values. You can follow the below steps to load and run an
+application in CCS. If you have a SD card loadable image, and is able to
+load your application, you can connect to the corresponding core in CCS and load
+symbols without having to load and run the entire application. After
+building the diagnostic application, the output files should be
+generated under &#8216;&lt;PDK&gt;/packages/ti/binary/board_diag&lt;Test Name&gt;/bin/&lt;Board Name&gt;&#8217;.</p>
+<p>For running the diagnostic tests from CCS, pinmux configurations in diagnostic tests
+need to be enabled by defining the macro &#8216;PDK_RAW_BOOT&#8217;. This is done by default for
+debug build profile. For enabling the pinmux for release build profile, define the
+macro &#8216;PDK_RAW_BOOT&#8217; in &lt;PDK&gt;/packages/ti/board/diag/board_diag_component.mk by
+adding the line &#8216;export BOARD_DIAG_CFLAGS = -DPDK_RAW_BOOT&#8217;.
+This is required because the default diagnostic loading method
+is through SD card, and the pinmux is done by sbl. Adding this option
+only forces the diagnostic applications to do pinmuxing within the
+application itself (and not depend it being done).</p>
+<p>To run on CCS:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Connect USB cable to the board&#8217;s JTAG</li>
+<li>Connect the UART serial cable.</li>
+<li>Plug in power cord to your board</li>
+<li>Press the power button on the board to turn the board on</li>
+<li>Setup and run CCSv10 (or higher).</li>
+<li>Launch target configuration for the board</li>
+<li>Connect to the core that you built your application for.</li>
+<li>Load the program by pressing the load button and navigate the
+explorer to the .out file that you want to load</li>
+<li>Press the Run button to run the program</li>
+<li>Check UART console to see if anything is printed out. **If nothing
+is printed out, pause the core and see where the program counter is
+at. If it is at 0x3808c (or near it), try reloading the program and
+running again.</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="diagnostic-applications-support">
+<h2>6.2.4. Diagnostic Applications Support<a class="headerlink" href="#diagnostic-applications-support" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="45%" />
+<col width="18%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Description</th>
+<th class="head">AM65xx
+EVM</th>
+<th class="head">AM65xx
+IDK</th>
+<th class="head">J721E
+EVM</th>
+<th class="head">J7200
+EVM</th>
+<th class="head">AM64x
+EVM</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>adc_TEST</td>
+<td>Reads the input
+voltage provided
+on ADC header.
+Verifies
+Multiple ADC
+channels.
+Need to provide
+voltage input on
+ADC header from
+external source
+while the test.</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr class="row-odd"><td>adcStress_TEST</td>
+<td>Reads the input
+voltage provided
+on ADC header.
+Test is repeated
+for 100 cycles.
+Press &#8216;b&#8217; to stop
+the test before
+completing test
+cycles.
+Need to provide
+voltage input on
+ADC header from
+external source
+while the test.</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr class="row-even"><td>bootEeprom_TEST</td>
+<td>Verifies boot
+EEPROM by writing
+a block of data,
+reading back
+written data
+for correctness.</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>bootEepromStress_TEST</td>
+<td>Verifies boot
+EEPROM read/write
+covering entire
+memory.</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>bootSwitch_TEST</td>
+<td>Verifies boot mode
+switch by
+configuring boot
+strap pins as
+GPIOs and reading
+the pin state with
+boot switch set in
+different patterns</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr class="row-odd"><td>button_TEST</td>
+<td>Verifies push
+buttons on the
+board. Test
+prompts for
+pressing a
+specific button
+which will be
+detected by the
+test.</td>
+<td>x</td>
+<td>x</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>x</td>
+</tr>
+<tr class="row-even"><td>clockGen_TEST</td>
+<td>Verifies clock
+generator modules
+on the board.</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>x</td>
+<td>x</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>csirx_TEST</td>
+<td>Verifies csirx
+port on the board
+by receiving test
+pattern from csi
+fpd hub and
+displaying it on
+HDMI monitor.</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>x</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>currentMonitor_TEST</td>
+<td>Read voltage,
+current on I2C
+devices</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr class="row-odd"><td>currentMonitorStress_TEST</td>
+<td>Read voltage,
+current on I2C
+devices. Test is
+repeated for 100
+cycles. Press &#8216;b&#8217;
+to stop the test
+before completing
+test cycles.</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr class="row-even"><td>displayPort_TEST</td>
+<td>Verifies eDP
+display port on
+the board by
+displaying
+a color bar on
+DP monitor.</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>x</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>dsitx_TEST</td>
+<td>Verifies dsitx
+display port on
+the board by
+displaying
+a color bar on
+the LCD.
+Need to connect
+a LCD which is
+compatible with
+FPD device used on
+the board for
+running the test.</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>x</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>eeprom_TEST</td>
+<td>Reads the EEPROM
+and prints out the
+board&#8217;s ID
+information.
+Passes on
+successful I2C
+reads. EEPROM will
+need to be
+programmed prior
+in order for a
+correct read.</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr class="row-odd"><td>emmc_TEST</td>
+<td>Writes to and read
+from eMMC memory.
+Passes on reading
+back the correct
+value as the one
+written</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr class="row-even"><td>emmcStress_TEST</td>
+<td>Writes to and read
+from eMMC memory.
+Test covers the
+entire eMMC memory</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr class="row-odd"><td>enetIcssg_TEST</td>
+<td>Verifies ICSSG
+ENET ports in
+loopback with one
+port connected to
+another port.
+100 packets are
+sent and received
+during the test.</td>
+<td>x</td>
+<td>x</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>extRtc_TEST</td>
+<td>Test for setting
+date and time to
+external RTC and
+running the clock</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>extRtcStress_TEST</td>
+<td>Test for setting
+date and time to
+external RTC and
+running the clock.
+Test is repeated
+for 100 cycles.
+Press &#8216;b&#8217; to stop
+the test before
+completing test
+cycles.</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>framework(app)</td>
+<td>The main
+diagnostic
+application. This
+is loaded by SBL
+and can load other
+diagnostic
+applications on
+the SD card.</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>hdmi_TEST</td>
+<td>Verifies HDMI
+display port on
+the board by
+displaying
+a color bar on
+HDMI monitor.</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>x</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>hyperbus_TEST</td>
+<td>Tests the Hyperbus
+by writing
+and reading back
+the value written
+to memory. Test
+passes on correct
+data read back.</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>x</td>
+<td>x</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>icssgLed_TEST</td>
+<td>Cycles through
+LEDs on the IDK
+application
+board.</td>
+<td>&nbsp;</td>
+<td>x</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>icssgLedStress_TEST</td>
+<td>Cycles through
+LEDs on the IDK
+application
+board.
+Test is repeated
+for 100 cycles.
+Press &#8216;b&#8217; to stop
+the test before
+completing test
+cycles.</td>
+<td>&nbsp;</td>
+<td>x</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>lcd_TEST</td>
+<td>Tests LCD display
+output and touch
+input</td>
+<td>x</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>led_TEST</td>
+<td>Cycles through
+GPIO LEDs on the
+board. Requires
+user to verify
+the LEDs blink.</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr class="row-odd"><td>ledStress_TEST</td>
+<td>Cycles through
+GPIO LEDs on the
+board. Requires
+user to verify
+the LEDs blink.
+Test is repeated
+for 100 cycles.
+Press &#8216;b&#8217; to stop
+the test before
+completing test
+cycles.</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr class="row-even"><td>ledIndustrial_TEST</td>
+<td>Cycles through the
+I2C LEDs on the
+board. Requires
+user to verify
+LEDs blink.</td>
+<td>x</td>
+<td>x</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>x</td>
+</tr>
+<tr class="row-odd"><td>ledIndustrialStress_TEST</td>
+<td>Cycles through the
+I2C LEDs on the
+board. Requires
+user to verify
+LEDs blink.
+Test is repeated
+for 100 cycles.
+Press &#8216;b&#8217; to stop
+the test before
+completing test
+cycles.</td>
+<td>x</td>
+<td>x</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>x</td>
+</tr>
+<tr class="row-even"><td>lin_TEST</td>
+<td>Verifies LIN
+ports on the
+board with two
+ports connected
+with each other.
+Data is sent from
+one port and
+received on
+another port. Both
+ports are
+veirified for Tx
+and Rx</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>x</td>
+<td>x</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>mcan_TEST</td>
+<td>Verifies MCAN
+ports on the
+board with two
+ports connected
+with each other.
+Data is sent from
+one port and
+received on
+another port. Both
+ports are
+veirified for Tx
+and Rx</td>
+<td>&nbsp;</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr class="row-even"><td>mcanStress_TEST</td>
+<td>Verifies MCAN
+ports on the
+board with two
+ports connected
+with each other.
+10240 packets
+are sent from
+one port and
+received on
+another port. Both
+ports are
+veirified for Tx
+and Rx</td>
+<td>&nbsp;</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr class="row-odd"><td>mem_TEST</td>
+<td>Writes and reads
+to external (DDR)
+memory of the
+board. Value
+written/read is
+the address of
+the word. This is
+done two times,
+for value and
+~value
+(complement), to
+test for all bits.</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr class="row-even"><td>memStress_TEST</td>
+<td>Writes and reads
+to external (DDR)
+memory of the
+board. Walking 1&#8217;s
+and walking 0&#8217;s
+tests are executed
+on the whole DDR
+memory</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr class="row-odd"><td>mmcsd_TEST</td>
+<td>Writes to and
+read from MMCSD
+memory. Passes on
+reading back the
+correct value as
+the one written</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr class="row-even"><td>mmcsdStress_TEST</td>
+<td>Writes to and
+read from MMCSD
+memory. Passes on
+reading back the
+correct value as
+the one written.
+Entire SD card
+memory starting
+from 1.5GB offset
+is written/read
+during the test.</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr class="row-odd"><td>norflash_TEST</td>
+<td>Tests reading and
+writing to NOR
+flash memory</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>norflashStress_TEST</td>
+<td>Tests reading and
+writing to NOR
+flash memory.
+Entire NOR flash
+memory is accessed
+during the test.</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>oled_TEST</td>
+<td>Tests the OLED
+display by
+displaying test
+messages on the
+oled panel.</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>x</td>
+</tr>
+<tr class="row-even"><td>ospi_TEST</td>
+<td>Tests the Octal
+SPI by writing
+and reading back
+the value written
+to memory. Test
+passes on correct
+data read back.</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr class="row-odd"><td>ospiStress_TEST</td>
+<td>Tests the Octal
+SPI by writing
+and reading back
+the value written
+to memory. Test
+passes on correct
+data read back.
+Entire OSPI flash
+memory is accessed
+during the test.</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr class="row-even"><td>pcie_TEST</td>
+<td>Tests the PCIe
+interface in
+end point and
+rootcomplex mode
+using two boards.
+Data is sent from
+one board to other
+and sent it back
+to the first board
+for verification.</td>
+<td>x</td>
+<td>x</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>pmic_TEST</td>
+<td>Verifies PMIC
+access and setting
+the PMIC voltages</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>x</td>
+<td>x</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>rotarySwitch_TEST</td>
+<td>Tests the rotary
+switch at the
+10 possible
+positions</td>
+<td>&nbsp;</td>
+<td>x</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>rs485_TEST</td>
+<td>Verifies PRU UART
+port on the
+board.
+Supports board to
+board test and
+single board test.
+RS485 to RS232
+coverter is needed
+to run the test on
+AM65xx platform</td>
+<td>&nbsp;</td>
+<td>x</td>
+<td>&nbsp;</td>
+<td>x</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>rs485Stress_TEST</td>
+<td><p class="first">Verifies PRU UART
+port on the
+board.
+Sends 10MB of data
+from the board to
+serial console.
+Teraterm script
+loops the data
+back to the board.
+Data recieved on
+the board and
+verified.
+RS485 to RS232
+coverter is needed
+to run the test on
+AM65xx platform.</p>
+<p class="last">Need to run this
+test from CCS.
+SD boot support is
+not available.</p>
+</td>
+<td>&nbsp;</td>
+<td>x</td>
+<td>&nbsp;</td>
+<td>x</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>spiEeprom_TEST</td>
+<td>Verifies SPI
+EEPROM by writing
+a block of data,
+reading back
+written data
+for correctness.</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>x</td>
+</tr>
+<tr class="row-even"><td>temperature_TEST</td>
+<td>Tests reading
+back from
+temperature sensor
+via I2C. Test
+passes on
+successful I2C
+reads.</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr class="row-odd"><td>temperatureStress_TEST</td>
+<td>Tests reading
+back from
+temperature sensor
+via I2C. Test
+passes on
+successful I2C
+reads.
+Test is repeated
+for 100 cycles.
+Press &#8216;b&#8217; to stop
+the test before
+completing test
+cycles.</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr class="row-even"><td>uart_TEST</td>
+<td>Data Path
+continuity test
+for UART output.
+Requires user to
+verify that
+outputs do appear
+on console.</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr class="row-odd"><td>uartStress_TEST</td>
+<td><p class="first">Verifies UART port
+with large block
+of data transfer.
+Sends 10MB of data
+from the board to
+serial console.
+Teraterm script
+loops the data
+back to the board.
+Data recieved on
+the board and
+verified.
+RS485 to RS232
+coverter is needed
+to run the test on
+AM65xx platform.</p>
+<p class="last">Need to run this
+test from CCS.
+SD boot support is
+not available.</p>
+</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr class="row-even"><td>usbDevice_TEST</td>
+<td>Verifies the USB
+device mode
+operation of
+board under test.
+USB modules
+operates at high
+speed (2.0)
+Board is exposed
+as USB MSC device
+to host PC during
+the test.</td>
+<td>x</td>
+<td>x</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>usbHost_TEST</td>
+<td>Verifies the USB
+host mode
+operation of
+boardf under test.
+USB modules
+operates at high
+speed (2.0)
+during the test.
+File write/read
+and data
+verification on
+the connected USB
+device is done
+during the test</td>
+<td>x</td>
+<td>x</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>usbHostStress_TEST</td>
+<td>Verifies the USB
+host mode
+operation of
+boardf under test.
+USB modules
+operates at high
+speed (2.0)
+during the test.
+File write/read
+and data
+verification on
+the connected USB
+device is done
+during the test
+Test is repeated
+for 100 cycles.
+Press &#8216;b&#8217; to stop
+the test before
+completing test
+cycles.</td>
+<td>x</td>
+<td>x</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>Power On Self Test</td>
+<td>Verifies basic
+memory devices
+on the board and
+displays the
+board ID details.
+Executed on boot
+automatically
+before displaying
+diag main menu.
+Can be skipped by
+entering &#8216;b&#8217; in
+the serial console
+within 5 secs of
+diag boot.</td>
+<td>x</td>
+<td>x</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="board_diag_execution.html" class="btn btn-neutral float-right" title="6.3. Board Diagnostic Execution" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="board_support.html" class="btn btn-neutral" title="6.1. Board Support" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="http://www.ti.com/corp/docs/legal/copyright.shtml">&copy; Copyright 1995-2020</a>, Texas Instruments Incorporated. All rights reserved. <br>
+      <a href="http://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="http://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="http://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="http://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'08_06_01',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

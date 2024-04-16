@@ -1,0 +1,452 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4.2. FreeRTOS &mdash; Platform Development Kit (PDK) - JACINTO User Guide</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Platform Development Kit (PDK) - JACINTO User Guide" href="../index.html"/>
+        <link rel="up" title="4. Modules" href="../family_cfg/jacinto/index_modules_jacinto.html"/>
+        <link rel="next" title="4.3. SafeRTOS" href="../family_cfg/jacinto/index_modules_safertos_jacinto.html"/>
+        <link rel="prev" title="4.1. CSL" href="csl.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index_jacinto.html" class="icon icon-home"> Platform Development Kit (PDK) - JACINTO User Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                08_06_01
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">1. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_release_notes_jacinto.html">2. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">3. Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../family_cfg/jacinto/index_modules_jacinto.html">4. Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="csl.html">4.1. CSL</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">4.2. FreeRTOS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">4.2.1. Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#features-supported">4.2.2. Features Supported</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#features-not-supported">4.2.3. Features Not Supported</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#important-files-and-directory-structure">4.2.4. Important files and directory structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#freertos-examples">4.2.5. FreeRTOS Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#freertos-usage-and-migration-guidelines">4.2.6. FreeRTOS Usage and Migration Guidelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#freertos-with-real-time-object-view-rov">4.2.7. FreeRTOS with Real-time Object View (ROV)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#additional-references">4.2.8. Additional references</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../family_cfg/jacinto/index_modules_safertos_jacinto.html">4.3. SafeRTOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="osal.html">4.4. OSAL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss.html">4.5. DSS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="enet.html">4.6. ENET</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fvid2.html">4.7. FVID2 User Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gpio.html">4.8. GPIO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i2c.html">4.9. I2C</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipc.html">4.10. IPC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mcasp.html">4.11. McASP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pm.html">4.12. PM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sa.html">4.13. SA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../family_cfg/jacinto/index_modules_sciclient_jacinto.html">4.14. SCICLIENT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="keywriter.html">4.15. OTP KEYWRITER</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spi.html">4.16. SPI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uart.html">4.17. UART</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../family_cfg/jacinto/index_modules_udma_jacinto.html">4.18. UDMA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pmic.html">4.19. PMIC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mmcsd.html">4.20. MMCSD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../family_cfg/jacinto/index_modules_lpm_jacinto.html">4.21. Low Power Manager (LPM)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_boot_jacinto.html">5. Bootloader (SBL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_board_jacinto.html">6. Board/EVM Abstraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_howto_jacinto.html">7. How to Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_faq_jacinto.html">8. Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_developer_notes_jacinto.html">9. Developer Notes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index_jacinto.html">Platform Development Kit (PDK) - JACINTO User Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index_jacinto.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../family_cfg/jacinto/index_modules_jacinto.html">4. Modules</a> &raquo;</li>
+      
+    <li>4.2. FreeRTOS</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="freertos">
+<span id="id1"></span><h1>4.2. FreeRTOS<a class="headerlink" href="#freertos" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>4.2.1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>FreeRTOS is a market-leading real-time operating system (RTOS) for microcontrollers and small microprocessors.
+Distributed freely under the MIT open source license, FreeRTOS includes a kernel and a growing set of libraries
+suitable for use across all industry sectors. FreeRTOS is built with an emphasis on reliability and ease of use.</p>
+<p>PDK supports FreeRTOS on R5F, C66x, C7x CPUs for J721E.
+OSAL support and PDK Drivers running with FreeRTOS are available in this release.</p>
+<p>FreeRTOS is not supported on A72 core.</p>
+</div>
+<div class="section" id="features-supported">
+<h2>4.2.2. Features Supported<a class="headerlink" href="#features-supported" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">FreeRTOS Kernel 10.4.3</p>
+<blockquote>
+<div><ul class="simple">
+<li>Tasks, semaphores, mutex, queues, timers, list, heap, event groups</li>
+<li>preemptive priority-based scheduler</li>
+<li>static and/or dynamic memory allocation Mode</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">In order to keep the PDK drivers/examples OS agnostic, additionally below OSAL modules are implemented
+to call FreeRTOS APIs underneath:-</p>
+<blockquote>
+<div><ul class="simple">
+<li>Clock, Task, Semaphore, Event, Mailbox, Mutex, Queue, Cache, HW Interrupts, HW Timers, Cycleprofiler, Heap, Load.</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="features-not-supported">
+<h2>4.2.3. Features Not Supported<a class="headerlink" href="#features-not-supported" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Co-routines, stream buffer are not enabled and compiled by default.
+Users can add these to the FreeRTOS config and makefile if they want to use these features.</li>
+<li>Tickless IDLE mode</li>
+<li>Task level memory protection wrapper</li>
+<li>On R5F, nested interrupts are not supported.</li>
+<li>HW Interrupt and SW Interrupt Load measurements are not supported.</li>
+</ul>
+</div>
+<div class="section" id="important-files-and-directory-structure">
+<h2>4.2.4. Important files and directory structure<a class="headerlink" href="#important-files-and-directory-structure" title="Permalink to this headline">¶</a></h2>
+<p>FreeRTOS source is distributed along with PDK and given below are some important files and folders related to FreeRTOS.</p>
+<div class="highlight-cpp"><div class="highlight"><pre>${PDK_INSTALL_PATH}/packages/ti/kernel
+│
+├────────────────────────────────── freertos
+│                                    ├────── FreeRTOS-LTS   &lt;= FreeRTOS Kernel source code. PDK simply clones the code from
+│                                    │                         FreeRTOS Github and does not modify anything in this folder
+│                                    │
+│                                    ├────── config         &lt;= FreeRTOS configuration header files for different SOCs and CPUs
+│                                    │
+│                                    └────── portable       &lt;= FreeRTOS porting related files for supported cores
+│
+├────────────────────────────────── lib                     &lt;= FreeRTOS library to link against. Linking to the library in this path
+│                                                              enables the application to operate in FreeRTOS mode
+│
+└────────────────────────────────── test/freertos           &lt;= FreeRTOS Examples and Unit Test
+
+${PDK_INSTALL_PATH}/packages/ti/osal                        &lt;= APIs to access FreeRTOS features in a OS agnostic way
+│
+└────────────────────────────────── lib/freertos            &lt;= OSAL FreeRTOS library to link against. Linking to the library in this path
+                                                               enables the application to use OSAL APIs which will operate in FreeRTOS mode
+</pre></div>
+</div>
+</div>
+<div class="section" id="freertos-examples">
+<h2>4.2.5. FreeRTOS Examples<a class="headerlink" href="#freertos-examples" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="13%" />
+<col width="62%" />
+<col width="15%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Example</th>
+<th class="head">Application Name</th>
+<th class="head">Description</th>
+<th class="head">Cores Supported</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>FreeRTOS Task Switch</td>
+<td>freertos_test_task_switch</td>
+<td><div class="first last line-block">
+<div class="line">The FreeRTOS Task Switch Example test performs the following:</div>
+<div class="line">1. switch between ping and pong tasks using semaphores</div>
+<div class="line">2. switch between ping and pong tasks using direct-to-task notifications</div>
+<div class="line">3. switch from ping task to ISR to pong task and back to ping task using semaphores, here there is a task switch</div>
+</div>
+</td>
+<td>mcu1_0, mcu1_1, mcu2_0, mcu2_1, mcu3_0, mcu3_1, c66xdsp_1, c66xdsp_2, c7x_1</td>
+</tr>
+<tr class="row-odd"><td>FreeRTOS Unit Test</td>
+<td>freertos_test_ut</td>
+<td><div class="first last line-block">
+<div class="line">The FreeRTOS Unit Test performs the following:</div>
+<div class="line">1. switch between ping and pong tasks using semaphores</div>
+<div class="line">2. switch between ping and pong tasks using direct-to-task notifications</div>
+<div class="line">3. just invoke the task switch logic (Task Yield) without any semaphores or direct-to-task notifications</div>
+<div class="line">4. switch from ping to ISR and back to the same task using semaphores, here there is no task switch</div>
+<div class="line">5. switch from ping to ISR and back to the same task using direct-to-task notify, here there is no task switch</div>
+<div class="line">6. switch from ping task to ISR to pong task and back to ping task using semaphores, here there is a task switch</div>
+<div class="line">7. switch from ping task to ISR to pong task and back to ping task using direct-to-task notify, here there is a task switch</div>
+<div class="line">8. switch between ping and pong tasks and do float operations in between</div>
+<div class="line">9. Test TaskDelay</div>
+</div>
+</td>
+<td>mcu1_0, mcu1_1, mcu2_0, mcu2_1, mcu3_0, mcu3_1, c66xdsp_1, c66xdsp_2, c7x_1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="freertos-usage-and-migration-guidelines">
+<h2>4.2.6. FreeRTOS Usage and Migration Guidelines<a class="headerlink" href="#freertos-usage-and-migration-guidelines" title="Permalink to this headline">¶</a></h2>
+<p>See <a class="reference internal" href="../developer_notes/freertos_guidelines.html#freertos-usage-and-migration-guidelines"><span>FreeRTOS Usage and Migration Guidelines</span></a> for FreeRTOS migration &amp; usage guidelines and comparison to SysBIOS.</p>
+</div>
+<div class="section" id="freertos-with-real-time-object-view-rov">
+<h2>4.2.7. FreeRTOS with Real-time Object View (ROV)<a class="headerlink" href="#freertos-with-real-time-object-view-rov" title="Permalink to this headline">¶</a></h2>
+<p>Real-time Object View (ROV) in CCS IDE for FreeRTOS is available for R5F, C66x cores.</p>
+<p>See <a class="reference internal" href="../developer_notes/freertos_ccs_rov.html#freertos-ccs-rov"><span>FreeRTOS Real-time Object View (ROV)</span></a> for instructions related to using Real-time Object View (ROV) with FreeRTOS.</p>
+</div>
+<div class="section" id="additional-references">
+<h2>4.2.8. Additional references<a class="headerlink" href="#additional-references" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="35%" />
+<col width="65%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Document Description</th>
+<th class="head">Weblink</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Easy to read FreeRTOS book</td>
+<td><a class="reference external" href="https://www.freertos.org/Documentation/RTOS_book.html">https://www.freertos.org/Documentation/RTOS_book.html</a></td>
+</tr>
+<tr class="row-odd"><td>FreeRTOS user docs</td>
+<td><a class="reference external" href="https://www.freertos.org/features.html">https://www.freertos.org/features.html</a></td>
+</tr>
+<tr class="row-even"><td>User API reference</td>
+<td><a class="reference external" href="https://www.freertos.org/a00106.html">https://www.freertos.org/a00106.html</a></td>
+</tr>
+<tr class="row-odd"><td>FreeRTOS core kernel source code</td>
+<td><a class="reference external" href="https://github.com/FreeRTOS/FreeRTOS-Kernel">https://github.com/FreeRTOS/FreeRTOS-Kernel</a></td>
+</tr>
+<tr class="row-even"><td>FreeRTOS core kernel example source code</td>
+<td><a class="reference external" href="https://github.com/FreeRTOS/FreeRTOS/tree/master/FreeRTOS">https://github.com/FreeRTOS/FreeRTOS/tree/master/FreeRTOS</a></td>
+</tr>
+<tr class="row-odd"><td rowspan="3">Additional FreeRTOS.org maintained libraries (POSIX, TCP, Filesystem, …)</td>
+<td><a class="reference external" href="https://www.freertos.org/FreeRTOS-Labs/index.html">https://www.freertos.org/FreeRTOS-Labs/index.html</a></td>
+</tr>
+<tr class="row-even"><td><a class="reference external" href="https://www.freertos.org/FreeRTOS-Plus/index.html">https://www.freertos.org/FreeRTOS-Plus/index.html</a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="https://github.com/FreeRTOS">https://github.com/FreeRTOS</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../family_cfg/jacinto/index_modules_safertos_jacinto.html" class="btn btn-neutral float-right" title="4.3. SafeRTOS" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="csl.html" class="btn btn-neutral" title="4.1. CSL" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="http://www.ti.com/corp/docs/legal/copyright.shtml">&copy; Copyright 1995-2020</a>, Texas Instruments Incorporated. All rights reserved. <br>
+      <a href="http://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="http://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="http://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="http://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'08_06_01',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,176 @@
+OSAL
+====
+
+Introduction
+------------
+
+The OSAL library provides operating system abstraction layer API sample
+implementations that are required for processor SDK drivers. Scope of
+APIs supported in the module is limited to support OS services required
+for RTOS or bare metal drivers
+
+-  Supported Operating Systems
+
+   -  FreeRTOS
+   -  Non-OS (Baremetal)
+
+-  Supported SOCs
+
+   -  Please refer to component release notes
+
+User Interface
+--------------
+
+For details about individual fields of this library structure, see the
+PDK doxygen documentation / `OSAL API Guide <../../../apiguide/j721e/html/group__DRV__OSAL__MODULE.html>`_
+
+APIs
+^^^^
+
+Porting of OSAL component will enable extending PDK components to
+additional OS environment. Reference top level API header file 
+includes:
+
+::
+
+    #include <ti/osal/osal.h>
+
+The following table shows which all OSAL modules are supported for FreeRTOS and Non-OS.
+Using OSAL APIs that are not supported for an OS will result in linking errors.
+
++---------------------------------+--------------------+-------------------+
+|           OSAL Module           |      FreeRTOS      | Non-OS(Baremetal) |
++=================================+====================+===================+
+| Tasks (TaskP)                   |         YES        |         NO        |
++---------------------------------+--------------------+-------------------+
+| Semaphores (SempahoreP)         |         YES        |        YES        |
++---------------------------------+--------------------+-------------------+
+| HW Interrupts (HwiP)            |         YES        |        YES        |
++---------------------------------+--------------------+-------------------+
+| HW Timers (TimerP)              |         YES        |        YES        |
++---------------------------------+--------------------+-------------------+
+| Cache Ops (CahceP)              |         YES        |        YES        |
++---------------------------------+--------------------+-------------------+
+| Cycle profiler (CycleProfilerP) |         YES        |        YES        |
++---------------------------------+--------------------+-------------------+
+| SW Timer (ClockP)               |         YES        |         NO        |
++---------------------------------+--------------------+-------------------+
+| Events (EventP)                 |         YES        |         NO        |
++---------------------------------+--------------------+-------------------+
+| SW Mailbox (MailboxP)           |         YES        |         NO        |
++---------------------------------+--------------------+-------------------+
+| Mutex (MutexP)                  |         YES        |         NO        |
++---------------------------------+--------------------+-------------------+
+| Queue (QueueP)                  |         YES        |         NO        |
++---------------------------------+--------------------+-------------------+
+| Arbitrary Heap (HeapP)          |         YES        |         NO        |
++---------------------------------+--------------------+-------------------+
+| Task/CPU Load (LoadP)           |         YES        |         NO        |
++---------------------------------+--------------------+-------------------+
+| SW Interrupts (SwiP)            |         NO         |         NO        |
++---------------------------------+--------------------+-------------------+
+
+In case of FreeRTOS/Non-OS, static memory allocation is done inside the osal library for **all** the modules.
+
+The static memory allocation for SemaphoreP and HwiP are scalable if needed by the
+application users, especially when the create APIs fail to create the SemaphoreP and HwiP handles. (Indicated by NULL handle values).
+
+The application can provide a continuous segment of external memory for SemaphoreP as below.
+
+1. Get the current OSAL attributes
+
+::
+
+    ...
+    osal_ret = Osal_getHwAttrs(&hwAttrs);
+
+2. Set the continuous external memory block address and size
+
+::
+
+    ...
+    hwAttrs.extSemaphorePBlock.base = (uintptr_t) &semPMemBlock[0];
+    ...
+    hwAttrs.extSemaphorePBlock.size = SEMP_BLOCK_SIZE;
+    ...
+    ctrlBitMap                      = OSAL_HWATTR_SET_SEMP_EXT_BASE;
+    ...
+    osal_ret = Osal_setHwAttrs(ctrlBitMap, &hwAttrs);
+
+The application can provide a continuous segment of external memory for HwiP as below.
+
+1. Get the current OSAL attributes
+
+::
+
+    ...
+    osal_ret = Osal_getHwAttrs(&hwAttrs);
+
+2. Set the continuous external memory block address and size
+
+::
+
+    ...
+    hwAttrs.extSemaphorePBlock.base = (uintptr_t) &hwiPMemBlock[0];
+    ...
+    hwAttrs.extSemaphorePBlock.size = HWIP_BLOCK_SIZE;
+    ...
+    ctrlBitMap                      = OSAL_HWATTR_SET_HWIP_EXT_BASE;
+    ...
+    osal_ret = Osal_setHwAttrs(ctrlBitMap, &hwAttrs);
+
+Application Integration Details
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Baremetal or Non-OS Use case**
+
+Reference library path to be included in application build environment:
+
+::
+
+     <ti/osal/lib/nonos/[soc]/[[cpu]/>
+
+
+**FreeRTOS based application**
+
+Reference library path to be included in application build environment:
+
+::
+
+    <ti/osal/lib/freertos/[soc]/[[cpu]/>
+
+Application
+------------
+
+Examples
+^^^^^^^^
+
+.. rubric:: OSAL Unit Test
+   :name: osal-unit-test
+
+**Application Name**
+
++-----------+-----------------------+------------------------+
+|  Example  |        FreeRTOS       |    Non-OS(Baremetal)   |
++===========+=======================+========================+
+| Unit Test | OSAL_TestApp_freertos | OSAL_Baremetal_TestApp |
++-----------+-----------------------+------------------------+
+
+**Description**
+
+The unit testapp tests all the supported OSAL modules for an OS 
+and prints output on UART console.
+
+**Expected Results**
+
+The output for each of the tests (Hwi, Timer, Delay, Semaphores etc) can
+be seen on the UART console like
+::
+
+    <Module> tests have passed.
+    
+After a successful run following will also be displayed on the UART console.
+
+::
+
+    All tests have passed. 

@@ -1,0 +1,286 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>5. Bootloader (SBL) &mdash; Platform Development Kit (PDK) - JACINTO User Guide</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Platform Development Kit (PDK) - JACINTO User Guide" href="../../index.html"/>
+        <link rel="next" title="5.1. SBL Overview" href="../../boot/boot.html"/>
+        <link rel="prev" title="4.21.1. MCU Only mode" href="../../modules/lpm/lpm_mcu_only_mode_jacinto.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index_jacinto.html" class="icon icon-home"> Platform Development Kit (PDK) - JACINTO User Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                08_06_01
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html">1. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_release_notes_jacinto.html">2. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started.html">3. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_modules_jacinto.html">4. Modules</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">5. Bootloader (SBL)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../boot/boot.html">5.1. SBL Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../boot/boot_k3.html">5.2. J721E SBL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../boot/boot_app.html">5.3. Boot App</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="index_board_jacinto.html">6. Board/EVM Abstraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_howto_jacinto.html">7. How to Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_faq_jacinto.html">8. Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_developer_notes_jacinto.html">9. Developer Notes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index_jacinto.html">Platform Development Kit (PDK) - JACINTO User Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index_jacinto.html">Docs</a> &raquo;</li>
+      
+    <li>5. Bootloader (SBL)</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="bootloader-sbl">
+<h1>5. Bootloader (SBL)<a class="headerlink" href="#bootloader-sbl" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../boot/boot.html">5.1. SBL Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../boot/boot.html#introduction">5.1.1. Introduction</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../boot/boot_k3.html">5.2. J721E SBL</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../boot/boot_k3.html#introduction">5.2.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../boot/boot_k3.html#block-diagram">5.2.2. Block Diagram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../boot/boot_k3.html#memory-map">5.2.3. Memory Map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../boot/boot_k3.html#directory-structure">5.2.4. Directory structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../boot/boot_k3.html#image-formats">5.2.5. Image Formats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../boot/boot_k3.html#building-the-sbl-and-its-components">5.2.6. Building the SBL and its components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../boot/boot_k3.html#testing-the-sbl">5.2.7. Testing the SBL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../boot/boot_k3.html#boot-modes">5.2.8. Boot Modes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../boot/boot_k3.html#hsm-boot">5.2.9. HSM Boot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../boot/boot_k3.html#evm-setup-for-testing-sbl">5.2.10. EVM Setup for testing SBL</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../boot/boot_app.html">5.3. Boot App</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../boot/boot_app.html#boot-stages">5.3.1. Boot stages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../boot/boot_app.html#steps-to-boot-different-os-via-different-boot-media">5.3.2. Steps to Boot Different OS via Different Boot Media</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../boot/boot_app.html#booting-in-hs-devices">5.3.3. Booting in HS devices</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../boot/boot.html" class="btn btn-neutral float-right" title="5.1. SBL Overview" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../../modules/lpm/lpm_mcu_only_mode_jacinto.html" class="btn btn-neutral" title="4.21.1. MCU Only mode" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="http://www.ti.com/corp/docs/legal/copyright.shtml">&copy; Copyright 1995-2020</a>, Texas Instruments Incorporated. All rights reserved. <br>
+      <a href="http://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="http://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="http://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="http://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'08_06_01',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

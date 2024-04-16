@@ -1,0 +1,462 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>8.9. FAQ - CSI2RX &mdash; Platform Development Kit (PDK) - JACINTO User Guide</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Platform Development Kit (PDK) - JACINTO User Guide" href="../index.html"/>
+        <link rel="up" title="8. Frequently Asked Questions" href="../family_cfg/jacinto/index_faq_jacinto.html"/>
+        <link rel="next" title="9. Developer Notes" href="../family_cfg/jacinto/index_developer_notes_jacinto.html"/>
+        <link rel="prev" title="8.8. FAQ - Running Apps on secure devices" href="apps_on_secure_devices.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index_jacinto.html" class="icon icon-home"> Platform Development Kit (PDK) - JACINTO User Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                08_06_01
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">1. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_release_notes_jacinto.html">2. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">3. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_modules_jacinto.html">4. Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_boot_jacinto.html">5. Bootloader (SBL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_board_jacinto.html">6. Board/EVM Abstraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_howto_jacinto.html">7. How to Guides</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../family_cfg/jacinto/index_faq_jacinto.html">8. Frequently Asked Questions</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="faq_common.html">8.1. FAQ - Common</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq_can.html">8.2. FAQ - CAN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq_fvid2.html">8.3. FAQ - FVID2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c7x_non_secure_mode.html">8.4. FAQ - C7x : Steps to switch C7x SysBIOS application from secure mode to non-secure mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resource_int_jacinto.html">8.5. FAQ - Used Resources - Interrupt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq_binlist_jacinto.html">8.6. FAQ - Supported Cores by example applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq_module_clocking.html">8.7. FAQ - How to set the clock for a given module and clock</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apps_on_secure_devices.html">8.8. FAQ - Running Apps on secure devices</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">8.9. FAQ - CSI2RX</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#what-is-csi2">8.9.1. What is CSI2?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-is-lane-speed-band-selected">8.9.2. How is Lane Speed Band selected?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#things-to-consider-check-before-sending-a-frame-over-csi2rx-bus">8.9.3. Things to consider/check before sending a frame over CSI2RX bus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#csi2rx-communication-failed-where-to-start-debug">8.9.4. CSI2RX communication failed, where to start debug?</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#errors-detected-during-reception">8.9.4.1. Errors detected during reception:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_developer_notes_jacinto.html">9. Developer Notes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index_jacinto.html">Platform Development Kit (PDK) - JACINTO User Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index_jacinto.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../family_cfg/jacinto/index_faq_jacinto.html">8. Frequently Asked Questions</a> &raquo;</li>
+      
+    <li>8.9. FAQ - CSI2RX</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="faq-csi2rx">
+<h1>8.9. FAQ - CSI2RX<a class="headerlink" href="#faq-csi2rx" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="what-is-csi2">
+<h2>8.9.1. What is CSI2?<a class="headerlink" href="#what-is-csi2" title="Permalink to this headline">¶</a></h2>
+<p>The CSI2:</p>
+<ul class="simple">
+<li>specification defines standard data transmission and control interfaces between transmitter and receiver.</li>
+<li>is unidirectional differential serial interface with data and clock signals; the physical layer of this interface is the MIPI Alliance Specification for D-PHY.</li>
+<li>also talks about &#8216;The Control Interface (CCI)&#8217;, and is a bi-directional control interface compatible with I2C standards.</li>
+</ul>
+</div>
+<div class="section" id="how-is-lane-speed-band-selected">
+<h2>8.9.2. How is Lane Speed Band selected?<a class="headerlink" href="#how-is-lane-speed-band-selected" title="Permalink to this headline">¶</a></h2>
+<p>The formula is:</p>
+<div class="highlight-ruby"><div class="highlight"><pre><span class="no">Required</span> <span class="no">Bandwidth</span> <span class="o">=</span> <span class="p">(((</span><span class="no">Image</span> <span class="no">Resolution</span><span class="p">)</span> <span class="n">x</span> <span class="n">bpp</span> <span class="n">x</span> <span class="n">fps</span> <span class="n">x</span> <span class="n">no</span><span class="o">.</span> <span class="n">channels</span><span class="p">)</span> <span class="n">x</span> <span class="mi">1</span><span class="o">.</span><span class="mi">2</span><span class="p">)</span>
+<span class="no">Lane</span> <span class="no">Speed</span> <span class="o">=</span> <span class="p">((</span><span class="no">Required</span> <span class="no">Bandwidth</span><span class="p">)</span> <span class="o">/</span> <span class="n">no</span><span class="o">.</span> <span class="n">of</span> <span class="n">lanes</span><span class="p">)</span>
+
+<span class="ss">bpp</span><span class="p">:</span> <span class="n">bits</span> <span class="n">per</span> <span class="n">pixel</span>
+<span class="ss">fps</span><span class="p">:</span> <span class="n">frames</span> <span class="n">per</span> <span class="n">second</span>
+
+<span class="no">Select</span> <span class="no">Lane</span> <span class="no">Speed</span> <span class="no">Band</span> <span class="n">as</span> <span class="n">following</span> <span class="ss">conditions</span><span class="p">:</span>
+<span class="n">where</span> <span class="p">(</span><span class="no">Lane</span> <span class="no">Speed</span> <span class="o">&gt;=</span> <span class="n">lower</span> <span class="n">limit</span> <span class="n">of</span> <span class="n">the</span> <span class="no">Lane</span> <span class="no">Speed</span> <span class="no">Band</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="no">Lane</span> <span class="no">Speed</span> <span class="o">&lt;</span> <span class="n">upper</span> <span class="n">limit</span> <span class="n">of</span> <span class="n">the</span> <span class="no">Lane</span> <span class="no">Speed</span> <span class="no">Band</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Required Bandwidth have multiplication factor of &#8216;1.2 (corresponding to 20%)&#8217;, this is done to absorb protocol and other overheads in the system</p>
+</div>
+</div>
+<div class="section" id="things-to-consider-check-before-sending-a-frame-over-csi2rx-bus">
+<h2>8.9.3. Things to consider/check before sending a frame over CSI2RX bus<a class="headerlink" href="#things-to-consider-check-before-sending-a-frame-over-csi2rx-bus" title="Permalink to this headline">¶</a></h2>
+<p>Make sure following is done/checked before attempting communication on bus:</p>
+<ul class="simple">
+<li>All the lanes are identical in the length (to be considered during EVM/Board design)</li>
+<li>Number of lanes, lane ordering, lane polarity, and lane speed configurations are matching at both ends i.e. transmitter and receiver side</li>
+<li>Receiver is configured and started before configuring and starting streaming from transmitter</li>
+<li>Configuration/Enable sequence:<ul>
+<li>CSI2RX Module (receiver)</li>
+<li>Deserialzer (if any) (transmitter)</li>
+<li>Serializer (if any)</li>
+<li>Sensor/s OR Camera/s modules (transmitter)</li>
+</ul>
+</li>
+<li>check if following connections are firm and proper:<ul>
+<li>CSI2RX to Deserialzer (if any) OR Sensor (e.g. EVM to Fusion board/Sensor)</li>
+<li>Deserialzer to Serializer (if any) (e.g. Fusion board to Camera module through FPD cable)</li>
+</ul>
+</li>
+<li>Channel configurations like frame dimensions (Height and Width), data-type (DT) and virtual channel (VC) are matching for transmitter and receiver</li>
+<li>Timing parameters configured at transmitter side meets the MIPI standards<ul>
+<li>check this if all the above parameters are checked and are properly configured</li>
+<li>this needs to be measured on CSI protocol analyzer</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="csi2rx-communication-failed-where-to-start-debug">
+<h2>8.9.4. CSI2RX communication failed, where to start debug?<a class="headerlink" href="#csi2rx-communication-failed-where-to-start-debug" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Check following before debugging for errors:</dt>
+<dd><ul class="first last simple">
+<li>There 3 sets of status bit given for each lane in <cite>CSI_RX_IF_VBUS2APB_DPHY_STATUS</cite> register<ul>
+<li>For data reception check if this is toggling between &#8216;0x2&#8217; and &#8216;0x3&#8217; for each active data-lane and clock-lane</li>
+</ul>
+</li>
+<li>check if Stream and Protocol FSM are in proper states:<ul>
+<li>this can be done through <cite>CSI_RX_IF_VBUS2APB_STREAM0_STATUS.bit0-1</cite> and <cite>CSI_RX_IF_VBUS2APB_STREAM0_STATUS.bit4-7</cite></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+<p>Following section talks about various errors/conditions occurred during communication failure.</p>
+<div class="section" id="errors-detected-during-reception">
+<h3>8.9.4.1. Errors detected during reception:<a class="headerlink" href="#errors-detected-during-reception" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><strong>Front FIFO Overflow</strong><ul>
+<li>Detected at: CSI2RX Core</li>
+<li>Level: Module Level Error</li>
+<li>Register: <cite>CSI_RX_IF_VBUS2APB_ERROR_IRQS.bit0</cite></li>
+<li>Description: Overflow detected in resynchronization FIFO between DPHY Lane Management and Protocol blocks</li>
+<li>This will occur if <cite>sys_clk</cite> is not fast enough and should be increased since the <cite>byte clock</cite> frequency is fixed</li>
+</ul>
+</li>
+<li><strong>Payload CRC Error</strong><ul>
+<li>Detected at: CSI2RX Core</li>
+<li>Level: Packet Level Error</li>
+<li>Register: <cite>CSI_RX_IF_VBUS2APB_ERROR_IRQS.bit4</cite></li>
+<li>Description: CRC Error has been detected while receiving payload data.</li>
+<li>Asserted when the computed CRC code is different than the received CRC code.</li>
+<li>This could happen due to interference OR mismatch configurations at Tx and Rx sides.</li>
+</ul>
+</li>
+<li><strong>Header ECC Error</strong><ul>
+<li>Detected at: CSI2RX Core</li>
+<li>Level: Packet Level Error</li>
+<li>Register: <cite>CSI_RX_IF_VBUS2APB_ERROR_IRQS.bit5</cite></li>
+<li>Description: Unrecoverable ECC error has been detected during short packet reception.</li>
+<li>Asserted when an ECC signature was computed and the result is zero indicating a Packet Header that is considered to be without errors or has more than two bit-errors. CSI-2’s ECC mechanism cannot detect this type of error OR when an ECC signature was computed and two bit-errors are detected in the received Packet Header.</li>
+<li>This could happen due to interference OR mismatch configurations at Tx and Rx sides.</li>
+</ul>
+</li>
+<li><strong>Header Corrected ECC Error</strong><ul>
+<li>Detected at: CSI2RX Core</li>
+<li>Level: Packet Level Error</li>
+<li>Register: <cite>CSI_RX_IF_VBUS2APB_ERROR_IRQS.bit6</cite></li>
+<li>Description: Recoverable ECC error has been detected during short packet reception.</li>
+<li>Asserted when an ECC signature was computed and a single bit-error in the Packet Header was detected and corrected</li>
+<li>This could happen due to interference OR mismatch configurations at Tx and Rx sides.</li>
+</ul>
+</li>
+<li><strong>Data ID Error</strong><ul>
+<li>Detected at: CSI2RX Core</li>
+<li>Level: Packet Level Error</li>
+<li>Register: <cite>CSI_RX_IF_VBUS2APB_ERROR_IRQS.bit7</cite></li>
+<li>Description: Data ID error has been detected in the header packet.</li>
+<li>Asserted when a Packet Header is decoded with an unrecognized or unimplemented data ID.</li>
+<li>This is caused by the presence of an unimplemented or unrecognized ID in the header.</li>
+</ul>
+</li>
+<li><strong>Invalid Access</strong><ul>
+<li>Detected at: CSI2RX Core</li>
+<li>Level: Module Level Error</li>
+<li>Register: <cite>CSI_RX_IF_VBUS2APB_ERROR_IRQS.bit8</cite></li>
+<li>Description: Invalid access to the configuration register space.</li>
+<li>This could be caused by accessing reserved addresses within CSI2RX module registers.</li>
+</ul>
+</li>
+<li><strong>Invalid Short Packet</strong><ul>
+<li>Detected at: CSI2RX Core</li>
+<li>Level: Protocol Decoding Level Error</li>
+<li>Register: <cite>CSI_RX_IF_VBUS2APB_ERROR_IRQS.bit9</cite></li>
+<li>Description: A reserved or invalid short packet has been received</li>
+</ul>
+</li>
+<li><strong>No Payload Long Packet</strong><ul>
+<li>Detected at: CSI2RX Core</li>
+<li>Level: Packet Level Error</li>
+<li>Register: <cite>CSI_RX_IF_VBUS2APB_ERROR_IRQS.bit10</cite></li>
+<li>Description: No long packet has been received after receiving short packets for the payload start/stop.</li>
+<li>Check the Transmitter configurations. Use the protocol analyzer to make sure that transmitter is sending data in correspondence with CSI2 protocol.</li>
+</ul>
+</li>
+<li><strong>Truncated Long Packet</strong><ul>
+<li>Detected at: CSI2RX Core</li>
+<li>Level: Packet Level Error</li>
+<li>Register: <cite>CSI_RX_IF_VBUS2APB_ERROR_IRQS.bit11</cite></li>
+<li>Description: Too many/too few bytes has been received during payload reception.</li>
+<li>Check the Transmitter configurations. Use the protocol analyzer to make sure that transmitter is sending data in correspondence with CSI2 protocol.</li>
+<li>This can caused by improper physical connections. Make sure that connections are proper and firm &amp; free from any kind of interference.</li>
+</ul>
+</li>
+<li><strong>Truncated Header</strong><ul>
+<li>Detected at: CSI2RX Core</li>
+<li>Level: Packet Level Error</li>
+<li>Register: <cite>CSI_RX_IF_VBUS2APB_ERROR_IRQS.bit12</cite></li>
+<li>Description: A truncated (short OR long) header has been received.</li>
+<li>Check the Transmitter configurations. Use the protocol analyzer to make sure that transmitter is sending data in correspondence with CSI2 protocol.</li>
+<li>This can caused by improper physical connections. Make sure that connections are proper and firm &amp; free from any kind of interference.</li>
+</ul>
+</li>
+<li><strong>Stream FIFO Overflow</strong><ul>
+<li>Detected at: CSI2RX Core</li>
+<li>Level: Stream Level Error</li>
+<li>Register: <cite>CSI_RX_IF_VBUS2APB_ERROR_IRQS.bit16-19</cite></li>
+<li>Description: Stream FIFO overflow has been detected.</li>
+<li>There is dedicated bit for each stream.</li>
+</ul>
+</li>
+<li><strong>Start of Transmission Error (Error SoT)</strong><ul>
+<li>Detected at: CSI2RX Core</li>
+<li>Level: DPHY Level Error</li>
+<li>Register: <cite>CSI_RX_IF_VBUS2APB_DPHY_ERR_STATUS_IRQ.bit8/12/16/20</cite></li>
+<li>Description: Start of Transmission Error is detected on the respective data lane.</li>
+<li>There is dedicated bit for each data lane.</li>
+<li>There are two types of the errors for this category:<ul>
+<li>the high-speed SoT leader sequence is corrupted, but in such a way that proper synchronization can still be achieved, this error signal is asserted for one cycle of <cite>RxByteClkHS</cite>. This is considered to be a <strong>soft error</strong> in the leader sequence and confidence in the payload data is reduced.</li>
+<li>the high-speed SoT leader sequence is corrupted in a way that proper synchronization cannot be expected, this error signal is asserted for one cycle of <cite>RxByteClkHS</cite>.</li>
+</ul>
+</li>
+<li>Check for the signal integrity and signals are getting properly transmitted w/o any issues/interference.</li>
+<li>Check if timings are properly configured at transmitter and are adhering to CSI2 standards. These timings can be measured with the help of CSI2 protocol analyzer.</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../family_cfg/jacinto/index_developer_notes_jacinto.html" class="btn btn-neutral float-right" title="9. Developer Notes" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="apps_on_secure_devices.html" class="btn btn-neutral" title="8.8. FAQ - Running Apps on secure devices" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="http://www.ti.com/corp/docs/legal/copyright.shtml">&copy; Copyright 1995-2020</a>, Texas Instruments Incorporated. All rights reserved. <br>
+      <a href="http://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="http://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="http://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="http://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'08_06_01',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

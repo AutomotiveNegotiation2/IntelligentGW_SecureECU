@@ -1,0 +1,9 @@
+docs/user_guide/
+docs/datasheet/
+internal_docs/scripts/artifacts
+internal_docs/scripts/scratch_files/
+internal_docs/scripts/test/
+internal_docs/scripts/common/__pycache__/
+internal_docs/scripts/temp/
+internal_docs/scripts/tmp/
+psdk_rtos_auto.code-workspace

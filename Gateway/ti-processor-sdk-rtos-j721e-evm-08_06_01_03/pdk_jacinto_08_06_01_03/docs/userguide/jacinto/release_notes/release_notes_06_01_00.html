@@ -1,0 +1,669 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2.11. Release Notes - 06_01_00 &mdash; Platform Development Kit (PDK) - JACINTO User Guide</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Platform Development Kit (PDK) - JACINTO User Guide" href="../index.html"/>
+        <link rel="up" title="2. Release Notes" href="../family_cfg/jacinto/index_release_notes_jacinto.html"/>
+        <link rel="next" title="3. Getting Started" href="../getting_started.html"/>
+        <link rel="prev" title="2.10. Release Notes - 06_02_00" href="release_notes_06_02_00.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index_jacinto.html" class="icon icon-home"> Platform Development Kit (PDK) - JACINTO User Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                08_06_01
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">1. Overview</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../family_cfg/jacinto/index_release_notes_jacinto.html">2. Release Notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="release_notes_08_06_00.html">2.1. Release Notes - 08_06_00</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_08_05_00.html">2.2. Release Notes - 08_05_00</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_08_04_00.html">2.3. Release Notes - 08_04_00</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_08_02_00.html">2.4. Release Notes - 08_02_00</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_08_01_00.html">2.5. Release Notes - 08_01_00</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_08_00_00.html">2.6. Release Notes - 08_00_00</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_07_03_00.html">2.7. Release Notes - 07_03_00</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_07_01_00.html">2.8. Release Notes - 07_01_00</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_07_00_00.html">2.9. Release Notes - 07_00_00</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_06_02_00.html">2.10. Release Notes - 06_02_00</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">2.11. Release Notes - 06_01_00</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">2.11.1. Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#what-s-new">2.11.2. What&#8217;s New</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#upgrade-and-compatibility">2.11.3. Upgrade and Compatibility</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#device-support">2.11.4. Device Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#validation-information">2.11.5. Validation Information</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tool-chain-information">2.11.6. Tool Chain Information</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fixed-issues">2.11.7. Fixed Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#known-issues">2.11.8. Known Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#limitations">2.11.9. Limitations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">3. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_modules_jacinto.html">4. Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_boot_jacinto.html">5. Bootloader (SBL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_board_jacinto.html">6. Board/EVM Abstraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_howto_jacinto.html">7. How to Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_faq_jacinto.html">8. Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_developer_notes_jacinto.html">9. Developer Notes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index_jacinto.html">Platform Development Kit (PDK) - JACINTO User Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index_jacinto.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../family_cfg/jacinto/index_release_notes_jacinto.html">2. Release Notes</a> &raquo;</li>
+      
+    <li>2.11. Release Notes - 06_01_00</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="release-notes-06-01-00">
+<h1>2.11. Release Notes - 06_01_00<a class="headerlink" href="#release-notes-06-01-00" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>2.11.1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>This release notes provides important information that will assist you in using the PDK software package.
+This document provides the product information and known issues that are specific to the PDK software package.</p>
+</div>
+<div class="section" id="what-s-new">
+<h2>2.11.2. What&#8217;s New<a class="headerlink" href="#what-s-new" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><dl class="first docutils">
+<dt>CPSW</dt>
+<dd><ul class="first last">
+<li><p class="first">Support for MCU2_1 core on CPSW2G</p>
+</li>
+<li><p class="first">RMII mode</p>
+</li>
+<li><p class="first">PHY bootstrap mode support</p>
+</li>
+<li><p class="first">Support for Port ready callback (port link up)</p>
+</li>
+<li><p class="first">Traffic Shaping/TSN 802.1Qav - Transmit/Receive Rate Limiting: Committed Info Rate/Excess Info Rate</p>
+</li>
+<li><p class="first">QoS/Packet Priority mapping</p>
+</li>
+<li><p class="first">Policer and Network security support</p>
+</li>
+<li><dl class="first docutils">
+<dt>Debug and diagnostic features</dt>
+<dd><ul class="first last simple">
+<li>ALE register dump</li>
+<li>CPSW DMA packet Statistics</li>
+<li>Debug GEL files - mdio, stats, config</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>DSS</dt>
+<dd><ul class="first last simple">
+<li>BT601 output format support</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Board</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>Leo PMIC</dt>
+<dd><ul class="first last simple">
+<li>Support for programming Buck and LDO voltage for AVS Class 0</li>
+<li>Support for Voltage and Thermal Monitorring</li>
+<li>Support for programming Leo GPIO</li>
+<li>Support for ESM, RTC and WDT Programming</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>SBL</dt>
+<dd><ul class="first last simple">
+<li>Added AVS support</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">ECC/ESM sample application</p>
+</li>
+</ul>
+</div>
+<div class="section" id="upgrade-and-compatibility">
+<h2>2.11.3. Upgrade and Compatibility<a class="headerlink" href="#upgrade-and-compatibility" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><dl class="first docutils">
+<dt>CPSW</dt>
+<dd><ul class="first last simple">
+<li>Cpsw_Config.CpswAle_Config - Removed host address unicast entry from ALE_open</li>
+<li>Cpsw_Config.CpswPhy_Config - Removed resetEnable.</li>
+<li>Cpsw_MacCommonConfig - merged into Cpsw_Config.</li>
+<li>CpswDma_OpenTxChPrms - Removed CpswDma_EventCfg and replaced with CpswDma_PktNotifyCb. Variable name change for proxyflag, callback argument</li>
+<li>CpswDma_OpenRxFlowPrms - Removed CpswDma_EventCfg and replaced with CpswDma_PktNotifyCb. Variable name change for proxyflag, callback argument</li>
+<li>Cpsw_LinkStateChangeInfo is changed Cpsw_MdioLinkStateChangeInfo</li>
+<li>CPSW Resource manager - Replaced earlier RM</li>
+<li>CPSW_CFG_DEV_ERROR is enabled/disabled through build system</li>
+<li>Below APIs are removed ++ Cpsw_isPhyLinked ++ Cpsw_getLinkStatus</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="device-support">
+<h2>2.11.4. Device Support<a class="headerlink" href="#device-support" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>J721E EVM (BOARD=j721e_evm)</li>
+</ul>
+</div>
+<div class="section" id="validation-information">
+<h2>2.11.5. Validation Information<a class="headerlink" href="#validation-information" title="Permalink to this headline">¶</a></h2>
+<p>This release is validated on J721E EVM for the applicable components.
+For details on the validated examples refer to the platform specific test report present in <strong>PDK_INSTALL_DIR/docs/test_report</strong> folder.</p>
+</div>
+<div class="section" id="tool-chain-information">
+<h2>2.11.6. Tool Chain Information<a class="headerlink" href="#tool-chain-information" title="Permalink to this headline">¶</a></h2>
+<p>Refer to SDK level documentation for Tool Chain and dependent component version used to validate this release.</p>
+</div>
+<div class="section" id="fixed-issues">
+<h2>2.11.7. Fixed Issues<a class="headerlink" href="#fixed-issues" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="9%" />
+<col width="53%" />
+<col width="9%" />
+<col width="17%" />
+<col width="12%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ID</th>
+<th class="head">Head Line</th>
+<th class="head">Module</th>
+<th class="head">Affected Versions</th>
+<th class="head">Affected Platforms</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>PDK-4385</td>
+<td>QSPI NOR Flash diagnostic test failure</td>
+<td>BOARD</td>
+<td>PDK_J7_00.09.00_Bringup</td>
+<td>J721E</td>
+</tr>
+<tr class="row-odd"><td>PDK-4380</td>
+<td>[UNIFLASH] Flash speed is slow</td>
+<td>BOARD</td>
+<td>PDK_J7_00.09.00_Bringup</td>
+<td>J721E</td>
+</tr>
+<tr class="row-even"><td>PDK-4379</td>
+<td>[UNIFLASH] Flash of 14MB app image to OSPI results in failure</td>
+<td>BOARD</td>
+<td>PDK_J7_00.09.00_Bringup</td>
+<td>J721E</td>
+</tr>
+<tr class="row-odd"><td>PDK-4374</td>
+<td>Board UART STDIO read/write API doesn&#8217;t work from C7x core</td>
+<td>BOARD</td>
+<td>PDK_J7_00.09.00_Bringup</td>
+<td>J721E</td>
+</tr>
+<tr class="row-even"><td>PDK-4509</td>
+<td>CSL: DSS: Transperency enable with color key not working</td>
+<td>CSL</td>
+<td>PDK_J7_00.09.00_Bringup</td>
+<td>J721E</td>
+</tr>
+<tr class="row-odd"><td>PDK-4616</td>
+<td>[DSS DRV]DSS reports false error on calling VP Stop IOCTL</td>
+<td>DSS</td>
+<td>PDK_J7_00.09.00_Bringup</td>
+<td>J721E</td>
+</tr>
+<tr class="row-even"><td>PDK-4601</td>
+<td>Display port does not initiate link if cable is plugged in after usecase is started</td>
+<td>DSS</td>
+<td>PDK_J7_00.09.00_Bringup</td>
+<td>J721E</td>
+</tr>
+<tr class="row-odd"><td>PDK-4580</td>
+<td>Dss_convModuletoNode returns wrong value if node is not a pipe</td>
+<td>DSS</td>
+<td>PDK_J7_00.09.00_Bringup</td>
+<td>J721E</td>
+</tr>
+<tr class="row-even"><td>PDK-4571</td>
+<td>eDP does not work with all monitors</td>
+<td>DSS</td>
+<td>PDK_J7_00.09.00_Bringup</td>
+<td>J721E</td>
+</tr>
+<tr class="row-odd"><td>PDK-4405</td>
+<td>DSS: eDP: when eDP init fails it should return error rathar than trying forever</td>
+<td>DSS</td>
+<td>PDK_J7_00.09.00_Bringup</td>
+<td>J721E</td>
+</tr>
+<tr class="row-even"><td>PDK-4398</td>
+<td>eDP display broken in release mode, works in debug mode</td>
+<td>DSS</td>
+<td>PDK_J7_00.09.00_Bringup</td>
+<td>J721E</td>
+</tr>
+<tr class="row-odd"><td>PDK-4396</td>
+<td>DSS has intermittent init failures with eDP enabled</td>
+<td>DSS</td>
+<td>PDK_J7_00.09.00_Bringup</td>
+<td>J721E</td>
+</tr>
+<tr class="row-even"><td>PDK-4632</td>
+<td>IPC mailbox handling will not handle pending messages if interrupts are missed</td>
+<td>IPC</td>
+<td>PDK_J7_00.09.00_Bringup</td>
+<td>J721E</td>
+</tr>
+<tr class="row-odd"><td>PDK-4606</td>
+<td>Incorrect check for Pitch for RGB format in VISS</td>
+<td>VHWA</td>
+<td>PDK_J7_00.09.00_Bringup</td>
+<td>J721E</td>
+</tr>
+<tr class="row-even"><td>PDK-4597</td>
+<td>Incorrect Condition check in VISS in GLBCE Init Sequence</td>
+<td>VHWA</td>
+<td>PDK_J7_00.09.00_Bringup</td>
+<td>J721E</td>
+</tr>
+<tr class="row-odd"><td>PDK-4410</td>
+<td>Incorrect MSC output when run along with the NF</td>
+<td>VHWA</td>
+<td>PDK_J7_00.09.00_Bringup</td>
+<td>J721E</td>
+</tr>
+<tr class="row-even"><td>PDK-4329</td>
+<td>LDC Performance is ~450 Mp/s under system load</td>
+<td>VHWA</td>
+<td>PDK_J7_00.09.00_Bringup</td>
+<td>J721E</td>
+</tr>
+<tr class="row-odd"><td>PDK-4322</td>
+<td>VHWA Integration app crashes in release mode with print disabled</td>
+<td>VHWA</td>
+<td>PDK_J7_00.09.00_Bringup</td>
+<td>J721E</td>
+</tr>
+<tr class="row-even"><td>PDK-4271</td>
+<td>In multi-channel mode, VISS asserts in ISR</td>
+<td>VHWA</td>
+<td>PDK_J7_00.08.00_EA8</td>
+<td>J721E</td>
+</tr>
+<tr class="row-odd"><td>PDK-4356</td>
+<td>NDK example Rx failing intermittently</td>
+<td>CPSW</td>
+<td>PDK_J7_00.09.00_Bringup</td>
+<td>J721E</td>
+</tr>
+<tr class="row-even"><td>PDK-4223</td>
+<td>MAC speed test no link up in manual mode</td>
+<td>CPSW</td>
+<td>PDK_J7_00.09.00_Bringup</td>
+<td>J721E</td>
+</tr>
+<tr class="row-odd"><td>PDK-4474</td>
+<td>Interrupt assignment not correct in cpsw_soc</td>
+<td>CPSW</td>
+<td>PDK_J7_00.09.00_Bringup</td>
+<td>J721E</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="known-issues">
+<h2>2.11.8. Known Issues<a class="headerlink" href="#known-issues" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="5%" />
+<col width="30%" />
+<col width="5%" />
+<col width="10%" />
+<col width="7%" />
+<col width="44%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ID</th>
+<th class="head">Head Line</th>
+<th class="head">Module</th>
+<th class="head">Reported in Release</th>
+<th class="head">Affected Platforms</th>
+<th class="head">Workaround in this release</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>PDK-4738</td>
+<td>Output mismatch when each region requiring 3 TRs</td>
+<td>VHWA_LDC</td>
+<td>PDK_J7_01.00.00_RTM</td>
+<td>J721E</td>
+<td>None</td>
+</tr>
+<tr class="row-odd"><td>PDK-4694</td>
+<td>DMPAC DOF driver doesn&#8217;t handle certain SOF case properly</td>
+<td>VHWA_DOF</td>
+<td>PDK_J7_00.09.01</td>
+<td>J721E</td>
+<td>This issue is due to shift in flowvector out buffer. While generating the SOF binary map make sure that Paxel rows without any pixel enabled should be in consecutive pair.</td>
+</tr>
+<tr class="row-even"><td>PDK-4698</td>
+<td>Active DP -&gt; HDMI adapter doesn&#8217;t work</td>
+<td>DSS</td>
+<td>PDK_J7_00.09.01</td>
+<td>J721E</td>
+<td>Use the display that supports Active DP</td>
+</tr>
+<tr class="row-odd"><td>PDK-4224</td>
+<td>Max Length test Tx completion hangs if cpswHostPort maxRxMtu is exceeded</td>
+<td>CPSW</td>
+<td>PDK_J7_00.09.00_Bringup</td>
+<td>J721E</td>
+<td>Host core should not send packet more than maxRxMtu</td>
+</tr>
+<tr class="row-even"><td>PDK-4770</td>
+<td>Cpsw2G - Interrupts won&#8217;t work for main domain cores(mcu2_1, mpu1_0)</td>
+<td>CPSW</td>
+<td>PDK_J7_01.00.00_RTM</td>
+<td>J721E</td>
+<td>Use polling mode for mdio interrupts.</td>
+</tr>
+<tr class="row-odd"><td>PDK-4633</td>
+<td>CPSW RGMII loopback fails at RGMII 100Mbps &amp; RMII mode</td>
+<td>CPSW</td>
+<td>PDK_J7_00.09.00_Bringup</td>
+<td>J721E</td>
+<td>Internal loopback works at 1Gbps</td>
+</tr>
+<tr class="row-even"><td>PROC_BRDS-658</td>
+<td>J7 GESI DB - MAC PORT 0 packet drop seen of 1Gbps Speed</td>
+<td>CPSW</td>
+<td>PDK_J7_00.09.00_Bringup</td>
+<td>J721E</td>
+<td>MAC port 0 configured at 100Mbps</td>
+</tr>
+<tr class="row-odd"><td>PDK-4673</td>
+<td>Using PROXY 1 for Pinmux cause crash in SDK use cases</td>
+<td>BOARD</td>
+<td>PDK_TDA_01.09.00</td>
+<td>J721E</td>
+<td>Use Proxy 0. (Already taken care in driver)</td>
+</tr>
+<tr class="row-even"><td>PDK-4367</td>
+<td>Noisy output for digital audio diagnostic test</td>
+<td>BOARD</td>
+<td>PDK_J7_00.09.00_Bringup</td>
+<td>J721E</td>
+<td>None</td>
+</tr>
+<tr class="row-odd"><td>PDK-4732</td>
+<td>Audio diagnostic test failure</td>
+<td>BOARD</td>
+<td>PDK_J7_01.00.00_RTM</td>
+<td>J721E</td>
+<td>Run the McASP driver example</td>
+</tr>
+<tr class="row-even"><td>PDK-4731</td>
+<td>R5 diag test hang while running framework</td>
+<td>BOARD</td>
+<td>PDK_J7_01.00.00_RTM</td>
+<td>J721E</td>
+<td>run diagnostic tests without famework</td>
+</tr>
+<tr class="row-odd"><td>PDK-4724</td>
+<td>CPSW RGMII diagnostic test failure</td>
+<td>BOARD</td>
+<td>PDK_J7_01.00.00_RTM</td>
+<td>J721E</td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td>PDK-4767</td>
+<td>QSPI flash writer and diagnostic test failure</td>
+<td>BOARD</td>
+<td>PDK_J7_01.00.00_RTM</td>
+<td>J721E</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="limitations">
+<h2>2.11.9. Limitations<a class="headerlink" href="#limitations" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>None</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../getting_started.html" class="btn btn-neutral float-right" title="3. Getting Started" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="release_notes_06_02_00.html" class="btn btn-neutral" title="2.10. Release Notes - 06_02_00" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="http://www.ti.com/corp/docs/legal/copyright.shtml">&copy; Copyright 1995-2020</a>, Texas Instruments Incorporated. All rights reserved. <br>
+      <a href="http://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="http://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="http://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="http://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'08_06_01',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

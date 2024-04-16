@@ -1,0 +1,4 @@
+var searchData=
+[
+  ['activationtype',['activationType',['../structMMALIB__CNN__convolve__col__smallNo__ixX__ixX__oxX__InitArgs.html#a883b94e1b3466bab4b7ff0ebea697511',1,'MMALIB_CNN_convolve_col_smallNo_ixX_ixX_oxX_InitArgs::activationType()'],['../structMMALIB__CNN__convolve__row__ixX__ixX__oxX__InitArgs.html#abcf08b703f0821a45d3976e0879aeb60',1,'MMALIB_CNN_convolve_row_ixX_ixX_oxX_InitArgs::activationType()'],['../structMMALIB__CNN__deconvolve__row__ixX__ixX__oxX__InitArgs.html#ae76585fbf10833da6413869340877d2e',1,'MMALIB_CNN_deconvolve_row_ixX_ixX_oxX_InitArgs::activationType()'],['../structMMALIB__CNN__fullyConnected__ixX__ixX__oxX__InitArgs.html#a6ab6b1efbfa53520c9cccd70c48b2391',1,'MMALIB_CNN_fullyConnected_ixX_ixX_oxX_InitArgs::activationType()'],['../structMMALIB__CNN__pixelShuffle__row__ixX__ixX__oxX__InitArgs.html#a5c3decba3293c59d03a2c8b1d6fafc94',1,'MMALIB_CNN_pixelShuffle_row_ixX_ixX_oxX_InitArgs::activationType()']]]
+];

@@ -1,0 +1,1315 @@
+.. _freertos_usage_and_migration_guidelines:
+
+FreeRTOS Usage and Migration Guidelines
+=======================================
+
+This section has additional useful information related to FreeRTOS and its integration within PDK.
+**It also compares some key points & config in FreeRTOS vs TI SysBIOS RTOS and the guidelines for migrating to FreeRTOS from TI SysBIOS.**
+
+#. :ref:`freertos_configuration`
+#. :ref:`freertos_comparison_with_sysbios`
+#. :ref:`freertos_usage_guidelines`
+#. :ref:`freertos_migration_guidelines`
+#. :ref:`freertos_sysbios_osal_api_comparison`
+#. :ref:`faq_important_notes`
+
+.. _freertos_configuration:
+
+FreeRTOS configuration
+----------------------
+
+- In FreeRTOS, all applications need to provide a `FreeRTOSConfig.h` file which specifies the FreeRTOS kernel configuration, see https://www.freertos.org/a00110.html 
+
+- All source code using FreeRTOS APIs, including FreeRTOS kernel itself MUST include “FreeRTOSConfig.h” before any other FreeRTOS .h files.
+  
+  - This is because `FreeRTOSConfig.h` tailors the RTOS kernel to the application being built. It is therefore specific to the application, not the RTOS.
+  - For example,
+    ::
+        
+        #include <FreeRTOSConfig.h>
+        #include <FreeRTOS.h>
+        #include <task.h>
+        #include <semphr.h>
+        #include <event_groups.h>
+
+- Configuration includes things like below
+
+  - Task scheduling options, Timer tick resolution, Number of priorities, Debug and trace hooks
+  - Enable / Disable RTOS features, mainly:- task, mutex, recursive mutex, semaphore, etc
+  - Default sizes for task stack, timer task, idle task, etc
+
+- To allow support of pre-built libraries, PDK has a default predefined `FreeRTOSConfig.h` per SOC and per CPU type
+  
+  - The predefined config file per SOC and per CPU can be found at below path
+      - ${PDK_INSTALL_PATH}/packages/ti/kernel/freertos/config/|__PART_DEFAULT_SOC__|/{cpu}/FreeRTOSConfig.h
+
+- In general extreme fine-tuning of FreeRTOS config is not needed and a predefined config per SOC and CPU type would meet almost all use-cases and applications. 
+
+- Also many config options are related to the inclusion/exclusion of RTOS modules to save code/data size. However, we can rely on the compiler to optimize out functions that are not called by applications.
+
+- However, the user can modify this config if needed.  When default predefined `FreeRTOSConfig.h` is changed, all pre-built libraries have to be recompiled for the changes to take effect.
+
+  - To recompile all pre-built PDK libraries:-
+  
+    .. parsed-literal::
+
+      cd PDK_INSTALL_DIR/packages/ti/build
+      make -s pdk_libs_allcores_clean |__PART_DEFAULT_BOARD_BUILD__|
+      make -s pdk_libs_allcores |__PART_DEFAULT_BOARD_BUILD__|
+
+.. _freertos_comparison_with_sysbios:
+
+Summary Comparison with SysBIOS
+-------------------------------
+
+This section has a quick summary of the comparison between SysBIOS and FreeRTOS features. 
+Refer rest of the sections on this page for more details
+
+Key similarities between modules
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The following table compares various modules in SysBIOS vs FreeRTOS and the OSAL modules that are implemented. 
+OSAL modules which calls OS API's underneath are provided to keep drivers/examples OS agnostic and also to support various
+functionalities which are not present as part of FreeRTOS Kernel. For example, Cache, HW Interrupts, HW Timers, etc.
+
++------------------+----------------------+----------------+--------------------------------------------------------------+
+|  SysBIOS Module  |    FreeRTOS Module   |   OSAL Module  |                      Additional Remarks                      |
++==================+======================+================+==============================================================+
+| XDC based config | FreeRTOSConfig.h     |      -NA-      | #define based config, most code in C files for FreeRTOS      |
+| (r5_mpu.xs)      |                      |                |                                                              |
++------------------+----------------------+----------------+--------------------------------------------------------------+
+| Static alloc     | Static alloc         |      -NA-      | “construct” APIs in SysBIOS, “CreateStatic” APIs in FreeRTOS |
++------------------+----------------------+----------------+--------------------------------------------------------------+
+| Task             | Task                 | TaskP          | Same scheduling policy as SysBIOS                            |
++------------------+----------------------+----------------+--------------------------------------------------------------+
+| Semaphore        | Semaphore            | SemaphoreP     | Same as SysBIOS. Binary, counting semaphore’s                |
++------------------+----------------------+----------------+--------------------------------------------------------------+
+| GateMutex        | Mutex                | MutexP         | Same as SysBIOS. Recursive, priority inheritance mutex’s     |
++------------------+----------------------+----------------+--------------------------------------------------------------+
+| Clock            | Timer                | ClockP         | Similar features, see details below                          |
++------------------+----------------------+----------------+--------------------------------------------------------------+
+| Event            | Event Groups         | EventP         | Similar features, see details below                          |
++------------------+----------------------+----------------+--------------------------------------------------------------+
+| Idle             | Idle                 |      -NA-      | Only one idle hook function is supported in FreeRTOS.        |
+|                  |                      |                | SysBIOS supported multiple idle functions.                   |
++------------------+----------------------+----------------+--------------------------------------------------------------+
+| Queue            | List                 | QueueP         | Similar features, see details below                          |
++------------------+----------------------+----------------+--------------------------------------------------------------+
+| Mailbox          | Queue                | MailboxP       | Similar features, see details below                          |
++------------------+----------------------+----------------+--------------------------------------------------------------+
+| Hwi              |         -NA-         | HwiP           | Similar features, see details below                          |
++------------------+----------------------+----------------+--------------------------------------------------------------+
+| Cache            |         -NA-         | CacheP         | Similar features, see details below                          |
++------------------+----------------------+----------------+--------------------------------------------------------------+
+| HeapMem          |         -NA-         | HeapP          | Similar features, see details below                          |
++------------------+----------------------+----------------+--------------------------------------------------------------+
+| MPU/MMU          |         -NA-         | MPU/MMU in CSL | Similar features, see details below                          |
++------------------+----------------------+----------------+--------------------------------------------------------------+
+| Swi              | “Pend” function call |      -NA-      | Similar features, see details below                          |
++------------------+----------------------+----------------+--------------------------------------------------------------+
+| Load             | Run-time stats APIs  | LoadP          | Similar features, see details below                          |
++------------------+----------------------+----------------+--------------------------------------------------------------+
+
+Key differences between modules
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
++-------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
+|                FreeRTOS difference vs SysBIOS               |                                      Alternative in FreeRTOS                                     |
++=============================================================+==================================================================================================+
+| When configUSE_TIME_SLICING is 1,                           | Keep this at 0 (**PDK default config**), if this is not desired                                  |
+| FreeRTOS will time slice between tasks at the same priority |                                                                                                  |
+| (This was no supported in SysBIOS)                          |                                                                                                  |
++-------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
+| Timer callbacks are called in task context in FreeRTOS vs   | Keep the timer task to highest priority so that timer callback get called                        |
+| ISR context in SysBIOS                                      | immediately after all ISRs are done (**PDK default config**)                                     |
++-------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
+| No SWI support in FreeRTOS                                  | Use “pend” function call, where functions are executed in timer task context.                    |
+|                                                             | Again keep timer task as the highest priority (**PDK default config**).                          |
+|                                                             | see `xTimerPendFunctionCall() <https://www.freertos.org/xTimerPendFunctionCall.html>`_ and       |
+|                                                             | `xTimerPendFunctionCallFromISR() <https://www.freertos.org/xTimerPendFunctionCallFromISR.html>`_ |
++-------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
+| No ability to create arbitrary heaps in FreeRTOS            | OSAL provides APIs in HeapP module to create arbitrary heaps to match SysBIOS                    |
++-------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
+| Only FreeRTOS APIs ending with “FromISR()” can be called    | Porting Layer provides a function `xPortInIsrContext()` to detect if code is in ISR.             |
+| from within ISRs                                            | This can be used to keep the application functions generic.                                      |
+|                                                             | OSAL takes care of this by default.                                                              |
++-------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
+| Number of task priorities in FreeRTOS is configurable       | **PDK default config** keeps number of task priorities to 16 in FreeRTOS                         |
+| (up to max 32) vs SysBIOS default of 16                     |                                                                                                  |
++-------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
+| No Reset Hook Function support in FreeRTOS.                 | CSL Startup API `_system_post_cinit` can be redefined in the application                         |
+|                                                             | to achieve similar functionality. See :ref:`reset_hook_alternative_for_freertos`                 |
+|                                                             | for more details                                                                                 |
++-------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
+
+.. _freertos_usage_guidelines:
+
+FreeRTOS Usage Guidelines
+-------------------------
+
+FreeRTOS Tasks
+~~~~~~~~~~~~~~
+
+Overview 
+^^^^^^^^
+
+- FreeRTOS has the ability to create tasks with the below parameters:
+  
+  - Entry function 
+  - One `void *` entry function argument
+  - Stack memory (when NULL, FreeRTOS uses the default heap to allocate the stack memory)	
+  - Stack size in units of “stack words”, i.e 32b or 4 bytes in case of R5F and C66x.
+  - Priority (0 is lowest, `configMAX_PRIORITY-1` is the highest)
+
+    - **PDK default config is 16 priorities to match SysBIOS priorities**
+  
+- Static task object memory allocation is supported 
+
+  - PDK examples and OSAL by default use static alloc APIs
+
+- Scheduler policy is configurable
+  
+  - `configUSE_PREEMPTION`, **PDK default is 1 to match SysBIOS scheduler policy**
+
+    - This enables pre-emptive priority-based scheduling
+
+  - `configUSE_TIME_SLICING`, **PDK default is 0, i.e. disabled, to match SysBIOS scheduler policy**
+
+    - If enabled, when two tasks are of the same priority, FreeRTOS will time-slice between the tasks at units of the timer tick
+    - **NOTE, this is unlike SysBIOS where unless `Task_yeild` is called scheduler will not switch to another task at the same priority**
+
+Initial Tasks
+^^^^^^^^^^^^^
+
+- Two tasks are created inside FreeRTOS on startup, idle task and timer task
+- Idle task is similar to any other task, only it runs at lowest priority.
+
+  - User can configure a “hook” function to call inside of IDLE, e.g, WFI can be called here.
+  - PDK default config is shown below, `vApplicationIdleHook` calls a periodic load update API
+
+    ::
+    
+        /* in FreeRTOSConfig.h file */
+        #define configUSE_IDLE_HOOK                     (1)
+
+        /* in port.c file for R5F and C66x */
+        void vApplicationIdleHook( void )
+        {
+        #if (configLOAD_UPDATE_IN_IDLE==1)
+            void vApplicationLoadHook();
+
+            vApplicationLoadHook();
+        #endif
+        }
+
+  - **NOTE, unlike SysBIOS, only one idle hook function (`vApplicationIdleHook`) is supported in FreeRTOS**
+
+    - SysBIOS supported multiple functions to be called when no other Tasks are running.
+
+- Timer task (**PDK default config enables timer task to match SysBIOS**),
+  
+  - Timer callbacks and “deferred” interrupt handler functions are called in the context of the timer task
+  - **NOTE, unlike SysBIOS, SW timer callbacks are not called in ISR context**
+  - “deferred”  handler functions, can be used as an equivalent of SW interrupt of SysBIOS 
+  - **NOTE, unlike SysBIOS, there is no SWI module in FreeRTOS**
+  - PDK config keeps the priority of this task to the highest so that the timer function will run immediately after an ISR
+  - All of above can be controlled via FreeRTOS Config, PDK defaults are listed below
+
+    ::
+
+      #define configUSE_TIMERS               (1) /* enable timer task and SW timers */
+      #define configTIMER_TASK_PRIORITY      (configMAX_PRIORITIES - 1) /* highest priority */
+      #define configTIMER_TASK_STACK_DEPTH   (256) /* 1KB */
+
+Task load
+^^^^^^^^^
+
+- To measure task and CPU load, in FreeRTOS config, we need to set `configGENERATE_RUN_TIME_STATS` to `1` (**PDK default** is `1` when `configOPTIMIZE_FOR_LATENCY` is `0`)
+- When load measurement is enabled, `portGET_RUN_TIME_COUNTER_VALUE()` is called to get a high resolution timer counter value.
+- In PDK FreeRTOS porting layer, we implement `portGET_RUN_TIME_COUNTER_VALUE()` using PMU Counter for R5F and Time Stamp Counter for C66x to return time stamp in units of usecs
+- In FreeRTOS Kernel, the load measurement counter will overflow after 32b, i.e around 1 hr with usec resolution timer.
+- To avoid this, in FreeRTOS OSAL, a periodic load update API is called in IDLE task to accumulate the measured task load and take care of overflow condition.
+- To get task load with overflow condition taken care of, it is recommended to create the task using OSAL TaskP APIs
+- Total CPU load is calculated by measuring the time spent in IDLE task and then subtracting it from 100%, i.e CPU load = 100 - CPU idle load
+
+.. _freertos_task_fpu_context:
+
+Task FPU context
+^^^^^^^^^^^^^^^^
+
+- When `configFLOATING_POINT_CONTEXT` is enabled, save/restore of R5F FPU Registers will be performed during each task switch.
+- In this case all tasks are created with floating point context and usage of portTASK_USES_FLOATING_POINT/vPortTaskUsesFPU() doesn't have any effect.
+- **PDK default** is `configFLOATING_POINT_CONTEXT` enabled (when `configOPTIMIZE_FOR_LATENCY` is `0`).
+
+  - This matches the SYSBIOS implementation.
+  - FreeRTOS C66x port as well save/restore the FPU registers by default.
+  - C7x doesn't have separate set of FPU registers.
+
+|
+
+- For optimized performance the config can be disabled.
+
+  - In this case all task will start without a floating point context.
+  - A task that uses the floating point hardware must call portTASK_USES_FLOATING_POINT/vPortTaskUsesFPU() before executing any floating point instructions.
+
+Important tips
+^^^^^^^^^^^^^^
+
+- Task function should not return in FreeRTOS, instead, it should call vTaskDelete(NULL) to destroy itself, e.g
+    
+  ::
+
+      void myTaskMain(void *args)
+      {	
+          /* ... do something ... */    
+          
+          vTaskDelete(NULL); 
+          /* do not call “return” */
+      }
+   
+- On task delete, FreeRTOS will free any memory allocated internally, if dynamically memory allocation mode was used. 
+  This memory free is done in the “IDLE” task, so “IDLE” needs to get the opportunity to run at some point.
+- `vTaskStartScheduler()` starts FreeRTOS and the highest priority task is executed first. 
+  
+  - Tasks, semaphores and OS objects can be created before `vTaskStartScheduler()` is called.
+  - Recommend to create one task and call `vTaskStartScheduler()`. Then do everything from within that task including creating other tasks.
+  - **`vTaskStartScheduler()` is similar to `BIOS_start()`, i.e it never returns and switches to the created tasks or idle task**
+  - .stack is the stack used by code before FreeRTOS scheduler is started, i.e from `_c_int00` to `vTaskStartSchedular()`
+
+FreeRTOS Interrupts
+~~~~~~~~~~~~~~~~~~~
+
+Overview
+^^^^^^^^
+
+- Interrupt handler is not directly invoked by FreeRTOS Kernel, porting layer handles this
+  
+  - In theory, FreeRTOS can work without interrupts. To switch tasks, interrupts are not needed. However, that’s not very useful.
+
+- Porting layer does below
+  
+  - Setup (any) one timer to be configured at `configTICK_RATE_HZ`, typically 1ms
+  - For R5F, we use one of the SOC level general-purpose |__PART_DEFAULT_SOC_TIMER__| timers.
+  - Timer ISR is outside FreeRTOS kernel
+  - When the timer ISR happens the porting layer calls `xTaskIncrementTick()` FreeRTOS API to maintain the FreeRTOS timer tick state 
+  
+- Porting layer also implements the common interrupt entry and exit logic
+  
+  - Esp before interrupt exit, porting layer needs to invoke a task switch if during ISR handling 
+    a semaphore was posted that needed a task switch on ISR exit
+
+- Interrupt nesting is also taken care of by this common interrupt handler
+  
+- Porting layer also implements functions to protect the critical sections of FreeRTOS via the below APIs
+  
+  - `portENTER_CRITICAL`, disable interrupt, track nesting of calls
+  - `portEXIT_CRITICAL`, re-enable interrupt, if nesting call depth is 0
+  - `portSET_INTERRUPT_MASK_FROM_ISR`, interrupt disable and return old interrupt state
+  - `portCLEAR_INTERRUPT_MASK_FROM_ISR`, restore interrupt state
+
+Nested interrupts and ISR stack
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- On R5F, 
+  
+  - When an interrupt is triggered, the CPU switches to IRQ mode and uses the IRQ stack. 
+  - IRQ interrupts are disabled by HW at this point.
+  - In the ISR handler, some CPU state is saved to IRQ stack and mode is switched to SVC mode and therefore SVC stack
+  - IRQs are then enabled, i.e nested interrupts are enabled
+  - The user ISR code is executed
+  - At this point, more IRQs can occur to interrupt the user ISR code
+  - After all IRQs are handled, IRQ is disabled
+  - Now mode is switched back to IRQ mode
+  - If a task switch was requested by any of the ISRs, tasks are switched, and control returns from IRQ to the highest priority pending task
+  - If a task switch was NOT requested, control returns from IRQ to the interrupted task
+
+- On R5F, 
+  
+  - Thus the user ISR code gets called with SVC stack, so the size of the SVC stack MUST be kept large enough to handle worst-case ISR requirement.
+  - The IRQ stack size itself can be kept small since it only saves few bytes (8 bytes) of state for every nested IRQ invocation.
+  - This stack size is specified in the linker command file, a sample snippet is shown below,
+    
+    ::
+
+      __IRQ_STACK_SIZE = 256; /* This is the size of stack when R5 is in IRQ mode */
+      __FIQ_STACK_SIZE = 256;
+      __SVC_STACK_SIZE = 4096; /* This is the size of stack when R5 is in SVC mode */
+      __ABORT_STACK_SIZE = 256;  /* This is the size of stack when R5 is in ABORT mode */
+      __UNDEFINED_STACK_SIZE = 256;  /* This is the size of stack when R5 is in UNDEF mode */
+  
+Interrupts outside of FreeRTOS
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- On R5F,
+    
+  - When FreeRTOS enter its critical section, it only disables IRQ but not FIQ
+  - Hence, FreeRTOS API calls MUST NOT be done inside FIQ.
+  - FIQs can be used for extremely low latency interrupt bypassing the OS completely. 
+  - **NOTE: this is same as the case with SysBIOS**
+    
+Additional important tips
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- Only FreeRTOS APIs that end with `FromISR` can be called from the ISR context 
+
+  ::
+
+    BaseType_t xHigherPriorityTaskWoken = 0;
+    
+    xSemaphoreGiveFromISR(pSemaphore->semHndl, &xHigherPriorityTaskWoken);
+    portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
+
+- The `FromISR` API returns a flag `xHigherPriorityTaskWoken` to indicate task switch should be requested, 
+  `portYIELD_FROM_ISR` requests the task switch. The actual task switch happens after all nested ISRs have been executed.
+
+- **This is different from SysBIOS, where the same APIs can be used inside ISR and outside ISR.**
+
+- The OSAL APIs will take care of this internally as below, e.g, 
+    
+  ::
+
+      SemaphoreP_post(...) 
+      {
+        ....
+        if( xPortInIsrContext() )
+        {
+            BaseType_t xHigherPriorityTaskWoken = 0;
+
+            xSemaphoreGiveFromISR(pSemaphore->semHndl, &xHigherPriorityTaskWoken);
+            portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
+        }
+        else
+        {
+            xSemaphoreGive(pSemaphore->semHndl);
+        }
+        ...
+      }
+
+
+FreeRTOS Semaphores and Mutex
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Overview 
+^^^^^^^^
+
+- FreeRTOS has a textbook implementation of binary semaphore, counting semaphore, mutex with priority inheritance, 
+  and recursive mutex
+- Timeouts can be specified when waiting on a semaphore/mutex, with timeout error code if semaphore/mutex is not available
+- Timeout is specified in units of OS ticks. Use `pdMS_TO_TICKS()` to convert from msec to OS ticks
+
+Important tips
+^^^^^^^^^^^^^^
+
+- Binary and counting semaphores should be used to signal from ISR to task and task to task
+  
+  - **PDK default config enables binary and counting semaphores** 
+  
+- Mutex should be used for mutual exclusion of critical sections.
+  
+  - **PDK default config enables mutex and recursive mutexes**
+
+- Once again, only APIs that end with `FromISR` can be used from within ISR. These are non-blocking APIs.
+        
+FreeRTOS Task Notification
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Overview
+^^^^^^^^
+
+- Task notification is low overhead API to signal a task from ISR or another task
+- We see about a 25% reduction in cycles needed for task switch using task notification vs using semaphores in ideal standalone conditions. 
+- This is a very freertos specific API and PDK drivers and OSAL will NOT use this.
+
+Important tips
+^^^^^^^^^^^^^^
+
+- In practical use-cases, typically cache effects due to cache miss on the larger application code/data, will have a higher effect than    
+  overheads of task switch in the smaller OS code.
+- So we recommend to NOT use this feature unless really the savings is critical to the end application.
+- Here one needs to know the task handle to signal, so it's difficult to use this API from within a driver library since driver ISR for 
+  example does not know the task in which the driver API is called
+- Thus use these APIs in applications after thorough analysis and profiling on benefit for the use-case.
+
+FreeRTOS Event Groups
+~~~~~~~~~~~~~~~~~~~~~
+
+Overview
+^^^^^^^^
+
+- An event group is a set of event bits. Event bits are used to indicate if an event has occurred or not. Event bits are often referred to as event flags.
+- The number of bits (or flags) stored within an event group is 24 bits
+
+Important tips for application writers
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- Unlike "Event" in SysBIOS where one could give a "AND" mask and "OR" mask to wait on, in FreeRTOS one can only give one "event mask" and then tell if one
+  should use "AND" wait or "OR" wait on the single event mask
+- When "set bits" is called from ISR, actual action of setting bits is done within the "Timer task" as a "deferred" function call.
+
+FreeRTOS Timers
+~~~~~~~~~~~~~~~
+
+Overview
+^^^^^^^^
+
+- Allows users to create one-shot or periodic callbacks at timer resolution of one OS tick, typically 1ms.
+  
+- **Similar to “Clock” module in SysBIOS**
+  
+- A timer task executes the callbacks. This timer task is like any other task,  nothing special about it. 
+  
+ - **PDK default is to set highest priority for this task so that after all ISRs this task will execute**
+  
+- A SW queue is used to post callbacks or functions to execute on timer expiry, the queue depth is the config option. 
+  **PDK default is 16**
+
+Important tips
+^^^^^^^^^^^^^^
+
+- Since a single task executes all the multiple callbacks, the callbacks are recommended to not block and spend too much time, 
+  even though in theory blocking calls are allowed. 
+- Use `xTimerPendFunctionCall()` to do “deferred ISR” handling, i.e do the most critical work in ISR and do the rest of the work in another 
+  function call which gets called right after all ISRs are done. **This feature can be used as alternative to SWI in SysBIOS**
+- Note, do not use `FromISR` APIs in callbacks, use regular FreeRTOS APIs
+
+FreeRTOS Heaps
+~~~~~~~~~~~~~~
+
+Default heap
+^^^^^^^^^^^^
+
+- FreeRTOS kernel has multiple heap implementations as defined in `portable/MemMang`
+  
+- A port should compile one of the below `heap_{n}.c` files to pick the required heap implementation
+  
+  - `heap_1.c`
+  
+    - linear heap allocation, `free()` not allowed. Typically used when true dynamic alloc is prohibited.
+    - Obsolete now and not used anymore, since FreeRTOS natively support static alloc mode
+  
+  - `heap_2.c`
+  
+    - Linked list based heap but adjacent free blocks not merged
+    - Obsolete now and not used anymore, `heap_4.c` is a better implementation
+  
+  - `heap_3.c`
+  
+    - Uses compiler provided, `malloc()` and `free()`, FreeRTOS only makes the calls thread-safe
+    - Heap size specified via `--heap` compiler option and placed in `.heap` section in the linker command file.
+  
+  - `heap_4.c` **PDK default** 
+
+    - Linked list based heap with adjacent free block merging
+    - More or less similar to `malloc()` from compiler and SysBIOS heap implementation
+    - Memory needs to be provided as a global static array, and placed appropriately in the linker command file.
+  
+  - `heap_5.c`
+  
+    - Same as `heap_4.c`, + it allows memory to be specified as multiple memory blocks
+      When memory in one block is full, it will alloc from the next block and so on.
+
+User defined heaps
+^^^^^^^^^^^^^^^^^^
+
+- **Unlike SysBIOS, FreeRTOS does not support user defined heaps at arbitrary user defined memory locations**
+- On TI SOCs with multiple levels of memory like L2, L3, DDR,
+  it is very convenient to have ability to create multiple application specified heaps.
+- `heap_4.c` almost does this, but it uses a global variable for heap memory base and size
+- Therefore, PDK OSAL implements heap APIs to match SysBIOS as below
+  
+  - PDK has adapted `heap_4.c` to take memory base and size as input parameters during heap create.
+    This allows creation of arbitrary number of application heaps to match SysBIOS features
+
+- `HeapP.h` is the user API 
+- `HeapP_freertos.c`, `HeapP_freertos_internal.c` is the implementation (Note, FreeRTOS kernel code is not modified)
+  
+Important tips
+^^^^^^^^^^^^^^
+
+- Use `--heap` in linker command file to specify heap size and place `.heap` section appropriate memory 
+  in the linker command file. This is used by FreeRTOS(`heap_4.c`) when it needs dynamic memory allocation. 
+
+- In general recommend to use FreeRTOS static alloc APIs for tasks, semaphores to keep the application deterministic. 
+  
+  - PDK OSAL uses FreeRTOS static alloc APIs 
+
+- Use PDK provided `HeapP.h` to create arbitrary application heaps as needed.
+
+FreeRTOS Additional Modules
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Queues
+^^^^^^
+
+- Highly efficient SW queue implementation
+- Lowest level primitive in FreeRTOS used internally by almost all modules like tasks, semaphores, mutex
+- Thread/ISR safe
+- Blocking/non-blocking with timeouts
+- Fixed queue depth and fixed queue element size at queue create
+- Can be used by application users
+
+Queue Sets, Event Groups, Stream Buffers, Co-routines
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- Croutines, used when tasks are deemed too expensive to use, almost unlikely we will ever use these
+- Queue Sets, more higher level than queues, built using queues, semaphores. FreeRTOS recommends to use these very carefully. https://www.freertos.org/Pend-on-multiple-rtos-objects.html 
+
+- Stream buffers, built using queues, semaphores
+- **PDK default config keeps these disabled**
+
+FreeRTOS Hook Functions
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Debug Hook Functions
+^^^^^^^^^^^^^^^^^^^^
+
+- FreeRTOS provides "hook" function callbacks specified in FreeRTOS config.
+  
+- These callbacks are invoked by FreeRTOS at specific points or when certain conditions are met
+  
+- Stack overflow check, `configCHECK_FOR_STACK_OVERFLOW` **PDK default enabled**
+  
+  - Enables stack overflow checks, two options to detect overflows,
+  
+    - Option 1: Check if the stack pointer has gone beyond the limit
+    - Option 2: Put a pattern at top of the stack and if the pattern is overwritten then call out stack overflow  **PDK default**
+    - **NOTE:** Depending on the nature of stack overflow, this logic may or may not catch all stack overflows
+  
+- Malloc failed hook, `configUSE_MALLOC_FAILED_HOOK` **PDK default disabled**
+  
+  - Called when `pvPortMalloc` fails inside FreeRTOS, not very useful, since all APIs return error on memory alloc failure.
+  
+- Assert, `configASSERT` **PDK default enabled**
+  
+  - Called when unrecoverable assert condition happens inside FreeRTOS or porting layer
+  
+- PDK defines a new config flag `configOPTIMIZE_FOR_LATENCY`, this can be used to disable all debug hooks and some other configs in FreeRTOS config to minimize FreeRTOS overheads due to debug hooks,
+
+- Recommend to enable all hooks in `debug` mode and disable all hooks in `release` mode after applications are reasonably sure assert and overflows will not happen.
+
+  - By default `configOPTIMIZE_FOR_LATENCY` is set to 0, i.e disabled
+
+Statistics Hook Functions
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- FreeRTOS provides APIs to query and return time spent in each task and output the results in a nice formatted table
+- The hook functions for this feature are enabled in **PDK default config** when `configOPTIMIZE_FOR_LATENCY` is 0.
+- It uses the same timer as the tick timer to measure task load.
+- See also https://www.freertos.org/rtos-run-time-stats.html 
+
+Trace Hooks Functions
+^^^^^^^^^^^^^^^^^^^^^
+
+- FreeRTOS provides more than 70+ hook macros at key points in the kernel to log trace info 
+  
+- Example, 
+  
+  - `traceTASK_SWITCHED_IN`, called when a task is being switched into
+  - `traceTASK_SWITCHED_OUT`, called when a task is being switched to another task
+  
+- This is used by tools like `Tracealyzer` to log and then visualize task execution and a lot more in a GUI tool, see https://www.freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_Trace/FreeRTOS_Plus_Trace.html 
+
+- **Not enabled in PDK default config**
+
+.. _freertos_migration_guidelines:
+
+FreeRTOS Migration Guidelines
+-----------------------------
+
+Porting of source files
+~~~~~~~~~~~~~~~~~~~~~~~
+
+- Replace all SysBIOS API's with OSAL API's / FreeRTOS API's
+- Remove SysBIOS Header files and include the OSAL /FreeRTOS headers 
+- Recommend to add `OS_init()` before any other OS calls (like Task creation, Schedular Start, etc. )
+- Update "Task Function" to take input params of type `void *` (or pointer to a specific data type) instead of `UArg` 
+- Replace `Void` with `void`
+- With usage of FreeRTOS Static API / OSAL API for Task Creation, application should pass the stack memory.
+  For example,
+
+    ::
+  
+        #define APP_TSK_STACK_MAIN (16U * 1024U)
+        static uint8_t gAppTskStackMain[APP_TSK_STACK_MAIN] __attribute__((aligned(32)));
+        
+        TaskP_Params_init(&taskParams);
+        taskParams.stack = gAppTskStackMain;
+        taskParams.stacksize = sizeof (gAppTskStackMain);
+        taskHndl = TaskP_create(mainTask, &taskParams);
+
+- With usage of FreeRTOS Static API / OSAL API for Mailbox Creation, application should pass the mailbox buffer memory.
+  For example,
+
+    ::
+  
+        typedef struct App_MailboxObj_s
+        {
+          /* Mailbox Object */
+        } App_MailboxObj;
+
+        #define APP_MBOX_MSG_CNT (10U)
+        
+        static uint8_t gAppMbxBuf[sizeof(App_MailboxObj) * APP_MBOX_MSG_CNT] __attribute__ ((aligned(32)));
+        
+        MailboxP_Params_init(&mboxParams);
+        mboxParams.size =  sizeof(App_MailboxObj);
+        mboxParams.count = APP_MBOX_MSG_CNT;
+        mboxParams.buf = gAppMbxBuf;
+        mboxParams.bufsize = sizeof(gAppMbxBuf);
+        mboxHndl = MailboxP_create(&mboxParams);
+
+See :ref:`freertos_sysbios_osal_api_comparison` for detailed comparison of commonly used SysBIOS API's vs equivalent FreeRTOS and OSAL APIs.
+
+.. _freertos_libs_inclusion:
+
+Building with FreeRTOS
+~~~~~~~~~~~~~~~~~~~~~~
+
+- To include PDK OSAL Library for FreeRTOS, use `osal_freertos` library. 
+  This is in contrast to `osal_tirtos` - PDK OSAL Library for SysBIOS. 
+
+.. ifconfig:: CONFIG_family in ('jacinto')
+
+  - Include the following additional libraries
+
+    - `freertos`    <= Library including FreeRTOS Kernel and the Portable layer
+    - `csl_intc`    <= [**C66x Only**]  CSL Library for C66x Interrupt Controller 
+    - `csl_init`    <= [**R5F Only**] CSL Library for C Startup, MPU/MMU Initialization, etc.
+
+.. ifconfig:: CONFIG_family in ('j7200', 'am65xx')
+
+  - Include the following additional libraries
+
+    - `freertos`    <= Library including FreeRTOS Kernel and the Portable layer
+    - `csl_init`    <= CSL Library for C Startup, MPU/MMU Initialization, etc.
+
+|
+
+  .. warning::
+    
+    | The above order is important. Library listing should always be from top of SW stack to bottom. 
+    | For example, including `csl_init` before `freertos` may cause issues like application never reaches main.
+
+- For FreeRTOS Build, include `freertos` as external components/interfaces, in place of `bios` and `xdc` used with SysBIOS 
+  For example,
+
+  ::
+
+      # List all the external components/interfaces, whose interface header files
+      #  need to be included for this component
+      INCLUDE_EXTERNAL_INTERFACES = pdk
+
+      ifeq ($(BUILD_OS_TYPE), freertos)
+        INCLUDE_EXTERNAL_INTERFACES += freertos
+      endif
+      ifeq ($(BUILD_OS_TYPE), tirtos)
+        INCLUDE_EXTERNAL_INTERFACES += xdc bios
+      endif
+
+Linker file for FreeRTOS
+~~~~~~~~~~~~~~~~~~~~~~~~
+      
+- The default linker file for FreeRTOS Build (`linker_${ISA}_freertos.lds`) is preset at ${PDK_INSTALL_DIR}/packages/ti/build/|__PART_DEFAULT_SOC__|
+
+Important tips 
+^^^^^^^^^^^^^^
+
+On R5F, Following are major updates required for creating a custom linker files for FreeRTOS Build compared to that for SysBIOS
+
+- Include the following Linker Settings
+  
+    ::
+
+        --retain="*(.bootCode)"
+        --retain="*(.startupCode)"
+        --retain="*(.startupData)"
+        --retain="*(.irqStack)"
+        --retain="*(.fiqStack)"
+        --retain="*(.abortStack)"
+        --retain="*(.undStack)"
+        --retain="*(.svcStack)"
+        
+        --fill_value=0
+        --stack_size=0x4000
+        --heap_size=0x8000
+        --entry_point=_freertosresetvectors
+        
+        -stack  0x4000  /* SOFTWARE STACK SIZE */
+        -heap   0x8000  /* HEAP AREA SIZE      */
+        
+        /*-------------------------------------------*/
+        /*       Stack Sizes for various modes       */
+        /*-------------------------------------------*/
+        __IRQ_STACK_SIZE   = 0x1000;
+        __FIQ_STACK_SIZE   = 0x0100;
+        __ABORT_STACK_SIZE = 0x0100;
+        __UND_STACK_SIZE   = 0x0100;
+        __SVC_STACK_SIZE   = 0x0100;
+    
+.. note::
+
+  - The following linker settings used in case for SysBIOS is not required.
+    
+      ::
+
+          -e __VECS_ENTRY_POINT
+          --retain="*(.utilsCopyVecsToAtcm)"
+
+.. ifconfig:: CONFIG_family in ('jacinto', 'j7200')
+ 
+  - The FreeRTOS default linker file places the reset vectors directly at `0x0(ATCM)`.
+  - In case of placing the reset vectors at some different address,  `configCOPY_RESET_VECTORS` in FreeROTSConfig.h should be enabled.
+    
+.. ifconfig:: CONFIG_family in ('am65xx')
+
+  - The FreeRTOS default linker file places the reset vectors at start of OCMC RAM and `configCOPY_RESET_VECTORS` in FreeROTSConfig.h is enabled.
+    
+    - This is because, on am65xx core reset results in clearing the ATCM memory.
+
+.. tip::
+
+  - When `configCOPY_RESET_VECTORS` is enabled, the reset vectors are copied to `0x0` during the schedular start.
+
+    - This is handled by the FreeRTOS portable layer.
+  
+  - With SysBIOS, PDK `utilsCopyVecsToAtcm` was used for a similar scenario.
+    
+  - In case of SySBIOS, `utilsCopyVecsToAtcm` was used as XDC reset hook function. So the reset vectors will already by copied to `0x0(ATCM)` by the time it reaches `main()`.
+  - On contrast with FreeRTOS, the portable layer handles the copy of reset vectors to `0x0(ATCM)` and this happens during the FreeRTOS schedular start from `main()`. 
+
+.. _freertos_mpu_cache_settings:
+
+MPU/Cache Settings in FreeRTOS
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- In FreeRTOS MPU/Cache Settings for various memory regions are configured via CSL API's during the C/C++ startup routine (`_c_int00()`)
+
+  - The default settings (`gCslR5MpuCfg`) are defined in `PDK_INSTALL_DIR/packages/ti/csl/arch/r5/src/startup/startup.c`
+
+- This is unlike SysBIOS, in which the MPU/Cache settings were done using the XDC cfg file.
+
+Important tips for creating Custom MPU/Cache Settings
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- The default settings `gCslR5MpuCfg` defined in `PDK_INSTALL_DIR/packages/ti/csl/arch/r5/src/startup/startup.c` is a weak definition and 
+  applications can override the defaults by simply redefining the same.
+- Typical use-cases may include adding a new section and/or modifying the default attributes of a memory region.
+- Applications may include a new source file which redefines the `gCslR5MpuCfg` as per the required configuration.
+  
+Example
+"""""""
+
+The method described above is implemented for IPC example, to modify the Ring Buffer as non-cacheable.
+
+- MPU Config File (`r5f_mpu_${soc}_default.c` at `PDK_INSTALL_DIR/packages/ti/drv/ipc/examples/common/src`) 
+  
+  - Re-defines `CSL_ArmR5MpuRegionCfg gCslR5MpuCfg[CSL_ARM_R5F_MPU_REGIONS_MAX]`
+  - This structure specifies the entries for mpu configuration to override the default MPU configuration which is part of the CSL init.
+
+Exception handling in FreeRTOS
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- For R5F, FreeRTOS in PDK currently only supports Data Abort Exception Callback.
+
+  - For other exceptions like Undefined Instruction, Pre-fetch Abort, it ends up in the default exception handler's infinite while loop.
+
+- To register Data Abort Exception Callback for FreeRTOS, use `csl/arch/r5/interrupt.h - Intc_RegisterExptnHandlers` API
+  
+  - For example,
+
+      ::
+       
+          #include <ti/csl/arch/csl_arch.h>
+
+          void appDAbtExptnClbkFxn()
+          {
+              /* Define callback function to be executed on 
+               * data abort exception */
+          }
+
+          /* Register exception handler */
+          CSL_R5ExptnHandlers appR5ExptnHandlers;
+          Intc_InitExptnHandlers(&appR5ExptnHandlers);
+          appR5ExptnHandlers.dabtExptnHandler = &appDAbtExptnClbkFxn;
+          Intc_RegisterExptnHandlers(&appR5ExptnHandlers);
+
+Important tips 
+^^^^^^^^^^^^^^
+
+- In case of SysBIOS, this was setup via XDC cfg and it directly plug in the passed hook function to the reset vectors.
+- On contrast with FreeRTOS, the data abort exception ends up in a default exception handler and will in-turn redirect to callback function(if registered)
+
+  - As a result the callback function can be a normal function, i.e. it shouldn't take care of returning from an interrupt, etc. 
+
+.. _reset_hook_alternative_for_freertos:
+
+Reset Hook Function Alternative for FreeRTOS
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- SysBIOS supported reset hook functions (functions to call at reset), since the startup code was also part of XDC(BIOS).
+- In case fo FreeRTOS, the startup code is not part of FreeRTOS Kernel and hence reset hooks functions are not supported.
+    - Here startup code is part of CSL Init.
+- As an alternative to reset hook functions, applications can redefine the CSL Startup API `_system_post_cinit` to achieve similar functionality.
+    - `_system_post_cinit()` is a hook function called in the C/C++ auto-initialization function after `cinit()` and before `pinit()`.
+    - FreeRTOS portable layer have a default weak definition for `_system_post_cinit` at ${PDK_INSTALL_PATH}/packages/ti/kernel/freertos/portable/TI_CGT/${ISA}/port.c
+    - Application can redefine this in the source file to add the code to be executed on reset. For example,
+   
+    .. code:: c 
+
+        #include <ti/csl/arch/csl_arch.h>
+
+        void _system_post_cinit(void)
+        {
+            /* Following is the default implementation in portable layer */
+            osalArch_Config_t cfg;
+        
+            cfg.disableIrqOnInit = true;
+            osalArch_Init(&cfg);
+            
+            /* --------------------------------------------------------*/
+            /* Add here application specific code, to be done on reset */
+            /* --------------------------------------------------------*/
+
+        }
+
+.. _freertos_sysbios_osal_api_comparison:
+
+API Comparison
+--------------
+
+The following section compares commonly used SysBIOS API's vs equivalent FreeRTOS and OSAL APIs.
+For more detailed info on the same refer the individual API Guides.
+
+- `FreeRTOS API Reference <https://www.freertos.org/a00106.html>`_
+- `SysBIOS API Documentation <https://software-dl.ti.com/dsps/dsps_public_sw/sdo_sb/targetcontent/bios/sysbios/6_83_00_18/exports/bios_6_83_00_18/docs/cdoc/index.html>`_
+- `OSAL API Guide <../../../apiguide/j721e/html/group__DRV__OSAL__MODULE.html>`_
+
+Scheduler / General
+~~~~~~~~~~~~~~~~~~~
+
++-------------------+-----------------------+-------------------+-----------------------------------------------------------------------------------------------------+
+|      SysBIOS      |        FreeRTOS       |        OSAL       |                                               Comments                                              |
++===================+=======================+===================+=====================================================================================================+
+|       -NA-        |         -NA-          | OS_init()         | Recommend to add `OS_init()` before any other OS calls (like Task creation, Schedular Start, etc. ) |
++-------------------+-----------------------+-------------------+-----------------------------------------------------------------------------------------------------+
+| BIOS_start        | vTaskStartScheduler() | OS_start()        | Starts the Scheduler                                                                                |
++-------------------+-----------------------+-------------------+-----------------------------------------------------------------------------------------------------+
+| BIOS_exit(0)      | vTaskEndScheduler()   | OS_stop()         | Stops the Scheduler                                                                                 |
++-------------------+-----------------------+-------------------+-----------------------------------------------------------------------------------------------------+
+| BIOS_WAIT_FOREVER | portMAX_DELAY         | osal_WAIT_FOREVER | Macro for timeout wait forever                                                                      |
++-------------------+-----------------------+-------------------+-----------------------------------------------------------------------------------------------------+
+
+
+Tasks
+~~~~~
+
++------------------+--------------------------------+--------------------+-----------------------------------------------------------------------+
+|      SysBIOS     |            FreeRTOS            |        OSAL        |                                Comments                               |
++==================+================================+====================+=======================================================================+
+| Task_Params_init |              -NA-              | TaskP_Params_init  |                                                                       |
++------------------+--------------------------------+--------------------+-----------------------------------------------------------------------+
+| Task_construct   | xTaskCreateStatic              | TaskP_create       | - FreeRTOS only takes one argument to be passed to the Task Function. |
+|                  |                                |                    |                                                                       |
+|                  |                                |                    | - SysBIOS had two arguments (arg0 and arg1)                           |
+|                  |                                |                    |                                                                       |
+|                  |                                |                    | - OSAL Supports two arguments similar to SysBIOS,                     |
+|                  |                                |                    |   and implements a wrapper for FreeRTOS to support this.              |
++------------------+--------------------------------+--------------------+-----------------------------------------------------------------------+
+| Task_destruct    | vTaskDelete                    | TaskP_delete       |                                                                       |
++------------------+--------------------------------+--------------------+-----------------------------------------------------------------------+
+| Task_sleep       | vTaskDelay                     | TaskP_sleep        |                                                                       |
++------------------+--------------------------------+--------------------+-----------------------------------------------------------------------+
+| Task_setPri      | vTaskPrioritySet               | TaskP_setPrio      |                                                                       |
++------------------+--------------------------------+--------------------+-----------------------------------------------------------------------+
+| Task_self        | xTaskGetCurrentTaskHandle      | TaskP_self         |                                                                       |
++------------------+--------------------------------+--------------------+-----------------------------------------------------------------------+
+| Task_yield       | taskYIELD                      | Task_yield         |                                                                       |
++------------------+--------------------------------+--------------------+-----------------------------------------------------------------------+
+| Task_getMode     | eTaskGetState                  | TaskP_isTerminated | - OSAL API is only to check if the task is terminated or not          |
+|                  |                                |                    | - FreeRTOS/SysBIOS API returns the current state of the task          |
++------------------+--------------------------------+--------------------+-----------------------------------------------------------------------+
+| Task_Handle      | TaskHandle_t                   | TaskP_Handle       |                                                                       |
++------------------+--------------------------------+--------------------+-----------------------------------------------------------------------+
+| Task_Params      | `Arguments to create function` | TaskP_Params       |                                                                       |
++------------------+--------------------------------+--------------------+-----------------------------------------------------------------------+
+
+Semaphores
+~~~~~~~~~~
+
++-----------------------+---------------------------------+------------------------+----------------------------------------------------------------------------------------------+
+|        SysBIOS        |             FreeRTOS            |          OSAL          |                                           Comments                                           |
++=======================+=================================+========================+==============================================================================================+
+| Semaphore_Params_init |              -NA-               | SemaphoreP_Params_init |                                                                                              |
++-----------------------+---------------------------------+------------------------+----------------------------------------------------------------------------------------------+
+| Semaphore_construct   | xSemaphoreCreateBinaryStatic /  | SemaphoreP_create      | - In SysBIOS same API was used to create Binary/Counting semaphore                           |
+|                       | xSemaphoreCreateCountingStatic  |                        |                                                                                              |
+|                       |                                 |                        |   -  'mode' in 'Semaphore_Params' was used to specify this                                   |
+|                       |                                 |                        |                                                                                              |
+|                       |                                 |                        | - Two different APIs in case of FreeRTOS                                                     |
+|                       |                                 |                        |                                                                                              |
+|                       |                                 |                        | - OSAL API is similar to SysBIOS.                                                            |
++-----------------------+---------------------------------+------------------------+----------------------------------------------------------------------------------------------+
+| Semaphore_destruct    | vSemaphoreDelete                | SemaphoreP_delete      |                                                                                              |
++-----------------------+---------------------------------+------------------------+----------------------------------------------------------------------------------------------+
+| Semaphore_pend        | xSemaphoreTake /                | SemaphoreP_pend        | - In case of FreeRTOS, timeout is ignored when in ISR mode                                   |
+|                       | xSemaphoreTakeFromISR           |                        | - FreeRTOS FromISR API sets the return flag 'pxHigherPriorityTaskWoken'                      |
+|                       |                                 |                        |   if calling the API function causes a task to leave the Blocked state,                      |
+|                       |                                 |                        |   and the unblocked task has a priority equal to or higher than the currently executing task |
+|                       |                                 |                        |                                                                                              |
+|                       |                                 |                        |   If so, a context switch should be requested before the interrupt is exited.                |
+|                       |                                 |                        | - OSAL API handles this internally by invoking `portYIELD_FROM_ISR` with the return flag.    |
++-----------------------+---------------------------------+------------------------+----------------------------------------------------------------------------------------------+
+| Semaphore_post        | xSemaphoreGive /                | SemaphoreP_post        | - FreeRTOS FromISR API sets the return flag 'pxHigherPriorityTaskWoken'                      |
+|                       | xSemaphoreGiveFromISR           |                        |   if giving the semaphore caused a task to unblock,                                          |
+|                       |                                 |                        |   and the unblocked task has a priority higher than the currently running task.              |
+|                       |                                 |                        |   If so, a context switch should be requested before the interrupt is exited.                |
+|                       |                                 |                        | - OSAL API handles this internally by invoking `portYIELD_FROM_ISR` with the return flag.    |
++-----------------------+---------------------------------+------------------------+----------------------------------------------------------------------------------------------+
+| Semaphore_getCount    | uxSemaphoreGetCount             | SemaphoreP_getCount    |                                                                                              |
++-----------------------+---------------------------------+------------------------+----------------------------------------------------------------------------------------------+
+| Semaphore_reset       |              -NA-               | SemaphoreP_reset       | - FreeRTOS doesn't have an API to rest the semaphore count.                                  |
+|                       |                                 |                        | - SysBIOS API supported passing the preferred count.                                         |
+|                       |                                 |                        | - OSAL API only supports reset the count to zero.                                            |
+|                       |                                 |                        |                                                                                              |
+|                       |                                 |                        |   - For FreeRTOS, the xSemaphoreTake API is repeatedly called until it returns timeout.      |
+|                       |                                 |                        |   - So the OSAL API shouldn't be called from an ISR.                                         |
++-----------------------+---------------------------------+------------------------+----------------------------------------------------------------------------------------------+
+| Semaphore_Handle      | SemaphoreHandle_t               | SemaphoreP_Handle      |                                                                                              |
++-----------------------+---------------------------------+------------------------+----------------------------------------------------------------------------------------------+
+| Semaphore_Params      | `Arguments to create function`  | SemaphoreP_Params      |                                                                                              |
++-----------------------+---------------------------------+------------------------+----------------------------------------------------------------------------------------------+
+
+Mutex
+~~~~~
+
++------------------------+--------------------------------------+---------------+----------------------------------------------------------------------------------+
+|         SysBIOS        |               FreeRTOS               |      OSAL     |                                     Comments                                     |
++========================+======================================+===============+==================================================================================+
+| GateMutexPri_construct | xSemaphoreCreateRecursiveMutexStatic | MutexP_create |                                                                                  |
++------------------------+--------------------------------------+---------------+----------------------------------------------------------------------------------+
+| GateMutexPri_destruct  | vSemaphoreDelete                     | MutexP_delete |                                                                                  |
++------------------------+--------------------------------------+---------------+----------------------------------------------------------------------------------+
+| GateMutexPri_enter     | xSemaphoreTakeRecursive              | MutexP_lock   | - FreeRTOS API takes an i/p 'xTicksToWait(timeout)' to specify the time to wait. |
+|                        |                                      |               |   A block time of zero can be used to poll.                                      |
+|                        |                                      |               |   If the task already owns the mutex then API will return immediately            |
+|                        |                                      |               |   no matter what the value of xTicksToWait.                                      |
+|                        |                                      |               | - OSAL API takes i/p param 'timeout' similar to FreeRTOS.                        |
+|                        |                                      |               |                                                                                  |
+|                        |                                      |               | - FreeRTOS / OSAL API does not return 'key'.                                     |
+|                        |                                      |               |                                                                                  |
+|                        |                                      |               |   - Note: OSAL API returns Status codes.                                         |
++------------------------+--------------------------------------+---------------+----------------------------------------------------------------------------------+
+| GateMutexPri_leave     | xSemaphoreGiveRecursive              | MutexP_unlock | - No need to pass 'key' as an argument to FreeRTOS /  OSAL API.                  |
++------------------------+--------------------------------------+---------------+----------------------------------------------------------------------------------+
+| GateMutexPri_Handle    | SemaphoreHandle_t                    | MutexP_Handle |                                                                                  |
++------------------------+--------------------------------------+---------------+----------------------------------------------------------------------------------+
+
+Software Timers
+~~~~~~~~~~~~~~~
+
++-------------------+-----------------------------------+--------------------+--------------------------------------------------------------------------------------+
+|      SysBIOS      |              FreeRTOS             |        OSAL        |                                       Comments                                       |
++===================+===================================+====================+======================================================================================+
+| Clock_Params_init |               -NA-                | ClockP_Params_init |                                                                                      |
++-------------------+-----------------------------------+--------------------+--------------------------------------------------------------------------------------+
+| Clock_construct   | xTimerCreateStatic                | ClockP_create      | - SysBIOS have two params namely 'period' and 'timeout'.                             |
+|                   |                                   |                    |                                                                                      |
+|                   |                                   |                    |   - 'period' part of 'Clock_Params' :-                                               |
+|                   |                                   |                    |     Period of the instance incase for Continuous timer                               |
+|                   |                                   |                    |   - 'timeout' passed as argument to 'Clock_create' :-                                |
+|                   |                                   |                    |     Period used for one-shot timer / for first run                                   |
+|                   |                                   |                    |                                                                                      |
+|                   |                                   |                    | - FreeRTOS timer create function takes an i/p flag 'uxAutoReload' and 'xTimerPeriod' |
+|                   |                                   |                    |                                                                                      |
+|                   |                                   |                    |   - If 'uxAutoReload' is set, then timer will be in continuous mode.                 |
+|                   |                                   |                    |   - If 'uxAutoReload' is not set, then the timer will be in one-shot mode.           |
+|                   |                                   |                    |                                                                                      |
+|                   |                                   |                    | - OSAL Clock Create API doesn't take 'timeout' as an argument.                       |
+|                   |                                   |                    |                                                                                      |
+|                   |                                   |                    |   - Instead use 'ClockP_Params' 'period' and 'runMode'.                              |
++-------------------+-----------------------------------+--------------------+--------------------------------------------------------------------------------------+
+| Clock_destruct    | xTimerDelete                      | ClockP_delete      |                                                                                      |
++-------------------+-----------------------------------+--------------------+--------------------------------------------------------------------------------------+
+| Clock_start       | xTimerStart /                     | ClockP_start       | - FreeRTOS FromISR API sets the return flag 'pxHigherPriorityTaskWoken'              |
+|                   | xTimerStartFromISR                |                    |   if calling the API function causes the timer service/daemon task to leave          |
+|                   |                                   |                    |   the Blocked state, and the timer service/ daemon task has a priority equal to      |
+|                   |                                   |                    |   or greater than the currently executing task.                                      |
+|                   |                                   |                    |   If so, a context switch should be requested before the interrupt is exited.        |
+|                   |                                   |                    | - OSAL API handles this internally by invoking `portYIELD_FROM_ISR` with the         |
+|                   |                                   |                    |   return flag.                                                                       |
++-------------------+-----------------------------------+--------------------+--------------------------------------------------------------------------------------+
+| Clock_stop        | xTimerStop /                      | ClockP_stop        | - FreeRTOS FromISR API sets the return flag 'pxHigherPriorityTaskWoken'              |
+|                   | xTimerStopFromISR                 |                    |   if calling the API function causes the timer service/daemon task to leave          |
+|                   |                                   |                    |   the Blocked state, and the timer service/ daemon task has a priority equal to      |
+|                   |                                   |                    |   or greater than the currently executing task.                                      |
+|                   |                                   |                    |   If so, a context switch should be requested before the interrupt is exited.        |
+|                   |                                   |                    | - OSAL API handles this internally by invoking `portYIELD_FROM_ISR` with the         |
+|                   |                                   |                    |   return flag.                                                                       |
++-------------------+-----------------------------------+--------------------+--------------------------------------------------------------------------------------+
+| Clock_Handle      | TimerHandle_t                     | ClockP_Handle      |                                                                                      |
++-------------------+-----------------------------------+--------------------+--------------------------------------------------------------------------------------+
+| Clock_Params      | `Arguments to create function`    | ClockP_Params      | - FreeRTOS doesn't support auto start with timer create.                             |
+|                   |                                   |                    |   Need to explicitly call start function.                                            |
+|                   |                                   |                    |                                                                                      |
+|                   |                                   |                    | - 'startMode' param in OSAL instead of 'startFlag' in SysBIOS                        |
+|                   |                                   |                    |                                                                                      |
+|                   |                                   |                    |   - ClockP_StartMode_USER (Default) (equivalent to startFlag=FALSE)                  |
+|                   |                                   |                    |   - ClockP_StartMode_AUTO (equivalent to startFlag=TRUE)                             |
+|                   |                                   |                    |                                                                                      |
+|                   |                                   |                    | - New param 'runMode' for OSAL API                                                   |
+|                   |                                   |                    |                                                                                      |
+|                   |                                   |                    |   - ClockP_RunMode_CONTINUOUS                                                        |
+|                   |                                   |                    |   - ClockP_RunMode_ONESHOT (Default)                                                 |
++-------------------+-----------------------------------+--------------------+--------------------------------------------------------------------------------------+
+
+Events
+~~~~~~
+
++-----------------------+---------------------------+------------------------+-------------------------------------------------------------------------------------------+
+|        SysBIOS        |          FreeRTOS         |          OSAL          |                                          Comments                                         |
++=======================+===========================+========================+===========================================================================================+
+| Event_construct       |                           | EventP_create          | - For FreeRTOS, the no. of bits for an event is 24                                        |
+|                       | xEventGroupCreateStatic   |                        | - For SysBIOS, the no. of bits for an event is 32.                                        |
+|                       |                           |                        | - OSAL also supports only upto 24 bits.                                                   |
++-----------------------+---------------------------+------------------------+-------------------------------------------------------------------------------------------+
+| Event_destruct        | vEventGroupDelete         | EventP_delete          |                                                                                           |
++-----------------------+---------------------------+------------------------+-------------------------------------------------------------------------------------------+
+| Event_pend            | xEventGroupWaitBits       | EventP_wait            | - SysBIOS Event_pend API takes two i.p masks to pend on:-                                 |
+|                       |                           |                        |                                                                                           |
+|                       |                           |                        |   #. andMask                                                                              |
+|                       |                           |                        |   #. orMask                                                                               |
+|                       |                           |                        |                                                                                           |
+|                       |                           |                        | - FreeRTOS API takes only one i.p mask and a flag to specify AND/OR logic                 |
+|                       |                           |                        |                                                                                           |
+|                       |                           |                        |   - Not both masks together.                                                              |
+|                       |                           |                        |                                                                                           |
+|                       |                           |                        | - OSAL API is similar to FreeRTOS                                                         |
++-----------------------+---------------------------+------------------------+-------------------------------------------------------------------------------------------+
+| Event_post            | xEventGroupSetBits /      | EventP_post            | - In FreeRTOS , setting bits from an ISR will defer the set operation                     |
+|                       | xEventGroupSetBitsFromISR |                        |   to the RTOS daemon task (also known as the timer service task).                         |
+|                       |                           |                        |   FreeRTOS FromISR API sets the return flag 'pxHigherPriorityTaskWoken'                   |
+|                       |                           |                        |   if the priority of the daemon task is higher than the priority of the                   |
+|                       |                           |                        |   currently running task.                                                                 |
+|                       |                           |                        |   If so, a context switch should be requested before the interrupt is exited.             |
+|                       |                           |                        | - OSAL API handles this internally by invoking `portYIELD_FROM_ISR` with the return flag. |
++-----------------------+---------------------------+------------------------+-------------------------------------------------------------------------------------------+
+| Event_getPostedEvents | xEventGroupGetBits /      | EventP_getPostedEvents |                                                                                           |
+|                       | xEventGroupGetBitsFromISR |                        |                                                                                           |
++-----------------------+---------------------------+------------------------+-------------------------------------------------------------------------------------------+
+| Event_Handle          | EventGroupHandle_t        | EventP_Handle          |                                                                                           |
++-----------------------+---------------------------+------------------------+-------------------------------------------------------------------------------------------+
+
+Mailbox
+~~~~~~~
+
++---------------------------+--------------------------------+----------------------------+-------------------------------------------------------------------------------+
+|          SysBIOS          |            FreeRTOS            |            OSAL            |                                    Comments                                   |
++===========================+================================+============================+===============================================================================+
+| Mailbox_Params_init       |             -NA-               | MailboxP_Params_init       |                                                                               |
++---------------------------+--------------------------------+----------------------------+-------------------------------------------------------------------------------+
+| Mailbox_construct         | xQueueCreateStatic             | MailboxP_create            | - FreeRTOS API i/p params 'uxQueueLength' equivalent to SysBIOS 'numMsgs'     |
+|                           |                                |                            | - FreeRTOS API i/p params 'uxItemSize' equivalent to SysBIOS 'msgSize'        |
+|                           |                                |                            | - OSAL API doesn't take 'msgSize' and 'numMsgs' as an argument.               |
+|                           |                                |                            |   Instead set 'size' and 'count' in MailboxP_Params                           |
+|                           |                                |                            |                                                                               |
+|                           |                                |                            | - With FreeRTOS Static API, User should also pass 'pucQueueStorageBuffer' -   |
+|                           |                                |                            |   point to a uint8_t array that is at least large enough to hold the maximum  |
+|                           |                                |                            |   number of items that can be in the queue at any one time - which is         |
+|                           |                                |                            |   ( uxQueueLength * uxItemSize ) bytes.                                       |
+|                           |                                |                            | - Same case with OSAL API. User should pass 'buf' and 'bufSize'               |
++---------------------------+--------------------------------+----------------------------+-------------------------------------------------------------------------------+
+| Mailbox_destruct          | vQueueDelete                   | MailboxP_delete            |                                                                               |
++---------------------------+--------------------------------+----------------------------+-------------------------------------------------------------------------------+
+| Mailbox_post              | xQueueSendToBack /             | MailboxP_post              |                                                                               |
+|                           | xQueueSendToBackFromISR        |                            |                                                                               |
++---------------------------+--------------------------------+----------------------------+-------------------------------------------------------------------------------+
+| Mailbox_pend              | xQueueReceive /                | MailboxP_pend              |                                                                               |
+|                           | xQueueReceiveFromISR           |                            |                                                                               |
++---------------------------+--------------------------------+----------------------------+-------------------------------------------------------------------------------+
+| Mailbox_getNumPendingMsgs | uxQueueMessagesWaiting /       | MailboxP_getNumPendingMsgs |                                                                               |
+|                           | uxQueueMessagesWaitingFromISR  |                            |                                                                               |
++---------------------------+--------------------------------+----------------------------+-------------------------------------------------------------------------------+
+| Mailbox_Handle            | QueueHandle_t                  | MailboxP_Handle            |                                                                               |
++---------------------------+--------------------------------+----------------------------+-------------------------------------------------------------------------------+
+| Mailbox_Params            | `Arguments to create function` | MailboxP_Params            | New params in OSAL                                                            |
+|                           |                                |                            |  - 'size' - The size of message                                               |
+|                           |                                |                            |  - 'count' - maximum number of items the mailbox can hold at any one time     |
+|                           |                                |                            |  - 'buf' - pointer to mailbox buffer memory                                   |
+|                           |                                |                            |  - 'bufsize' - buffer size                                                    |
++---------------------------+--------------------------------+----------------------------+-------------------------------------------------------------------------------+
+
+Queue
+~~~~~
+
++-----------------+--------------------+----------------+----------+
+|     SysBIOS     |      FreeRTOS      |      OSAL      | Comments |
++=================+====================+================+==========+
+| Queue_construct | vListInitialise    | QueueP_create  |          |
++-----------------+--------------------+----------------+----------+
+| Queue_destruct  |       -NA-         | QueueP_delete  |          |
++-----------------+--------------------+----------------+----------+
+| Queue_get       | listGET_HEAD_ENTRY | QueueP_get     |          |
++-----------------+--------------------+----------------+----------+
+| Queue_put       | vListInsertEnd     | QueueP_put     |          |
++-----------------+--------------------+----------------+----------+
+| Queue_empty     | listLIST_IS_EMPTY  | QueueP_isEmpty |          |
++-----------------+--------------------+----------------+----------+
+| Queue_Handle    | pxList             | QueueP_Handle  |          |
++-----------------+--------------------+----------------+----------+
+
+Arbitrary Heaps
+~~~~~~~~~~~~~~~
+
+FreeRTOS doesn't support creating arbitrary heaps. The following table compares the SysBIOS HeapMem with the OSAL HeapP implementation.
+
++---------------------+--------------------+-----------------------------------------------------------------------------------+
+|       SysBIOS       |        OSAL        |                                      Comments                                     |
++=====================+====================+===================================================================================+
+| HeapMem_Params_init | HeapP_Params_init  |                                                                                   |
++---------------------+--------------------+-----------------------------------------------------------------------------------+
+| HeapMem_construct   | HeapP_create       | Takes only HeapP_Params as i/p param                                              |
++---------------------+--------------------+-----------------------------------------------------------------------------------+
+| HeapMem_destruct    | HeapP_delete       |                                                                                   |
++---------------------+--------------------+-----------------------------------------------------------------------------------+
+|                     |                    | - OSAL API doesn't take 'align' as an arg                                         |
+| HeapMem_alloc       | HeapP_alloc        |                                                                                   |
+|                     |                    |   - This is handled by the define `HeapP_BYTE_ALIGNMENT` in HeapP.h               |
++---------------------+--------------------+-----------------------------------------------------------------------------------+
+| HeapMem_free        | HeapP_free         |                                                                                   |
++---------------------+--------------------+-----------------------------------------------------------------------------------+
+| HeapMem_getStats    | HeapP_getHeapStats |                                                                                   |
++---------------------+--------------------+-----------------------------------------------------------------------------------+
+| HeapMem_Struct      |        -NA-        | Not required to pass the structure from application. OSAL internally handles this |
++---------------------+--------------------+-----------------------------------------------------------------------------------+
+| HeapMem_Params      | HeapP_Params       | - 'buf' - Base address of memory to be used as heap                               |
+|                     |                    | - 'size' - Size of memory block that is to be used as heap                        |
++---------------------+--------------------+-----------------------------------------------------------------------------------+
+| HeapMem_Handle      | HeapP_Handle       | - OSAL doesn't have 'minBlockAlign' as a param                                    |
+|                     |                    |                                                                                   |
+|                     |                    |   - This is handled by the define `HeapP_BYTE_ALIGNMENT` in HeapP.h               |
++---------------------+--------------------+-----------------------------------------------------------------------------------+
+
+Task / CPU Load
+~~~~~~~~~~~~~~~
+
+Refer FreeRTOS native Run-time stats APIs Documentation at https://www.freertos.org/rtos-run-time-stats.html
+
+Following table compares the SysBIOS Load module with the OSAL LoadP implementation for FreeRTOS.
+
++------------------+-------------------+------------------------------------------------------------------------------+
+|      SysBIOS     | OSAL for FreeRTOS |                                   Comments                                   |
++==================+===================+==============================================================================+
+|                  |                   | Structure with Load statistics info                                          |
+|                  |                   |                                                                              |
+|                  |                   | - Name of the task [OSAL only]                                               |
+| Load_Stat        | LoadP_Stats       | - Runtime for the task                                                       |
+|                  |                   | - Total Runtime                                                              |
+|                  |                   | - Percentage load of the task [OSAL only]                                    |
++------------------+-------------------+------------------------------------------------------------------------------+
+|                  |                   | Function to Reset load statistics                                            |
+| Load_reset       | LoadP_reset       |                                                                              |
+|                  |                   | Until load statistics is reset the load statistics keep getting accumulated. |
++------------------+-------------------+------------------------------------------------------------------------------+
+| Load_getTaskLoad | LoadP_getTaskLoad |                                                                              |
++------------------+-------------------+------------------------------------------------------------------------------+
+| Load_getCPULoad  | LoadP_getCPULoad  |                                                                              |
++------------------+-------------------+------------------------------------------------------------------------------+
+
+Cache Operations
+~~~~~~~~~~~~~~~~
+
+Cache operations are not supported as part of FreeRTOS Kernel.
+
+Following table compares the SysBIOS and OSAL Cache APIs.
+
++-------------+--------------+--------------------------------------------+
+|   SysBIOS   |     OSAL     |                  Comments                  |
++=============+==============+============================================+
+| Cache_wb    | CacheP_wb    | - SysBIOS supported asynchronous operation |
++-------------+--------------+   by setting 'wait' flag to FALSE and      |
+| Cache_inv   | CacheP_Inv   |   later using `Cache_wait` to wait for all |
++-------------+--------------+   operations to conmplete.                 |
+| Cache_wbInv | CacheP_wbInv | - This is not supported in OSAL .          |
++-------------+--------------+--------------------------------------------+
+
+
+HW Interrupts
+~~~~~~~~~~~~~
+
+HW Interrupts are not supported as part of FreeRTOS Kernel.
+
+Following table compares the SysBIOS and OSAL HW Interrupt APIs.
+
++----------------------+-----------------------+
+|        SysBIOS       |         OSAL          |
++======================+=======================+
+| Hwi_Params_init      | HwiP_Params_init      |
++----------------------+-----------------------+
+| Hwi_construct        | HwiP_create           |
++----------------------+-----------------------+
+| Hwi_destruct         | HwiP_delete           |
++----------------------+-----------------------+
+| Hwi_disable          | HwiP_disable          |
++----------------------+-----------------------+
+| Hwi_restore          | HwiP_restore          |
++----------------------+-----------------------+
+| Hwi_disableInterrupt | HwiP_disableInterrupt |
++----------------------+-----------------------+
+| Hwi_enableInterrupt  | HwiP_enableInterrupt  |
++----------------------+-----------------------+
+| Hwi_clearInterrupt   | HwiP_clearInterrupt   |
++----------------------+-----------------------+
+| Hwi_post             | HwiP_post             |
++----------------------+-----------------------+
+
+HW Timers
+~~~~~~~~~
+
+HW Timers are not supported as part of FreeRTOS Kernel.
+
+Following table compares the SysBIOS and OSAL HW Timer APIs.
+
++--------------------------+---------------------------+
+|          SysBIOS         |           OSAL            |
++==========================+===========================+
+| Timer_Params_init        | TimerP_Params_init        |
++--------------------------+---------------------------+
+| Timer_construct          | TimerP_create             |
++--------------------------+---------------------------+
+| Timer_destruct           | TimerP_delete             |
++--------------------------+---------------------------+
+| Timer_start              | TimerP_start              |
++--------------------------+---------------------------+
+| Timer_stop               | TimerP_stop               |
++--------------------------+---------------------------+
+| Timer_setPeriodMicroSecs | TimerP_setPeriodMicroSecs |
++--------------------------+---------------------------+
+
+.. _faq_important_notes:
+
+FAQ / Important Notes
+---------------------
+
+App performance with FreeRTOS is very low compared to SysBIOS 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Check the MPU/Cache Settings.
+Unlike SysBIOS, this is now done with CSL init.
+
+SysBIOS used XDC based config to set MPU/Cache for various memory regions. 
+
+Refer :ref:`freertos_mpu_cache_settings` for more details.
+
+In case of adding new source file to redefine the default mpu/cache settings,
+make sure that this new source file is included in the build / added in makefile. 
+
+
+Application never reaches main() and .startUpCode, .startUpData, .bootCode is not found in the map file
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Check the order of inclusion of various libraries.
+Library listing should always be from top of SW stack to bottom.
+
+Do not include `csl_init` lib before `freertos` lib.
+
+See :ref:`freertos_libs_inclusion` for more details.

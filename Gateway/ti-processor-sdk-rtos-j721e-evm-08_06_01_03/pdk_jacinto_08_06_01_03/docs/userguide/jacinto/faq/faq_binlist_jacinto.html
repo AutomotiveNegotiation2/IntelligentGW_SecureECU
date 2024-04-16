@@ -1,0 +1,1437 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>8.6. FAQ - Supported Cores by example applications &mdash; Platform Development Kit (PDK) - JACINTO User Guide</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Platform Development Kit (PDK) - JACINTO User Guide" href="../index.html"/>
+        <link rel="up" title="8. Frequently Asked Questions" href="../family_cfg/jacinto/index_faq_jacinto.html"/>
+        <link rel="next" title="8.7. FAQ - How to set the clock for a given module and clock" href="faq_module_clocking.html"/>
+        <link rel="prev" title="8.5. FAQ - Used Resources - Interrupt" href="resource_int_jacinto.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index_jacinto.html" class="icon icon-home"> Platform Development Kit (PDK) - JACINTO User Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                08_06_01
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">1. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_release_notes_jacinto.html">2. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">3. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_modules_jacinto.html">4. Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_boot_jacinto.html">5. Bootloader (SBL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_board_jacinto.html">6. Board/EVM Abstraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_howto_jacinto.html">7. How to Guides</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../family_cfg/jacinto/index_faq_jacinto.html">8. Frequently Asked Questions</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="faq_common.html">8.1. FAQ - Common</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq_can.html">8.2. FAQ - CAN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq_fvid2.html">8.3. FAQ - FVID2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c7x_non_secure_mode.html">8.4. FAQ - C7x : Steps to switch C7x SysBIOS application from secure mode to non-secure mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resource_int_jacinto.html">8.5. FAQ - Used Resources - Interrupt</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">8.6. FAQ - Supported Cores by example applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">8.6.1. Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#es-1-0">8.6.2. ES 1.0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#es-1-1">8.6.3. ES 1.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hs-1-1">8.6.4. HS 1.1</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="faq_module_clocking.html">8.7. FAQ - How to set the clock for a given module and clock</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apps_on_secure_devices.html">8.8. FAQ - Running Apps on secure devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq_csi2rx.html">8.9. FAQ - CSI2RX</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_developer_notes_jacinto.html">9. Developer Notes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index_jacinto.html">Platform Development Kit (PDK) - JACINTO User Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index_jacinto.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../family_cfg/jacinto/index_faq_jacinto.html">8. Frequently Asked Questions</a> &raquo;</li>
+      
+    <li>8.6. FAQ - Supported Cores by example applications</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="faq-supported-cores-by-example-applications">
+<h1>8.6. FAQ - Supported Cores by example applications<a class="headerlink" href="#faq-supported-cores-by-example-applications" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>8.6.1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>PDK provides multiple example applications that demonstrate use of driver/module. The list below details binaries and compute cores that its expected to be hosted on.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>There are separate tables for different revisions of SoC, however, the binaries are not specific to silicon revision. e.g. vhwa_sde_baremetal_testapp is listed under ES 1.0 but not listed under ES 1.1, however, vhwa_sde_baremetal_testapp could also be run on ES 1.1 with no limitations.</p>
+<p class="last">Note that these tables are generated based on last test cycle and all bins will not be tested on all revisions of the silicon, in every test cycle.</p>
+</div>
+</div>
+<div class="section" id="es-1-0">
+<h2>8.6.2. ES 1.0<a class="headerlink" href="#es-1-0" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils" id="id1">
+<caption><span class="caption-number">Table 8.3 </span><span class="caption-text">Examples expected to be hosted on cores</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Binary Name</th>
+<th class="head">To be hosted on compute Core</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>MMCSD_EMMC_Baremetal_Regression_TestApp</td>
+<td>mcu1_0, mcu2_0, mcu2_1, mcu3_0, mcu3_1, mpu1_0</td>
+</tr>
+<tr class="row-odd"><td>sciclient_fw_testapp</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-even"><td>diag_ex_ecc_example_app</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>vhwa_sde_baremetal_testapp</td>
+<td>mcu2_0</td>
+</tr>
+<tr class="row-even"><td>vhwa_nf_baremetal_testapp</td>
+<td>mcu2_0</td>
+</tr>
+<tr class="row-odd"><td>vhwa_viss_baremetal_testapp</td>
+<td>mcu2_0</td>
+</tr>
+<tr class="row-even"><td>vhwa_ldc_baremetal_testapp</td>
+<td>mcu2_0</td>
+</tr>
+<tr class="row-odd"><td>vhwa_dof_baremetal_testapp</td>
+<td>mcu2_0</td>
+</tr>
+<tr class="row-even"><td>vhwa_msc_baremetal_testapp</td>
+<td>mcu2_0</td>
+</tr>
+<tr class="row-odd"><td>vhwa_ldc_testapp</td>
+<td>mcu2_0</td>
+</tr>
+<tr class="row-even"><td>csl_pok_ut_baremetal_app</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>OSPI_Baremetal_Flash_Dma_TestApp</td>
+<td>mcu1_0, mpu1_0</td>
+</tr>
+<tr class="row-even"><td>csl_stog_test_app</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>csl_pbist_test_app</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-even"><td>csl_lbist_test_app</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>OSPI_Flash_Dma_TestApp</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-even"><td>ex02_baremetal_multicore_echo_test</td>
+<td>mcu1_0, mcu1_1, mcu2_0, mcu2_1, mcu3_0, mcu3_1, mpu1_0, c66xdsp_1, c66xdsp_2, c7x_1</td>
+</tr>
+<tr class="row-odd"><td>ex02_bios_multicore_echo_test</td>
+<td>mcu1_0, mcu1_1, mcu2_0, mcu2_1, mcu3_0, mcu3_1, c66xdsp_1, c66xdsp_2, c7x_1</td>
+</tr>
+<tr class="row-even"><td>ex05_bios_multicore_echo_negative_test</td>
+<td>mcu1_0, mcu1_1, mcu2_0, mcu2_1, mcu3_0, mcu3_1, c66xdsp_1, c66xdsp_2, c7x_1</td>
+</tr>
+<tr class="row-odd"><td>ipc_perf_test_all_cores</td>
+<td>mcu1_0, mcu1_1, mcu2_0, mcu2_1, mcu3_0, mcu3_1, c66xdsp_1, c66xdsp_2, c7x_1</td>
+</tr>
+<tr class="row-even"><td>ipc_echo_testb</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>csl_ospi_flash_app</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-even"><td>udma_baremetal_ospi_flash_testapp</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>udma_sw_trigger_testapp</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-even"><td>SA_Baremetal_TestApp</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>diag_ex_esm_example_app</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-even"><td>board_ddr_thermal_test_app</td>
+<td>mcu1_0, mcu2_0, mcu2_1, mcu3_0, mcu3_1</td>
+</tr>
+<tr class="row-odd"><td>SA_TestApp</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-even"><td>csl_crc_unit_testapp</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>csl_vim_baremetal_test_app</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-even"><td>csl_cbass_baremetal_test_app</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>sdr_test</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-even"><td>csl_uart_test_app</td>
+<td>mcu1_0, mpu1_0</td>
+</tr>
+<tr class="row-odd"><td>csl_ecc_test_app</td>
+<td>mcu1_0, mpu1_0</td>
+</tr>
+<tr class="row-even"><td>MMCSD_EMMC_TestApp</td>
+<td>mcu1_0, mcu2_0, mcu2_1, mcu3_0, mcu3_1</td>
+</tr>
+<tr class="row-odd"><td>MMCSD_EMMC_Regression_TestApp</td>
+<td>mcu1_0, mcu2_0, mcu2_1, mcu3_0, mcu3_1</td>
+</tr>
+<tr class="row-even"><td>MMCSD_EMMC_DMA_TestApp</td>
+<td>mcu1_0, mcu2_0, mcu2_1, mcu3_0, mcu3_1</td>
+</tr>
+<tr class="row-odd"><td>MMCSD_Baremetal_Regression_TestApp</td>
+<td>mcu1_0, mcu2_0, mcu2_1, mcu3_0, mcu3_1, mpu1_0</td>
+</tr>
+<tr class="row-even"><td>MMCSD_Baremetal_EMMC_TestApp</td>
+<td>mcu1_0, mcu2_0, mcu2_1, mcu3_0, mcu3_1, mpu1_0</td>
+</tr>
+<tr class="row-odd"><td>MMCSD_Baremetal_EMMC_DMA_TestApp</td>
+<td>mcu1_0, mcu2_0, mcu2_1, mcu3_0, mcu3_1, mpu1_0</td>
+</tr>
+<tr class="row-even"><td>I2C_Eeprom_TestApp</td>
+<td>mcu1_0, mcu1_1, mcu2_0, mcu2_1, mcu3_0, mcu3_1</td>
+</tr>
+<tr class="row-odd"><td>UART_TestApp</td>
+<td>mcu1_0, mcu1_1, mcu2_0, mcu2_1, mcu3_0, mcu3_1</td>
+</tr>
+<tr class="row-even"><td>UART_DMA_TestApp</td>
+<td>mcu1_0, mcu2_0, mcu2_1, mcu3_0, mcu3_1</td>
+</tr>
+<tr class="row-odd"><td>UART_Baremetal_TestApp</td>
+<td>mcu1_0, mcu1_1, mcu2_0, mcu2_1, mcu3_0, mcu3_1, mpu1_0</td>
+</tr>
+<tr class="row-even"><td>OSPI_Flash_TestApp</td>
+<td>mcu1_0, mcu1_1, mcu2_0, mcu2_1, mcu3_0, mcu3_1</td>
+</tr>
+<tr class="row-odd"><td>OSPI_Baremetal_Flash_TestApp</td>
+<td>mcu1_0, mcu1_1, mcu2_0, mcu2_1, mcu3_0, mcu3_1, mpu1_0</td>
+</tr>
+<tr class="row-even"><td>OSPI_Baremetal_Flash_Dma_TestApp</td>
+<td>mcu1_0, mcu1_1, mcu2_0, mcu2_1, mcu3_0, mcu3_1, mpu1_0</td>
+</tr>
+<tr class="row-odd"><td>MCSPI_MasterSlave_Dma_TestApp</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-even"><td>MCSPI_Baremetal_MasterSlave_TestApp</td>
+<td>mcu1_1, mpu1_0</td>
+</tr>
+<tr class="row-odd"><td>GPIO_Baremetal_LedBlink_TestApp</td>
+<td>mcu1_0, mcu2_0, mcu2_1, mcu3_0, mcu3_1, mpu1_0</td>
+</tr>
+<tr class="row-even"><td>csl_vtm_ut_baremetal_app</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>csl_vtm_pvt_sensor_read</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-even"><td>csl_rti_unit_testapp</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>csl_esm_baremetal_test_app</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-even"><td>csl_ecc_aggr_baremetal_test_app</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>csl_dmTimer_baremetal_test_app</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-even"><td>csl_core_r5_baremetal_test_app</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>csl_ccmr5_baremetal_test_app</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-even"><td>csl_rti_dwwd_test_app</td>
+<td>mcu1_0, mpu1_0</td>
+</tr>
+<tr class="row-odd"><td>sbl_boot_xip_test</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-even"><td>sbl_multicore_amp</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>sbl_boot_perf_test</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-even"><td>can_profile_app_mcu1_0_release</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>UART_DMA_TestApp</td>
+<td>mcu1_0, mcu2_0, mcu2_1, mcu3_0, mcu3_1</td>
+</tr>
+<tr class="row-even"><td>board_diag_lin</td>
+<td>mpu1_0, mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>csirx_unit_testapp</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-even"><td>csitx_transmit_testapp</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>OSAL_TestApp</td>
+<td>mcu1_0, mcu2_0, mcu3_0</td>
+</tr>
+<tr class="row-even"><td>OSAL_Baremetal_TestApp</td>
+<td>mcu1_0, mcu2_0, mcu3_0, mpu1_0</td>
+</tr>
+<tr class="row-odd"><td>udma_unit_testapp</td>
+<td>mcu1_0, mcu2_0, mcu3_0, mcu3_1, c66xdsp_1, c66xdsp_2,  c7x_1</td>
+</tr>
+<tr class="row-even"><td>MMCSD_Regression_TestApp</td>
+<td>mcu1_0, mcu2_0, mcu2_1, mcu3_0, mcu3_1</td>
+</tr>
+<tr class="row-odd"><td>dss_display_testapp</td>
+<td>mcu2_0</td>
+</tr>
+<tr class="row-even"><td>vhwa_sde_testapp</td>
+<td>mcu2_0</td>
+</tr>
+<tr class="row-odd"><td>vhwa_dof_testapp</td>
+<td>mcu2_0</td>
+</tr>
+<tr class="row-even"><td>vhwa_viss_testapp</td>
+<td>mcu2_0</td>
+</tr>
+<tr class="row-odd"><td>vhwa_nf_testapp</td>
+<td>mcu2_0</td>
+</tr>
+<tr class="row-even"><td>vhwa_msc_testapp</td>
+<td>mcu2_0</td>
+</tr>
+<tr class="row-odd"><td>vhwa_ldc_testapp</td>
+<td>mcu2_0</td>
+</tr>
+<tr class="row-even"><td>csl_mcan_unit_test_app</td>
+<td>mcu1_0, mcu1_1</td>
+</tr>
+<tr class="row-odd"><td>udma_unit_testapp</td>
+<td>mcu1_0, mcu2_0, mcu2_1, mcu3_0, mcu3_1, c66xdsp_1, c66xdsp_2, c7x_1</td>
+</tr>
+<tr class="row-even"><td>board_diag_automationHeader</td>
+<td>mpu1_0, mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>board_diag_expHeader</td>
+<td>mpu1_0, mcu1_0</td>
+</tr>
+<tr class="row-even"><td>board_diag_mcan</td>
+<td>mpu1_0, mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>board_diag_leoPmicLib</td>
+<td>mpu1_0, mcu1_0</td>
+</tr>
+<tr class="row-even"><td>board_utils_uart_flash_programmer</td>
+<td>mpu1_0, mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>sciclient_unit_testapp</td>
+<td>mcu1_0, mcu2_0, mcu2_1, mcu3_0, mcu3_1</td>
+</tr>
+<tr class="row-even"><td>board_diag_fpdLib</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>vhwa_sde_testapp</td>
+<td>mcu2_0</td>
+</tr>
+<tr class="row-even"><td>GPIO_LedBlink_TestApp</td>
+<td>mcu1_0, mcu2_0, mcu2_1, mcu3_0, mcu3_1, c66xdsp_1, c66xdsp_2</td>
+</tr>
+<tr class="row-odd"><td>pm_baremetal_voltage_read_testapp</td>
+<td>mcu1_0, mpu1_0</td>
+</tr>
+<tr class="row-even"><td>pm_baremetal_clkrate_testapp</td>
+<td>mcu1_0, mcu1_1, mpu1_0</td>
+</tr>
+<tr class="row-odd"><td>pm_baremetal_systemconfig_testapp</td>
+<td>mcu1_0, mcu1_1, mpu1_0</td>
+</tr>
+<tr class="row-even"><td>ipc_echo_test</td>
+<td>mcu1_0, mcu2_0, mcu2_1, mcu3_0, mcu3_1, c66xdsp_1, c66xdsp_2, c7x_1</td>
+</tr>
+<tr class="row-odd"><td>I2C_Baremetal_Eeprom_TestApp</td>
+<td>mcu1_0, mcu1_1, mcu2_0, mcu2_1, mcu3_0, mcu3_1, mpu1_0</td>
+</tr>
+<tr class="row-even"><td>csl_mcspi_masterslave_app</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>csl_spinlock_test_app</td>
+<td>mcu1_0, mcu2_1, mpu1_0</td>
+</tr>
+<tr class="row-even"><td>csl_crc_cputest_app</td>
+<td>mcu1_0, mpu1_0</td>
+</tr>
+<tr class="row-odd"><td>csl_esm_clk_loss_test_app</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-even"><td>csl_dcc_singleshotmode_app</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>csl_adc_singleshot_test_app</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-even"><td>csl_mcan_evm_loopback_app</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>MCASP_AudioLoopback_TestApp</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-even"><td>board_utils_uart_flash_programmer</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>board_diag_uart</td>
+<td>mpu1_0, mcu1_0</td>
+</tr>
+<tr class="row-even"><td>board_diag_led</td>
+<td>mpu1_0, mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>board_diag_eeprom</td>
+<td>mpu1_0, mcu1_0</td>
+</tr>
+<tr class="row-even"><td>board_diag_emmc</td>
+<td>mpu1_0, mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>board_diag_norflash</td>
+<td>mpu1_0, mcu1_0</td>
+</tr>
+<tr class="row-even"><td>board_diag_adc</td>
+<td>mpu1_0, mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>board_diag_clockGen</td>
+<td>mpu1_0, mcu1_0</td>
+</tr>
+<tr class="row-even"><td>board_diag_hyperbus</td>
+<td>mpu1_0, mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>board_diag_pmic</td>
+<td>mpu1_0, mcu1_0</td>
+</tr>
+<tr class="row-even"><td>board_diag_mem</td>
+<td>mpu1_0, mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>board_diag_temperature</td>
+<td>mpu1_0, mcu1_0</td>
+</tr>
+<tr class="row-even"><td>board_diag_bootEeprom</td>
+<td>mpu1_0, mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>board_diag_ospi</td>
+<td>mpu1_0, mcu1_0</td>
+</tr>
+<tr class="row-even"><td>board_diag_mmcsd</td>
+<td>mpu1_0, mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>board_diag_ospi</td>
+<td>mpu1_0, mcu1_0</td>
+</tr>
+<tr class="row-even"><td>board_diag_extRtc</td>
+<td>mpu1_0, mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>FATFS_Console_TestApp</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-even"><td>OSPI_Flash_Dma_TestApp</td>
+<td>mcu1_0, mcu1_1, mcu2_0, mcu2_1, mcu3_0, mcu3_1</td>
+</tr>
+<tr class="row-odd"><td>TC_DOF_FUNC_2MP_8b</td>
+<td>mcu2_0</td>
+</tr>
+<tr class="row-even"><td>TC_DOF_FUNC_1MP_12b_Packed</td>
+<td>mcu2_0</td>
+</tr>
+<tr class="row-odd"><td>TC_DOF_FUNC_2MP_12b_Packed</td>
+<td>mcu2_0</td>
+</tr>
+<tr class="row-even"><td>MCASP_DeviceLoopback_TestApp</td>
+<td>mcu1_0, c66xdsp_1, c66xdsp_2, mcu2_0</td>
+</tr>
+<tr class="row-odd"><td>csl_crc_unit_testapp</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-even"><td>csl_crc_unit_testapp</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>udma_unit_testapp</td>
+<td>mcu1_0, mcu2_0, mcu2_1, mcu3_0, mcu3_1, c66xdsp_1, c66xdsp_2, c7x_1</td>
+</tr>
+<tr class="row-even"><td>csirx_unit_testapp</td>
+<td>mcu2_0</td>
+</tr>
+<tr class="row-odd"><td>MCSPI_Master_TestApp</td>
+<td>mcu2_0</td>
+</tr>
+<tr class="row-even"><td>MCSPI_Slave_TestApp</td>
+<td>mpu2_1</td>
+</tr>
+<tr class="row-odd"><td>MMCSD_Baremetal_DMA_TestApp</td>
+<td>mcu1_0, mcu2_0, mcu2_1, mcu3_0, mcu3_1, mpu1_0</td>
+</tr>
+<tr class="row-even"><td>MMCSD_Baremetal_TestApp</td>
+<td>mcu1_0, mcu2_0, mcu2_1, mcu3_0, mcu3_1, mpu1_0</td>
+</tr>
+<tr class="row-odd"><td>MMCSD_DMA_TestApp</td>
+<td>mcu1_0, mcu2_0, mcu2_1, mcu3_0, mcu3_1</td>
+</tr>
+<tr class="row-even"><td>MMCSD_TestApp</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>csirx_baremetal_capture_testapp</td>
+<td>mcu2_0</td>
+</tr>
+<tr class="row-even"><td>dss_display_testapp</td>
+<td>mcu2_0</td>
+</tr>
+<tr class="row-odd"><td>csirx_capture_testapp</td>
+<td>mcu2_0</td>
+</tr>
+<tr class="row-even"><td>udma_memcpy_testapp</td>
+<td>c66xdsp_1</td>
+</tr>
+<tr class="row-odd"><td>vhwa_msc_inst0_5out_inst1_5out_yuv420_12bPacked</td>
+<td>mcu2_0</td>
+</tr>
+<tr class="row-even"><td>vhwa_msc_inst1_yuv420_10out_12bPacked_12bPacked</td>
+<td>mcu2_0</td>
+</tr>
+<tr class="row-odd"><td>vhwa_msc_inst0_Luma_10out_8bPacked_8bPacked</td>
+<td>mcu2_0</td>
+</tr>
+<tr class="row-even"><td>vhwa_msc_inst0_Luma_10out_8bPacked_8bPacked</td>
+<td>mcu2_0</td>
+</tr>
+<tr class="row-odd"><td>vhwa_msc_inst0_yuv420_10out_8bPacked_8bPacked</td>
+<td>mcu2_0</td>
+</tr>
+<tr class="row-even"><td>vhwa_msc_inst0_yuv420_10out_12bPacked_12bPacked</td>
+<td>mcu2_0</td>
+</tr>
+<tr class="row-odd"><td>udma_unit_testapp</td>
+<td>mcu1_0, mcu2_0, mcu2_1, mcu3_0, mcu3_1, c66xdsp_1, c66xdsp_2, c7x_1</td>
+</tr>
+<tr class="row-even"><td>dss_m2m_testapp</td>
+<td>mcu2_0</td>
+</tr>
+<tr class="row-odd"><td>OSPI_Flash_Dma_Cache_TestApp</td>
+<td>mcu1_0, mcu1_1, mcu2_0, mcu2_1, mcu3_0, mcu3_1</td>
+</tr>
+<tr class="row-even"><td>OSPI_Flash_Cache_TestApp</td>
+<td>mcu1_0, mcu1_1, mcu2_0, mcu2_1, mcu3_0, mcu3_1</td>
+</tr>
+<tr class="row-odd"><td>OSPI_Baremetal_Flash_Cache_TestApp</td>
+<td>mcu1_0, mcu1_1, mcu2_0, mcu2_1, mcu3_0, mcu3_1</td>
+</tr>
+<tr class="row-even"><td>OSPI_Baremetal_Flash_Dma_Cache_TestApp</td>
+<td>mcu1_0, mcu1_1, mcu2_0, mcu2_1, mcu3_0, mcu3_1</td>
+</tr>
+<tr class="row-odd"><td>freertos_test_ut</td>
+<td>mcu1_0, mcu1_1, mcu2_0, mcu2_1, mcu3_0, mcu3_1</td>
+</tr>
+<tr class="row-even"><td>freertos_test_task_switch</td>
+<td>mcu1_0, mcu1_1, mcu2_0, mcu2_1, mcu3_0, mcu3_1</td>
+</tr>
+<tr class="row-odd"><td>csirx_capture_testapp</td>
+<td>mcu2_1</td>
+</tr>
+<tr class="row-even"><td>udma_baremetal_memcpy_testapp</td>
+<td>mcu2_0</td>
+</tr>
+<tr class="row-odd"><td>dss_display_testapp_mcu2_0_release</td>
+<td>mcu2_0</td>
+</tr>
+<tr class="row-even"><td>dss_colorbar_testapp_mcu2_0_release</td>
+<td>mcu2_0</td>
+</tr>
+<tr class="row-odd"><td>dss_baremetal_display_testapp_mcu2_0_release</td>
+<td>mcu2_0</td>
+</tr>
+<tr class="row-even"><td>dss_display_testapp_mcu2_0_release</td>
+<td>mcu2_0</td>
+</tr>
+<tr class="row-odd"><td>ex02_bios_multicore_echo_test</td>
+<td>mcu1_0, mcu2_0, c7x_1, c66xdsp_1</td>
+</tr>
+<tr class="row-even"><td>ex01_bios_2core_echo_test</td>
+<td>c66xdsp_1, mpu2_0</td>
+</tr>
+<tr class="row-odd"><td>udma_adc_testapp</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-even"><td>udma_dru_testapp</td>
+<td>mcu2_0, c66xdsp_1, c66xdsp_2, c7x_1</td>
+</tr>
+<tr class="row-odd"><td>udma_dru_direct_tr_testapp</td>
+<td>mcu2_0, c66xdsp_1, c7x_1</td>
+</tr>
+<tr class="row-even"><td>udma_chaining_testapp</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>udma_crc_testapp</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-even"><td>udma_memcpy_testapp</td>
+<td>mcu1_0, mcu3_0</td>
+</tr>
+<tr class="row-odd"><td>udma_baremetal_memcpy_testapp</td>
+<td>mpu1_0</td>
+</tr>
+<tr class="row-even"><td>sciclient_unit_testapp</td>
+<td>mcu1_0, mcu2_0, mcu2_1, mcu3_0, mcu3_1, c66xdsp_1, c66xdsp_2, c7x_1</td>
+</tr>
+<tr class="row-odd"><td>sciclient_rtos_app</td>
+<td>mcu1_0, mcu2_0, mcu2_1, mcu3_0, mcu3_1</td>
+</tr>
+<tr class="row-even"><td>sciclient_ccs_init</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>sciclient_firmware_boot_TestApp</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-even"><td>pmic_benchmark_testapp</td>
+<td>mcu1_0, mcu1_1, mcu2_0, mcu2_1, mcu3_0, mcu3_1</td>
+</tr>
+<tr class="row-odd"><td>pmic_esm_testapp</td>
+<td>mcu1_0, mcu1_1, mcu2_0, mcu2_1, mcu3_0, mcu3_1</td>
+</tr>
+<tr class="row-even"><td>pmic_misc_testapp</td>
+<td>mcu1_0, mcu1_1, mcu2_0, mcu2_1, mcu3_0, mcu3_1</td>
+</tr>
+<tr class="row-odd"><td>pmic_fsm_testapp</td>
+<td>mcu1_0, mcu1_1, mcu2_0, mcu2_1, mcu3_0, mcu3_1</td>
+</tr>
+<tr class="row-even"><td>pmic_wdg_testapp</td>
+<td>mcu1_0, mcu1_1, mcu2_0, mcu2_1, mcu3_0, mcu3_1</td>
+</tr>
+<tr class="row-odd"><td>pmic_power_testapp</td>
+<td>mcu1_0, mcu1_1, mcu2_0, mcu2_1, mcu3_0, mcu3_1</td>
+</tr>
+<tr class="row-even"><td>pmic_gpio_testapp</td>
+<td>mcu1_0, mcu1_1, mcu2_0, mcu2_1, mcu3_0, mcu3_1</td>
+</tr>
+<tr class="row-odd"><td>pmic_rtc_testapp</td>
+<td>mcu1_0, mcu1_1, mcu2_0, mcu2_1, mcu3_0, mcu3_1</td>
+</tr>
+<tr class="row-even"><td>enet_loopback_test</td>
+<td>mcu1_0, mcu2_0, mcu2_1</td>
+</tr>
+<tr class="row-odd"><td>enet_nimu_example</td>
+<td>mcu1_0, mcu2_0, mcu2_1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="es-1-1">
+<h2>8.6.3. ES 1.1<a class="headerlink" href="#es-1-1" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils" id="id2">
+<caption><span class="caption-number">Table 8.4 </span><span class="caption-text">SafeRTOS Examples validated on ES1.1</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Binary Name</th>
+<th class="head">To be hosted on compute Core</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>task_switch_safertos</td>
+<td>mcu1_0,mcu1_1,mcu2_0,mcu2_1,mcu3_0,mcu3_1,c66xdsp_1,c66xdsp_2,c7x_1</td>
+</tr>
+<tr class="row-odd"><td>unit_test_safertos</td>
+<td>mcu1_0,mcu1_1,mcu2_0,mcu2_1,mcu3_0,mcu3_1,c66xdsp_1,c66xdsp_2,c7x_1</td>
+</tr>
+<tr class="row-even"><td>OSAL_TestApp</td>
+<td>mcu1_0,mcu1_1,mcu2_0,mcu2_1,mcu3_0,mcu3_1,c66xdsp_1,c66xdsp_2,c7x_1</td>
+</tr>
+<tr class="row-odd"><td>sciclient_unit_testapp</td>
+<td>mcu1_0,mcu1_1,mcu2_0,mcu2_1,mcu3_0,mcu3_1,c66xdsp_1,c66xdsp_2,c7x_1</td>
+</tr>
+<tr class="row-even"><td>sciclient_rtos_app</td>
+<td>mcu1_0,mcu1_1,mcu2_0,mcu2_1,mcu3_0,mcu3_1</td>
+</tr>
+<tr class="row-odd"><td>sciclient_fw_testapp</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-even"><td>ipc_rtos_echo_test</td>
+<td>mcu1_0,mcu1_1,mcu2_0,mcu2_1,mcu3_0,mcu3_1,c66xdsp_1,c66xdsp_2,c7x_1</td>
+</tr>
+<tr class="row-odd"><td>udma_memcpy_testapp</td>
+<td>mcu1_0,mcu2_0,mcu2_1,mcu3_0,mcu3_1,c66xdsp_1,c66xdsp_2,c7x_1</td>
+</tr>
+<tr class="row-even"><td>udma_unit_testapp</td>
+<td>mcu1_0,mcu2_0,mcu2_1,mcu3_0,mcu3_1,c66xdsp_1,c66xdsp_2,c7x_1</td>
+</tr>
+<tr class="row-odd"><td>UART_TestApp</td>
+<td>mcu1_0,mcu1_1,mcu2_0,mcu2_1,mcu3_0,mcu3_1</td>
+</tr>
+<tr class="row-even"><td>OSPI_Flash_TestApp</td>
+<td>mcu1_0,mcu1_1,mcu2_0,mcu2_1,mcu3_0,mcu3_1</td>
+</tr>
+<tr class="row-odd"><td>MCASP_DeviceLoopback_TestApp</td>
+<td>mcu1_0,mcu2_0,c66xdsp_1,c66xdsp_2</td>
+</tr>
+<tr class="row-even"><td>vhwa_dof_testapp</td>
+<td>mcu2_1</td>
+</tr>
+<tr class="row-odd"><td>vhwa_sde_testapp</td>
+<td>mcu2_1</td>
+</tr>
+<tr class="row-even"><td>vhwa_ldc_testapp</td>
+<td>mcu2_0</td>
+</tr>
+<tr class="row-odd"><td>vhwa_msc_testapp</td>
+<td>mcu2_0</td>
+</tr>
+<tr class="row-even"><td>vhwa_nf_testapp</td>
+<td>mcu2_0</td>
+</tr>
+<tr class="row-odd"><td>vhwa_viss_testapp</td>
+<td>mcu2_0</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils" id="id3">
+<caption><span class="caption-number">Table 8.5 </span><span class="caption-text">Examples tested on ES 1.1 Silicon</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Binary Name</th>
+<th class="head">To be hosted on compute Core</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>OSPI_Flash_Dma_Cache_TestApp</td>
+<td>mcu1_0, mcu1_1, mcu2_0, mcu2_1, mcu3_0, mcu3_1</td>
+</tr>
+<tr class="row-odd"><td>OSPI_Flash_Cache_TestApp</td>
+<td>mcu1_0, mcu1_1, mcu2_0, mcu2_1, mcu3_0, mcu3_1</td>
+</tr>
+<tr class="row-even"><td>OSPI_Baremetal_Flash_Cache_TestApp</td>
+<td>mcu1_0, mcu1_1, mcu2_0, mcu2_1, mcu3_0, mcu3_1</td>
+</tr>
+<tr class="row-odd"><td>OSPI_Baremetal_Flash_Dma_Cache_TestApp</td>
+<td>mcu1_0, mcu1_1, mcu2_0, mcu2_1, mcu3_0, mcu3_1</td>
+</tr>
+<tr class="row-even"><td>MMCSD_EMMC_Baremetal_Regression_TestApp</td>
+<td>mcu1_0, mcu2_0, mcu2_1, mcu3_0, mcu3_1, mpu1_0</td>
+</tr>
+<tr class="row-odd"><td>sciclient_fw_testapp</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-even"><td>diag_ex_ecc_example_app</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>csl_pok_ut_baremetal_app</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-even"><td>csl_stog_test_app</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>csl_pbist_test_app</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-even"><td>csl_lbist_test_app</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>ex05_bios_multicore_echo_negative_test</td>
+<td>mcu1_0, mcu1_1, mcu2_0, mcu2_1, mcu3_0, mcu3_1, c66xdsp_1, c66xdsp_2, c7x_1</td>
+</tr>
+<tr class="row-even"><td>ipc_perf_test_all_cores</td>
+<td>mcu1_0, mcu1_1, mcu2_0, mcu2_1, mcu3_0, mcu3_1, c66xdsp_1, c66xdsp_2, c7x_1</td>
+</tr>
+<tr class="row-odd"><td>csl_ospi_flash_app</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-even"><td>udma_baremetal_ospi_flash_testapp</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>udma_sw_trigger_testapp</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-even"><td>SA_Baremetal_TestApp</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>diag_ex_esm_example_app</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-even"><td>SA_TestApp</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>csl_vim_baremetal_test_app</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-even"><td>csl_cbass_baremetal_test_app</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>sdr_test</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-even"><td>csl_uart_test_app</td>
+<td>mcu1_0, mpu1_0</td>
+</tr>
+<tr class="row-odd"><td>csl_ecc_test_app</td>
+<td>mcu1_0, mpu1_0</td>
+</tr>
+<tr class="row-even"><td>MMCSD_EMMC_TestApp</td>
+<td>mcu1_0, mcu2_0, mcu2_1, mcu3_0, mcu3_1</td>
+</tr>
+<tr class="row-odd"><td>MMCSD_EMMC_Regression_TestApp</td>
+<td>mcu1_0, mcu2_0, mcu2_1, mcu3_0, mcu3_1</td>
+</tr>
+<tr class="row-even"><td>MMCSD_EMMC_DMA_TestApp</td>
+<td>mcu1_0, mcu2_0, mcu2_1, mcu3_0, mcu3_1</td>
+</tr>
+<tr class="row-odd"><td>MMCSD_Baremetal_EMMC_TestApp</td>
+<td>mcu1_0, mcu2_0, mcu2_1, mcu3_0, mcu3_1, mpu1_0</td>
+</tr>
+<tr class="row-even"><td>MMCSD_Baremetal_EMMC_DMA_TestApp</td>
+<td>mcu1_0, mcu2_0, mcu2_1, mcu3_0, mcu3_1, mpu1_0</td>
+</tr>
+<tr class="row-odd"><td>I2C_Eeprom_TestApp</td>
+<td>mcu1_0, mcu1_1, mcu2_0, mcu2_1, mcu3_0, mcu3_1</td>
+</tr>
+<tr class="row-even"><td>UART_TestApp</td>
+<td>mcu1_0, mcu1_1, mcu2_0, mcu2_1, mcu3_0, mcu3_1</td>
+</tr>
+<tr class="row-odd"><td>UART_DMA_TestApp</td>
+<td>mcu1_0, mcu2_0, mcu2_1, mcu3_0, mcu3_1</td>
+</tr>
+<tr class="row-even"><td>UART_Baremetal_TestApp</td>
+<td>mcu1_0, mcu1_1, mcu2_0, mcu2_1, mcu3_0, mcu3_1, mpu1_0</td>
+</tr>
+<tr class="row-odd"><td>UART_Baremetal_DMA_TestApp</td>
+<td>mcu1_0, mcu1_1, mcu2_0, mcu2_1, mcu3_0, mcu3_1, mpu1_0</td>
+</tr>
+<tr class="row-even"><td>OSPI_Flash_TestApp</td>
+<td>mcu1_0, mcu1_1, mcu2_0, mcu2_1, mcu3_0, mcu3_1</td>
+</tr>
+<tr class="row-odd"><td>OSPI_Baremetal_Flash_TestApp</td>
+<td>mcu1_0, mcu1_1, mcu2_0, mcu2_1, mcu3_0, mcu3_1, mpu1_0</td>
+</tr>
+<tr class="row-even"><td>OSPI_Baremetal_Flash_Dma_TestApp</td>
+<td>mcu1_0, mcu1_1, mcu2_0, mcu2_1, mcu3_0, mcu3_1, mpu1_0</td>
+</tr>
+<tr class="row-odd"><td>GPIO_Baremetal_LedBlink_TestApp</td>
+<td>mcu1_0, mcu2_0, mcu2_1, mcu3_0, mcu3_1, mpu1_0</td>
+</tr>
+<tr class="row-even"><td>csl_vtm_pvt_sensor_read</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>csl_rti_unit_testapp</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-even"><td>csl_esm_baremetal_test_app</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>csl_ecc_aggr_baremetal_test_app</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-even"><td>csl_dmTimer_baremetal_test_app</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>csl_core_r5_baremetal_test_app</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-even"><td>csl_ccmr5_baremetal_test_app</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>csl_rti_dwwd_test_app</td>
+<td>mcu1_0,  mpu1_0</td>
+</tr>
+<tr class="row-even"><td>sbl_multicore_amp</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>UART_DMA_TestApp</td>
+<td>mcu1_0, mcu2_0, mcu2_1, mcu3_0, mcu3_1</td>
+</tr>
+<tr class="row-even"><td>OSAL_TestApp</td>
+<td>mcu1_0, mcu2_0, mcu3_0</td>
+</tr>
+<tr class="row-odd"><td>OSAL_Baremetal_TestApp</td>
+<td>mcu1_0, mcu2_0, mcu3_0, mpu1_0</td>
+</tr>
+<tr class="row-even"><td>MMCSD_Regression_TestApp</td>
+<td>mcu1_0, mcu2_0, mcu2_1, mcu3_0, mcu3_1</td>
+</tr>
+<tr class="row-odd"><td>sciclient_unit_testapp</td>
+<td>mcu1_0, mcu2_0, mcu2_1, mcu3_0, mcu3_1</td>
+</tr>
+<tr class="row-even"><td>GPIO_LedBlink_TestApp</td>
+<td>mcu1_0, mcu2_0, mcu2_1, mcu3_0, mcu3_1, c66xdsp_1, c66xdsp_2</td>
+</tr>
+<tr class="row-odd"><td>pm_baremetal_voltage_read_testapp</td>
+<td>mcu1_0, mpu1_0</td>
+</tr>
+<tr class="row-even"><td>pm_baremetal_clkrate_testapp</td>
+<td>mcu1_0, mcu1_1, mpu1_0</td>
+</tr>
+<tr class="row-odd"><td>pm_baremetal_systemconfig_testapp</td>
+<td>mcu1_0, mcu1_1, mpu1_0</td>
+</tr>
+<tr class="row-even"><td>I2C_Baremetal_Eeprom_TestApp</td>
+<td>mcu1_0, mcu1_1, mcu2_0, mcu2_1, mcu3_0, mcu3_1, mpu1_0</td>
+</tr>
+<tr class="row-odd"><td>csl_mcspi_masterslave_app</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-even"><td>csl_spinlock_test_app</td>
+<td>mcu1_0, mcu2_1, mpu1_0</td>
+</tr>
+<tr class="row-odd"><td>csl_crc_cputest_app</td>
+<td>mcu1_0, mpu1_0</td>
+</tr>
+<tr class="row-even"><td>csl_esm_clk_loss_test_app</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>csl_dcc_singleshotmode_app</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-even"><td>csl_adc_singleshot_test_app</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>udma_unit_testapp</td>
+<td>mcu1_0, mcu2_0, mcu2_1, mcu3_0, mcu3_1, c66xdsp_1, c66xdsp_2, c7x_1</td>
+</tr>
+<tr class="row-even"><td>FATFS_Console_TestApp</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>OSPI_Flash_Dma_TestApp</td>
+<td>mcu1_0, mcu1_1, mcu2_0, mcu2_1, mcu3_0, mcu3_1</td>
+</tr>
+<tr class="row-even"><td>MCASP_DeviceLoopback_TestApp</td>
+<td>mcu2_0,  c66xdsp_1, c66xdsp_2</td>
+</tr>
+<tr class="row-odd"><td>csl_crc_unit_testapp</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-even"><td>MMCSD_Baremetal_DMA_TestApp</td>
+<td>mcu1_0, mcu2_0, mcu2_1, mcu3_0, mcu3_1, mpu1_0</td>
+</tr>
+<tr class="row-odd"><td>MMCSD_Baremetal_TestApp</td>
+<td>mcu1_0, mcu2_0, mcu2_1, mcu3_0, mcu3_1, mpu1_0</td>
+</tr>
+<tr class="row-even"><td>MMCSD_DMA_TestApp</td>
+<td>mcu1_0, mcu2_0, mcu2_1, mcu3_0, mcu3_1</td>
+</tr>
+<tr class="row-odd"><td>MMCSD_TestApp</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-even"><td>udma_memcpy_testapp</td>
+<td>mcu1_0, mcu3_0, c66xdsp_1</td>
+</tr>
+<tr class="row-odd"><td>udma_baremetal_memcpy_testapp</td>
+<td>mcu2_0, mpu1_0</td>
+</tr>
+<tr class="row-even"><td>udma_adc_testapp</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>udma_dru_testapp</td>
+<td>mcu2_0, c66xdsp_1, c66xdsp_2, c7x_1</td>
+</tr>
+<tr class="row-even"><td>udma_dru_direct_tr_testapp</td>
+<td>mcu2_0, c66xdsp_1, c7x_1</td>
+</tr>
+<tr class="row-odd"><td>udma_chaining_testapp</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-even"><td>udma_crc_testapp</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>sciclient_unit_testapp</td>
+<td>mcu1_0, mcu2_0, mcu2_1, mcu3_0, mcu3_1, c66xdsp_1, c66xdsp_2, c7x_1</td>
+</tr>
+<tr class="row-even"><td>sciclient_rtos_app</td>
+<td>mcu1_0, mcu2_0, mcu2_1, mcu3_0, mcu3_1</td>
+</tr>
+<tr class="row-odd"><td>dss_m2m_testapp</td>
+<td>mcu2_0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="hs-1-1">
+<h2>8.6.4. HS 1.1<a class="headerlink" href="#hs-1-1" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils" id="id4">
+<caption><span class="caption-number">Table 8.6 </span><span class="caption-text">Examples tested on HS 1.1 Silicon</span><a class="headerlink" href="#id4" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Binary Name</th>
+<th class="head">To be hosted on compute Core</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>OSPI_Flash_Dma_Cache_TestApp</td>
+<td>mcu1_0, mcu1_1, mcu2_0, mcu2_1, mcu3_0, mcu3_1</td>
+</tr>
+<tr class="row-odd"><td>OSPI_Flash_Cache_TestApp</td>
+<td>mcu1_0, mcu1_1, mcu2_0, mcu2_1, mcu3_0, mcu3_1</td>
+</tr>
+<tr class="row-even"><td>OSPI_Baremetal_Flash_Cache_TestApp</td>
+<td>mcu1_0, mcu1_1, mcu2_0, mcu2_1, mcu3_0, mcu3_1</td>
+</tr>
+<tr class="row-odd"><td>OSPI_Baremetal_Flash_Dma_Cache_TestApp</td>
+<td>mcu1_0, mcu1_1, mcu2_0, mcu2_1, mcu3_0, mcu3_1</td>
+</tr>
+<tr class="row-even"><td>MMCSD_EMMC_Baremetal_Regression_TestApp</td>
+<td>mcu1_0, mcu2_0, mcu2_1, mcu3_0, mcu3_1, mpu1_0</td>
+</tr>
+<tr class="row-odd"><td>sciclient_fw_testapp</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-even"><td>diag_ex_ecc_example_app</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>csl_pok_ut_baremetal_app</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-even"><td>csl_stog_test_app</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>csl_pbist_test_app</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-even"><td>csl_lbist_test_app</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>ex05_bios_multicore_echo_negative_test</td>
+<td>mcu1_0, mcu1_1, mcu2_0, mcu2_1, mcu3_0, mcu3_1, c66xdsp_1, c66xdsp_2, c7x_1</td>
+</tr>
+<tr class="row-even"><td>ipc_perf_test_all_cores</td>
+<td>mcu1_0, mcu1_1, mcu2_0, mcu2_1, mcu3_0, mcu3_1, c66xdsp_1, c66xdsp_2, c7x_1</td>
+</tr>
+<tr class="row-odd"><td>csl_ospi_flash_app</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-even"><td>udma_baremetal_ospi_flash_testapp</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>udma_sw_trigger_testapp</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-even"><td>SA_Baremetal_TestApp</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>diag_ex_esm_example_app</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-even"><td>SA_TestApp</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>csl_vim_baremetal_test_app</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-even"><td>csl_cbass_baremetal_test_app</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>sdr_test</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-even"><td>csl_uart_test_app</td>
+<td>mcu1_0, mpu1_0</td>
+</tr>
+<tr class="row-odd"><td>csl_ecc_test_app</td>
+<td>mcu1_0, mpu1_0</td>
+</tr>
+<tr class="row-even"><td>MMCSD_EMMC_TestApp</td>
+<td>mcu1_0, mcu2_0, mcu2_1, mcu3_0, mcu3_1</td>
+</tr>
+<tr class="row-odd"><td>MMCSD_EMMC_Regression_TestApp</td>
+<td>mcu1_0, mcu2_0, mcu2_1, mcu3_0, mcu3_1</td>
+</tr>
+<tr class="row-even"><td>MMCSD_EMMC_DMA_TestApp</td>
+<td>mcu1_0, mcu2_0, mcu2_1, mcu3_0, mcu3_1</td>
+</tr>
+<tr class="row-odd"><td>MMCSD_Baremetal_EMMC_TestApp</td>
+<td>mcu1_0, mcu2_0, mcu2_1, mcu3_0, mcu3_1, mpu1_0</td>
+</tr>
+<tr class="row-even"><td>MMCSD_Baremetal_EMMC_DMA_TestApp</td>
+<td>mcu1_0, mcu2_0, mcu2_1, mcu3_0, mcu3_1, mpu1_0</td>
+</tr>
+<tr class="row-odd"><td>I2C_Eeprom_TestApp</td>
+<td>mcu1_0, mcu1_1, mcu2_0, mcu2_1, mcu3_0, mcu3_1</td>
+</tr>
+<tr class="row-even"><td>UART_TestApp</td>
+<td>mcu1_0, mcu1_1, mcu2_0, mcu2_1, mcu3_0, mcu3_1</td>
+</tr>
+<tr class="row-odd"><td>UART_DMA_TestApp</td>
+<td>mcu1_0, mcu2_0, mcu2_1, mcu3_0, mcu3_1</td>
+</tr>
+<tr class="row-even"><td>UART_Baremetal_TestApp</td>
+<td>mcu1_0, mcu1_1, mcu2_0, mcu2_1, mcu3_0, mcu3_1, mpu1_0</td>
+</tr>
+<tr class="row-odd"><td>UART_Baremetal_DMA_TestApp</td>
+<td>mcu1_0, mcu1_1, mcu2_0, mcu2_1, mcu3_0, mcu3_1, mpu1_0</td>
+</tr>
+<tr class="row-even"><td>OSPI_Flash_TestApp</td>
+<td>mcu1_0, mcu1_1, mcu2_0, mcu2_1, mcu3_0, mcu3_1</td>
+</tr>
+<tr class="row-odd"><td>OSPI_Baremetal_Flash_TestApp</td>
+<td>mcu1_0, mcu1_1, mcu2_0, mcu2_1, mcu3_0, mcu3_1, mpu1_0</td>
+</tr>
+<tr class="row-even"><td>OSPI_Baremetal_Flash_Dma_TestApp</td>
+<td>mcu1_0, mcu1_1, mcu2_0, mcu2_1, mcu3_0, mcu3_1, mpu1_0</td>
+</tr>
+<tr class="row-odd"><td>GPIO_Baremetal_LedBlink_TestApp</td>
+<td>mcu1_0, mcu2_0, mcu2_1, mcu3_0, mcu3_1, mpu1_0</td>
+</tr>
+<tr class="row-even"><td>csl_vtm_pvt_sensor_read</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>csl_rti_unit_testapp</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-even"><td>csl_esm_baremetal_test_app</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>csl_ecc_aggr_baremetal_test_app</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-even"><td>csl_dmTimer_baremetal_test_app</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>csl_core_r5_baremetal_test_app</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-even"><td>csl_ccmr5_baremetal_test_app</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>csl_rti_dwwd_test_app</td>
+<td>mcu1_0,  mpu1_0</td>
+</tr>
+<tr class="row-even"><td>sbl_multicore_amp</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>UART_DMA_TestApp</td>
+<td>mcu1_0, mcu2_0, mcu2_1, mcu3_0, mcu3_1</td>
+</tr>
+<tr class="row-even"><td>OSAL_TestApp</td>
+<td>mcu1_0, mcu2_0, mcu3_0</td>
+</tr>
+<tr class="row-odd"><td>OSAL_Baremetal_TestApp</td>
+<td>mcu1_0, mcu2_0, mcu3_0, mpu1_0</td>
+</tr>
+<tr class="row-even"><td>MMCSD_Regression_TestApp</td>
+<td>mcu1_0, mcu2_0, mcu2_1, mcu3_0, mcu3_1</td>
+</tr>
+<tr class="row-odd"><td>sciclient_unit_testapp</td>
+<td>mcu1_0, mcu2_0, mcu2_1, mcu3_0, mcu3_1</td>
+</tr>
+<tr class="row-even"><td>GPIO_LedBlink_TestApp</td>
+<td>mcu1_0, mcu2_0, mcu2_1, mcu3_0, mcu3_1, c66xdsp_1, c66xdsp_2</td>
+</tr>
+<tr class="row-odd"><td>pm_baremetal_voltage_read_testapp</td>
+<td>mcu1_0, mpu1_0</td>
+</tr>
+<tr class="row-even"><td>pm_baremetal_clkrate_testapp</td>
+<td>mcu1_0, mcu1_1, mpu1_0</td>
+</tr>
+<tr class="row-odd"><td>pm_baremetal_systemconfig_testapp</td>
+<td>mcu1_0, mcu1_1, mpu1_0</td>
+</tr>
+<tr class="row-even"><td>I2C_Baremetal_Eeprom_TestApp</td>
+<td>mcu1_0, mcu1_1, mcu2_0, mcu2_1, mcu3_0, mcu3_1, mpu1_0</td>
+</tr>
+<tr class="row-odd"><td>csl_mcspi_masterslave_app</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-even"><td>csl_spinlock_test_app</td>
+<td>mcu1_0, mcu2_1, mpu1_0</td>
+</tr>
+<tr class="row-odd"><td>csl_crc_cputest_app</td>
+<td>mcu1_0, mpu1_0</td>
+</tr>
+<tr class="row-even"><td>csl_esm_clk_loss_test_app</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>csl_dcc_singleshotmode_app</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-even"><td>csl_adc_singleshot_test_app</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>udma_unit_testapp</td>
+<td>mcu1_0, mcu2_0, mcu2_1, mcu3_0, mcu3_1, c66xdsp_1, c66xdsp_2, c7x_1</td>
+</tr>
+<tr class="row-even"><td>FATFS_Console_TestApp</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>OSPI_Flash_Dma_TestApp</td>
+<td>mcu1_0, mcu1_1, mcu2_0, mcu2_1, mcu3_0, mcu3_1</td>
+</tr>
+<tr class="row-even"><td>MCASP_DeviceLoopback_TestApp</td>
+<td>mcu2_0,  c66xdsp_1, c66xdsp_2</td>
+</tr>
+<tr class="row-odd"><td>csl_crc_unit_testapp</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-even"><td>MMCSD_Baremetal_DMA_TestApp</td>
+<td>mcu1_0, mcu2_0, mcu2_1, mcu3_0, mcu3_1, mpu1_0</td>
+</tr>
+<tr class="row-odd"><td>MMCSD_Baremetal_TestApp</td>
+<td>mcu1_0, mcu2_0, mcu2_1, mcu3_0, mcu3_1, mpu1_0</td>
+</tr>
+<tr class="row-even"><td>MMCSD_DMA_TestApp</td>
+<td>mcu1_0, mcu2_0, mcu2_1, mcu3_0, mcu3_1</td>
+</tr>
+<tr class="row-odd"><td>MMCSD_TestApp</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-even"><td>udma_memcpy_testapp</td>
+<td>mcu1_0, mcu3_0, c66xdsp_1</td>
+</tr>
+<tr class="row-odd"><td>udma_baremetal_memcpy_testapp</td>
+<td>mcu2_0, mpu1_0</td>
+</tr>
+<tr class="row-even"><td>udma_adc_testapp</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>udma_dru_testapp</td>
+<td>mcu2_0, c66xdsp_1, c66xdsp_2, c7x_1</td>
+</tr>
+<tr class="row-even"><td>udma_dru_direct_tr_testapp</td>
+<td>mcu2_0, c66xdsp_1, c7x_1</td>
+</tr>
+<tr class="row-odd"><td>udma_chaining_testapp</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-even"><td>udma_crc_testapp</td>
+<td>mcu1_0</td>
+</tr>
+<tr class="row-odd"><td>sciclient_unit_testapp</td>
+<td>mcu1_0, mcu2_0, mcu2_1, mcu3_0, mcu3_1, c66xdsp_1, c66xdsp_2, c7x_1</td>
+</tr>
+<tr class="row-even"><td>sciclient_rtos_app</td>
+<td>mcu1_0, mcu2_0, mcu2_1, mcu3_0, mcu3_1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="faq_module_clocking.html" class="btn btn-neutral float-right" title="8.7. FAQ - How to set the clock for a given module and clock" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="resource_int_jacinto.html" class="btn btn-neutral" title="8.5. FAQ - Used Resources - Interrupt" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="http://www.ti.com/corp/docs/legal/copyright.shtml">&copy; Copyright 1995-2020</a>, Texas Instruments Incorporated. All rights reserved. <br>
+      <a href="http://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="http://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="http://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="http://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'08_06_01',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

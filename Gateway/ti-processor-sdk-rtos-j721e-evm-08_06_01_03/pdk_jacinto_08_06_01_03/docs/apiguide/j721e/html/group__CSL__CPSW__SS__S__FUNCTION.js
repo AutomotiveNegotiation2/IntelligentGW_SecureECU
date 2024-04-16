@@ -1,0 +1,28 @@
+var group__CSL__CPSW__SS__S__FUNCTION =
+[
+    [ "CSL_CPSW_SS_getVersionInfo", "group__CSL__CPSW__SS__S__FUNCTION.html#ga50953677af809082770033fb3bc52658", null ],
+    [ "CSL_CPSW_SS_INTD_getVersionInfo", "group__CSL__CPSW__SS__S__FUNCTION.html#ga31d8bf942376d1123fad73a133646ab0", null ],
+    [ "CSL_CPSW_SS_INTD_getEOIVector", "group__CSL__CPSW__SS__S__FUNCTION.html#gad99b330b36cc2b475b1d489336c93c02", null ],
+    [ "CSL_CPSW_SS_INTD_setEOIVector", "group__CSL__CPSW__SS__S__FUNCTION.html#gadfb81c24ba1a6eccea233f6dc0f105cc", null ],
+    [ "CSL_CPSW_SS_INTD_getEOIIntrVector", "group__CSL__CPSW__SS__S__FUNCTION.html#ga9f9b8ac63998b573acf50c66767326d1", null ],
+    [ "CSL_CPSW_SS_INTD_getIntrVectorOutPulse", "group__CSL__CPSW__SS__S__FUNCTION.html#gaecbc30da7c9c4e367591ef5ecd1d1077", null ],
+    [ "CSL_CPSW_SS_INTD_setEnableIntrCPSWEventInterrupt", "group__CSL__CPSW__SS__S__FUNCTION.html#gabe4c7f9513f4554f21972f0d9551dd36", null ],
+    [ "CSL_CPSW_SS_INTD_getEnableIntrCPSWEventInterrupt", "group__CSL__CPSW__SS__S__FUNCTION.html#gabb85b74c19cb2e4dd4288c507b70a3cd", null ],
+    [ "CSL_CPSW_SS_INTD_setClearIntrCPSWEventInterrupt", "group__CSL__CPSW__SS__S__FUNCTION.html#ga94177a26fcb6afb54a8151b70197cb53", null ],
+    [ "CSL_CPSW_SS_INTD_getStatusIntr", "group__CSL__CPSW__SS__S__FUNCTION.html#ga853c30bbbe2d71946435d93e3fdab292", null ],
+    [ "CSL_CPSW_SS_INTD_setEnableIntrMdioInterrupt", "group__CSL__CPSW__SS__S__FUNCTION.html#ga2ef8d4555e367be85ab51b90193208ce", null ],
+    [ "CSL_CPSW_SS_INTD_getEnableIntrMdioInterrupt", "group__CSL__CPSW__SS__S__FUNCTION.html#ga23fee05d191e28a21d3f57610bed12d4", null ],
+    [ "CSL_CPSW_SS_INTD_setClearIntrMdioInterrupt", "group__CSL__CPSW__SS__S__FUNCTION.html#ga032ed8f172144d444bc01f6d7e11d314", null ],
+    [ "CSL_CPSW_SS_INTD_setEnableIntrStatInterrupt", "group__CSL__CPSW__SS__S__FUNCTION.html#ga2b1aa81a0957bd5c31f549a9289fcf18", null ],
+    [ "CSL_CPSW_SS_INTD_getEnableIntrStatInterrupt", "group__CSL__CPSW__SS__S__FUNCTION.html#gaa8beab7a279c276a39603210df717034", null ],
+    [ "CSL_CPSW_SS_INTD_setClearIntrStatInterrupt", "group__CSL__CPSW__SS__S__FUNCTION.html#gaf7d1ad8bf3805383e996c3fcd99d816c", null ],
+    [ "CSL_CPSW_SS_setSGMIIMode", "group__CSL__CPSW__SS__S__FUNCTION.html#ga2fda6402be291034dcac4420a47ddf37", null ],
+    [ "CSL_CPSW_SS_getRGMIIStatus", "group__CSL__CPSW__SS__S__FUNCTION.html#ga876f6427f109b859f39037d8260342b1", null ],
+    [ "CSL_CPSW_SS_getSerdesResetIsolation", "group__CSL__CPSW__SS__S__FUNCTION.html#ga1c127c2342a3125dfce4291cffa697cb", null ],
+    [ "CSL_CPSW_SS_setSerdesResetIsolation", "group__CSL__CPSW__SS__S__FUNCTION.html#ga7e6447a2650afc3cc4720ae20fde4445", null ],
+    [ "CSL_CPSW_SS_getQSGMIIControlRdCd", "group__CSL__CPSW__SS__S__FUNCTION.html#ga361440e264331b7328546a50014613f1", null ],
+    [ "CSL_CPSW_SS_setQSGMIIControlRdCd", "group__CSL__CPSW__SS__S__FUNCTION.html#gaf8341abe3d17186d7636bda133119446", null ],
+    [ "CSL_CPSW_SS_getQSGMIIStatusRxSync", "group__CSL__CPSW__SS__S__FUNCTION.html#gad5fc8681060dae36919a6a579fe35758", null ],
+    [ "CSL_CPSW_SS_getXGMIILinkStatus", "group__CSL__CPSW__SS__S__FUNCTION.html#gae1ba45bd4f642f9f8a5e3fb7fa88c254", null ],
+    [ "CSL_CPSW_SS_getSGMIILinkStatus", "group__CSL__CPSW__SS__S__FUNCTION.html#ga2241ae3ace85ca6dd1d4904661086400", null ]
+];

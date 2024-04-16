@@ -1,0 +1,2204 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>9.1. FreeRTOS Usage and Migration Guidelines &mdash; Platform Development Kit (PDK) - JACINTO User Guide</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Platform Development Kit (PDK) - JACINTO User Guide" href="../index.html"/>
+        <link rel="up" title="9. Developer Notes" href="../family_cfg/jacinto/index_developer_notes_jacinto.html"/>
+        <link rel="next" title="9.2. FreeRTOS Real-time Object View (ROV)" href="freertos_ccs_rov.html"/>
+        <link rel="prev" title="9. Developer Notes" href="../family_cfg/jacinto/index_developer_notes_jacinto.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index_jacinto.html" class="icon icon-home"> Platform Development Kit (PDK) - JACINTO User Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                08_06_01
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">1. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_release_notes_jacinto.html">2. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">3. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_modules_jacinto.html">4. Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_boot_jacinto.html">5. Bootloader (SBL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_board_jacinto.html">6. Board/EVM Abstraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_howto_jacinto.html">7. How to Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_faq_jacinto.html">8. Frequently Asked Questions</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../family_cfg/jacinto/index_developer_notes_jacinto.html">9. Developer Notes</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="">9.1. FreeRTOS Usage and Migration Guidelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#freertos-configuration">9.1.1. FreeRTOS configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#summary-comparison-with-sysbios">9.1.2. Summary Comparison with SysBIOS</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#key-similarities-between-modules">9.1.2.1. Key similarities between modules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#key-differences-between-modules">9.1.2.2. Key differences between modules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#freertos-usage-guidelines">9.1.3. FreeRTOS Usage Guidelines</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#freertos-tasks">9.1.3.1. FreeRTOS Tasks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#freertos-interrupts">9.1.3.2. FreeRTOS Interrupts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#freertos-semaphores-and-mutex">9.1.3.3. FreeRTOS Semaphores and Mutex</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#freertos-task-notification">9.1.3.4. FreeRTOS Task Notification</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#freertos-event-groups">9.1.3.5. FreeRTOS Event Groups</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#freertos-timers">9.1.3.6. FreeRTOS Timers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#freertos-heaps">9.1.3.7. FreeRTOS Heaps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#freertos-additional-modules">9.1.3.8. FreeRTOS Additional Modules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#freertos-hook-functions">9.1.3.9. FreeRTOS Hook Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#freertos-migration-guidelines">9.1.4. FreeRTOS Migration Guidelines</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#porting-of-source-files">9.1.4.1. Porting of source files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#building-with-freertos">9.1.4.2. Building with FreeRTOS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#linker-file-for-freertos">9.1.4.3. Linker file for FreeRTOS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mpu-cache-settings-in-freertos">9.1.4.4. MPU/Cache Settings in FreeRTOS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#exception-handling-in-freertos">9.1.4.5. Exception handling in FreeRTOS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#reset-hook-function-alternative-for-freertos">9.1.4.6. Reset Hook Function Alternative for FreeRTOS</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#api-comparison">9.1.5. API Comparison</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#scheduler-general">9.1.5.1. Scheduler / General</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tasks">9.1.5.2. Tasks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#semaphores">9.1.5.3. Semaphores</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mutex">9.1.5.4. Mutex</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#software-timers">9.1.5.5. Software Timers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#events">9.1.5.6. Events</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mailbox">9.1.5.7. Mailbox</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#queue">9.1.5.8. Queue</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arbitrary-heaps">9.1.5.9. Arbitrary Heaps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#task-cpu-load">9.1.5.10. Task / CPU Load</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cache-operations">9.1.5.11. Cache Operations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hw-interrupts">9.1.5.12. HW Interrupts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hw-timers">9.1.5.13. HW Timers</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#faq-important-notes">9.1.6. FAQ / Important Notes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#app-performance-with-freertos-is-very-low-compared-to-sysbios">9.1.6.1. App performance with FreeRTOS is very low compared to SysBIOS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#application-never-reaches-main-and-startupcode-startupdata-bootcode-is-not-found-in-the-map-file">9.1.6.2. Application never reaches main() and .startUpCode, .startUpData, .bootCode is not found in the map file</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="freertos_ccs_rov.html">9.2. FreeRTOS Real-time Object View (ROV)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipc_lld_migration_guide.html">9.3. IPC LLD Migration Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xip_using_dummy_app.html">9.4. XIP Using Dummy App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xip_using_two_appimages.html">9.5. XIP Using Two Appimages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ticlang_Migrationguidelines.html">9.6. TI ARM CLANG Usage and Migration Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="freertos_to_safertos_migration.html">9.7. SafeRTOS Usage and Migration Guidelines</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index_jacinto.html">Platform Development Kit (PDK) - JACINTO User Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index_jacinto.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../family_cfg/jacinto/index_developer_notes_jacinto.html">9. Developer Notes</a> &raquo;</li>
+      
+    <li>9.1. FreeRTOS Usage and Migration Guidelines</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="freertos-usage-and-migration-guidelines">
+<span id="id1"></span><h1>9.1. FreeRTOS Usage and Migration Guidelines<a class="headerlink" href="#freertos-usage-and-migration-guidelines" title="Permalink to this headline">¶</a></h1>
+<p>This section has additional useful information related to FreeRTOS and its integration within PDK.
+<strong>It also compares some key points &amp; config in FreeRTOS vs TI SysBIOS RTOS and the guidelines for migrating to FreeRTOS from TI SysBIOS.</strong></p>
+<ol class="arabic simple">
+<li><a class="reference internal" href="#freertos-configuration"><span>FreeRTOS configuration</span></a></li>
+<li><a class="reference internal" href="#freertos-comparison-with-sysbios"><span>Summary Comparison with SysBIOS</span></a></li>
+<li><a class="reference internal" href="#freertos-usage-guidelines"><span>FreeRTOS Usage Guidelines</span></a></li>
+<li><a class="reference internal" href="#freertos-migration-guidelines"><span>FreeRTOS Migration Guidelines</span></a></li>
+<li><a class="reference internal" href="#freertos-sysbios-osal-api-comparison"><span>API Comparison</span></a></li>
+<li><a class="reference internal" href="#faq-important-notes"><span>FAQ / Important Notes</span></a></li>
+</ol>
+<div class="section" id="freertos-configuration">
+<span id="id2"></span><h2>9.1.1. FreeRTOS configuration<a class="headerlink" href="#freertos-configuration" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">In FreeRTOS, all applications need to provide a <cite>FreeRTOSConfig.h</cite> file which specifies the FreeRTOS kernel configuration, see <a class="reference external" href="https://www.freertos.org/a00110.html">https://www.freertos.org/a00110.html</a></p>
+</li>
+<li><p class="first">All source code using FreeRTOS APIs, including FreeRTOS kernel itself MUST include “FreeRTOSConfig.h” before any other FreeRTOS .h files.</p>
+<ul>
+<li><p class="first">This is because <cite>FreeRTOSConfig.h</cite> tailors the RTOS kernel to the application being built. It is therefore specific to the application, not the RTOS.</p>
+</li>
+<li><p class="first">For example,</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include</span> <span class="cpf">&lt;FreeRTOSConfig.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;FreeRTOS.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;task.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;semphr.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;event_groups.h&gt;</span><span class="cp"></span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p class="first">Configuration includes things like below</p>
+<ul class="simple">
+<li>Task scheduling options, Timer tick resolution, Number of priorities, Debug and trace hooks</li>
+<li>Enable / Disable RTOS features, mainly:- task, mutex, recursive mutex, semaphore, etc</li>
+<li>Default sizes for task stack, timer task, idle task, etc</li>
+</ul>
+</li>
+<li><p class="first">To allow support of pre-built libraries, PDK has a default predefined <cite>FreeRTOSConfig.h</cite> per SOC and per CPU type</p>
+<ul>
+<li><dl class="first docutils">
+<dt>The predefined config file per SOC and per CPU can be found at below path</dt>
+<dd><ul class="first last simple">
+<li>${PDK_INSTALL_PATH}/packages/ti/kernel/freertos/config/j721e/{cpu}/FreeRTOSConfig.h</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</li>
+<li><p class="first">In general extreme fine-tuning of FreeRTOS config is not needed and a predefined config per SOC and CPU type would meet almost all use-cases and applications.</p>
+</li>
+<li><p class="first">Also many config options are related to the inclusion/exclusion of RTOS modules to save code/data size. However, we can rely on the compiler to optimize out functions that are not called by applications.</p>
+</li>
+<li><p class="first">However, the user can modify this config if needed.  When default predefined <cite>FreeRTOSConfig.h</cite> is changed, all pre-built libraries have to be recompiled for the changes to take effect.</p>
+<ul>
+<li><p class="first">To recompile all pre-built PDK libraries:-</p>
+<pre class="literal-block">
+cd PDK_INSTALL_DIR/packages/ti/build
+make -s pdk_libs_allcores_clean BOARD=j721e_evm
+make -s pdk_libs_allcores BOARD=j721e_evm
+</pre>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="summary-comparison-with-sysbios">
+<span id="freertos-comparison-with-sysbios"></span><h2>9.1.2. Summary Comparison with SysBIOS<a class="headerlink" href="#summary-comparison-with-sysbios" title="Permalink to this headline">¶</a></h2>
+<p>This section has a quick summary of the comparison between SysBIOS and FreeRTOS features.
+Refer rest of the sections on this page for more details</p>
+<div class="section" id="key-similarities-between-modules">
+<h3>9.1.2.1. Key similarities between modules<a class="headerlink" href="#key-similarities-between-modules" title="Permalink to this headline">¶</a></h3>
+<p>The following table compares various modules in SysBIOS vs FreeRTOS and the OSAL modules that are implemented.
+OSAL modules which calls OS API&#8217;s underneath are provided to keep drivers/examples OS agnostic and also to support various
+functionalities which are not present as part of FreeRTOS Kernel. For example, Cache, HW Interrupts, HW Timers, etc.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="19%" />
+<col width="14%" />
+<col width="53%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">SysBIOS Module</th>
+<th class="head">FreeRTOS Module</th>
+<th class="head">OSAL Module</th>
+<th class="head">Additional Remarks</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>XDC based config
+(r5_mpu.xs)</td>
+<td>FreeRTOSConfig.h</td>
+<td>-NA-</td>
+<td>#define based config, most code in C files for FreeRTOS</td>
+</tr>
+<tr class="row-odd"><td>Static alloc</td>
+<td>Static alloc</td>
+<td>-NA-</td>
+<td>“construct” APIs in SysBIOS, “CreateStatic” APIs in FreeRTOS</td>
+</tr>
+<tr class="row-even"><td>Task</td>
+<td>Task</td>
+<td>TaskP</td>
+<td>Same scheduling policy as SysBIOS</td>
+</tr>
+<tr class="row-odd"><td>Semaphore</td>
+<td>Semaphore</td>
+<td>SemaphoreP</td>
+<td>Same as SysBIOS. Binary, counting semaphore’s</td>
+</tr>
+<tr class="row-even"><td>GateMutex</td>
+<td>Mutex</td>
+<td>MutexP</td>
+<td>Same as SysBIOS. Recursive, priority inheritance mutex’s</td>
+</tr>
+<tr class="row-odd"><td>Clock</td>
+<td>Timer</td>
+<td>ClockP</td>
+<td>Similar features, see details below</td>
+</tr>
+<tr class="row-even"><td>Event</td>
+<td>Event Groups</td>
+<td>EventP</td>
+<td>Similar features, see details below</td>
+</tr>
+<tr class="row-odd"><td>Idle</td>
+<td>Idle</td>
+<td>-NA-</td>
+<td>Only one idle hook function is supported in FreeRTOS.
+SysBIOS supported multiple idle functions.</td>
+</tr>
+<tr class="row-even"><td>Queue</td>
+<td>List</td>
+<td>QueueP</td>
+<td>Similar features, see details below</td>
+</tr>
+<tr class="row-odd"><td>Mailbox</td>
+<td>Queue</td>
+<td>MailboxP</td>
+<td>Similar features, see details below</td>
+</tr>
+<tr class="row-even"><td>Hwi</td>
+<td>-NA-</td>
+<td>HwiP</td>
+<td>Similar features, see details below</td>
+</tr>
+<tr class="row-odd"><td>Cache</td>
+<td>-NA-</td>
+<td>CacheP</td>
+<td>Similar features, see details below</td>
+</tr>
+<tr class="row-even"><td>HeapMem</td>
+<td>-NA-</td>
+<td>HeapP</td>
+<td>Similar features, see details below</td>
+</tr>
+<tr class="row-odd"><td>MPU/MMU</td>
+<td>-NA-</td>
+<td>MPU/MMU in CSL</td>
+<td>Similar features, see details below</td>
+</tr>
+<tr class="row-even"><td>Swi</td>
+<td>“Pend” function call</td>
+<td>-NA-</td>
+<td>Similar features, see details below</td>
+</tr>
+<tr class="row-odd"><td>Load</td>
+<td>Run-time stats APIs</td>
+<td>LoadP</td>
+<td>Similar features, see details below</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="key-differences-between-modules">
+<h3>9.1.2.2. Key differences between modules<a class="headerlink" href="#key-differences-between-modules" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="38%" />
+<col width="62%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">FreeRTOS difference vs SysBIOS</th>
+<th class="head">Alternative in FreeRTOS</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>When configUSE_TIME_SLICING is 1,
+FreeRTOS will time slice between tasks at the same priority
+(This was no supported in SysBIOS)</td>
+<td>Keep this at 0 (<strong>PDK default config</strong>), if this is not desired</td>
+</tr>
+<tr class="row-odd"><td>Timer callbacks are called in task context in FreeRTOS vs
+ISR context in SysBIOS</td>
+<td>Keep the timer task to highest priority so that timer callback get called
+immediately after all ISRs are done (<strong>PDK default config</strong>)</td>
+</tr>
+<tr class="row-even"><td>No SWI support in FreeRTOS</td>
+<td>Use “pend” function call, where functions are executed in timer task context.
+Again keep timer task as the highest priority (<strong>PDK default config</strong>).
+see <a class="reference external" href="https://www.freertos.org/xTimerPendFunctionCall.html">xTimerPendFunctionCall()</a> and
+<a class="reference external" href="https://www.freertos.org/xTimerPendFunctionCallFromISR.html">xTimerPendFunctionCallFromISR()</a></td>
+</tr>
+<tr class="row-odd"><td>No ability to create arbitrary heaps in FreeRTOS</td>
+<td>OSAL provides APIs in HeapP module to create arbitrary heaps to match SysBIOS</td>
+</tr>
+<tr class="row-even"><td>Only FreeRTOS APIs ending with “FromISR()” can be called
+from within ISRs</td>
+<td>Porting Layer provides a function <cite>xPortInIsrContext()</cite> to detect if code is in ISR.
+This can be used to keep the application functions generic.
+OSAL takes care of this by default.</td>
+</tr>
+<tr class="row-odd"><td>Number of task priorities in FreeRTOS is configurable
+(up to max 32) vs SysBIOS default of 16</td>
+<td><strong>PDK default config</strong> keeps number of task priorities to 16 in FreeRTOS</td>
+</tr>
+<tr class="row-even"><td>No Reset Hook Function support in FreeRTOS.</td>
+<td>CSL Startup API <cite>_system_post_cinit</cite> can be redefined in the application
+to achieve similar functionality. See <a class="reference internal" href="#reset-hook-alternative-for-freertos"><span>Reset Hook Function Alternative for FreeRTOS</span></a>
+for more details</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="freertos-usage-guidelines">
+<span id="id3"></span><h2>9.1.3. FreeRTOS Usage Guidelines<a class="headerlink" href="#freertos-usage-guidelines" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="freertos-tasks">
+<h3>9.1.3.1. FreeRTOS Tasks<a class="headerlink" href="#freertos-tasks" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="overview">
+<h4>9.1.3.1.1. Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>FreeRTOS has the ability to create tasks with the below parameters:<ul>
+<li>Entry function</li>
+<li>One <cite>void *</cite> entry function argument</li>
+<li>Stack memory (when NULL, FreeRTOS uses the default heap to allocate the stack memory)</li>
+<li>Stack size in units of “stack words”, i.e 32b or 4 bytes in case of R5F and C66x.</li>
+<li>Priority (0 is lowest, <cite>configMAX_PRIORITY-1</cite> is the highest)<ul>
+<li><strong>PDK default config is 16 priorities to match SysBIOS priorities</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Static task object memory allocation is supported<ul>
+<li>PDK examples and OSAL by default use static alloc APIs</li>
+</ul>
+</li>
+<li>Scheduler policy is configurable<ul>
+<li><cite>configUSE_PREEMPTION</cite>, <strong>PDK default is 1 to match SysBIOS scheduler policy</strong><ul>
+<li>This enables pre-emptive priority-based scheduling</li>
+</ul>
+</li>
+<li><cite>configUSE_TIME_SLICING</cite>, <strong>PDK default is 0, i.e. disabled, to match SysBIOS scheduler policy</strong><ul>
+<li>If enabled, when two tasks are of the same priority, FreeRTOS will time-slice between the tasks at units of the timer tick</li>
+<li><strong>NOTE, this is unlike SysBIOS where unless `Task_yeild` is called scheduler will not switch to another task at the same priority</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="initial-tasks">
+<h4>9.1.3.1.2. Initial Tasks<a class="headerlink" href="#initial-tasks" title="Permalink to this headline">¶</a></h4>
+<ul>
+<li><p class="first">Two tasks are created inside FreeRTOS on startup, idle task and timer task</p>
+</li>
+<li><p class="first">Idle task is similar to any other task, only it runs at lowest priority.</p>
+<ul>
+<li><p class="first">User can configure a “hook” function to call inside of IDLE, e.g, WFI can be called here.</p>
+</li>
+<li><p class="first">PDK default config is shown below, <cite>vApplicationIdleHook</cite> calls a periodic load update API</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cm">/* in FreeRTOSConfig.h file */</span>
+<span class="cp">#define configUSE_IDLE_HOOK                     (1)</span>
+
+<span class="cm">/* in port.c file for R5F and C66x */</span>
+<span class="kt">void</span> <span class="nf">vApplicationIdleHook</span><span class="p">(</span> <span class="kt">void</span> <span class="p">)</span>
+<span class="p">{</span>
+<span class="cp">#if (configLOAD_UPDATE_IN_IDLE==1)</span>
+    <span class="kt">void</span> <span class="n">vApplicationLoadHook</span><span class="p">();</span>
+
+    <span class="n">vApplicationLoadHook</span><span class="p">();</span>
+<span class="cp">#endif</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first"><strong>NOTE, unlike SysBIOS, only one idle hook function (`vApplicationIdleHook`) is supported in FreeRTOS</strong></p>
+<ul class="simple">
+<li>SysBIOS supported multiple functions to be called when no other Tasks are running.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p class="first">Timer task (<strong>PDK default config enables timer task to match SysBIOS</strong>),</p>
+<ul>
+<li><p class="first">Timer callbacks and “deferred” interrupt handler functions are called in the context of the timer task</p>
+</li>
+<li><p class="first"><strong>NOTE, unlike SysBIOS, SW timer callbacks are not called in ISR context</strong></p>
+</li>
+<li><p class="first">“deferred”  handler functions, can be used as an equivalent of SW interrupt of SysBIOS</p>
+</li>
+<li><p class="first"><strong>NOTE, unlike SysBIOS, there is no SWI module in FreeRTOS</strong></p>
+</li>
+<li><p class="first">PDK config keeps the priority of this task to the highest so that the timer function will run immediately after an ISR</p>
+</li>
+<li><p class="first">All of above can be controlled via FreeRTOS Config, PDK defaults are listed below</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#define configUSE_TIMERS               (1) </span><span class="cm">/* enable timer task and SW timers */</span><span class="cp"></span>
+<span class="cp">#define configTIMER_TASK_PRIORITY      (configMAX_PRIORITIES - 1) </span><span class="cm">/* highest priority */</span><span class="cp"></span>
+<span class="cp">#define configTIMER_TASK_STACK_DEPTH   (256) </span><span class="cm">/* 1KB */</span><span class="cp"></span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="task-load">
+<h4>9.1.3.1.3. Task load<a class="headerlink" href="#task-load" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>To measure task and CPU load, in FreeRTOS config, we need to set <cite>configGENERATE_RUN_TIME_STATS</cite> to <cite>1</cite> (<strong>PDK default</strong> is <cite>1</cite> when <cite>configOPTIMIZE_FOR_LATENCY</cite> is <cite>0</cite>)</li>
+<li>When load measurement is enabled, <cite>portGET_RUN_TIME_COUNTER_VALUE()</cite> is called to get a high resolution timer counter value.</li>
+<li>In PDK FreeRTOS porting layer, we implement <cite>portGET_RUN_TIME_COUNTER_VALUE()</cite> using PMU Counter for R5F and Time Stamp Counter for C66x to return time stamp in units of usecs</li>
+<li>In FreeRTOS Kernel, the load measurement counter will overflow after 32b, i.e around 1 hr with usec resolution timer.</li>
+<li>To avoid this, in FreeRTOS OSAL, a periodic load update API is called in IDLE task to accumulate the measured task load and take care of overflow condition.</li>
+<li>To get task load with overflow condition taken care of, it is recommended to create the task using OSAL TaskP APIs</li>
+<li>Total CPU load is calculated by measuring the time spent in IDLE task and then subtracting it from 100%, i.e CPU load = 100 - CPU idle load</li>
+</ul>
+</div>
+<div class="section" id="task-fpu-context">
+<span id="freertos-task-fpu-context"></span><h4>9.1.3.1.4. Task FPU context<a class="headerlink" href="#task-fpu-context" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>When <cite>configFLOATING_POINT_CONTEXT</cite> is enabled, save/restore of R5F FPU Registers will be performed during each task switch.</li>
+<li>In this case all tasks are created with floating point context and usage of portTASK_USES_FLOATING_POINT/vPortTaskUsesFPU() doesn&#8217;t have any effect.</li>
+<li><strong>PDK default</strong> is <cite>configFLOATING_POINT_CONTEXT</cite> enabled (when <cite>configOPTIMIZE_FOR_LATENCY</cite> is <cite>0</cite>).<ul>
+<li>This matches the SYSBIOS implementation.</li>
+<li>FreeRTOS C66x port as well save/restore the FPU registers by default.</li>
+<li>C7x doesn&#8217;t have separate set of FPU registers.</li>
+</ul>
+</li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ul class="simple">
+<li>For optimized performance the config can be disabled.<ul>
+<li>In this case all task will start without a floating point context.</li>
+<li>A task that uses the floating point hardware must call portTASK_USES_FLOATING_POINT/vPortTaskUsesFPU() before executing any floating point instructions.</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="important-tips">
+<h4>9.1.3.1.5. Important tips<a class="headerlink" href="#important-tips" title="Permalink to this headline">¶</a></h4>
+<ul>
+<li><p class="first">Task function should not return in FreeRTOS, instead, it should call vTaskDelete(NULL) to destroy itself, e.g</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="kt">void</span> <span class="nf">myTaskMain</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="cm">/* ... do something ... */</span>
+
+    <span class="n">vTaskDelete</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+    <span class="cm">/* do not call “return” */</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">On task delete, FreeRTOS will free any memory allocated internally, if dynamically memory allocation mode was used.
+This memory free is done in the “IDLE” task, so “IDLE” needs to get the opportunity to run at some point.</p>
+</li>
+<li><p class="first"><cite>vTaskStartScheduler()</cite> starts FreeRTOS and the highest priority task is executed first.</p>
+<ul class="simple">
+<li>Tasks, semaphores and OS objects can be created before <cite>vTaskStartScheduler()</cite> is called.</li>
+<li>Recommend to create one task and call <cite>vTaskStartScheduler()</cite>. Then do everything from within that task including creating other tasks.</li>
+<li><strong>`vTaskStartScheduler()` is similar to `BIOS_start()`, i.e it never returns and switches to the created tasks or idle task</strong></li>
+<li>.stack is the stack used by code before FreeRTOS scheduler is started, i.e from <cite>_c_int00</cite> to <cite>vTaskStartSchedular()</cite></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="freertos-interrupts">
+<h3>9.1.3.2. FreeRTOS Interrupts<a class="headerlink" href="#freertos-interrupts" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id4">
+<h4>9.1.3.2.1. Overview<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>Interrupt handler is not directly invoked by FreeRTOS Kernel, porting layer handles this<ul>
+<li>In theory, FreeRTOS can work without interrupts. To switch tasks, interrupts are not needed. However, that’s not very useful.</li>
+</ul>
+</li>
+<li>Porting layer does below<ul>
+<li>Setup (any) one timer to be configured at <cite>configTICK_RATE_HZ</cite>, typically 1ms</li>
+<li>For R5F, we use one of the SOC level general-purpose DM timers.</li>
+<li>Timer ISR is outside FreeRTOS kernel</li>
+<li>When the timer ISR happens the porting layer calls <cite>xTaskIncrementTick()</cite> FreeRTOS API to maintain the FreeRTOS timer tick state</li>
+</ul>
+</li>
+<li>Porting layer also implements the common interrupt entry and exit logic<ul>
+<li>Esp before interrupt exit, porting layer needs to invoke a task switch if during ISR handling
+a semaphore was posted that needed a task switch on ISR exit</li>
+</ul>
+</li>
+<li>Interrupt nesting is also taken care of by this common interrupt handler</li>
+<li>Porting layer also implements functions to protect the critical sections of FreeRTOS via the below APIs<ul>
+<li><cite>portENTER_CRITICAL</cite>, disable interrupt, track nesting of calls</li>
+<li><cite>portEXIT_CRITICAL</cite>, re-enable interrupt, if nesting call depth is 0</li>
+<li><cite>portSET_INTERRUPT_MASK_FROM_ISR</cite>, interrupt disable and return old interrupt state</li>
+<li><cite>portCLEAR_INTERRUPT_MASK_FROM_ISR</cite>, restore interrupt state</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="nested-interrupts-and-isr-stack">
+<h4>9.1.3.2.2. Nested interrupts and ISR stack<a class="headerlink" href="#nested-interrupts-and-isr-stack" title="Permalink to this headline">¶</a></h4>
+<ul>
+<li><p class="first">On R5F,</p>
+<ul class="simple">
+<li>When an interrupt is triggered, the CPU switches to IRQ mode and uses the IRQ stack.</li>
+<li>IRQ interrupts are disabled by HW at this point.</li>
+<li>In the ISR handler, some CPU state is saved to IRQ stack and mode is switched to SVC mode and therefore SVC stack</li>
+<li>IRQs are then enabled, i.e nested interrupts are enabled</li>
+<li>The user ISR code is executed</li>
+<li>At this point, more IRQs can occur to interrupt the user ISR code</li>
+<li>After all IRQs are handled, IRQ is disabled</li>
+<li>Now mode is switched back to IRQ mode</li>
+<li>If a task switch was requested by any of the ISRs, tasks are switched, and control returns from IRQ to the highest priority pending task</li>
+<li>If a task switch was NOT requested, control returns from IRQ to the interrupted task</li>
+</ul>
+</li>
+<li><p class="first">On R5F,</p>
+<ul>
+<li><p class="first">Thus the user ISR code gets called with SVC stack, so the size of the SVC stack MUST be kept large enough to handle worst-case ISR requirement.</p>
+</li>
+<li><p class="first">The IRQ stack size itself can be kept small since it only saves few bytes (8 bytes) of state for every nested IRQ invocation.</p>
+</li>
+<li><p class="first">This stack size is specified in the linker command file, a sample snippet is shown below,</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">__IRQ_STACK_SIZE</span> <span class="o">=</span> <span class="mi">256</span><span class="p">;</span> <span class="cm">/* This is the size of stack when R5 is in IRQ mode */</span>
+<span class="n">__FIQ_STACK_SIZE</span> <span class="o">=</span> <span class="mi">256</span><span class="p">;</span>
+<span class="n">__SVC_STACK_SIZE</span> <span class="o">=</span> <span class="mi">4096</span><span class="p">;</span> <span class="cm">/* This is the size of stack when R5 is in SVC mode */</span>
+<span class="n">__ABORT_STACK_SIZE</span> <span class="o">=</span> <span class="mi">256</span><span class="p">;</span>  <span class="cm">/* This is the size of stack when R5 is in ABORT mode */</span>
+<span class="n">__UNDEFINED_STACK_SIZE</span> <span class="o">=</span> <span class="mi">256</span><span class="p">;</span>  <span class="cm">/* This is the size of stack when R5 is in UNDEF mode */</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="interrupts-outside-of-freertos">
+<h4>9.1.3.2.3. Interrupts outside of FreeRTOS<a class="headerlink" href="#interrupts-outside-of-freertos" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>On R5F,<ul>
+<li>When FreeRTOS enter its critical section, it only disables IRQ but not FIQ</li>
+<li>Hence, FreeRTOS API calls MUST NOT be done inside FIQ.</li>
+<li>FIQs can be used for extremely low latency interrupt bypassing the OS completely.</li>
+<li><strong>NOTE: this is same as the case with SysBIOS</strong></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="additional-important-tips">
+<h4>9.1.3.2.4. Additional important tips<a class="headerlink" href="#additional-important-tips" title="Permalink to this headline">¶</a></h4>
+<ul>
+<li><p class="first">Only FreeRTOS APIs that end with <cite>FromISR</cite> can be called from the ISR context</p>
+<div class="highlight-cpp"><div class="highlight"><pre>BaseType_t xHigherPriorityTaskWoken = 0;
+
+xSemaphoreGiveFromISR(pSemaphore-&gt;semHndl, &amp;xHigherPriorityTaskWoken);
+portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
+</pre></div>
+</div>
+</li>
+<li><p class="first">The <cite>FromISR</cite> API returns a flag <cite>xHigherPriorityTaskWoken</cite> to indicate task switch should be requested,
+<cite>portYIELD_FROM_ISR</cite> requests the task switch. The actual task switch happens after all nested ISRs have been executed.</p>
+</li>
+<li><p class="first"><strong>This is different from SysBIOS, where the same APIs can be used inside ISR and outside ISR.</strong></p>
+</li>
+<li><p class="first">The OSAL APIs will take care of this internally as below, e.g,</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">SemaphoreP_post</span><span class="p">(...)</span>
+<span class="p">{</span>
+  <span class="p">....</span>
+  <span class="k">if</span><span class="p">(</span> <span class="n">xPortInIsrContext</span><span class="p">()</span> <span class="p">)</span>
+  <span class="p">{</span>
+      <span class="n">BaseType_t</span> <span class="n">xHigherPriorityTaskWoken</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+      <span class="n">xSemaphoreGiveFromISR</span><span class="p">(</span><span class="n">pSemaphore</span><span class="o">-&gt;</span><span class="n">semHndl</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">xHigherPriorityTaskWoken</span><span class="p">);</span>
+      <span class="n">portYIELD_FROM_ISR</span><span class="p">(</span><span class="n">xHigherPriorityTaskWoken</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">else</span>
+  <span class="p">{</span>
+      <span class="n">xSemaphoreGive</span><span class="p">(</span><span class="n">pSemaphore</span><span class="o">-&gt;</span><span class="n">semHndl</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="p">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="freertos-semaphores-and-mutex">
+<h3>9.1.3.3. FreeRTOS Semaphores and Mutex<a class="headerlink" href="#freertos-semaphores-and-mutex" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id5">
+<h4>9.1.3.3.1. Overview<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>FreeRTOS has a textbook implementation of binary semaphore, counting semaphore, mutex with priority inheritance,
+and recursive mutex</li>
+<li>Timeouts can be specified when waiting on a semaphore/mutex, with timeout error code if semaphore/mutex is not available</li>
+<li>Timeout is specified in units of OS ticks. Use <cite>pdMS_TO_TICKS()</cite> to convert from msec to OS ticks</li>
+</ul>
+</div>
+<div class="section" id="id6">
+<h4>9.1.3.3.2. Important tips<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>Binary and counting semaphores should be used to signal from ISR to task and task to task<ul>
+<li><strong>PDK default config enables binary and counting semaphores</strong></li>
+</ul>
+</li>
+<li>Mutex should be used for mutual exclusion of critical sections.<ul>
+<li><strong>PDK default config enables mutex and recursive mutexes</strong></li>
+</ul>
+</li>
+<li>Once again, only APIs that end with <cite>FromISR</cite> can be used from within ISR. These are non-blocking APIs.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="freertos-task-notification">
+<h3>9.1.3.4. FreeRTOS Task Notification<a class="headerlink" href="#freertos-task-notification" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id7">
+<h4>9.1.3.4.1. Overview<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>Task notification is low overhead API to signal a task from ISR or another task</li>
+<li>We see about a 25% reduction in cycles needed for task switch using task notification vs using semaphores in ideal standalone conditions.</li>
+<li>This is a very freertos specific API and PDK drivers and OSAL will NOT use this.</li>
+</ul>
+</div>
+<div class="section" id="id8">
+<h4>9.1.3.4.2. Important tips<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>In practical use-cases, typically cache effects due to cache miss on the larger application code/data, will have a higher effect than
+overheads of task switch in the smaller OS code.</li>
+<li>So we recommend to NOT use this feature unless really the savings is critical to the end application.</li>
+<li>Here one needs to know the task handle to signal, so it&#8217;s difficult to use this API from within a driver library since driver ISR for
+example does not know the task in which the driver API is called</li>
+<li>Thus use these APIs in applications after thorough analysis and profiling on benefit for the use-case.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="freertos-event-groups">
+<h3>9.1.3.5. FreeRTOS Event Groups<a class="headerlink" href="#freertos-event-groups" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id9">
+<h4>9.1.3.5.1. Overview<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>An event group is a set of event bits. Event bits are used to indicate if an event has occurred or not. Event bits are often referred to as event flags.</li>
+<li>The number of bits (or flags) stored within an event group is 24 bits</li>
+</ul>
+</div>
+<div class="section" id="important-tips-for-application-writers">
+<h4>9.1.3.5.2. Important tips for application writers<a class="headerlink" href="#important-tips-for-application-writers" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>Unlike &#8220;Event&#8221; in SysBIOS where one could give a &#8220;AND&#8221; mask and &#8220;OR&#8221; mask to wait on, in FreeRTOS one can only give one &#8220;event mask&#8221; and then tell if one
+should use &#8220;AND&#8221; wait or &#8220;OR&#8221; wait on the single event mask</li>
+<li>When &#8220;set bits&#8221; is called from ISR, actual action of setting bits is done within the &#8220;Timer task&#8221; as a &#8220;deferred&#8221; function call.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="freertos-timers">
+<h3>9.1.3.6. FreeRTOS Timers<a class="headerlink" href="#freertos-timers" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id10">
+<h4>9.1.3.6.1. Overview<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>Allows users to create one-shot or periodic callbacks at timer resolution of one OS tick, typically 1ms.</li>
+<li><strong>Similar to “Clock” module in SysBIOS</strong></li>
+<li>A timer task executes the callbacks. This timer task is like any other task,  nothing special about it.</li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><strong>PDK default is to set highest priority for this task so that after all ISRs this task will execute</strong></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li>A SW queue is used to post callbacks or functions to execute on timer expiry, the queue depth is the config option.
+<strong>PDK default is 16</strong></li>
+</ul>
+</div>
+<div class="section" id="id11">
+<h4>9.1.3.6.2. Important tips<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>Since a single task executes all the multiple callbacks, the callbacks are recommended to not block and spend too much time,
+even though in theory blocking calls are allowed.</li>
+<li>Use <cite>xTimerPendFunctionCall()</cite> to do “deferred ISR” handling, i.e do the most critical work in ISR and do the rest of the work in another
+function call which gets called right after all ISRs are done. <strong>This feature can be used as alternative to SWI in SysBIOS</strong></li>
+<li>Note, do not use <cite>FromISR</cite> APIs in callbacks, use regular FreeRTOS APIs</li>
+</ul>
+</div>
+</div>
+<div class="section" id="freertos-heaps">
+<h3>9.1.3.7. FreeRTOS Heaps<a class="headerlink" href="#freertos-heaps" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="default-heap">
+<h4>9.1.3.7.1. Default heap<a class="headerlink" href="#default-heap" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>FreeRTOS kernel has multiple heap implementations as defined in <cite>portable/MemMang</cite></li>
+<li>A port should compile one of the below <cite>heap_{n}.c</cite> files to pick the required heap implementation<ul>
+<li><cite>heap_1.c</cite><ul>
+<li>linear heap allocation, <cite>free()</cite> not allowed. Typically used when true dynamic alloc is prohibited.</li>
+<li>Obsolete now and not used anymore, since FreeRTOS natively support static alloc mode</li>
+</ul>
+</li>
+<li><cite>heap_2.c</cite><ul>
+<li>Linked list based heap but adjacent free blocks not merged</li>
+<li>Obsolete now and not used anymore, <cite>heap_4.c</cite> is a better implementation</li>
+</ul>
+</li>
+<li><cite>heap_3.c</cite><ul>
+<li>Uses compiler provided, <cite>malloc()</cite> and <cite>free()</cite>, FreeRTOS only makes the calls thread-safe</li>
+<li>Heap size specified via <cite>&#8211;heap</cite> compiler option and placed in <cite>.heap</cite> section in the linker command file.</li>
+</ul>
+</li>
+<li><cite>heap_4.c</cite> <strong>PDK default</strong><ul>
+<li>Linked list based heap with adjacent free block merging</li>
+<li>More or less similar to <cite>malloc()</cite> from compiler and SysBIOS heap implementation</li>
+<li>Memory needs to be provided as a global static array, and placed appropriately in the linker command file.</li>
+</ul>
+</li>
+<li><cite>heap_5.c</cite><ul>
+<li>Same as <cite>heap_4.c</cite>, + it allows memory to be specified as multiple memory blocks
+When memory in one block is full, it will alloc from the next block and so on.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="user-defined-heaps">
+<h4>9.1.3.7.2. User defined heaps<a class="headerlink" href="#user-defined-heaps" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><strong>Unlike SysBIOS, FreeRTOS does not support user defined heaps at arbitrary user defined memory locations</strong></li>
+<li>On TI SOCs with multiple levels of memory like L2, L3, DDR,
+it is very convenient to have ability to create multiple application specified heaps.</li>
+<li><cite>heap_4.c</cite> almost does this, but it uses a global variable for heap memory base and size</li>
+<li>Therefore, PDK OSAL implements heap APIs to match SysBIOS as below<ul>
+<li>PDK has adapted <cite>heap_4.c</cite> to take memory base and size as input parameters during heap create.
+This allows creation of arbitrary number of application heaps to match SysBIOS features</li>
+</ul>
+</li>
+<li><cite>HeapP.h</cite> is the user API</li>
+<li><cite>HeapP_freertos.c</cite>, <cite>HeapP_freertos_internal.c</cite> is the implementation (Note, FreeRTOS kernel code is not modified)</li>
+</ul>
+</div>
+<div class="section" id="id12">
+<h4>9.1.3.7.3. Important tips<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>Use <cite>&#8211;heap</cite> in linker command file to specify heap size and place <cite>.heap</cite> section appropriate memory
+in the linker command file. This is used by FreeRTOS(<cite>heap_4.c</cite>) when it needs dynamic memory allocation.</li>
+<li>In general recommend to use FreeRTOS static alloc APIs for tasks, semaphores to keep the application deterministic.<ul>
+<li>PDK OSAL uses FreeRTOS static alloc APIs</li>
+</ul>
+</li>
+<li>Use PDK provided <cite>HeapP.h</cite> to create arbitrary application heaps as needed.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="freertos-additional-modules">
+<h3>9.1.3.8. FreeRTOS Additional Modules<a class="headerlink" href="#freertos-additional-modules" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="queues">
+<h4>9.1.3.8.1. Queues<a class="headerlink" href="#queues" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>Highly efficient SW queue implementation</li>
+<li>Lowest level primitive in FreeRTOS used internally by almost all modules like tasks, semaphores, mutex</li>
+<li>Thread/ISR safe</li>
+<li>Blocking/non-blocking with timeouts</li>
+<li>Fixed queue depth and fixed queue element size at queue create</li>
+<li>Can be used by application users</li>
+</ul>
+</div>
+<div class="section" id="queue-sets-event-groups-stream-buffers-co-routines">
+<h4>9.1.3.8.2. Queue Sets, Event Groups, Stream Buffers, Co-routines<a class="headerlink" href="#queue-sets-event-groups-stream-buffers-co-routines" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>Croutines, used when tasks are deemed too expensive to use, almost unlikely we will ever use these</li>
+<li>Queue Sets, more higher level than queues, built using queues, semaphores. FreeRTOS recommends to use these very carefully. <a class="reference external" href="https://www.freertos.org/Pend-on-multiple-rtos-objects.html">https://www.freertos.org/Pend-on-multiple-rtos-objects.html</a></li>
+<li>Stream buffers, built using queues, semaphores</li>
+<li><strong>PDK default config keeps these disabled</strong></li>
+</ul>
+</div>
+</div>
+<div class="section" id="freertos-hook-functions">
+<h3>9.1.3.9. FreeRTOS Hook Functions<a class="headerlink" href="#freertos-hook-functions" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="debug-hook-functions">
+<h4>9.1.3.9.1. Debug Hook Functions<a class="headerlink" href="#debug-hook-functions" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>FreeRTOS provides &#8220;hook&#8221; function callbacks specified in FreeRTOS config.</li>
+<li>These callbacks are invoked by FreeRTOS at specific points or when certain conditions are met</li>
+<li>Stack overflow check, <cite>configCHECK_FOR_STACK_OVERFLOW</cite> <strong>PDK default enabled</strong><ul>
+<li>Enables stack overflow checks, two options to detect overflows,<ul>
+<li>Option 1: Check if the stack pointer has gone beyond the limit</li>
+<li>Option 2: Put a pattern at top of the stack and if the pattern is overwritten then call out stack overflow  <strong>PDK default</strong></li>
+<li><strong>NOTE:</strong> Depending on the nature of stack overflow, this logic may or may not catch all stack overflows</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Malloc failed hook, <cite>configUSE_MALLOC_FAILED_HOOK</cite> <strong>PDK default disabled</strong><ul>
+<li>Called when <cite>pvPortMalloc</cite> fails inside FreeRTOS, not very useful, since all APIs return error on memory alloc failure.</li>
+</ul>
+</li>
+<li>Assert, <cite>configASSERT</cite> <strong>PDK default enabled</strong><ul>
+<li>Called when unrecoverable assert condition happens inside FreeRTOS or porting layer</li>
+</ul>
+</li>
+<li>PDK defines a new config flag <cite>configOPTIMIZE_FOR_LATENCY</cite>, this can be used to disable all debug hooks and some other configs in FreeRTOS config to minimize FreeRTOS overheads due to debug hooks,</li>
+<li>Recommend to enable all hooks in <cite>debug</cite> mode and disable all hooks in <cite>release</cite> mode after applications are reasonably sure assert and overflows will not happen.<ul>
+<li>By default <cite>configOPTIMIZE_FOR_LATENCY</cite> is set to 0, i.e disabled</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="statistics-hook-functions">
+<h4>9.1.3.9.2. Statistics Hook Functions<a class="headerlink" href="#statistics-hook-functions" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>FreeRTOS provides APIs to query and return time spent in each task and output the results in a nice formatted table</li>
+<li>The hook functions for this feature are enabled in <strong>PDK default config</strong> when <cite>configOPTIMIZE_FOR_LATENCY</cite> is 0.</li>
+<li>It uses the same timer as the tick timer to measure task load.</li>
+<li>See also <a class="reference external" href="https://www.freertos.org/rtos-run-time-stats.html">https://www.freertos.org/rtos-run-time-stats.html</a></li>
+</ul>
+</div>
+<div class="section" id="trace-hooks-functions">
+<h4>9.1.3.9.3. Trace Hooks Functions<a class="headerlink" href="#trace-hooks-functions" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>FreeRTOS provides more than 70+ hook macros at key points in the kernel to log trace info</li>
+<li>Example,<ul>
+<li><cite>traceTASK_SWITCHED_IN</cite>, called when a task is being switched into</li>
+<li><cite>traceTASK_SWITCHED_OUT</cite>, called when a task is being switched to another task</li>
+</ul>
+</li>
+<li>This is used by tools like <cite>Tracealyzer</cite> to log and then visualize task execution and a lot more in a GUI tool, see <a class="reference external" href="https://www.freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_Trace/FreeRTOS_Plus_Trace.html">https://www.freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_Trace/FreeRTOS_Plus_Trace.html</a></li>
+<li><strong>Not enabled in PDK default config</strong></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="freertos-migration-guidelines">
+<span id="id13"></span><h2>9.1.4. FreeRTOS Migration Guidelines<a class="headerlink" href="#freertos-migration-guidelines" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="porting-of-source-files">
+<h3>9.1.4.1. Porting of source files<a class="headerlink" href="#porting-of-source-files" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first">Replace all SysBIOS API&#8217;s with OSAL API&#8217;s / FreeRTOS API&#8217;s</p>
+</li>
+<li><p class="first">Remove SysBIOS Header files and include the OSAL /FreeRTOS headers</p>
+</li>
+<li><p class="first">Recommend to add <cite>OS_init()</cite> before any other OS calls (like Task creation, Schedular Start, etc. )</p>
+</li>
+<li><p class="first">Update &#8220;Task Function&#8221; to take input params of type <cite>void *</cite> (or pointer to a specific data type) instead of <cite>UArg</cite></p>
+</li>
+<li><p class="first">Replace <cite>Void</cite> with <cite>void</cite></p>
+</li>
+<li><p class="first">With usage of FreeRTOS Static API / OSAL API for Task Creation, application should pass the stack memory.
+For example,</p>
+<blockquote>
+<div><div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#define APP_TSK_STACK_MAIN (16U * 1024U)</span>
+<span class="k">static</span> <span class="kt">uint8_t</span> <span class="n">gAppTskStackMain</span><span class="p">[</span><span class="n">APP_TSK_STACK_MAIN</span><span class="p">]</span> <span class="n">__attribute__</span><span class="p">((</span><span class="n">aligned</span><span class="p">(</span><span class="mi">32</span><span class="p">)));</span>
+
+<span class="n">TaskP_Params_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">taskParams</span><span class="p">);</span>
+<span class="n">taskParams</span><span class="p">.</span><span class="n">stack</span> <span class="o">=</span> <span class="n">gAppTskStackMain</span><span class="p">;</span>
+<span class="n">taskParams</span><span class="p">.</span><span class="n">stacksize</span> <span class="o">=</span> <span class="k">sizeof</span> <span class="p">(</span><span class="n">gAppTskStackMain</span><span class="p">);</span>
+<span class="n">taskHndl</span> <span class="o">=</span> <span class="n">TaskP_create</span><span class="p">(</span><span class="n">mainTask</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">taskParams</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">With usage of FreeRTOS Static API / OSAL API for Mailbox Creation, application should pass the mailbox buffer memory.
+For example,</p>
+<blockquote>
+<div><div class="highlight-cpp"><div class="highlight"><pre><span class="k">typedef</span> <span class="k">struct</span> <span class="n">App_MailboxObj_s</span>
+<span class="p">{</span>
+  <span class="cm">/* Mailbox Object */</span>
+<span class="p">}</span> <span class="n">App_MailboxObj</span><span class="p">;</span>
+
+<span class="cp">#define APP_MBOX_MSG_CNT (10U)</span>
+
+<span class="k">static</span> <span class="kt">uint8_t</span> <span class="n">gAppMbxBuf</span><span class="p">[</span><span class="k">sizeof</span><span class="p">(</span><span class="n">App_MailboxObj</span><span class="p">)</span> <span class="o">*</span> <span class="n">APP_MBOX_MSG_CNT</span><span class="p">]</span> <span class="n">__attribute__</span> <span class="p">((</span><span class="n">aligned</span><span class="p">(</span><span class="mi">32</span><span class="p">)));</span>
+
+<span class="n">MailboxP_Params_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mboxParams</span><span class="p">);</span>
+<span class="n">mboxParams</span><span class="p">.</span><span class="n">size</span> <span class="o">=</span>  <span class="k">sizeof</span><span class="p">(</span><span class="n">App_MailboxObj</span><span class="p">);</span>
+<span class="n">mboxParams</span><span class="p">.</span><span class="n">count</span> <span class="o">=</span> <span class="n">APP_MBOX_MSG_CNT</span><span class="p">;</span>
+<span class="n">mboxParams</span><span class="p">.</span><span class="n">buf</span> <span class="o">=</span> <span class="n">gAppMbxBuf</span><span class="p">;</span>
+<span class="n">mboxParams</span><span class="p">.</span><span class="n">bufsize</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">gAppMbxBuf</span><span class="p">);</span>
+<span class="n">mboxHndl</span> <span class="o">=</span> <span class="n">MailboxP_create</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mboxParams</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+<p>See <a class="reference internal" href="#freertos-sysbios-osal-api-comparison"><span>API Comparison</span></a> for detailed comparison of commonly used SysBIOS API&#8217;s vs equivalent FreeRTOS and OSAL APIs.</p>
+</div>
+<div class="section" id="building-with-freertos">
+<span id="freertos-libs-inclusion"></span><h3>9.1.4.2. Building with FreeRTOS<a class="headerlink" href="#building-with-freertos" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>To include PDK OSAL Library for FreeRTOS, use <cite>osal_freertos</cite> library.
+This is in contrast to <cite>osal_tirtos</cite> - PDK OSAL Library for SysBIOS.</li>
+</ul>
+<ul class="simple">
+<li>Include the following additional libraries<ul>
+<li><cite>freertos</cite>    &lt;= Library including FreeRTOS Kernel and the Portable layer</li>
+<li><cite>csl_intc</cite>    &lt;= [<strong>C66x Only</strong>]  CSL Library for C66x Interrupt Controller</li>
+<li><cite>csl_init</cite>    &lt;= [<strong>R5F Only</strong>] CSL Library for C Startup, MPU/MMU Initialization, etc.</li>
+</ul>
+</li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<div class="last line-block">
+<div class="line">The above order is important. Library listing should always be from top of SW stack to bottom.</div>
+<div class="line">For example, including <cite>csl_init</cite> before <cite>freertos</cite> may cause issues like application never reaches main.</div>
+</div>
+</div>
+</div></blockquote>
+<ul>
+<li><p class="first">For FreeRTOS Build, include <cite>freertos</cite> as external components/interfaces, in place of <cite>bios</cite> and <cite>xdc</cite> used with SysBIOS
+For example,</p>
+<div class="highlight-cpp"><div class="highlight"><pre># List all the external components/interfaces, whose interface header files
+#  need to be included for this component
+INCLUDE_EXTERNAL_INTERFACES = pdk
+
+ifeq ($(BUILD_OS_TYPE), freertos)
+  INCLUDE_EXTERNAL_INTERFACES += freertos
+endif
+ifeq ($(BUILD_OS_TYPE), tirtos)
+  INCLUDE_EXTERNAL_INTERFACES += xdc bios
+endif
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="linker-file-for-freertos">
+<h3>9.1.4.3. Linker file for FreeRTOS<a class="headerlink" href="#linker-file-for-freertos" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>The default linker file for FreeRTOS Build (<cite>linker_${ISA}_freertos.lds</cite>) is preset at ${PDK_INSTALL_DIR}/packages/ti/build/j721e</li>
+</ul>
+<div class="section" id="id14">
+<h4>9.1.4.3.1. Important tips<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h4>
+<p>On R5F, Following are major updates required for creating a custom linker files for FreeRTOS Build compared to that for SysBIOS</p>
+<ul>
+<li><p class="first">Include the following Linker Settings</p>
+<blockquote>
+<div><div class="highlight-cpp"><div class="highlight"><pre><span class="o">--</span><span class="n">retain</span><span class="o">=</span><span class="s">&quot;*(.bootCode)&quot;</span>
+<span class="o">--</span><span class="n">retain</span><span class="o">=</span><span class="s">&quot;*(.startupCode)&quot;</span>
+<span class="o">--</span><span class="n">retain</span><span class="o">=</span><span class="s">&quot;*(.startupData)&quot;</span>
+<span class="o">--</span><span class="n">retain</span><span class="o">=</span><span class="s">&quot;*(.irqStack)&quot;</span>
+<span class="o">--</span><span class="n">retain</span><span class="o">=</span><span class="s">&quot;*(.fiqStack)&quot;</span>
+<span class="o">--</span><span class="n">retain</span><span class="o">=</span><span class="s">&quot;*(.abortStack)&quot;</span>
+<span class="o">--</span><span class="n">retain</span><span class="o">=</span><span class="s">&quot;*(.undStack)&quot;</span>
+<span class="o">--</span><span class="n">retain</span><span class="o">=</span><span class="s">&quot;*(.svcStack)&quot;</span>
+
+<span class="o">--</span><span class="n">fill_value</span><span class="o">=</span><span class="mi">0</span>
+<span class="o">--</span><span class="n">stack_size</span><span class="o">=</span><span class="mh">0x4000</span>
+<span class="o">--</span><span class="n">heap_size</span><span class="o">=</span><span class="mh">0x8000</span>
+<span class="o">--</span><span class="n">entry_point</span><span class="o">=</span><span class="n">_freertosresetvectors</span>
+
+<span class="o">-</span><span class="n">stack</span>  <span class="mh">0x4000</span>  <span class="cm">/* SOFTWARE STACK SIZE */</span>
+<span class="o">-</span><span class="n">heap</span>   <span class="mh">0x8000</span>  <span class="cm">/* HEAP AREA SIZE      */</span>
+
+<span class="cm">/*-------------------------------------------*/</span>
+<span class="cm">/*       Stack Sizes for various modes       */</span>
+<span class="cm">/*-------------------------------------------*/</span>
+<span class="n">__IRQ_STACK_SIZE</span>   <span class="o">=</span> <span class="mh">0x1000</span><span class="p">;</span>
+<span class="n">__FIQ_STACK_SIZE</span>   <span class="o">=</span> <span class="mh">0x0100</span><span class="p">;</span>
+<span class="n">__ABORT_STACK_SIZE</span> <span class="o">=</span> <span class="mh">0x0100</span><span class="p">;</span>
+<span class="n">__UND_STACK_SIZE</span>   <span class="o">=</span> <span class="mh">0x0100</span><span class="p">;</span>
+<span class="n">__SVC_STACK_SIZE</span>   <span class="o">=</span> <span class="mh">0x0100</span><span class="p">;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<ul class="last">
+<li><p class="first">The following linker settings used in case for SysBIOS is not required.</p>
+<blockquote>
+<div><div class="highlight-cpp"><div class="highlight"><pre><span class="o">-</span><span class="n">e</span> <span class="n">__VECS_ENTRY_POINT</span>
+<span class="o">--</span><span class="n">retain</span><span class="o">=</span><span class="s">&quot;*(.utilsCopyVecsToAtcm)&quot;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<ul class="simple">
+<li>The FreeRTOS default linker file places the reset vectors directly at <cite>0x0(ATCM)</cite>.</li>
+<li>In case of placing the reset vectors at some different address,  <cite>configCOPY_RESET_VECTORS</cite> in FreeROTSConfig.h should be enabled.</li>
+</ul>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<ul class="last simple">
+<li>When <cite>configCOPY_RESET_VECTORS</cite> is enabled, the reset vectors are copied to <cite>0x0</cite> during the schedular start.<ul>
+<li>This is handled by the FreeRTOS portable layer.</li>
+</ul>
+</li>
+<li>With SysBIOS, PDK <cite>utilsCopyVecsToAtcm</cite> was used for a similar scenario.</li>
+<li>In case of SySBIOS, <cite>utilsCopyVecsToAtcm</cite> was used as XDC reset hook function. So the reset vectors will already by copied to <cite>0x0(ATCM)</cite> by the time it reaches <cite>main()</cite>.</li>
+<li>On contrast with FreeRTOS, the portable layer handles the copy of reset vectors to <cite>0x0(ATCM)</cite> and this happens during the FreeRTOS schedular start from <cite>main()</cite>.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="mpu-cache-settings-in-freertos">
+<span id="freertos-mpu-cache-settings"></span><h3>9.1.4.4. MPU/Cache Settings in FreeRTOS<a class="headerlink" href="#mpu-cache-settings-in-freertos" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>In FreeRTOS MPU/Cache Settings for various memory regions are configured via CSL API&#8217;s during the C/C++ startup routine (<cite>_c_int00()</cite>)<ul>
+<li>The default settings (<cite>gCslR5MpuCfg</cite>) are defined in <cite>PDK_INSTALL_DIR/packages/ti/csl/arch/r5/src/startup/startup.c</cite></li>
+</ul>
+</li>
+<li>This is unlike SysBIOS, in which the MPU/Cache settings were done using the XDC cfg file.</li>
+</ul>
+<div class="section" id="important-tips-for-creating-custom-mpu-cache-settings">
+<h4>9.1.4.4.1. Important tips for creating Custom MPU/Cache Settings<a class="headerlink" href="#important-tips-for-creating-custom-mpu-cache-settings" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>The default settings <cite>gCslR5MpuCfg</cite> defined in <cite>PDK_INSTALL_DIR/packages/ti/csl/arch/r5/src/startup/startup.c</cite> is a weak definition and
+applications can override the defaults by simply redefining the same.</li>
+<li>Typical use-cases may include adding a new section and/or modifying the default attributes of a memory region.</li>
+<li>Applications may include a new source file which redefines the <cite>gCslR5MpuCfg</cite> as per the required configuration.</li>
+</ul>
+<div class="section" id="example">
+<h5>9.1.4.4.1.1. Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h5>
+<p>The method described above is implemented for IPC example, to modify the Ring Buffer as non-cacheable.</p>
+<ul class="simple">
+<li>MPU Config File (<cite>r5f_mpu_${soc}_default.c</cite> at <cite>PDK_INSTALL_DIR/packages/ti/drv/ipc/examples/common/src</cite>)<ul>
+<li>Re-defines <cite>CSL_ArmR5MpuRegionCfg gCslR5MpuCfg[CSL_ARM_R5F_MPU_REGIONS_MAX]</cite></li>
+<li>This structure specifies the entries for mpu configuration to override the default MPU configuration which is part of the CSL init.</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="exception-handling-in-freertos">
+<h3>9.1.4.5. Exception handling in FreeRTOS<a class="headerlink" href="#exception-handling-in-freertos" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first">For R5F, FreeRTOS in PDK currently only supports Data Abort Exception Callback.</p>
+<ul class="simple">
+<li>For other exceptions like Undefined Instruction, Pre-fetch Abort, it ends up in the default exception handler&#8217;s infinite while loop.</li>
+</ul>
+</li>
+<li><p class="first">To register Data Abort Exception Callback for FreeRTOS, use <cite>csl/arch/r5/interrupt.h - Intc_RegisterExptnHandlers</cite> API</p>
+<ul>
+<li><p class="first">For example,</p>
+<blockquote>
+<div><div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include</span> <span class="cpf">&lt;ti/csl/arch/csl_arch.h&gt;</span><span class="cp"></span>
+
+<span class="kt">void</span> <span class="nf">appDAbtExptnClbkFxn</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="cm">/* Define callback function to be executed on</span>
+<span class="cm">     * data abort exception */</span>
+<span class="p">}</span>
+
+<span class="cm">/* Register exception handler */</span>
+<span class="n">CSL_R5ExptnHandlers</span> <span class="n">appR5ExptnHandlers</span><span class="p">;</span>
+<span class="n">Intc_InitExptnHandlers</span><span class="p">(</span><span class="o">&amp;</span><span class="n">appR5ExptnHandlers</span><span class="p">);</span>
+<span class="n">appR5ExptnHandlers</span><span class="p">.</span><span class="n">dabtExptnHandler</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">appDAbtExptnClbkFxn</span><span class="p">;</span>
+<span class="n">Intc_RegisterExptnHandlers</span><span class="p">(</span><span class="o">&amp;</span><span class="n">appR5ExptnHandlers</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<div class="section" id="id15">
+<h4>9.1.4.5.1. Important tips<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>In case of SysBIOS, this was setup via XDC cfg and it directly plug in the passed hook function to the reset vectors.</li>
+<li>On contrast with FreeRTOS, the data abort exception ends up in a default exception handler and will in-turn redirect to callback function(if registered)<ul>
+<li>As a result the callback function can be a normal function, i.e. it shouldn&#8217;t take care of returning from an interrupt, etc.</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="reset-hook-function-alternative-for-freertos">
+<span id="reset-hook-alternative-for-freertos"></span><h3>9.1.4.6. Reset Hook Function Alternative for FreeRTOS<a class="headerlink" href="#reset-hook-function-alternative-for-freertos" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first">SysBIOS supported reset hook functions (functions to call at reset), since the startup code was also part of XDC(BIOS).</p>
+</li>
+<li><dl class="first docutils">
+<dt>In case fo FreeRTOS, the startup code is not part of FreeRTOS Kernel and hence reset hooks functions are not supported.</dt>
+<dd><ul class="first last simple">
+<li>Here startup code is part of CSL Init.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>As an alternative to reset hook functions, applications can redefine the CSL Startup API <cite>_system_post_cinit</cite> to achieve similar functionality.</dt>
+<dd><ul class="first simple">
+<li><cite>_system_post_cinit()</cite> is a hook function called in the C/C++ auto-initialization function after <cite>cinit()</cite> and before <cite>pinit()</cite>.</li>
+<li>FreeRTOS portable layer have a default weak definition for <cite>_system_post_cinit</cite> at ${PDK_INSTALL_PATH}/packages/ti/kernel/freertos/portable/TI_CGT/${ISA}/port.c</li>
+<li>Application can redefine this in the source file to add the code to be executed on reset. For example,</li>
+</ul>
+<div class="code c last highlight-cpp"><div class="highlight"><pre><span class="cp">#include</span> <span class="cpf">&lt;ti/csl/arch/csl_arch.h&gt;</span><span class="cp"></span>
+
+<span class="kt">void</span> <span class="nf">_system_post_cinit</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="cm">/* Following is the default implementation in portable layer */</span>
+    <span class="n">osalArch_Config_t</span> <span class="n">cfg</span><span class="p">;</span>
+
+    <span class="n">cfg</span><span class="p">.</span><span class="n">disableIrqOnInit</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="n">osalArch_Init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">cfg</span><span class="p">);</span>
+
+    <span class="cm">/* --------------------------------------------------------*/</span>
+    <span class="cm">/* Add here application specific code, to be done on reset */</span>
+    <span class="cm">/* --------------------------------------------------------*/</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="api-comparison">
+<span id="freertos-sysbios-osal-api-comparison"></span><h2>9.1.5. API Comparison<a class="headerlink" href="#api-comparison" title="Permalink to this headline">¶</a></h2>
+<p>The following section compares commonly used SysBIOS API&#8217;s vs equivalent FreeRTOS and OSAL APIs.
+For more detailed info on the same refer the individual API Guides.</p>
+<ul class="simple">
+<li><a class="reference external" href="https://www.freertos.org/a00106.html">FreeRTOS API Reference</a></li>
+<li><a class="reference external" href="https://software-dl.ti.com/dsps/dsps_public_sw/sdo_sb/targetcontent/bios/sysbios/6_83_00_18/exports/bios_6_83_00_18/docs/cdoc/index.html">SysBIOS API Documentation</a></li>
+<li><a class="reference external" href="../../../apiguide/j721e/html/group__DRV__OSAL__MODULE.html">OSAL API Guide</a></li>
+</ul>
+<div class="section" id="scheduler-general">
+<h3>9.1.5.1. Scheduler / General<a class="headerlink" href="#scheduler-general" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="14%" />
+<col width="12%" />
+<col width="62%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">SysBIOS</th>
+<th class="head">FreeRTOS</th>
+<th class="head">OSAL</th>
+<th class="head">Comments</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>-NA-</td>
+<td>-NA-</td>
+<td>OS_init()</td>
+<td>Recommend to add <cite>OS_init()</cite> before any other OS calls (like Task creation, Schedular Start, etc. )</td>
+</tr>
+<tr class="row-odd"><td>BIOS_start</td>
+<td>vTaskStartScheduler()</td>
+<td>OS_start()</td>
+<td>Starts the Scheduler</td>
+</tr>
+<tr class="row-even"><td>BIOS_exit(0)</td>
+<td>vTaskEndScheduler()</td>
+<td>OS_stop()</td>
+<td>Stops the Scheduler</td>
+</tr>
+<tr class="row-odd"><td>BIOS_WAIT_FOREVER</td>
+<td>portMAX_DELAY</td>
+<td>osal_WAIT_FOREVER</td>
+<td>Macro for timeout wait forever</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="tasks">
+<h3>9.1.5.2. Tasks<a class="headerlink" href="#tasks" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="23%" />
+<col width="14%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">SysBIOS</th>
+<th class="head">FreeRTOS</th>
+<th class="head">OSAL</th>
+<th class="head">Comments</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Task_Params_init</td>
+<td>-NA-</td>
+<td>TaskP_Params_init</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>Task_construct</td>
+<td>xTaskCreateStatic</td>
+<td>TaskP_create</td>
+<td><ul class="first last simple">
+<li>FreeRTOS only takes one argument to be passed to the Task Function.</li>
+<li>SysBIOS had two arguments (arg0 and arg1)</li>
+<li>OSAL Supports two arguments similar to SysBIOS,
+and implements a wrapper for FreeRTOS to support this.</li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td>Task_destruct</td>
+<td>vTaskDelete</td>
+<td>TaskP_delete</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>Task_sleep</td>
+<td>vTaskDelay</td>
+<td>TaskP_sleep</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>Task_setPri</td>
+<td>vTaskPrioritySet</td>
+<td>TaskP_setPrio</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>Task_self</td>
+<td>xTaskGetCurrentTaskHandle</td>
+<td>TaskP_self</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>Task_yield</td>
+<td>taskYIELD</td>
+<td>Task_yield</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>Task_getMode</td>
+<td>eTaskGetState</td>
+<td>TaskP_isTerminated</td>
+<td><ul class="first last simple">
+<li>OSAL API is only to check if the task is terminated or not</li>
+<li>FreeRTOS/SysBIOS API returns the current state of the task</li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td>Task_Handle</td>
+<td>TaskHandle_t</td>
+<td>TaskP_Handle</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>Task_Params</td>
+<td><cite>Arguments to create function</cite></td>
+<td>TaskP_Params</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="semaphores">
+<h3>9.1.5.3. Semaphores<a class="headerlink" href="#semaphores" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="19%" />
+<col width="14%" />
+<col width="54%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">SysBIOS</th>
+<th class="head">FreeRTOS</th>
+<th class="head">OSAL</th>
+<th class="head">Comments</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Semaphore_Params_init</td>
+<td>-NA-</td>
+<td>SemaphoreP_Params_init</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>Semaphore_construct</td>
+<td>xSemaphoreCreateBinaryStatic /
+xSemaphoreCreateCountingStatic</td>
+<td>SemaphoreP_create</td>
+<td><ul class="first last simple">
+<li>In SysBIOS same API was used to create Binary/Counting semaphore<ul>
+<li>&#8216;mode&#8217; in &#8216;Semaphore_Params&#8217; was used to specify this</li>
+</ul>
+</li>
+<li>Two different APIs in case of FreeRTOS</li>
+<li>OSAL API is similar to SysBIOS.</li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td>Semaphore_destruct</td>
+<td>vSemaphoreDelete</td>
+<td>SemaphoreP_delete</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>Semaphore_pend</td>
+<td>xSemaphoreTake /
+xSemaphoreTakeFromISR</td>
+<td>SemaphoreP_pend</td>
+<td><ul class="first last">
+<li><p class="first">In case of FreeRTOS, timeout is ignored when in ISR mode</p>
+</li>
+<li><p class="first">FreeRTOS FromISR API sets the return flag &#8216;pxHigherPriorityTaskWoken&#8217;
+if calling the API function causes a task to leave the Blocked state,
+and the unblocked task has a priority equal to or higher than the currently executing task</p>
+<p>If so, a context switch should be requested before the interrupt is exited.</p>
+</li>
+<li><p class="first">OSAL API handles this internally by invoking <cite>portYIELD_FROM_ISR</cite> with the return flag.</p>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td>Semaphore_post</td>
+<td>xSemaphoreGive /
+xSemaphoreGiveFromISR</td>
+<td>SemaphoreP_post</td>
+<td><ul class="first last simple">
+<li>FreeRTOS FromISR API sets the return flag &#8216;pxHigherPriorityTaskWoken&#8217;
+if giving the semaphore caused a task to unblock,
+and the unblocked task has a priority higher than the currently running task.
+If so, a context switch should be requested before the interrupt is exited.</li>
+<li>OSAL API handles this internally by invoking <cite>portYIELD_FROM_ISR</cite> with the return flag.</li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td>Semaphore_getCount</td>
+<td>uxSemaphoreGetCount</td>
+<td>SemaphoreP_getCount</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>Semaphore_reset</td>
+<td>-NA-</td>
+<td>SemaphoreP_reset</td>
+<td><ul class="first last simple">
+<li>FreeRTOS doesn&#8217;t have an API to rest the semaphore count.</li>
+<li>SysBIOS API supported passing the preferred count.</li>
+<li>OSAL API only supports reset the count to zero.<ul>
+<li>For FreeRTOS, the xSemaphoreTake API is repeatedly called until it returns timeout.</li>
+<li>So the OSAL API shouldn&#8217;t be called from an ISR.</li>
+</ul>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td>Semaphore_Handle</td>
+<td>SemaphoreHandle_t</td>
+<td>SemaphoreP_Handle</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>Semaphore_Params</td>
+<td><cite>Arguments to create function</cite></td>
+<td>SemaphoreP_Params</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="mutex">
+<h3>9.1.5.4. Mutex<a class="headerlink" href="#mutex" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="24%" />
+<col width="9%" />
+<col width="52%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">SysBIOS</th>
+<th class="head">FreeRTOS</th>
+<th class="head">OSAL</th>
+<th class="head">Comments</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>GateMutexPri_construct</td>
+<td>xSemaphoreCreateRecursiveMutexStatic</td>
+<td>MutexP_create</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>GateMutexPri_destruct</td>
+<td>vSemaphoreDelete</td>
+<td>MutexP_delete</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>GateMutexPri_enter</td>
+<td>xSemaphoreTakeRecursive</td>
+<td>MutexP_lock</td>
+<td><ul class="first last simple">
+<li>FreeRTOS API takes an i/p &#8216;xTicksToWait(timeout)&#8217; to specify the time to wait.
+A block time of zero can be used to poll.
+If the task already owns the mutex then API will return immediately
+no matter what the value of xTicksToWait.</li>
+<li>OSAL API takes i/p param &#8216;timeout&#8217; similar to FreeRTOS.</li>
+<li>FreeRTOS / OSAL API does not return &#8216;key&#8217;.<ul>
+<li>Note: OSAL API returns Status codes.</li>
+</ul>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td>GateMutexPri_leave</td>
+<td>xSemaphoreGiveRecursive</td>
+<td>MutexP_unlock</td>
+<td><ul class="first last simple">
+<li>No need to pass &#8216;key&#8217; as an argument to FreeRTOS /  OSAL API.</li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td>GateMutexPri_Handle</td>
+<td>SemaphoreHandle_t</td>
+<td>MutexP_Handle</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="software-timers">
+<h3>9.1.5.5. Software Timers<a class="headerlink" href="#software-timers" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="22%" />
+<col width="13%" />
+<col width="54%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">SysBIOS</th>
+<th class="head">FreeRTOS</th>
+<th class="head">OSAL</th>
+<th class="head">Comments</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Clock_Params_init</td>
+<td>-NA-</td>
+<td>ClockP_Params_init</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>Clock_construct</td>
+<td>xTimerCreateStatic</td>
+<td>ClockP_create</td>
+<td><ul class="first last simple">
+<li>SysBIOS have two params namely &#8216;period&#8217; and &#8216;timeout&#8217;.<ul>
+<li>&#8216;period&#8217; part of &#8216;Clock_Params&#8217; :-
+Period of the instance incase for Continuous timer</li>
+<li>&#8216;timeout&#8217; passed as argument to &#8216;Clock_create&#8217; :-
+Period used for one-shot timer / for first run</li>
+</ul>
+</li>
+<li>FreeRTOS timer create function takes an i/p flag &#8216;uxAutoReload&#8217; and &#8216;xTimerPeriod&#8217;<ul>
+<li>If &#8216;uxAutoReload&#8217; is set, then timer will be in continuous mode.</li>
+<li>If &#8216;uxAutoReload&#8217; is not set, then the timer will be in one-shot mode.</li>
+</ul>
+</li>
+<li>OSAL Clock Create API doesn&#8217;t take &#8216;timeout&#8217; as an argument.<ul>
+<li>Instead use &#8216;ClockP_Params&#8217; &#8216;period&#8217; and &#8216;runMode&#8217;.</li>
+</ul>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td>Clock_destruct</td>
+<td>xTimerDelete</td>
+<td>ClockP_delete</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>Clock_start</td>
+<td>xTimerStart /
+xTimerStartFromISR</td>
+<td>ClockP_start</td>
+<td><ul class="first last simple">
+<li>FreeRTOS FromISR API sets the return flag &#8216;pxHigherPriorityTaskWoken&#8217;
+if calling the API function causes the timer service/daemon task to leave
+the Blocked state, and the timer service/ daemon task has a priority equal to
+or greater than the currently executing task.
+If so, a context switch should be requested before the interrupt is exited.</li>
+<li>OSAL API handles this internally by invoking <cite>portYIELD_FROM_ISR</cite> with the
+return flag.</li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td>Clock_stop</td>
+<td>xTimerStop /
+xTimerStopFromISR</td>
+<td>ClockP_stop</td>
+<td><ul class="first last simple">
+<li>FreeRTOS FromISR API sets the return flag &#8216;pxHigherPriorityTaskWoken&#8217;
+if calling the API function causes the timer service/daemon task to leave
+the Blocked state, and the timer service/ daemon task has a priority equal to
+or greater than the currently executing task.
+If so, a context switch should be requested before the interrupt is exited.</li>
+<li>OSAL API handles this internally by invoking <cite>portYIELD_FROM_ISR</cite> with the
+return flag.</li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td>Clock_Handle</td>
+<td>TimerHandle_t</td>
+<td>ClockP_Handle</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>Clock_Params</td>
+<td><cite>Arguments to create function</cite></td>
+<td>ClockP_Params</td>
+<td><ul class="first last simple">
+<li>FreeRTOS doesn&#8217;t support auto start with timer create.
+Need to explicitly call start function.</li>
+<li>&#8216;startMode&#8217; param in OSAL instead of &#8216;startFlag&#8217; in SysBIOS<ul>
+<li>ClockP_StartMode_USER (Default) (equivalent to startFlag=FALSE)</li>
+<li>ClockP_StartMode_AUTO (equivalent to startFlag=TRUE)</li>
+</ul>
+</li>
+<li>New param &#8216;runMode&#8217; for OSAL API<ul>
+<li>ClockP_RunMode_CONTINUOUS</li>
+<li>ClockP_RunMode_ONESHOT (Default)</li>
+</ul>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="events">
+<h3>9.1.5.6. Events<a class="headerlink" href="#events" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="16%" />
+<col width="15%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">SysBIOS</th>
+<th class="head">FreeRTOS</th>
+<th class="head">OSAL</th>
+<th class="head">Comments</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Event_construct</td>
+<td>xEventGroupCreateStatic</td>
+<td>EventP_create</td>
+<td><ul class="first last simple">
+<li>For FreeRTOS, the no. of bits for an event is 24</li>
+<li>For SysBIOS, the no. of bits for an event is 32.</li>
+<li>OSAL also supports only upto 24 bits.</li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td>Event_destruct</td>
+<td>vEventGroupDelete</td>
+<td>EventP_delete</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>Event_pend</td>
+<td>xEventGroupWaitBits</td>
+<td>EventP_wait</td>
+<td><ul class="first last simple">
+<li>SysBIOS Event_pend API takes two i.p masks to pend on:-<ol class="arabic">
+<li>andMask</li>
+<li>orMask</li>
+</ol>
+</li>
+<li>FreeRTOS API takes only one i.p mask and a flag to specify AND/OR logic<ul>
+<li>Not both masks together.</li>
+</ul>
+</li>
+<li>OSAL API is similar to FreeRTOS</li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td>Event_post</td>
+<td>xEventGroupSetBits /
+xEventGroupSetBitsFromISR</td>
+<td>EventP_post</td>
+<td><ul class="first last simple">
+<li>In FreeRTOS , setting bits from an ISR will defer the set operation
+to the RTOS daemon task (also known as the timer service task).
+FreeRTOS FromISR API sets the return flag &#8216;pxHigherPriorityTaskWoken&#8217;
+if the priority of the daemon task is higher than the priority of the
+currently running task.
+If so, a context switch should be requested before the interrupt is exited.</li>
+<li>OSAL API handles this internally by invoking <cite>portYIELD_FROM_ISR</cite> with the return flag.</li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td>Event_getPostedEvents</td>
+<td>xEventGroupGetBits /
+xEventGroupGetBitsFromISR</td>
+<td>EventP_getPostedEvents</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>Event_Handle</td>
+<td>EventGroupHandle_t</td>
+<td>EventP_Handle</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="mailbox">
+<h3>9.1.5.7. Mailbox<a class="headerlink" href="#mailbox" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="19%" />
+<col width="17%" />
+<col width="48%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">SysBIOS</th>
+<th class="head">FreeRTOS</th>
+<th class="head">OSAL</th>
+<th class="head">Comments</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Mailbox_Params_init</td>
+<td>-NA-</td>
+<td>MailboxP_Params_init</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>Mailbox_construct</td>
+<td>xQueueCreateStatic</td>
+<td>MailboxP_create</td>
+<td><ul class="first last simple">
+<li>FreeRTOS API i/p params &#8216;uxQueueLength&#8217; equivalent to SysBIOS &#8216;numMsgs&#8217;</li>
+<li>FreeRTOS API i/p params &#8216;uxItemSize&#8217; equivalent to SysBIOS &#8216;msgSize&#8217;</li>
+<li>OSAL API doesn&#8217;t take &#8216;msgSize&#8217; and &#8216;numMsgs&#8217; as an argument.
+Instead set &#8216;size&#8217; and &#8216;count&#8217; in MailboxP_Params</li>
+<li>With FreeRTOS Static API, User should also pass &#8216;pucQueueStorageBuffer&#8217; -
+point to a uint8_t array that is at least large enough to hold the maximum
+number of items that can be in the queue at any one time - which is
+( uxQueueLength * uxItemSize ) bytes.</li>
+<li>Same case with OSAL API. User should pass &#8216;buf&#8217; and &#8216;bufSize&#8217;</li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td>Mailbox_destruct</td>
+<td>vQueueDelete</td>
+<td>MailboxP_delete</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>Mailbox_post</td>
+<td>xQueueSendToBack /
+xQueueSendToBackFromISR</td>
+<td>MailboxP_post</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>Mailbox_pend</td>
+<td>xQueueReceive /
+xQueueReceiveFromISR</td>
+<td>MailboxP_pend</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>Mailbox_getNumPendingMsgs</td>
+<td>uxQueueMessagesWaiting /
+uxQueueMessagesWaitingFromISR</td>
+<td>MailboxP_getNumPendingMsgs</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>Mailbox_Handle</td>
+<td>QueueHandle_t</td>
+<td>MailboxP_Handle</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>Mailbox_Params</td>
+<td><cite>Arguments to create function</cite></td>
+<td>MailboxP_Params</td>
+<td><dl class="first last docutils">
+<dt>New params in OSAL</dt>
+<dd><ul class="first last simple">
+<li>&#8216;size&#8217; - The size of message</li>
+<li>&#8216;count&#8217; - maximum number of items the mailbox can hold at any one time</li>
+<li>&#8216;buf&#8217; - pointer to mailbox buffer memory</li>
+<li>&#8216;bufsize&#8217; - buffer size</li>
+</ul>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="queue">
+<h3>9.1.5.8. Queue<a class="headerlink" href="#queue" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="27%" />
+<col width="32%" />
+<col width="25%" />
+<col width="16%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">SysBIOS</th>
+<th class="head">FreeRTOS</th>
+<th class="head">OSAL</th>
+<th class="head">Comments</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Queue_construct</td>
+<td>vListInitialise</td>
+<td>QueueP_create</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>Queue_destruct</td>
+<td>-NA-</td>
+<td>QueueP_delete</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>Queue_get</td>
+<td>listGET_HEAD_ENTRY</td>
+<td>QueueP_get</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>Queue_put</td>
+<td>vListInsertEnd</td>
+<td>QueueP_put</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>Queue_empty</td>
+<td>listLIST_IS_EMPTY</td>
+<td>QueueP_isEmpty</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>Queue_Handle</td>
+<td>pxList</td>
+<td>QueueP_Handle</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="arbitrary-heaps">
+<h3>9.1.5.9. Arbitrary Heaps<a class="headerlink" href="#arbitrary-heaps" title="Permalink to this headline">¶</a></h3>
+<p>FreeRTOS doesn&#8217;t support creating arbitrary heaps. The following table compares the SysBIOS HeapMem with the OSAL HeapP implementation.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="16%" />
+<col width="67%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">SysBIOS</th>
+<th class="head">OSAL</th>
+<th class="head">Comments</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>HeapMem_Params_init</td>
+<td>HeapP_Params_init</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>HeapMem_construct</td>
+<td>HeapP_create</td>
+<td>Takes only HeapP_Params as i/p param</td>
+</tr>
+<tr class="row-even"><td>HeapMem_destruct</td>
+<td>HeapP_delete</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>HeapMem_alloc</td>
+<td>HeapP_alloc</td>
+<td><ul class="first last simple">
+<li>OSAL API doesn&#8217;t take &#8216;align&#8217; as an arg<ul>
+<li>This is handled by the define <cite>HeapP_BYTE_ALIGNMENT</cite> in HeapP.h</li>
+</ul>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td>HeapMem_free</td>
+<td>HeapP_free</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>HeapMem_getStats</td>
+<td>HeapP_getHeapStats</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>HeapMem_Struct</td>
+<td>-NA-</td>
+<td>Not required to pass the structure from application. OSAL internally handles this</td>
+</tr>
+<tr class="row-odd"><td>HeapMem_Params</td>
+<td>HeapP_Params</td>
+<td><ul class="first last simple">
+<li>&#8216;buf&#8217; - Base address of memory to be used as heap</li>
+<li>&#8216;size&#8217; - Size of memory block that is to be used as heap</li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td>HeapMem_Handle</td>
+<td>HeapP_Handle</td>
+<td><ul class="first last simple">
+<li>OSAL doesn&#8217;t have &#8216;minBlockAlign&#8217; as a param<ul>
+<li>This is handled by the define <cite>HeapP_BYTE_ALIGNMENT</cite> in HeapP.h</li>
+</ul>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="task-cpu-load">
+<h3>9.1.5.10. Task / CPU Load<a class="headerlink" href="#task-cpu-load" title="Permalink to this headline">¶</a></h3>
+<p>Refer FreeRTOS native Run-time stats APIs Documentation at <a class="reference external" href="https://www.freertos.org/rtos-run-time-stats.html">https://www.freertos.org/rtos-run-time-stats.html</a></p>
+<p>Following table compares the SysBIOS Load module with the OSAL LoadP implementation for FreeRTOS.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="17%" />
+<col width="68%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">SysBIOS</th>
+<th class="head">OSAL for FreeRTOS</th>
+<th class="head">Comments</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Load_Stat</td>
+<td>LoadP_Stats</td>
+<td><p class="first">Structure with Load statistics info</p>
+<ul class="last simple">
+<li>Name of the task [OSAL only]</li>
+<li>Runtime for the task</li>
+<li>Total Runtime</li>
+<li>Percentage load of the task [OSAL only]</li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td>Load_reset</td>
+<td>LoadP_reset</td>
+<td><p class="first">Function to Reset load statistics</p>
+<p class="last">Until load statistics is reset the load statistics keep getting accumulated.</p>
+</td>
+</tr>
+<tr class="row-even"><td>Load_getTaskLoad</td>
+<td>LoadP_getTaskLoad</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>Load_getCPULoad</td>
+<td>LoadP_getCPULoad</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="cache-operations">
+<h3>9.1.5.11. Cache Operations<a class="headerlink" href="#cache-operations" title="Permalink to this headline">¶</a></h3>
+<p>Cache operations are not supported as part of FreeRTOS Kernel.</p>
+<p>Following table compares the SysBIOS and OSAL Cache APIs.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="18%" />
+<col width="20%" />
+<col width="62%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">SysBIOS</th>
+<th class="head">OSAL</th>
+<th class="head">Comments</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Cache_wb</td>
+<td>CacheP_wb</td>
+<td rowspan="3"><ul class="first last simple">
+<li>SysBIOS supported asynchronous operation
+by setting &#8216;wait&#8217; flag to FALSE and
+later using <cite>Cache_wait</cite> to wait for all
+operations to conmplete.</li>
+<li>This is not supported in OSAL .</li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td>Cache_inv</td>
+<td>CacheP_Inv</td>
+</tr>
+<tr class="row-even"><td>Cache_wbInv</td>
+<td>CacheP_wbInv</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="hw-interrupts">
+<h3>9.1.5.12. HW Interrupts<a class="headerlink" href="#hw-interrupts" title="Permalink to this headline">¶</a></h3>
+<p>HW Interrupts are not supported as part of FreeRTOS Kernel.</p>
+<p>Following table compares the SysBIOS and OSAL HW Interrupt APIs.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="49%" />
+<col width="51%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">SysBIOS</th>
+<th class="head">OSAL</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Hwi_Params_init</td>
+<td>HwiP_Params_init</td>
+</tr>
+<tr class="row-odd"><td>Hwi_construct</td>
+<td>HwiP_create</td>
+</tr>
+<tr class="row-even"><td>Hwi_destruct</td>
+<td>HwiP_delete</td>
+</tr>
+<tr class="row-odd"><td>Hwi_disable</td>
+<td>HwiP_disable</td>
+</tr>
+<tr class="row-even"><td>Hwi_restore</td>
+<td>HwiP_restore</td>
+</tr>
+<tr class="row-odd"><td>Hwi_disableInterrupt</td>
+<td>HwiP_disableInterrupt</td>
+</tr>
+<tr class="row-even"><td>Hwi_enableInterrupt</td>
+<td>HwiP_enableInterrupt</td>
+</tr>
+<tr class="row-odd"><td>Hwi_clearInterrupt</td>
+<td>HwiP_clearInterrupt</td>
+</tr>
+<tr class="row-even"><td>Hwi_post</td>
+<td>HwiP_post</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="hw-timers">
+<h3>9.1.5.13. HW Timers<a class="headerlink" href="#hw-timers" title="Permalink to this headline">¶</a></h3>
+<p>HW Timers are not supported as part of FreeRTOS Kernel.</p>
+<p>Following table compares the SysBIOS and OSAL HW Timer APIs.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="49%" />
+<col width="51%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">SysBIOS</th>
+<th class="head">OSAL</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Timer_Params_init</td>
+<td>TimerP_Params_init</td>
+</tr>
+<tr class="row-odd"><td>Timer_construct</td>
+<td>TimerP_create</td>
+</tr>
+<tr class="row-even"><td>Timer_destruct</td>
+<td>TimerP_delete</td>
+</tr>
+<tr class="row-odd"><td>Timer_start</td>
+<td>TimerP_start</td>
+</tr>
+<tr class="row-even"><td>Timer_stop</td>
+<td>TimerP_stop</td>
+</tr>
+<tr class="row-odd"><td>Timer_setPeriodMicroSecs</td>
+<td>TimerP_setPeriodMicroSecs</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="faq-important-notes">
+<span id="id16"></span><h2>9.1.6. FAQ / Important Notes<a class="headerlink" href="#faq-important-notes" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="app-performance-with-freertos-is-very-low-compared-to-sysbios">
+<h3>9.1.6.1. App performance with FreeRTOS is very low compared to SysBIOS<a class="headerlink" href="#app-performance-with-freertos-is-very-low-compared-to-sysbios" title="Permalink to this headline">¶</a></h3>
+<p>Check the MPU/Cache Settings.
+Unlike SysBIOS, this is now done with CSL init.</p>
+<p>SysBIOS used XDC based config to set MPU/Cache for various memory regions.</p>
+<p>Refer <a class="reference internal" href="#freertos-mpu-cache-settings"><span>MPU/Cache Settings in FreeRTOS</span></a> for more details.</p>
+<p>In case of adding new source file to redefine the default mpu/cache settings,
+make sure that this new source file is included in the build / added in makefile.</p>
+</div>
+<div class="section" id="application-never-reaches-main-and-startupcode-startupdata-bootcode-is-not-found-in-the-map-file">
+<h3>9.1.6.2. Application never reaches main() and .startUpCode, .startUpData, .bootCode is not found in the map file<a class="headerlink" href="#application-never-reaches-main-and-startupcode-startupdata-bootcode-is-not-found-in-the-map-file" title="Permalink to this headline">¶</a></h3>
+<p>Check the order of inclusion of various libraries.
+Library listing should always be from top of SW stack to bottom.</p>
+<p>Do not include <cite>csl_init</cite> lib before <cite>freertos</cite> lib.</p>
+<p>See <a class="reference internal" href="#freertos-libs-inclusion"><span>Building with FreeRTOS</span></a> for more details.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="freertos_ccs_rov.html" class="btn btn-neutral float-right" title="9.2. FreeRTOS Real-time Object View (ROV)" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../family_cfg/jacinto/index_developer_notes_jacinto.html" class="btn btn-neutral" title="9. Developer Notes" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="http://www.ti.com/corp/docs/legal/copyright.shtml">&copy; Copyright 1995-2020</a>, Texas Instruments Incorporated. All rights reserved. <br>
+      <a href="http://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="http://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="http://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="http://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'08_06_01',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

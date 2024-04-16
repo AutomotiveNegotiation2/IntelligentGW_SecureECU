@@ -1,0 +1,1117 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2.6. Release Notes - 08_00_00 &mdash; Platform Development Kit (PDK) - JACINTO User Guide</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Platform Development Kit (PDK) - JACINTO User Guide" href="../index.html"/>
+        <link rel="up" title="2. Release Notes" href="../family_cfg/jacinto/index_release_notes_jacinto.html"/>
+        <link rel="next" title="2.7. Release Notes - 07_03_00" href="release_notes_07_03_00.html"/>
+        <link rel="prev" title="2.5. Release Notes - 08_01_00" href="release_notes_08_01_00.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index_jacinto.html" class="icon icon-home"> Platform Development Kit (PDK) - JACINTO User Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                08_06_01
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">1. Overview</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../family_cfg/jacinto/index_release_notes_jacinto.html">2. Release Notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="release_notes_08_06_00.html">2.1. Release Notes - 08_06_00</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_08_05_00.html">2.2. Release Notes - 08_05_00</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_08_04_00.html">2.3. Release Notes - 08_04_00</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_08_02_00.html">2.4. Release Notes - 08_02_00</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_08_01_00.html">2.5. Release Notes - 08_01_00</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">2.6. Release Notes - 08_00_00</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">2.6.1. Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#what-s-new">2.6.2. What&#8217;s New</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#upgrade-and-compatibility">2.6.3. Upgrade and Compatibility</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#freertos">2.6.3.1. FreeRTOS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lwip">2.6.3.2. lwIP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#osal">2.6.3.3. OSAL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ddr">2.6.3.4. DDR</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#xip">2.6.3.5. XIP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smp-mode">2.6.3.6. SMP mode</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#board-diagnostics">2.6.3.7. Board Diagnostics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pcie-usb">2.6.3.8. PCIe, USB</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#device-support">2.6.4. Device Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#validation-information">2.6.5. Validation Information</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tool-chain-information">2.6.6. Tool Chain Information</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#change-request">2.6.7. Change Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fixed-issues">2.6.8. Fixed Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#known-issues">2.6.9. Known Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#limitations">2.6.10. Limitations</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pdk">2.6.10.1. PDK</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#enet">2.6.10.2. ENET</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_07_03_00.html">2.7. Release Notes - 07_03_00</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_07_01_00.html">2.8. Release Notes - 07_01_00</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_07_00_00.html">2.9. Release Notes - 07_00_00</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_06_02_00.html">2.10. Release Notes - 06_02_00</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_notes_06_01_00.html">2.11. Release Notes - 06_01_00</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">3. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_modules_jacinto.html">4. Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_boot_jacinto.html">5. Bootloader (SBL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_board_jacinto.html">6. Board/EVM Abstraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_howto_jacinto.html">7. How to Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_faq_jacinto.html">8. Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_developer_notes_jacinto.html">9. Developer Notes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index_jacinto.html">Platform Development Kit (PDK) - JACINTO User Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index_jacinto.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../family_cfg/jacinto/index_release_notes_jacinto.html">2. Release Notes</a> &raquo;</li>
+      
+    <li>2.6. Release Notes - 08_00_00</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="release-notes-08-00-00">
+<h1>2.6. Release Notes - 08_00_00<a class="headerlink" href="#release-notes-08-00-00" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>2.6.1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>This release notes provides important information that will assist you in using the PDK software package for the Jacinto family of devices.
+This document provides the product information and known issues that are specific to the PDK software package.</p>
+<p>New features added / supported is listed below and defects fixed are highlighted in <strong>Fixed Issues</strong>. Also please check <strong>Upgrade and Compatibility</strong> for backward compatibility</p>
+</div>
+<div class="section" id="what-s-new">
+<h2>2.6.2. What&#8217;s New<a class="headerlink" href="#what-s-new" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="56%" />
+<col width="13%" />
+<col width="17%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ID</th>
+<th class="head">Description</th>
+<th class="head">Module</th>
+<th class="head">Supported Platforms</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>PDK-9782</td>
+<td>PDK OSAL: Support for SW Timer, Mailbox, Mutex, Heap and Load modules</td>
+<td>OSAL</td>
+<td>J721E, J7200, AM65xx</td>
+</tr>
+<tr class="row-odd"><td>PDK-9369</td>
+<td>PDK OSAL Support for FreeRTOS on R5F</td>
+<td>OSAL</td>
+<td>J721E, J7200, AM65xx</td>
+</tr>
+<tr class="row-even"><td>JACINTOREQ-1429</td>
+<td>PDK R5F Drivers Migration to support FreeRTOS</td>
+<td>ALL</td>
+<td>J721E, J7200, AM65xx</td>
+</tr>
+<tr class="row-odd"><td>PDK-9679
+PDK-9678</td>
+<td>Uniflash Update for XIP Flow and
+XIP Flashing Flow update</td>
+<td>COMMON</td>
+<td>J721E, J7200, AM65xx</td>
+</tr>
+<tr class="row-even"><td>JACINTOREQ-1212</td>
+<td>Enet LLD: Integrate open source LWIP TCP/IP stack</td>
+<td>Enet</td>
+<td>J721E, J7200, AM65xx</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="56%" />
+<col width="13%" />
+<col width="17%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ID</th>
+<th class="head">Description</th>
+<th class="head">Module</th>
+<th class="head">Supported Platforms</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>PDK-9541</td>
+<td>DDR Boot Time Optimizations</td>
+<td>BOARD</td>
+<td>J721E, J7200</td>
+</tr>
+<tr class="row-odd"><td>PDK-6879</td>
+<td>WA for DDR: VRCG high current mode must be used during LPDDR4 CBT</td>
+<td>BOARD</td>
+<td>J721E, J7200</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="56%" />
+<col width="13%" />
+<col width="17%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ID</th>
+<th class="head">Description</th>
+<th class="head">Module</th>
+<th class="head">Supported Platforms</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>PDK-9355</td>
+<td>FreeRTOS Support on C6x for CPU</td>
+<td>OSAL,COMMON</td>
+<td>J721E</td>
+</tr>
+<tr class="row-odd"><td>PDK-9323</td>
+<td>DSS M2M: Scaling</td>
+<td>DSS</td>
+<td>J721E</td>
+</tr>
+<tr class="row-even"><td>PDK-9322</td>
+<td>DSS M2M: Multi-Channel Support</td>
+<td>DSS</td>
+<td>J721E</td>
+</tr>
+<tr class="row-odd"><td>PDK-5200</td>
+<td>FlexConnect: Memory -&gt; VISS -&gt; MSC -&gt; Memory (YUV420)</td>
+<td>VHWA</td>
+<td>J721E</td>
+</tr>
+<tr class="row-even"><td>PDK-8778</td>
+<td>Keywriter - PDK SBL example application</td>
+<td>SBL, SECURITY</td>
+<td>J721E</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="upgrade-and-compatibility">
+<h2>2.6.3. Upgrade and Compatibility<a class="headerlink" href="#upgrade-and-compatibility" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="freertos">
+<h3>2.6.3.1. FreeRTOS<a class="headerlink" href="#freertos" title="Permalink to this headline">¶</a></h3>
+<div class="line-block">
+<div class="line">This release introduces FreeRTOS Support for J721E PDK Drivers/Examples on R5F, C66x, C7x cores.</div>
+<div class="line">PDK drivers/examples are migrated and validated with FreeRTOS running in R5F cores.</div>
+<div class="line"><br /></div>
+<div class="line">This is also the last release with TI-RTOS(SysBIOS) support.</div>
+<div class="line">PDK drivers/examples on all cores are validated with TI-RTOS(SysBIOS) as well in this release.</div>
+<div class="line">TI-RTOS(SysBIOS) Support on all cores will be scoped out from next release.</div>
+<div class="line"><br /></div>
+<div class="line">FreeRTOS is not supported on A72 core.</div>
+<div class="line">TI-RTOS(SysBIOS) / Non-OS(Baremetal) Support for examples on A72 core will be de-scoped from next release.</div>
+<div class="line"><br /></div>
+</div>
+<div class="line-block">
+<div class="line">All C66x and C7x PDK Drivers/Examples continue to use TI-RTOS(SysBIOS) itself in this release.</div>
+<div class="line">C66x and C7x Drivers/Examples in PDK will be migrated and validated with FreeRTOS in the next release.</div>
+<div class="line"><br /></div>
+</div>
+<p>See <a class="reference internal" href="../modules/freertos.html#freertos"><span>FreeRTOS Chapter</span></a> for more details.</p>
+</div>
+<div class="section" id="lwip">
+<h3>2.6.3.2. lwIP<a class="headerlink" href="#lwip" title="Permalink to this headline">¶</a></h3>
+<p>This release introduces lwIP TCP/IP stack support for J721E on R5F, C66x, C7x cores.
+lwIP is supported and validated with FreeRTOS, it&#8217;s not supported on TI-RTOS (SysBIOS).</p>
+<p>Enet LLD implements the lwIP driver interface which enables lwIP stack to run transparently on top of the
+Ethernet peripherals supported by Enet driver.  Enet LLD provides a lwIP example application which
+showcases lwIP integration on peripherals supported by Enet driver, where user can run tests such
+as ping, UDP/TCP echo and iperf.  This example supports DHCP and static IP.  For more information,
+see <a class="reference internal" href="../modules/enet.html#enet-lwip"><span>Enet LLD examples</span></a> section.</p>
+<p>lwIP stack is enabled for CPSW_2G and CPSW_9G.</p>
+<p>This is the last release with TI NDK TCP/IP stack support. Enet LLD NIMU example has been validated
+as well on supported cores in this release.  TI NDK stack support will be scoped out starting from next
+release.</p>
+</div>
+<div class="section" id="osal">
+<h3>2.6.3.3. OSAL<a class="headerlink" href="#osal" title="Permalink to this headline">¶</a></h3>
+<p>As part of FreeRTOS Migration, following new OSAL modules are added</p>
+<blockquote>
+<div><ul class="simple">
+<li>ClockP    &lt;= SW Timer</li>
+<li>MailboxP  &lt;= Software Mailbox</li>
+<li>MutexP    &lt;= Mutex</li>
+<li>HeapP     &lt;= For creating arbitrary heaps</li>
+<li>LoadP     &lt;= Task / CPU Load measurement [FreeRTOS Only]</li>
+</ul>
+</div></blockquote>
+<p>Also following are the updates for existing OSAL modules.</p>
+<blockquote>
+<div><ul>
+<li><dl class="first docutils">
+<dt>EventP</dt>
+<dd><ul class="first last simple">
+<li>New API <cite>EventP_wait()</cite></li>
+<li><cite>EventP_pend()</cite> supports only SysBIOS. This will be obsolete in next release. Migrate to new similar API <cite>EventP_wait()</cite></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>QueueP</dt>
+<dd><ul class="first simple">
+<li>Header file is renamed to <cite>QueueP.h</cite> from <cite>Queue.h</cite></li>
+<li>Following OSAL Queue APIs supports only SysBIOS and will be obsolete in next release. Migrate to new QueueP APIs</li>
+</ul>
+<blockquote class="last">
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="55%" />
+<col width="45%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Old API</th>
+<th class="head">New API</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Osal_Queue_Handle</td>
+<td>QueueP_Handle</td>
+</tr>
+<tr class="row-odd"><td>Osal_Queue_Elem</td>
+<td>QueueP_Elem</td>
+</tr>
+<tr class="row-even"><td>-NA-</td>
+<td>QueueP_Params</td>
+</tr>
+<tr class="row-odd"><td>-NA-</td>
+<td>QueueP_Params_init</td>
+</tr>
+<tr class="row-even"><td>Osal_Queue_construct +
+Osal_Queue_handle</td>
+<td>QueueP_create</td>
+</tr>
+<tr class="row-odd"><td>-NA-</td>
+<td>QueueP_delete</td>
+</tr>
+<tr class="row-even"><td>Osal_Queue_put</td>
+<td>QueueP_put</td>
+</tr>
+<tr class="row-odd"><td>Osal_Queue_get</td>
+<td>QueueP_get</td>
+</tr>
+<tr class="row-even"><td>Osal_Queue_empty</td>
+<td>QueueP_isEmpty</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="ddr">
+<h3>2.6.3.4. DDR<a class="headerlink" href="#ddr" title="Permalink to this headline">¶</a></h3>
+<p>DDR Boot time(initialization + training) is optimized in this release and is now in the range of ~35 ms.</p>
+<p>This includes:-</p>
+<blockquote>
+<div><ul class="simple">
+<li>DDR Register Settings updates and</li>
+<li>Disabled DDR Register write verification, given there is DDR inline ECC.
+(Support for register Verification post init/training will be provided in future release.)</li>
+</ul>
+</div></blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Priming of DDR for ECC is now optimized by usage of UDMA.</p>
+<p>Following in PDK_INSTALL_DIR/packages/ti/board/src/j721e_evm/include/board_cfg.h can be modified as per the user requirement.</p>
+<blockquote>
+<div><div class="highlight-cpp"><div class="highlight"><pre><span class="cm">/* Note with ECC enabled, all memory is not usable: 1/8 memory used for inline ECC */</span>
+<span class="cp">#define BOARD_DDR_ECC_END_ADDR                          (0xF1FFFFFFU)</span>
+<span class="cm">/* Enable/Disable DDR Memory Prime for ECC. Define the following macro to enable. */</span>
+<span class="cp">#undef BOARD_DDR_ENABLE_DDR_MEM_PRIME</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="xip">
+<h3>2.6.3.5. XIP<a class="headerlink" href="#xip" title="Permalink to this headline">¶</a></h3>
+<p>A new twin appimage bootflow has been introduced. There is one appimage for RAM sections and one appimage for xip sections.</p>
+<ul class="simple">
+<li>For each CPU, the compiler+linker toolchain is used to create the application .out &#8220;ELF&#8221; file which can be loaded and run via CCS</li>
+<li>The below &#8220;post build&#8221; steps are then used to convert the application .out into a &#8220;flash&#8221; friendly format
+- For each CPU, out2rpc is used to convert the ELF .out to a binary file containing only the loadable sections. This is called a RPRC file.
+- For each CPU, xipGen is used to split this RPRC file into two RPRC files.
+- One RPRC, containing the section that during boot need to be loaded to RAM
+- Second RPRC, containing the section that during boot are not loaded to RAM but are instead &#8220;eXecuted In Place&#8221;, i.e XIP
+- multiCoreGen is then used to combine all the non-XIP RPRC files per CPU into a single .appimage file which is a concatenation of the individual CPU specific RPRC files.
+- multiCoreGen is used again to combine all the XIP RPRC files per CPU into a single .appimage_xip file which is a concatenation of the individual CPU specific RPRC XIP files.</li>
+<li>This .appimage and .appimage_xip is then flashed to the EVM using Uniflash</li>
+<li>Upon booting, the SBL interpets the .appimage and loads the RAM sections into respective memory.</li>
+<li>The .appimage_xip contains the sections that are executed in place.</li>
+</ul>
+<p>See <a class="reference internal" href="../developer_notes/xip_using_two_appimages.html#xip-using-two-appimages"><span>XIP Programming Guide</span></a> for more details.</p>
+</div>
+<div class="section" id="smp-mode">
+<h3>2.6.3.6. SMP mode<a class="headerlink" href="#smp-mode" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>SMP Support is de-scoped and PDK Examples will not support execution in SMP mode</li>
+</ul>
+</div>
+<div class="section" id="board-diagnostics">
+<h3>2.6.3.7. Board Diagnostics<a class="headerlink" href="#board-diagnostics" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Board diagnostics stress test is not supported</li>
+</ul>
+</div>
+<div class="section" id="pcie-usb">
+<h3>2.6.3.8. PCIe, USB<a class="headerlink" href="#pcie-usb" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>PCIE and USB Support is removed for J721E.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="device-support">
+<h2>2.6.4. Device Support<a class="headerlink" href="#device-support" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">J721E EVM SR1.0 and SR1.1, J721E-HS EVM (BOARD=j721e_evm)</p>
+</li>
+<li><p class="first">Associated TIFS versions:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="53%" />
+<col width="47%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">TIFS name</th>
+<th class="head">J721E SR revision</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>tifs.bin</td>
+<td>SR1.0 &amp; SR1.1 GP</td>
+</tr>
+<tr class="row-odd"><td>tifs-hs-enc.bin</td>
+<td>SR1.0 HS</td>
+</tr>
+<tr class="row-even"><td>tifs-sr1.1-hs-enc.bin</td>
+<td>SR1.1 HS</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</div>
+<div class="section" id="validation-information">
+<h2>2.6.5. Validation Information<a class="headerlink" href="#validation-information" title="Permalink to this headline">¶</a></h2>
+<p>For details on the validated examples refer to the platform specific test report available <a class="reference external" href="../../../test_report">here</a>.</p>
+</div>
+<div class="section" id="tool-chain-information">
+<h2>2.6.6. Tool Chain Information<a class="headerlink" href="#tool-chain-information" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="53%" />
+<col width="47%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Component</th>
+<th class="head">Version</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>FreeRTOS Kernel</td>
+<td>10.4.3</td>
+</tr>
+<tr class="row-odd"><td>Sys Bios</td>
+<td>6_83_02_07</td>
+</tr>
+<tr class="row-even"><td>XDC Tools</td>
+<td>3_61_04_40_core</td>
+</tr>
+<tr class="row-odd"><td>lwIP stack</td>
+<td>2.1.2</td>
+</tr>
+<tr class="row-even"><td>lwIP-contrib</td>
+<td>2.1.0</td>
+</tr>
+<tr class="row-odd"><td>Network Development Kit (NDK)</td>
+<td>3_80_00_19</td>
+</tr>
+<tr class="row-even"><td>Network Services for NDK (NS)</td>
+<td>2_80_00_17</td>
+</tr>
+<tr class="row-odd"><td>TI ARM R5F code generation tools</td>
+<td>20.2.0.LTS</td>
+</tr>
+<tr class="row-even"><td>PRU code generation tools</td>
+<td>2.3.3</td>
+</tr>
+<tr class="row-odd"><td>GCC ARM code generation tools</td>
+<td>ARCH64 9.2-2019.12</td>
+</tr>
+<tr class="row-even"><td>CGT XML Processing Scripts</td>
+<td>2.61.00</td>
+</tr>
+<tr class="row-odd"><td>System Analyzer (UIA Target)</td>
+<td>2_41_00_01</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+<col width="61%" />
+<col width="39%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Component</th>
+<th class="head">Version</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>TI C6x code generation tools</td>
+<td>8.3.7</td>
+</tr>
+<tr class="row-odd"><td>TI C7x code generation tools</td>
+<td>1.4.2.LTS</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="change-request">
+<h2>2.6.7. Change Request<a class="headerlink" href="#change-request" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="52%" />
+<col width="18%" />
+<col width="15%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ID</th>
+<th class="head">Head Line</th>
+<th class="head">Original Fix Version</th>
+<th class="head">New Fix Version</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>JACINTOREQ-1518</td>
+<td>PDK: R5 SafeRTOS CPU support descope</td>
+<td>08.00.00</td>
+<td>08.01.00</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="52%" />
+<col width="18%" />
+<col width="15%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>JACINTOREQ-1441</td>
+<td>PDK: C7x FreeRTOS CPU support descope</td>
+<td>08.00.00</td>
+<td>08.01.00</td>
+</tr>
+<tr class="row-even"><td>JACINTOREQ-1504</td>
+<td>PDK: PCIE and USB Descope for J721E</td>
+<td>08.00.00</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="fixed-issues">
+<h2>2.6.8. Fixed Issues<a class="headerlink" href="#fixed-issues" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="43%" />
+<col width="7%" />
+<col width="8%" />
+<col width="19%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ID</th>
+<th class="head">Head Line</th>
+<th class="head">Module</th>
+<th class="head">Affected Versions</th>
+<th class="head">Affected Platforms</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><a class="reference external" href="https://sir.ext.ti.com/jira/browse/EXT_EP-10459">PDK-10131</a></td>
+<td>[McSPI] Incorrect input clock in example</td>
+<td>McSPI</td>
+<td>07.03.00</td>
+<td>J721E, J7200</td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="https://sir.ext.ti.com/jira/browse/EXT_EP-10314">PDK-9437</a></td>
+<td>Increase in Boot time when DDR ECC is enabled</td>
+<td>Board</td>
+<td>07.02.00</td>
+<td>J721E, J7200</td>
+</tr>
+<tr class="row-even"><td><a class="reference external" href="https://sir.ext.ti.com/jira/browse/EXT_EP-10309">PDK-9426</a></td>
+<td>ECAP CSL Capture Event Counter Reset Function Fails</td>
+<td>CSL</td>
+<td>07.03.00</td>
+<td>J721E, J7200</td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="https://sir.ext.ti.com/jira/browse/EXT_EP-10462">PDK-6793</a></td>
+<td>osal - semaphore should not be used for mutex</td>
+<td>OSAL</td>
+<td>06.02.00</td>
+<td>J721E, J7200</td>
+</tr>
+<tr class="row-even"><td><a class="reference external" href="https://sir.ext.ti.com/jira/browse/EXT_EP-10465">PDK-9594</a></td>
+<td>UDMA: Event Disable and Enable Failure for shared events</td>
+<td>UDMA</td>
+<td>07.03.00</td>
+<td>J721E, J7200, AM65xx</td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="https://sir.ext.ti.com/jira/browse/EXT_EP-10473">PDK-10315</a></td>
+<td>[SBL]: SBL does not set NB priorities for the HS device</td>
+<td>SBL</td>
+<td>07.03.00</td>
+<td>J721E-HS, J7200-HS</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="43%" />
+<col width="7%" />
+<col width="8%" />
+<col width="19%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ID</th>
+<th class="head">Head Line</th>
+<th class="head">Module</th>
+<th class="head">Affected Versions</th>
+<th class="head">Affected Platforms</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><a class="reference external" href="https://sir.ext.ti.com/jira/browse/EXT_EP-10460">PDK-10304</a></td>
+<td>Using RPMessage_recvNb() causes Mutex Overflow</td>
+<td>IPC</td>
+<td>07.01.00</td>
+<td>J721E</td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="https://sir.ext.ti.com/jira/browse/EXT_EP-10472">PDK-9873</a></td>
+<td>[CSIRX]: Incorrect condition check when starting the stream</td>
+<td>CSIRX</td>
+<td>07.03.00</td>
+<td>J721E</td>
+</tr>
+<tr class="row-even"><td><a class="reference external" href="https://sir.ext.ti.com/jira/browse/EXT_EP-10471">PDK-9759</a></td>
+<td>[Board]: SciClient_init from Board_init should not application SciClient_init configuration</td>
+<td>Board</td>
+<td>07.03.00</td>
+<td>J721E</td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="https://sir.ext.ti.com/jira/browse/EXT_EP-10470">PDK-9756</a></td>
+<td>[CSITX]: Incorrect DPHY instance used in the driver</td>
+<td>CSITX</td>
+<td>07.03.00</td>
+<td>J721E</td>
+</tr>
+<tr class="row-even"><td><a class="reference external" href="https://sir.ext.ti.com/jira/browse/EXT_EP-10461">PDK-9694</a></td>
+<td>[CSITX]: CSITX supports only 4 lane speeds</td>
+<td>CSITX</td>
+<td>07.03.00</td>
+<td>J721E</td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="https://sir.ext.ti.com/jira/browse/EXT_EP-10469">PDK-9681</a></td>
+<td>[DSS CSL-FL]DSS displays corrupted data OR w/o colors on the screen</td>
+<td>DSS</td>
+<td>07.03.00</td>
+<td>J721E</td>
+</tr>
+<tr class="row-even"><td><a class="reference external" href="https://sir.ext.ti.com/jira/browse/EXT_EP-10468">PDK-9677</a></td>
+<td>Interrupt mode in sciclient is not working on HS Device</td>
+<td>SciClient</td>
+<td>07.01.00</td>
+<td>J721E</td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="https://sir.ext.ti.com/jira/browse/EXT_EP-10467">PDK-9673</a></td>
+<td>csl: serdes: invertTXPolarity not set by CSL_serdesLaneEnable()</td>
+<td>CSL</td>
+<td>07.01.00</td>
+<td>J721E</td>
+</tr>
+<tr class="row-even"><td><a class="reference external" href="https://sir.ext.ti.com/jira/browse/EXT_EP-10313">PDK-9456</a></td>
+<td>I2C Driver does not return error when camera/client is not available on the I2C bus</td>
+<td>I2C</td>
+<td>07.02.00</td>
+<td>J721E</td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="https://sir.ext.ti.com/jira/browse/EXT_EP-10315">PDK-9433</a></td>
+<td>MASTER _BYPASS bit in PHY_MASTER_CONTROL should be controlled based on the clock</td>
+<td>OSPI</td>
+<td>07.02.00</td>
+<td>J721E</td>
+</tr>
+<tr class="row-even"><td><a class="reference external" href="https://sir.ext.ti.com/jira/browse/EXT_EP-10464">PDK-9376</a></td>
+<td>[SciClient]Clock Source Macros are missing for odd numbered GP Timers</td>
+<td>SciClient</td>
+<td>07.01.00</td>
+<td>J721E</td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="https://sir.ext.ti.com/jira/browse/EXT_EP-10463">PDK-8848</a></td>
+<td>pixel clock for HDMI is fixed/hardcoded</td>
+<td>DSS</td>
+<td>07.01.00</td>
+<td>J721E</td>
+</tr>
+<tr class="row-even"><td><a class="reference external" href="https://sir.ext.ti.com/jira/browse/EXT_EP-10311">PDK-8653</a></td>
+<td>CSI2-RX: Stream FIFO Overflow observed for 4 channel input with FrameSync</td>
+<td>CSIRX</td>
+<td>06.02.00</td>
+<td>J721E</td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="https://sir.ext.ti.com/jira/browse/EXT_EP-10307">PDK-8600</a></td>
+<td>SBL optimizations for OSPI boot mode</td>
+<td>SBL</td>
+<td>07.00.00</td>
+<td>J721E</td>
+</tr>
+<tr class="row-even"><td><a class="reference external" href="https://sir.ext.ti.com/jira/browse/EXT_EP-10122">PDK-6992</a></td>
+<td>[DSS]: Support for BT 601 requires additional patch</td>
+<td>DSS</td>
+<td>07.00.00</td>
+<td>J721E</td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="https://sir.ext.ti.com/jira/browse/EXT_EP-10114">PDK-5224</a></td>
+<td>Active DP -&gt; HDMI adapter doesn&#8217;t work</td>
+<td>DSS</td>
+<td>00.03.00</td>
+<td>J721E</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="known-issues">
+<h2>2.6.9. Known Issues<a class="headerlink" href="#known-issues" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="18%" />
+<col width="29%" />
+<col width="5%" />
+<col width="7%" />
+<col width="8%" />
+<col width="17%" />
+<col width="16%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ID</th>
+<th class="head">Head Line</th>
+<th class="head">Module</th>
+<th class="head">Reported in Release</th>
+<th class="head">Affected Platforms</th>
+<th class="head">Impact</th>
+<th class="head">Workaround in this release</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><a class="reference external" href="https://sir.ext.ti.com/jira/browse/EXT_EP-10118">PDK-6975</a></td>
+<td>Pulsar (R5F) : High priority interrupt is missed by VIM</td>
+<td>CSL, OSAL</td>
+<td>07.00.00</td>
+<td>J721E, J7200, AM65xx</td>
+<td>Baremetal implementation is pending</td>
+<td>Use SYSBIOS instead of baremetal</td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="https://sir.ext.ti.com/jira/browse/EXT_EP-10277">PDK-8320</a></td>
+<td>ICSS V1 CSL not up to date with ICSSG</td>
+<td>CSL</td>
+<td>07.00.00</td>
+<td>J721E, AM65xx</td>
+<td>None</td>
+<td>Patch available. Will be included in next release</td>
+</tr>
+<tr class="row-even"><td><a class="reference external" href="https://sir.ext.ti.com/jira/browse/EXT_EP-10475">PDK-9676</a></td>
+<td>UART : Potential interrupt storm</td>
+<td>UART</td>
+<td>07.02.00</td>
+<td>J7200, J721E</td>
+<td>Error interrupt resulting in hang.</td>
+<td>None</td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="https://sir.ext.ti.com/jira/browse/EXT_EP-10316">PDK-8601</a></td>
+<td>CSL ECC test application fails on J721E and J7200</td>
+<td>CSL</td>
+<td>07.01.00</td>
+<td>J721E, J7200</td>
+<td>None</td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td><a class="reference external" href="https://sir.ext.ti.com/jira/browse/EXT_EP-10445">PDK-9696</a></td>
+<td>[SPI] DMA mode does not work for SPI5</td>
+<td>McSPI</td>
+<td>07.01.00</td>
+<td>J721E</td>
+<td>Cannot use DMA with SPI5</td>
+<td>Disable DMA for SPI5 OR use another instance of SPI</td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="https://sir.ext.ti.com/jira/browse/EXT_EP-10446">PDK-9571</a></td>
+<td>[SPI] Transfer stalls when transfer length is not multiple of FIFO length in DMA mode</td>
+<td>McSPI</td>
+<td>07.02.00</td>
+<td>J721E</td>
+<td>Cannot transfer data if data size is not multiple
+of FIFO length in DMA mode</td>
+<td>Use transfer size in multiple of FIFO length</td>
+</tr>
+<tr class="row-even"><td><a class="reference external" href="https://sir.ext.ti.com/jira/browse/EXT_EP-10476">PDK-9947</a></td>
+<td>[CSIRX]: hangs is observed when re-running example with different number of channels</td>
+<td>CSIRX</td>
+<td>07.03.00</td>
+<td>J721E</td>
+<td>Unable to re-run application with different number of
+cameras</td>
+<td>Power-cycle the board before reloading the
+application next time</td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="https://sir.ext.ti.com/jira/browse/EXT_EP-10104">PDK-8407</a></td>
+<td>J721E: MCU Timer 0 is not usable from application (sysbios) with SBL</td>
+<td>OSAL, SBL</td>
+<td>07.01.00</td>
+<td>J721E</td>
+<td>None</td>
+<td>Use any other timer</td>
+</tr>
+<tr class="row-even"><td><a class="reference external" href="https://sir.ext.ti.com/jira/browse/EXT_EP-10105">PDK-8300</a></td>
+<td>UDMA MCU NAVSS Channel Num 5 is not functional, when booting the application using the SBL
+bootloader.</td>
+<td>UDMA</td>
+<td>07.01.00</td>
+<td>J721E</td>
+<td>Low Impact. UDMA MCU NAVSS Channel 5 can&#8217;t be used when
+booting the application using the SBL bootloader.</td>
+<td>Use any other channel. In the defaultBoardCfg Channel
+no. 5 is not used. The issue will be seen only when
+the boardcfg is updated to use channel 5.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="https://sir.ext.ti.com/jira/browse/EXT_EP-10106">PDK-6789</a></td>
+<td>MCU/Main NAVSS UDMA memcpy from L2SRAM fails</td>
+<td>UDMA</td>
+<td>07.00.00</td>
+<td>J721E</td>
+<td>Transfer works fine when source buffer, destination
+buffer and TRPD buffers are in L2SRAM. The issue happens
+only when the ring memory is in L2SRAM location</td>
+<td>Use ring memory from non-L2SRAM location</td>
+</tr>
+<tr class="row-even"><td><a class="reference external" href="https://sir.ext.ti.com/jira/browse/EXT_EP-10110">PDK-6549</a></td>
+<td>MCU2 core diagnostic tests not running through sbl</td>
+<td>BOARD</td>
+<td>07.00.00</td>
+<td>J721E</td>
+<td>None</td>
+<td>Use CCS/JTAG to run the tests</td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="https://sir.ext.ti.com/jira/browse/EXT_EP-10111">PDK-6548</a></td>
+<td>Display port (eDP) diagnostic test failure</td>
+<td>BOARD</td>
+<td>07.00.00</td>
+<td>J721E</td>
+<td>None</td>
+<td>Use display sample application</td>
+</tr>
+<tr class="row-even"><td><a class="reference external" href="https://sir.ext.ti.com/jira/browse/EXT_EP-10076">PDK-5228</a></td>
+<td>Output mismatch when each region requiring 3 TRs</td>
+<td>VHWA</td>
+<td>01.00.00</td>
+<td>J721E</td>
+<td>In multi-region mode with more then 3 TR per region
+can&#8217;t be used</td>
+<td>In multi-region mode for each region less than 3
+TR should be used</td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="https://sir.ext.ti.com/jira/browse/EXT_EP-10457">ETHFW-1843</a></td>
+<td>mcu1_0: Exception in NIMU example in SD card boot</td>
+<td>ENET</td>
+<td>08.00.00</td>
+<td>J721E</td>
+<td>Affects SD card boot of mcu1_0 TI-RTOS image</td>
+<td>Another timer instance can be used</td>
+</tr>
+<tr class="row-even"><td><a class="reference external" href="https://sir.ext.ti.com/jira/browse/EXT_EP-10474">ETHFW-1845</a></td>
+<td>examples: MAC loopback app test causes abort in debug mode during restart</td>
+<td>ENET</td>
+<td>08.00.00</td>
+<td>J721E</td>
+<td>Impacts only &#8216;debug&#8217; example app</td>
+<td>None</td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="https://sir.ext.ti.com/jira/browse/EXT_EP-10312">PDK-9528</a></td>
+<td>SBL prebuild binary for J721E HS doesn&#8217;t work from package</td>
+<td>SBL</td>
+<td>07.03.00</td>
+<td>J721E-HS</td>
+<td>None</td>
+<td>Cleanup the SBL library and re-build the
+SBL image for HS.
+Commands:
+- Clean sbl_lib_uart (make sbl_lib_uart_clean)
+- Build for HS (make -sj sbl_uart_img_hs)</td>
+</tr>
+<tr class="row-even"><td><a class="reference external" href="https://sir.ext.ti.com/jira/browse/EXT_EP-10480">PDK-10292</a></td>
+<td>Sciclient Firewall Testapp Fails on HS Device</td>
+<td>SCICLIENT</td>
+<td>07.03.00</td>
+<td>J721E-HS</td>
+<td>None</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="limitations">
+<h2>2.6.10. Limitations<a class="headerlink" href="#limitations" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="pdk">
+<h3>2.6.10.1. PDK<a class="headerlink" href="#pdk" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>PDK examples do not support SMP mode. Some of examples still support build in SMP mode but these binaries are not supported or validated.</li>
+</ul>
+</div>
+<div class="section" id="enet">
+<h3>2.6.10.2. ENET<a class="headerlink" href="#enet" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>lwIP stack integration doesn&#8217;t support checksum hardware-offload feature.</li>
+<li>ICSSG integration with lwIP and NDK is done only for ICSSG Dual-MAC. Driver level support is available for Dual-MAC and Switch.</li>
+<li>TimeSync PTP integration is done only for ICSSG-Dual MAC.</li>
+<li>TimeSync is possible only in one MAC port at a time.</li>
+<li>Different VLAN modes are not supported in Dual-MAC mode (within given ICSSG MAC ports). Both MACs should either be in VLAN aware or VLAN unaware mode.</li>
+<li>Independent VLAN learning is not supported in Dual-MAC mode.</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="release_notes_07_03_00.html" class="btn btn-neutral float-right" title="2.7. Release Notes - 07_03_00" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="release_notes_08_01_00.html" class="btn btn-neutral" title="2.5. Release Notes - 08_01_00" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="http://www.ti.com/corp/docs/legal/copyright.shtml">&copy; Copyright 1995-2020</a>, Texas Instruments Incorporated. All rights reserved. <br>
+      <a href="http://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="http://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="http://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="http://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'08_06_01',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

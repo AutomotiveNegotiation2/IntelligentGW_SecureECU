@@ -1,0 +1,377 @@
+
+Getting Started
+^^^^^^^^^^^^^^^
+
+Building the PDK
+================
+
+The PDK comes with pre-built libraries for running the demos/examples and everything you need to
+start writing an application (Note: This is part of the binary package and not available with source only package).
+However, one may want to customize and rebuild the source.
+
+Inside the PDK there is a top-level makefile at **PDK_INSTALL_DIR/packages/ti/build** that can be
+used to build some of the sub-components found within the PDK.
+
+Prior to calling this makefile, user needs to get the correct tool chains and setup the environment
+by updating pdk_tools_path.mk available at **PDK_INSTALL_DIR/packages/ti/build**.
+
+.. NOTE::
+
+    By default this is updated as per the SDK tool version. This change is only required in case
+    of different tool chains
+
+.. NOTE::
+
+    Also there is an alternate option to build PDK from **PDK_INSTALL_DIR/packages** which in turn
+    calls the **PDK_INSTALL_DIR/packages/ti/build** makefile.
+    Both these methods use the same underlying makefiles. Each one serve a slightly different purpose.
+    User are free to use any method that suits them. Run make -s help in each folder to know the list of
+    options supported by both methods.
+    For example
+
+        - makefile at **PDK_INSTALL_DIR/packages/ti/build** supports granular build targets
+          like specific library and examples.
+        - makefile at **PDK_INSTALL_DIR/packages** supports build of all possible boards and cores
+          based on PDK_SOC variable.
+
+
+Supported Boards/SOCs
+=====================
+Below list of supported SOC or BOARD that needs to passed to the BOARD variable for building.
+The supported cores for each of the SOC is provided under each platform
+
+.. ifconfig:: CONFIG_family in ('jacinto')
+
+    - Jacinto Family of Devices
+        - BOARD = j721e_evm
+            - CORE = < mpu1_0, mcu1_0, mcu1_1, mcu2_0, mcu2_1, mcu3_0, mcu3_1, c66xdsp_1, c66xdsp_2, c7x_1 >
+
+.. ifconfig:: CONFIG_family in ('am65xx')
+
+    - AM65XX Family of Devices
+        - BOARD = am65xx_evm, am65xx_idk
+            - CORE = < mpu1_0, mcu1_0, mcu1_1 >
+
+.. ifconfig:: CONFIG_family in ('j7200')
+
+    - J7200 Family of Devices
+        - BOARD = j7200_evm
+            - CORE = < mpu1_0, mcu1_0, mcu1_1, mcu2_0, mcu2_1 >
+
+.. ifconfig:: CONFIG_family in ('tpr12')
+
+    - DSP Family of Devices
+        - BOARD = tpr12_evm awr294x_evm
+            - CORE = < mcu1_0, mcu1_1, c66xdsp_1 >
+
+.. ifconfig:: CONFIG_family in ('j721s2')
+
+    - J721S2 Family of Devices
+        - BOARD = j721s2_evm
+            - CORE = < mpu1_0, mcu1_0, mcu1_1, mcu2_0, mcu2_1, mcu3_0, mcu3_1, c7x_1, c7x_2 >
+
+.. ifconfig:: CONFIG_family in ('am64x')
+
+    - AM64x Family of Devices
+        - BOARD = am64x_evm
+            - CORE = < mpu1_0, mcu1_0, mcu1_1, mcu2_0, mcu2_1, m4f_0 >
+
+.. ifconfig:: CONFIG_family in ('j784s4')
+
+    - J7284S4 Family of Devices
+        - BOARD = j784s4_evm
+            - CORE = < mpu1_0, mcu1_0, mcu1_1, mcu2_0, mcu2_1, mcu3_0, mcu3_1, mcu4_0, mcu4_1, c7x_1, c7x_2, c7x_3, c7x_4 >
+
+Build Steps
+===========
+
+This section describes the steps to build the PDK package.
+For Windows machine, the package is built using the gmake from TI XDC package.
+For Linux machine, make can be used. In all below commands "gmake" can be replaced with "make" for Linux machine build.
+Also makefile internally uses some binaries like rm, mkdir echo from Cygwin.
+
+
+For running from **PDK_INSTALL_DIR/packages/ti/build**
+------------------------------------------------------
+
+    .. code:: bash
+
+        cd PDK_INSTALL_DIR/packages/ti/build
+
+- Build all PDK libraries for all cores:
+
+    .. code:: bash
+
+        make -s pdk_libs_allcores BOARD=<board>
+
+- Build all PDK applications and libraries for all cores:
+
+    .. code:: bash
+
+        make -s allcores BOARD=<board>
+
+- Build all PDK libraries for a given cores:
+
+    .. code:: bash
+
+        make -s pdk_libs BOARD=<board> CORE=<core>
+
+- Build all PDK applications and libraries for a given cores:
+
+    .. code:: bash
+
+        make -s all BOARD=<board> CORE=<core>
+
+- Build individual targets (use help menu to see all targets):
+
+    .. code:: bash
+
+        make -s <target> BOARD=<board> CORE=<core>
+
+- Clean everything (all cores and all platforms/boards):
+
+    .. code:: bash
+
+        make -s allclean
+
+- Clean all targets for a given board:
+
+    .. code:: bash
+
+        make -s allcores_clean BOARD=<board>
+
+- Clean individual targets:
+
+    .. code:: bash
+
+        make -s <target>_clean BOARD=<board> CORE=<core>
+
+- To know more build options:
+
+    .. code:: bash
+
+        make -s help BOARD=<board>
+    
+    e.g. make help BOARD = |__PART_DEFAULT_BOARD__|
+
+    The above command could be used to list the application supported for a given
+    platform/SoC
+
+
+.. NOTE::
+
+    To build FreeRTOS version of an application, <target_name> will be **<APP_NAME>_freertos**.
+    For example to build **udma_memcpy_testapp** for FreeRTOS,
+
+    ::
+
+        make -s udma_memcpy_testapp_freertos BOARD=<board> CORE=<core>
+
+
+.. NOTE::
+
+    To build different profiles, provide variable BUILD_PROFILE=<release/debug> while invoking above commands
+
+.. NOTE::
+
+    The executable will be generated under PDK_INSTALL_DIR/packages/ti/binary/<example> folder.
+
+.. NOTE::
+
+    The library will be generated under PDK_INSTALL_DIR/packages/ti/<component>/lib/<soc>/<core>/<debug/release>/ folder.
+
+.. NOTE::
+    If a library is not applicable for a given core or board, the make system will print message like below
+
+    .. code:: bash
+
+        Nothing to be done for <BOARD> <CORE> <target>
+
+.. IMPORTANT::
+
+    If the installation folder depth is high then windows cmd prompt fails with error that it cannot find a file,
+    even if the file is present in mentioned path, this is because Windows has a limitation of 8191 characters
+    for the commands that can execute. In such situation as a work around either restrict the folder depth to
+    d:/ or if it cannot be restricted use git bash to build.
+    Refer https://support.microsoft.com/en-in/kb/830473 for more details.
+    (Always point to xdc path gmake only)
+
+.. IMPORTANT::
+
+    If '-j' option is used in windows build and build fails then clean that particular application target and run the same command again w/o '-j' option.
+
+.. IMPORTANT::
+    By default the application dependency to build library is disabled. In case user changes any library the following flag should be set to no while invoking make
+    or set this variable in **PDK_INSTALL_DIR/packages/ti/build/Rules.make**
+
+    .. code:: bash
+
+        make -s <target> DISABLE_RECURSE_DEPS=no
+
+
+For make from **PDK_INSTALL_DIR/packages**
+------------------------------------------
+
+    .. code:: bash
+
+        cd PDK_INSTALL_DIR/packages
+
+- Below sets the default environmental variables like PDK path, SDK path and default PDK_SOC - This is optional step
+
+    .. code:: bash
+
+        #source in case of Linux
+        source pdksetupenv.sh
+
+        #Run in case of Windows
+        pdksetupenv.bat
+
+- Build all targets including libraries and examples
+
+    .. code:: bash
+
+        make -s all PDK_SOC=<desired SOC>
+
+- Build all libraries
+
+    .. code:: bash
+
+        make -s all_libs PDK_SOC=<desired SOC>
+
+- Run below to know the list of options supported
+
+    .. code:: bash
+
+        make -s help
+
+.. ifconfig:: CONFIG_family in ('am65xx')
+
+    Building PDK components from git repo
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    The PDK components can be rebuilt from their git repositories. This is especially useful for development and/or picking up some bug fixes since the previous release.
+    Below are the steps on how to set up a development environment with the git repositories
+
+    -  Install the most recent version of processor-sdk
+    -  Replace <pdk_install_dir>/pdk_<soc>_<version>  with the PDK git repository https://git.ti.com/cgit/processor-sdk/pdk/
+
+    ::
+
+        cd <pdk_install_dir>/
+        git clone  https://git.ti.com/git/processor-sdk/pdk.git
+
+    - Clone the PDK components which were present in pdk_<soc>_<version> and  not in the pdk.git. This includes components like csl,sa,pm etc.
+
+    ::
+
+        cd <pdk_install_dir>/pdk/packages/ti/
+        git clone https://git.ti.com/git/keystone-rtos/common-csl-ip.git csl
+        cd drv
+        git clone https://git.ti.com/git/keystone-rtos/pm-lld.git pm
+        git clone https://git.ti.com/git/keystone-rtos/sa-lld.git sa
+
+    - Set up the development environment with the appropriate PDK_SOC (PDK_SOC is the <soc> field in the pdk_<soc>_<version> directory  which was replaced by pdk.git)
+
+    ::
+
+        cd <pdk_install_dir>/pdk/packages/
+        export PDK_SOC=<soc>     //NOTE:PDK_SOC is the <soc> field in the pdk_<soc>_<version> directory  which was replaced by pdk.git
+        source ./pdksetupenv.sh
+
+    - Re-build the libraries
+
+    ::
+
+        make all -j4
+
+    .. note::
+        When updating PDK for picking up bug fixes or for development, please be aware that the supporting components like tools versions might have changed since the previous release.The tools versions used by PDK are specified in pdk/packages/ti/build/pdk_tools_path.mk . Please ensure that those are downloaded in the processor sdk installation directory.
+  
+
+Library Path and Naming Convention
+==================================
+This section describes the location and naming convetion of the pre-built libraries inside the PDK packages. The prebuilt library
+is located at .../<module>/lib/<board/soc>/<core>/<build_type>/<library> as described at the table below: 
+
++-------------------+--------------------------------------------------------------------------------------------------------+
+| Item              | Description                                                                                            |
++===================+========================================================================================================+
+| <module>          | | module name for this library.                                                                        |
+|                   | | Examples: ti/csl, ti/osal, ti/drv/i2c, ti/drv/uart                                                   |
++-------------------+--------------------------------------------------------------------------------------------------------+
+|                   | | board name if BOARD_DEPENDENCY = yes. Example: |__PART_DEFAULT_BOARD__|                              |
+| <board/soc>       | | SOC name if SOC_DEPENDENCY = yes. Example: |__PART_DEFAULT_SOC__|                                    |
+|                   | | Empty if both BOARD_DEPENDENCY = no and SOC_DEPENDENCY = no                                          |                                     
++-------------------+--------------------------------------------------------------------------------------------------------+
+| <core>            | | core name such as c66, r5f or c66xdsp_1, mcu1_0 when CORE_DEPENDENCY = yes                           |
++-------------------+--------------------------------------------------------------------------------------------------------+
+| <build_type>      | | build_type is either release or debug                                                                |
++-------------------+--------------------------------------------------------------------------------------------------------+
+| <library>         | | library such as ti.csl.ae66, esm.aer5f                                                               |
++-------------------+--------------------------------------------------------------------------------------------------------+
+
+The full library name consists of its name and extension shown as <LIBNAME>.<LIBEXT> where LIBEXT is constructed as a<FORMAT_EXT><ISA_EXT><ENDIAN_EXT>
+as described at the following table
+
++-------------------+--------------------------------------------------------------------------------------------------------+
+| Variable          | Description                                                                                            |
++===================+========================================================================================================+
+| <LIBMAME>         | | Library name will be the module name or the <mod name>_LIBNAME if it is specified at the makefile.   |
+|                   | | Examples: csl_LIBNAME = ti.csl ==> ti.csl.ae66, MODULE_NAME = esm ==> esm.aer5f                      |
++-------------------+--------------------------------------------------------------------------------------------------------+
+| <FORMAT_EXT>      | | Format extension.                                                                                    |
+|                   | | For example, ELF file is indicated as "e"                                                            |
++-------------------+--------------------------------------------------------------------------------------------------------+
+| <ISA_EXT>         | | ISA extension.                                                                                       |
+|                   | | For example, a8, a9, a15, a53, a72, m4, r5f, 66, 71                                                  |
++-------------------+--------------------------------------------------------------------------------------------------------+
+| <ENDIAN_EXT>      | | ENDIAN extension which is core-specific.                                                             |
+|                   | | For example, "e" is usually used to indicate big endianness                                          |
+|                   |   and "fg" indicates little endianness for MPU A8, A9, A15, A53 and A72                                |
++-------------------+--------------------------------------------------------------------------------------------------------+
+
+Here are some examples of pre-built library with its relative path to "PDK_INSTALL_DIR/packages":
+
+.. ifconfig:: CONFIG_family in ('tpr12')
+
+    - ti/drv/crc/lib/tpr12/c66/release/crc.ae66
+    - ti/drv/mailbox/lib/tpr12/mcu1_0/release/mailbox.aer5f
+    - ti/osal/lib/freertos/tpr12/r5f/release/ti.osal.aer5f
+    - ti/drv/i2c/lib/tpr12/c66/debug/ti.drv.i2c.ae66
+    - ti/board/lib/tpr12_evm/c66/release/ti.board.ae66
+
+.. ifconfig:: CONFIG_family in ('am65xx')
+
+    - ti/drv/udma/lib/am65xx/mcu1_0/release/udma.aer5f
+    - ti/osal/lib/freertos/am65xx/r5f/release/ti.osal.aer5f
+    - ti/drv/i2c/ib/am65xx/a53/debug/ti.drv.i2c.aa53fg
+    - ti/board/lib/am65xx_evm/r5f/release/ti.board.aer5f
+
+.. ifconfig:: CONFIG_family in ('jacinto')
+
+    - ti/drv/udma/lib/j721e/mcu1_0/release/udma.aer5f
+    - ti/osal/lib/freertos/j721e/r5f/release/ti.osal.aer5f
+    - ti/drv/i2c/ib/j721e/a72/debug/ti.drv.i2c.aa53fg
+    - ti/board/lib/j721e_evm/c66/release/ti.board.ae66
+
+.. ifconfig:: CONFIG_family in ('j7200')
+
+    - ti/drv/udma/lib/j7200/mcu1_0/release/udma.aer5f
+    - ti/osal/lib/freertos/j7200/r5f/release/ti.osal.aer5f
+    - ti/drv/i2c/ib/j7200/a72/debug/ti.drv.i2c.aa53fg
+    - ti/board/lib/j7200_evm/r5f/release/ti.board.aer5f
+
+.. ifconfig:: CONFIG_family in ('am64x')
+
+    - ti/drv/udma/lib/am64x/mcu1_0/release/udma.aer5f
+    - ti/osal/lib/freertos/am64x/r5f/release/ti.osal.aer5f
+    - ti/drv/i2c/ib/am64x/a53/debug/ti.drv.i2c.aa53fg
+    - ti/board/lib/am64x_evm/m4f/release/ti.board.aem4f
+
+.. ifconfig:: CONFIG_family in ('j784s4')
+
+    - ti/drv/udma/lib/j784s4/mcu1_0/release/udma.aer5f
+    - ti/osal/lib/freertos/j784s4/r5f/release/ti.osal.aer5f
+    - ti/drv/i2c/ib/j784s4/a72/debug/ti.drv.i2c.aa72fg
+    - ti/board/lib/j784s4_evm/r5f/release/ti.board.aer5f
+

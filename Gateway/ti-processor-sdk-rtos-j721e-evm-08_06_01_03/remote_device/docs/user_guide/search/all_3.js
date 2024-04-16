@@ -1,0 +1,25 @@
+var searchData=
+[
+  ['app_5fremote_5fdevice_2eh',['app_remote_device.h',['../app__remote__device_8h.html',1,'']]],
+  ['app_5fremote_5fdevice_5fcb_5ft',['app_remote_device_cb_t',['../structapp__remote__device__cb__t.html',1,'']]],
+  ['app_5fremote_5fdevice_5fchannel_5ft',['app_remote_device_channel_t',['../structapp__remote__device__channel__t.html',1,'']]],
+  ['app_5fremote_5fdevice_5fdevice_5ftype_5fdemo',['APP_REMOTE_DEVICE_DEVICE_TYPE_DEMO',['../group__group__vision__apps__utils__remote__device.html#gaa58ec5d2c1094edbdd58a45e9d89b7f0',1,'app_remote_device.h']]],
+  ['app_5fremote_5fdevice_5fdevice_5ftype_5fdisplay',['APP_REMOTE_DEVICE_DEVICE_TYPE_DISPLAY',['../group__group__vision__apps__utils__remote__device.html#gac3d964bdc4eb861862b7df6da2114673',1,'app_remote_device.h']]],
+  ['app_5fremote_5fdevice_5fdevice_5ftype_5fethswitch',['APP_REMOTE_DEVICE_DEVICE_TYPE_ETHSWITCH',['../group__group__vision__apps__utils__remote__device.html#gac13cc7757d49425acfe34cdb49073c3e',1,'app_remote_device.h']]],
+  ['app_5fremote_5fdevice_5fdevice_5ftype_5finit',['APP_REMOTE_DEVICE_DEVICE_TYPE_INIT',['../group__group__vision__apps__utils__remote__device.html#gacd24ef8cbb00450f7061b241341dc77f',1,'app_remote_device.h']]],
+  ['app_5fremote_5fdevice_5fdisplay_2eh',['app_remote_device_display.h',['../app__remote__device__display_8h.html',1,'']]],
+  ['app_5fremote_5fdevice_5fmax_5fhost_5fids',['APP_REMOTE_DEVICE_MAX_HOST_IDS',['../group__group__vision__apps__utils__remote__device.html#gaeddbe36b55d78a1505b54e878b9845f0',1,'app_remote_device.h']]],
+  ['app_5fremote_5fdevice_5fmax_5fname',['APP_REMOTE_DEVICE_MAX_NAME',['../group__group__vision__apps__utils__remote__device.html#ga51e226288eeed59e0d88db76c8be0518',1,'app_remote_device.h']]],
+  ['app_5fremote_5fdevice_5fregister_5fprm_5ft',['app_remote_device_register_prm_t',['../structapp__remote__device__register__prm__t.html',1,'']]],
+  ['app_5fremote_5fdisplay_5fmax_5fdisps',['APP_REMOTE_DISPLAY_MAX_DISPS',['../group__group__vision__apps__utils__remote__disp.html#ga2615e404c6b5b4ca57d7dbf66e88b078',1,'app_remote_device_display.h']]],
+  ['app_5fremote_5fdisplay_5fmax_5fformats',['APP_REMOTE_DISPLAY_MAX_FORMATS',['../group__group__vision__apps__utils__remote__disp.html#ga57e330081567f7257657542f550324c8',1,'app_remote_device_display.h']]],
+  ['app_5fremote_5fdisplay_5fmax_5finstances',['APP_REMOTE_DISPLAY_MAX_INSTANCES',['../group__group__vision__apps__utils__remote__disp.html#ga9cea49ab474d52f1a0cff1ebc726765c',1,'app_remote_device_display.h']]],
+  ['app_5fremote_5fdisplay_5fmax_5fname_5flen',['APP_REMOTE_DISPLAY_MAX_NAME_LEN',['../group__group__vision__apps__utils__remote__disp.html#ga9b496fcb84893c976800ec861e760b01',1,'app_remote_device_display.h']]],
+  ['app_5fremote_5fdisplay_5fmax_5fpipes',['APP_REMOTE_DISPLAY_MAX_PIPES',['../group__group__vision__apps__utils__remote__disp.html#ga85d83bcd1b656549b56e0b388b046c90',1,'app_remote_device_display.h']]],
+  ['app_5fremote_5fdisplay_5fmax_5fzorders',['APP_REMOTE_DISPLAY_MAX_ZORDERS',['../group__group__vision__apps__utils__remote__disp.html#ga79e5daeb4e093f3745d811a464e34e93',1,'app_remote_device_display.h']]],
+  ['appremotedeviceregisterdevice',['appRemoteDeviceRegisterDevice',['../group__group__vision__apps__utils__remote__device.html#ga99fa5acde40bf6b86f92ccb279832f71',1,'app_remote_device.h']]],
+  ['appremotedeviceregisterparamsinit',['appRemoteDeviceRegisterParamsInit',['../group__group__vision__apps__utils__remote__device.html#gab8e62279bc88946ee33b58d1c40fe683',1,'app_remote_device.h']]],
+  ['appremotedevicesendmessage',['appRemoteDeviceSendMessage',['../group__group__vision__apps__utils__remote__device.html#ga456ca9a17f50313a9ecb1d8459fd98cd',1,'app_remote_device.h']]],
+  ['appremotedisplayinit',['appRemoteDisplayInit',['../group__group__vision__apps__utils__remote__disp.html#gacd065b6372673af8bbff8379efc502b6',1,'app_remote_device_display.h']]],
+  ['appremotedisplayinitprmsetdefault',['appRemoteDisplayInitPrmSetDefault',['../group__group__vision__apps__utils__remote__disp.html#ga47c41e347ed5e74030569939eb06ac9e',1,'app_remote_device_display.h']]]
+];

@@ -1,0 +1,1245 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4.10. IPC &mdash; Platform Development Kit (PDK) - JACINTO User Guide</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Platform Development Kit (PDK) - JACINTO User Guide" href="../index.html"/>
+        <link rel="up" title="4. Modules" href="../family_cfg/jacinto/index_modules_jacinto.html"/>
+        <link rel="next" title="4.11. McASP" href="mcasp.html"/>
+        <link rel="prev" title="4.9. I2C" href="i2c.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index_jacinto.html" class="icon icon-home"> Platform Development Kit (PDK) - JACINTO User Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                08_06_01
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">1. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_release_notes_jacinto.html">2. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">3. Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../family_cfg/jacinto/index_modules_jacinto.html">4. Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="csl.html">4.1. CSL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="freertos.html">4.2. FreeRTOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../family_cfg/jacinto/index_modules_safertos_jacinto.html">4.3. SafeRTOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="osal.html">4.4. OSAL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss.html">4.5. DSS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="enet.html">4.6. ENET</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fvid2.html">4.7. FVID2 User Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gpio.html">4.8. GPIO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i2c.html">4.9. I2C</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">4.10. IPC</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">4.10.1. Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#terms-and-abbreviation">4.10.2. Terms and Abbreviation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#references">4.10.3. References</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#features">4.10.4. Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installation">4.10.5. Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#build">4.10.6. Build</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#dependency-of-external-pdk-components">4.10.6.1. Dependency of External PDK Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#command-to-build-ipclld">4.10.6.2. Command to build IPCLLD</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#available-core-names">4.10.6.3. Available Core names</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#expected-output">4.10.6.4. Expected Output</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#running-the-ipclld-examples">4.10.7. Running the IPCLLD examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#example-details">4.10.7.1. Example Details</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#loading-remote-firmware">4.10.7.2. Loading Remote Firmware</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#running-the-echo-tests">4.10.7.3. Running the Echo Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#ipclld-design-details">4.10.8. IPCLLD Design Details</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#typical-data-flow-in-ipclld-communication-between-two-cores">4.10.8.1. Typical Data-Flow in IPCLLD communication between two cores</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#resource-table">4.10.8.2. Resource Table</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#memory-considerations">4.10.8.3. Memory Considerations</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#writing-helloworld-app-using-ipclld">4.10.9. Writing HelloWorld App using IPCLLD</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="mcasp.html">4.11. McASP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pm.html">4.12. PM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sa.html">4.13. SA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../family_cfg/jacinto/index_modules_sciclient_jacinto.html">4.14. SCICLIENT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="keywriter.html">4.15. OTP KEYWRITER</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spi.html">4.16. SPI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uart.html">4.17. UART</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../family_cfg/jacinto/index_modules_udma_jacinto.html">4.18. UDMA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pmic.html">4.19. PMIC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mmcsd.html">4.20. MMCSD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../family_cfg/jacinto/index_modules_lpm_jacinto.html">4.21. Low Power Manager (LPM)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_boot_jacinto.html">5. Bootloader (SBL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_board_jacinto.html">6. Board/EVM Abstraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_howto_jacinto.html">7. How to Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_faq_jacinto.html">8. Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_developer_notes_jacinto.html">9. Developer Notes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index_jacinto.html">Platform Development Kit (PDK) - JACINTO User Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index_jacinto.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../family_cfg/jacinto/index_modules_jacinto.html">4. Modules</a> &raquo;</li>
+      
+    <li>4.10. IPC</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="ipc">
+<h1>4.10. IPC<a class="headerlink" href="#ipc" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>4.10.1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>TI Jacinto family of devices consists of many cores - A72 , R5Fs (MCU or Main Domain) and/or DSPs (C66x / C7x). The actual cores vary with actual device. Refer to the datasheet of the device for the actual cores present on SoC. Inter-Processor Communication (IPC) provides a communication channel between various cores. IPCLLD is the low-level driver for IPC, which provides a core-agnostic and OS-agnostic framework for communication.</p>
+<p>More information regarding the <a class="reference external" href="http://www.ti.com/processors/automotive-processors/overview.html">TI multicore processors</a> is available .</p>
+</div>
+<div class="section" id="terms-and-abbreviation">
+<h2>4.10.2. Terms and Abbreviation<a class="headerlink" href="#terms-and-abbreviation" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="9%" />
+<col width="91%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Term</th>
+<th class="head">Definition or Explanation</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>IPC</td>
+<td>Inter-Processor Communication</td>
+</tr>
+<tr class="row-odd"><td>VirtIO</td>
+<td>Virtual I/O driver</td>
+</tr>
+<tr class="row-even"><td>MailBox</td>
+<td>IP which provides queued interrupt mechanism  for communication channel</td>
+</tr>
+<tr class="row-odd"><td>VRing</td>
+<td>Ring Buffer in shared memory</td>
+</tr>
+<tr class="row-even"><td>PDK</td>
+<td>Platform Development Kit</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="references">
+<h2>4.10.3. References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>For J721E datasheet, please contact TI representative</li>
+</ul>
+</div>
+<div class="section" id="features">
+<h2>4.10.4. Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Provides ipc low-level driver, which can be compiled for any of the cores on Jacinto devices</li>
+<li>Supports RTOS/RTOS communication and Linux/RTOS concurrently for all cores</li>
+<li>Supports RTOS, Linux, QNX (for select devices) and baremetal (No-OS) usecases.</li>
+<li>It can be extended for any third-party RTOS by adding OS adaptation layer</li>
+<li>IPCLLD also provides many examples for quick reference</li>
+</ul>
+</div>
+<div class="section" id="installation">
+<h2>4.10.5. Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>IPCLLD is part of TI PDK (Platform Development Kit) package. Once Processor SDK RTOS is installed, PDK and all dependent packages and tool-chains are installed automatically.
+IPCLLD can also be located at &lt;PRSDK_HOME&gt;/pdk/packages/ti/drv/ipc. IPCLLD is also available publically at <a class="reference external" href="https://git.ti.com/processor-sdk/pdk/">https://git.ti.com/processor-sdk/pdk/</a> at packages/ti/drv/ipc.</p>
+<p>It can also be cloned using following git command:</p>
+<ul class="simple">
+<li>git clone git://git.ti.com/processor-sdk/pdk.git</li>
+<li>Provides many examples for quick reference</li>
+</ul>
+<p>The file and directory oraganization are as below. Note that this is a representative snapshot and additional/different soc folders and examples may be present in latest codebase.</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="../_images/ipclld_file_org.png"><img alt="../_images/ipclld_file_org.png" src="../_images/ipclld_file_org.png" style="width: 435px; height: 944px;" /></a>
+</div></blockquote>
+</div>
+<div class="section" id="build">
+<h2>4.10.6. Build<a class="headerlink" href="#build" title="Permalink to this headline">¶</a></h2>
+<p>IPCLLD uses the PDK build systems to build the IPCLLD library and example applications.</p>
+<div class="section" id="dependency-of-external-pdk-components">
+<h3>4.10.6.1. Dependency of External PDK Components<a class="headerlink" href="#dependency-of-external-pdk-components" title="Permalink to this headline">¶</a></h3>
+<p>IPCLLD does not access any hardware directly. It uses the PDK/csl component to configure the Mailbox registers. It uses sciclient to set/release the Mailbox interrupts. Also it uses PDK/osal to configure OS-related steps like Semaphore, etc.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="39%" />
+<col width="61%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">PDK component</th>
+<th class="head">Use by IPCLLD</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>csl</td>
+<td>Configures Mailbox registers</td>
+</tr>
+<tr class="row-odd"><td>sciclient</td>
+<td>Set Mailbox interrupts</td>
+</tr>
+<tr class="row-even"><td>osal</td>
+<td>To register for HWI and other kernel stuffs.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="command-to-build-ipclld">
+<h3>4.10.6.2. Command to build IPCLLD<a class="headerlink" href="#command-to-build-ipclld" title="Permalink to this headline">¶</a></h3>
+<p>The build can be done either from the IPCLLD&#8217;s path in the PDK packages, or from the PDK build folder. For either method, the following environment variables must be defined, or supplied with the build command (if they are different from the defaults of the SDK installation):</p>
+<ul class="simple">
+<li>SDK_INSTALL_PATH: Installation root for sdk</li>
+<li>TOOLS_INSTALL_PATH: where all the tool chains are installed, if different from SDK_INSTALL_PATH</li>
+<li>PDK_INSTALL_PATH: Installtion root for pdk</li>
+</ul>
+<p>The following build instructions are for Linux. For Windows build, please replace &#8220;make&#8221; with &#8220;gmake&#8221;.</p>
+<p>Method 1:</p>
+<p>These libraries and examples are built from the IPCLLD&#8217;s path in the PDK packages:</p>
+<blockquote>
+<div>PDK_INSTALL_DIR/packages/ti/drv/ipc</div></blockquote>
+<table border="1" class="docutils">
+<colgroup>
+<col width="6%" />
+<col width="68%" />
+<col width="26%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Target</th>
+<th class="head">Build Command</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>lib</td>
+<td>make PDK_INSTALL_PATH=PDK_INSTALL_DIR/packages SDK_INSTALL_PATH=SDK_INSTALL_PATH lib</td>
+<td>IPCLLD library</td>
+</tr>
+<tr class="row-odd"><td>apps</td>
+<td>make PDK_INSTALL_PATH=PDK_INSTALL_DIR/packages SDK_INSTALL_PATH=SDK_INSTALL_PATH apps</td>
+<td>IPCLLD examples</td>
+</tr>
+<tr class="row-even"><td>clean</td>
+<td>make PDK_INSTALL_PATH=PDK_INSTALL_DIR/packages SDK_INSTALL_PATH=SDK_INSTALL_PATH clean</td>
+<td>Clean IPCLLD library and examples</td>
+</tr>
+<tr class="row-odd"><td>all</td>
+<td>make PDK_INSTALL_PATH=PDK_INSTALL_DIR/packages SDK_INSTALL_PATH=SDK_INSTALL_PATH all</td>
+<td>Build IPCLLD library and examples</td>
+</tr>
+</tbody>
+</table>
+<p>Method 2:</p>
+<p>If building from the PDK build folder, then use following steps to build</p>
+<blockquote>
+<div>Go to PDK_INSTALL_DIR/packages/ti/build</div></blockquote>
+<table border="1" class="docutils">
+<colgroup>
+<col width="3%" />
+<col width="52%" />
+<col width="45%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Target</th>
+<th class="head">Build Command</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>lib</td>
+<td>make -s -j BUILD_PROFILE=&lt;debug/release&gt; BOARD=&lt; j721e_evm &gt; CORE=&lt;core_name&gt; ipc</td>
+<td>IPCLLD library</td>
+</tr>
+<tr class="row-odd"><td>example</td>
+<td>make -s -j BUILD_PROFILE=&lt;debug/release&gt; BOARD=&lt; j721e_evm &gt; CORE=&lt;core_name&gt; ipc_echo_test_freertos</td>
+<td>ipc_echo_test example (this can be replaced with any available IPC test name to build the specific test)</td>
+</tr>
+<tr class="row-even"><td>clean</td>
+<td>make -s -j BUILD_PROFILE=&lt;debug/release&gt; BOARD=&lt; j721e_evm &gt; CORE=&lt;core_name&gt; ipc_echo_test_freertos_clean</td>
+<td>Clean the ipc_echo_test (this can be replaced with any available IPC test name to build the specific test)</td>
+</tr>
+</tbody>
+</table>
+<p>See <a class="reference internal" href="#example-details">Example Details</a> for list of supported examples.</p>
+</div>
+<div class="section" id="available-core-names">
+<h3>4.10.6.3. Available Core names<a class="headerlink" href="#available-core-names" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>J721E:</dt>
+<dd><ul class="first last simple">
+<li>mpu1_0 (A72)</li>
+<li>mcu1_0 (mcu-r5f0_0)</li>
+<li>mcu1_1 (mcu-r5f0_1)</li>
+<li>mcu2_0 (main-r5f0_0)</li>
+<li>mcu2_1 (main-r5f0_1)</li>
+<li>mcu3_0 (main-r5f1_0)</li>
+<li>mcu3_1 (main-r5f1_1)</li>
+<li>c66xdsp_1 (c66x_0)</li>
+<li>c66xdsp_2 (c66x_1)</li>
+<li>c7x_1 (c71x_0)</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="expected-output">
+<h3>4.10.6.4. Expected Output<a class="headerlink" href="#expected-output" title="Permalink to this headline">¶</a></h3>
+<p>The built example binaries can be found in the PDK&#8217;s binary folder:</p>
+<blockquote>
+<div>PDK_INSTALL_PATH/packages/ti/binary/&lt;test_name&gt;/bin/j721e_evm/</div></blockquote>
+</div>
+</div>
+<div class="section" id="running-the-ipclld-examples">
+<h2>4.10.7. Running the IPCLLD examples<a class="headerlink" href="#running-the-ipclld-examples" title="Permalink to this headline">¶</a></h2>
+<p>IPCLLD comes with the following examples.</p>
+<div class="section" id="example-details">
+<h3>4.10.7.1. Example Details<a class="headerlink" href="#example-details" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="24%" />
+<col width="19%" />
+<col width="19%" />
+<col width="13%" />
+<col width="11%" />
+<col width="13%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><div class="first last line-block">
+<div class="line">Name</div>
+</div>
+</th>
+<th class="head"><div class="first last line-block">
+<div class="line">Description</div>
+</div>
+</th>
+<th class="head"><div class="first last line-block">
+<div class="line">Expected Results</div>
+</div>
+</th>
+<th class="head"><div class="first last line-block">
+<div class="line">SoC Supported</div>
+</div>
+</th>
+<th class="head"><div class="first last line-block">
+<div class="line">Cores Supported</div>
+</div>
+</th>
+<th class="head"><div class="first last line-block">
+<div class="line">Build Type</div>
+</div>
+</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td rowspan="4">ipc_echo_test</td>
+<td rowspan="4"><div class="first last line-block">
+<div class="line">This is the most generic
+application where mpu1_0
+is running Linux, and all
+other cores are running
+BIOS. All cores talk to
+each other bi-directionally.
+Each core will send a ping
+message and remote end will
+respond with a pong message.</div>
+<div class="line">There are 10000 ping/pong
+messages exchanged between
+each core pair.</div>
+<div class="line">The messaging with Linux is
+initiated from Linux using
+rpmsg-client-sample.</div>
+</div>
+</td>
+<td rowspan="4"><div class="first last line-block">
+<div class="line">At the end of the
+10000 iterations with
+a remote core, a
+ping/pong completed
+message is printed to
+the core&#8217;s trace buffer.</div>
+<div class="line">The buffer may be viewed
+with ROV or Linux remotecore
+trace buffer.</div>
+<div class="line">After insmod of the
+rpmsg-client-sample
+kernel module, traces
+indicating the ping/pong
+process are printed to
+the Linux console for
+each message to indicate
+success.</div>
+</div>
+</td>
+<td>AM65XX</td>
+<td><div class="first last line-block">
+<div class="line">mcu1_0</div>
+<div class="line">mcu1_1</div>
+</div>
+</td>
+<td>makefile</td>
+</tr>
+<tr class="row-odd"><td>J721E</td>
+<td><div class="first last line-block">
+<div class="line">mcu1_0</div>
+<div class="line">mcu1_1</div>
+<div class="line">mcu2_0</div>
+<div class="line">mcu2_1</div>
+<div class="line">mcu3_0</div>
+<div class="line">mcu3_1</div>
+<div class="line">c66xdsp_1</div>
+<div class="line">c66xdsp_2</div>
+<div class="line">c7x_1</div>
+</div>
+</td>
+<td>makefile</td>
+</tr>
+<tr class="row-even"><td>J7200</td>
+<td><div class="first last line-block">
+<div class="line">mcu1_0</div>
+<div class="line">mcu1_1</div>
+<div class="line">mcu2_0</div>
+<div class="line">mcu2_1</div>
+</div>
+</td>
+<td>makefile</td>
+</tr>
+<tr class="row-odd"><td>AM64X</td>
+<td><div class="first last line-block">
+<div class="line">mcu1_0</div>
+<div class="line">mcu1_1</div>
+<div class="line">mcu2_0</div>
+<div class="line">mcu2_1</div>
+</div>
+</td>
+<td>makefile</td>
+</tr>
+<tr class="row-even"><td rowspan="4">ipc_echo_baremetal_test</td>
+<td rowspan="4"><div class="first last line-block">
+<div class="line">This is the same as
+ipc_echo_test, but with
+baremetal instead of RTOS.</div>
+<div class="line">Only the R5Fs are supported
+for this test.</div>
+</div>
+</td>
+<td rowspan="4"><div class="first last line-block">
+<div class="line">At the end of the
+10000 iterations with
+a remote core, a
+ping/pong completed
+message is printed to
+the core&#8217;s trace buffer.</div>
+<div class="line">The buffer may be viewed
+with Linux remotecore
+trace buffer.</div>
+<div class="line">After insmod of the
+rpmsg-client-sample
+kernel module, traces
+indicating the ping/pong
+process are printed to
+the Linux console for
+each message to indicate
+success.</div>
+</div>
+</td>
+<td>AM65XX</td>
+<td><div class="first last line-block">
+<div class="line">mcu1_0</div>
+<div class="line">mcu1_1</div>
+</div>
+</td>
+<td>makefile</td>
+</tr>
+<tr class="row-odd"><td>J721E</td>
+<td><div class="first last line-block">
+<div class="line">mcu1_0</div>
+<div class="line">mcu1_1</div>
+<div class="line">mcu2_0</div>
+<div class="line">mcu2_1</div>
+<div class="line">mcu3_0</div>
+<div class="line">mcu3_1</div>
+</div>
+</td>
+<td>makefile</td>
+</tr>
+<tr class="row-even"><td>J7200</td>
+<td><div class="first last line-block">
+<div class="line">mcu1_0</div>
+<div class="line">mcu1_1</div>
+<div class="line">mcu2_0</div>
+<div class="line">mcu2_1</div>
+</div>
+</td>
+<td>makefile</td>
+</tr>
+<tr class="row-odd"><td>AM64X</td>
+<td><div class="first last line-block">
+<div class="line">mcu1_0</div>
+<div class="line">mcu1_1</div>
+<div class="line">mcu2_0</div>
+<div class="line">mcu2_1</div>
+</div>
+</td>
+<td>makefile</td>
+</tr>
+<tr class="row-even"><td rowspan="4">ex01_bios_2core_echo_test</td>
+<td rowspan="4"><div class="first last line-block">
+<div class="line">This is the simple ping/pong
+application between 2 cores
+running BIOS.</div>
+<div class="line">The defaults for which two
+cores are used depends on the
+platform. Please check the
+ex01_bios_2core_echo_test.c
+source file to know the
+specific cores.</div>
+</div>
+</td>
+<td rowspan="4"><div class="first last line-block">
+<div class="line">At the end of the
+10000 iterations with
+a remote core, a
+ping/pong completed
+message is printed to
+the core&#8217;s trace buffer.</div>
+<div class="line">The buffer may be viewed
+with ROV in CCS.</div>
+</div>
+</td>
+<td>AM65XX</td>
+<td><div class="first last line-block">
+<div class="line">mcu1_0</div>
+<div class="line">mcu1_1</div>
+</div>
+</td>
+<td>makefile</td>
+</tr>
+<tr class="row-odd"><td>J721E</td>
+<td><div class="first last line-block">
+<div class="line">mcu2_0</div>
+<div class="line">c66xdsp_1</div>
+</div>
+</td>
+<td>makefile</td>
+</tr>
+<tr class="row-even"><td>J7200</td>
+<td><div class="first last line-block">
+<div class="line">mcu1_0</div>
+<div class="line">mcu2_0</div>
+</div>
+</td>
+<td>makefile</td>
+</tr>
+<tr class="row-odd"><td>AMA64X</td>
+<td><div class="first last line-block">
+<div class="line">mcu1_0</div>
+<div class="line">mcu2_0</div>
+</div>
+</td>
+<td>makefile</td>
+</tr>
+<tr class="row-even"><td rowspan="4">ex02_bios_multicore_echo_test</td>
+<td rowspan="4"><div class="first last line-block">
+<div class="line">All cores are running BIOS
+with many-to-many
+communication, each core
+sending ping/pong with each
+other. In this test mpu1_0
+is also running BIOS.</div>
+<div class="line">This test may be used in
+combination with other cores
+running the baremetal
+version of the test
+(ex02_baremetal test).</div>
+</div>
+</td>
+<td rowspan="4"><div class="first last line-block">
+<div class="line">At the end of the
+10000 iterations with
+a remote core, a
+ping/pong completed
+message is printed to
+the core&#8217;s trace buffer.</div>
+<div class="line">The buffer may be viewed
+with ROV in CCS.</div>
+</div>
+</td>
+<td>AM65XX</td>
+<td><div class="first last line-block">
+<div class="line">mpu1_0</div>
+<div class="line">mcu1_0</div>
+<div class="line">mcu1_1</div>
+</div>
+</td>
+<td>makefile</td>
+</tr>
+<tr class="row-odd"><td>J721E</td>
+<td><div class="first last line-block">
+<div class="line">mpu1_0</div>
+<div class="line">mcu1_0</div>
+<div class="line">mcu1_1</div>
+<div class="line">mcu2_0</div>
+<div class="line">mcu2_1</div>
+<div class="line">mcu3_0</div>
+<div class="line">mcu3_1</div>
+<div class="line">c66xdsp_1</div>
+<div class="line">c66xdsp_2</div>
+<div class="line">c7x_1</div>
+</div>
+</td>
+<td>makefile</td>
+</tr>
+<tr class="row-even"><td>J7200</td>
+<td><div class="first last line-block">
+<div class="line">mpu1_0</div>
+<div class="line">mcu1_0</div>
+<div class="line">mcu1_1</div>
+<div class="line">mcu2_0</div>
+<div class="line">mcu2_1</div>
+</div>
+</td>
+<td>makefile</td>
+</tr>
+<tr class="row-odd"><td>AM64X</td>
+<td><div class="first last line-block">
+<div class="line">mpu1_0</div>
+<div class="line">mcu1_0</div>
+<div class="line">mcu1_1</div>
+<div class="line">mcu2_0</div>
+<div class="line">mcu2_1</div>
+</div>
+</td>
+<td>makefile</td>
+</tr>
+<tr class="row-even"><td rowspan="4">ex02_baremetal_multicore_echo_test</td>
+<td rowspan="4"><div class="first line-block">
+<div class="line">All R5Fs are running
+baremetal with many-to-many
+communication, each core
+sending ping/pong with each
+other.</div>
+</div>
+<div class="last line-block">
+<div class="line">This test may be used in
+combination with other cores
+running the BIOS
+version of the test
+(ex02_bios test).</div>
+</div>
+</td>
+<td rowspan="4"><div class="first last line-block">
+<div class="line">At the end of the
+10000 iterations with
+a remote core, a
+ping/pong completed
+message is printed to
+the core&#8217;s trace buffer.</div>
+<div class="line">The buffer may be viewed
+by viewing the trace buffer
+memory in CCS memory browser
+window.</div>
+<div class="line">The address of the trace
+buffer can be found by
+checking the map file for
+the tracebuf section.</div>
+</div>
+</td>
+<td>AM65XX</td>
+<td><div class="first last line-block">
+<div class="line">mcu1_0</div>
+<div class="line">mcu1_1</div>
+</div>
+</td>
+<td>makefile</td>
+</tr>
+<tr class="row-odd"><td>J721E</td>
+<td><div class="first last line-block">
+<div class="line">mcu1_0</div>
+<div class="line">mcu1_1</div>
+<div class="line">mcu2_0</div>
+<div class="line">mcu2_1</div>
+<div class="line">mcu3_0</div>
+<div class="line">mcu3_1</div>
+</div>
+</td>
+<td>makefile</td>
+</tr>
+<tr class="row-even"><td>J7200</td>
+<td><div class="first last line-block">
+<div class="line">mcu1_0</div>
+<div class="line">mcu1_1</div>
+<div class="line">mcu2_0</div>
+<div class="line">mcu2_1</div>
+</div>
+</td>
+<td>makefile</td>
+</tr>
+<tr class="row-odd"><td>AM64X</td>
+<td><div class="first last line-block">
+<div class="line">mcu1_0</div>
+<div class="line">mcu1_1</div>
+<div class="line">mcu2_0</div>
+<div class="line">mcu2_1</div>
+<div class="line">m4f_0</div>
+</div>
+</td>
+<td>makefile</td>
+</tr>
+<tr class="row-even"><td rowspan="4">ex03_linux_bios_2core_echo_test</td>
+<td rowspan="4"><div class="first last line-block">
+<div class="line">This is the simple ping/pong
+application, where mpu1_0 is
+running Linux, and all other
+cores are running BIOS.
+Each of the cores running
+BIOS will communicate only
+with the mpu1_0 running
+Linux and not with each other</div>
+</div>
+</td>
+<td rowspan="4"><div class="first last line-block">
+<div class="line">After insmod of the
+rpmsg-client-sample
+kernel module, traces
+indicating the ping/pong
+process are printed to
+the Linux console for
+each message to indicate
+success.</div>
+</div>
+</td>
+<td>AM65XX</td>
+<td><div class="first last line-block">
+<div class="line">mcu1_0</div>
+</div>
+</td>
+<td>makefile</td>
+</tr>
+<tr class="row-odd"><td>J721E</td>
+<td><div class="first last line-block">
+<div class="line">mcu1_0</div>
+</div>
+</td>
+<td>makefile</td>
+</tr>
+<tr class="row-even"><td>J7200</td>
+<td><div class="first last line-block">
+<div class="line">mcu1_0</div>
+</div>
+</td>
+<td>makefile</td>
+</tr>
+<tr class="row-odd"><td>AM64X</td>
+<td><div class="first last line-block">
+<div class="line">mcu1_0</div>
+</div>
+</td>
+<td>makefile</td>
+</tr>
+<tr class="row-even"><td rowspan="4">ex04_linux_baremetal_2core_echo_test</td>
+<td rowspan="4"><div class="first last line-block">
+<div class="line">This is the simple ping/pong
+application, where mpu1_0 is
+running Linux, and all other
+cores are running baremetal
+Each of the cores running
+baremetal will communicate
+only with the mpu1_0 running
+Linux and not with each
+other.</div>
+</div>
+</td>
+<td rowspan="4"><div class="first last line-block">
+<div class="line">After insmod of the
+rpmsg-client-sample
+kernel module, traces
+indicating the ping/pong
+process are printed to
+the Linux console for each
+message to indicate
+success.</div>
+</div>
+</td>
+<td>AM65XX</td>
+<td><div class="first last line-block">
+<div class="line">mcu1_0</div>
+<div class="line">mcu1_1</div>
+</div>
+</td>
+<td>makefile</td>
+</tr>
+<tr class="row-odd"><td>J721E</td>
+<td><div class="first last line-block">
+<div class="line">mcu1_0</div>
+<div class="line">mcu1_1</div>
+<div class="line">mcu2_0</div>
+<div class="line">mcu2_1</div>
+<div class="line">mcu3_0</div>
+<div class="line">mcu3_1</div>
+</div>
+</td>
+<td>makefile</td>
+</tr>
+<tr class="row-even"><td>J7200</td>
+<td><div class="first last line-block">
+<div class="line">mcu1_0</div>
+<div class="line">mcu1_1</div>
+<div class="line">mcu2_0</div>
+<div class="line">mcu2_1</div>
+</div>
+</td>
+<td>makefile</td>
+</tr>
+<tr class="row-odd"><td>AM64X</td>
+<td><div class="first last line-block">
+<div class="line">mcu1_0</div>
+<div class="line">mcu1_1</div>
+<div class="line">mcu2_0</div>
+<div class="line">mcu2_1</div>
+</div>
+</td>
+<td>makefile</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="loading-remote-firmware">
+<h3>4.10.7.2. Loading Remote Firmware<a class="headerlink" href="#loading-remote-firmware" title="Permalink to this headline">¶</a></h3>
+<p>Remote firmware can be loading using CCS or using uBoot SPL.</p>
+<ol class="arabic">
+<li><p class="first"><strong>Loading using CCS</strong> :</p>
+<blockquote>
+<div><p>Sciclient module contains default system firmware and CCS script to load the system firmware. The load scripts should be modified to reflect the correct full-path of the script location.</p>
+<ul>
+<li><p class="first">Refer the <a class="reference external" href="http://software-dl.ti.com/jacinto7/esd/processor-sdk-rtos-jacinto7/latest/exports/docs/psdk_rtos_auto/docs/user_guide/ccs_setup_j721e.html">J721E EVM CCS Setup Documentation</a> section for details of setting up the CCS target configuration and loading system firmware.</p>
+</li>
+<li><p class="first">Load the remote binaries</p>
+<blockquote>
+<div><ul class="simple">
+<li>Menu <strong>Run &#8211;&gt; Load Program</strong></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">Run the cores.</p>
+</li>
+<li><p class="first">After running the cores, the sample output should look something like below.</p>
+<a class="reference internal image-reference" href="../_images/ipclld_Sample_output_mpu.png"><img alt="../_images/ipclld_Sample_output_mpu.png" src="../_images/ipclld_Sample_output_mpu.png" style="width: 672px; height: 377px;" /></a>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>Loading using SPL/uBoot</strong></p>
+</li>
+</ol>
+<blockquote>
+<div><p>Run following steps to configure remote firmware for SPL loading with HLOS running on MPU</p>
+<ol class="arabic simple">
+<li>Copy the remote firmware to rootfs at /lib/firmware/pdk-ipc folder</li>
+<li>cd /lib/firmware</li>
+<li>Remove old soft link for remote cores<ul>
+<li>rm j7*</li>
+</ul>
+</li>
+<li>Create new soft links<ul>
+<li>ln -s /lib/firmware/pdk-ipc/ipc_echo_test_c66xdsp_1_release.xe66 j7-c66_0-fw</li>
+<li>ln -s /lib/firmware/pdk-ipc/ipc_echo_test_c66xdsp_2_release.xe66 j7-c66_1-fw</li>
+<li>ln -s /lib/firmware/pdk-ipc/ipc_echo_test_c7x_1_release.xe71     j7-c71_0-fw</li>
+<li>ln -s /lib/firmware/pdk-ipc/ipc_echo_test_mcu3_0_release.xer5f   j7-main-r5f1_0-fw</li>
+<li>ln -s /lib/firmware/pdk-ipc/ipc_echo_test_mcu3_1_release.xer5f   j7-main-r5f1_1-fw</li>
+<li>ln -s /lib/firmware/pdk-ipc/ipc_echo_test_mcu2_0_release.xer5f   j7-main-r5f0_0-fw</li>
+<li>ln -s /lib/firmware/pdk-ipc/ipc_echo_test_mcu2_1_release.xer5f   j7-main-r5f0_1-fw</li>
+<li>ln -s /lib/firmware/pdk-ipc/ipc_echo_testb_mcu1_0_release.xer5f  j7-mcu-r5f0_0-fw</li>
+<li>ln -s /lib/firmware/pdk-ipc/ipc_echo_test_mcu1_1_release.xer5f   j7-mcu-r5f0_1-fw</li>
+</ul>
+</li>
+<li>sync : write the changes to filesystem</li>
+<li>Reboot the system</li>
+</ol>
+</div></blockquote>
+</div>
+<div class="section" id="running-the-echo-tests">
+<h3>4.10.7.3. Running the Echo Tests<a class="headerlink" href="#running-the-echo-tests" title="Permalink to this headline">¶</a></h3>
+<p>In this section ipc_echo_test is used to demonstrate, but same instructions apply to other examples that have Linux on MPU, though test output may be slightly different.</p>
+<blockquote>
+<div><ol class="arabic">
+<li><p class="first">Login as root</p>
+</li>
+<li><p class="first">Start sample app as below</p>
+<ul class="simple">
+<li>modprobe rpmsg_client_sample count=5</li>
+</ul>
+<a class="reference internal image-reference" href="../_images/ipclld_Linux_Start.png"><img alt="../_images/ipclld_Linux_Start.png" src="../_images/ipclld_Linux_Start.png" style="width: 581px; height: 270px;" /></a>
+</li>
+</ol>
+<blockquote>
+<div><ol class="arabic simple" start="3">
+<li>After running the sample app, it should display something below</li>
+</ol>
+<blockquote>
+<div><a class="reference internal image-reference" href="../_images/ipclld_linux_output.png"><img alt="../_images/ipclld_linux_output.png" src="../_images/ipclld_linux_output.png" style="width: 983px; height: 796px;" /></a>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="ipclld-design-details">
+<h2>4.10.8. IPCLLD Design Details<a class="headerlink" href="#ipclld-design-details" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Ring Buffer is used as shared memory to transfer the data. It must be reserved system wide. The base-address and size of ring Buffer must be provided to IPCLLD. It must be same for all core applications. The invidual memory-range for Ring Buffer between core combinations are calculated internally inside the library. The default base-address and size used in the IPC examples is</li>
+</ul>
+<table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="43%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Device</th>
+<th class="head">Base Address</th>
+<th class="head">Size</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>J721E</td>
+<td>0xAA000000</td>
+<td>0x1C00000</td>
+</tr>
+</tbody>
+</table>
+<p>The VRing base address and size is passed from the application during the Ipc_initVirtIO() call. See <a class="reference internal" href="#writing-helloworld-app-using-ipclld">Writing HelloWorld App using IPCLLD</a> for the example of usage.</p>
+<p>Additionally the Ring Buffer memory used when communicating with MPU running Linux must be reserved system wide. The base-address and size of the ring buffer is different from what is used between cores not running Linux. The base-address and size of the ring Buffer is provided to IPCLLD when Linux updates the core&#8217;s resource table with the allocated addresses. Linux allocates the base-address from the first memory-region. See <a class="reference internal" href="#resource-table">Resource Table</a> for more information.</p>
+<ul class="simple">
+<li>For each RPmessage object, the memory must be provided to library from local heap. All subsequent send/recv API is using rpmessage buffer provided during the create function.</li>
+<li>Maximum payload/user message size that can be transferred by RPMessage is 496 bytes. For larger data transfers, it is recommended to pass a pointer/handle/offset to a larger shared memory buffer inside the message data.</li>
+<li>For firmware that will communicate with Linux over IPC, a Resource Table is required. See <a class="reference internal" href="#resource-table">Resource Table</a> for more information.</li>
+</ul>
+<div class="section" id="typical-data-flow-in-ipclld-communication-between-two-cores">
+<h3>4.10.8.1. Typical Data-Flow in IPCLLD communication between two cores<a class="headerlink" href="#typical-data-flow-in-ipclld-communication-between-two-cores" title="Permalink to this headline">¶</a></h3>
+<p>Following picture illustrates the data flow between two cores using mailbox IP as transport.</p>
+<a class="reference internal image-reference" href="../_images/ipclld_data_flow.png"><img alt="../_images/ipclld_data_flow.png" src="../_images/ipclld_data_flow.png" style="width: 687px; height: 470px;" /></a>
+</div>
+<div class="section" id="resource-table">
+<h3>4.10.8.2. Resource Table<a class="headerlink" href="#resource-table" title="Permalink to this headline">¶</a></h3>
+<p>For applications that will use Linux IPC, a resource table is required. Example resource tables can be found in the IPC examples:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="84%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Device</th>
+<th class="head">Resource Table Example Location</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>J721E</td>
+<td>examples/common/src/ipc_rsctable.h</td>
+</tr>
+</tbody>
+</table>
+<p>The resource table must have at least one entry, the VDEV entry, to define the the vrings used for IPC communication with Linux.
+Optionally, the resource table can also have a TRACE entry which defines the location of the remote core trace buffer.</p>
+<p>The VDEV entry specifies the address as RPMSG_VRING_ADDR_ANY, meaning that the address will be allocated by the Linux driver during loading. The allocation is made from the first memory-region specified in the dts file for the remote core. For example, if the dts entry for mcu_r5fss0_core0 is</p>
+<div class="highlight-cpp"><div class="highlight"><pre>reserved_memory: reserved-memory {
+    #address-cells = &lt;2&gt;;
+    #size-cells = &lt;2&gt;;
+    ranges;
+
+    mcu_r5fss0_core0_dma_memory_region: r5f-dma-memory@a0000000 {
+            compatible = &quot;shared-dma-pool&quot;;
+            reg = &lt;0 0xa0000000 0 0x100000&gt;;
+            no-map;
+    };
+
+    mcu_r5fss0_core0_memory_region: r5f-memory@a0100000 {
+            compatible = &quot;shared-dma-pool&quot;;
+            reg = &lt;0 0xa0100000 0 0xf00000&gt;;
+            no-map;
+    };
+}
+</pre></div>
+</div>
+<p>then the allocation for the vrings for mcu_r5fss0_core0 will come from the 0xa0000000 entry.</p>
+<p>Note that this address is specific to the Linux&lt;-&gt;remote core VRING, and is different from the address provided to the Virtio module in the remote core firmware in the call to Ipc_initVirtIO.</p>
+</div>
+<div class="section" id="memory-considerations">
+<h3>4.10.8.3. Memory Considerations<a class="headerlink" href="#memory-considerations" title="Permalink to this headline">¶</a></h3>
+<p>As mentioned in <a class="reference internal" href="#ipclld-design-details">IPCLLD Design Details</a>, the Ring Buffer memory must be reserved system-wide. In addition, the Ring Buffer memory should be configured as non-cached on all cores using IPCLLD. For examples of configurations for Ring Buffer memory, refer to the examples in pdk/packages/ti/drv/ipc/examples/.</p>
+</div>
+</div>
+<div class="section" id="writing-helloworld-app-using-ipclld">
+<h2>4.10.9. Writing HelloWorld App using IPCLLD<a class="headerlink" href="#writing-helloworld-app-using-ipclld" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first"><strong>Step1: Initialize MultiProc with SelfId, and how many remote cores</strong></p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">Ipc_mpSetConfig</span><span class="p">(</span><span class="n">selfProcId</span><span class="p">,</span> <span class="n">numProc</span><span class="p">,</span> <span class="n">remoteProc</span><span class="p">);</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first"><strong>Step2a: Initialize the Ipc module (RTOS case).</strong></p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cm">/* Use NULL for params pointer to take all default params */</span>
+<span class="n">Ipc_init</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first"><strong>Step2b: Initialize the Ipc module (baremetal case)</strong></p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cm">/* Init the params to default and specify the custom newMsgFxn to be notified of new message arrival */</span>
+<span class="n">Ipc_initPrms_init</span><span class="p">(</span><span class="mi">0U</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">initPrms</span><span class="p">);</span>
+<span class="n">initPrms</span><span class="p">.</span><span class="n">newMsgFxn</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">IpcTestBaremetalNewMsgCb</span><span class="p">;</span>
+<span class="n">Ipc_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">initPrms</span><span class="p">);</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first"><strong>Step3: Load the Resource Table (required only if running Linux on A72/A53)</strong></p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">Ipc_loadResourceTable</span><span class="p">((</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">ti_ipc_remoteproc_ResourceTable</span><span class="p">);</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>See <a class="reference internal" href="#resource-table">Resource Table</a> for details on the resource table.</p>
+<ul>
+<li><p class="first"><strong>Step4: Initialize VirtIO (note: Base Address for Shared Memory used for RingBuffer)</strong></p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">vqParam</span><span class="p">.</span><span class="n">vqObjBaseAddr</span> <span class="o">=</span> <span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span><span class="n">sysVqBuf</span><span class="p">;</span>
+<span class="n">vqParam</span><span class="p">.</span><span class="n">vqBufSize</span>     <span class="o">=</span> <span class="n">numProc</span> <span class="o">*</span> <span class="n">Ipc_getVqObjMemoryRequiredPerCore</span><span class="p">();</span>
+<span class="n">vqParam</span><span class="p">.</span><span class="n">vringBaseAddr</span> <span class="o">=</span> <span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span><span class="n">VRING_BASE_ADDRESS</span><span class="p">;</span>
+<span class="n">vqParam</span><span class="p">.</span><span class="n">vringBufSize</span>  <span class="o">=</span> <span class="n">VRING_BUFFER_SIZE</span><span class="p">;</span>
+<span class="n">Ipc_initVirtIO</span><span class="p">(</span><span class="o">&amp;</span><span class="n">vqParam</span><span class="p">);</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first"><strong>Step5: Initialize RPMessage</strong></p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">RPMessage_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">cntrlParam</span><span class="p">);</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first"><strong>Step6: Send Message</strong></p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">RPMessage_send</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="n">dstProc</span><span class="p">,</span> <span class="n">ENDPT1</span><span class="p">,</span> <span class="n">myEndPt</span><span class="p">,</span> <span class="p">(</span><span class="n">Ptr</span><span class="p">)</span><span class="n">buf</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first"><strong>Step7a: Receive Message (RTOS case)</strong></p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">RPMessage_recv</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="p">(</span><span class="n">Ptr</span><span class="p">)</span><span class="n">buf</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">len</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">remoteEndPt</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">remoteProcId</span><span class="p">,</span> <span class="n">timeout</span><span class="p">);</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first"><strong>Step7b: Receive Message (baremetal case)</strong></p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cm">/* After the IPCLLD notifies the app of a new message available via the newMsgFxn, app can call the non-blocking variant to get the message */</span>
+<span class="n">RPMessage_recvNb</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="p">(</span><span class="n">Ptr</span><span class="p">)</span><span class="n">buf</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">len</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">remoteEndPt</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">remoteProcId</span><span class="p">);</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="mcasp.html" class="btn btn-neutral float-right" title="4.11. McASP" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="i2c.html" class="btn btn-neutral" title="4.9. I2C" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="http://www.ti.com/corp/docs/legal/copyright.shtml">&copy; Copyright 1995-2020</a>, Texas Instruments Incorporated. All rights reserved. <br>
+      <a href="http://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="http://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="http://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="http://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'08_06_01',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

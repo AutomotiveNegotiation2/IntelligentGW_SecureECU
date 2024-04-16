@@ -1,0 +1,81 @@
+# Object files
+*.o
+*.ko
+*.obj
+*.elf
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Libraries
+*.lib
+*.a
+*.la
+*.lo
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Executables
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+
+# DSP files
+*.d
+*.bc
+*.cpperr
+*.cerr
+*.dat
+
+# IDE files
+.DS_Store
+.metadata
+.project
+.idea
+*.BAK
+*.pyc
+
+# Gedit backup files
+*.*~
+*.swp
+
+# GIT leftover merge files
+*.orig
+
+# Loki (?) generated files
+stats.txt
+tlmtrace.txt
+
+# Doxgyen generated files
+docs/doxygen/html/*
+!docs/doxygen/html/ti*
+docs/user_guide
+
+#Xcode directories and files
+Host Emulation/
+*.xcodeproj
+*.pbxproj
+*.xcworkspacedata
+*.xcuserstate
+*.plist
+
+
+# Output directory for binaries and asms
+out/
+
+# Output directory idat generation
+ti/mmalib/scripts/idat_generation/convolve_col/test_data/
+
+# Python
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class

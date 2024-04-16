@@ -1,0 +1,195 @@
+============
+Firewall FAQ
+============
+
+.. contents:: :local:
+
+.. note::
+
+   |sysfw| supports multiple SOC's.
+   When providing links to SOC-specific documentation, this document provides
+   the example of AM65x SR1 SOC.
+   Documentation for other SOC's can be found by traversing similar path from
+   the root of :doc:`../5_soc_doc/index`.
+
+Can I directly write to firewall configuration registers ?
+----------------------------------------------------------
+
+No. Firewall configuration registers are only writable by |sysfw|.
+They cannot be programmed by direct register writes.
+
+How do I configure a firewall ?
+-------------------------------
+
+Firewalls are configured using the :ref:`TISCI_MSG_SET_FWL_REGION <set-firewall-region>` TISCI message.
+
+Disabling a firewall is also done using the same API using the control word.
+
+All the registers of a firewall can be configured using the above TISCI message.
+
+How do I specify which firewall to program ?
+--------------------------------------------
+
+Firewalls are identified to |sysfw| by their ID. 
+The ID of a firewall can be obtained from the Technical Reference Manual(TRM) of the SOC.
+Information on firewalls is provided in the chapter "System Interconnect" and the subsection
+"Interconnect Firewalls".
+
+:ref:`TISCI_MSG_SET_FWL_REGION <set-firewall-region>` TISCI message takes firewall id as one of the arguments.
+
+How do I know what permissions to program in the firewall ?
+-----------------------------------------------------------
+
+Privilege ID's of the various initiators are described in the public SOC documentation
+:doc:`../5_soc_doc/index` under "<SOC> Firewall Descriptions". 
+As an example for AM65X devices, this is listed under
+:ref:`AM65x List of priv ids <soc_doc_am6_public_fwl_desc_priv_id_list>`.
+
+The values to program in the permission bits and the control registers
+can be found from the below section in the TRM.
+
+"System Interconnect" -> "System Interconnect Registers" -> "Firewall Region Registers"
+
+Are all firewalls user programmable ?
+-------------------------------------
+
+No. |sysfw| maintains ownership of the following categories of firewalls.
+
+1. Firewalls protecting DMSC-owned resources - e.g. secure proxies,
+   firewall configuration port etc.
+   These firewalls are marked as owned by ``dmsc`` in the firewall SOC data.
+
+2. Firewalls protecting DMSC-managed resources i.e. NAVSS resources managed by RM.
+   These firewalls are marked as owned by ``rm`` in the firewall SOC data.
+
+The remaining firewalls are user programmable through the TISCI interface only.
+
+The list of firewalls owned/initialized by |sysfw| are listed for AM65X SR1
+devices at
+
+- :ref:`AM65x Standard region-based slave firewall configuration <soc_doc_am6_public_fwl_desc_region_fwl_list>`
+
+- :ref:`AM65x Channelized slave firewall configuration <soc_doc_am6_public_fwl_desc_channel_fwl_list>`
+
+What is firewall ownership ?
+----------------------------
+
+Firewall ownership is a software concept implemented by |sysfw|.
+A firewall region can be marked as owned by a specific host.
+This prevents the firewall region from being programmed/reprogrammed
+by another host and helps in firewall overlap checks.
+
+By default, only firewalls required from |sysfw| use are marked as owned by ``dmsc`` or ``rm``.
+Rest of the firewalls have ownership set to ``none``. 
+Firewalls with owner set as ``none`` can be programmed by any host.
+
+A host can claim ownership of a firewall region with owner set to ``none`` by using the
+:ref:`TISCI_MSG_CHANGE_FWL_OWNER <change-firewall-owner>` message. A host
+can use the same message to transfer a firewall region it owns to another host.
+
+Is there any relationship between ownership and firewall permissions ?
+----------------------------------------------------------------------
+
+The concept of firewall ownership is unrelated to firewall permissions.
+Firewall ownership is a software concept.
+Firewall permissions directly map to the underlying hardware registers.
+The owner of a firewall can configure firewall permissions as desired.
+|sysfw| does not perform any checks on the firewall permissions supplied
+in the TISCI message arguments.
+
+Is host ID the same as priv ID ?
+--------------------------------
+
+No. Host ID is a software concept introduced by |sysfw| to be differentiate
+between different entities on the device.
+Some of the entities can be on the same core.
+e.g. privileged software and unprivileged software running on the same core.
+See :ref:`AM65X Host IDs <soc_doc_am6_public_host_desc_intro>`.
+
+Priv ID is a hardware concept. Every transaction on the interconnect has various
+attributes including but not limited to Priv ID, user/privileged, secure/non
+secure. Each host maps to a Priv ID. See :ref:`AM65x List of priv ids
+<soc_doc_am6_public_fwl_desc_priv_id_list>` for the mapping.
+
+Is programming overlapping firewalls supported ?
+------------------------------------------------
+
+Yes. Programming overlapping firewalls is supported.
+|sysfw| performs additional checks when overlapping firewall regions are being programmed.
+
+1. A background region cannot overlap with another background region.
+2. A foreground region cannot overlap with another foreground region.
+
+The above two checks are to prevent undefined behaviour as per hardware specification.
+
+3. Same host must own both the foreground and background region in case of an overlap. 
+   If any of the overlapping regions is owned by ``none`` (unowned/wildcard region) following rules apply:  
+   - Unowned foreground region cannot overlap with owned background region. 
+   - Unowned background region can overlap with foreground region owned by any host. 
+   These checks prevent one host from using a foreground region to override
+   firewall configuration performed by another host
+
+Before programming overlapping firewall regions, please claim ownership of both the
+regions using the :ref:`TISCI_MSG_CHANGE_FWL_OWNER <change-firewall-owner>` message.
+
+What are background and foreground regions ?
+--------------------------------------------
+
+The firewall IP supports the concept for foreground and background regions.
+The firewall permissions specified in a background region can be overridden
+by using a foreground region.
+
+A region can be specified as foreground or background using a bit in the control register.
+Please refer to the following section in TRM for more information.
+
+"System Interconnect" -> "System Interconnect Registers" -> "Firewall Region Registers"
+
+Following restrictions apply from hardware perspective.
+
+1. A background region cannot overlap with another background region.
+
+2. A foreground region cannot overlap with another foreground region.
+
+3. A foreground region cannot span two background regions.
+
+How do I debug firewall issues ?
+--------------------------------
+
+The programmed firewall settings can be read back by the owner using
+:ref:`TISCI_MSG_GET_FWL_REGION <get-firewall-region>`.
+
+Direct readback of the firewall configuration registers is not currently
+allowed.
+
+When a firewall exception occurs, the exception data is sent out via the
+enabled trace method.
+The data sent out is the dump of the firewall exception registers as
+defined in below section in the corresponding device TRM.
+
+"System Interconnect" -> "System Interconnect Registers" -> "Firewall Exception Registers"
+
+.. code::
+
+   FWL Exception  0x1116100
+   0x70000
+   0x70000000
+   0x0
+   0xE022000
+   0x8
+
+The 6 hex values shown above correspond to the 2 exception header registers and
+4 exception data registers in the order shown in the TRM.
+
+.. warning::
+
+   Please note that this format is being deprecated in favour of a binary format
+   in conformance with the rest of traces supplied by |sysfw|.
+
+How are DMSC-managed resources firewalled ?
+-------------------------------------------
+
+NAVSS resources managed by DMSC (UDMA channels, Rings, Proxy channels and IRQ)
+are firewalled automatically when the corresponding RM TISCI messages are sent.
+
+Accessing these resources before sending the corresponding RM TISCI message
+will result in a firewall exception.

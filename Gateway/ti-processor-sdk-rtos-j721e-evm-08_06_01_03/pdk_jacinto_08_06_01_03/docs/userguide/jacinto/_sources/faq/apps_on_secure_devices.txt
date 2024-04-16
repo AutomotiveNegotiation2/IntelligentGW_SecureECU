@@ -1,0 +1,84 @@
+.. _apps_on_secure_devices:
+
+.. toctree::
+
+
+FAQ - Running Apps on secure devices
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Introduction
+============
+
+This note assume that reader is conversant in using General Purpose device and would like to switch to HS-SE device.
+As a precursor, it's recommended to go over TIFS detailed in `TIFS Documentation <http://downloads.ti.com/tisci/esd/latest/1_intro/TISCI.html>`__
+This document assumes an **HS-ES** device is being used
+
+Device Types
+------------
+
++----------------------+-------------------------+--------------------------------------+
+| Device Type          | Variant                 | Comment                              |
++----------------------+-------------------------+--------------------------------------+
+| General Purpose (GP) | NA                      |                                      |
+|                      |                         |                                      |
++----------------------+-------------------------+--------------------------------------+
+| High Security (HS)   | Field Securable (FS)    | Would require additional steps       |
+|                      |                         | before it can be used. Contact TI    |
+|                      |                         | FAE supporting for details           |
++----------------------+-------------------------+--------------------------------------+
+| High Security (HS)   | Security Enforced (SE)  | Expected device type, that can host  |
+|                      |                         | applications. Refereed as **HS-SE**  |
++----------------------+-------------------------+--------------------------------------+
+
+
+JTAG Connectivity
+-----------------
+
+JTAG cannot be connected to all compute cores, refer `Secure Debug <http://downloads.ti.com/tisci/esd/latest/6_topic_user_guides/secure_debug.html>`__ for details.
+
+
+Signing
+=======
+
+The applications that are expected to be hosted on compute cores and board configurations requires to be signed.
+
+    - Refer `To Sign Applications <http://downloads.ti.com/tisci/esd/latest/6_topic_user_guides/secure_boot_signing.html#>`__
+    - Refer `To Sign Board Configuration <http://downloads.ti.com/tisci/esd/latest/6_topic_user_guides/secure_boot_signing.html#>`__
+
+    - Signing PDK's applications
+        - PDK's build infrastructure supports signing of applications
+        - Manufacturer encryption keys is defined in **(SDK_Install_Dir)/(pdk_version)/packages/ti/build/makerules/k3_dev_mek.txt**
+        - Manufacturer private keys is defined in **(SDK_Install_Dir)/(pdk_version)/packages/ti/build/makerules/k3_dev_mpk.pem**
+        - Please update these files with specific your specific keys
+
+Building PDK Applications
+=========================
+
+    - PDK SBL : SBL should be built for secure devices
+        - Build using the command **make sbl_(BOOT MEDIA)_img_hs BOARD=(DEVICE)_evm -sj**
+        - e.g. 1 : make sbl_uart_img_hs BOARD=j721e_evm -sj to boot from UART
+        - e.g. 2 : make sbl_mmcsd_img_hs BOARD=j721e_evm -sj to boot from MMC/SD
+
+    - PDK examples : No specific commands are required
+        - Follow steps detailed in module specific user guides
+        - Ensure to use **(module example binary name).appimage.signed**
+            - e.g. **udma_memcpy_testapp_freertos_mcu1_0_release.appimage.signed**
+            - e.g. **MMCSD_TestApp_freertos_mcu1_0_release.appimage.signed**
+
+    - TIFS : Use tifs for HS devices
+        - **tifs_sr1.1-hs-enc.bin**
+        - available at (SDK_Install_Dir)/(pdk_version)/packages/ti/drv/sciclient/soc/Vx
+            - V1 for j721e 
+            - **tifs_sr1.1-hs-enc.bin** sr1.1 refer to silicon ES 1.1
+
+    - Running PDK
+        - For the steps detailed in module specific user guides. No additional steps are required
+
+References
+==========
+    - `RTOS SDK Documentation <https://software-dl.ti.com/jacinto7/esd/processor-sdk-rtos-jacinto7/latest/exports/docs/psdk_rtos/docs/user_guide/index.html>`__
+    - `RTOS SDK Component Documentation <https://software-dl.ti.com/jacinto7/esd/processor-sdk-rtos-jacinto7/latest/exports/docs/psdk_rtos/docs/user_guide/sdk_components_j721e.html#platform-development-kit-pdk>__`
+    - `TIFS Documentation <http://downloads.ti.com/tisci/esd/latest/1_intro/TISCI.html>`__
+    - `To Sign Applications <http://downloads.ti.com/tisci/esd/latest/6_topic_user_guides/secure_boot_signing.html#>`__
+    - `To Sign Board Configuration <http://downloads.ti.com/tisci/esd/latest/6_topic_user_guides/secure_boot_signing.html#>`__
+

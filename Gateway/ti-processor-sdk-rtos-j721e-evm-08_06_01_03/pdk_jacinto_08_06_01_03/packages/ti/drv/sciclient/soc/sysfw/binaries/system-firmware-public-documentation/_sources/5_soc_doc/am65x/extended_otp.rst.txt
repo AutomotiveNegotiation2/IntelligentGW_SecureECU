@@ -1,0 +1,27 @@
+================================
+ AM65x Extended OTP Information
+================================
+
+.. _soc_doc_am6_public_extended_otp_information:
+
+Introduction
+============
+
+This chapter provides information on the extended OTP area on the AM65x SOC.
+
+.. _soc_doc_am6_public_extended_otp_parameters:
+
+Extended OTP Parameters
+=======================
+
++--------------------------------------------------------+---------------+
+| Parameter                                              | Value         |
++========================================================+===============+
+| Total number of Extended OTP bits                      | 1024          |
++--------------------------------------------------------+---------------+
+| Number of bits per OTP row                             | 32            |
++--------------------------------------------------------+---------------+
+| Number of OTP rows                                     | 32            |
++--------------------------------------------------------+---------------+
+| Number of OTP MMRs                                     | 32            |
++--------------------------------------------------------+---------------+

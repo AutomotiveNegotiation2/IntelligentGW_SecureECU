@@ -1,0 +1,24 @@
+var searchData=
+[
+  ['mmalib_5fcnn_5fconvolve_5fcol_5fsmallno_5fixx_5fixx_5foxx',['MMALIB_CNN_convolve_col_smallNo_ixX_ixX_oxX',['../group__MMALIB__CNN__convolve__col__smallNo__ixX__ixX__oxX.html',1,'']]],
+  ['mmalib_5fcnn_5fconvolve_5fcol_5fsmallno_5fixx_5fixx_5foxx_5freorderweights',['MMALIB_CNN_convolve_col_smallNo_ixX_ixX_oxX_reorderWeights',['../group__MMALIB__CNN__convolve__col__smallNo__ixX__ixX__oxX__reorderWeights.html',1,'']]],
+  ['mmalib_5fcnn_5fconvolve_5frow_5fixx_5fixx_5foxx',['MMALIB_CNN_convolve_row_ixX_ixX_oxX',['../group__MMALIB__CNN__convolve__row__ixX__ixX__oxX.html',1,'']]],
+  ['mmalib_5fcnn_5fdeconvolve_5frow_5fixx_5fixx_5foxx',['MMALIB_CNN_deconvolve_row_ixX_ixX_oxX',['../group__MMALIB__CNN__deconvolve__row__ixX__ixX__oxX.html',1,'']]],
+  ['mmalib_5fcnn_5ffullyconnected_5fixx_5fixx_5foxx',['MMALIB_CNN_fullyConnected_ixX_ixX_oxX',['../group__MMALIB__CNN__fullyConnected__ixX__ixX__oxX.html',1,'']]],
+  ['mmalib_5fcnn_5fpixelshuffle_5frow_5fixx_5fixx_5foxx',['MMALIB_CNN_pixelShuffle_row_ixX_ixX_oxX',['../group__MMALIB__CNN__pixelShuffle__row__ixX__ixX__oxX.html',1,'']]],
+  ['mmalib_5fcnn_5ftensor_5fconvert_5fixx_5foxx',['MMALIB_CNN_tensor_convert_ixX_oxX',['../group__MMALIB__CNN__tensor__convert__ixX__oxX.html',1,'']]],
+  ['mmalib_5fdsp_5ffir_5fixx_5fixx_5foxx',['MMALIB_DSP_fir_ixX_ixX_oxX',['../group__MMALIB__DSP__fir__ixX__ixX__oxX.html',1,'']]],
+  ['mmalib_5fdsp_5ffirsmall_5fixx_5fixx_5foxx',['MMALIB_DSP_firSmall_ixX_ixX_oxX',['../group__MMALIB__DSP__firSmall__ixX__ixX__oxX.html',1,'']]],
+  ['mmalib_5ffft1d_5fi16sc_5fc16sc_5fo16sc',['MMALIB_fft1d_i16sc_c16sc_o16sc',['../group__MMALIB__fft1d__i16sc__c16sc__o16sc.html',1,'']]],
+  ['mmalib_5ffft1d_5fi32fc_5fc32fc_5fo32fc',['MMALIB_fft1d_i32fc_c32fc_o32fc',['../group__MMALIB__fft1d__i32fc__c32fc__o32fc.html',1,'']]],
+  ['mmalib_5ffft1dbatched_5fi16sc_5fc16sc_5fo16sc',['MMALIB_fft1dBatched_i16sc_c16sc_o16sc',['../group__MMALIB__fft1dBatched__i16sc__c16sc__o16sc.html',1,'']]],
+  ['mmalib_5ffft1dbatched_5fi32fc_5fc32fc_5fo32fc',['MMALIB_fft1dBatched_i32fc_c32fc_o32fc',['../group__MMALIB__fft1dBatched__i32fc__c32fc__o32fc.html',1,'']]],
+  ['mmalib_5ffft_5fdftlarge_5fixx_5fcxx_5foxx',['MMALIB_FFT_dftLarge_ixX_cxX_oxX',['../group__MMALIB__FFT__dftLarge__ixX__cxX__oxX.html',1,'']]],
+  ['mmalib_5ffft_5fdftsmall_5fixx_5fcxx_5foxx',['MMALIB_FFT_dftSmall_ixX_cxX_oxX',['../group__MMALIB__FFT__dftSmall__ixX__cxX__oxX.html',1,'']]],
+  ['mmalib_5ffft_5ffft_5fixx_5fcxx_5foxx',['MMALIB_FFT_fft_ixX_cxX_oxX',['../group__MMALIB__FFT__fft__ixX__cxX__oxX.html',1,'']]],
+  ['mmalib_5ffft_5fhighradixdecompositions_5fixx_5fcxx_5foxx',['MMALIB_FFT_highRadixDecompositions_ixX_cxX_oxX',['../group__MMALIB__FFT__highRadixDecompositions__ixX__cxX__oxX.html',1,'']]],
+  ['mmalib_5flinalg_5fmatrixmatrixmultiply_5fixx_5fixx_5foxx',['MMALIB_LINALG_matrixMatrixMultiply_ixX_ixX_oxX',['../group__MMALIB__LINALG__matrixMatrixMultiply__ixX__ixX__oxX.html',1,'']]],
+  ['mmalib_5flinalg_5fmatrixmatrixmultiplyaccumulate_5fixx_5fixx_5fixx_5foxx',['MMALIB_LINALG_matrixMatrixMultiplyAccumulate_ixX_ixX_ixX_oxX',['../group__MMALIB__LINALG__matrixMatrixMultiplyAccumulate__ixX__ixX__ixX__oxX.html',1,'']]],
+  ['mmalib_5flinalg_5fmatrixtranspose_5fixx_5foxx',['MMALIB_LINALG_matrixTranspose_ixX_oxX',['../group__MMALIB__LINALG__matrixTranspose__ixX__oxX.html',1,'']]],
+  ['mmalib_5flinalg_5fpointwisematrixmatrixmultiply_5fixx_5fixx_5foxx',['MMALIB_LINALG_pointwiseMatrixMatrixMultiply_ixX_ixX_oxX',['../group__MMALIB__LINALG__pointwiseMatrixMatrixMultiply__ixX__ixX__oxX.html',1,'']]]
+];

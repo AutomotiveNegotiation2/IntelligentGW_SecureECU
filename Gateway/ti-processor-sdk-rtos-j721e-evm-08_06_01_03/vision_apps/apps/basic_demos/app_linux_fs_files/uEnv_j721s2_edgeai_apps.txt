@@ -1,0 +1,6 @@
+# The SK requires an additional dtbo to boot. Prepend it to name_overlays depending on board_name
+uenvcmd=if test "$board_name" = "am68-sk"; then ; setenv name_overlays k3-am68-sk-som-ddr_mem_carveout.dtbo $name_overlays ; fi
+
+dorprocboot=1
+name_overlays=k3-j721s2-edgeai-apps.dtbo
+

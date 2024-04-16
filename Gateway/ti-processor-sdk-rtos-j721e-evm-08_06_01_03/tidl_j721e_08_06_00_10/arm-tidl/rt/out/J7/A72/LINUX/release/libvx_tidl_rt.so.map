@@ -1,0 +1,1053 @@
+
+Discarded input sections
+
+ .note.GNU-stack
+                0x0000000000000000        0x0 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../lib/gcc/aarch64-none-linux-gnu/9.2.1/crtbeginS.o
+ .group         0x0000000000000000        0x8 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0x8 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0x8 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0x8 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0x8 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0x8 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0x8 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0x8 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0x8 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0x8 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0x8 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0x8 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0x8 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0x8 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0x8 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0x8 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0x8 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0x8 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0x8 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0x8 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0x8 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0x8 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0x8 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0x8 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0x8 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0x8 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0x8 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0x8 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0x8 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0x8 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0x8 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0x8 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0x8 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0x8 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .group         0x0000000000000000        0x8 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/tidl_rt_linux_arm.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_utils.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_debug_utils.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tvm_rt_ovx.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../lib/gcc/aarch64-none-linux-gnu/9.2.1/crtendS.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crtn.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+LOAD /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+LOAD /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../lib/gcc/aarch64-none-linux-gnu/9.2.1/crtbeginS.o
+LOAD /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+LOAD /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/tidl_rt_linux_arm.o
+LOAD /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx.o
+LOAD /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_utils.o
+LOAD /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_debug_utils.o
+LOAD /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tvm_rt_ovx.o
+START GROUP
+END GROUP
+LOAD /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/j721e_08_06_00_04/targetfs/usr/lib/libti_rpmsg_char.so
+LOAD /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/j721e_08_06_00_04/vision_apps/out/J7/A72/LINUX/release/libtivision_apps.so
+LOAD /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/j721e_08_06_00_04/targetfs/usr/lib/librt.so
+LOAD /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/j721e_08_06_00_04/targetfs/usr/lib/libstdc++.so
+LOAD /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/j721e_08_06_00_04/targetfs/usr/lib/libm.so
+LOAD /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../lib/gcc/aarch64-none-linux-gnu/9.2.1/../../../../aarch64-none-linux-gnu/lib/../lib64/libgcc_s.so
+LOAD /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/j721e_08_06_00_04/targetfs/usr/lib/libc.so
+START GROUP
+LOAD /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/j721e_08_06_00_04/targetfs/usr/lib/../../lib/libc.so.6
+LOAD /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/j721e_08_06_00_04/targetfs/usr/lib/./libc_nonshared.a
+LOAD /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/j721e_08_06_00_04/targetfs/usr/lib/../../lib/ld-linux-aarch64.so.1
+END GROUP
+LOAD /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../lib/gcc/aarch64-none-linux-gnu/9.2.1/../../../../aarch64-none-linux-gnu/lib/../lib64/libgcc_s.so
+LOAD /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../lib/gcc/aarch64-none-linux-gnu/9.2.1/crtendS.o
+LOAD /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crtn.o
+                0x0000000000000190                . = (SEGMENT_START ("text-segment", 0x0) + SIZEOF_HEADERS)
+
+.note.gnu.build-id
+ *(.note.gnu.build-id)
+
+.hash           0x0000000000000190      0x670
+ *(.hash)
+ .hash          0x0000000000000190      0x670 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+
+.gnu.hash       0x0000000000000800      0x4e4
+ *(.gnu.hash)
+ .gnu.hash      0x0000000000000800      0x4e4 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+
+.dynsym         0x0000000000000ce8     0x13f8
+ *(.dynsym)
+ .dynsym        0x0000000000000ce8     0x13f8 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+
+.dynstr         0x00000000000020e0     0x17b3
+ *(.dynstr)
+ .dynstr        0x00000000000020e0     0x17b3 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+
+.gnu.version    0x0000000000003894      0x1aa
+ *(.gnu.version)
+ .gnu.version   0x0000000000003894      0x1aa /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+
+.gnu.version_d  0x0000000000003a40        0x0
+ *(.gnu.version_d)
+ .gnu.version_d
+                0x0000000000003a40        0x0 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+
+.gnu.version_r  0x0000000000003a40       0x20
+ *(.gnu.version_r)
+ .gnu.version_r
+                0x0000000000003a40       0x20 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+
+.rela.dyn       0x0000000000003a60      0x2d0
+ *(.rela.init)
+ *(.rela.text .rela.text.* .rela.gnu.linkonce.t.*)
+ *(.rela.fini)
+ *(.rela.rodata .rela.rodata.* .rela.gnu.linkonce.r.*)
+ *(.rela.data .rela.data.* .rela.gnu.linkonce.d.*)
+ .rela.data.rel.local
+                0x0000000000003a60       0x18 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+ .rela.data     0x0000000000003a78      0x180 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+ *(.rela.tdata .rela.tdata.* .rela.gnu.linkonce.td.*)
+ *(.rela.tbss .rela.tbss.* .rela.gnu.linkonce.tb.*)
+ *(.rela.ctors)
+ *(.rela.dtors)
+ *(.rela.got)
+ .rela.got      0x0000000000003bf8       0xd8 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+ *(.rela.bss .rela.bss.* .rela.gnu.linkonce.b.*)
+ *(.rela.ifunc)
+ .rela.ifunc    0x0000000000003cd0        0x0 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+ .rela.init_array
+                0x0000000000003cd0       0x48 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+ .rela.fini_array
+                0x0000000000003d18       0x18 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+
+.rela.plt       0x0000000000003d30     0x1188
+ *(.rela.plt)
+ .rela.plt      0x0000000000003d30     0x1188 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+ *(.rela.iplt)
+
+.init           0x0000000000004eb8       0x14
+ *(SORT_NONE(.init))
+ .init          0x0000000000004eb8        0xc /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+                0x0000000000004eb8                _init
+ .init          0x0000000000004ec4        0x8 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crtn.o
+
+.plt            0x0000000000004ed0      0xbd0
+ *(.plt)
+ .plt           0x0000000000004ed0      0xbd0 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+ *(.iplt)
+
+.text           0x0000000000005aa0    0x67990
+ *(.text.unlikely .text.*_unlikely .text.unlikely.*)
+ *(.text.exit .text.exit.*)
+ *(.text.startup .text.startup.*)
+ .text.startup  0x0000000000005aa0       0x3c /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ *fill*         0x0000000000005adc        0x4 1f2003d5
+ .text.startup  0x0000000000005ae0       0x40 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx.o
+ *(.text.hot .text.hot.*)
+ *(.text .stub .text.* .gnu.linkonce.t.*)
+ .text          0x0000000000005b20       0x14 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+ *fill*         0x0000000000005b34        0x4 1f2003d5
+ .text          0x0000000000005b38       0xbc /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../lib/gcc/aarch64-none-linux-gnu/9.2.1/crtbeginS.o
+ *fill*         0x0000000000005bf4        0xc 1f2003d5
+ .text          0x0000000000005c00    0x2eaa0 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000005c00                is_tidlrt_in_tensor_same
+                0x0000000000005d40                is_tidlrt_out_tensor_same
+                0x0000000000005ea0                cp_data_in_tidlrt_tensor_tiovx
+                0x000000000001db50                cp_data_out_tensor_tidlrt_tiovx
+ .text._Z9copy_asisIhhEvPT0_PT_iiiiiiiiiii
+                0x00000000000346a0      0x560 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x00000000000346a0                void copy_asis<unsigned char, unsigned char>(unsigned char*, unsigned char*, int, int, int, int, int, int, int, int, int, int, int)
+ .text._Z9copy_asisIhaEvPT0_PT_iiiiiiiiiii
+                0x0000000000034c00      0x548 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000034c00                void copy_asis<unsigned char, signed char>(signed char*, unsigned char*, int, int, int, int, int, int, int, int, int, int, int)
+ *fill*         0x0000000000035148        0x8 1f2003d5
+ .text._Z9copy_asisIhtEvPT0_PT_iiiiiiiiiii
+                0x0000000000035150      0x3f0 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000035150                void copy_asis<unsigned char, unsigned short>(unsigned short*, unsigned char*, int, int, int, int, int, int, int, int, int, int, int)
+ .text._Z9copy_asisIhsEvPT0_PT_iiiiiiiiiii
+                0x0000000000035540      0x3f0 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000035540                void copy_asis<unsigned char, short>(short*, unsigned char*, int, int, int, int, int, int, int, int, int, int, int)
+ .text._Z9copy_asisIhfEvPT0_PT_iiiiiiiiiii
+                0x0000000000035930      0x434 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000035930                void copy_asis<unsigned char, float>(float*, unsigned char*, int, int, int, int, int, int, int, int, int, int, int)
+ *fill*         0x0000000000035d64        0xc 1f2003d5
+ .text._Z9copy_asisIahEvPT0_PT_iiiiiiiiiii
+                0x0000000000035d70      0x548 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000035d70                void copy_asis<signed char, unsigned char>(unsigned char*, signed char*, int, int, int, int, int, int, int, int, int, int, int)
+ *fill*         0x00000000000362b8        0x8 1f2003d5
+ .text._Z9copy_asisIaaEvPT0_PT_iiiiiiiiiii
+                0x00000000000362c0      0x560 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x00000000000362c0                void copy_asis<signed char, signed char>(signed char*, signed char*, int, int, int, int, int, int, int, int, int, int, int)
+ .text._Z9copy_asisIatEvPT0_PT_iiiiiiiiiii
+                0x0000000000036820      0x3f0 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000036820                void copy_asis<signed char, unsigned short>(unsigned short*, signed char*, int, int, int, int, int, int, int, int, int, int, int)
+ .text._Z9copy_asisIasEvPT0_PT_iiiiiiiiiii
+                0x0000000000036c10      0x3f0 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000036c10                void copy_asis<signed char, short>(short*, signed char*, int, int, int, int, int, int, int, int, int, int, int)
+ .text._Z9copy_asisIafEvPT0_PT_iiiiiiiiiii
+                0x0000000000037000      0x45c /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000037000                void copy_asis<signed char, float>(float*, signed char*, int, int, int, int, int, int, int, int, int, int, int)
+ *fill*         0x000000000003745c        0x4 1f2003d5
+ .text._Z9copy_asisIthEvPT0_PT_iiiiiiiiiii
+                0x0000000000037460      0x718 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000037460                void copy_asis<unsigned short, unsigned char>(unsigned char*, unsigned short*, int, int, int, int, int, int, int, int, int, int, int)
+ *fill*         0x0000000000037b78        0x8 1f2003d5
+ .text._Z9copy_asisItaEvPT0_PT_iiiiiiiiiii
+                0x0000000000037b80      0x718 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000037b80                void copy_asis<unsigned short, signed char>(signed char*, unsigned short*, int, int, int, int, int, int, int, int, int, int, int)
+ *fill*         0x0000000000038298        0x8 1f2003d5
+ .text._Z9copy_asisIttEvPT0_PT_iiiiiiiiiii
+                0x00000000000382a0      0x2e4 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x00000000000382a0                void copy_asis<unsigned short, unsigned short>(unsigned short*, unsigned short*, int, int, int, int, int, int, int, int, int, int, int)
+ *fill*         0x0000000000038584        0xc 1f2003d5
+ .text._Z9copy_asisItsEvPT0_PT_iiiiiiiiiii
+                0x0000000000038590      0x2e4 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000038590                void copy_asis<unsigned short, short>(short*, unsigned short*, int, int, int, int, int, int, int, int, int, int, int)
+ *fill*         0x0000000000038874        0xc 1f2003d5
+ .text._Z9copy_asisItfEvPT0_PT_iiiiiiiiiii
+                0x0000000000038880      0x2dc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000038880                void copy_asis<unsigned short, float>(float*, unsigned short*, int, int, int, int, int, int, int, int, int, int, int)
+ *fill*         0x0000000000038b5c        0x4 1f2003d5
+ .text._Z9copy_asisIshEvPT0_PT_iiiiiiiiiii
+                0x0000000000038b60      0x718 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000038b60                void copy_asis<short, unsigned char>(unsigned char*, short*, int, int, int, int, int, int, int, int, int, int, int)
+ *fill*         0x0000000000039278        0x8 1f2003d5
+ .text._Z9copy_asisIsaEvPT0_PT_iiiiiiiiiii
+                0x0000000000039280      0x718 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000039280                void copy_asis<short, signed char>(signed char*, short*, int, int, int, int, int, int, int, int, int, int, int)
+ *fill*         0x0000000000039998        0x8 1f2003d5
+ .text._Z9copy_asisIstEvPT0_PT_iiiiiiiiiii
+                0x00000000000399a0      0x2e4 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x00000000000399a0                void copy_asis<short, unsigned short>(unsigned short*, short*, int, int, int, int, int, int, int, int, int, int, int)
+ *fill*         0x0000000000039c84        0xc 1f2003d5
+ .text._Z9copy_asisIssEvPT0_PT_iiiiiiiiiii
+                0x0000000000039c90      0x2e4 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000039c90                void copy_asis<short, short>(short*, short*, int, int, int, int, int, int, int, int, int, int, int)
+ *fill*         0x0000000000039f74        0xc 1f2003d5
+ .text._Z9copy_asisIsfEvPT0_PT_iiiiiiiiiii
+                0x0000000000039f80      0x2e4 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000039f80                void copy_asis<short, float>(float*, short*, int, int, int, int, int, int, int, int, int, int, int)
+ *fill*         0x000000000003a264        0xc 1f2003d5
+ .text._Z9copy_asisIfhEvPT0_PT_iiiiiiiiiii
+                0x000000000003a270      0x7d4 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x000000000003a270                void copy_asis<float, unsigned char>(unsigned char*, float*, int, int, int, int, int, int, int, int, int, int, int)
+ *fill*         0x000000000003aa44        0xc 1f2003d5
+ .text._Z9copy_asisIfaEvPT0_PT_iiiiiiiiiii
+                0x000000000003aa50      0x7d4 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x000000000003aa50                void copy_asis<float, signed char>(signed char*, float*, int, int, int, int, int, int, int, int, int, int, int)
+ *fill*         0x000000000003b224        0xc 1f2003d5
+ .text._Z9copy_asisIftEvPT0_PT_iiiiiiiiiii
+                0x000000000003b230      0x2f4 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x000000000003b230                void copy_asis<float, unsigned short>(unsigned short*, float*, int, int, int, int, int, int, int, int, int, int, int)
+ *fill*         0x000000000003b524        0xc 1f2003d5
+ .text._Z9copy_asisIfsEvPT0_PT_iiiiiiiiiii
+                0x000000000003b530      0x2f4 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x000000000003b530                void copy_asis<float, short>(short*, float*, int, int, int, int, int, int, int, int, int, int, int)
+ *fill*         0x000000000003b824        0xc 1f2003d5
+ .text._Z9copy_asisIffEvPT0_PT_iiiiiiiiiii
+                0x000000000003b830      0x270 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x000000000003b830                void copy_asis<float, float>(float*, float*, int, int, int, int, int, int, int, int, int, int, int)
+ .text._Z10copy_scaleIhhEvPT0_PT_iiiiiiiiiiiff
+                0x000000000003baa0      0x5f8 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x000000000003baa0                void copy_scale<unsigned char, unsigned char>(unsigned char*, unsigned char*, int, int, int, int, int, int, int, int, int, int, int, float, float)
+ *fill*         0x000000000003c098        0x8 1f2003d5
+ .text._Z10copy_scaleIhaEvPT0_PT_iiiiiiiiiiiff
+                0x000000000003c0a0      0xdb4 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x000000000003c0a0                void copy_scale<unsigned char, signed char>(signed char*, unsigned char*, int, int, int, int, int, int, int, int, int, int, int, float, float)
+ *fill*         0x000000000003ce54        0xc 1f2003d5
+ .text._Z10copy_scaleIhtEvPT0_PT_iiiiiiiiiiiff
+                0x000000000003ce60      0x794 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x000000000003ce60                void copy_scale<unsigned char, unsigned short>(unsigned short*, unsigned char*, int, int, int, int, int, int, int, int, int, int, int, float, float)
+ *fill*         0x000000000003d5f4        0xc 1f2003d5
+ .text._Z10copy_scaleIhsEvPT0_PT_iiiiiiiiiiiff
+                0x000000000003d600     0x1000 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x000000000003d600                void copy_scale<unsigned char, short>(short*, unsigned char*, int, int, int, int, int, int, int, int, int, int, int, float, float)
+ .text._Z10copy_scaleIhfEvPT0_PT_iiiiiiiiiiiff
+                0x000000000003e600      0xd3c /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x000000000003e600                void copy_scale<unsigned char, float>(float*, unsigned char*, int, int, int, int, int, int, int, int, int, int, int, float, float)
+ *fill*         0x000000000003f33c        0x4 1f2003d5
+ .text._Z10copy_scaleIahEvPT0_PT_iiiiiiiiiiiff
+                0x000000000003f340      0x604 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x000000000003f340                void copy_scale<signed char, unsigned char>(unsigned char*, signed char*, int, int, int, int, int, int, int, int, int, int, int, float, float)
+ *fill*         0x000000000003f944        0xc 1f2003d5
+ .text._Z10copy_scaleIaaEvPT0_PT_iiiiiiiiiiiff
+                0x000000000003f950      0xda8 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x000000000003f950                void copy_scale<signed char, signed char>(signed char*, signed char*, int, int, int, int, int, int, int, int, int, int, int, float, float)
+ *fill*         0x00000000000406f8        0x8 1f2003d5
+ .text._Z10copy_scaleIatEvPT0_PT_iiiiiiiiiiiff
+                0x0000000000040700      0x794 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000040700                void copy_scale<signed char, unsigned short>(unsigned short*, signed char*, int, int, int, int, int, int, int, int, int, int, int, float, float)
+ *fill*         0x0000000000040e94        0xc 1f2003d5
+ .text._Z10copy_scaleIasEvPT0_PT_iiiiiiiiiiiff
+                0x0000000000040ea0      0xfb0 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000040ea0                void copy_scale<signed char, short>(short*, signed char*, int, int, int, int, int, int, int, int, int, int, int, float, float)
+ .text._Z10copy_scaleIafEvPT0_PT_iiiiiiiiiiiff
+                0x0000000000041e50      0xd3c /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000041e50                void copy_scale<signed char, float>(float*, signed char*, int, int, int, int, int, int, int, int, int, int, int, float, float)
+ *fill*         0x0000000000042b8c        0x4 1f2003d5
+ .text._Z10copy_scaleIthEvPT0_PT_iiiiiiiiiiiff
+                0x0000000000042b90      0x76c /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000042b90                void copy_scale<unsigned short, unsigned char>(unsigned char*, unsigned short*, int, int, int, int, int, int, int, int, int, int, int, float, float)
+ *fill*         0x00000000000432fc        0x4 1f2003d5
+ .text._Z10copy_scaleItaEvPT0_PT_iiiiiiiiiiiff
+                0x0000000000043300     0x1004 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000043300                void copy_scale<unsigned short, signed char>(signed char*, unsigned short*, int, int, int, int, int, int, int, int, int, int, int, float, float)
+ *fill*         0x0000000000044304        0xc 1f2003d5
+ .text._Z10copy_scaleIttEvPT0_PT_iiiiiiiiiiiff
+                0x0000000000044310      0x518 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000044310                void copy_scale<unsigned short, unsigned short>(unsigned short*, unsigned short*, int, int, int, int, int, int, int, int, int, int, int, float, float)
+ *fill*         0x0000000000044828        0x8 1f2003d5
+ .text._Z10copy_scaleItsEvPT0_PT_iiiiiiiiiiiff
+                0x0000000000044830      0x564 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000044830                void copy_scale<unsigned short, short>(short*, unsigned short*, int, int, int, int, int, int, int, int, int, int, int, float, float)
+ *fill*         0x0000000000044d94        0xc 1f2003d5
+ .text._Z10copy_scaleItfEvPT0_PT_iiiiiiiiiiiff
+                0x0000000000044da0      0x4cc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000044da0                void copy_scale<unsigned short, float>(float*, unsigned short*, int, int, int, int, int, int, int, int, int, int, int, float, float)
+ *fill*         0x000000000004526c        0x4 1f2003d5
+ .text._Z10copy_scaleIshEvPT0_PT_iiiiiiiiiiiff
+                0x0000000000045270      0x76c /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000045270                void copy_scale<short, unsigned char>(unsigned char*, short*, int, int, int, int, int, int, int, int, int, int, int, float, float)
+ *fill*         0x00000000000459dc        0x4 1f2003d5
+ .text._Z10copy_scaleIsaEvPT0_PT_iiiiiiiiiiiff
+                0x00000000000459e0      0xf88 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x00000000000459e0                void copy_scale<short, signed char>(signed char*, short*, int, int, int, int, int, int, int, int, int, int, int, float, float)
+ *fill*         0x0000000000046968        0x8 1f2003d5
+ .text._Z10copy_scaleIstEvPT0_PT_iiiiiiiiiiiff
+                0x0000000000046970      0x520 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000046970                void copy_scale<short, unsigned short>(unsigned short*, short*, int, int, int, int, int, int, int, int, int, int, int, float, float)
+ .text._Z10copy_scaleIssEvPT0_PT_iiiiiiiiiiiff
+                0x0000000000046e90      0x568 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000046e90                void copy_scale<short, short>(short*, short*, int, int, int, int, int, int, int, int, int, int, int, float, float)
+ *fill*         0x00000000000473f8        0x8 1f2003d5
+ .text._Z10copy_scaleIsfEvPT0_PT_iiiiiiiiiiiff
+                0x0000000000047400      0x4d4 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000047400                void copy_scale<short, float>(float*, short*, int, int, int, int, int, int, int, int, int, int, int, float, float)
+ *fill*         0x00000000000478d4        0xc 1f2003d5
+ .text._Z10copy_scaleIfhEvPT0_PT_iiiiiiiiiiiff
+                0x00000000000478e0      0x740 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x00000000000478e0                void copy_scale<float, unsigned char>(unsigned char*, float*, int, int, int, int, int, int, int, int, int, int, int, float, float)
+ .text._Z10copy_scaleIfaEvPT0_PT_iiiiiiiiiiiff
+                0x0000000000048020      0xe78 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000048020                void copy_scale<float, signed char>(signed char*, float*, int, int, int, int, int, int, int, int, int, int, int, float, float)
+ *fill*         0x0000000000048e98        0x8 1f2003d5
+ .text._Z10copy_scaleIftEvPT0_PT_iiiiiiiiiiiff
+                0x0000000000048ea0      0x4fc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000048ea0                void copy_scale<float, unsigned short>(unsigned short*, float*, int, int, int, int, int, int, int, int, int, int, int, float, float)
+ *fill*         0x000000000004939c        0x4 1f2003d5
+ .text._Z10copy_scaleIfsEvPT0_PT_iiiiiiiiiiiff
+                0x00000000000493a0      0x540 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x00000000000493a0                void copy_scale<float, short>(short*, float*, int, int, int, int, int, int, int, int, int, int, int, float, float)
+ .text._Z10copy_scaleIffEvPT0_PT_iiiiiiiiiiiff
+                0x00000000000498e0      0x388 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x00000000000498e0                void copy_scale<float, float>(float*, float*, int, int, int, int, int, int, int, int, int, int, int, float, float)
+ *fill*         0x0000000000049c68        0x8 1f2003d5
+ .text._Z10copy_scaleImsEvPT0_PT_iiiiiiiiiiiff
+                0x0000000000049c70      0x284 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000049c70                void copy_scale<unsigned long, short>(short*, unsigned long*, int, int, int, int, int, int, int, int, int, int, int, float, float)
+ *fill*         0x0000000000049ef4        0xc 1f2003d5
+ .text._Z7copy_zfIhhEvPT0_PT_iiiiiiiiiiif
+                0x0000000000049f00      0x5f8 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000049f00                void copy_zf<unsigned char, unsigned char>(unsigned char*, unsigned char*, int, int, int, int, int, int, int, int, int, int, int, float)
+ *fill*         0x000000000004a4f8        0x8 1f2003d5
+ .text._Z7copy_zfIhaEvPT0_PT_iiiiiiiiiiif
+                0x000000000004a500      0xdb4 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x000000000004a500                void copy_zf<unsigned char, signed char>(signed char*, unsigned char*, int, int, int, int, int, int, int, int, int, int, int, float)
+ *fill*         0x000000000004b2b4        0xc 1f2003d5
+ .text._Z7copy_zfIhtEvPT0_PT_iiiiiiiiiiif
+                0x000000000004b2c0      0x794 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x000000000004b2c0                void copy_zf<unsigned char, unsigned short>(unsigned short*, unsigned char*, int, int, int, int, int, int, int, int, int, int, int, float)
+ *fill*         0x000000000004ba54        0xc 1f2003d5
+ .text._Z7copy_zfIhsEvPT0_PT_iiiiiiiiiiif
+                0x000000000004ba60      0xff4 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x000000000004ba60                void copy_zf<unsigned char, short>(short*, unsigned char*, int, int, int, int, int, int, int, int, int, int, int, float)
+ *fill*         0x000000000004ca54        0xc 1f2003d5
+ .text._Z7copy_zfIhfEvPT0_PT_iiiiiiiiiiif
+                0x000000000004ca60      0xd3c /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x000000000004ca60                void copy_zf<unsigned char, float>(float*, unsigned char*, int, int, int, int, int, int, int, int, int, int, int, float)
+ *fill*         0x000000000004d79c        0x4 1f2003d5
+ .text._Z7copy_zfIahEvPT0_PT_iiiiiiiiiiif
+                0x000000000004d7a0      0x604 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x000000000004d7a0                void copy_zf<signed char, unsigned char>(unsigned char*, signed char*, int, int, int, int, int, int, int, int, int, int, int, float)
+ *fill*         0x000000000004dda4        0xc 1f2003d5
+ .text._Z7copy_zfIaaEvPT0_PT_iiiiiiiiiiif
+                0x000000000004ddb0      0xda0 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x000000000004ddb0                void copy_zf<signed char, signed char>(signed char*, signed char*, int, int, int, int, int, int, int, int, int, int, int, float)
+ .text._Z7copy_zfIatEvPT0_PT_iiiiiiiiiiif
+                0x000000000004eb50      0x794 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x000000000004eb50                void copy_zf<signed char, unsigned short>(unsigned short*, signed char*, int, int, int, int, int, int, int, int, int, int, int, float)
+ *fill*         0x000000000004f2e4        0xc 1f2003d5
+ .text._Z7copy_zfIasEvPT0_PT_iiiiiiiiiiif
+                0x000000000004f2f0      0xfa4 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x000000000004f2f0                void copy_zf<signed char, short>(short*, signed char*, int, int, int, int, int, int, int, int, int, int, int, float)
+ *fill*         0x0000000000050294        0xc 1f2003d5
+ .text._Z7copy_zfIafEvPT0_PT_iiiiiiiiiiif
+                0x00000000000502a0      0xd3c /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x00000000000502a0                void copy_zf<signed char, float>(float*, signed char*, int, int, int, int, int, int, int, int, int, int, int, float)
+ *fill*         0x0000000000050fdc        0x4 1f2003d5
+ .text._Z7copy_zfIthEvPT0_PT_iiiiiiiiiiif
+                0x0000000000050fe0      0x764 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000050fe0                void copy_zf<unsigned short, unsigned char>(unsigned char*, unsigned short*, int, int, int, int, int, int, int, int, int, int, int, float)
+ *fill*         0x0000000000051744        0xc 1f2003d5
+ .text._Z7copy_zfItaEvPT0_PT_iiiiiiiiiiif
+                0x0000000000051750      0xffc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000051750                void copy_zf<unsigned short, signed char>(signed char*, unsigned short*, int, int, int, int, int, int, int, int, int, int, int, float)
+ *fill*         0x000000000005274c        0x4 1f2003d5
+ .text._Z7copy_zfIttEvPT0_PT_iiiiiiiiiiif
+                0x0000000000052750      0x508 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000052750                void copy_zf<unsigned short, unsigned short>(unsigned short*, unsigned short*, int, int, int, int, int, int, int, int, int, int, int, float)
+ *fill*         0x0000000000052c58        0x8 1f2003d5
+ .text._Z7copy_zfItsEvPT0_PT_iiiiiiiiiiif
+                0x0000000000052c60      0x564 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000052c60                void copy_zf<unsigned short, short>(short*, unsigned short*, int, int, int, int, int, int, int, int, int, int, int, float)
+ *fill*         0x00000000000531c4        0xc 1f2003d5
+ .text._Z7copy_zfItfEvPT0_PT_iiiiiiiiiiif
+                0x00000000000531d0      0x4cc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x00000000000531d0                void copy_zf<unsigned short, float>(float*, unsigned short*, int, int, int, int, int, int, int, int, int, int, int, float)
+ *fill*         0x000000000005369c        0x4 1f2003d5
+ .text._Z7copy_zfIshEvPT0_PT_iiiiiiiiiiif
+                0x00000000000536a0      0x764 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x00000000000536a0                void copy_zf<short, unsigned char>(unsigned char*, short*, int, int, int, int, int, int, int, int, int, int, int, float)
+ *fill*         0x0000000000053e04        0xc 1f2003d5
+ .text._Z7copy_zfIsaEvPT0_PT_iiiiiiiiiiif
+                0x0000000000053e10      0xf80 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000053e10                void copy_zf<short, signed char>(signed char*, short*, int, int, int, int, int, int, int, int, int, int, int, float)
+ .text._Z7copy_zfIstEvPT0_PT_iiiiiiiiiiif
+                0x0000000000054d90      0x518 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000054d90                void copy_zf<short, unsigned short>(unsigned short*, short*, int, int, int, int, int, int, int, int, int, int, int, float)
+ *fill*         0x00000000000552a8        0x8 1f2003d5
+ .text._Z7copy_zfIssEvPT0_PT_iiiiiiiiiiif
+                0x00000000000552b0      0x568 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x00000000000552b0                void copy_zf<short, short>(short*, short*, int, int, int, int, int, int, int, int, int, int, int, float)
+ *fill*         0x0000000000055818        0x8 1f2003d5
+ .text._Z7copy_zfIsfEvPT0_PT_iiiiiiiiiiif
+                0x0000000000055820      0x4cc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000055820                void copy_zf<short, float>(float*, short*, int, int, int, int, int, int, int, int, int, int, int, float)
+ *fill*         0x0000000000055cec        0x4 1f2003d5
+ .text._Z7copy_zfIjsEvPT0_PT_iiiiiiiiiiif
+                0x0000000000055cf0      0x570 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000055cf0                void copy_zf<unsigned int, short>(short*, unsigned int*, int, int, int, int, int, int, int, int, int, int, int, float)
+ .text._Z7copy_zfIisEvPT0_PT_iiiiiiiiiiif
+                0x0000000000056260      0x56c /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000056260                void copy_zf<int, short>(short*, int*, int, int, int, int, int, int, int, int, int, int, int, float)
+ *fill*         0x00000000000567cc        0x4 1f2003d5
+ .text._Z7copy_zfIfhEvPT0_PT_iiiiiiiiiiif
+                0x00000000000567d0      0x738 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x00000000000567d0                void copy_zf<float, unsigned char>(unsigned char*, float*, int, int, int, int, int, int, int, int, int, int, int, float)
+ *fill*         0x0000000000056f08        0x8 1f2003d5
+ .text._Z7copy_zfIfaEvPT0_PT_iiiiiiiiiiif
+                0x0000000000056f10      0xe78 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000056f10                void copy_zf<float, signed char>(signed char*, float*, int, int, int, int, int, int, int, int, int, int, int, float)
+ *fill*         0x0000000000057d88        0x8 1f2003d5
+ .text._Z7copy_zfIftEvPT0_PT_iiiiiiiiiiif
+                0x0000000000057d90      0x4f4 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000057d90                void copy_zf<float, unsigned short>(unsigned short*, float*, int, int, int, int, int, int, int, int, int, int, int, float)
+ *fill*         0x0000000000058284        0xc 1f2003d5
+ .text._Z7copy_zfIfsEvPT0_PT_iiiiiiiiiiif
+                0x0000000000058290      0x538 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000058290                void copy_zf<float, short>(short*, float*, int, int, int, int, int, int, int, int, int, int, int, float)
+ *fill*         0x00000000000587c8        0x8 1f2003d5
+ .text._Z7copy_zfIffEvPT0_PT_iiiiiiiiiiif
+                0x00000000000587d0      0x388 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x00000000000587d0                void copy_zf<float, float>(float*, float*, int, int, int, int, int, int, int, int, int, int, int, float)
+ *fill*         0x0000000000058b58        0x8 1f2003d5
+ .text._Z7copy_zfImsEvPT0_PT_iiiiiiiiiiif
+                0x0000000000058b60      0x284 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000058b60                void copy_zf<unsigned long, short>(short*, unsigned long*, int, int, int, int, int, int, int, int, int, int, int, float)
+ *fill*         0x0000000000058de4        0xc 1f2003d5
+ .text._Z7copy_zfIlsEvPT0_PT_iiiiiiiiiiif
+                0x0000000000058df0      0x284 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000058df0                void copy_zf<long, short>(short*, long*, int, int, int, int, int, int, int, int, int, int, int, float)
+ *fill*         0x0000000000059074        0xc 1f2003d5
+ .text._Z12copy_zfscaleIhhEvPT0_PT_iiiiiiiiiiifff
+                0x0000000000059080      0x65c /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000059080                void copy_zfscale<unsigned char, unsigned char>(unsigned char*, unsigned char*, int, int, int, int, int, int, int, int, int, int, int, float, float, float)
+ *fill*         0x00000000000596dc        0x4 1f2003d5
+ .text._Z12copy_zfscaleIhaEvPT0_PT_iiiiiiiiiiifff
+                0x00000000000596e0      0xe68 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x00000000000596e0                void copy_zfscale<unsigned char, signed char>(signed char*, unsigned char*, int, int, int, int, int, int, int, int, int, int, int, float, float, float)
+ *fill*         0x000000000005a548        0x8 1f2003d5
+ .text._Z12copy_zfscaleIhtEvPT0_PT_iiiiiiiiiiifff
+                0x000000000005a550      0x7d0 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x000000000005a550                void copy_zfscale<unsigned char, unsigned short>(unsigned short*, unsigned char*, int, int, int, int, int, int, int, int, int, int, int, float, float, float)
+ .text._Z12copy_zfscaleIhsEvPT0_PT_iiiiiiiiiiifff
+                0x000000000005ad20     0x10bc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x000000000005ad20                void copy_zfscale<unsigned char, short>(short*, unsigned char*, int, int, int, int, int, int, int, int, int, int, int, float, float, float)
+ *fill*         0x000000000005bddc        0x4 1f2003d5
+ .text._Z12copy_zfscaleIhfEvPT0_PT_iiiiiiiiiiifff
+                0x000000000005bde0      0xdf0 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x000000000005bde0                void copy_zfscale<unsigned char, float>(float*, unsigned char*, int, int, int, int, int, int, int, int, int, int, int, float, float, float)
+ .text._Z12copy_zfscaleIahEvPT0_PT_iiiiiiiiiiifff
+                0x000000000005cbd0      0x660 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x000000000005cbd0                void copy_zfscale<signed char, unsigned char>(unsigned char*, signed char*, int, int, int, int, int, int, int, int, int, int, int, float, float, float)
+ .text._Z12copy_zfscaleIaaEvPT0_PT_iiiiiiiiiiifff
+                0x000000000005d230      0xe5c /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x000000000005d230                void copy_zfscale<signed char, signed char>(signed char*, signed char*, int, int, int, int, int, int, int, int, int, int, int, float, float, float)
+ *fill*         0x000000000005e08c        0x4 1f2003d5
+ .text._Z12copy_zfscaleIatEvPT0_PT_iiiiiiiiiiifff
+                0x000000000005e090      0x7d0 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x000000000005e090                void copy_zfscale<signed char, unsigned short>(unsigned short*, signed char*, int, int, int, int, int, int, int, int, int, int, int, float, float, float)
+ .text._Z12copy_zfscaleIasEvPT0_PT_iiiiiiiiiiifff
+                0x000000000005e860     0x1064 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x000000000005e860                void copy_zfscale<signed char, short>(short*, signed char*, int, int, int, int, int, int, int, int, int, int, int, float, float, float)
+ *fill*         0x000000000005f8c4        0xc 1f2003d5
+ .text._Z12copy_zfscaleIafEvPT0_PT_iiiiiiiiiiifff
+                0x000000000005f8d0      0xdf0 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x000000000005f8d0                void copy_zfscale<signed char, float>(float*, signed char*, int, int, int, int, int, int, int, int, int, int, int, float, float, float)
+ .text._Z12copy_zfscaleIthEvPT0_PT_iiiiiiiiiiifff
+                0x00000000000606c0      0x7c0 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x00000000000606c0                void copy_zfscale<unsigned short, unsigned char>(unsigned char*, unsigned short*, int, int, int, int, int, int, int, int, int, int, int, float, float, float)
+ .text._Z12copy_zfscaleItaEvPT0_PT_iiiiiiiiiiifff
+                0x0000000000060e80     0x10b0 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000060e80                void copy_zfscale<unsigned short, signed char>(signed char*, unsigned short*, int, int, int, int, int, int, int, int, int, int, int, float, float, float)
+ .text._Z12copy_zfscaleIttEvPT0_PT_iiiiiiiiiiifff
+                0x0000000000061f30      0x544 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000061f30                void copy_zfscale<unsigned short, unsigned short>(unsigned short*, unsigned short*, int, int, int, int, int, int, int, int, int, int, int, float, float, float)
+ *fill*         0x0000000000062474        0xc 1f2003d5
+ .text._Z12copy_zfscaleItsEvPT0_PT_iiiiiiiiiiifff
+                0x0000000000062480      0x598 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000062480                void copy_zfscale<unsigned short, short>(short*, unsigned short*, int, int, int, int, int, int, int, int, int, int, int, float, float, float)
+ *fill*         0x0000000000062a18        0x8 1f2003d5
+ .text._Z12copy_zfscaleItfEvPT0_PT_iiiiiiiiiiifff
+                0x0000000000062a20      0x540 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000062a20                void copy_zfscale<unsigned short, float>(float*, unsigned short*, int, int, int, int, int, int, int, int, int, int, int, float, float, float)
+ .text._Z12copy_zfscaleIshEvPT0_PT_iiiiiiiiiiifff
+                0x0000000000062f60      0x7c0 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000062f60                void copy_zfscale<short, unsigned char>(unsigned char*, short*, int, int, int, int, int, int, int, int, int, int, int, float, float, float)
+ .text._Z12copy_zfscaleIsaEvPT0_PT_iiiiiiiiiiifff
+                0x0000000000063720     0x1048 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000063720                void copy_zfscale<short, signed char>(signed char*, short*, int, int, int, int, int, int, int, int, int, int, int, float, float, float)
+ *fill*         0x0000000000064768        0x8 1f2003d5
+ .text._Z12copy_zfscaleIstEvPT0_PT_iiiiiiiiiiifff
+                0x0000000000064770      0x554 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000064770                void copy_zfscale<short, unsigned short>(unsigned short*, short*, int, int, int, int, int, int, int, int, int, int, int, float, float, float)
+ *fill*         0x0000000000064cc4        0xc 1f2003d5
+ .text._Z12copy_zfscaleIssEvPT0_PT_iiiiiiiiiiifff
+                0x0000000000064cd0      0x5ac /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000064cd0                void copy_zfscale<short, short>(short*, short*, int, int, int, int, int, int, int, int, int, int, int, float, float, float)
+ *fill*         0x000000000006527c        0x4 1f2003d5
+ .text._Z12copy_zfscaleIsfEvPT0_PT_iiiiiiiiiiifff
+                0x0000000000065280      0x540 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000065280                void copy_zfscale<short, float>(float*, short*, int, int, int, int, int, int, int, int, int, int, int, float, float, float)
+ .text._Z12copy_zfscaleIjsEvPT0_PT_iiiiiiiiiiifff
+                0x00000000000657c0      0x5f0 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x00000000000657c0                void copy_zfscale<unsigned int, short>(short*, unsigned int*, int, int, int, int, int, int, int, int, int, int, int, float, float, float)
+ .text._Z12copy_zfscaleIisEvPT0_PT_iiiiiiiiiiifff
+                0x0000000000065db0      0x5ec /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000065db0                void copy_zfscale<int, short>(short*, int*, int, int, int, int, int, int, int, int, int, int, int, float, float, float)
+ *fill*         0x000000000006639c        0x4 1f2003d5
+ .text._Z12copy_zfscaleIfhEvPT0_PT_iiiiiiiiiiifff
+                0x00000000000663a0      0x77c /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x00000000000663a0                void copy_zfscale<float, unsigned char>(unsigned char*, float*, int, int, int, int, int, int, int, int, int, int, int, float, float, float)
+ *fill*         0x0000000000066b1c        0x4 1f2003d5
+ .text._Z12copy_zfscaleIfaEvPT0_PT_iiiiiiiiiiifff
+                0x0000000000066b20      0xf34 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000066b20                void copy_zfscale<float, signed char>(signed char*, float*, int, int, int, int, int, int, int, int, int, int, int, float, float, float)
+ *fill*         0x0000000000067a54        0xc 1f2003d5
+ .text._Z12copy_zfscaleIftEvPT0_PT_iiiiiiiiiiifff
+                0x0000000000067a60      0x560 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000067a60                void copy_zfscale<float, unsigned short>(unsigned short*, float*, int, int, int, int, int, int, int, int, int, int, int, float, float, float)
+ .text._Z12copy_zfscaleIfsEvPT0_PT_iiiiiiiiiiifff
+                0x0000000000067fc0      0x5b8 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000067fc0                void copy_zfscale<float, short>(short*, float*, int, int, int, int, int, int, int, int, int, int, int, float, float, float)
+ *fill*         0x0000000000068578        0x8 1f2003d5
+ .text._Z12copy_zfscaleIffEvPT0_PT_iiiiiiiiiiifff
+                0x0000000000068580      0x3ac /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000068580                void copy_zfscale<float, float>(float*, float*, int, int, int, int, int, int, int, int, int, int, int, float, float, float)
+ *fill*         0x000000000006892c        0x4 1f2003d5
+ .text._Z12copy_zfscaleImsEvPT0_PT_iiiiiiiiiiifff
+                0x0000000000068930      0x288 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000068930                void copy_zfscale<unsigned long, short>(short*, unsigned long*, int, int, int, int, int, int, int, int, int, int, int, float, float, float)
+ *fill*         0x0000000000068bb8        0x8 1f2003d5
+ .text._Z12copy_zfscaleIlsEvPT0_PT_iiiiiiiiiiifff
+                0x0000000000068bc0      0x288 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000068bc0                void copy_zfscale<long, short>(short*, long*, int, int, int, int, int, int, int, int, int, int, int, float, float, float)
+ *fill*         0x0000000000068e48        0x8 1f2003d5
+ .text._Z7copy_zfItmEvPT0_PT_iiiiiiiiiiif
+                0x0000000000068e50      0x264 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000068e50                void copy_zf<unsigned short, unsigned long>(unsigned long*, unsigned short*, int, int, int, int, int, int, int, int, int, int, int, float)
+ *fill*         0x00000000000690b4        0xc 1f2003d5
+ .text._Z7copy_zfIsmEvPT0_PT_iiiiiiiiiiif
+                0x00000000000690c0      0x264 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x00000000000690c0                void copy_zf<short, unsigned long>(unsigned long*, short*, int, int, int, int, int, int, int, int, int, int, int, float)
+ *fill*         0x0000000000069324        0xc 1f2003d5
+ .text._Z7copy_zfIfmEvPT0_PT_iiiiiiiiiiif
+                0x0000000000069330      0x250 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000069330                void copy_zf<float, unsigned long>(unsigned long*, float*, int, int, int, int, int, int, int, int, int, int, int, float)
+ .text._Z12copy_zfscaleItmEvPT0_PT_iiiiiiiiiiifff
+                0x0000000000069580      0x270 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x0000000000069580                void copy_zfscale<unsigned short, unsigned long>(unsigned long*, unsigned short*, int, int, int, int, int, int, int, int, int, int, int, float, float, float)
+ .text._Z12copy_zfscaleIsmEvPT0_PT_iiiiiiiiiiifff
+                0x00000000000697f0      0x270 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                0x00000000000697f0                void copy_zfscale<short, unsigned long>(unsigned long*, short*, int, int, int, int, int, int, int, int, int, int, int, float, float, float)
+ .text          0x0000000000069a60      0x154 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/tidl_rt_linux_arm.o
+                0x0000000000069a60                TIDLRT_getDdrStats
+                0x0000000000069ae0                tidl_rt_ovx_Init
+                0x0000000000069b70                tidl_rt_ovx_DeInit
+ *fill*         0x0000000000069bb4        0xc 1f2003d5
+ .text          0x0000000000069bc0     0x25a8 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx.o
+                0x0000000000069f50                tidlrt_alloc_handle
+                0x0000000000069fa0                tidlrt_free_handle
+                0x000000000006a010                tidlrt_printf
+                0x000000000006b550                getAVXKernelEnv
+                0x000000000006b560                TIDLRT_setParamsDefault
+                0x000000000006b5c0                TIDLRT_setTensorDefault
+                0x000000000006b620                TIDLRT_create
+                0x000000000006bc20                TIDLRT_invoke
+                0x000000000006beb0                TIDLRT_delete
+                0x000000000006c160                TIDLRT_deactivate
+ *fill*         0x000000000006c168        0x8 1f2003d5
+ .text          0x000000000006c170      0x1cc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_utils.o
+                0x000000000006c170                get_free_mem_rec
+                0x000000000006c1b0                get_used_mem_rec
+                0x000000000006c1f0                val_align
+                0x000000000006c210                TIDLRT_allocSharedMem
+                0x000000000006c2a0                TIDLRT_freeSharedMem
+                0x000000000006c310                TIDLRT_isSharedMem
+ *fill*         0x000000000006c33c        0x4 1f2003d5
+ .text          0x000000000006c340      0x55c /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_debug_utils.o
+                0x000000000006c340                TIDLRT_ReadProfileData
+                0x000000000006c370                TIDLRT_PrintMetaData
+ *fill*         0x000000000006c89c        0x4 1f2003d5
+ .text          0x000000000006c8a0      0xb90 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tvm_rt_ovx.o
+                0x000000000006cc20                TVMRT_create
+                0x000000000006cfb0                TVMRT_invoke
+                0x000000000006d2a0                TVMRT_deactivate
+                0x000000000006d2b0                TVMRT_delete
+                0x000000000006d3d0                TVMRT_setParamsDefault
+ .text          0x000000000006d430        0x0 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../lib/gcc/aarch64-none-linux-gnu/9.2.1/crtendS.o
+ .text          0x000000000006d430        0x0 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crtn.o
+ *(.gnu.warning)
+
+.fini           0x000000000006d430       0x10
+ *(SORT_NONE(.fini))
+ .fini          0x000000000006d430        0x8 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+                0x000000000006d430                _fini
+ .fini          0x000000000006d438        0x8 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crtn.o
+                [!provide]                        PROVIDE (__etext = .)
+                [!provide]                        PROVIDE (_etext = .)
+                [!provide]                        PROVIDE (etext = .)
+
+.rodata         0x000000000006d440     0x158b
+ *(.rodata .rodata.* .gnu.linkonce.r.*)
+ .rodata.str1.8
+                0x000000000006d440      0x237 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ *fill*         0x000000000006d677        0x9 
+ .rodata.cst16  0x000000000006d680       0x60 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .rodata.str1.8
+                0x000000000006d6e0       0xc9 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/tidl_rt_linux_arm.o
+ *fill*         0x000000000006d7a9        0x7 
+ .rodata.str1.8
+                0x000000000006d7b0      0xc4f /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx.o
+ *fill*         0x000000000006e3ff        0x1 
+ .rodata.str1.8
+                0x000000000006e400       0x1b /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_debug_utils.o
+ *fill*         0x000000000006e41b        0x5 
+ .rodata.str1.8
+                0x000000000006e420      0x5ab /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tvm_rt_ovx.o
+                                        0x65b (size before relaxing)
+
+.rodata1
+ *(.rodata1)
+
+.eh_frame_hdr   0x000000000006e9cc      0x4fc
+ *(.eh_frame_hdr)
+ .eh_frame_hdr  0x000000000006e9cc      0x4fc /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../lib/gcc/aarch64-none-linux-gnu/9.2.1/crtbeginS.o
+                0x000000000006e9cc                __GNU_EH_FRAME_HDR
+ *(.eh_frame_entry .eh_frame_entry.*)
+
+.eh_frame       0x000000000006eec8     0x6528
+ *(.eh_frame)
+ .eh_frame      0x000000000006eec8       0x78 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../lib/gcc/aarch64-none-linux-gnu/9.2.1/crtbeginS.o
+ .eh_frame      0x000000000006ef40     0x5d90 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+                                       0x5da0 (size before relaxing)
+ .eh_frame      0x0000000000074cd0       0x80 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/tidl_rt_linux_arm.o
+                                         0x98 (size before relaxing)
+ .eh_frame      0x0000000000074d50      0x400 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx.o
+                                        0x410 (size before relaxing)
+ .eh_frame      0x0000000000075150       0xc8 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_utils.o
+                                         0xe0 (size before relaxing)
+ .eh_frame      0x0000000000075218       0x70 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_debug_utils.o
+                                         0x80 (size before relaxing)
+ .eh_frame      0x0000000000075288      0x164 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tvm_rt_ovx.o
+                                        0x178 (size before relaxing)
+ .eh_frame      0x00000000000753ec        0x4 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../lib/gcc/aarch64-none-linux-gnu/9.2.1/crtendS.o
+ *(.eh_frame.*)
+
+.gcc_except_table
+ *(.gcc_except_table .gcc_except_table.*)
+
+.gnu_extab
+ *(.gnu_extab*)
+
+.exception_ranges
+ *(.exception_ranges*)
+                0x0000000000085d38                . = DATA_SEGMENT_ALIGN (CONSTANT (MAXPAGESIZE), CONSTANT (COMMONPAGESIZE))
+
+.eh_frame
+ *(.eh_frame)
+ *(.eh_frame.*)
+
+.gnu_extab
+ *(.gnu_extab)
+
+.gcc_except_table
+ *(.gcc_except_table .gcc_except_table.*)
+
+.exception_ranges
+ *(.exception_ranges*)
+
+.tdata
+ *(.tdata .tdata.* .gnu.linkonce.td.*)
+
+.tbss
+ *(.tbss .tbss.* .gnu.linkonce.tb.*)
+ *(.tcommon)
+
+.preinit_array
+ *(.preinit_array)
+
+.init_array     0x0000000000085d38       0x18
+ *(SORT_BY_INIT_PRIORITY(.init_array.*) SORT_BY_INIT_PRIORITY(.ctors.*))
+ *(.init_array EXCLUDE_FILE(*crtend?.o *crtend.o *crtbegin?.o *crtbegin.o) .ctors)
+ .init_array    0x0000000000085d38        0x8 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../lib/gcc/aarch64-none-linux-gnu/9.2.1/crtbeginS.o
+ .init_array    0x0000000000085d40        0x8 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .init_array    0x0000000000085d48        0x8 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx.o
+
+.fini_array     0x0000000000085d50        0x8
+ *(SORT_BY_INIT_PRIORITY(.fini_array.*) SORT_BY_INIT_PRIORITY(.dtors.*))
+ *(.fini_array EXCLUDE_FILE(*crtend?.o *crtend.o *crtbegin?.o *crtbegin.o) .dtors)
+ .fini_array    0x0000000000085d50        0x8 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../lib/gcc/aarch64-none-linux-gnu/9.2.1/crtbeginS.o
+
+.ctors
+ *crtbegin.o(.ctors)
+ *crtbegin?.o(.ctors)
+ *(EXCLUDE_FILE(*crtend?.o *crtend.o) .ctors)
+ *(SORT_BY_NAME(.ctors.*))
+ *(.ctors)
+
+.dtors
+ *crtbegin.o(.dtors)
+ *crtbegin?.o(.dtors)
+ *(EXCLUDE_FILE(*crtend?.o *crtend.o) .dtors)
+ *(SORT_BY_NAME(.dtors.*))
+ *(.dtors)
+
+.jcr
+ *(.jcr)
+
+.data.rel.ro    0x0000000000085d58        0x0
+ *(.data.rel.ro.local* .gnu.linkonce.d.rel.ro.local.*)
+ *(.data.rel.ro .data.rel.ro.* .gnu.linkonce.d.rel.ro.*)
+ .data.rel.ro   0x0000000000085d58        0x0 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+
+.dynamic        0x0000000000085d58      0x240
+ *(.dynamic)
+ .dynamic       0x0000000000085d58      0x240 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+                0x0000000000085d58                _DYNAMIC
+
+.got            0x0000000000085f98       0x50
+ *(.got)
+ .got           0x0000000000085f98       0x50 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+                0x0000000000085f98                _GLOBAL_OFFSET_TABLE_
+ *(.igot)
+                0x0000000000085fe8                . = DATA_SEGMENT_RELRO_END (., 0x18)
+
+.got.plt        0x0000000000085fe8      0x5f0
+ *(.got.plt)
+ .got.plt       0x0000000000085fe8      0x5f0 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+ *(.igot.plt)
+
+.data           0x00000000000865d8      0x7b8
+                [!provide]                        PROVIDE (__data_start = .)
+ *(.data .data.* .gnu.linkonce.d.*)
+ .data          0x00000000000865d8        0x0 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+ .data          0x00000000000865d8        0x0 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../lib/gcc/aarch64-none-linux-gnu/9.2.1/crtbeginS.o
+ .data.rel.local
+                0x00000000000865d8        0x8 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../lib/gcc/aarch64-none-linux-gnu/9.2.1/crtbeginS.o
+                0x00000000000865d8                __dso_handle
+ .data          0x00000000000865e0        0x0 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .data          0x00000000000865e0        0x0 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/tidl_rt_linux_arm.o
+ .data          0x00000000000865e0       0x40 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx.o
+ .data          0x0000000000086620        0x0 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_utils.o
+ .data          0x0000000000086620      0x72c /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_debug_utils.o
+ *fill*         0x0000000000086d4c        0x4 
+ .data          0x0000000000086d50       0x40 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tvm_rt_ovx.o
+ .data          0x0000000000086d90        0x0 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../lib/gcc/aarch64-none-linux-gnu/9.2.1/crtendS.o
+ .data          0x0000000000086d90        0x0 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crtn.o
+
+.tm_clone_table
+                0x0000000000086d90        0x0
+ .tm_clone_table
+                0x0000000000086d90        0x0 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../lib/gcc/aarch64-none-linux-gnu/9.2.1/crtbeginS.o
+ .tm_clone_table
+                0x0000000000086d90        0x0 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../lib/gcc/aarch64-none-linux-gnu/9.2.1/crtendS.o
+
+.data1
+ *(.data1)
+                [!provide]                        PROVIDE (_edata = .)
+                [!provide]                        PROVIDE (edata = .)
+                0x0000000000086d90                . = .
+                [!provide]                        PROVIDE (__bss_start = .)
+                [!provide]                        PROVIDE (__bss_start__ = .)
+
+.bss            0x0000000000086d90   0x1301a0
+ *(.dynbss)
+ .dynbss        0x0000000000086d90        0x0 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+ *(.bss .bss.* .gnu.linkonce.b.*)
+ .bss           0x0000000000086d90        0x0 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+ .bss           0x0000000000086d90        0x1 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../lib/gcc/aarch64-none-linux-gnu/9.2.1/crtbeginS.o
+ *fill*         0x0000000000086d91        0x7 
+ .bss           0x0000000000086d98        0x1 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ *fill*         0x0000000000086d99        0x3 
+ .bss           0x0000000000086d9c        0x4 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/tidl_rt_linux_arm.o
+                0x0000000000086d9c                tidlrt_ddr_stats
+ .bss           0x0000000000086da0   0x12f588 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx.o
+ .bss           0x00000000001b6328      0xc00 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_utils.o
+                0x00000000001b6328                device_mems
+ .bss           0x00000000001b6f28        0x0 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_debug_utils.o
+ .bss           0x00000000001b6f28        0x4 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tvm_rt_ovx.o
+ .bss           0x00000000001b6f2c        0x0 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../lib/gcc/aarch64-none-linux-gnu/9.2.1/crtendS.o
+ .bss           0x00000000001b6f2c        0x0 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crtn.o
+ *(COMMON)
+                0x00000000001b6f30                . = ALIGN ((. != 0x0)?0x8:0x1)
+ *fill*         0x00000000001b6f2c        0x4 
+                [!provide]                        PROVIDE (_bss_end__ = .)
+                [!provide]                        PROVIDE (__bss_end__ = .)
+                0x00000000001b6f30                . = ALIGN (0x8)
+                0x00000000001b6f30                . = SEGMENT_START ("ldata-segment", .)
+                0x00000000001b6f30                . = ALIGN (0x8)
+                [!provide]                        PROVIDE (__end__ = .)
+                [!provide]                        PROVIDE (_end = .)
+                [!provide]                        PROVIDE (end = .)
+                0x00000000001b6f30                . = DATA_SEGMENT_END (.)
+
+.stab
+ *(.stab)
+
+.stabstr
+ *(.stabstr)
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.comment        0x0000000000000000       0x5a
+ *(.comment)
+ .comment       0x0000000000000000       0x5a /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../lib/gcc/aarch64-none-linux-gnu/9.2.1/crtbeginS.o
+                                         0x5b (size before relaxing)
+ .comment       0x000000000000005a       0x5b /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_datamove.o
+ .comment       0x000000000000005a       0x5b /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/tidl_rt_linux_arm.o
+ .comment       0x000000000000005a       0x5b /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx.o
+ .comment       0x000000000000005a       0x5b /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_utils.o
+ .comment       0x000000000000005a       0x5b /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tidl_rt_ovx_debug_utils.o
+ .comment       0x000000000000005a       0x5b /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/module/src.armv8/../tvm_rt_ovx.o
+ .comment       0x000000000000005a       0x5b /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../lib/gcc/aarch64-none-linux-gnu/9.2.1/crtendS.o
+
+.gnu.build.attributes
+ *(.gnu.build.attributes .gnu.build.attributes.*)
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges  0x0000000000000000       0x90
+ *(.debug_aranges)
+ .debug_aranges
+                0x0000000000000000       0x50 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+ .debug_aranges
+                0x0000000000000050       0x40 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crtn.o
+
+.debug_pubnames
+ *(.debug_pubnames)
+
+.debug_info     0x0000000000000000       0x44
+ *(.debug_info .gnu.linkonce.wi.*)
+ .debug_info    0x0000000000000000       0x22 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+ .debug_info    0x0000000000000022       0x22 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crtn.o
+
+.debug_abbrev   0x0000000000000000       0x24
+ *(.debug_abbrev)
+ .debug_abbrev  0x0000000000000000       0x12 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+ .debug_abbrev  0x0000000000000012       0x12 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crtn.o
+
+.debug_line     0x0000000000000000       0xde
+ *(.debug_line .debug_line.* .debug_line_end)
+ .debug_line    0x0000000000000000       0x7c /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+ .debug_line    0x000000000000007c       0x62 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crtn.o
+
+.debug_frame
+ *(.debug_frame)
+
+.debug_str      0x0000000000000000       0xa8
+ *(.debug_str)
+ .debug_str     0x0000000000000000       0x8e /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+ .debug_str     0x000000000000008e       0x1a /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crtn.o
+                                         0x8e (size before relaxing)
+
+.debug_loc
+ *(.debug_loc)
+
+.debug_macinfo
+ *(.debug_macinfo)
+
+.debug_weaknames
+ *(.debug_weaknames)
+
+.debug_funcnames
+ *(.debug_funcnames)
+
+.debug_typenames
+ *(.debug_typenames)
+
+.debug_varnames
+ *(.debug_varnames)
+
+.debug_pubtypes
+ *(.debug_pubtypes)
+
+.debug_ranges   0x0000000000000000       0x90
+ *(.debug_ranges)
+ .debug_ranges  0x0000000000000000       0x50 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crti.o
+ .debug_ranges  0x0000000000000050       0x40 /data/hdd/ti/SDK_8.6/rc_8_6_18thFeb/common/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/../aarch64-none-linux-gnu/libc/usr/lib/../lib64/crtn.o
+
+.debug_macro
+ *(.debug_macro)
+
+.debug_addr
+ *(.debug_addr)
+
+.ARM.attributes
+ *(.ARM.attributes)
+ *(.gnu.attributes)
+
+.note.gnu.arm.ident
+ *(.note.gnu.arm.ident)
+
+/DISCARD/
+ *(.note.GNU-stack)
+ *(.gnu_debuglink)
+ *(.gnu.lto_*)
+OUTPUT(/opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/rt/out/J7/A72/LINUX/release/libvx_tidl_rt.so.1.0 elf64-littleaarch64)

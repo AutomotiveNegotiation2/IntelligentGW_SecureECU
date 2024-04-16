@@ -1,0 +1,451 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>5.1. SBL Overview &mdash; Platform Development Kit (PDK) - JACINTO User Guide</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Platform Development Kit (PDK) - JACINTO User Guide" href="../index.html"/>
+        <link rel="up" title="5. Bootloader (SBL)" href="../family_cfg/jacinto/index_boot_jacinto.html"/>
+        <link rel="next" title="5.2. J721E SBL" href="boot_k3.html"/>
+        <link rel="prev" title="5. Bootloader (SBL)" href="../family_cfg/jacinto/index_boot_jacinto.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index_jacinto.html" class="icon icon-home"> Platform Development Kit (PDK) - JACINTO User Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                08_06_01
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">1. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_release_notes_jacinto.html">2. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">3. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_modules_jacinto.html">4. Modules</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../family_cfg/jacinto/index_boot_jacinto.html">5. Bootloader (SBL)</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="">5.1. SBL Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">5.1.1. Introduction</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="boot_k3.html">5.2. J721E SBL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="boot_app.html">5.3. Boot App</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_board_jacinto.html">6. Board/EVM Abstraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_howto_jacinto.html">7. How to Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_faq_jacinto.html">8. Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_developer_notes_jacinto.html">9. Developer Notes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index_jacinto.html">Platform Development Kit (PDK) - JACINTO User Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index_jacinto.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../family_cfg/jacinto/index_boot_jacinto.html">5. Bootloader (SBL)</a> &raquo;</li>
+      
+    <li>5.1. SBL Overview</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="sbl-overview">
+<h1>5.1. SBL Overview<a class="headerlink" href="#sbl-overview" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>5.1.1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line">This page provides an overview about the Secondary Bootloader support</div>
+</div>
+<div class="line-block">
+<div class="line">The Secondary Bootloader (SBL) sets-up the PLL clocks, powers on the
+I/O Peripherals, initializes the DDR, loads the application image into
+DDR &amp; brings the slave cores for applicable SOCs out of reset.
+Additional details including execution boot flow is covered in more
+elaborate detail under individual SOC section.</div>
+<div class="line"><br /></div>
+</div>
+<div
+style="margin: 5px; padding: 2px 10px; background-color: #ecffff; border-left: 5px solid #3399ff;"><p><strong>NOTE</strong>
+SBL is an example only and any further optimization and changes in boot
+flow should be owned by customers</p>
+</div><p class="rubric" id="boot-modes">Boot Modes</p>
+<p class="rubric" id="mmcsd">MMCSD</p>
+<p>MMCSD bootloader is required to boot target using an SD card containing
+bootloader and application images. When the board is powered ON the ROM
+bootloader detects the MMCSD bootloader image and loads it to the
+internal memory. The bootloader initializes the board, copies the
+application image from SD card to the DDR memory and gives control to
+the application.</p>
+<p class="rubric" id="emmc">eMMC</p>
+<p>eMMC bootloader is required to boot target using eMMC present on SOM containing
+bootloader and application images. eMMC have three partitions i.e UDA, boot0 and
+boot 1 you can copy images either to boot0 or UDA partition. When the board
+is powered ON the ROM bootloader detects the eMMC bootloader image and loads it to the
+internal memory. The bootloader initializes the board, copies the
+application image from eMMC to the DDR memory and gives control to
+the application.</p>
+<p class="rubric" id="ospi">OSPI</p>
+<p>A flash device interfaced with OSPI is flashed with OSPI bootloader and
+application images. When the board is powered ON the ROM bootloader
+detects the bootloader image from flash device and loads it to the
+internal memory. The Bootloader initializes the board, copies the
+application image from OSPI device to the DDR memory and gives control
+to the application.</p>
+<p class="rubric" id="uart">UART</p>
+<p>A Serial connection is used for transferring the bootloader binary from
+PC to target board through XMODEM protocol. The bootloader on execution
+prompts for application image to transfer through XMODEM. On providing
+the path, the application binary is transferred through serial
+connection to DDR memory and the control is passed to application to
+execute.</p>
+<div
+style="margin: 5px; padding: 2px 10px; background-color: #ecffff; border-left: 5px solid #3399ff;"><p><strong>NOTE</strong>
+For information on boot mode setting, see the applicable EVM Hardware User Guide</p>
+</div><p class="rubric" id="common-steps-to-debug-application-boot">Common Steps to debug application boot</p>
+<p>Bootloading an application is a system level issue which is impacted by
+hardware as well as software setup. There are some common steps that
+users are expected to check while debugging boot related issues. This
+section discusses common issues to checkout when debugging application
+boot.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p class="rubric" id="hardware-debug-steps">Hardware Debug Steps</p>
+<p><strong>Input clocks and power sequencing</strong></p>
+<ul class="simple">
+<li>Ensure that correct power sequencing is occurring on your board.
+Power sequencing specifications can be found in the data manual.</li>
+<li>Check the system clock and ensure this is outputting the expected
+frequency and the signal is swinging rail to rail (should be a 1.8V
+signal). If you have an external oscillator, it should be outputting
+a square wave at the desired frequency. If you are using a crystal ,
+you should have a sine wave at the desired frequency at XTALIN.
+XTALOUT should be similar (may be distorted a little).</li>
+<li>Check the power on reset signal PORZ. This signal should stay low
+throughout the power sequencing and go high when the power AND high
+frequency clock are stable.</li>
+<li>If the device has an OBSCLK or CLKOUT then ensure that this pin
+provides the correct output that matches your software
+configurations.</li>
+</ul>
+<p class="rubric" id="boot-pins"><strong>Boot pins:</strong></p>
+<p>Best way to confirm what the device ROM bootloader reads from the pins
+is to read the register where the Boot pins are latched into the device</p>
+<p class="rubric" id="boot-media-connectivity"><strong>Boot media connectivity</strong></p>
+<p>Users are required to test their boot interface by running boot loader
+independent diagnostic tests that confirm that the SOC can read and
+write from the boot interface.</p>
+<p>TI Technical documentation like Technical reference manual and Bootloader
+Application notes list default behavior or the ROM
+bootloader and limitations and constraints for each boot mode.
+Application developers need to account for this while designing their
+system to ensure smooth bring up process.</p>
+<p class="rubric" id="signalling-on-boot-media-and-reset-pins"><strong>Signalling on boot media and reset pins</strong></p>
+<p>If software and other hardware debug steps have not helped identify the
+issue, you may need to hook up a scope or protocol analyzer to check the
+clocks and the data transfers from the boot media to check if there is
+any issues that can be identified. Another commonly known issue that
+impacts boot is noise on the power lines which may cause the SOC to
+reset or cause a hang on the boot core. Provide these scope shots to TI
+on E2E forums so TI engineers can confirm that there are no issues.</p>
+<p class="rubric" id="software-debug-steps">Software Debug Steps</p>
+<p class="rubric" id="sbl-and-app-entry-points">SBL and app Entry points</p>
+<p>If you don`t see your bootloader executing post boot, a good sanity
+check is for you to look at the map file for the bootloader and ensure
+that the entry point matches with the location in the TI or GPHeader in
+the boot image. this can be done by looking at the entry point in the
+MLO/_ti.bin/GPheader and ensure that it matches with the location of
+symbol Entry in the .out/map file for the bootloader.</p>
+<p class="rubric" id="sbl-and-app-memory-map">SBL and App memory map</p>
+<p>The SBL executes from device onchip memory so if your application is also
+using Onchip memory in addition to DDR memory, developers need to ensure
+that the code sections in the application do not overlap with memory
+sections that are used by the SBL. This can cause the SBL to hang during
+the application boot process and go into an abort state.</p>
+<p>To check what memory region is used by the SBL please locate the map
+file created from building the bootloader.</p>
+<p class="rubric" id="flash-programming-verification">Flash Programming verification</p>
+<p>It is essential to understand that the flash programmer that you use has
+not just the ability to write the image to flash but should also be able
+to verify that the image written to flash matches the image that you
+have created on your host machine. You can use TI flash programming
+utilities as reference and ensure that the production flashing tools use
+a method to erase, write and then verify the boot image that is written
+to the flash.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p class="rubric" id="ddr-timings-and-configuration-sbl">DDR timings and configuration /SBL</p>
+<p>The bootloader ships with DDR clock and timing settings
+that apply to the external memory devices that have been used in TI
+evaluation platforms. When running the code on custom platforms, users
+may be required to change these setting to match the timings required by
+custom design. We highly recommend that users create a GEL script
+similar to one provided by TI and test the memory interface with the new
+settings before using them in the secondary bootloader to setup external
+memory.
+provides a mem_test that can be used to test read and writes to the
+entire DDR address space for confirming the SOC EMIF settings.</p>
+<p class="rubric" id="emulator-based-debugging-of-boot">Emulator based debugging of boot</p>
+<p>The bootloader is like any other application that can
+be loaded over the emulator and debugged. Steps to connect an emulator
+to the EVM have been described in the hardware setup guides.</p>
+<p>Loading the bootloader over emulator can be very useful step in
+debugging the system boot. Before generating the final binary for
+bootloader, the build generates the .out file for the bootloader which
+is then formatted in a boot format that the ROM bootloader(RBL) can
+interpret. This .out can be loaded over the emulator similar to any
+other application. If you load the debug version of the bootloader, you
+can single step through the code that initializes the SOC and also part
+of the SBL code that loads the app from the boot media.</p>
+<div
+style="margin: 5px; padding: 2px 10px; background-color: #ecffff; border-left: 5px solid #3399ff;"><p><strong>NOTE</strong>
+SBL runs from onchip memory so users can load the SBL.out even without
+using the GEL file but using the GEL sometimes helps with putting the
+core in a clean state so usage of the GEL is optional</p>
+</div><p><strong>Alternate Approach:</strong></p>
+<p><strong>Add a spinlock in SBL main</strong></p>
+<p>In some occasions the RBL may load the SBL but there may be some issue
+that you need to debug in the SBL. In this case you can add a spinlock
+loop at the start of main in SBL and allow the first stage boot to
+complete normally and then connect to the core when you connect the core
+will be held in the spinlock condition waiting for you to connect.</p>
+<p>Example:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="k">volatile</span> <span class="kt">int</span> <span class="n">exitSpinLock</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kt">void</span> <span class="nf">Debug_spinLock</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">exitSpinLock</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>You will then have to &#8220;release&#8221; the core by toggling the variable which
+the while loop is blocking on. You can either do this manually by
+halting CCS, examining the variable in the watch window and then
+changing the value before continuing execution on the core, or you can
+use a GEL script.</p>
+<p><strong>Use an IO input to stall the core until user input is received:</strong></p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Hit enter to continue:&quot;</span><span class="p">);</span>
+<span class="n">getchar</span><span class="p">();</span>
+</pre></div>
+</div>
+<p class="rubric" id="system-state-at-boot-failure">System state at boot failure</p>
+<p>A useful data point for TI to debug boot related issues is to isolate
+commonly known initialization and to understand how far the bootloader
+has executed correctly before it runs into any issues. Users are
+required to capture ARM/DSP clocks, Program counter value, Entry points
+detected, pinmux configuration and confirm DDR initialization and slave
+core states. This helps minimize the number of variables in the system
+boot and helps us zero in on the most likely cause for the boot failure.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="boot_k3.html" class="btn btn-neutral float-right" title="5.2. J721E SBL" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../family_cfg/jacinto/index_boot_jacinto.html" class="btn btn-neutral" title="5. Bootloader (SBL)" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="http://www.ti.com/corp/docs/legal/copyright.shtml">&copy; Copyright 1995-2020</a>, Texas Instruments Incorporated. All rights reserved. <br>
+      <a href="http://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="http://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="http://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="http://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'08_06_01',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

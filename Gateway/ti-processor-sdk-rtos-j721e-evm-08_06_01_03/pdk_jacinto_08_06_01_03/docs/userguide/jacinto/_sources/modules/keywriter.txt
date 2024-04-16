@@ -1,0 +1,520 @@
+OTP KEYWRITER
+=============
+
+
+.. contents:: Table of Contents
+    :depth: 3
+
+Introduction
+------------
+
+.. Note::
+
+    This document is applicable to High Secure (HS) device variants.
+
+OTP (One Time Programmable) Keywriter is the software tool, used to provision 
+customer keys into the device eFuses for enforcing secure boot and establishing 
+root of trust. Secure boot requires an image to be `encrypted (optional) and signed using 
+customer keys <http://downloads.ti.com/tisci/esd/latest/6_topic_user_guides/secure_boot_signing.html>`_, 
+which will be verified by the SoC using the active MEK (for decryption) and MPK Hash (to 
+verify the signature). In case the customer's MPK and MEK are compromised, there is a second
+set of backup MPK and MEK fields that can be used, after applying a keyrevision update.
+
+In order to burn the 2 sets (active and backup) of customer key information into the SoC,
+OTP Keywriter requires a x509 format certificate, signed using customer key(s)
+(Programming of *backup key set* is optional).
+
+.. Note::
+
+    This action is irreversible, so there is no going back once the keys are burned into 
+    SoC eFuses. 
+
+.. csv-table:: Supported OTP keys
+    :file: ../../images/keywriter/otp_kw_supported_values.csv
+    :widths: 20 35 45
+    :header-rows: 1
+
+.. admonition:: Limitations
+
+    The current version of OTP Keywriter only supports 4096 bit RSA format for 
+    SMPK and BMPK. Support for ECDSA and different key lengths will be available 
+    in subsequent versions.
+
+Components
+----------
+
+OTP Keywriter contents include:
+
+* **PDK keywriter app** source code
+
+  This is the public keywriter application. 
+  It boots directly on the primary boot core of the device (generically, 
+  not necessarily R5) without any other bootloader. It is responsible for sending the 
+  OTP configuration to the secure keywriter component running on the security subsystem 
+  to blow the keys into the device eFuses.
+
+    * **x509 certificate** configuration template, and **generation script** as 
+      a part of source code
+      
+    .. Note::
+
+        This is a reference script. It can either be used as-is with the customer's keys 
+        or integrated within the customer's HSM environment.
+
+
+* Encrypted **TIFS keywriter binary**
+
+  This is the secure OTP keywriter firmware, and 
+  runs on the secure subsystem of the device (not necessarily M3, or even DMSC). 
+  It is responsible for verifying the OTP configuration from x509 certificate 
+  and blowing the data into the device efuses. 
+
+  .. Note::
+
+        This binary differs from the standard TIFS binary used in production.
+
+
+* **TI FEK (public) key** - TI Field Encryption Key
+  
+  This will be required by the certificate generation script, to 
+  ensure confidentiality of the customer's key material. 
+  TI FEK Public key will be used to encrypt content (refer 
+  :numref:`pdk_keywr_cert_gen_procedure`), and TI FEK private key (not shared, 
+  but accessible by encrypted TIFS keywriter binary) will be used to decrypt it 
+  (inside the secure subsystem).
+
+
+Directory Structure
+-------------------
+
+::
+
+    keywriter/
+	|-- binary
+	|   |-- j7200
+	|   `-- j721e
+	|-- boardcfgs
+	|   |-- j7200
+	|   |   |-- keywr_defaultBoardcfg_hex.h
+	|   |   |-- keywr_defaultBoardcfg_pm_hex.h
+	|   |   |-- keywr_defaultBoardcfg_rm_hex.h
+	|   |   `-- keywr_defaultBoardcfg_security_hex.h
+	|   `-- j721e
+	|       |-- keywr_defaultBoardcfg_hex.h
+	|       |-- keywr_defaultBoardcfg_pm_hex.h
+	|       |-- keywr_defaultBoardcfg_rm_hex.h
+	|       `-- keywr_defaultBoardcfg_security_hex.h
+	|-- build
+	|   |-- bin2c.mk
+	|   `-- keywriter.mk
+	|-- init.asm
+	|-- keywriter_component.mk
+	|-- main.c
+	|-- main.h
+	|-- scripts
+	|   |-- construct_ext_otp_data.sh
+	|   |-- generate_test_binaries.sh
+	|   |-- gen_keywr_cert_helpers.sh
+	|   |-- gen_keywr_cert.sh
+	|   |-- templates
+	|   |   |-- config_bmpk_template.txt
+	|   |   `-- config_template.txt
+	|-- soc
+	|   |-- common
+	|   |   |-- linker.lds
+	|   |   `-- pmic_example.c
+	|   |-- j7200
+	|   |   |-- keywriter_utils.c
+	|   |   `-- keywriter_utils.h
+	|   `-- j721e
+	|       |-- keywriter_utils.c
+	|       `-- keywriter_utils.h
+	|-- tifs_bin
+	|   |-- j7200
+	|   `-- j721e
+	`-- x509cert
+
+Important Features & Details
+----------------------------
+
+* VPP must be powered (1.8v) when the efuses are programmed. Refer to device 
+  datasheet for details on VPP requirements.
+
+.. note::
+
+   Refer ``soc/$(SOC)/keywriter_utils.c`` for an example usage of I2C request 
+   to enable VPP power from PMIC under I2C control. 
+   Alternately, direct control of an LDO via GPIO can be used. 
+
+* OTP keywriter firmware supports a maximum certificate length of 5400 bytes.
+
+.. important::
+
+   This length is for individual certificates, and not the ``x509cert/final_certificate.bin``.
+   Check size of ``primary_cert.bin`` and ``seconday_cert.bin`` (optional depending on 
+   BMPK). If certificate length exceeds the supported limit, the keys can be programmed
+   using :ref:`incremental approach <kw-incr-programming>`.
+
+* Incremental programming - Until the KEYREV value is set to either 1 or 2, the device
+  is considered as HS-FS and key values can continue to be programmed incrementally. 
+  This allows key programming to be done in multiple 
+  passes. Refer :ref:`this <kw-incr-programming>` for detailed examples.
+
+.. admonition:: Example
+
+    Different offsets of extended OTP array could be programmed, followed by 
+    other keys such as MSV, SWREV etc.
+
+.. important:: 
+
+    Once the KEYREV is set to 1 or 2, the device becomes HS-SE, and OTP keywriter
+    application will no longer boot as the user root key takes over as root of trust. 
+    So programming KEYREV should be done in the last step.
+
+* OTP keywriter supports J7200 & J721e SoCs
+
+Build Procedure
+---------------
+
+#. Download the OTP Keywriter add-on package, and copy the folders ``docs`` and 
+   ``packages`` to PDK code base.
+
+#. :ref:`Generate x509 certificate <pdk_keywr_gen_x509_cert_from_cust_hsm>` 
+   containing key/efuse values from customer HSM
+
+#. :ref:`Build PDK <pdk_keywr_build_app>` Keywriter app
+
+#. With the addition of J7200. Default is still J721e. For Building J7200 please specify SOC=j7200 BOARD=j7200_evm.
+
+#. Run on SoC, using a boot mode of choice
+
+.. note::
+
+    OTP keywriter add-on package has the necessary firmware and TI FEK public key
+    required to build the OTP keywriter example application. 
+
+.. _pdk_keywr_gen_x509_cert_from_cust_hsm:
+
+Generating x509 certificate from customer HSM
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The Customer keys are supposed to be private, and not to be distributed out in open. 
+For the scope of this document, **Customer HSM** would mean *The secure server/
+system* where the customer intends to generate the x509 certificate. 
+Once the certificate is generated, since the customer key information is encrypted, 
+it is safe to share the certificate in open without revealing the actual keys.
+
+The customer provided key material consists of both Public Key hashes (xMPKH) 
+and secret/secure symmetric keys (xMEK). In order to maintain security, the 
+symmetric keys are encrypted on the secure server (referred to here as Customer HSM), 
+so that the resulting X509 certificate can be exported and embedded in the Keywriter 
+binary without exposing the secret keys.
+
+.. Note::
+
+    OpenSSL (1.1.1  11 Sep 2018) is required for building the OTP Keywriter. Check if OpenSSL is installed 
+    by typing "openssl version" at the comamnd prompt. If OpenSSL is not installed, 
+    download and install OpenSSL for your OS.
+
+    * For Windows : The easiest way is to download and install 
+      `Strawberry Perl <http://strawberryperl.com/download/5.28.0.1/strawberry-perl-5.28.0.1-64bit.msi>`_
+      The Strawberry Perl installer automatically installs and sets up OpenSSL. 
+      Alternately, users can also use any of these
+      `Third Party OpenSSL Distributions <https://wiki.openssl.org/index.php/Binaries>`_
+      for Windows. Refer individual links for instructions on how to setup OpensSSL 
+      using a particular distribution.
+
+    * For Linux : Execute the command ``sudo apt-get install openssl`` at the linux command prompt.
+
+.. _pdk_keywr_cert_gen_procedure:
+.. figure:: ../../images/keywriter/key_writer_procedure.png
+
+    X509 Certificate generation procedure.
+
+
+#. OEM generates a random 256-bit number to be used as an AES encryption key for 
+   protecting the OTP data.
+
+#. The AES-256 key from step 1 is used to encrypt all X509 extension fields, 
+   which require encryption protection.
+
+#. Following X509 extensions are created, using TI FEK (public):
+   
+   * Encrypting the AES-256 key with TI FEK
+   * Signing the AES-256 key with the SMPK, and encrypting that with the TI FEK
+   * (optionally, refer step 6) signing the AES-256 key with the BMPK, and encrypting 
+     that with the TI FEK
+
+#. All of the extensions from steps 1-3 are combined into a X.509 configuration which 
+   is used to generate and sign a certificate with the SMPK.
+
+#. This X509 config is sigend using SMPK (priv).
+
+#. (Optional) If the OEM chooses to write BMPK/BMEK fields, X509 config from step 5 
+   needs to be signed using BMPK (priv).
+
+The **scripts** folder has the necessary tools for generating x509 certificate for
+eFuse programming. It can be copied to a secure server (customer HSM) where the 
+customer keys are stored, and used to generate the x509 certificate.
+
+Run the ``gen_keywr_cert.sh`` shell script, to create the certificate. 
+Modify the path arguments to specific keys as necessary. Use ``-h`` option for help.
+
+::
+
+    ./gen_keywr_cert.sh -h
+
+.. TIP::
+
+    * ``./gen_keywr_cert.sh -g`` will generate dummy keys for testing, in ``keys/`` folder
+
+    * ``gen_keywr_cert.sh`` will also generate SHA-512 hash of SMPK, SMEK, BMPK, and 
+      BMEK and store them in ``verify_hash.csv``. M3 UART logs will also print out SHA-512 
+      hash of the keys. ``verify_hash.csv`` can be used for quick comparision with 
+      :ref:`M3 logs <pdk_keywr_logs>`
+
+The final certificate will be available in ``x509cert/final_certificate.bin`` in 
+customer HSM, which needs to be exported to PDK Keywriter app directory 
+``x509cert/final_certificate.bin``.
+
+Extended OTP
+^^^^^^^^^^^^
+
+.. note::
+
+    This extension is currently not supported, and reserved for future.
+
+1024 bits are provided as input, out of which ``size`` number of bits starting from
+``index`` are programmed into efuses. Following figure illustrates the bit mapping
+from byte array (input) to efuse array (efuse rows).
+
+.. figure:: ../../images/keywriter/efuse_32_to_25_example.png
+  :width: 100%
+
+.. admonition:: Example
+
+    If only byte array indexes 2 and 3 were to be programmed (0xCC, 0xDD respectively)
+    from the above figure, we can see that efuse rows 0 and 1 would be programmed
+    as (0x01CC0000) and (0x0000006E) with masks (0x01FF0000) and (0x0000007F)
+    respectively.
+
+    If they were to be write protected, we have to write protect both row 0 and
+    row 1.
+
+    So, we need to set ``wprp`` to ``0000000000000003 0000000000000000``
+    The MSB 16 octets are for wp, LSB 16 octets are for rp.
+    bits 0 and 1 are set in wp, to write protect efuse row 0 and row 1.
+
+    Please note that this would cause the remaining bits of row 0 and row 1
+    also to be write protected.
+
+.. _pdk_keywr_build_app:
+
+Building PDK Keywriter app
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The keywriter app can be built with the following commands. In all below commands "make" 
+can be replaced with "gmake" for Windows machine build. For more details about building
+the PDK, refer :doc:`here <../getting_started>`.
+
+Following files are needed before building keywriter example application
+
+* ``x509cert/final_certificate.bin``
+
+* ``tifs_bin/j721e/ti-fs-keywriter.bin``
+
+* ``x509cert/final_certificate.bin``
+
+::
+
+    cd <pdk-install-path>/packages/ti/build/
+    make keywriter_img_clean
+    make keywriter_img -j4
+
+
+Final ``keywriter_img_<SoC>_release.tiimage`` is available at 
+``<pdk-install-path>/packages/ti/boot/keywriter/binary/$(SOC)``
+
+.. Note::
+
+    The OTP Keywriter certificate from ``x509cert/final_certificate.bin`` is appended to the pdk binary 
+    ``<pdk-install-path>/packages/ti/boot/keywriter/binary/keywriter_img_j721e_release.bin`` 
+    and signed. So that the source code does not need to be compiled each time there is a change 
+    in the OTP Keywriter certificate.
+
+.. Note::
+
+    Building ``sciclient_boardcfg`` and ``sciclient_direct`` modules 
+    before ``keywriter_img`` is no longer necessary, as the compiled ``.h`` files 
+    for board config are included in ``<pdk-packages>/ti/boot/keywriter/boardcfgs/j721e``
+
+Running on SoC, using a boot mode of choice
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The final ``keywriter_img_$(SOC)_release.tiimage`` is a standalone (without need for any SBL)
+bootable keywriter applcation image containing the encrypted OTP keywrtiter firmware binary, 
+and OTP configuration (x509 certificate).
+
+The PDK Keywriter app will load OTP Keywriter binary, and call 
+`OTP keywriter API <http://downloads.ti.com/tisci/esd/latest/2_tisci_msgs/security/keywriter.html#sec-api-keywr-program-keys>`_ 
+using :ref:`Sciclient service <Sciclient_service>`
+
+The response from ``TISCI_MSG_KEY_WRITER``, gives information about success/failure in customer key
+programming in SoC eFuses.
+
+This is logged on R5 UART Port, for confirmation to the user.
+
+Debugging
+---------
+
+The ``debug_response`` from 
+`TISCI_MSG_KEY_WRITER <http://downloads.ti.com/tisci/esd/latest/2_tisci_msgs/security/keywriter.html#sec-api-keywr-program-keys>`_ 
+has detailed information about success / failure in blowing eFuses.
+
+The enumeration documented `here <http://downloads.ti.com/tisci/esd/latest/6_topic_user_guides/key_writer.html#otp-key-writer-error-codes>`_ 
+has the bit positions, which are set in ``debug_response`` according to specific issue while programming customer keys.
+
+A ``debug_response`` of 0x00 means programming was successful.
+
+Apart from debug_response, there are MCU R5 and M3 UART logs which help in debugging.
+
+Example logs, after a successful OTP Keywriter operation can be found :ref:`here <pdk_keywr_logs>`
+
+Appendix
+--------
+
+Using TI dummy keys from PDK code base
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: bash
+
+    cd <PDK-INSTALL-PATH>
+    
+    # Copy the customer dummy private key (SMPK private key, PEM format)
+    cp build/makerules/k3_dev_mpk.pem boot/keywriter/scripts/keys/smpk.pem
+    
+    # Copy the customer dummy encryption key (SMEK, converted to binary file)
+    xxd -p -r build/makerules/k3_dev_mek.txt > boot/keywriter/scripts/keys/smek.key
+
+
+.. _kw-incr-programming:
+
+Creating x509 certificates for Incremental Programming
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Pass 1
+""""""
+
+OTP keywriter can program extended otp array, when supplied with an index, and 
+size of bits to program (both index and size have to be muliples of 8).
+
+Constructing extended otp array
+
+.. code-block:: bash
+
+    # Step 1: Generate 1024 bit array ext_otp_data.bin
+    ./construct_ext_otp_data.sh -extotp 0xFF -indx 0 -size 8
+
+    # Step 2: Edit ext_otp_data.txt for any more changes
+    vim ext_otp_data.txt
+
+    # Step 3: Convert txt to bin file
+    xxd -r -p ext_otp_data.txt > ext_otp_data.bin
+
+    # Setp 4: Generate x509 certificate
+    ./gen_keywr_cert.sh -t ti_fek_public.pem --ext-otp ext_otp_data.bin --ext-otp-indx 0 --ext-otp-size 8
+
+.. note::
+
+    Steps 2, 3 can be skipped if no changes are needed in extended OTP array
+
+After creating this certificate, building the example keywriter app, and programming 
+ext_otp[0:7], we could also program another offset of ext_otp
+
+Pass 2
+""""""
+
+.. code-block:: bash
+    
+    ./construct_ext_otp_data.sh -extotp 0x1234 -indx 8 -size 16
+    ./gen_keywr_cert.sh -t ti_fek_public.pem --ext-otp ext_otp_data.bin --ext-otp-indx 8 --ext-otp-size 16 --ext-otp-wprp 00000000000000010000000000000000
+
+.. note::
+
+    The index and size arguments should be same in both the commands
+
+This will create another certificate. Keywriter example app needs to be built
+after every change in certificate. This could be reapeated many times, but without 
+any overlap in the ext_otp index, size parameters.
+
+Pass 3
+""""""
+
+Since the KEYREV value is not modified until now, we can still use OTP keywriter
+to program other keys.
+
+Following code snippet would set SMPKH, SMEK, MSV, KEYCNT and KEYREV.
+
+.. note::
+    
+    It is recommended to write protect SMPKH, SMEK, BMPKH, BMEK efuse rows by 
+    providing the specific arguments to ``gen_keywr_cert.sh`` script.
+
+.. code-block:: bash
+
+    ./gen_keywr_cert.sh -s keys/smpk.pem -s-wp  
+    --smek keys/smek.key --smek-wp -t ti_fek_public.pem 
+    -a keys/aes256.key --msv 0xC0FFE --msv-wp --keycnt 1 --keyrev 1 
+
+.. important::
+    
+    * KEYCNT should match the number of keys programmed into efuses.
+    * KEYREV should always be ``<=`` KEYCNT
+    * It is recommended to write protect KEYCNT
+    * KEYREV could be left without write protection, if a run time KEYREV update is needed.
+
+X509 Configuration Template
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The following x509 configuration template is used, by ``gen_keywr_cert.sh`` file,
+to create the x509 certificate. Each key has an extension field 
+(OID 1.3.6.1.4.1.294.1.64 - 1.3.6.1.4.1.294.1.81), mentioning information such as SHA-512
+value, size, IV, RS used in AES encryption.
+
+Details about individual extensions can be obtained form 
+`Security x509 Certificate Documentation <http://downloads.ti.com/tisci/esd/latest/2_tisci_msgs/security/sec_cert_format.html#extensions>`_
+
+.. literalinclude:: ../../images/keywriter/config_template.txt
+    :language: bash
+
+.. _pdk_keywr_logs:
+
+OTP KEYWRITER LOGS
+^^^^^^^^^^^^^^^^^^
+
+**R5 Log**
+
+.. literalinclude:: ../../images/keywriter/teraterm_r5.log
+    :language: bash
+
+**M3 Log**
+
+.. literalinclude:: ../../images/keywriter/teraterm_m3.log
+    :language: bash
+
+OTP Keywriter example app memory layout
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. figure:: ../../images/keywriter/kw_mem_layout.png
+
+OTP Keywriter validation
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Following is the validation procedure used on OTP keywriter, these
+steps can be replicated by using the script 
+``<keywriter_dir>/scripts/generate_test_binaries.sh``
+
+.. csv-table:: Test binaries
+    :file: ../../images/keywriter/kw_validation_steps.csv
+    :widths: 5 30 15 50
+    :header-rows: 1

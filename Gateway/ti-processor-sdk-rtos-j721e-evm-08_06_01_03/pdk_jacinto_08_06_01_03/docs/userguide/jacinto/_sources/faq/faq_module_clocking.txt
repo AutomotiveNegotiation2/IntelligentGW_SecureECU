@@ -1,0 +1,309 @@
+.. _faq_module_clocking:
+
+.. toctree::
+
+FAQ - How to set the clock for a given module and clock
+=======================================================
+
+Introduction
+------------
+
+Setting the clock frequency for a module can be a confusing activity especially
+if you do not know where to get started. This FAQ is written to address concerns
+you may have to know which clock for which module is running at what frequency
+and how to go about setting the clock frequency to the one you desire.
+
+Before we dive right in make sure you keep the following documents handy for
+you to navigate through the clocking infrastructure of the device you are
+working with.
+
+- **System Firmware Documentation**: This is definitely something you should
+  bookmark and keep in your browser if not already done.
+  https://software-dl.ti.com/tisci/esd/latest/index.html
+  Messages which are used to set the clock frequency for various modules:
+
++-------------------------------------+---------------------------------+-------------------------------------------------------------------------------------------------------------+
+| Sciclient API to use                | TISCI Message                   | TISCI Message Documentation Link                                                                            |
++=====================================+=================================+=============================================================================================================+
+| Sciclient_pmSetModuleClkParent      | TISCI_MSG_SET_CLOCK_PARENT      | https://software-dl.ti.com/tisci/esd/latest/2_tisci_msgs/pm/clocks.html#pm-clocks-msg-set-clock-parent      |
++-------------------------------------+---------------------------------+-------------------------------------------------------------------------------------------------------------+
+| Sciclient_pmGetModuleClkParent      | TISCI_MSG_GET_CLOCK_PARENT      | https://software-dl.ti.com/tisci/esd/latest/2_tisci_msgs/pm/clocks.html#pm-clocks-msg-get-clock-parent      |
++-------------------------------------+---------------------------------+-------------------------------------------------------------------------------------------------------------+
+| Sciclient_pmGetModuleClkNumParent   | TISCI_MSG_GET_NUM_CLOCK_PARENTS | https://software-dl.ti.com/tisci/esd/latest/2_tisci_msgs/pm/clocks.html#pm-clocks-msg-get-num-clock-parents |
++-------------------------------------+---------------------------------+-------------------------------------------------------------------------------------------------------------+
+| Sciclient_pmSetModuleClkFreq        | TISCI_MSG_SET_FREQ              | https://software-dl.ti.com/tisci/esd/latest/2_tisci_msgs/pm/clocks.html#pm-clocks-msg-set-freq              |
++-------------------------------------+---------------------------------+-------------------------------------------------------------------------------------------------------------+
+| Sciclient_pmSetModuleClkFreqRange   | TISCI_MSG_SET_FREQ              | https://software-dl.ti.com/tisci/esd/latest/2_tisci_msgs/pm/clocks.html#pm-clocks-msg-set-freq              |
++-------------------------------------+---------------------------------+-------------------------------------------------------------------------------------------------------------+
+| Sciclient_pmQueryModuleClkFreq      | TISCI_MSG_QUERY_FREQ            | https://software-dl.ti.com/tisci/esd/latest/2_tisci_msgs/pm/clocks.html#pm-clocks-msg-query-freq            |
++-------------------------------------+---------------------------------+-------------------------------------------------------------------------------------------------------------+
+| Sciclient_pmQueryModuleClkFreqRange | TISCI_MSG_QUERY_FREQ            | https://software-dl.ti.com/tisci/esd/latest/2_tisci_msgs/pm/clocks.html#pm-clocks-msg-query-freq            |
++-------------------------------------+---------------------------------+-------------------------------------------------------------------------------------------------------------+
+| Sciclient_pmGetModuleClkFreq        | TISCI_MSG_GET_FREQ              | https://software-dl.ti.com/tisci/esd/latest/2_tisci_msgs/pm/clocks.html#pm-clocks-msg-get-freq              |
++-------------------------------------+---------------------------------+-------------------------------------------------------------------------------------------------------------+
+
+- **Device Clocking tool**: This is a tool which helps understand the clocking
+  of the different modules and their sources: https://www.ti.com/tool/CLOCKTREETOOL
+
+- **Device TRM**: This document should be referred to for the different clock 
+  options for the different modules. Keep in mind the following chapters when
+  trying to understand the clocking of the device:
+
++-------------+----------------------------------------------------------+
+| TRM Chapter | What should you refer in this                            |
++=============+==========================================================+
+| Clocking    | The "Clocking" Chapter under                             |
+|             | "Device Configuration" is your guide                     |
+|             | to the different clock sources available in the          |
+|             | system. It gives details of the high level device        |
+|             | clocking and the PLLs in the device.                     |
++-------------+----------------------------------------------------------+
+| Integration | In every module chapter you would find a section         |
+|             | called "Integration". Use this section of the TRM        |
+|             | to see which clocks go to a particular module.           |
+|             | For every module in the SoC, there could be one or more  |
+|             | clocks supplies. There could be different options for    |
+|             | the clocking as well. When multiple options are present  |
+|             | there would be multiplexer or mux which sits in front of |
+|             | this clock. The mux options are highlighted in this      |
+|             | chapter as well.                                         |
++-------------+----------------------------------------------------------+
+
+Default clock state of the system
+---------------------------------
+
+There are some default clocks which are set during the device boot by the
+bootloader. This includes the clocks set by the Device Manager part of the
+System firmware and the Board library. Typically the sequence is:
+
+-   Device manager will set the PLLs to a default value. Note the device manager
+    does not set any multiplexers during initialization. Hence all clock options
+    will be set to their hardware default.
+    In order to know what is the device PLL defaults the Device manager is
+    setting please refer to:
+
+    *  **AM65x SR1.0**: https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/am6x/pll_data.html
+
+    *  **AM65x SR2.0**: https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/am65x_sr2/pll_data.html
+
+    *  **J721e** (Both SR1.0 and SR1.1): https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/j721e/pll_data.html
+
+    *  **J7200** : https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/j7200/pll_data.html
+
+    *  **For any future devices**: Just go to https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/index.html and search for PLL defaults.
+    
+    The device manager looks the value of the CTRLMMR_WKUP_DEVSTAT to determine
+    the oscillator connected to the device and then it will set up the PLLs based
+    on the different tables given in the pages above.
+    The device manager will set up the PLLs when the TISCI_MSG_BOARD_CONFIG_PM 
+    message as part of the Boot loader is sent. For more details on what happens
+    when TISCI_MSG_BOARD_CONFIG_PM is sent refer:  https://software-dl.ti.com/tisci/esd/latest/3_boardcfg/BOARDCFG_PM.html#power-management-initialization-after-receiving-board-configuration
+
+ 
+-   Board Library: will then use the Device Manager configuration and then also
+    program the clocks for modules which require some multiplexer configurations
+    or clocking which is different than the default.
+
+    Refer the following files to see what does the board library set:
+
+    * **AM65x**: pdk/packages/ti/board/src/evmKeystone3/board_pll.c
+
+    * **J721e**: pdk/packages/ti/board/src/j721e_evm/board_pll.c
+
+    * **J7200**: pdk/packages/ti/board/src/j7200_evm/board_pll.c
+
+    In particular look at the function: Board_PLLInitAll or Board_PLLInitMcu or 
+    Board_PLLInitMain to see what clocks and what modules are set.
+
+Setting the clock for a device
+------------------------------
+
+In order to set the clock for a device the first step is to identify the device
+ID which you want to set the clock for. There are 2 ways you can do this:
+
+-   **OPTION 1**: Look at the source code:
+    Here you can refer to the following files to see what is the device ID to use:
+
+    * **AM65x SR1.0**: pdk/packages/ti/drv/sciclient/soc/sysfw/include/am65x/tisci_devices.h
+
+    * **AM65x SR2.0**: pdk/packages/ti/drv/sciclient/soc/sysfw/include/am65x_sr2/tisci_devices.h
+
+    * **J721e**: pdk/packages/ti/drv/sciclient/soc/sysfw/include/j721e/tisci_devices.h
+
+    * **J7200**: pdk/packages/ti/drv/sciclient/soc/sysfw/include/j7200/tisci_devices.h
+
+    In these files search for the device you would like to set the clock for.
+    The advantage with this method is you would find the exact macro to be used
+    with Sciclient APIs.
+
+-   **OPTION 2**: Look at the TISCI documentation.
+    Here you can refer to the following files to see what is the device ID to use:
+
+    * **AM65x SR1.0**: https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/am6x/devices.html
+
+    * **AM65x SR2.0**: https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/am65x_sr2/devices.html
+
+    * **J721e**: https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/j721e/devices.html
+
+    * **J7200**: https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/j7200/devices.html
+
+    In these files search for the device you would like to set the clock for.
+    Once you find the device, in order to use this with the Sciclient APIs you
+    would need to either use the exact number for the module ID or convert the name
+    to a macro by doing the following substituion:
+
+    * **AM65x SR1.0**: Replace AM6 with TISCI
+
+    * **AM65x SR2.0**: Replace AM6 with TISCI
+
+    * **J721e**: Replace J721E with TISCI
+
+    * **J7200**: Replace J7200 with TISCI
+
+Once you identify the device the next step is to identify the clock for that
+particular device you would like to set the frequency for. There are again 2
+ways you can do this:
+
+
+- **OPTION 1**: Look at the source code:
+  Here you can refer to the following files to see what is the device ID to use:
+
+  * **AM65x SR1.0**: pdk/packages/ti/drv/sciclient/soc/sysfw/include/am65x/tisci_clocks.h
+
+  * **AM65x SR2.0**: pdk/packages/ti/drv/sciclient/soc/sysfw/include/am65x_sr2/tisci_clocks.h
+
+  * **J721e**: pdk/packages/ti/drv/sciclient/soc/sysfw/include/j721e/tisci_clocks.h
+
+  * **J7200**: pdk/packages/ti/drv/sciclient/soc/sysfw/include/j7200/tisci_clocks.h
+
+  In these files search for the device you would like to set the clock for.
+  The advantage with this method is you would find the exact macro to be used
+  with Sciclient APIs.
+
+- **OPTION 2**: Look at the TISCI documentation.
+  Here you can refer to the following files to see what is the device ID to use:
+
+  * **AM65x SR1.0**: https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/am6x/clocks.html
+
+  * **AM65x SR2.0**: https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/am65x_sr2/clocks.html
+
+  * **J721e**: https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/j721e/clocks.html
+
+  * **J7200**: https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/j7200/clocks.html
+
+  In these files search for the device you would like to set the clock for.
+  Once you find the device, in order to use this with the Sciclient APIs you
+  would need to either use the exact number for the module ID or convert the name
+  to a macro by doing the following substitution:
+
+  * **AM65x SR1.0**: Replace AM6 with TISCI
+
+  * **AM65x SR2.0**: Replace AM6 with TISCI
+
+  * **J721e**: Replace J721E with TISCI
+
+  * **J7200**: Replace J7200 with TISCI
+
+.. Note::
+
+    Clocks with the name _PARENT_ are special. They are clocks which are not
+    directly fed to the module but feed into a multiplexer and then based
+    on the value of the multiplexer will reach the module. When using the
+    Sciclient_pmSetModuleClkFreq or Sciclient_pmQueryModuleClkFreq or
+    Sciclient_pmGetModuleClkFreq do not use these clock IDs. Only use this
+    for Sciclient_pmSetModuleClkParent or Sciclient_pmGetModuleClkParent APIs.
+
+Now that you know the module ID and clock ID, the next step is to look at the
+TRM or the Clock tree tool to see if this clock has a multiplexer sitting before
+this. If yes, you need to make a choice of where this clock is going to be sourced from.
+
+For example,
+The GTC module in AM65xx can take the clock from multiple sources:
+Option 0 – Gives 200 MHz which is default.
+Option 1 – Gives 250 MHz. 
+To set the clock to 250 MHz use the below API:
+
+.. code::
+
+    status = Sciclient_pmSetModuleClkParent(
+                                    TISCI_DEV_GTC0,
+                                    TISCI_DEV_GTC0_BUS_VBUSP_CLK,
+                                    TISCI_DEV_GTC0_BUS_VBUSP_CLK_PARENT_ADPLLLJM_HSDIV_WRAP_MAIN_0_BUS_HSDIV_CLKOUT3_CLK,
+                                    SCICLIENT_SERVICE_WAIT_FOREVER);
+
+Let's say now you have selected the parent for the clock input to the module
+the next step is to then see if the default PLL configuration given by Device
+Manager or Board Initilization is sufficient. If yes, you are done and can skip
+the rest of this FAQ. 
+
+You can double confirm if the clock is set correctly by using:
+
+.. code::
+
+    status = Sciclient_pmGetModuleClkFreq(
+                                    TISCI_DEV_GTC0,
+                                    TISCI_DEV_GTC0_BUS_VBUSP_CLK,
+                                    &currentFreq,
+                                    SCICLIENT_SERVICE_WAIT_FOREVER);
+
+The API will return the current frequency in Hertz in the variable currentFreq.
+
+If the clock is not the frequency you would like to set even after setting the
+multiplexer or the clock does not have a multiplexer and the default is not what
+suits your usecase, then follow the next steps to set the clock.
+
+**STEP 1**: Check if the clock frequency you are trying to set is possible or not.
+In this step we simply check if the PLLs and other modules which source their
+clocks from the same HSDIV or PLL allow you to set the frequency for this
+particular module clock to the desired clock. If possible, the API returns
+with CSL_PASS. If not the API will return with a CSL_EFAIL. The advantage of 
+doing this is to make sure the registers are not programmed if the clock setup
+is not possible.
+
+Example:
+Let's say you are trying to set the exact frequency of 250 MHz to GTC device,
+you would use the Query api as below to check if this is possible or not. 
+
+.. code::
+
+    status = Sciclient_pmQueryModuleClkFreq (
+                                    TISCI_DEV_GTC0,
+                                    TISCI_DEV_GTC0_BUS_VBUSP_CLK,
+                                    250000000,
+                                    &respFreq,
+                                    SCICLIENT_SERVICE_WAIT_FOREVER);
+
+.. Note::
+
+    If you can tolerate a variance to the frequency then you can use the api
+    Sciclient_pmQueryModuleClkFreqRange to set the min and max values of frequency
+    you can tolerate and then the respFreqHz returned will contain the value
+    of the frequency that the Sciclient_pmSetModuleClkFreq can set within this
+    range. If the API returns fail then respFreqHz will be 0 Hz.
+
+**STEP 2**: If you find that setting the frequency is possible, go ahead and use
+Sciclient_pmSetModuleClkFreq to set the frequency of the clock.
+
+Example: If the query frequency has passed then set the clock as below for the 
+GTC clock.
+
+.. code::
+
+    status = Sciclient_pmSetModuleClkFreq (
+                                    TISCI_DEV_GTC0,
+                                    TISCI_DEV_GTC0_BUS_VBUSP_CLK,
+                                    250000000,
+                                    TISCI_MSG_FLAG_CLOCK_ALLOW_FREQ_CHANGE,
+                                    SCICLIENT_SERVICE_WAIT_FOREVER);
+
+You can double confirm if the clock is set correctly by using:
+
+.. code::
+
+    status = Sciclient_pmGetModuleClkFreq(
+                                    TISCI_DEV_GTC0,
+                                    TISCI_DEV_GTC0_BUS_VBUSP_CLK,
+                                    &currentFreq,
+                                    SCICLIENT_SERVICE_WAIT_FOREVER);
+
+The API will return the current frequency in Hertz in the variable currentFreq.

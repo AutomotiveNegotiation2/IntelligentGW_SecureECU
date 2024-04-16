@@ -1,0 +1,672 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4.11. McASP &mdash; Platform Development Kit (PDK) - JACINTO User Guide</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Platform Development Kit (PDK) - JACINTO User Guide" href="../index.html"/>
+        <link rel="up" title="4. Modules" href="../family_cfg/jacinto/index_modules_jacinto.html"/>
+        <link rel="next" title="4.12. PM" href="pm.html"/>
+        <link rel="prev" title="4.10. IPC" href="ipc.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index_jacinto.html" class="icon icon-home"> Platform Development Kit (PDK) - JACINTO User Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                08_06_01
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">1. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_release_notes_jacinto.html">2. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">3. Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../family_cfg/jacinto/index_modules_jacinto.html">4. Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="csl.html">4.1. CSL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="freertos.html">4.2. FreeRTOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../family_cfg/jacinto/index_modules_safertos_jacinto.html">4.3. SafeRTOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="osal.html">4.4. OSAL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss.html">4.5. DSS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="enet.html">4.6. ENET</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fvid2.html">4.7. FVID2 User Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gpio.html">4.8. GPIO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i2c.html">4.9. I2C</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipc.html">4.10. IPC</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">4.11. McASP</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">4.11.1. Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#user-interface">4.11.2. User Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#driver-configuration">4.11.2.1. Driver Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#apis">4.11.2.2. APIs</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#application">4.11.3. Application</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#examples-unit-tests">4.11.3.1. Examples &amp; Unit tests</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pm.html">4.12. PM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sa.html">4.13. SA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../family_cfg/jacinto/index_modules_sciclient_jacinto.html">4.14. SCICLIENT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="keywriter.html">4.15. OTP KEYWRITER</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spi.html">4.16. SPI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uart.html">4.17. UART</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../family_cfg/jacinto/index_modules_udma_jacinto.html">4.18. UDMA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pmic.html">4.19. PMIC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mmcsd.html">4.20. MMCSD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../family_cfg/jacinto/index_modules_lpm_jacinto.html">4.21. Low Power Manager (LPM)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_boot_jacinto.html">5. Bootloader (SBL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_board_jacinto.html">6. Board/EVM Abstraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_howto_jacinto.html">7. How to Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_faq_jacinto.html">8. Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_developer_notes_jacinto.html">9. Developer Notes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index_jacinto.html">Platform Development Kit (PDK) - JACINTO User Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index_jacinto.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../family_cfg/jacinto/index_modules_jacinto.html">4. Modules</a> &raquo;</li>
+      
+    <li>4.11. McASP</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="mcasp">
+<h1>4.11. McASP<a class="headerlink" href="#mcasp" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>4.11.1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>The multichannel audio serial port (McASP) functions as a
+general-purpose audio serial port optimized for the needs of
+multichannel audio applications. The McASP is useful for time-division
+multiplexed (TDM) stream, Inter-Integrated Sound (I2S) protocols, and
+intercomponent digital audio interface transmission (DIT).The
+multichannel buffered serial port (McASP) peripheral allows direct
+interface to other TI DSPs, codecs, and other devices in a system. The
+following sub sections explain the hardware (McASP peripheral) and
+software context of the McASP LLD.</p>
+<p>The device driver exposes a set of well-defined APIs which are used by
+the application layer to send and receive data via the McASP peripheral.
+The driver also exposes a set of well-defined OS abstraction APIs which
+are used to ensure that the driver is OS independent and portable. The
+McASP driver uses the CSL McASP register layer for all McASP MMR access.
+The McASP driver also interfaces with the EDMA3/UDMA library to be able to
+transfer data to and from McASP peripheral and data memory.</p>
+</div>
+<div class="section" id="user-interface">
+<h2>4.11.2. User Interface<a class="headerlink" href="#user-interface" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="driver-configuration">
+<h3>4.11.2.1. Driver Configuration<a class="headerlink" href="#driver-configuration" title="Permalink to this headline">¶</a></h3>
+<p>The McASP driver provides a sample implementation sequence which
+initializes the MCASP IP block. The McASP Device initialization API is
+implemented as a sample prototype:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="kt">void</span> <span class="n">McaspDevice_init</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The function initializes all the instance specific information like base
+address of instance CFG registers, FIFO address for the instance, TX and
+RX CPU event numbers, TX and RX EDMA event numbers etc.</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="kt">int32_t</span> <span class="n">Mcasp_socGetInitCfg</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="n">index</span><span class="p">,</span> <span class="n">Mcasp_HwInfo</span> <span class="o">*</span><span class="n">cfg</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The function obtains the soc configuration parameters such as interrupt
+numbers, mux configuration parameters etc.</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="kt">int32_t</span> <span class="n">Mcasp_socSetInitCfg</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="n">index</span><span class="p">,</span> <span class="k">const</span> <span class="n">Mcasp_HwInfo</span> <span class="o">*</span><span class="n">cfg</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The function set the soc configuration parameters such as interrupt
+numbers, mux configuration parameters etc.</p>
+<p>For details about individual fields of this library structure, see the
+PDK doxygen documentation</p>
+</div>
+<div class="section" id="apis">
+<h3>4.11.2.2. APIs<a class="headerlink" href="#apis" title="Permalink to this headline">¶</a></h3>
+<p>Refer to below API files:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include</span> <span class="cpf">&lt;ti/drv/mcasp/mcasp_drv.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;ti/drv/mcasp/soc/mcasp_soc.h&gt;</span><span class="cp"></span>
+</pre></div>
+</div>
+<p class="rubric" id="mcasp-buffer-formats">McASP Buffer formats</p>
+<p>The McASP driver provides various buffer formats for sending the data
+to/from the audio device. The differences between these formats arise
+from the way the audio samples are collected from various serializers
+and their timeslots and arranged in the system&#8217;s memory. This way the
+application can choose to run audio processing algorithms over the data
+without the need for re-arranging those data every frame. The buffer
+format is provided in the <strong>Mcasp_ChanParams.dataFormat</strong> in the form of
+<strong>Mcasp_BufferFormat</strong> defined in mcasp_drv.h The below section provides
+an overview of the various formats. In the explanatory diagrams in each
+section, McASP controller recieves samples in frame intervals denoted by
+t1,t2..tn. The McASP driver collects these and arranges those samples in
+the memory in various formats in to the host&#8217;s System memory. We have
+chosen 32 bit samples and 32-bit word addresses throughout for
+simplicity.</p>
+<p class="rubric" id="mcasp-bufferformat-1ser-1slot">Mcasp_BufferFormat_1SER_1SLOT</p>
+<p>This is applicable if only one serializer and one timeslot is used. The
+samples are ordered in the order they received or sent.</p>
+<img alt="../_images/1SLOT_1SER.PNG" src="../_images/1SLOT_1SER.PNG" />
+<p class="rubric" id="mcasp-bufferformat-1ser-multislot-interleaved">Mcasp_BufferFormat_1SER_MULTISLOT_INTERLEAVED</p>
+<p>This is applicable if multiple slots are used with one serializer. The
+samples from the different timeslots are stored interleaved in the
+memory as below. Different timeslots&#8217; samples are denoted by different
+colors and are labelled t1,t2..tn according to the time they arrive at
+the serializer.</p>
+<img alt="../_images/1SER_MULTISLOT_INTERLEAVED.PNG" src="../_images/1SER_MULTISLOT_INTERLEAVED.PNG" />
+<p class="rubric" id="mcasp-bufferformat-1ser-multislot-non-interleaved">Mcasp_BufferFormat_1SER_MULTISLOT_NON_INTERLEAVED</p>
+<p>This is applicable if multiple slots are used with one serializer. The
+samples from the different timeslots are grouped together on the basis
+of the timeslot and stored in the memory as shown below. Different
+timeslots&#8217; samples are denoted by different colors and are labelled
+t1,t2..tn according to the time they arrive at the serializer.</p>
+<img alt="../_images/1SER_MULTISLOT_NON_INTERLEAVED.PNG" src="../_images/1SER_MULTISLOT_NON_INTERLEAVED.PNG" />
+<p>NOTE: if the non-interleaved format is used, the Mcasp_ChanParams-&gt;
+hwFifoEventDMARatio must be set to 1.</p>
+<p class="rubric" id="mcasp-bufferformat-multiser-1slot-ser-interleaved">Mcasp_BufferFormat_MULTISER_1SLOT_SER_INTERLEAVED</p>
+<p>This is applicable if multiple serializers are used with one time slot
+is used for each of the serializers. The samples from the different
+serializers are stored in the memory in interleaved fashion as shown
+below Different serializers&#8217; samples are denoted by different colors and
+are labelled S1,S2..Sn according to the time they arrive at the
+serializer.</p>
+<img alt="../_images/1SER_MULTISER_1SLOT_SER_INTERLEAVED_2.PNG" src="../_images/1SER_MULTISER_1SLOT_SER_INTERLEAVED_2.PNG" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p class="rubric" id="mcasp-bufferformat-multiser-1slot-ser-non-interleaved">Mcasp_BufferFormat_MULTISER_1SLOT_SER_NON_INTERLEAVED</p>
+<p>This is applicable if multiple serializers are used with one timeslots
+each per serializer. The samples from the different timeslots are
+grouped together on the basis of the serializer and stored in the memory
+as shown below Different serializers&#8217; samples are denoted by different
+colors and are labelled S1,S2..Sn according to the time they arrive at
+the serializer.</p>
+<img alt="../_images/1SER_MULTISER_1SLOT_SER_NON_INTERLEAVED.PNG" src="../_images/1SER_MULTISER_1SLOT_SER_NON_INTERLEAVED.PNG" />
+<p class="rubric" id="mcasp-bufferformat-multiser-multislot-semi-interleaved-1">Mcasp_BufferFormat_MULTISER_MULTISLOT_SEMI_INTERLEAVED_1</p>
+<p>This is applicable if multiple serializers are used and each serializer
+containing multiple timeslots. The samples are stored in the memory
+interleaved based on serializer and timeslots as shown below. In this
+example, there are 3 serializers and 2 timeslots per serializers whose
+samples are noted by Ln (left) and Rn (right). Different serializers&#8217;
+samples are denoted by different colors.</p>
+<img alt="../_images/1SER_MULTISER_MULTISLOT_SEMI_INTERLEAVED_1_UPDATED.PNG" src="../_images/1SER_MULTISER_MULTISLOT_SEMI_INTERLEAVED_1_UPDATED.PNG" />
+<p class="rubric" id="mcasp-bufferformat-multiser-multislot-semi-interleaved-2">Mcasp_BufferFormat_MULTISER_MULTISLOT_SEMI_INTERLEAVED_2</p>
+<p>This is applicable if multiple serializers are used and each serializer
+containing multiple timeslots. The samples are grouped based on the
+serializer and within one serializer, the timeslots are interleaved as
+shown below. In this example, there are 3 serializers and 2 timeslots
+per serializers whose samples are noted by Ln (left) and Rn
+(right).Different serializers&#8217; samples are denoted by different colors.</p>
+<img alt="../_images/1SER_MULTISER_MULTISLOT_SEMI_INTERLEAVED_2.PNG" src="../_images/1SER_MULTISER_MULTISLOT_SEMI_INTERLEAVED_2.PNG" />
+<p>NOTE: if the non-interleaved format is used, the Mcasp_ChanParams-&gt;
+hwFifoEventDMARatio must be set to 1.</p>
+<p class="rubric" id="mcasp-wordbits-selection">Mcasp WordBits Selection</p>
+<p>With all the frame formats explained above, there is an option to choose
+which bits to pack from the 32-bit serializer data obtained from/to the
+McASP serializer, when the word size is less than the slot size. This
+option is exercised by setting the Mcasp_chanParams-&gt;wordBitsSelect to
+Mcasp_wordBitsSelect_LSB/Mcasp_wordBitsSelect_MSB.</p>
+<p>If the default Mcasp_wordBitsSelect_LSB option is selected, the LSBs are
+packed in to the system memory.</p>
+<p>Below is an example of word size = 16bits and slot size = 32 bits and
+the Mcasp_wordBitsSelect_LSB option is used. On the receiving side, the
+serializer holds the 32 bit data whose LSB 16 bits are picked up and
+packed in to the system memory. The MSB 16 bits are ignored.</p>
+<img alt="../_images/WordSelect_LSB.PNG" src="../_images/WordSelect_LSB.PNG" />
+<p>If the Mcasp_wordBitsSelect_MSB option is used, the serializer&#8217;s
+MSB-16bits are packed in to the system memory. The LSBs are ignored.</p>
+<img alt="../_images/WordSelect_MSB.PNG" src="../_images/WordSelect_MSB.PNG" />
+<p class="rubric" id="mcasp-priming">Priming</p>
+<p>Applications using McASP driver often might send/receive one or two
+transfers via McASP before sending the application data in/out of McASP
+through the driver. This would internally set up transfer request queues
+so that the application can seamlessly send/receive data without the
+possibility of underrun. This process, a.k.a priming is used in the
+example application provided with the Processor SDK. In this example two
+frames are sent/received prior to submitting the application&#8217;s audio
+data to the McASP driver. The number of transfer requests to prime is
+application dependent and some applications where there may be a lot of
+delay between transfer requests, enough to cause an underrun, the
+priming factor could be higher.</p>
+</div>
+</div>
+<div class="section" id="application">
+<h2>4.11.3. Application<a class="headerlink" href="#application" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="examples-unit-tests">
+<h3>4.11.3.1. Examples &amp; Unit tests<a class="headerlink" href="#examples-unit-tests" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="25%" />
+<col width="21%" />
+<col width="9%" />
+<col width="12%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head"><div class="first last line-block">
+<div class="line">Description</div>
+</div>
+</th>
+<th class="head"><div class="first last line-block">
+<div class="line">Expected Results</div>
+</div>
+</th>
+<th class="head">SOCs</th>
+<th class="head">Build type</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Audio_ExampleProject</td>
+<td><div class="first last line-block">
+<div class="line">Example
+demonstrating
+sample McASP
+loopback using AIC31
+codec. Reference example
+for developers</div>
+</div>
+</td>
+<td><div class="first last line-block">
+<div class="line">Audio sent in to
+the EVM being
+played out via the
+stereo output of
+the EVM</div>
+</div>
+</td>
+<td>AM335X
+AM437x
+AM572x
+K2G
+OMAPL137
+OMAPL138</td>
+<td>CCS Project</td>
+</tr>
+<tr class="row-odd"><td>Audio_SMP_ExampleProject</td>
+<td><div class="first last line-block">
+<div class="line">Example
+demonstrating
+sample McASP
+loopback using AIC31
+codec. Reference example
+for developers with SMP
+enabled.(A15 core only)</div>
+</div>
+</td>
+<td><div class="first last line-block">
+<div class="line">Audio sent in to
+the EVM being
+played out via the
+stereo output of
+the EVM</div>
+</div>
+</td>
+<td>AM572x-
+EVM</td>
+<td>CCS Project</td>
+</tr>
+<tr class="row-even"><td>DeviceLoopback_ExampleProject</td>
+<td><div class="first last line-block">
+<div class="line">Example
+demonstrating
+sample McASP device
+loopback .
+Reference example
+for developers</div>
+</div>
+</td>
+<td><div class="first last line-block">
+<div class="line">Digital ramp
+pattern sent to
+McASP and getting
+looped back
+internally using
+device loopback</div>
+</div>
+</td>
+<td>AM335X
+AM437x
+AM571x
+AM572x
+AM574x
+K2G</td>
+<td>CCS Project</td>
+</tr>
+<tr class="row-odd"><td>AudioEQ_ExampleProject</td>
+<td><div class="first last line-block">
+<div class="line">Example
+demonstrating
+stereo audio
+using biquad
+filters . Reference
+design for
+developers. <strong>TI
+Design Guide</strong>:
+<a class="reference external" href="http://www.ti.com/lit/ug/tidubq2/tidubq2.pdf">TIDEP0069</a></div>
+</div>
+</td>
+<td><div class="first last line-block">
+<div class="line">Three band
+Equalization of
+stereo channel
+filters with gain
+control using
+serial console
+inputs</div>
+</div>
+</td>
+<td>AM572x
+K2G</td>
+<td>CCS Project</td>
+</tr>
+<tr class="row-even"><td>DeviceLoopback_TestApp</td>
+<td><div class="first last line-block">
+<div class="line">Unit test
+demonstrating
+sample McASP device
+loopback .</div>
+</div>
+</td>
+<td><div class="first last line-block">
+<div class="line">Digital ramp
+pattern sent to
+McASP and getting
+looped back</div>
+</div>
+</td>
+<td>AM65x
+J721e
+J7200</td>
+<td>Makefile</td>
+</tr>
+<tr class="row-odd"><td>DeviceLoopback_SMP_TestApp</td>
+<td><div class="first last line-block">
+<div class="line">Unit test
+demonstrating
+sample McASP device
+loopback with SMP
+enabled (A53 core only).</div>
+</div>
+</td>
+<td><div class="first last line-block">
+<div class="line">Digital ramp
+pattern sent to
+McASP and getting
+looped back</div>
+</div>
+</td>
+<td>AM65x</td>
+<td>Makefile</td>
+</tr>
+<tr class="row-even"><td>DeviceLoopback_Regression_TestApp</td>
+<td><div class="first last line-block">
+<div class="line">Regression unit test
+which tests various
+features/configurations
+of the MCASP driver
+This is a menu based
+test application</div>
+</div>
+</td>
+<td><div class="first last line-block">
+<div class="line">Menu Driven test
+sending digital ramp
+and getting looped
+back in various
+configurations</div>
+</div>
+</td>
+<td>AM65x</td>
+<td>Makefile</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric" id="mcasp-introduction">Introduction</p>
+<p>The sample application demonstrates the use of the MCASP driver for
+audio playback. The application uses McASP LLD, and programs the AIC
+codec on the EVM to send and receive the audio input. The audio received
+from the AIC codec is loop back-ed at the application and sent back to
+the AIC codec via MCASP LLD.</p>
+<p class="rubric" id="mcasp-audio-test-setup">Audio test setup</p>
+<p>Please ensure the below before running the demo</p>
+<ol class="arabic simple">
+<li>Connect the EVMs stereo audio input to the PCs stereo audio output</li>
+<li>Connect the EVMs stereo audio output to powered speakers. Please
+make sure the amplification on the speakers is high enough for the
+audio output to be heard</li>
+</ol>
+<p class="rubric" id="mcasp-building-and-running-the-example">Building and running the Example</p>
+<ol class="arabic simple">
+<li>Run pdkProjectCreate to create the
+MCASP_Audio_&lt;evm&gt;_&lt;device&gt;ExampleProject</li>
+<li>Load the project on to CCS and build the same.</li>
+<li>Build the example</li>
+<li>Load the MCASP_Audio_&lt;evm&gt;_&lt;device&gt;ExampleProject</li>
+<li>Run the example</li>
+</ol>
+<p class="rubric" id="mcasp-testing-the-example">Testing the example</p>
+<ol class="arabic simple">
+<li>Play an audio file on the PC.</li>
+<li>You should be able to hear the same audio on the speakers connected
+to the EVM. It is the PCs audio output which is loop backed at the
+EVMs MCASP example outputted to the speakers.</li>
+</ol>
+<p>NOTE: Please make sure the speakers output volume is high enough for
+the audio to be audible.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pm.html" class="btn btn-neutral float-right" title="4.12. PM" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ipc.html" class="btn btn-neutral" title="4.10. IPC" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="http://www.ti.com/corp/docs/legal/copyright.shtml">&copy; Copyright 1995-2020</a>, Texas Instruments Incorporated. All rights reserved. <br>
+      <a href="http://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="http://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="http://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="http://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'08_06_01',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

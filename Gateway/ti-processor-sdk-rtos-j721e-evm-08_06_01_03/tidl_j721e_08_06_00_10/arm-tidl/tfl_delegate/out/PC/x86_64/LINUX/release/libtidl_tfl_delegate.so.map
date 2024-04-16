@@ -1,0 +1,539 @@
+
+As-needed library included to satisfy reference by file (symbol)
+
+libdl.so.2                    /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/tfl_delegate/out/PC/x86_64/LINUX/release/module/src.pc/../../../common/tidl_runtimes_infer_common.o (dlsym@@GLIBC_2.2.5)
+libstdc++.so.6                /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/tfl_delegate/out/PC/x86_64/LINUX/release/module/src.pc/../tfl_delegate.o (std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::compare(char const*) const@@GLIBCXX_3.4.21)
+libgcc_s.so.1                 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/tfl_delegate/out/PC/x86_64/LINUX/release/module/src.pc/../tfl_delegate.o (_Unwind_Resume@@GCC_3.0)
+libpthread.so.0               /usr/lib/gcc/x86_64-linux-gnu/5/libstdc++.so (write@@GLIBC_2.2.5)
+libc.so.6                     /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/tfl_delegate/out/PC/x86_64/LINUX/release/module/src.pc/../../../common/tidl_runtimes_infer_common.o (strcpy@@GLIBC_2.2.5)
+
+Discarded input sections
+
+ .note.GNU-stack
+                0x0000000000000000        0x0 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 /usr/lib/gcc/x86_64-linux-gnu/5/crtbeginS.o
+ .group         0x0000000000000000       0x10 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/tfl_delegate/out/PC/x86_64/LINUX/release/module/src.pc/../tfl_delegate.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/tfl_delegate/out/PC/x86_64/LINUX/release/module/src.pc/../tfl_delegate.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/tfl_delegate/out/PC/x86_64/LINUX/release/module/src.pc/../tfl_delegate.o
+ .group         0x0000000000000000       0x10 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/tfl_delegate/out/PC/x86_64/LINUX/release/module/src.pc/../../../common/tidl_runtimes_infer_common.o
+ .group         0x0000000000000000       0x10 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/tfl_delegate/out/PC/x86_64/LINUX/release/module/src.pc/../../../common/tidl_runtimes_infer_common.o
+ .group         0x0000000000000000        0xc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/tfl_delegate/out/PC/x86_64/LINUX/release/module/src.pc/../../../common/tidl_runtimes_infer_common.o
+ .data.DW.ref.__gxx_personality_v0
+                0x0000000000000000        0x8 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/tfl_delegate/out/PC/x86_64/LINUX/release/module/src.pc/../../../common/tidl_runtimes_infer_common.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/tfl_delegate/out/PC/x86_64/LINUX/release/module/src.pc/../../../common/tidl_runtimes_infer_common.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/tfl_delegate/out/PC/x86_64/LINUX/release/module/src.pc/../../../common/tidl_tflrt_common.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 /usr/lib/gcc/x86_64-linux-gnu/5/crtendS.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+LOAD /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o
+LOAD /usr/lib/gcc/x86_64-linux-gnu/5/crtbeginS.o
+LOAD /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/tfl_delegate/out/PC/x86_64/LINUX/release/module/src.pc/../tfl_delegate.o
+LOAD /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/tfl_delegate/out/PC/x86_64/LINUX/release/module/src.pc/../../../common/tidl_runtimes_infer_common.o
+LOAD /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/tfl_delegate/out/PC/x86_64/LINUX/release/module/src.pc/../../../common/tidl_tflrt_common.o
+START GROUP
+END GROUP
+LOAD /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/libdl.so
+LOAD /usr/lib/gcc/x86_64-linux-gnu/5/libstdc++.so
+LOAD /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/libm.so
+START GROUP
+LOAD /lib/x86_64-linux-gnu/libm.so.6
+LOAD /usr/lib/x86_64-linux-gnu/libmvec_nonshared.a
+LOAD /lib/x86_64-linux-gnu/libmvec.so.1
+END GROUP
+LOAD /usr/lib/gcc/x86_64-linux-gnu/5/libgcc_s.so
+LOAD /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/libpthread.so
+START GROUP
+LOAD /lib/x86_64-linux-gnu/libpthread.so.0
+LOAD /usr/lib/x86_64-linux-gnu/libpthread_nonshared.a
+END GROUP
+LOAD /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/libc.so
+START GROUP
+LOAD /lib/x86_64-linux-gnu/libc.so.6
+LOAD /usr/lib/x86_64-linux-gnu/libc_nonshared.a
+LOAD /lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+END GROUP
+LOAD /usr/lib/gcc/x86_64-linux-gnu/5/libgcc_s.so
+LOAD /usr/lib/gcc/x86_64-linux-gnu/5/crtendS.o
+LOAD /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o
+                0x00000000000001c8                . = (SEGMENT_START ("text-segment", 0x0) + SIZEOF_HEADERS)
+
+.note.gnu.build-id
+                0x00000000000001c8       0x24
+ *(.note.gnu.build-id)
+ .note.gnu.build-id
+                0x00000000000001c8       0x24 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o
+
+.hash
+ *(.hash)
+
+.gnu.hash       0x00000000000001f0       0xfc
+ *(.gnu.hash)
+ .gnu.hash      0x00000000000001f0       0xfc /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o
+
+.dynsym         0x00000000000002f0      0x828
+ *(.dynsym)
+ .dynsym        0x00000000000002f0      0x828 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o
+
+.dynstr         0x0000000000000b18      0x990
+ *(.dynstr)
+ .dynstr        0x0000000000000b18      0x990 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o
+
+.gnu.version    0x00000000000014a8       0xae
+ *(.gnu.version)
+ .gnu.version   0x00000000000014a8       0xae /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o
+
+.gnu.version_d  0x0000000000001558        0x0
+ *(.gnu.version_d)
+ .gnu.version_d
+                0x0000000000001558        0x0 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o
+
+.gnu.version_r  0x0000000000001558       0xf0
+ *(.gnu.version_r)
+ .gnu.version_r
+                0x0000000000001558       0xf0 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o
+
+.rela.dyn       0x0000000000001648      0x180
+ *(.rela.init)
+ *(.rela.text .rela.text.* .rela.gnu.linkonce.t.*)
+ .rela.text     0x0000000000001648        0x0 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o
+ .rela.text.startup
+                0x0000000000001648        0x0 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o
+ *(.rela.fini)
+ *(.rela.rodata .rela.rodata.* .rela.gnu.linkonce.r.*)
+ *(.rela.data .rela.data.* .rela.gnu.linkonce.d.*)
+ .rela.data.rel.local
+                0x0000000000001648       0x18 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o
+ .rela.data.DW.ref.__gxx_personality_v0
+                0x0000000000001660       0x18 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o
+ *(.rela.tdata .rela.tdata.* .rela.gnu.linkonce.td.*)
+ *(.rela.tbss .rela.tbss.* .rela.gnu.linkonce.tb.*)
+ *(.rela.ctors)
+ *(.rela.dtors)
+ *(.rela.got)
+ .rela.got      0x0000000000001678       0xf0 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o
+ *(.rela.bss .rela.bss.* .rela.gnu.linkonce.b.*)
+ *(.rela.ldata .rela.ldata.* .rela.gnu.linkonce.l.*)
+ *(.rela.lbss .rela.lbss.* .rela.gnu.linkonce.lb.*)
+ *(.rela.lrodata .rela.lrodata.* .rela.gnu.linkonce.lr.*)
+ *(.rela.ifunc)
+ .rela.ifunc    0x0000000000001768        0x0 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o
+ .rela.fini_array
+                0x0000000000001768       0x18 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o
+ .rela.init_array
+                0x0000000000001780       0x48 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o
+ .rela.eh_frame
+                0x00000000000017c8        0x0 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o
+
+.rela.plt       0x00000000000017c8      0x5e8
+ *(.rela.plt)
+ .rela.plt      0x00000000000017c8      0x5e8 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o
+ *(.rela.iplt)
+
+.init           0x0000000000001db0       0x17
+ *(SORT_NONE(.init))
+ .init          0x0000000000001db0       0x12 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o
+                0x0000000000001db0                _init
+ .init          0x0000000000001dc2        0x5 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o
+
+.plt            0x0000000000001dd0      0x400
+ *(.plt)
+ .plt           0x0000000000001dd0      0x400 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o
+ *(.iplt)
+
+.plt.got        0x00000000000021d0       0x10
+ *(.plt.got)
+ .plt.got       0x00000000000021d0       0x10 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o
+
+.plt.sec
+ *(.plt.sec)
+
+.text           0x00000000000021e0     0x3064
+ *(.text.unlikely .text.*_unlikely .text.unlikely.*)
+ .text.unlikely
+                0x00000000000021e0        0x0 /usr/lib/gcc/x86_64-linux-gnu/5/crtbeginS.o
+ .text.unlikely
+                0x00000000000021e0        0x0 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/tfl_delegate/out/PC/x86_64/LINUX/release/module/src.pc/../tfl_delegate.o
+ .text.unlikely._ZNSt6vectorImSaImEE19_M_emplace_back_auxIJmEEEvDpOT_
+                0x00000000000021e0        0x0 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/tfl_delegate/out/PC/x86_64/LINUX/release/module/src.pc/../tfl_delegate.o
+ .text.unlikely
+                0x00000000000021e0        0x0 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/tfl_delegate/out/PC/x86_64/LINUX/release/module/src.pc/../../../common/tidl_runtimes_infer_common.o
+ .text.unlikely._ZNSt6vectorIiSaIiEE19_M_emplace_back_auxIJRKiEEEvDpOT_
+                0x00000000000021e0        0x0 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/tfl_delegate/out/PC/x86_64/LINUX/release/module/src.pc/../../../common/tidl_runtimes_infer_common.o
+ .text.unlikely._ZNSt6vectorIS_IiSaIiEESaIS1_EE19_M_emplace_back_auxIJRKS1_EEEvDpOT_
+                0x00000000000021e0        0x0 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/tfl_delegate/out/PC/x86_64/LINUX/release/module/src.pc/../../../common/tidl_runtimes_infer_common.o
+ .text.unlikely
+                0x00000000000021e0        0x0 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/tfl_delegate/out/PC/x86_64/LINUX/release/module/src.pc/../../../common/tidl_tflrt_common.o
+ *(.text.exit .text.exit.*)
+ *(.text.startup .text.startup.*)
+ .text.startup  0x00000000000021e0       0x3b /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/tfl_delegate/out/PC/x86_64/LINUX/release/module/src.pc/../tfl_delegate.o
+ *fill*         0x000000000000221b        0x5 
+ .text.startup  0x0000000000002220       0x2e /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/tfl_delegate/out/PC/x86_64/LINUX/release/module/src.pc/../../../common/tidl_runtimes_infer_common.o
+ *(.text.hot .text.hot.*)
+ *(.text .stub .text.* .gnu.linkonce.t.*)
+ .text          0x000000000000224e        0x0 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o
+ *fill*         0x000000000000224e        0x2 
+ .text          0x0000000000002250      0x100 /usr/lib/gcc/x86_64-linux-gnu/5/crtbeginS.o
+ .text          0x0000000000002350     0x123b /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/tfl_delegate/out/PC/x86_64/LINUX/release/module/src.pc/../tfl_delegate.o
+                0x00000000000024d0                tflite::tfl_delegate::tidlDelegate::Init(TfLiteContext*, TfLiteDelegateParams const*)
+                0x00000000000027c0                tflite::tfl_delegate::tidlDelegate::Prepare(TfLiteContext*, TfLiteNode*)
+                0x0000000000002880                tflite::tfl_delegate::tidlDelegate::Invoke(TfLiteContext*, TfLiteNode*)
+                0x00000000000028f0                tflite::tfl_delegate::tidlDelegate::~tidlDelegate()
+                0x00000000000028f0                tflite::tfl_delegate::tidlDelegate::~tidlDelegate()
+                0x0000000000002950                tflite::tfl_delegate::GetTIDLNodeRegistration()
+                0x00000000000029b0                tflite::tfl_delegate::DelegatePrepareInfer(TfLiteContext*, TfLiteDelegate*)
+                0x0000000000002f30                tflite::tfl_delegate::TfLiteTIDLDelegateCreate(tflite::tfl_delegate::TfLiteTIDLDelegateOptions*)
+                0x0000000000002fb0                tflite_plugin_create_delegate
+                0x0000000000003210                tflite_plugin_destroy_delegate
+                0x0000000000003230                tflite::tfl_delegate::tidlDelegate::CustomData(TfLiteContext*, TfLiteNode*, char const*, char**, void**)
+ *fill*         0x000000000000358b        0x5 
+ .text._ZNSt6vectorImSaImEE19_M_emplace_back_auxIJmEEEvDpOT_
+                0x0000000000003590       0xca /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/tfl_delegate/out/PC/x86_64/LINUX/release/module/src.pc/../tfl_delegate.o
+                0x0000000000003590                void std::vector<unsigned long, std::allocator<unsigned long> >::_M_emplace_back_aux<unsigned long>(unsigned long&&)
+                0x0000000000003590                void std::vector<unsigned long, std::allocator<unsigned long> >::_M_emplace_back_aux<unsigned long>(unsigned long&&)
+ *fill*         0x000000000000365a        0x6 
+ .text          0x0000000000003660     0x1390 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/tfl_delegate/out/PC/x86_64/LINUX/release/module/src.pc/../../../common/tidl_runtimes_infer_common.o
+                0x0000000000003660                TIDL_readBinFromFile
+                0x00000000000036d0                TIDL_osrtDebugPrint
+                0x00000000000037a0                TIDL_checkIsDir
+                0x0000000000003830                TIDL_printSubgraphStats
+                0x00000000000038c0                TIDL_subgraphRtCreate
+                0x00000000000042d0                TIDL_subgraphRtDelete
+                0x0000000000004330                TIDL_rtLoadSymbols
+                0x00000000000043d0                TIDL_readAllowedNodesList
+ .text._ZNSt6vectorIiSaIiEE19_M_emplace_back_auxIJRKiEEEvDpOT_
+                0x00000000000049f0       0xcb /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/tfl_delegate/out/PC/x86_64/LINUX/release/module/src.pc/../../../common/tidl_runtimes_infer_common.o
+                0x00000000000049f0                void std::vector<int, std::allocator<int> >::_M_emplace_back_aux<int const&>(int const&)
+                0x00000000000049f0                void std::vector<int, std::allocator<int> >::_M_emplace_back_aux<int const&>(int const&)
+ *fill*         0x0000000000004abb        0x5 
+ .text._ZNSt6vectorIS_IiSaIiEESaIS1_EE19_M_emplace_back_auxIJRKS1_EEEvDpOT_
+                0x0000000000004ac0      0x277 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/tfl_delegate/out/PC/x86_64/LINUX/release/module/src.pc/../../../common/tidl_runtimes_infer_common.o
+                0x0000000000004ac0                void std::vector<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::_M_emplace_back_aux<std::vector<int, std::allocator<int> > const&>(std::vector<int, std::allocator<int> > const&)
+                0x0000000000004ac0                void std::vector<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::_M_emplace_back_aux<std::vector<int, std::allocator<int> > const&>(std::vector<int, std::allocator<int> > const&)
+ *fill*         0x0000000000004d37        0x9 
+ .text          0x0000000000004d40      0x504 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/tfl_delegate/out/PC/x86_64/LINUX/release/module/src.pc/../../../common/tidl_tflrt_common.o
+                0x0000000000004d40                TIDL_tfliteRtGetTypeAndPtr
+                0x0000000000004df0                TIDL_tfliteRtGetScaleAndZeroPoint
+                0x0000000000004e40                TIDL_getOneOutputTensorIdx
+                0x0000000000004e90                TIDL_subgraphRtInvoke
+ .text          0x0000000000005244        0x0 /usr/lib/gcc/x86_64-linux-gnu/5/crtendS.o
+ .text          0x0000000000005244        0x0 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o
+ *(.gnu.warning)
+
+.fini           0x0000000000005244        0x9
+ *(SORT_NONE(.fini))
+ .fini          0x0000000000005244        0x4 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o
+                0x0000000000005244                _fini
+ .fini          0x0000000000005248        0x5 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o
+                [!provide]                        PROVIDE (__etext = .)
+                [!provide]                        PROVIDE (_etext = .)
+                [!provide]                        PROVIDE (etext = .)
+
+.rodata         0x0000000000005250      0x654
+ *(.rodata .rodata.* .gnu.linkonce.r.*)
+ .rodata.str1.1
+                0x0000000000005250       0xaa /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/tfl_delegate/out/PC/x86_64/LINUX/release/module/src.pc/../tfl_delegate.o
+ *fill*         0x00000000000052fa        0x6 
+ .rodata.str1.8
+                0x0000000000005300      0x1f2 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/tfl_delegate/out/PC/x86_64/LINUX/release/module/src.pc/../tfl_delegate.o
+ .rodata.str1.1
+                0x00000000000054f2       0xf7 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/tfl_delegate/out/PC/x86_64/LINUX/release/module/src.pc/../../../common/tidl_runtimes_infer_common.o
+                                         0xfb (size before relaxing)
+ *fill*         0x00000000000055e9        0x7 
+ .rodata.str1.8
+                0x00000000000055f0      0x1bc /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/tfl_delegate/out/PC/x86_64/LINUX/release/module/src.pc/../../../common/tidl_runtimes_infer_common.o
+                                        0x1ec (size before relaxing)
+ *fill*         0x00000000000057ac        0x4 
+ .rodata.str1.8
+                0x00000000000057b0       0xf0 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/tfl_delegate/out/PC/x86_64/LINUX/release/module/src.pc/../../../common/tidl_tflrt_common.o
+ .rodata.cst4   0x00000000000058a0        0x4 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/tfl_delegate/out/PC/x86_64/LINUX/release/module/src.pc/../../../common/tidl_tflrt_common.o
+
+.rodata1
+ *(.rodata1)
+
+.eh_frame_hdr   0x00000000000058a4      0x124
+ *(.eh_frame_hdr)
+ .eh_frame_hdr  0x00000000000058a4      0x124 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/tfl_delegate/out/PC/x86_64/LINUX/release/module/src.pc/../tfl_delegate.o
+                0x00000000000058a4                __GNU_EH_FRAME_HDR
+ *(.eh_frame_entry .eh_frame_entry.*)
+
+.eh_frame       0x00000000000059c8      0x634
+ *(.eh_frame)
+ .eh_frame      0x00000000000059c8       0x40 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o
+ .eh_frame      0x0000000000005a08       0x18 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o
+                                         0x30 (size before relaxing)
+ .eh_frame      0x0000000000005a20      0x320 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/tfl_delegate/out/PC/x86_64/LINUX/release/module/src.pc/../tfl_delegate.o
+                                        0x338 (size before relaxing)
+ .eh_frame      0x0000000000005d40      0x228 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/tfl_delegate/out/PC/x86_64/LINUX/release/module/src.pc/../../../common/tidl_runtimes_infer_common.o
+                                        0x260 (size before relaxing)
+ .eh_frame      0x0000000000005f68       0x90 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/tfl_delegate/out/PC/x86_64/LINUX/release/module/src.pc/../../../common/tidl_tflrt_common.o
+                                         0xa8 (size before relaxing)
+ .eh_frame      0x0000000000005ff8        0x4 /usr/lib/gcc/x86_64-linux-gnu/5/crtendS.o
+ *(.eh_frame.*)
+
+.gcc_except_table
+                0x0000000000005ffc      0x15c
+ *(.gcc_except_table .gcc_except_table.*)
+ .gcc_except_table
+                0x0000000000005ffc       0x69 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/tfl_delegate/out/PC/x86_64/LINUX/release/module/src.pc/../tfl_delegate.o
+ *fill*         0x0000000000006065        0x3 
+ .gcc_except_table
+                0x0000000000006068       0xf0 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/tfl_delegate/out/PC/x86_64/LINUX/release/module/src.pc/../../../common/tidl_runtimes_infer_common.o
+
+.gnu_extab
+ *(.gnu_extab*)
+
+.exception_ranges
+ *(.exception_ranges .exception_ranges*)
+                0x0000000000206d78                . = DATA_SEGMENT_ALIGN (CONSTANT (MAXPAGESIZE), CONSTANT (COMMONPAGESIZE))
+
+.eh_frame
+ *(.eh_frame)
+ *(.eh_frame.*)
+
+.gnu_extab
+ *(.gnu_extab)
+
+.gcc_except_table
+ *(.gcc_except_table .gcc_except_table.*)
+
+.exception_ranges
+ *(.exception_ranges .exception_ranges*)
+
+.tdata
+ *(.tdata .tdata.* .gnu.linkonce.td.*)
+
+.tbss
+ *(.tbss .tbss.* .gnu.linkonce.tb.*)
+ *(.tcommon)
+
+.preinit_array
+ *(.preinit_array)
+
+.init_array     0x0000000000206d78       0x18
+ *(SORT_BY_INIT_PRIORITY(.init_array.*) SORT_BY_INIT_PRIORITY(.ctors.*))
+ *(.init_array EXCLUDE_FILE(*crtend?.o *crtend.o *crtbegin?.o *crtbegin.o) .ctors)
+ .init_array    0x0000000000206d78        0x8 /usr/lib/gcc/x86_64-linux-gnu/5/crtbeginS.o
+ .init_array    0x0000000000206d80        0x8 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/tfl_delegate/out/PC/x86_64/LINUX/release/module/src.pc/../tfl_delegate.o
+ .init_array    0x0000000000206d88        0x8 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/tfl_delegate/out/PC/x86_64/LINUX/release/module/src.pc/../../../common/tidl_runtimes_infer_common.o
+
+.fini_array     0x0000000000206d90        0x8
+ *(SORT_BY_INIT_PRIORITY(.fini_array.*) SORT_BY_INIT_PRIORITY(.dtors.*))
+ *(.fini_array EXCLUDE_FILE(*crtend?.o *crtend.o *crtbegin?.o *crtbegin.o) .dtors)
+ .fini_array    0x0000000000206d90        0x8 /usr/lib/gcc/x86_64-linux-gnu/5/crtbeginS.o
+
+.ctors
+ *crtbegin.o(.ctors)
+ *crtbegin?.o(.ctors)
+ *(EXCLUDE_FILE(*crtend?.o *crtend.o) .ctors)
+ *(SORT_BY_NAME(.ctors.*))
+ *(.ctors)
+
+.dtors
+ *crtbegin.o(.dtors)
+ *crtbegin?.o(.dtors)
+ *(EXCLUDE_FILE(*crtend?.o *crtend.o) .dtors)
+ *(SORT_BY_NAME(.dtors.*))
+ *(.dtors)
+
+.jcr            0x0000000000206d98        0x8
+ *(.jcr)
+ .jcr           0x0000000000206d98        0x0 /usr/lib/gcc/x86_64-linux-gnu/5/crtbeginS.o
+ .jcr           0x0000000000206d98        0x8 /usr/lib/gcc/x86_64-linux-gnu/5/crtendS.o
+
+.data.rel.ro    0x0000000000206da0        0x0
+ *(.data.rel.ro.local* .gnu.linkonce.d.rel.ro.local.*)
+ *(.data.rel.ro .data.rel.ro.* .gnu.linkonce.d.rel.ro.*)
+ .data.rel.ro   0x0000000000206da0        0x0 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o
+
+.dynamic        0x0000000000206da0      0x210
+ *(.dynamic)
+ .dynamic       0x0000000000206da0      0x210 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o
+                0x0000000000206da0                _DYNAMIC
+
+.got            0x0000000000206fb0       0x50
+ *(.got)
+ .got           0x0000000000206fb0       0x50 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o
+ *(.igot)
+                0x0000000000207fe8                . = DATA_SEGMENT_RELRO_END (., (SIZEOF (.got.plt) >= 0x18)?0x18:0x0)
+
+.got.plt        0x0000000000207000      0x210
+ *(.got.plt)
+ .got.plt       0x0000000000207000      0x210 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o
+                0x0000000000207000                _GLOBAL_OFFSET_TABLE_
+ *(.igot.plt)
+
+.data           0x0000000000207210       0x10
+ *(.data .data.* .gnu.linkonce.d.*)
+ .data          0x0000000000207210        0x0 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o
+ .data          0x0000000000207210        0x0 /usr/lib/gcc/x86_64-linux-gnu/5/crtbeginS.o
+ .data.rel.local
+                0x0000000000207210        0x8 /usr/lib/gcc/x86_64-linux-gnu/5/crtbeginS.o
+                0x0000000000207210                __dso_handle
+ .data          0x0000000000207218        0x0 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/tfl_delegate/out/PC/x86_64/LINUX/release/module/src.pc/../tfl_delegate.o
+ .data.DW.ref.__gxx_personality_v0
+                0x0000000000207218        0x8 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/tfl_delegate/out/PC/x86_64/LINUX/release/module/src.pc/../tfl_delegate.o
+                0x0000000000207218                DW.ref.__gxx_personality_v0
+ .data          0x0000000000207220        0x0 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/tfl_delegate/out/PC/x86_64/LINUX/release/module/src.pc/../../../common/tidl_runtimes_infer_common.o
+ .data          0x0000000000207220        0x0 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/tfl_delegate/out/PC/x86_64/LINUX/release/module/src.pc/../../../common/tidl_tflrt_common.o
+ .data          0x0000000000207220        0x0 /usr/lib/gcc/x86_64-linux-gnu/5/crtendS.o
+ .data          0x0000000000207220        0x0 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o
+
+.tm_clone_table
+                0x0000000000207220        0x0
+ .tm_clone_table
+                0x0000000000207220        0x0 /usr/lib/gcc/x86_64-linux-gnu/5/crtbeginS.o
+ .tm_clone_table
+                0x0000000000207220        0x0 /usr/lib/gcc/x86_64-linux-gnu/5/crtendS.o
+
+.data1
+ *(.data1)
+                0x0000000000207220                _edata = .
+                [!provide]                        PROVIDE (edata = .)
+                0x0000000000207220                . = .
+                0x0000000000207220                __bss_start = .
+
+.bss            0x0000000000207220       0x10
+ *(.dynbss)
+ .dynbss        0x0000000000207220        0x0 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o
+ *(.bss .bss.* .gnu.linkonce.b.*)
+ .bss           0x0000000000207220        0x0 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o
+ .bss           0x0000000000207220        0x1 /usr/lib/gcc/x86_64-linux-gnu/5/crtbeginS.o
+ *fill*         0x0000000000207221        0x3 
+ .bss           0x0000000000207224        0x4 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/tfl_delegate/out/PC/x86_64/LINUX/release/module/src.pc/../tfl_delegate.o
+ .bss           0x0000000000207228        0x1 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/tfl_delegate/out/PC/x86_64/LINUX/release/module/src.pc/../../../common/tidl_runtimes_infer_common.o
+ .bss           0x0000000000207229        0x0 /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/tfl_delegate/out/PC/x86_64/LINUX/release/module/src.pc/../../../common/tidl_tflrt_common.o
+ .bss           0x0000000000207229        0x0 /usr/lib/gcc/x86_64-linux-gnu/5/crtendS.o
+ .bss           0x0000000000207229        0x0 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o
+ *(COMMON)
+                0x0000000000207230                . = ALIGN ((. != 0x0)?0x8:0x1)
+ *fill*         0x0000000000207229        0x7 
+
+.lbss
+ *(.dynlbss)
+ *(.lbss .lbss.* .gnu.linkonce.lb.*)
+ *(LARGE_COMMON)
+                0x0000000000207230                . = ALIGN (0x8)
+                0x0000000000207230                . = SEGMENT_START ("ldata-segment", .)
+
+.lrodata
+ *(.lrodata .lrodata.* .gnu.linkonce.lr.*)
+
+.ldata          0x0000000000607230        0x0
+ *(.ldata .ldata.* .gnu.linkonce.l.*)
+                0x0000000000607230                . = ALIGN ((. != 0x0)?0x8:0x1)
+                0x0000000000607230                . = ALIGN (0x8)
+                0x0000000000607230                _end = .
+                [!provide]                        PROVIDE (end = .)
+                0x0000000000607230                . = DATA_SEGMENT_END (.)
+
+.stab
+ *(.stab)
+
+.stabstr
+ *(.stabstr)
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.comment        0x0000000000000000       0x2d
+ *(.comment)
+ .comment       0x0000000000000000       0x2d /usr/lib/gcc/x86_64-linux-gnu/5/crtbeginS.o
+                                         0x2e (size before relaxing)
+ .comment       0x000000000000002d       0x2e /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/tfl_delegate/out/PC/x86_64/LINUX/release/module/src.pc/../tfl_delegate.o
+ .comment       0x000000000000002d       0x2e /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/tfl_delegate/out/PC/x86_64/LINUX/release/module/src.pc/../../../common/tidl_runtimes_infer_common.o
+ .comment       0x000000000000002d       0x2e /opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/tfl_delegate/out/PC/x86_64/LINUX/release/module/src.pc/../../../common/tidl_tflrt_common.o
+ .comment       0x000000000000002d       0x2e /usr/lib/gcc/x86_64-linux-gnu/5/crtendS.o
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges
+ *(.debug_aranges)
+
+.debug_pubnames
+ *(.debug_pubnames)
+
+.debug_info
+ *(.debug_info .gnu.linkonce.wi.*)
+
+.debug_abbrev
+ *(.debug_abbrev)
+
+.debug_line
+ *(.debug_line .debug_line.* .debug_line_end)
+
+.debug_frame
+ *(.debug_frame)
+
+.debug_str
+ *(.debug_str)
+
+.debug_loc
+ *(.debug_loc)
+
+.debug_macinfo
+ *(.debug_macinfo)
+
+.debug_weaknames
+ *(.debug_weaknames)
+
+.debug_funcnames
+ *(.debug_funcnames)
+
+.debug_typenames
+ *(.debug_typenames)
+
+.debug_varnames
+ *(.debug_varnames)
+
+.debug_pubtypes
+ *(.debug_pubtypes)
+
+.debug_ranges
+ *(.debug_ranges)
+
+.debug_macro
+ *(.debug_macro)
+
+.debug_addr
+ *(.debug_addr)
+
+.gnu.attributes
+ *(.gnu.attributes)
+
+/DISCARD/
+ *(.note.GNU-stack)
+ *(.gnu_debuglink)
+ *(.gnu.lto_*)
+OUTPUT(/opt/Jenkins_OUT/workspace/J7_TIDL_Parent/c7x-mma-tidl/ti_dl/release/tidl_j721e_08_06_00_10/arm-tidl/tfl_delegate/out/PC/x86_64/LINUX/release/libtidl_tfl_delegate.so.1.0 elf64-x86-64)

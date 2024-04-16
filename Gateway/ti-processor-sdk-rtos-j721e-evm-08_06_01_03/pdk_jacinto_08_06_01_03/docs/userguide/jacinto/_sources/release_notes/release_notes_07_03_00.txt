@@ -1,0 +1,469 @@
+Release Notes - 07_03_00
+========================
+
+Introduction
+------------
+
+This release notes provides important information that will assist you in using the PDK software package for the Jacinto family of devices.
+This document provides the product information and known issues that are specific to the PDK software package.
+
+New features added / supported is listed below and defects fixed are highligted in **Fixed Issues** also please check **Upgrade and Compatibility** for backward compatibility
+
+What's New
+----------
+
+.. ifconfig:: CONFIG_family in ('j7200')
+
+    +-------------------+-------------------------------------------------------------------+-------------------+----------------------+
+    | ID                | Description                                                       | Module            | Supported Platforms  |
+    +===================+===================================================================+===================+======================+
+    | PDK-5359          | Support J7200 Platform                                            | COMMON            | J7200                |
+    +-------------------+-------------------------------------------------------------------+-------------------+----------------------+
+    | PDK-9435          | Enable DDR Thermal Testapp for J7200                              | DDR               | J7200                |
+    +-------------------+-------------------------------------------------------------------+-------------------+----------------------+
+
+
+.. ifconfig:: CONFIG_family in ('j7200', 'jacinto')
+
+    +-------------------+-------------------------------------------------------------------+-------------------+----------------------+
+    | PDK-5257          | Support Windows Package for Core SDK                              |   BUILD           | J721E, J7200         |
+    +-------------------+-------------------------------------------------------------------+-------------------+----------------------+
+    | PDK-9312          | FreeRTOS Support on R5F for CPU                                   |   OSAL            | J721E, J7200         |
+    +-------------------+-------------------------------------------------------------------+-------------------+----------------------+
+    | PDK-8726          | OSPI Cache Support                                                |   OSPI            | J721E, J7200         |
+    +-------------------+-------------------------------------------------------------------+-------------------+----------------------+
+
+
+.. ifconfig:: CONFIG_family in ('jacinto')
+
+    +-------------------+-------------------------------------------------------------------+-------------------+----------------------+
+    | PDK-9263          | J721E HS-EVM Support                                              |   COMMON          | J721E                |
+    +-------------------+-------------------------------------------------------------------+-------------------+----------------------+
+    | PDK-5179          | DSS FVID2 Writeback M2M Driver                                    |   DSS             | J721E                |
+    +-------------------+-------------------------------------------------------------------+-------------------+----------------------+
+    | PDK-9321          | DSS M2M: Single Channel Support                                   |   DSS             | J721E                |
+    +-------------------+-------------------------------------------------------------------+-------------------+----------------------+
+    | PDK-9320          | DSS M2M: Chrominance Subsampling - YUV422 to YUV420               |   DSS             | J721E                |
+    +-------------------+-------------------------------------------------------------------+-------------------+----------------------+
+    | PDK-9319          | DSS M2M: Color Space Conversion - RGB to YUV                      |   DSS             | J721E                |
+    +-------------------+-------------------------------------------------------------------+-------------------+----------------------+
+    | PDK-5211          | DSS M2M: Color Space Conversion - YUV to RGB                      |   DSS             | J721E                |
+    +-------------------+-------------------------------------------------------------------+-------------------+----------------------+
+    | PDK-5184          | DSS Writeback Pipeline Support                                    |   DSS             | J721E                |
+    +-------------------+-------------------------------------------------------------------+-------------------+----------------------+
+    | PDK-9317          | DDR: Support for Thermal Testapp on MAIN Domain R5 cores          |   DDR             | J721E                |
+    +-------------------+-------------------------------------------------------------------+-------------------+----------------------+
+
+.. ifconfig:: CONFIG_family in ('am65xx')
+
+    +-------------------+-------------------------------------------------------------------+-------------------+----------------------+
+    | ID                | Description                                                       | Module            | Supported Platforms  |
+    +===================+===================================================================+===================+======================+
+    | JACINTOREQ-1040   | Support for AM65xx SR2.1                                          | COMMON            | AM65xx               |
+    +-------------------+-------------------------------------------------------------------+-------------------+----------------------+
+    | PINDSW-4824       | Unified Ethernet LLD supporting ICSSG                             | Ethernet          | AM65xx               |
+    +-------------------+-------------------------------------------------------------------+-------------------+----------------------+
+    | PDK-8726          | OSPI Cache Support                                                | OSPI              | J721E, J7200, AM65xx |
+    +-------------------+-------------------------------------------------------------------+-------------------+----------------------+
+    | ETHFW-1697        | Enet LLD - ICSSG support in MAC mode                              | ENET              | AM65XX               |
+    +-------------------+-------------------------------------------------------------------+-------------------+----------------------+
+    | ETHFW-1698        | Enet LLD - ICSSG support in Switch mode                           | ENET              | AM65XX               |
+    +-------------------+-------------------------------------------------------------------+-------------------+----------------------+
+    | ETHFW-1700        | Enet LLD - Time Sync support for ICSSG                            | ENET              | AM65XX               |
+    +-------------------+-------------------------------------------------------------------+-------------------+----------------------+
+    | ETHFW-1734        | TimeSync: Integrate ICSSG in TimeSync LLD v2                      | ENET              | AM65XX               |
+    +-------------------+-------------------------------------------------------------------+-------------------+----------------------+
+
+
+Upgrade and Compatibility
+-------------------------
+
+emac
+~~~~
+    - pdk/packages/ti/drv/emac Will be deprecated in subsequent release
+    - From SDK versioned v07.03.00, enet drivers support ICSSG ports too
+    - **emac** is replaced by **enet** drivers
+
+Sciclient
+~~~~~~~~~
+
+- The Sciclient Sciclient_service API does not accept NULL pointers for the
+  `pRespPayload` and expects the `respPayloadSize` to be the size of the structure
+  pointed to by `pRespPayload`.
+
+BoardCfg RM
+~~~~~~~~~~~
+
+.. ifconfig:: CONFIG_family in ('jacinto', 'j7200')
+
+  - Removed the shared resource allocation(entries for both secure and non_secure context) for
+    MCU R5(mcu1_0) in default BoardCfg RM. MCU R5(mcu1_0) resource entries are only for non-secure host ID.
+    *This is because, Messages forwarded from DM must originate from a non-secure host in the system. Any
+    secure host ID used during a forwarded request will be rejected as a spoofing attempt.*
+    Hence, Sciclient **should** be initialized in **non-secure mode**.
+    ie, `Sciclient_ConfigPrms_t->isSecureMode` shouldn't be set to `1U`
+
+.. ifconfig:: CONFIG_family in ('am65xx')
+
+    - Sciclient Defaulf BoardCfg RM updated to remove HOST_ID_ALL entries and align with Linux RM Cfg
+
+ENET
+~~~~
+
+.. ifconfig:: CONFIG_family in ('am65xx')
+
+   - Added support for ICSSG Switch and Dual-MAC Ethernet peripherals.
+   - `EnetDma_openRxCh()` and `EnetDma_openTxCh()` APIs now take a handle to the `EnetDma` object.
+     This handle is usually handily available in application but can also be retrieved from the
+     `Enet_Handle` via `Enet_getDmaHandle()`.
+   - `ENET_RM_IOCTL_ALLOC_RX_FLOW` now takes a channel index. This is required for ICSSG Switch
+     where there are two channels with 8 flows each.  For ICSSG Dual-MAC or CPSW_2G, application
+     should pass a channel index of 0.
+   - Added `ENET_PER_IOCTL_SET_VLAN_AWARE` and `ENET_PER_IOCTL_SET_VLAN_UNAWARE` IOCTLs.  Currently
+     supported only in ICSSG peripherals.
+   - `EnetPer_Poll()` no longer takes just an event mask.  It now takes a single event type and
+     optional arguments. Please refer to the specific event type for the arguments to be passed,
+     if any.
+   - `txPktTc` and `txTsId` fields have been added to `EnetUdma_PktInfo` for ICSSG peripheral usage.
+     They are not required for CPSW.  No action needed for applications using CPSW peripheral that
+     initialize `EnetUdma_PktInfo` via `EnetDma_initPktInfo()`, otherwise must explicity set
+     `txPktTc` to `ENET_TRAFFIC_CLASS_INV`.
+   - The following IOCTLs have been renamed.
+
+       - `CPSW_IOCTL_[UN]REGISTER_RX_DEFAULT_FLOW` to `ENET_IOCTL_[UN]REGISTER_RX_DEFAULT_FLOW`.
+       - `CPSW_IOCTL_[UN]REGISTER_DSTMAC_RX_FLOW` to `ENET_IOCTL_[UN]REGISTER_DSTMAC_RX_FLOW`.
+
+   - `Mdio_Cfg` has added `isMaster` field for cases where MDIO module is shared with multiple
+     peripherals, so only one peripheral (master) must perform the MDIO initial configuration and
+     be skipped by the other peripherals (slaves).  This is not needed by applications using CPSW.
+
+.. ifconfig:: CONFIG_family in ('jacinto', 'j7200')
+
+   - `txPktTc` and `txTsId` fields have been added to `EnetUdma_PktInfo` for ICSSG peripheral usage.
+     They are not required for CPSW.  No action needed for applications using CPSW peripheral that
+     initialize `EnetUdma_PktInfo` via `EnetDma_initPktInfo()`, otherwise must explicity set
+     `txPktTc` to `ENET_TRAFFIC_CLASS_INV`.
+   - Added ENET_TIMESYNC_IOCTL_TS_TO_NS ioctl command to convert timestamp values to nanoseconds values.
+     This IOCTL is not required for packet timestamping in CPSW peripheral.
+   - Following IOCTLs have been renamed:
+
+       - `CPSW_IOCTL_[UN]REGISTER_RX_DEFAULT_FLOW` to `ENET_IOCTL_[UN]REGISTER_RX_DEFAULT_FLOW`.
+       - `CPSW_IOCTL_[UN]REGISTER_DSTMAC_RX_FLOW` to `ENET_IOCTL_[UN]REGISTER_DSTMAC_RX_FLOW`.
+
+   - `Mdio_Cfg` has added `isMaster` field for cases where MDIO module is shared with multiple
+     peripherals, so only one peripheral (master) must perform the MDIO initial configuration and
+     be skipped by the other peripherals (slaves).  This is not needed by applications using CPSW.
+
+.. ifconfig:: CONFIG_family in ('am65xx')
+
+   Ethernet driver is migrated to ENET LLD in this release.
+   EMAC LLD will be deprecated from next release.
+
+Board Library
+~~~~~~~~~~~~~~~
+
+.. ifconfig:: CONFIG_family in ('am65xx')
+
+    If applications were relying on Board_init (BOARD_INIT_UNLOCK_MMR) API for MMR UNLOCK, the below listed partions is not supported now.
+
+        - Main MMR Partition 2 & 6
+        - MCU MMR Partition 2 & 6
+        - Wakeup MMR Partition 2 & 6
+   
+    This change is made to ensure MMR partitions owned by DMSC are not unlocked in board library.
+
+    Applications which need access to these MMR partitions have to unlock them explicitly before accessing them
+    and lock them after the access.
+
+Board Diagnostics
+~~~~~~~~~~~~~~~~~~
+   
+    Board diagnostic test framework which integrates diagnostic tests into menu based execution
+    is no longer supported. This module is meant for board manufacturers and not validated as part
+    of the SDK.
+
+
+    Board diagnostic tests serve as reference for board bring-up and they are
+    not recommended to be used as reference for production software development.
+
+Device Support
+--------------
+
+.. ifconfig:: CONFIG_family in ('jacinto')
+
+  - J721E EVM SR1.0 and SR1.1, J721E-HS EVM (BOARD=j721e_evm)
+  - Associated TIFS versions:
+    - 'tifs.bin' for J721E SR1.0 and SR1.1 GP devices
+    - 'tifs-hs-enc.bin' for J721E-HS SR1.0
+    - 'tifs-sr1.1-hs-enc.bin' for J721E-HS SR1.1
+
+.. ifconfig:: CONFIG_family in ('j7200')
+
+  - J7200 / DRA821 (BOARD=j7200_evm)
+  - Associated TIFS versions:
+    - 'tifs.bin' for J7200 SR1.0 GP devices
+
+.. ifconfig:: CONFIG_family in ('am65xx')
+
+  - AM65XX SR1.0 SR2.0, SR2.1 and HS
+
++-------------------------+----------------------+
+| sysfw name              | AM65xx SR revision   |
++=========================+======================+
+| sysfw.bin               | SR1.0                |
++-------------------------+----------------------+
+| sysfw-hs-enc.bin        | SR1.0 HS             |
++-------------------------+----------------------+
+| sysfw_sr2.bin           | SR2.0 & SR2.1        |
++-------------------------+----------------------+
+| sysfw_sr2-hs-enc.bin    | SR2.0 HS & SR2.1 HS  |
++-------------------------+----------------------+
+
+
+Validation Information
+----------------------
+
+For details on the validated examples refer to the platform specific test report available `here <../../../test_report>`_.
+
+
+Tool Chain Information
+----------------------
+
++-----------------------------------+----------------------+
+| Component                         | Version              |
++===================================+======================+
+| Sys Bios                          | 6_83_02_07           |
++-----------------------------------+----------------------+
+| XDC Tools                         | 3_61_04_40_core      |
++-----------------------------------+----------------------+
+| Network Development Kit (NDK)     | 3_80_00_19           |
++-----------------------------------+----------------------+
+| Network Services for NDK (NS)     | 2_80_00_17           |
++-----------------------------------+----------------------+
+| TI ARM R5F code generation tools  | 20.2.0.LTS           |
++-----------------------------------+----------------------+
+| PRU code generation tools         | 2.3.3                |
++-----------------------------------+----------------------+
+| GCC ARM code generation tools     | ARCH64 9.2-2019.12   |
++-----------------------------------+----------------------+
+| CGT XML Processing Scripts        | 2.61.00              |
++-----------------------------------+----------------------+
+| System Analyzer (UIA Target)      | 2_41_00_01           |
++-----------------------------------+----------------------+
+
+.. ifconfig:: CONFIG_family in ('jacinto')
+
+  +-----------------------------------+----------------------+
+  | Component                         | Version              |
+  +===================================+======================+
+  | TI C6x code generation tools      | 8.3.7                |
+  +-----------------------------------+----------------------+
+  | TI C7x code generation tools      | 1.4.2.LTS            |
+  +-----------------------------------+----------------------+
+
+Fixed Issues
+------------
+
+.. ifconfig:: CONFIG_family in ('am65xx')
+
+    +----------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+    | ID                                                             | Head Line                                                                                                             | Module            | Affected Versions    | Affected Platforms                                |
+    +================================================================+=======================================================================================================================+===================+======================+===================================================+
+    | PRSDK-8037                                                     | USB 3.0 Host mode fails on AM65x PG2.0                                                                                | USB               | 7.02.00              | AM65xx                                            |
+    +----------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+    | PRSDK-8812                                                     | USB3.0: Baremetal diagnostic test code shall be supported                                                             | USB               | 7.02.00              | AM65xx                                            |
+    +----------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+    | `PDK-9711 <https://sir.ext.ti.com/jira/browse/EXT_EP-10356>`_  | ICSSG lld example failure when all ports are used together (6 ports)- resource allocation failure on open             | PRUSS/Board       | 7.01.00              | AM65xx                                            |
+    +----------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+    | `PDK-9705 <https://sir.ext.ti.com/jira/browse/EXT_EP-10357>`_  | ICSSG diag test failure with 128 byte packets                                                                         | BOARD             | 7.01.00              | AM65xx                                            |
+    +----------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+    | `PDK-9693 <https://sir.ext.ti.com/jira/browse/EXT_EP-10359>`_  | mcu1_1 applications fail to run through sbl                                                                           | SBL               | 7.01.00              | AM65xx                                            |
+    +----------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+    | `PDK-9667 <https://sir.ext.ti.com/jira/browse/EXT_EP-10358>`_  | PCIe example failure                                                                                                  | PCIe              | 7.00.00              | AM65xx                                            |
+    +----------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+    | `PDK-9313 <https://sir.ext.ti.com/jira/browse/EXT_EP-10355>`_  | ICSSG EMAC diagnostic test failure                                                                                    | BOARD             | 7.01.00              | AM65xx                                            |
+    +----------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+    |  PDK-8721                                                      | pm system config test fails for mcu1_1 core of am65xx                                                                 | PM                | 7.01.00              | AM65xx                                            |
+    +----------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+    | `PDK-8667 <https://sir.ext.ti.com/jira/browse/EXT_EP-10276>`_  | udma_baremetal_ospi_flash_testapp failing                                                                             | UDMA              | 7.01.00              | AM65xx                                            |
+    +----------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+    | `PDK-8574 <https://sir.ext.ti.com/jira/browse/EXT_EP-10354>`_  | OSPI diagnostic test failure in PHY mode                                                                              | BOARD             | 7.01.00              | AM65xx                                            |
+    +----------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+    | PDK-8179                                                       | am65 ICSSG HwAttrs error                                                                                              | CSL               | 6.02.00              | AM65xx                                            |
+    +----------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+    | `PDK-6707 <https://sir.ext.ti.com/jira/browse/EXT_EP-10112>`_  | [DIAG TEST]: PCIe diagnostic test failure                                                                             | BOARD             | 7.00.00              | AM65xx                                            |
+    +----------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+    | PDK-6706                                                       | McSPI : Driver Master example is not functional                                                                       | McSPI             | 7.02.00              | AM65xx                                            |
+    +----------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+    | PDK-5257                                                       | Support Windows Package for Core SDK                                                                                  | COMMON            | 7.00.00              | AM65xx                                            |
+    +----------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+    | `PDK-4968 <https://sir.ext.ti.com/jira/browse/EXT_EP-10360>`_  | [BOARD] Board module should not touch lock/unlock for resources owned by DMSC                                         | BOARD             | 7.02.00              | AM65xx                                            |
+    +----------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+    | PDK-8502                                                       | Uniflash flash programmer failure in DMA mode                                                                         | BOARD             | 07.01.00             | J721E, AM65xx                                     |
+    +----------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+    | PDK-8226                                                       | R5FSS: The same interrupt cannot be nested back-2-back within another interrupt                                       | CSL               | 07.00.00             | J721E, AM65xx                                     |
+    +----------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+    | PDK-6706                                                       | McSPI : Driver Master example is not functional                                                                       | McSPI             | 07.00.00             | J721E, AM65xx                                     |
+    +----------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+    | PDK-9770                                                       | GPIO_LedBlink_TestApp : Interrupt not observed on ES 2.0                                                              | GPIO              | 07.00.00             | AM65xx                                            |
+    +----------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+
+.. ifconfig:: CONFIG_family in ('jacinto', 'j7200')
+
+    +----------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+    | ID                                                             | Head Line                                                                                                             | Module            | Affected Versions    | Affected Platforms                                |
+    +================================================================+=======================================================================================================================+===================+======================+===================================================+
+    | `PDK-5040 <https://sir.ext.ti.com/jira/browse/EXT_EP-10050>`_  | Display stops working if two pipelines are started back to back                                                       | DSS               | 06.02.00             | J721E                                             |
+    +----------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+    | `PDK-6534 <https://sir.ext.ti.com/jira/browse/EXT_EP-10121>`_  | Timer osal - noos - Timer should be reset first before registering interrupts                                         | OSAL              | 06.02.00             | J721E                                             |
+    +----------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+    | `PDK-8537 <https://sir.ext.ti.com/jira/browse/EXT_EP-10103>`_  | Sciclient_rmIrqRelease API is failing                                                                                 | SCICLIENT         | 07.01.00             | J721E                                             |
+    +----------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+    | PDK-8502                                                       | Uniflash flash programmer failure in DMA mode                                                                         | BOARD             | 07.01.00             | J721E, AM65xx                                     |
+    +----------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+    | `PDK-8311 <https://sir.ext.ti.com/jira/browse/EXT_EP-10107>`_  | Recent DDR config update to 4266 MT/s causing DDR memory failures on some boards                                      | BOARD             | 07.01.00             | J721E                                             |
+    +----------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+    | `PDK-6649 <https://sir.ext.ti.com/jira/browse/EXT_EP-10119>`_  | Timer osal - noos - Timer delete doesn't "free" timer                                                                 | OSAL              | 06.02.00             | J721E                                             |
+    |                                                                |                                                                                                                       |                   |                      |                                                   |
+    +----------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+    | `PDK-7048 <https://sir.ext.ti.com/jira/browse/EXT_EP-10120>`_  | Master Slave: Data corruption in mode 0                                                                               | McSPI             | 07.01.00             | J7200                                             |
+    +----------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+    | PDK-8586                                                       | Early CAN response measurement is beyond 50 ms for J721E                                                              | SBL               | 07.01.00             | J721E                                             |
+    +----------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+    | PDK-9240                                                       | SBL fails to initialize DDR after warm reset                                                                          | BOARD, SBL        | 07.01.00             | J721E                                             |
+    +----------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+    | PDK-8945                                                       | Interrupts are disabled globally in Sciclient_service API                                                             | SCICLIENT         | 07.00.00             | J721E                                             |
+    +----------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+    | PDK-9328                                                       | OSPI tuning calculation fails in linear search algorithm                                                              | OSPI              | 07.02.00             | J721E                                             |
+    +----------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+    | PDK-8598                                                       | ospi flash test fails when the ospi memory is cachable                                                                | OSPI              | 07.01.00             | J721E, J7200                                      |
+    +----------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+    | PDK-8226                                                       | R5FSS: The same interrupt cannot be nested back-2-back within another interrupt                                       | CSL               | 07.00.00             | J721E, AM65xx                                     |
+    +----------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+    | PDK-6848                                                       | osal - task delete function should check for deleteTerminatedTasks flag                                               | OSAL              | 07.00.00             | J721E, J7200                                      |
+    +----------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+    | PDK-6706                                                       | McSPI : Driver Master example is not functional                                                                       | McSPI             | 07.00.00             | J721E, AM65xx                                     |
+    +----------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+    | PDK-8932                                                       | PMIC: Pmic Handle Critical Section Stop Function validation check is incorrect                                        | PMIC              | 07.01.00             | J721E, J7VCL                                      |
+    +----------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+    | PDK-8863                                                       | PMIC: Critical Section causing hang in Pmic_gpioIntrDisable API                                                       | PMIC              | 07.02.00             | J721E, J7200                                      |
+    +----------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+    | PDK-8131                                                       | PMIC: Asynchronous Interrupt tests failure on Main domain R5 Cores                                                    | BOARD             | 07.01.00             | J7200                                             |
+    +----------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+    | PDK-9050                                                       | Diag : Hyperbus : is not functional                                                                                   | CSL, DIAG         | 07.01.00             | J721E                                             |
+    +----------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------+----------------------+---------------------------------------------------+
+
+Known Issues
+------------
++----------------------------------------------------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| ID                                                             | Head Line                                                                                         | Module            | Reported in Release   | Affected Platforms        | Impact                                                    | Workaround in this release                            |
++================================================================+===================================================================================================+===================+=======================+===========================+===========================================================+=======================================================+
+| `PDK-9748 <https://sir.ext.ti.com/jira/browse/EXT_EP-10363>`_  | USB : 3.0 : Hagiwara drive : fails to enumerate as 3.0 : once in 250 times average                | USB 3.0           | 07.00.00              | AM65xx                    | Hagiwara USB 3.0 devices may not be enumerated as 3.0     | Consider operating in 2.0 mode                        |
++----------------------------------------------------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| `PDK-9750 <https://sir.ext.ti.com/jira/browse/EXT_EP-10365>`_  | USB: USB3.0 enumeration failing for some of the adapters                                          | USB 3.0           | 07.00.00              | AM65xx                    | Some of USB 3.0 devices may not be enumerated as 3.0      | Consider operating in 2.0 mode                        |
++----------------------------------------------------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| `PDK-9751 <https://sir.ext.ti.com/jira/browse/EXT_EP-10366>`_  | PCIE-0 : Gen 3 : Intermittent failures during Gen 3 mode on AM65x PG2.0                           | PCIe              | 07.00.00              | AM65xx                    | GEN 3 mode is stable                                      | Use GEN 2 mode                                        |
++----------------------------------------------------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| `PDK-8946 <https://sir.ext.ti.com/jira/browse/EXT_EP-10172>`_  | McSPI : All data words not transmitted in FIFO, interrupt mode when length not divisible by FIFO  | McASP             | 07.01.00              | AM65xx                    | In Complete data transfers                                | Transfer length should be multiple of FIFO depth      |
++----------------------------------------------------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| PDK-9717                                                       | AM65xx : SA2UL : Demo application is not functional                                               | SA2UL             | 07.03.00              | AM65xx                    | SA2UL Is not functional                                   | None                                                  |
++----------------------------------------------------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| `PDK-8846 <https://sir.ext.ti.com/jira/browse/EXT_EP-10361>`_  | [DSS Test]Sync-lost is observed for RGB24/BGR24 test-cases                                        | DSS               | 07.01.00              | AM65xx                    | No images displayed on the screen / flicker               | None                                                  |
++----------------------------------------------------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| `PDK-8841 <https://sir.ext.ti.com/jira/browse/EXT_EP-10278>`_  | csl_cbass_baremetal_test_app fails on QoS Test                                                    | CBAS              | 07.01.00              | AM65xx                    | None                                                      | None                                                  |
++----------------------------------------------------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| `PDK-6742 <https://sir.ext.ti.com/jira/browse/EXT_EP-10113>`_  | McASP regression test app some tests are failing                                                  | CBAS              | 07.00.00              | AM65xx                    | None                                                      | None                                                  |
++----------------------------------------------------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| `PDK-8166 <https://sir.ext.ti.com/jira/browse/EXT_EP-10117>`_  | MMCSD read/write failure with 1.8V - no I/F to program timings params                             | MMC/SD            | 07.00.00              | AM65xx                    | Requires timing update in driver io != 3.3v               | None                                                  |
++----------------------------------------------------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| `PDK-5224 <https://sir.ext.ti.com/jira/browse/EXT_EP-10114>`_  | Active DP -> HDMI adapter doesn't work                                                            | DSS               | 00.09.01              | J721E                     | DP to HDMI adapter for display cannot be used.            | None                                                  |
++----------------------------------------------------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| `PDK-6992 <https://sir.ext.ti.com/jira/browse/EXT_EP-10122>`_  | Display flickers for BT601 output format                                                          | DSS               | 07.00.00              | J721E                     |                                                           | None                                                  |
++----------------------------------------------------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| `PDK-8320 <https://sir.ext.ti.com/jira/browse/EXT_EP-10277>`_  | ICSS V1 CSL not up to date with ICSSG                                                             | CSL               | 07.00.00              | J721E, AM65xx             | None                                                      | Patch available. Will be included in next release     |
++----------------------------------------------------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| `PDK-9437 <https://sir.ext.ti.com/jira/browse/EXT_EP-10314>`_  | Increase in Boot time when DDR ECC is enabled                                                     | BOARD             | 07.02.00              | J721E, J7200              | Increase in boot time                                     | Use UDMA for priming the DDR.                         |
++----------------------------------------------------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| `PDK-9456 <https://sir.ext.ti.com/jira/browse/EXT_EP-10313>`_  | I2C Driver does not return error when camera/client is not available on the I2C bus               | I2C               | 07.02.00              | J721E                     | Application continues even if sensors programming         | None                                                  |
+|                                                                |                                                                                                   |                   |                       |                           | has failed.                                               |                                                       |
++----------------------------------------------------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| `PDK-9433 <https://sir.ext.ti.com/jira/browse/EXT_EP-10315>`_  | MASTER _BYPASS bit in PHY_MASTER_CONTROL should be controlled based on the clock                  | OSPI              | 07.01.00              | J721E                     | None                                                      | None                                                  |
++----------------------------------------------------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| `PDK-6975 <https://sir.ext.ti.com/jira/browse/EXT_EP-10118>`_  | Pulsar (R5F) : High priority interrupt is missed by VIM                                           | CSL, OSAL         | 07.00.00              | J721E, J7200, AM65xx      | Baremetal implementation is pending                       | Use SYSBIOS instead of baremetal                      |
++----------------------------------------------------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| `PDK-8407 <https://sir.ext.ti.com/jira/browse/EXT_EP-10104>`_  | J721E: MCU Timer 0 is not usable from application (sysbios) with SBL                              | OSAL, SBL         | 07.01.00              | J721E                     | None                                                      | Use any other timer                                   |
++----------------------------------------------------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| `PDK-8300 <https://sir.ext.ti.com/jira/browse/EXT_EP-10105>`_  | UDMA MCU NAVSS Channel Num 5 is not functional, when booting the application using the SBL        | UDMA              | 07.01.00              | J721E                     | Low Impact. UDMA MCU NAVSS Channel 5 can't be used when   | Use any other channel. In the defaultBoardCfg Channel |
+|                                                                | bootloader.                                                                                       |                   |                       |                           | booting the application using the SBL bootloader.         | no. 5 is not used. The issue will be seen only when   |
+|                                                                |                                                                                                   |                   |                       |                           |                                                           | the boardcfg is updated to use channel 5.             |
++----------------------------------------------------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| `PDK-6789 <https://sir.ext.ti.com/jira/browse/EXT_EP-10106>`_  | MCU/Main NAVSS UDMA memcpy from L2SRAM fails                                                      | UDMA              | 07.00.00              | J721E                     | Transfer works fine when source buffer, destination       | Use ring memory from non-L2SRAM location              |
+|                                                                |                                                                                                   |                   |                       |                           | buffer and TRPD buffers are in L2SRAM. The issue happens  |                                                       |
+|                                                                |                                                                                                   |                   |                       |                           | only when the ring memory is in L2SRAM location           |                                                       |
++----------------------------------------------------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| `PDK-5228 <https://sir.ext.ti.com/jira/browse/EXT_EP-10076>`_  | Output mismatch when each region requiring 3 TRs                                                  | VHWA              | 01.00.00              | J721E                     | In multi-region mode with more then 3 TR per region       | In multi-region mode for each region less than 3      |
+|                                                                |                                                                                                   |                   |                       |                           | can't be used                                             | TR should be used                                     |
++----------------------------------------------------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| `PDK-5226 <https://sir.ext.ti.com/jira/browse/EXT_EP-10078>`_  | DOF generated wrong output with SOF if pixel in all row are not enabled                           | VHWA              | 01.00.00, 00.09.01    | J721E                     | When using the SOF if the Paxel rows without any pixel    | This issue is due to shift in flowvector out buffer.  |
+|                                                                |                                                                                                   |                   |                       |                           | enabled is not in consecutive pair with lead to lead to   | While generating the SOF binary map make sure that    |
+|                                                                |                                                                                                   |                   |                       |                           | output mismatch                                           | Paxel rows without any pixel enabled should be in     |
+|                                                                |                                                                                                   |                   |                       |                           |                                                           | consecutive pair                                      |
++----------------------------------------------------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| `PDK-5217 <https://sir.ext.ti.com/jira/browse/EXT_EP-10023>`_  | VPAC VISS driver doesn't support several valid mux combinations for outputs                       | VHWA              | 01.00.00, 00.09.01    | J721E                     | VISS output with Chroma only and one of the RGB component | Enable YUV420 instead of Chroma only while using RGB  |
+|                                                                |                                                                                                   |                   |                       |                           | enabled may not work                                      | component                                             |
++----------------------------------------------------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| `ETH-1534 <https://sir.ext.ti.com/jira/browse/EXT_EP-10108>`_  | [CPSW] Packet drop with QSGMII ports IPerf                                                        | Enet              | 06.02.00              | J721E, J7200              | None                                                      | None                                                  |
++----------------------------------------------------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| `ETH-1670 <https://sir.ext.ti.com/jira/browse/EXT_EP-10109>`_  | mcu2_1: loopback: Test fails to setup interrupts in iteration 2                                   | Enet              | 07.01.00              | J721E                     | None                                                      | Avoid restarting Enet LLD on                          |
+|                                                                |                                                                                                   |                   |                       |                           |                                                           | J721E mcu2_1 core                                     |
++----------------------------------------------------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| PRSDK-5074                                                     | McASP driver hangs with small buffer size                                                         | McASP             | 05.01.00              | J721E, AM65xx             | None                                                      | Use packet size 32 samples or greater                 |
++----------------------------------------------------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| `PDK-6549 <https://sir.ext.ti.com/jira/browse/EXT_EP-10110>`_  | MCU2 core diagnostic tests not running through sbl                                                | BOARD             | 07.00.00              | J721E                     | None                                                      | Use CCS/JTAG to run the tests                         |
++----------------------------------------------------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| `PDK-6548 <https://sir.ext.ti.com/jira/browse/EXT_EP-10111>`_  | Display port (eDP) diagnostic test failure                                                        | BOARD             | 07.00.00              | J721E                     | None                                                      | Use display sample application                        |
++----------------------------------------------------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| `PDK-8577 <https://sir.ext.ti.com/jira/browse/EXT_EP-10308>`_  | PMIC: Asynchronous Interrupt tests failure on Main domain R5 Cores and mcu1_1 core                | BOARD             | 07.01.00              | J721E                     | None                                                      | Use Polled mode                                       |
++----------------------------------------------------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| `PDK-9426 <https://sir.ext.ti.com/jira/browse/EXT_EP-10309>`_  | ECAP CSL Capture Event Counter Reset Function Fails                                               | CSL               | 07.03.00              | J721E, J7200              | None                                                      | None                                                  |
++----------------------------------------------------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| PDK-8601                                                       | CSL ECC test application fails on J721E and J7200                                                 | CSL               | 07.01.00              | J721E, J7200              | None                                                      | None                                                  |
++----------------------------------------------------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| `PDK-9528 <https://sir.ext.ti.com/jira/browse/EXT_EP-10312>`_  | SBL prebuild binary for J721E HS doesn't work from package                                        | SBL               | 07.03.00              | J721E-HS                  | None                                                      | Cleanup the SBL library and re-build the              |
+|                                                                |                                                                                                   |                   |                       |                           |                                                           | SBL image for HS.                                     |
+|                                                                |                                                                                                   |                   |                       |                           |                                                           | Commands:                                             |
+|                                                                |                                                                                                   |                   |                       |                           |                                                           | - Clean sbl_lib_uart (make sbl_lib_uart_clean)        |
+|                                                                |                                                                                                   |                   |                       |                           |                                                           | - Build for HS (make -sj sbl_uart_img_hs)             |
++----------------------------------------------------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| `PDK-8653 <https://sir.ext.ti.com/jira/browse/EXT_EP-10311>`_  | CSI2-RX: Stream FIFO Overflow observed for 4 channel input with FrameSync                         | CSI2-RX           | 06.02.00              | J721E                     | Multi-channel capture with FrameSync cannot be used.      | None                                                  |
++----------------------------------------------------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| `PDK-8600 <https://sir.ext.ti.com/jira/browse/EXT_EP-10307>`_  | SBL optimizations for OSPI boot mode                                                              | SBL               | 07.00.00              | J721E                     | None                                                      | None                                                  |
++----------------------------------------------------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| `PDK-9490 <https://sir.ext.ti.com/jira/browse/EXT_EP-10310>`_  | OSPI_Baremetal_Flash_Dma_TestApp fails on mpu1_0 in release mode                                  | OSPI              | 07.03.00              | J7200                     | None                                                      | None                                                  |
++----------------------------------------------------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| `ETHFW-1810 <https://sir.ext.ti.com/jira/browse/EXT_EP-10375>`_| icssg: RX ch teardown timed out observed in NIMU restart                                          | ENET              | 07.03.00              | AM65XX                    | Low - observed during shutdown sequence                   | None                                                  |
++----------------------------------------------------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| `ETHFW-1747 <https://sir.ext.ti.com/jira/browse/EXT_EP-10371>`_| enet: icssg: Incorrect rxTxTotalByte in unicast test                                              | ENET              | 07.03.00              | AM65XX                    | Low - network statistics, no functional impact            | None                                                  |
++----------------------------------------------------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| `ETHFW-1767 <https://sir.ext.ti.com/jira/browse/EXT_EP-10370>`_| timesync: v2: TimeSync PTP restart is not supported                                               | ENET              | 07.03.00              | AM65XX                    | Impacts only applications that require stack restart      | None                                                  |
++----------------------------------------------------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+| `ETHFW-1809 <https://sir.ext.ti.com/jira/browse/EXT_EP-10374>`_| DUT stopped forwarding frames in one direction                                                    | ENET              | 07.03.00              | AM65XX                    | Firmware doesn't handle long burst of packets at line rate| None                                                  |
++----------------------------------------------------------------+---------------------------------------------------------------------------------------------------+-------------------+-----------------------+---------------------------+-----------------------------------------------------------+-------------------------------------------------------+
+
+
+
+Limitations
+-----------
+
+PDK
+~~~
+- PDK examples do not supported SMP mode. Some of examples still support build in SMP mode but these binaries are not supported or validated.
+
+ENET
+~~~~
+
+- ICSSG integration with NDK is done only for ICSSG Dual-MAC. Driver level support is available for Dual-MAC and Switch.
+- TimeSync PTP integration is done only for ICSSG-Dual MAC.
+- TimeSync is possible only in one MAC port at a time.
+- Different VLAN modes are not supported in Dual-MAC mode (within given ICSSG MAC ports). Both MACs should either be in VLAN aware or VLAN unaware mode.
+- Independent VLAN learning is not supported in Dual-MAC mode.

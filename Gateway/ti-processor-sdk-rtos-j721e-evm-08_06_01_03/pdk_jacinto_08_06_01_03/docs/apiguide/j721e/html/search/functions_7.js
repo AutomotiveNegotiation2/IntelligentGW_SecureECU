@@ -1,0 +1,21 @@
+var searchData=
+[
+  ['heapp_5falloc',['HeapP_alloc',['../group__DRV__OSAL__HeapP.html#ga289d27e2b68c190f032946f0054099cf',1,'HeapP.h']]],
+  ['heapp_5fcreate',['HeapP_create',['../group__DRV__OSAL__HeapP.html#ga60bb8b190a973d5e25c3c0e424188011',1,'HeapP.h']]],
+  ['heapp_5fdelete',['HeapP_delete',['../group__DRV__OSAL__HeapP.html#ga955a8c2886128ec54c357b9e155f9f31',1,'HeapP.h']]],
+  ['heapp_5ffree',['HeapP_free',['../group__DRV__OSAL__HeapP.html#ga8aa146fc2c894a32cd09b9f522bb36b0',1,'HeapP.h']]],
+  ['heapp_5fgetheapstats',['HeapP_getHeapStats',['../group__DRV__OSAL__HeapP.html#ga27546b24343bc5bebfede27f0c3284de',1,'HeapP.h']]],
+  ['heapp_5fparams_5finit',['HeapP_Params_init',['../group__DRV__OSAL__HeapP.html#ga13b7911b6ba0cbe908ecb2ed0b36d729',1,'HeapP.h']]],
+  ['hwip_5fclearinterrupt',['HwiP_clearInterrupt',['../group__DRV__OSAL__HwiP.html#ga271f87a3501a38d3348dda966fdafe0f',1,'HwiP.h']]],
+  ['hwip_5fcreate',['HwiP_create',['../group__DRV__OSAL__HwiP.html#gad30622179e0e50991999f4e8f01ac5b8',1,'HwiP.h']]],
+  ['hwip_5fcreatedirect',['HwiP_createDirect',['../group__DRV__OSAL__HwiP.html#ga72c9af8e4779e7c86b8c4d4a30f9b563',1,'HwiP.h']]],
+  ['hwip_5fdelete',['HwiP_delete',['../group__DRV__OSAL__HwiP.html#gab5ec5af54b417304320a239e33474a63',1,'HwiP.h']]],
+  ['hwip_5fdisable',['HwiP_disable',['../group__DRV__OSAL__HwiP.html#gaac47ffab62f7d25d736b58e40be17425',1,'HwiP.h']]],
+  ['hwip_5fdisableinterrupt',['HwiP_disableInterrupt',['../group__DRV__OSAL__HwiP.html#ga24a334df57f245f2a43a15a7ac70bd05',1,'HwiP.h']]],
+  ['hwip_5fenableinterrupt',['HwiP_enableInterrupt',['../group__DRV__OSAL__HwiP.html#ga8bf05c3b34673d9a3eef3d2afc57c81e',1,'HwiP.h']]],
+  ['hwip_5fgeteventid',['HwiP_getEventId',['../group__DRV__OSAL__HwiP.html#gad34b9efe220534bc062df0a97241f7ae',1,'HwiP.h']]],
+  ['hwip_5fgethandle',['HwiP_getHandle',['../group__DRV__OSAL__HwiP.html#ga1aaac9d3e2ea528af31e53de8322138d',1,'HwiP.h']]],
+  ['hwip_5fparams_5finit',['HwiP_Params_init',['../group__DRV__OSAL__HwiP.html#ga40db1dec436e5ae9a7998f070fbf684f',1,'HwiP.h']]],
+  ['hwip_5fpost',['HwiP_post',['../group__DRV__OSAL__HwiP.html#gaa90fc3fb4a933440de43b075f228ba15',1,'HwiP.h']]],
+  ['hwip_5frestore',['HwiP_restore',['../group__DRV__OSAL__HwiP.html#ga979cdfbd9993f6c5eedef8570efbd62e',1,'HwiP.h']]]
+];

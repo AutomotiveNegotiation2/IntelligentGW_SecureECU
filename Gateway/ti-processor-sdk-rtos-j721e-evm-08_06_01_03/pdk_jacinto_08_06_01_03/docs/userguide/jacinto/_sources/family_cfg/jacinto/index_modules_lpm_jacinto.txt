@@ -1,0 +1,6 @@
+.. include:: ../../modules/lpm/lpm.rst.inc
+
+.. toctree::
+    :maxdepth: 1
+
+    ../../modules/lpm/lpm_mcu_only_mode_jacinto

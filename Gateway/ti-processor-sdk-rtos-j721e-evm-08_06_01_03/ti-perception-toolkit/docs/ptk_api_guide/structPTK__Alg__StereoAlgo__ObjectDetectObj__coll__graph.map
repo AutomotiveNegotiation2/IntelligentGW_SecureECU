@@ -1,0 +1,20 @@
+<map id="PTK_Alg_StereoAlgo_ObjectDetectObj" name="PTK_Alg_StereoAlgo_ObjectDetectObj">
+<area shape="rect" id="node2" href="$structPTK__Alg__StereoAlgo__obstacleDetetionMems.html" title="Stereo algorithm &#45; Data mems needed for algorithms. " alt="" coords="1283,428,1445,520"/>
+<area shape="rect" id="node7" href="$structPTK__Alg__StereoAlgo__obsDetection.html" title="Stereo algorithm &#45; properties of a detected obstacles. " alt="" coords="433,428,578,520"/>
+<area shape="rect" id="node9" href="$structPTK__Alg__StereoAlgo__lineModel.html" title="Stereo algorithm &#45; line model for detected obstacle bounding box. " alt="" coords="635,180,781,272"/>
+<area shape="rect" id="node11" href="$structPTK__Alg__StereoAlgo__groundModelParams.html" title="Stereo algorithm &#45; V&#45;disparity ground plane model. " alt="" coords="261,428,409,520"/>
+<area shape="rect" id="node15" href="$structPTK__Alg__StereoAlgo__mergeObsParams.html" title="Stereo algorithm &#45; obstacle merge parameters. " alt="" coords="1538,428,1683,520"/>
+<area shape="rect" id="node16" href="$structPTK__Alg__StereoAlgo__closestObsParams.html" title="Stereo algorithm &#45; closest obstacle parameters. " alt="" coords="2453,428,2598,520"/>
+<area shape="rect" id="node17" href="$structPTK__Alg__StereoAlgo__configParams.html" title="Stereo algorithm &#45; config Parameters. " alt="" coords="1945,428,2090,520"/>
+<area shape="rect" id="node18" href="$structPTK__Alg__StereoAlgo__detectObsParams.html" title="Stereo algorithm &#45; detected obstacle parameters. " alt="" coords="2283,428,2429,520"/>
+<area shape="rect" id="node19" href="$structPTK__Alg__StereoAlgo__bottomObsParams.html" title="Stereo algorithm &#45; bottom of obstacle parameter. " alt="" coords="2622,428,2767,520"/>
+<area shape="rect" id="node20" href="$structPTK__Alg__StereoAlgo__camParams.html" title="Stereo algorithm &#45; road Parameters. " alt="" coords="2114,428,2259,520"/>
+<area shape="rect" id="node21" href="$structPTK__3D__Matrix.html" title="Definition of a 3x3 matrix. " alt="" coords="2311,187,2425,265"/>
+<area shape="rect" id="node22" href="$structPTK__Alg__StereoAlgo__obsProbParams.html" title="Stereo algorithm &#45; obstacle probability (per pixel) parameters. " alt="" coords="2949,428,3094,520"/>
+<area shape="rect" id="node23" href="$structPTK__Alg__StereoAlgo__splitObsParams.html" title="Stereo algorithm &#45; obstacle split parameters. " alt="" coords="3319,428,3465,520"/>
+<area shape="rect" id="node6" href="$structPTK__Alg__StereoAlgo__obsDetectionArray.html" title="Stereo algorithm &#45; array of detected obstacels in a frame. " alt="" coords="863,597,1009,689"/>
+<area shape="rect" id="node14" href="$structPTK__Alg__StereoAlgo__roadParams.html" title="Stereo algorithm &#45; road Parameters. " alt="" coords="1775,428,1921,520"/>
+<area shape="rect" id="node24" href="$structPTK__Alg__StereoAlgo__dispParams.html" title="Stereo algorithm &#45; disparity parameters. " alt="" coords="1113,428,1258,520"/>
+<area shape="rect" id="node10" href="$structPTK__Alg__StereoAlgo__groundModelParams__Array.html" title="Stereo algorithm &#45; V&#45;disparity ground plane model array for multiple models. " alt="" coords="241,597,428,689"/>
+<area shape="rect" id="node13" href="$structPTK__Alg__StereoAlgo__ObjectDetect__allParams.html" title="Stereo algorithm &#45; all required parameters structure for obstacle detection. " alt="" coords="2017,597,2188,689"/>
+</map>

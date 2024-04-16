@@ -1,0 +1,64 @@
+Run a Application from DDR on R5 Cores
+======================================
+
+.. _run-apps-from-ddr-on-r5-cores:
+
+Overview
+--------
+
+Once the R5 core is out of reset, the R5 defaults to no execute permissions for
+the DDR memory space. The side effect of this is,  that all code, from entry point
+till the code that sets up the MPU (Memory Protection Unit), has to be run from
+internal memory.
+
+
+.. _run-app-from-ddr-on-r5:
+
+Run FreeRTOS Applications from DDR on R5
+----------------------------------------
+
+Application sets up the MPU as per the memory configuration set for **gCslR5MpuCfg**.
+The default weak structure is present in csl/arch/r5/startup.c, and applications can override this if required. 
+Once the MPU is setup by the startUpCode (**__mpu_init function**), the rest of the code can run from DDR.
+
+To ensure that all code from entry point to MPU setup is run from internal memory, following
+sections must be placed in internal memory using the application's linker
+command file.
+
+::
+
+    .freertosrstvectors      : {} palign(8)      > R5F_TCMA
+    .bootCode                : {} palign(8)      > OCMC_RAM
+    .startupCode             : {} palign(8)      > OCMC_RAM
+    .startupData             : {} palign(8)      > OCMC_RAM, type = NOINIT
+
+
+You also need to make sure that the DDR has execute privileges in the gCslR5MpuCfg structure. 
+Refer the default structure in csl/arch/r5/startup.c
+
+.. _run-baremetal-app-from-ddr-on-r5:
+
+Run Baremetal Applications from DDR on R5
+------------------------------------------
+
+Baremetal applications have similar restrictions on running code from
+internal memory till the MPU is configured.
+For best comaptibility, however, make sure that the entry point is
+always the reset vector, and that the code that sets up the DDR access
+permissions in the MPU resides completely within 0x100 bytes of the
+entry point.
+
+For applications that find the default R5 configuration setup by the
+CSL sufficient, there is another method that can be used to execute
+an application from DDR. If the bootloader (SBL) is re-built using the
+SBL_SKIP_MCU_RESET compile option (by enabling the corresponding line
+in `sbl_component.mk <https://git.ti.com/keystone-rtos/sbl/blobs/master/sbl_component.mk#line399>`__,
+then SBL will branch to the application entry point without resetting the R5 core.
+
+In this scenario, as the  R5 core was already setup when the SBL
+invoked CSL init, the app can execute directly from DDR, right from its
+entry point. However, the app must take care not to redo the R5 initialization
+using CSL init, as the CSL initialization code assumes that the R5 registers are at their
+reset default values. This can be done by simply defining an empty __mpu_init function in the
+baremetal application. Refer `sbl_smp_r5.asm <https://git.ti.com/keystone-rtos/sbl/blobs/master/example/k3MulticoreApp/sbl_smp_r5.asm>`__
+for an example.

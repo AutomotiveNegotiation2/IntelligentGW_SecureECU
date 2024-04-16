@@ -1,0 +1,342 @@
+.. _c7x-non-secure-mode:
+
+.. toctree::
+
+FAQ - C7x : Steps to switch C7x SysBIOS application from secure mode to non-secure mode
+=======================================================================================
+
+.. IMPORTANT::
+
+   Starting SysBIOS v6.82.01.19 and later, C7x operating in purely secure mode will not be tested and C7x SysBIOS applications
+   have to migrate to use C7x in non-secure mode by following below steps.
+
+Introduction
+------------
+
+By default the C7x CPU boots in secure mode.
+It is recommended to operate C7x in non-secure mode for below
+reasons.
+
+- While operating in secure mode, SW hosted on C7x, which is typically non-secure in nature, will be able to make secure
+  requests to DMSC. This is strongly discouraged unless really needed by SW since otherwise
+  it could open up a security hole in the overall system architecture.
+- ARM A72 SW and other SoCs and peripherals run in non-secure mode. For cache coherency between C7x cache and rest of SOC
+  to take effect, both the participating masters need to be at same privledge level. i.e C7x needs to be in non-secure mode
+  for cache coherency between C7x and A72, rest of SOC to take effect.
+
+C7x and SysBIOS when booted by boot loader runs in secure mode.
+To operate C7x and SysBIOS in non-secure mode, during initialization of C7x,
+the CPU mode has to be changed to non-secure mode by C7x SysBIOS init code.
+
+From SysBIOS v6.82.01.19 and later, switching from secure to non-secure mode of operation is supported and
+PDK/SDK is configued to use the same.
+
+.. NOTE::
+
+   - ARM A72 and ARM R5F by default also boot in secure mode.
+   - ARM A72 is switched from secure mode to non-secure mode before booting u-boot/liunx kernel by the 'ARM Trusted Firmware'
+     or ATF which is the first SW that runs on A72
+   - ARM R5F does not have any instruction to make it non-secure, instead at the boundary between R5F and SoC interconnect, there
+     is a HW called 'ISC'. This HW can assert a non-secure attribute signal to make R5F transactions non-secure. Enabling assertion
+     of non-secure signal is initialized by DMSC FW when it is loaded during boot. Due to this all R5F's in the SoC when booted run in
+     non-secure mode and R5F SW applications dont need any change.
+
+This section describes how to modify an existing C7x SysBIOS user application to boot in secure mode
+and then switch to non-secure mode during SysBIOS initialization.
+
+${PDK_PATH} below refers to the place in SDK where PDK is located.
+
+Step 1: SysBIOS config file changes to enable boot to non-secure
+----------------------------------------------------------------
+
+- Add below lines to your C7x sysbios cfg file to enable switch for secure to non-secure during SysBIOS initialization ::
+
+    var HwiC7x = xdc.useModule('ti.sysbios.family.c7x.Hwi');
+    HwiC7x.bootToNonSecure = true;
+
+- Make sure MMU init callback is set as shown below ::
+
+    var Mmu = xdc.useModule('ti.sysbios.family.c7x.Mmu');
+    Mmu.initFunc = "&InitMmu";
+    Mmu.tableMemory = "";
+
+- A example in PDK is shown in the below file ::
+
+    ${PDK_PATH}/packages/ti/build/j721e/sysbios_c7x.cfg
+
+
+Step 2: Linker command file changes
+-----------------------------------
+
+- Add below line in your C7x linker command file to change the C7x application boot entry point to '_c_int00_secure' ::
+
+    -e _c_int00_secure
+
+- Add below to reserve space for MMU tables for secure and non-secure mode.
+  These sections can be placed anywhere in DDR (recommended) ::
+
+    MEMORY
+    {
+        ...
+        C7X_DDR_SPACE: org = C7X_DDR_SPACE_BASE,  len = 0x00C00000
+    }
+
+    SECTIONS
+    {
+        ...
+        GROUP:              >  C7X_DDR_SPACE
+        {
+            /* secure entry table */
+            .data.ti_sysbios_family_c7x_Mmu_tableArray          : type=NOINIT
+            .data.ti_sysbios_family_c7x_Mmu_tableArraySlot      : type=NOINIT
+            .data.ti_sysbios_family_c7x_Mmu_level1Table         : type=NOINIT
+            /* non secure MMU table */
+            .data.ti_sysbios_family_c7x_Mmu_tableArray_NS       : type=NOINIT
+            .data.ti_sysbios_family_c7x_Mmu_tableArraySlot_NS   : type=NOINIT
+            .data.ti_sysbios_family_c7x_Mmu_level1Table_NS      : type=NOINIT
+        }
+        ...
+    }
+
+- Make sure the entry point '_c_int00_secure' is 2MB aligned. And also place the 'secure_vecs' section in the
+  same linker command file as shown below ::
+
+    SECTIONS
+    {
+        ...
+
+        .secure_vecs    >   C7X_DDR_SPACE ALIGN(0x200000)
+        .text:_c_int00_secure > C7X_DDR_SPACE  ALIGN(0x200000)
+
+        ...
+    }
+
+- The symbol '_c_int00' in the C7x application now represents the non-secure entry point.
+  The C7x when booted will jump to '_c_int00_secure', and after some intialization it will then
+  jump to the non-secure entry point i.e '_c_int00'. Since '_c_int00' is no longer the boot
+  entry point, this symbol need not be 2MB aligned and below line in your application can be now be
+  removed. ::
+
+    SECTIONS
+    {
+        ...
+
+        .text:_c_int00 >    DDR_C7x_1_BOOT  ALIGN(0x200000)
+
+        ...
+    }
+
+- Since '_c_int00' is no longer the boot entry point for C7x, the C7x linker will complain with a warning.
+  This specfic warning can be safely supressed by adding below to your linker options::
+
+    #
+    # Suppress this warning, 10063-D: entry-point symbol other than "_c_int00" specified
+    # c7x boots in secure mode and to switch to non-secure mode we need to start at a special entry point '_c_int00_secure'
+    # and later after switching to non-secure mode, sysbios jumps to usual entry point of _c_int00
+    # Hence we need to suppress this warning
+    LNKFLAGS_INTERNAL_COMMON+=--diag_suppress=10063
+
+- A example in PDK, which does all of above changes, is shown in below files::
+
+    ${PDK_PATH}/packages/ti/build/j721e/linker_c7x.lds
+    ${PDK_PATH}/packages/ti/build/makerules/rules_71.mk
+
+Step 3: MMU initialization to setup secure and non-secure MMU tables
+--------------------------------------------------------------------
+
+- C7x has a MMU which is needed to effectively operate C7x including for cache of C7x to take effect
+- C7x has separate MMU table for secure and non-secure mode. User needs to setup both secure as well
+  as non-secure mode MMU table for correct operation.
+- For simplicity we set the same MMU entries for both secure and non-secure mode MMU tables.
+
+  - The OsalInitMmu() function takes a parameter 'isSecure' to tell if we are configuring the secure mode MMU table
+    or non-secure mode MMU table.
+  - This OsalInitMmu() is called twice in Osal_initMmuDefault() once with the parameter as TRUE for secure and
+    once with parameter as FALSE for non-secure
+  - CLEC and Cache init is also done in the MMU callback function, see next steps for details. ::
+
+        #include <ti/sysbios/family/c7x/Mmu.h>
+
+        static void OsalInitMmu(Bool isSecure)
+        {
+            Mmu_MapAttrs    attrs;
+
+            Mmu_initMapAttrs(&attrs);
+            attrs.attrIndx = Mmu_AttrIndx_MAIR0;
+
+            if(TRUE == isSecure)
+            {
+                attrs.ns = 0; /* set ns bit for this MMU entry to 0, i.e this is secure MMU entry */
+            }
+            else
+            {
+                attrs.ns = 1; /* set ns bit for this MMU entry to 1, i.e this is non-secure MMU entry */
+            }
+
+            /* when 'isSecure' is 1, Mmu_map() write to secure MMU table, else it writes to non-secure MMU table */
+            (void)Mmu_map(0x00000000U, 0x00000000U, 0x20000000U, &attrs, isSecure);
+
+            ... /* other Mmu_map calls */
+        }
+
+        void Osal_initMmuDefault(void)
+        {
+            /* setup MMU for non-secure */
+            OsalInitMmu(FALSE);
+
+            /* setup MMU for secure */
+            OsalInitMmu(TRUE);
+
+            /* Setup CLEC access/configure in non-secure mode */
+            OsalCfgClecAccessCtrl(FALSE);
+
+            /* Setup L1/L2 cache size */
+            OsalCfgCache();
+
+            return;
+        }
+
+        /* MMU init callback function, called by SysBIOS in
+          secure mode during init before switching to non-secure mode */
+        void InitMmu(void)
+        {
+            Osal_initMmuDefault();
+        }
+
+-  A example in PDK, which does all of above changes, is shown in below file::
+
+    ${PDK_PATH}/packages/ti/osal/soc/j721e/bios_mmu.c, OsalInitMmu(), Osal_initMmuDefault()
+
+
+Step 4: CLEC initialization to allow non-secure mode access
+-----------------------------------------------------------
+
+- CLEC is used by user applications to route system interrupts to C7x interrupt controller.
+  By default CLEC registers can be written only in secure mode.
+- Since SysBIOS is configured to operate in non-secure mode, if user application tries to access CLEC
+  it will result in a exception.
+- To avoid this exception, we will have to initialize CLEC to allow it to be accessible in non-secure mode as well.
+  This CLEC initialzation however needs to be done before the C7x switches from secure to non-secure mode.
+  Due to this, we do the CLEC init in the MMU init callback function as shown below. At this point C7x is still
+  in secure mode. ::
+
+    #include <ti/csl/soc.h>
+    #include <ti/csl/csl_clec.h>
+
+    void OsalCfgClecAccessCtrl (Bool onlyInSecure)
+    {
+        CSL_ClecEventConfig cfgClec;
+        CSL_CLEC_EVTRegs   *clecBaseAddr = (CSL_CLEC_EVTRegs*) CSL_COMPUTE_CLUSTER0_CLEC_REGS_BASE;
+        uint32_t            i, maxInputs = 2048U;
+
+        cfgClec.secureClaimEnable = onlyInSecure;
+        cfgClec.evtSendEnable     = FALSE;
+        cfgClec.rtMap             = CSL_CLEC_RTMAP_DISABLE;
+        cfgClec.extEvtNum         = 0U;
+        cfgClec.c7xEvtNum         = 0U;
+        for(i = 0U; i < maxInputs; i++)
+        {
+            CSL_clecConfigEvent(clecBaseAddr, i, &cfgClec);
+        }
+    }
+
+    void Osal_initMmuDefault(void)
+    {
+        /* setup MMU for non-secure */
+        OsalInitMmu(FALSE);
+
+        /* setup MMU for secure */
+        OsalInitMmu(TRUE);
+
+        /* Setup CLEC access/configure in non-secure mode */
+        OsalCfgClecAccessCtrl(FALSE);
+
+        /* Setup L1/L2 cache size */
+        OsalCfgCache();
+
+        return;
+    }
+
+    /* MMU init callback function, called by SysBIOS in
+      secure mode during init before switching to non-secure mode */
+    void InitMmu(void)
+    {
+        Osal_initMmuDefault();
+    }
+
+
+-  A example in PDK, which does all of above changes, is shown in below file::
+
+    ${PDK_PATH}/packages/ti/osal/soc/j721e/bios_mmu.c, OsalCfgClecAccessCtrl()
+
+
+Step 5: Cache initialization to partition L1/L2 as cache vs RAM
+---------------------------------------------------------------
+
+- By default, C7x boots with 32K L1 P/D cache and 0 bytes L2 cache. To change this one needs to
+  use the BIOS API, 'Cache_setSize'.
+- However this API needs to be called when when C7x is in secure mode.
+- This API has no effect when C7x is non-secure mode. Further this API must be called
+  after the MMU table entries are setup.
+- Hence we call this API in the MMU init callback function, AFTER the MMU entries are setup.
+- Below is sample code to setup cache of L1P, L1D as 32KB and L2 as 64KB ::
+
+    #include <ti/sysbios/family/c7x/Cache.h>
+
+    void OsalCfgCache()
+    {
+        ti_sysbios_family_c7x_Cache_Size  cacheSize;
+
+        /* init cache size here, since this needs to be done in secure mode */
+        cacheSize.l1pSize = ti_sysbios_family_c7x_Cache_L1Size_32K;
+        cacheSize.l1dSize = ti_sysbios_family_c7x_Cache_L1Size_32K;
+        cacheSize.l2Size  = ti_sysbios_family_c7x_Cache_L2Size_64K;
+        Cache_setSize(&cacheSize);
+    }
+
+    void Osal_initMmuDefault(void)
+    {
+        /* setup MMU for non-secure */
+        OsalInitMmu(FALSE);
+
+        /* setup MMU for secure */
+        OsalInitMmu(TRUE);
+
+        /* Setup CLEC access/configure in non-secure mode */
+        OsalCfgClecAccessCtrl(FALSE);
+
+        /* Setup L1/L2 cache size */
+        OsalCfgCache();
+
+        return;
+    }
+
+    /* MMU init callback function, called by SysBIOS in
+      secure mode during init before switching to non-secure mode */
+    void InitMmu(void)
+    {
+        Osal_initMmuDefault();
+    }
+
+Step 6: Sciclient init to use non-secure mode
+---------------------------------------------
+
+- Now C7x is in non-secure node after initilization is done.
+- We need to now tell SCICLIENT that C7x is in non-secure mode.
+- This is specified by setting 'isSecureMode' flag as '0' during SCICLIENT init as shown below ::
+
+    Sciclient_configPrmsInit(&sciClientCfg);
+    sciClientCfg.isSecureMode = 0U;
+    retVal = Sciclient_init(&sciClientCfg);
+
+- In PDK, this change is done in below file. Note, here 'sciClientCfg.isSecureMode = 0' is not explicitly done, since
+  'Sciclient_configPrmsInit', makes this flag as '0' by default ::
+
+    ${PDK_PATH}/packages/ti/board/src/j721e_evm/board_init.c, Board_sysInit()
+
+Step 7:  Build and run
+----------------------
+
+- Build, load/boot and run your C7x application as usual after doing above changes
+- When your application comes to main(), C7x has been already switched from secure to non-secure mode by the BIOS inialization code.
+

@@ -1,0 +1,727 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>9.6. TI ARM CLANG Usage and Migration Guidelines &mdash; Platform Development Kit (PDK) - JACINTO User Guide</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Platform Development Kit (PDK) - JACINTO User Guide" href="../index.html"/>
+        <link rel="up" title="9. Developer Notes" href="../family_cfg/jacinto/index_developer_notes_jacinto.html"/>
+        <link rel="next" title="9.7. SafeRTOS Usage and Migration Guidelines" href="freertos_to_safertos_migration.html"/>
+        <link rel="prev" title="9.5. XIP Using Two Appimages" href="xip_using_two_appimages.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index_jacinto.html" class="icon icon-home"> Platform Development Kit (PDK) - JACINTO User Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                08_06_01
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">1. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_release_notes_jacinto.html">2. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">3. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_modules_jacinto.html">4. Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_boot_jacinto.html">5. Bootloader (SBL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_board_jacinto.html">6. Board/EVM Abstraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_howto_jacinto.html">7. How to Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_faq_jacinto.html">8. Frequently Asked Questions</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../family_cfg/jacinto/index_developer_notes_jacinto.html">9. Developer Notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="freertos_guidelines.html">9.1. FreeRTOS Usage and Migration Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="freertos_ccs_rov.html">9.2. FreeRTOS Real-time Object View (ROV)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipc_lld_migration_guide.html">9.3. IPC LLD Migration Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xip_using_dummy_app.html">9.4. XIP Using Dummy App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xip_using_two_appimages.html">9.5. XIP Using Two Appimages</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">9.6. TI ARM CLANG Usage and Migration Guidelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ti-arm-clang-intoduction">9.6.1. TI ARM CLANG: Intoduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#introduction-to-ti-arm-clang">9.6.1.1. Introduction to TI ARM CLANG</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#ti-arm-clang-list-of-suppressed-warnings">9.6.2. TI ARM CLANG: List of Suppressed Warnings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ti-arm-clang-migration-guidelines">9.6.3. TI ARM CLANG: Migration Guidelines</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#build-changes">9.6.3.1. Build Changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#source-file-code-changes">9.6.3.2. Source File/Code Changes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#ti-arm-clang-migration-care-abouts">9.6.4. TI ARM CLANG: Migration Care Abouts</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#structure-initialization">9.6.4.1. Structure Initialization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#linker-command-file-changes">9.6.4.2. Linker Command File Changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#other-key-care-abouts">9.6.4.3. Other Key Care Abouts</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#ti-arm-clang-references">9.6.5. TI ARM CLANG: References</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="freertos_to_safertos_migration.html">9.7. SafeRTOS Usage and Migration Guidelines</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index_jacinto.html">Platform Development Kit (PDK) - JACINTO User Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index_jacinto.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../family_cfg/jacinto/index_developer_notes_jacinto.html">9. Developer Notes</a> &raquo;</li>
+      
+    <li>9.6. TI ARM CLANG Usage and Migration Guidelines</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="ti-arm-clang-usage-and-migration-guidelines">
+<span id="ticlang-migration-guidelines"></span><h1>9.6. TI ARM CLANG Usage and Migration Guidelines<a class="headerlink" href="#ti-arm-clang-usage-and-migration-guidelines" title="Permalink to this headline">¶</a></h1>
+<p>This section has additional useful information related to TI ARM Clang compiler/toolchain and porting existing code within PDK.
+<strong>It also compares some key points &amp; configurations in TI ARM Clang (current compiler) and TI ARM CGT (older compiler) and the guidelines for migrating to TI ARM Clang from TI ARM CGT.</strong></p>
+<ol class="arabic simple">
+<li><a class="reference internal" href="#ticlang-introduction"><span>TI ARM CLANG: Intoduction</span></a></li>
+<li><a class="reference internal" href="#ticlang-list-of-warning-supressed"><span>TI ARM CLANG: List of Suppressed Warnings</span></a></li>
+<li><a class="reference internal" href="#ticlang-porting-guidelines"><span>TI ARM CLANG: Migration Guidelines</span></a></li>
+<li><a class="reference internal" href="#ticlang-migration-careabouts"><span>TI ARM CLANG: Migration Care Abouts</span></a></li>
+<li><a class="reference internal" href="#ticlang-references"><span>TI ARM CLANG: References</span></a></li>
+</ol>
+<div class="section" id="ti-arm-clang-intoduction">
+<span id="ticlang-introduction"></span><h2>9.6.1. TI ARM CLANG: Intoduction<a class="headerlink" href="#ti-arm-clang-intoduction" title="Permalink to this headline">¶</a></h2>
+<p>The TI Arm® code generation tools support development of applications for TI Arm-based platforms featuring TI Arm Cortex-M and Cortex-R series devices. There are now two Arm C/C++ compiler toolchains available from TI:</p>
+<blockquote>
+<div><ul class="simple">
+<li>TI Arm Clang C/C++ Compiler Tools (tiarmclang)</li>
+<li>TI Arm C/C++ Compiler Tools (armcl)</li>
+</ul>
+</div></blockquote>
+<div class="section" id="introduction-to-ti-arm-clang">
+<h3>9.6.1.1. Introduction to TI ARM CLANG<a class="headerlink" href="#introduction-to-ti-arm-clang" title="Permalink to this headline">¶</a></h3>
+<p>The <cite>tiarmclang</cite> compiler is based on the open source LLVM compiler infrastructure and its Clang front-end. <cite>tiarmclang</cite> uses the TI Linker and C runtime for stability and reduced code size.</p>
+<img alt="../_images/TiClangBlockDiagram.png" src="../_images/TiClangBlockDiagram.png" />
+<p>Benefits of <cite>tiarmclang</cite> include:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Excellent C/C++ standards support</li>
+<li>Source-based code coverage</li>
+<li>Support for migration from armcl</li>
+<li>Improved code size over armcl/gcc</li>
+<li>Ease of use with fast compiles and expressive diagnostic messages</li>
+<li>GCC compatibility</li>
+<li>Comprehensive documentation: Getting Started Guide, Migration Guide and Compiler Tools User Manual</li>
+<li>Compiler Qualification Kit to assist qualifying the compiler to functional safety standards such as ISO 26262 and IEC 61508.</li>
+</ul>
+</div></blockquote>
+<p>As a part of this migration activity, we are moving away from &#8216;armcl&#8217; compiler tool chain and will be using &#8216;tiarmclang&#8217; going forward. This will need some changes in CSL-FL, Drives, Sample Application and Linker Command File. The intent of this page is look at all the changes needed.</p>
+</div>
+</div>
+<div class="section" id="ti-arm-clang-list-of-suppressed-warnings">
+<span id="ticlang-list-of-warning-supressed"></span><h2>9.6.2. TI ARM CLANG: List of Suppressed Warnings<a class="headerlink" href="#ti-arm-clang-list-of-suppressed-warnings" title="Permalink to this headline">¶</a></h2>
+<p>This section talks about list of suppressed warnings (reported as errors as warnings are treated as errors through <strong>&#8216;-Werror&#8217;</strong> option). Most of these warninigs are not reported by TI ARM CGT compiler.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="83%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>Reported Warning</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr class="row-even"><td>-Wno-parentheses-equality</td>
+<td>Equality comparison with extraneous parentheses</td>
+</tr>
+<tr class="row-odd"><td>-Wno-unused-command-line-argument</td>
+<td>If one of the option provided in the command is not used</td>
+</tr>
+<tr class="row-even"><td>-Wno-gnu-variable-sized-type-not-at-end</td>
+<td>Variable sized member of the structure is not the last member of the structure</td>
+</tr>
+<tr class="row-odd"><td>-Wno-unused-function</td>
+<td>Warning about unused function</td>
+</tr>
+<tr class="row-even"><td>-Wno-address-of-packed-member</td>
+<td>Taking the address of a packed member is dangerous since the reduced alignment of the pointee is lost. This can lead to memory alignment faults in some architectures if the pointer value is dereferenced</td>
+</tr>
+<tr class="row-odd"><td>-Wno-self-assign</td>
+<td>explicitly assigning value of variable of type * to itself</td>
+</tr>
+<tr class="row-even"><td>-Wno-ignored-attributes</td>
+<td>attribute declaration must precede definition</td>
+</tr>
+<tr class="row-odd"><td>-Wno-bitfield-constant-conversion</td>
+<td>Implicit truncation from &#8216;int&#8217; to bit-field changes value from 64 to 0</td>
+</tr>
+<tr class="row-even"><td>-Wno-unused-const-variable</td>
+<td>unused constant variable</td>
+</tr>
+<tr class="row-odd"><td>-Wno-unused-variable</td>
+<td>unused variable</td>
+</tr>
+<tr class="row-even"><td>-Wno-format-security</td>
+<td>format string is not a string literal (potentially insecure)</td>
+</tr>
+<tr class="row-odd"><td>-Wno-excess-initializers</td>
+<td>Excess braces are available while initializing structure elements</td>
+</tr>
+<tr class="row-even"><td>-Wno-sometimes-uninitialized</td>
+<td>Variable may be initialized before it&#8217;s use</td>
+</tr>
+<tr class="row-odd"><td>-Wno-empty-body</td>
+<td>Empty body following conditional branching</td>
+</tr>
+<tr class="row-even"><td>-Wno-extern-initializer</td>
+<td>Extern variable is initialized/re-initialized</td>
+</tr>
+<tr class="row-odd"><td>-Wno-absolute-value</td>
+<td>Using an absolute value function of the wrong type/using the improper sized absolute value function/taking the absolute value of an unsigned value</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="ti-arm-clang-migration-guidelines">
+<span id="ticlang-porting-guidelines"></span><h2>9.6.3. TI ARM CLANG: Migration Guidelines<a class="headerlink" href="#ti-arm-clang-migration-guidelines" title="Permalink to this headline">¶</a></h2>
+<p>This sections talks about changes needed for migrating code base from TI ARM CGT to TI ARM Clang. <cite>armcl</cite> options has to be replaced by <cite>tiarmclang</cite> option as shown in following sections/tables. These changes mainly falls into two categories and are as follows:</p>
+<div class="section" id="build-changes">
+<h3>9.6.3.1. Build Changes<a class="headerlink" href="#build-changes" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="compiler-assembler-options">
+<h4>9.6.3.1.1. Compiler/Assembler Options<a class="headerlink" href="#compiler-assembler-options" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="63%" />
+<col width="37%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>`armcl` options (older)</strong></td>
+<td><strong>`tiarmclang` options (new)</strong></td>
+</tr>
+<tr class="row-even"><td>TI pre-defined macro symbols, pragmas, and intrinsic</td>
+<td>Not Supported</td>
+</tr>
+<tr class="row-odd"><td>–silicon_version=&lt;processor ID&gt; (-mv&lt;processor ID&gt;)</td>
+<td>-mcpu=&lt;processor variant&gt; -march=&lt;architecture ID&gt;</td>
+</tr>
+<tr class="row-even"><td>&#8211;code_state=16/32</td>
+<td>-mthumb/-marm</td>
+</tr>
+<tr class="row-odd"><td>–float_support=&lt;float hardware ID&gt;</td>
+<td>-mfloat-abi=&lt;soft hard&gt; -mfpu=&lt;float hardware ID&gt;</td>
+</tr>
+<tr class="row-even"><td>–endian=little (-me) –endian=big (default)</td>
+<td>-mlittle-endian (default) -mbig-endian</td>
+</tr>
+<tr class="row-odd"><td>–opt_level=&lt;off/0/1/2/3/4&gt; (-O&lt;off/0/1/2/3/4&gt;</td>
+<td>-O&lt;0/1/2/3/fast/s/z/g&gt;</td>
+</tr>
+<tr class="row-even"><td>–opt_for_speed=&lt;0/1/2/3/4/5&gt; (-mf=&lt;0/1/2/3/4/5&gt;)</td>
+<td>-Oz -Os -O3 -Ofast</td>
+</tr>
+<tr class="row-odd"><td>–obj_directory=&lt;dir&gt; (-fr)</td>
+<td>-c -save-temps</td>
+</tr>
+<tr class="row-even"><td>–temp_directory=&lt;dir&gt; (-ft)</td>
+<td>Not Supported</td>
+</tr>
+<tr class="row-odd"><td>–asm_file=&lt;file&gt; (-fa=&lt;file&gt;)</td>
+<td>-x assembler/-x assembler-with-cpp/-x ti-asm</td>
+</tr>
+<tr class="row-even"><td>–c_file=&lt;file&gt; (-fc=&lt;file&gt;)</td>
+<td>-x c</td>
+</tr>
+<tr class="row-odd"><td>–obj_file=&lt;file&gt; (-fo=&lt;file&gt;)</td>
+<td>Not Supported</td>
+</tr>
+<tr class="row-even"><td>–entry_hook=&lt;func&gt;/–exit_hook=&lt;func&gt;</td>
+<td>-finstrument_functions</td>
+</tr>
+<tr class="row-odd"><td>–entry_parm=&lt;none/name/address&gt;/–exit_parm=&lt;none/name/address&gt;/–remove_hooks_when_inlining</td>
+<td>Not Supported</td>
+</tr>
+<tr class="row-even"><td>–define=&lt;name&gt;[=&lt;value&gt;] (-D=&lt;name&gt;[=&lt;value&gt;])</td>
+<td>-D&lt;name&gt;[=&lt;value&gt;]</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="linker-options">
+<h4>9.6.3.1.2. Linker Options<a class="headerlink" href="#linker-options" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="28%" />
+<col width="72%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>`armcl` options (older)</strong></td>
+<td><strong>`tiarmclang` options (new)</strong></td>
+</tr>
+<tr class="row-even"><td>-run_linker</td>
+<td>Not needed as will be automatically invoked by compiler by default</td>
+</tr>
+<tr class="row-odd"><td>-z</td>
+<td>-Xlinker &lt;linker option&gt; -Wl,&lt;comma-separated list of linker options&gt;</td>
+</tr>
+<tr class="row-even"><td>-m map_filename</td>
+<td>-m=map_filename</td>
+</tr>
+<tr class="row-odd"><td>-o output_filename</td>
+<td>&#8211;output_file=output_filename</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<ul class="last simple">
+<li>For all the linker related options, use either<ul>
+<li>prepend each linker option with &#8220;-Xlinker &#8221; (there is a space between &#8216;-Xlinker&#8217; keyword and actual command line option) OR</li>
+<li>group all command line options together with each separated with &#8221;,&#8221; and then prepend this full set with &#8220;-Wl,&#8221;</li>
+</ul>
+</li>
+<li>First option is used in PDK build infrastructure.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="source-file-code-changes">
+<h3>9.6.3.2. Source File/Code Changes<a class="headerlink" href="#source-file-code-changes" title="Permalink to this headline">¶</a></h3>
+<p>Here are few and quick changes needed (following list mostly contains armcl options with corresponding counterparts in tiarmclang, this should be mostly &#8216;find and replace&#8217; in the source code):</p>
+<div class="section" id="macros">
+<h4>9.6.3.2.1. Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="35%" />
+<col width="65%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>`armcl` options (older)</strong></td>
+<td><strong>`tiarmclang` options (new)</strong></td>
+</tr>
+<tr class="row-even"><td>__TI_ARM_V4__ /___TI_ARM_V5__ /___TI_ARM_V7A8__</td>
+<td>Not Supported (tiarmclang does not support this arm architecture or processor variant)</td>
+</tr>
+<tr class="row-odd"><td>__16bis__</td>
+<td>defined(__thumb__)</td>
+</tr>
+<tr class="row-even"><td>__32bis__</td>
+<td>!defined(__thumb__)</td>
+</tr>
+<tr class="row-odd"><td>__TI_EABI_SUPPORT__</td>
+<td>defined(__ELF__)</td>
+</tr>
+<tr class="row-even"><td>__TI_ARM_V6__</td>
+<td>(__ARM_ARCH == 6)</td>
+</tr>
+<tr class="row-odd"><td>__TI_ARM_V6M0__</td>
+<td>(__ARM_ARCH == 6) &amp;&amp; (__ARM_ARCH_PROFILE == &#8216;M&#8217;)</td>
+</tr>
+<tr class="row-even"><td>__TI_ARM_V7__</td>
+<td>(__ARM_ARCH == 7)</td>
+</tr>
+<tr class="row-odd"><td>__TI_ARM_V7M3__</td>
+<td>(__ARM_ARCH == 7) &amp;&amp; (__ARM_ARCH_PROFILE == &#8216;M&#8217;) &amp;&amp; !defined(__ARM_FEATURE_SIMD32)</td>
+</tr>
+<tr class="row-even"><td>__TI_ARM_V7M4__</td>
+<td>(__ARM_ARCH == 7) &amp;&amp; (__ARM_ARCH_PROFILE == &#8216;M&#8217;) &amp;&amp; defined(__ARM_FEATURE_SIMD32)</td>
+</tr>
+<tr class="row-odd"><td>__TI_ARM_V7R4__</td>
+<td>(__ARM_ARCH == 7) &amp;&amp; (__ARM_ARCH_PROFILE == &#8216;R&#8217;) &amp;&amp; !defined(__ARM_FEATURE_IDIV)</td>
+</tr>
+<tr class="row-even"><td>__TI_ARM_V7R5__</td>
+<td>(__ARM_ARCH == 7) &amp;&amp; (__ARM_ARCH_PROFILE == &#8216;R&#8217;) &amp;&amp; defined(__ARM_FEATURE_IDIV)</td>
+</tr>
+<tr class="row-odd"><td>__TI_VFP_SUPPORT__</td>
+<td>defined(__ARM_FP)</td>
+</tr>
+<tr class="row-even"><td>__TI_VFPLIB_SUPPORT__</td>
+<td>!defined(__ARM_FP)</td>
+</tr>
+<tr class="row-odd"><td>__TI_VFPV3D16_SUPPORT__</td>
+<td>defined(__ARM_FP) &amp;&amp; (__ARM_FP == 12) &amp;&amp; (__ARM_ARCH_PROFILE == &#8216;R&#8217;)</td>
+</tr>
+<tr class="row-even"><td>_TI_FPV4SPD16_SUPPORT__</td>
+<td>defined(__ARM_FP) &amp;&amp; (__ARM_FP == 6) &amp;&amp; (__ARM_ARCH_PROFILE == &#8216;M&#8217;)</td>
+</tr>
+<tr class="row-odd"><td>__big_endian__</td>
+<td>defined(__ARM_BIG_ENDIAN)</td>
+</tr>
+<tr class="row-even"><td>__little_endian__</td>
+<td>!defined(__ARM_BIG_ENDIAN)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="pragmas">
+<h4>9.6.3.2.2. Pragmas<a class="headerlink" href="#pragmas" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="42%" />
+<col width="58%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>`armcl` options (older)</strong></td>
+<td><strong>`tiarmclang` options (new)</strong></td>
+</tr>
+<tr class="row-even"><td>#pragma CODE_STATE (function, 32)</td>
+<td>__attribute__((target(&#8220;arm&#8221;)))</td>
+</tr>
+<tr class="row-odd"><td>#pragma INTERRUPT (function, IRQ)</td>
+<td>__attribute__((interrupt(&#8220;IRQ&#8221;))) function</td>
+</tr>
+<tr class="row-even"><td>#pragma CODE_SECTION(func_name, &#8220;scn_name&#8221;)</td>
+<td>__attribute__((section(&#8220;scn_name&#8221;)))</td>
+</tr>
+<tr class="row-odd"><td>#pragma DATA_ALIGN(&#8220;sym_name&#8221;, alignment)</td>
+<td>__attribute__((aligned(alignment)))</td>
+</tr>
+<tr class="row-even"><td>#pragma DATA_SECTION(sym_name, &#8220;scn_name&#8221;)</td>
+<td>__attribute__((section(&#8220;scn_name&#8221;)))</td>
+</tr>
+<tr class="row-odd"><td>#pragma FUNC_ALWAYS_INLINE(func_name)/#pragma FUNC_CANNOT_INLINE(func_name)</td>
+<td>__attribute__((always_inline))/__attribute__((noinline))</td>
+</tr>
+<tr class="row-even"><td>#pragma LOCATION(address)</td>
+<td>__attribute__((location(address)))</td>
+</tr>
+<tr class="row-odd"><td>#pragma NOINIT(sym_name)</td>
+<td>__attribute__((noinit))</td>
+</tr>
+<tr class="row-even"><td>#pragma RETAIN(sym_name)</td>
+<td>__attribute__((retain))/__attribute__((used))</td>
+</tr>
+<tr class="row-odd"><td>#pragma #pragma WEAK(sym_name)</td>
+<td>__attribute__((weak))</td>
+</tr>
+<tr class="row-even"><td>#pragma NO_HOOKS(func_name)/#pragma SWI_ALIAS(func_name, swi_number)</td>
+<td>Not Supported</td>
+</tr>
+<tr class="row-odd"><td>#pragma SET_CODE_SECTION(&#8220;scn_name&#8221;)/#pragma SET_DATA_SECTION(&#8220;scn_name&#8221;)</td>
+<td>Not Supported directly - Use &#8220;__attribute__((section(&#8220;scn_name&#8221;)))&#8221; for each following function/variable</td>
+</tr>
+<tr class="row-even"><td>#pragma diag_suppress 179</td>
+<td>#pragma clang diagnostic warning &#8220;-Wunused&#8221;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="section" id="ti-arm-clang-migration-care-abouts">
+<span id="ticlang-migration-careabouts"></span><h2>9.6.4. TI ARM CLANG: Migration Care Abouts<a class="headerlink" href="#ti-arm-clang-migration-care-abouts" title="Permalink to this headline">¶</a></h2>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<ul class="last simple">
+<li>This section does not talk about all the changes required, it only talks about most commonly used options. Please refer to <strong>`TI Arm Clang Compiler Tools User&#8217;s Guide`</strong> mentioned in <strong>References</strong> section.</li>
+</ul>
+</div>
+<div class="section" id="structure-initialization">
+<h3>9.6.4.1. Structure Initialization<a class="headerlink" href="#structure-initialization" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul>
+<li><p class="first">Failing to initialize the structure instance may cause unexpected application failures</p>
+</li>
+<li><p class="first">Clang tool-chain does not allow initializing only a few members of structure (and rest being set to 0) using below method:</p>
+<blockquote>
+<div><div class="highlight-cpp"><div class="highlight"><pre><span class="k">struct</span> <span class="n">DemoStruct_t</span>
+<span class="p">{</span>
+    <span class="kt">uint32_t</span> <span class="n">memberA</span><span class="p">;</span>
+    <span class="cm">/**&lt; Member A */</span>
+    <span class="kt">uint32_t</span> <span class="n">memberB</span><span class="p">;</span>
+    <span class="cm">/**&lt; Member B */</span>
+    <span class="kt">uint32_t</span> <span class="n">memberC</span><span class="p">;</span>
+    <span class="cm">/**&lt; Member C */</span>
+<span class="p">};</span>
+
+<span class="cm">/* Initializing Member A of the structure */</span>
+<span class="n">DemoStruct_t</span> <span class="n">demoStructInst</span> <span class="o">=</span> <span class="p">{</span><span class="mi">22U</span><span class="p">};</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">User can either initialize all members of the structure by enclosing them into pair of curly parenthesis (&#8220;{ }&#8221;) OR initialize particular member of structure like <strong>&#8221;.&lt;member_name&gt;=&lt;initialization_value&gt;;&#8221;</strong> Here are few examples to do the same:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Example 1:</li>
+</ul>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="k">struct</span> <span class="n">DemoStruct_t</span>
+<span class="p">{</span>
+    <span class="kt">uint32_t</span> <span class="n">memberA</span><span class="p">;</span>
+    <span class="cm">/**&lt; Member A */</span>
+    <span class="kt">uint32_t</span> <span class="n">memberB</span><span class="p">;</span>
+    <span class="cm">/**&lt; Member B */</span>
+    <span class="kt">uint32_t</span> <span class="n">memberC</span><span class="p">;</span>
+    <span class="cm">/**&lt; Member C */</span>
+<span class="p">};</span>
+
+<span class="n">DemoStruct_t</span> <span class="n">demoStructInst</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span>
+<span class="p">{</span>
+    <span class="cm">/* Initialize all 3 members of the structure */</span>
+    <span class="p">{</span>
+        <span class="p">.</span><span class="n">memberA</span> <span class="o">=</span> <span class="mi">22U</span><span class="p">;</span>
+        <span class="p">.</span><span class="n">memberB</span> <span class="o">=</span> <span class="mi">44U</span><span class="p">;</span>
+        <span class="p">.</span><span class="n">memberC</span> <span class="o">=</span> <span class="mi">88U</span><span class="p">;</span>
+    <span class="p">},</span>
+    <span class="cm">/* Initialize only needed 2 members of the structure */</span>
+    <span class="p">{</span>
+        <span class="p">.</span><span class="n">memberA</span> <span class="o">=</span> <span class="mi">22U</span><span class="p">;</span>
+        <span class="p">.</span><span class="n">memberC</span> <span class="o">=</span> <span class="mi">88U</span><span class="p">;</span>
+    <span class="p">},</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Example 2:</li>
+</ul>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="k">struct</span> <span class="n">DemoStruct_t</span>
+<span class="p">{</span>
+    <span class="kt">uint32_t</span> <span class="n">memberA</span><span class="p">;</span>
+    <span class="cm">/**&lt; Member A */</span>
+    <span class="kt">uint32_t</span> <span class="n">memberB</span><span class="p">;</span>
+    <span class="cm">/**&lt; Member B */</span>
+    <span class="kt">uint32_t</span> <span class="n">memberC</span><span class="p">;</span>
+    <span class="cm">/**&lt; Member C */</span>
+<span class="p">};</span>
+
+<span class="cm">/* This will initialize all members to &#39;0&#39; */</span>
+<span class="n">DemoStruct_t</span> <span class="n">demoStructInst</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0U</span><span class="p">};</span>
+
+<span class="n">demoStructInst</span><span class="p">.</span><span class="n">memberA</span> <span class="o">=</span> <span class="mi">22U</span><span class="p">;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="linker-command-file-changes">
+<h3>9.6.4.2. Linker Command File Changes<a class="headerlink" href="#linker-command-file-changes" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li>Add <strong>`&#8217;.rodata&#8217;`</strong> section in the linker command file and assign/allot it to same section as <strong>&#8216;.const&#8217;</strong> sections.</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="other-key-care-abouts">
+<h3>9.6.4.3. Other Key Care Abouts<a class="headerlink" href="#other-key-care-abouts" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li>For armcl Intrinsics, the &#8216;arm_acle.h&#8217; Header file needs to be included</li>
+<li>Non-ACLE armcl Compiler Intrinsics are not supported in tiarmclang</li>
+<li>Accessing armcl Compiler Intrinsics via the &#8216;ti_compatibility.h&#8217; Header File</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="ti-arm-clang-references">
+<span id="ticlang-references"></span><h2>9.6.5. TI ARM CLANG: References<a class="headerlink" href="#ti-arm-clang-references" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="https://software-dl.ti.com/codegen/docs/tiarmclang/compiler_tools_user_guide/getting_started_guide/index.html">TI ARM Clang Getting Started Guide</a></li>
+<li><a class="reference external" href="https://software-dl.ti.com/codegen/docs/tiarmclang/rel1_3_0_LTS/">TI Arm Clang Compiler Tools User’s Guide: Online</a></li>
+<li><a class="reference external" href="https://software-dl.ti.com/codegen/docs/tiarmclang/compiler_tools_user_guide/migration_guide/mapping_armcl_options_to_tiarmclang/index.html">Mapping armcl Command-Line Options to tiarmclang</a></li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="freertos_to_safertos_migration.html" class="btn btn-neutral float-right" title="9.7. SafeRTOS Usage and Migration Guidelines" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="xip_using_two_appimages.html" class="btn btn-neutral" title="9.5. XIP Using Two Appimages" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="http://www.ti.com/corp/docs/legal/copyright.shtml">&copy; Copyright 1995-2020</a>, Texas Instruments Incorporated. All rights reserved. <br>
+      <a href="http://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="http://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="http://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="http://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'08_06_01',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

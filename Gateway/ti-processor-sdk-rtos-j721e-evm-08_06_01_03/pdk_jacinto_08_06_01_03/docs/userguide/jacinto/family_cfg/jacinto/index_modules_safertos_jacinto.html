@@ -1,0 +1,470 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4.3. SafeRTOS &mdash; Platform Development Kit (PDK) - JACINTO User Guide</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Platform Development Kit (PDK) - JACINTO User Guide" href="../../index.html"/>
+        <link rel="up" title="4. Modules" href="index_modules_jacinto.html"/>
+        <link rel="next" title="4.4. OSAL" href="../../modules/osal.html"/>
+        <link rel="prev" title="4.2. FreeRTOS" href="../../modules/freertos.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index_jacinto.html" class="icon icon-home"> Platform Development Kit (PDK) - JACINTO User Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                08_06_01
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html">1. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_release_notes_jacinto.html">2. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started.html">3. Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index_modules_jacinto.html">4. Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../modules/csl.html">4.1. CSL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/freertos.html">4.2. FreeRTOS</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">4.3. SafeRTOS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">4.3.1. Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#safertos-packages-tested-with-this-sdk">4.3.2. SafeRTOS packages tested with this SDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#features-supported">4.3.3. Features Supported</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#features-not-supported">4.3.4. Features Not Supported</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#integrating-safertos-with-pdk">4.3.5. Integrating SafeRTOS with PDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#safertos-documentations-available-in-whis-package">4.3.6. SafeRTOS documentations available in WHIS Package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#safertos-usage-and-migration-guidelines">4.3.7. SafeRTOS Usage and Migration Guidelines</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/osal.html">4.4. OSAL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/dss.html">4.5. DSS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/enet.html">4.6. ENET</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/fvid2.html">4.7. FVID2 User Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/gpio.html">4.8. GPIO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/i2c.html">4.9. I2C</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/ipc.html">4.10. IPC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/mcasp.html">4.11. McASP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/pm.html">4.12. PM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/sa.html">4.13. SA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index_modules_sciclient_jacinto.html">4.14. SCICLIENT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/keywriter.html">4.15. OTP KEYWRITER</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/spi.html">4.16. SPI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/uart.html">4.17. UART</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index_modules_udma_jacinto.html">4.18. UDMA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/pmic.html">4.19. PMIC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/mmcsd.html">4.20. MMCSD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index_modules_lpm_jacinto.html">4.21. Low Power Manager (LPM)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="index_boot_jacinto.html">5. Bootloader (SBL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_board_jacinto.html">6. Board/EVM Abstraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_howto_jacinto.html">7. How to Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_faq_jacinto.html">8. Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_developer_notes_jacinto.html">9. Developer Notes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index_jacinto.html">Platform Development Kit (PDK) - JACINTO User Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index_jacinto.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index_modules_jacinto.html">4. Modules</a> &raquo;</li>
+      
+    <li>4.3. SafeRTOS</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="safertos">
+<h1>4.3. SafeRTOS<a class="headerlink" href="#safertos" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>4.3.1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>SafeRTOS is a pre-emptive, pre-certified real time operating system that delivers unprecedented
+levels of determinism and robustness to embedded systems.
+Based on FreeRTOS functional model, but specifically re-designed for the safety market.
+SafeRTOS has been independently certified by TUV SUD to IEC 61508 SIL3 and ISO26262 ASIL D.</p>
+<blockquote>
+<div><ul class="simple">
+<li>Developed by WITTENSTEIN high integrity systems (WHIS) <sup>®</sup>.</li>
+<li>Customers need to procure SafeRTOS from WHIS and get it licensed by WHIS. For more details,
+please contact WHIS.</li>
+<li>Supports a wide variety of international development standatds.</li>
+<li>Based on the FreeRTOS functional model.</li>
+<li>Pre-certified to IEC 61508-3 SIL 3 by TUV SUD.</li>
+<li>Pre-certified to ISO 26262 ASIL D by TUV SUD.</li>
+<li>Includes Design Assurance Pack (DAP) with comprehensive safety analysis.</li>
+</ul>
+</div></blockquote>
+<p>The main differences between FreeRTOS and SafeRTOS are:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Memory allocation is all static and dynamic allocation APIs of FreeRTOS are not supported.</li>
+<li>SafeRTOS only supports core components of FreeRTOS like task, semaphore, timer, list, queue, mutex, event groups.</li>
+<li>Additional parameter checking and return values in SafeRTOS.</li>
+<li>Additional error hook callbacks in SafeRTOS.</li>
+</ul>
+</div></blockquote>
+<p>PDK supports SafeRTOS on R5F, C66x, C7x CPUs for J721E.
+OSAL support and PDK Drivers running with SafeRTOS are available in this release.
+SafeRTOS is not supported on A72 core.</p>
+</div>
+<div class="section" id="safertos-packages-tested-with-this-sdk">
+<h2>4.3.2. SafeRTOS packages tested with this SDK<a class="headerlink" href="#safertos-packages-tested-with-this-sdk" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="81%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ISA</th>
+<th class="head">SafeRTOS Package Version</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>R5F</td>
+<td>009-004-199-024-219-001</td>
+</tr>
+<tr class="row-odd"><td>C66</td>
+<td>009-002-201-005-219-002</td>
+</tr>
+<tr class="row-even"><td>C7X</td>
+<td>009-004-230-005-219-001</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Please note that there can be build failures or functional issues due to
+compatibility of other SafeRTOS Packages with this SDK version. Check with WHIS or TI for compatibility.</p>
+</div>
+</div>
+<div class="section" id="features-supported">
+<h2>4.3.3. Features Supported<a class="headerlink" href="#features-supported" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">SafeRTOS Kernel v9</p>
+<blockquote>
+<div><ul class="simple">
+<li>Tasks, semaphores, mutex, queues, timers, list, event groups.</li>
+<li>Preemptive priority-based scheduler.</li>
+<li>Static memory allocation Mode.</li>
+<li>SafeRTOS debug awareness is supported in Lauterbach.</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">In order to keep the PDK drivers/examples OS agnostic, additionally below OSAL modules are implemented
+to call SafeRTOS APIs underneath:-</p>
+<blockquote>
+<div><ul class="simple">
+<li>Clock, Task, Semaphore, Event, Mailbox, Mutex, Queue, Cache, HW Interrupts, HW Timers, Cycleprofiler, Heap.</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="features-not-supported">
+<h2>4.3.4. Features Not Supported<a class="headerlink" href="#features-not-supported" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>CCS ROV is not supported for SafeRTOS.</li>
+<li>OSAL Load module is not supported.</li>
+</ul>
+</div>
+<div class="section" id="integrating-safertos-with-pdk">
+<h2>4.3.5. Integrating SafeRTOS with PDK<a class="headerlink" href="#integrating-safertos-with-pdk" title="Permalink to this headline">¶</a></h2>
+<p>The following steps need to be taken for the integration of SafeRTOS with PDK:</p>
+<ol class="arabic simple">
+<li>Download and install PROCESSOR-SDK-RTOS.<ul>
+<li>The installation directory will be referred as ${PSDK_RTOS}</li>
+</ul>
+</li>
+<li>Unzip the SafeRTOS Packages for requried SOC and ISA from WHIS.<ul>
+<li>The installation directories for an SOC and an ISA will be referred as ${SAFERTOS_&lt;SOC&gt;_&lt;ISA&gt;}.
+NOTE: Make sure that the installation paths DO NOT have any spaces in them,
+else the builds in the following steps will fail.</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<div><div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<ul class="last simple">
+<li>The safeRTOS packages need to be procured from WITTENSTEIN high integrity systems (WHIS).</li>
+</ul>
+</div>
+</div></blockquote>
+<ol class="arabic">
+<li><p class="first">Run the safertos_setup.sh script from the build directory
+<strong>&lt;PSDK_RTOS&gt;/pdk/packages/ti/build/</strong> to enable SafeRTOS Builds in SDK.
+The safertos_setup.sh script takes as argument the path to the SafeRTOS packages provided by WHIS.
+The arguments are of the form &#8211;&lt;SOC&gt;_&lt;ISA&gt;_path.</p>
+<blockquote>
+<div><p>This script does the following:</p>
+<ul>
+<li><p class="first">Sets the env variables for safertos installation paths for various ISAs to be used in makefile builds,
+i.e., updates SAFERTOS_&lt;SOC&gt;_&lt;ISA&gt;_INSTALL_PATH in
+<strong>${PSDK_RTOS}&gt;/pdk_jacinto_xx_xx_xx_xx/packages/ti/build/safertos_version.mk</strong>.
+If the build fails during the script, please check the path provided to SafeRTOS Package.
+This should be the path to the directory which contains folders like &#8220;source_code_and_projects&#8221;, &#8220;Documentation&#8221;, etc.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If the path provided to SafeRTOS Package unzip location is not correct, following builds will fail.</p>
+</div>
+</li>
+<li><p class="first">Builds safertos and osal_safertos lib for all cores.
+(SDK already has all other libs included)</p>
+</li>
+<li><p class="first">Builds sciserver_testapp_safertos and checks in the .xer5f and .rprc to sciclient tools folder.
+This is required for SBL appimage generation of non-mcu1_0 apps and
+used by CCS No-Boot mode launch.js script to load to mcu1_0.</p>
+</li>
+</ul>
+<p>For example:</p>
+</div></blockquote>
+</li>
+</ol>
+<div class="highlight-bash"><div class="highlight"><pre>./safertos_setup.sh --j721e_r5f_path<span class="o">=</span>&lt;path to j721e r5f package&gt; --j721e_c7x_path<span class="o">=</span>&lt;path to j721e c7x package&gt; --j721e_c66_path<span class="o">=</span>&lt;path to j721e c66 package&gt;.
+</pre></div>
+</div>
+<p>The above execution of the safertos_setup.sh enables safertos builds for r5f, c66 and c7x ISA for J721E.</p>
+</div>
+<div class="section" id="safertos-documentations-available-in-whis-package">
+<h2>4.3.6. SafeRTOS documentations available in WHIS Package<a class="headerlink" href="#safertos-documentations-available-in-whis-package" title="Permalink to this headline">¶</a></h2>
+<p>The following SafeRTOS documentations are provided by WHIS:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="29%" />
+<col width="71%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Document name</th>
+<th class="head">Document location</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Upgrading from FreeRTOS to SafeRTOS</td>
+<td>&lt;SAFERTOS_INSTALL_DIR&gt;/Documentation/Manuals/`Upgrading from FreeRTOS to SafeRTOS.pdf`</td>
+</tr>
+<tr class="row-odd"><td>Using a generic SafeRTOS Demo</td>
+<td>&lt;SAFERTOS_INSTALL_DIR&gt;/Documentation/Manuals/`Using a Generic SafeRTOS Demo.pdf`</td>
+</tr>
+<tr class="row-even"><td>SafeRTOS v9 user manual</td>
+<td>&lt;SAFERTOS_INSTALL_DIR&gt;/`SAFERTOS v9 User Manual.pdf`</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="safertos-usage-and-migration-guidelines">
+<h2>4.3.7. SafeRTOS Usage and Migration Guidelines<a class="headerlink" href="#safertos-usage-and-migration-guidelines" title="Permalink to this headline">¶</a></h2>
+<p>See <a class="reference internal" href="../../developer_notes/freertos_to_safertos_migration.html#freertos-to-safertos-migration-guidelines"><span>SafeRTOS Usage and Migration Guidelines</span></a> for SafeRTOS migration &amp; comparison to FreeRTOS.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../modules/osal.html" class="btn btn-neutral float-right" title="4.4. OSAL" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../../modules/freertos.html" class="btn btn-neutral" title="4.2. FreeRTOS" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="http://www.ti.com/corp/docs/legal/copyright.shtml">&copy; Copyright 1995-2020</a>, Texas Instruments Incorporated. All rights reserved. <br>
+      <a href="http://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="http://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="http://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="http://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'08_06_01',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

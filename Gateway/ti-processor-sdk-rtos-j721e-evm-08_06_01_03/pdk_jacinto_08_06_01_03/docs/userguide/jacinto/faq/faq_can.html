@@ -1,0 +1,447 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>8.2. FAQ - CAN &mdash; Platform Development Kit (PDK) - JACINTO User Guide</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Platform Development Kit (PDK) - JACINTO User Guide" href="../index.html"/>
+        <link rel="up" title="8. Frequently Asked Questions" href="../family_cfg/jacinto/index_faq_jacinto.html"/>
+        <link rel="next" title="8.3. FAQ - FVID2" href="faq_fvid2.html"/>
+        <link rel="prev" title="8.1. FAQ - Common" href="faq_common.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index_jacinto.html" class="icon icon-home"> Platform Development Kit (PDK) - JACINTO User Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                08_06_01
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">1. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_release_notes_jacinto.html">2. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">3. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_modules_jacinto.html">4. Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_boot_jacinto.html">5. Bootloader (SBL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_board_jacinto.html">6. Board/EVM Abstraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_howto_jacinto.html">7. How to Guides</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../family_cfg/jacinto/index_faq_jacinto.html">8. Frequently Asked Questions</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="faq_common.html">8.1. FAQ - Common</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">8.2. FAQ - CAN</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#what-is-can">8.2.1. What is CAN?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-is-bit-rate-calculated">8.2.2. How is bit-rate calculated?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#what-is-can-bus-termination">8.2.3. What is CAN bus termination?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#what-is-transceiver-delay-compensation-value-tdcv-and-how-is-it-calculated">8.2.4. What is Transceiver Delay Compensation Value(TDCV) and how is it calculated?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#things-to-consider-check-before-sending-a-message-over-can-bus">8.2.5. Things to consider/check before sending a message over CAN bus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#can-communication-failed-where-to-start-debug">8.2.6. CAN communication failed, where to start debug?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="faq_fvid2.html">8.3. FAQ - FVID2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c7x_non_secure_mode.html">8.4. FAQ - C7x : Steps to switch C7x SysBIOS application from secure mode to non-secure mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resource_int_jacinto.html">8.5. FAQ - Used Resources - Interrupt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq_binlist_jacinto.html">8.6. FAQ - Supported Cores by example applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq_module_clocking.html">8.7. FAQ - How to set the clock for a given module and clock</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apps_on_secure_devices.html">8.8. FAQ - Running Apps on secure devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq_csi2rx.html">8.9. FAQ - CSI2RX</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_developer_notes_jacinto.html">9. Developer Notes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index_jacinto.html">Platform Development Kit (PDK) - JACINTO User Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index_jacinto.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../family_cfg/jacinto/index_faq_jacinto.html">8. Frequently Asked Questions</a> &raquo;</li>
+      
+    <li>8.2. FAQ - CAN</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="faq-can">
+<h1>8.2. FAQ - CAN<a class="headerlink" href="#faq-can" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="what-is-can">
+<h2>8.2.1. What is CAN?<a class="headerlink" href="#what-is-can" title="Permalink to this headline">¶</a></h2>
+<p>CAN is:
+- a multi-master broadcast serial bus standard for connecting electronic control unit
+- a serial asynchronous bus protocol, message-based protocol designed automotive applications but also used for industrial applications.
+- a differential pair signal and could be twisted without issue.</p>
+</div>
+<div class="section" id="how-is-bit-rate-calculated">
+<h2>8.2.2. How is bit-rate calculated?<a class="headerlink" href="#how-is-bit-rate-calculated" title="Permalink to this headline">¶</a></h2>
+<p>Formula for bit-rate is:</p>
+<div class="highlight-ruby"><div class="highlight"><pre><span class="no">Sampling</span> <span class="no">Point</span><span class="p">(</span><span class="sx">%) = (1 + TSEG1)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="no">TSEG1</span> <span class="o">+</span> <span class="no">TSEG2</span><span class="p">)</span>
+
+<span class="no">TSEG1</span><span class="p">,</span> <span class="ss">TSEG2</span><span class="p">:</span> <span class="no">Time</span> <span class="no">Segments</span> <span class="n">expressed</span> <span class="k">in</span> <span class="n">terms</span> <span class="n">of</span> <span class="n">number</span> <span class="n">of</span> <span class="no">Tq</span><span class="p">(</span><span class="no">Time</span> <span class="no">Quantum</span><span class="p">)</span>
+
+<span class="ss">Tq</span><span class="p">:</span> <span class="n">the</span> <span class="n">period</span> <span class="n">of</span> <span class="n">the</span> <span class="no">CAN</span> <span class="k">module</span> <span class="nn">functional</span> <span class="n">clock</span><span class="o">.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="what-is-can-bus-termination">
+<h2>8.2.3. What is CAN bus termination?<a class="headerlink" href="#what-is-can-bus-termination" title="Permalink to this headline">¶</a></h2>
+<p>CAN bus termination is needed to minimize the reflection, to reduce the noise.
+The transmission lines must be terminated to make sure noise does not cause communication failure.</p>
+<p>There are two types of CAN termination:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>Standard termination:</dt>
+<dd><p class="first">The traditional 120 Ohm resistor(RL) is used on each end of the bus as shown in the following figure.</p>
+<img alt="../_images/faq_can_standard_bus_termination.png" class="last" src="../_images/faq_can_standard_bus_termination.png" />
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Split Termination</dt>
+<dd><p class="first">Two 60 Ohm(RL/2) resistors along with capacitor(CL) is used to suppress the
+noise at both ends of the bus. Typical value of CL for 1.1 Mbps is 4.7 nF.
+It is shown in the following figure</p>
+<img alt="../_images/faq_can_split_bus_termination.png" class="last" src="../_images/faq_can_split_bus_termination.png" />
+</dd>
+</dl>
+</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">RL and CL values are dependent on a signaling rate.</p>
+</div>
+</div>
+<div class="section" id="what-is-transceiver-delay-compensation-value-tdcv-and-how-is-it-calculated">
+<h2>8.2.4. What is Transceiver Delay Compensation Value(TDCV) and how is it calculated?<a class="headerlink" href="#what-is-transceiver-delay-compensation-value-tdcv-and-how-is-it-calculated" title="Permalink to this headline">¶</a></h2>
+<p>CAN is a broadcast protocol, every node on the bus sees the message on the bus
+even if it is Tx node. Tx node uses this data on Rx line for integrity and error checks locally.
+Overview of bit flow through different stages in communication is:</p>
+<div class="highlight-ruby"><div class="highlight"><pre><span class="no">CAN</span> <span class="k">module</span> <span class="nn">core</span> <span class="o">-&gt;</span> <span class="no">CAN</span> <span class="k">module</span> <span class="nn">Tx</span> <span class="n">line</span> <span class="o">-&gt;</span> <span class="no">SoC</span> <span class="no">Tx</span> <span class="no">Pin</span><span class="o">/</span><span class="no">PAD</span> <span class="o">-&gt;</span> <span class="no">Transceiver</span> <span class="no">Out</span> <span class="o">-&gt;</span> <span class="no">CAN</span> <span class="no">Bus</span> <span class="o">-&gt;</span> <span class="no">Transceiver</span> <span class="no">In</span> <span class="o">-&gt;</span> <span class="no">SoC</span> <span class="no">Rx</span> <span class="no">Pin</span><span class="o">/</span><span class="no">PAD</span> <span class="o">-&gt;</span> <span class="no">CAN</span> <span class="k">module</span> <span class="nn">Rx</span> <span class="n">line</span> <span class="o">-&gt;</span> <span class="no">CAN</span> <span class="k">module</span> <span class="nn">core</span>
+</pre></div>
+</div>
+<p>Above whole path introduces latency between data going out from Tx line to data
+coming in on Rx line. Major part of this latency comes from Transceiver.
+Hence it is called Transceiver Delay Compensation Value.
+This needs to programmed as controller has to adjust it Secondary Sampling Point(SSP)
+for sampling Rx line at the correct time.</p>
+<ul class="simple">
+<li>MCAN provides functionality to measure delay between transition on Tx line and same transition for Rx line. User need not to measure transceiver loop-back delay or refer transceiver documentation for the same. User just needs to program SSP position which could same as Sampling Point(SP).</li>
+</ul>
+</div>
+<div class="section" id="things-to-consider-check-before-sending-a-message-over-can-bus">
+<h2>8.2.5. Things to consider/check before sending a message over CAN bus<a class="headerlink" href="#things-to-consider-check-before-sending-a-message-over-can-bus" title="Permalink to this headline">¶</a></h2>
+<p>Make sure following is done/checked before attempting communication on bus:</p>
+<ul class="simple">
+<li>ISO-11898 compatible transceivers have to be connected to a CAN bus.</li>
+<li>CAN bus should have proper termination.</li>
+<li>CAN_L lines from nodes shall be connected together and same goes for CAN_H and GND lines as well.</li>
+<li>Make sure all connections are firm and all pins properly connected.</li>
+<li>All node on the bus are configured for same bit rate.</li>
+<li>In case of CAN FD, make sure Transceiver Delay Compensation value is correctly programmed.</li>
+<li>CAN module is powered up and configured properly.</li>
+<li>SoC pins/PADs for CAN are configured properly.</li>
+</ul>
+</div>
+<div class="section" id="can-communication-failed-where-to-start-debug">
+<h2>8.2.6. CAN communication failed, where to start debug?<a class="headerlink" href="#can-communication-failed-where-to-start-debug" title="Permalink to this headline">¶</a></h2>
+<p>When any CAN message transmission/reception fails, controller updates
+LEC (Last Error Code) and DLEC (Data Phase Last Error Code) fields in status
+register(&#8216;MCAN_PSR&#8217; in case of MCAN and &#8216;DCAN_ES&#8217; in case of DCAN)</p>
+<p><strong>LEC</strong>: this field is updated when error happened in arbitration phase in case of CAN FD message or during full message for classic CAN message.
+<strong>DLEC</strong>: this field is updated when error happened in data phase in case of CAN FD message.</p>
+<p>LEC/DLEC fields have following errors:</p>
+<ul>
+<li><p class="first"><strong>Stuff Error</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li>Node type: Rx</li>
+<li>Description: More than 5 equal bits in a sequence have occurred in a part of a received message where this is not allowed.</li>
+<li>Check if all the nodes on the bus have same bit-rate.</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>Form Error</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li>Node type: Rx</li>
+<li>Description: A fixed format part of a received frame has the wrong format.</li>
+<li>This could happen if receiver node have drift in CAN functional clock momentarily or bus have interference.</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>Ack Error</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li>Node Type: Tx</li>
+<li>Description: The message transmitted by the MCAN module was not acknowledged by another node.</li>
+<li>CAN bus should have more than one nodes(apart for transmitting node) up and running(not in sleep or power down state).</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>Bit1 Error and Bit0 Error</strong></p>
+<blockquote>
+<div><ul>
+<li><p class="first">Node Type: Tx</p>
+</li>
+<li><dl class="first docutils">
+<dt>Description:</dt>
+<dd><ul class="first last simple">
+<li><strong>Bit1 Error</strong>: During the transmission of a message (with the exception of the arbitration field), the device wanted to send a recessive level (bit of logical value 1), but the monitored bus value was dominant.</li>
+<li><strong>Bit0 Error</strong>: During the transmission of a message (acknowledge bit, active error flag, or overload flag), the device wanted to send a dominant level (data or identifier bit logical value 0), but the monitored bus value was recessive.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">Tx and Rx lines are sampled at Sampling Point (SP) and Secondary Sampling Point (SSP) respectively have different values. Position of SSP is configurable.</p>
+</li>
+<li><dl class="first docutils">
+<dt>This can happen in following cases:</dt>
+<dd><ul class="first last">
+<li><p class="first">Check if tx and rx pins are configured properly. These pins should be pulled high by default i.e. when bus is idle(no communication is going on).</p>
+</li>
+<li><p class="first">Check if CAN transceiver is enabled.</p>
+</li>
+<li><dl class="first docutils">
+<dt>For LEC:</dt>
+<dd><ul class="first last simple">
+<li>If configured SP is too large for given node.</li>
+<li>Segment after SP(TSEG2) should be large enough to compensate for Transceiver Delay.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>For DLEC:</dt>
+<dd><ul class="first last simple">
+<li>Configured Transceiver Delay Compensation value is less/more than required.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>CRC Error</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li>Node type: Rx</li>
+<li>Description: The CRC check sum of a received message was incorrect. The CRC of an incoming message does not match with the CRC calculated from the received data.</li>
+<li>This could happen if receiver node have drift in CAN functional clock momentarily or bus have interference.</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="faq_fvid2.html" class="btn btn-neutral float-right" title="8.3. FAQ - FVID2" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="faq_common.html" class="btn btn-neutral" title="8.1. FAQ - Common" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="http://www.ti.com/corp/docs/legal/copyright.shtml">&copy; Copyright 1995-2020</a>, Texas Instruments Incorporated. All rights reserved. <br>
+      <a href="http://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="http://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="http://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="http://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'08_06_01',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,1196 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4.7. FVID2 User Guide &mdash; Platform Development Kit (PDK) - JACINTO User Guide</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Platform Development Kit (PDK) - JACINTO User Guide" href="../index.html"/>
+        <link rel="up" title="4. Modules" href="../family_cfg/jacinto/index_modules_jacinto.html"/>
+        <link rel="next" title="4.8. GPIO" href="gpio.html"/>
+        <link rel="prev" title="4.6.3.1. lwIP User’s Guide" href="enet_lwip_userguide.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index_jacinto.html" class="icon icon-home"> Platform Development Kit (PDK) - JACINTO User Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                08_06_01
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">1. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_release_notes_jacinto.html">2. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">3. Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../family_cfg/jacinto/index_modules_jacinto.html">4. Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="csl.html">4.1. CSL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="freertos.html">4.2. FreeRTOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../family_cfg/jacinto/index_modules_safertos_jacinto.html">4.3. SafeRTOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="osal.html">4.4. OSAL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss.html">4.5. DSS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="enet.html">4.6. ENET</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">4.7. FVID2 User Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">4.7.1. Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fvid2-enumerations">4.7.2. FVID2 enumerations</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#fvid2-data-format">4.7.2.1. FVID2 Data Format</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fvid2-data-formats">4.7.2.2. FVID2 Data Formats</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fvid2-scanformat">4.7.2.3. FVID2 ScanFormat</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fvid2-field-id">4.7.2.4. FVID2 Field ID</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bits-per-pixel">4.7.2.5. Bits per Pixel</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#fvid2-structures">4.7.3. FVID2 Structures</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#fvid2-call-back-parameters-cbparams">4.7.3.1. FVID2 Call-back Parameters(CbParams)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fvid2-format">4.7.3.2. FVID2 Format</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fvid2-slice-information">4.7.3.3. FVID2 Slice information</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fvid2-frame">4.7.3.4. FVID2 Frame</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fvid2-framelist">4.7.3.5. FVID2 FrameList</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fvid2-processlist">4.7.3.6. FVID2 ProcessList</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#fvid2-apis">4.7.4. FVID2 APIs</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#fvid2-init">4.7.4.1. FVID2 Init</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fvid2-deinit">4.7.4.2. FVID2 DeInit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fvid2-create">4.7.4.3. FVID2 Create</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fvid2-set-format">4.7.4.4. FVID2 Set Format</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fvid2-get-format">4.7.4.5. FVID2 Get Format</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fvid2-control">4.7.4.6. FVID2 Control</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fvid2-start">4.7.4.7. FVID2 Start</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fvid2-stop">4.7.4.8. FVID2 Stop</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fvid2-queue">4.7.4.9. FVID2 Queue</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fvid2-de-queue">4.7.4.10. FVID2 De-Queue</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fvid2-queue-and-de-queue">4.7.4.11. FVID2 Queue and De-Queue</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fvid2-processframes">4.7.4.12. FVID2 ProcessFrames</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fvid2-getprocessedframes">4.7.4.13. FVID2 GetProcessedFrames</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1">4.7.4.14. FVID2 GetProcessedFrames</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#fvid2-error-codes">4.7.5. FVID2 Error Codes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="gpio.html">4.8. GPIO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i2c.html">4.9. I2C</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipc.html">4.10. IPC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mcasp.html">4.11. McASP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pm.html">4.12. PM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sa.html">4.13. SA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../family_cfg/jacinto/index_modules_sciclient_jacinto.html">4.14. SCICLIENT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="keywriter.html">4.15. OTP KEYWRITER</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spi.html">4.16. SPI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uart.html">4.17. UART</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../family_cfg/jacinto/index_modules_udma_jacinto.html">4.18. UDMA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pmic.html">4.19. PMIC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mmcsd.html">4.20. MMCSD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../family_cfg/jacinto/index_modules_lpm_jacinto.html">4.21. Low Power Manager (LPM)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_boot_jacinto.html">5. Bootloader (SBL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_board_jacinto.html">6. Board/EVM Abstraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_howto_jacinto.html">7. How to Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_faq_jacinto.html">8. Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_developer_notes_jacinto.html">9. Developer Notes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index_jacinto.html">Platform Development Kit (PDK) - JACINTO User Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index_jacinto.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../family_cfg/jacinto/index_modules_jacinto.html">4. Modules</a> &raquo;</li>
+      
+    <li>4.7. FVID2 User Guide</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="fvid2-user-guide">
+<h1>4.7. FVID2 User Guide<a class="headerlink" href="#fvid2-user-guide" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>4.7.1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>FVID2 are the interface APIs for the video capture, video display and video
+processing (Memory to Memory drivers)applications on top of BIOS operating
+system. Provides the interfaces for the streaming operations like queuing of
+buffers to the hardware and getting is back from the hardware. Also provides
+the control interface for the devices like video encoders and video decoders
+which are actually not the data path devices. Gives same look and feel for the
+video applications across different SoCs.</p>
+<p>Following are the features of the FVID2 APIs:
+- Platform independent and CPU independent APIs.
+- Suitable for multiprocessor communication environment like client-server model.
+- Supports blocking as well as non-blocking APIs.
+- Supports streaming class of devices like video capture and video display.
+- Supports non-steaming class of devices like video encoders and video decoders.
+- Supports sliced based operations like sliced based capture and slice based memory to memory drivers.
+- Support for the multiple buffers representing a single frame.
+- Support for configuring the hardware on per frame basis in synchronous with the frames submitted. AKA Runtime parameters change.
+- Interface supports multiple handle and multiple channel operation. Explained in detail in coming sections.
+- Support for adding the custom controls specific to the device.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Underlying drivers catering to FVID2 interfaces may decide to expose
+the sub-set of features supported by FVID2. Please refer to the individual driver
+userGuide for the features exposed by drivers.**</p>
+</div>
+</div>
+<div class="section" id="fvid2-enumerations">
+<h2>4.7.2. FVID2 enumerations<a class="headerlink" href="#fvid2-enumerations" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="fvid2-data-format">
+<h3>4.7.2.1. FVID2 Data Format<a class="headerlink" href="#fvid2-data-format" title="Permalink to this headline">¶</a></h3>
+<p><em>Fvid2_DataFormat</em> represents the arrangement of the different components forming
+the pixel. These components can be in YUV color space or the RGB color space or
+any other color space. Below figure shows the commonly used data formats. FVID2
+supports many more data formats. Specific driver may expose subset of the data
+formats from the mentioned below based on the hardware capability.</p>
+<p><strong>YUV420 Semiplanar Format</strong></p>
+<img alt="../_images/fvid2-YUV420-SP-format.png" src="../_images/fvid2-YUV420-SP-format.png" />
+<p><strong>YUV422 Interleaved Format</strong></p>
+<img alt="../_images/fvid2-YUV422-I-format.png" src="../_images/fvid2-YUV422-I-format.png" />
+<p><strong>RGB888 Packed Format</strong></p>
+<img alt="../_images/fvid2-RGB-P-format.png" src="../_images/fvid2-RGB-P-format.png" />
+</div>
+<div class="section" id="fvid2-data-formats">
+<h3>4.7.2.2. FVID2 Data Formats<a class="headerlink" href="#fvid2-data-formats" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-c"><div class="highlight"><pre><span class="k">typedef</span> <span class="k">enum</span>
+<span class="p">{</span>
+    <span class="n">FVID2_DF_YUV422I_UYVY</span> <span class="o">=</span> <span class="mh">0x0000</span><span class="p">,</span>
+        <span class="cm">/**&lt; YUV 422 Interleaved format - UYVY. */</span>
+    <span class="n">FVID2_DF_YUV422I_YUYV</span><span class="p">,</span>
+        <span class="cm">/**&lt; YUV 422 Interleaved format - YUYV. */</span>
+    <span class="n">FVID2_DF_YUV422I_YVYU</span><span class="p">,</span>
+        <span class="cm">/**&lt; YUV 422 Interleaved format - YVYU. */</span>
+    <span class="n">FVID2_DF_YUV422I_VYUY</span><span class="p">,</span>
+        <span class="cm">/**&lt; YUV 422 Interleaved format - VYUY. */</span>
+    <span class="n">FVID2_DF_YUV422SP_UV</span><span class="p">,</span>
+        <span class="cm">/**&lt; YUV 422 Semi-Planar - Y separate, UV interleaved. */</span>
+    <span class="n">FVID2_DF_YUV422SP_VU</span><span class="p">,</span>
+        <span class="cm">/**&lt; YUV 422 Semi-Planar - Y separate, VU interleaved. */</span>
+    <span class="n">FVID2_DF_YUV422P</span><span class="p">,</span>
+        <span class="cm">/**&lt; YUV 422 Planar - Y, U and V separate. */</span>
+    <span class="n">FVID2_DF_YUV420SP_UV</span><span class="p">,</span>
+        <span class="cm">/**&lt; YUV 420 Semi-Planar - Y separate, UV interleaved. */</span>
+    <span class="n">FVID2_DF_YUV420SP_VU</span><span class="p">,</span>
+        <span class="cm">/**&lt; YUV 420 Semi-Planar - Y separate, VU interleaved. */</span>
+    <span class="n">FVID2_DF_YUV420P</span><span class="p">,</span>
+        <span class="cm">/**&lt; YUV 420 Planar - Y, U and V separate. */</span>
+    <span class="n">FVID2_DF_YUV444P</span><span class="p">,</span>
+        <span class="cm">/**&lt; YUV 444 Planar - Y, U and V separate. */</span>
+    <span class="n">FVID2_DF_YUV444I</span><span class="p">,</span>
+        <span class="cm">/**&lt; YUV 444 interleaved - YUVYUV... */</span>
+    <span class="n">FVID2_DF_RGB16_565</span> <span class="o">=</span> <span class="mh">0x1000</span><span class="p">,</span>
+        <span class="cm">/**&lt; RGB565 16-bit - 5-bits R, 6-bits G, 5-bits B. */</span>
+    <span class="n">FVID2_DF_ARGB16_1555</span><span class="p">,</span>
+        <span class="cm">/**&lt; ARGB1555 16-bit - 5-bits R, 5-bits G, 5-bits B, 1-bit Alpha (MSB). */</span>
+    <span class="n">FVID2_DF_RGBA16_5551</span><span class="p">,</span>
+        <span class="cm">/**&lt; RGBA5551 16-bit - 5-bits R, 5-bits G, 5-bits B, 1-bit Alpha (LSB). */</span>
+    <span class="n">FVID2_DF_ARGB16_4444</span><span class="p">,</span>
+        <span class="cm">/**&lt; ARGB4444 16-bit - 4-bits R, 4-bits G, 4-bits B, 4-bit Alpha (MSB). */</span>
+    <span class="n">FVID2_DF_RGBA16_4444</span><span class="p">,</span>
+        <span class="cm">/**&lt; RGBA4444 16-bit - 4-bits R, 4-bits G, 4-bits B, 4-bit Alpha (LSB). */</span>
+    <span class="n">FVID2_DF_ARGB24_6666</span><span class="p">,</span>
+        <span class="cm">/**&lt; ARGB4444 24-bit - 6-bits R, 6-bits G, 6-bits B, 6-bit Alpha (MSB). */</span>
+    <span class="n">FVID2_DF_RGBA24_6666</span><span class="p">,</span>
+        <span class="cm">/**&lt; RGBA4444 24-bit - 6-bits R, 6-bits G, 6-bits B, 6-bit Alpha (LSB). */</span>
+    <span class="n">FVID2_DF_RGB24_888</span><span class="p">,</span>
+        <span class="cm">/**&lt; RGB24 24-bit - 8-bits R, 8-bits G, 8-bits B. */</span>
+    <span class="n">FVID2_DF_ARGB32_8888</span><span class="p">,</span>
+        <span class="cm">/**&lt; ARGB32 32-bit - 8-bits R, 8-bits G, 8-bits B, 8-bit Alpha (MSB). */</span>
+    <span class="n">FVID2_DF_RGBA32_8888</span><span class="p">,</span>
+        <span class="cm">/**&lt; RGBA32 32-bit - 8-bits R, 8-bits G, 8-bits B, 8-bit Alpha (LSB). */</span>
+    <span class="n">FVID2_DF_BITMAP8</span> <span class="o">=</span> <span class="mh">0x2000</span><span class="p">,</span>
+        <span class="cm">/**&lt; BITMAP 8bpp. */</span>
+    <span class="n">FVID2_DF_BITMAP4_LOWER</span><span class="p">,</span>
+        <span class="cm">/**&lt; BITMAP 4bpp lower address in CLUT. */</span>
+    <span class="n">FVID2_DF_BITMAP4_UPPER</span><span class="p">,</span>
+        <span class="cm">/**&lt; BITMAP 4bpp upper address in CLUT. */</span>
+    <span class="n">FVID2_DF_BITMAP2_OFFSET0</span><span class="p">,</span>
+        <span class="cm">/**&lt; BITMAP 2bpp offset 0 in CLUT. */</span>
+    <span class="n">FVID2_DF_BITMAP2_OFFSET1</span><span class="p">,</span>
+        <span class="cm">/**&lt; BITMAP 2bpp offset 1 in CLUT. */</span>
+    <span class="n">FVID2_DF_BITMAP2_OFFSET2</span><span class="p">,</span>
+        <span class="cm">/**&lt; BITMAP 2bpp offset 2 in CLUT. */</span>
+    <span class="n">FVID2_DF_BITMAP2_OFFSET3</span><span class="p">,</span>
+        <span class="cm">/**&lt; BITMAP 2bpp offset 3 in CLUT. */</span>
+    <span class="n">FVID2_DF_BITMAP1_OFFSET0</span><span class="p">,</span>
+        <span class="cm">/**&lt; BITMAP 1bpp offset 0 in CLUT. */</span>
+    <span class="n">FVID2_DF_BITMAP1_OFFSET1</span><span class="p">,</span>
+        <span class="cm">/**&lt; BITMAP 1bpp offset 1 in CLUT. */</span>
+    <span class="n">FVID2_DF_BITMAP1_OFFSET2</span><span class="p">,</span>
+        <span class="cm">/**&lt; BITMAP 1bpp offset 2 in CLUT. */</span>
+    <span class="n">FVID2_DF_BITMAP1_OFFSET3</span><span class="p">,</span>
+        <span class="cm">/**&lt; BITMAP 1bpp offset 3 in CLUT. */</span>
+    <span class="n">FVID2_DF_BITMAP1_OFFSET4</span><span class="p">,</span>
+        <span class="cm">/**&lt; BITMAP 1bpp offset 4 in CLUT. */</span>
+    <span class="n">FVID2_DF_BITMAP1_OFFSET5</span><span class="p">,</span>
+        <span class="cm">/**&lt; BITMAP 1bpp offset 5 in CLUT. */</span>
+    <span class="n">FVID2_DF_BITMAP1_OFFSET6</span><span class="p">,</span>
+        <span class="cm">/**&lt; BITMAP 1bpp offset 6 in CLUT. */</span>
+    <span class="n">FVID2_DF_BITMAP1_OFFSET7</span><span class="p">,</span>
+        <span class="cm">/**&lt; BITMAP 1bpp offset 7 in CLUT. */</span>
+    <span class="n">FVID2_DF_BAYER_RAW</span> <span class="o">=</span> <span class="mh">0x3000</span><span class="p">,</span>
+        <span class="cm">/**&lt; Bayer pattern. */</span>
+    <span class="n">FVID2_DF_RAW_VBI</span><span class="p">,</span>
+        <span class="cm">/**&lt; Raw VBI data. */</span>
+    <span class="n">FVID2_DF_RAW</span><span class="p">,</span>
+        <span class="cm">/**&lt; Raw data - Format not interpreted. */</span>
+    <span class="n">FVID2_DF_MISC</span><span class="p">,</span>
+        <span class="cm">/**&lt; For future purpose. */</span>
+    <span class="n">FVID2_DF_INVALID</span><span class="p">,</span>
+        <span class="cm">/**&lt; Invalid data format. Could be used to initialize variables. */</span>
+    <span class="n">FVID2_DF_MAX</span>
+        <span class="cm">/**&lt; Should be the last value of this enumeration.</span>
+<span class="cm">         Will be used by driver for validating the input parameters. */</span>
+<span class="p">}</span> <span class="n">Fvid2_DataFormat</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="fvid2-scanformat">
+<h3>4.7.2.3. FVID2 ScanFormat<a class="headerlink" href="#fvid2-scanformat" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div>Represents the scanning format.</div></blockquote>
+<div class="highlight-c"><div class="highlight"><pre><span class="k">typedef</span> <span class="k">enum</span>
+<span class="p">{</span>
+    <span class="n">FVID2_SF_INTERLACED</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="cm">/**&lt; Interlaced mode. */</span>
+    <span class="n">FVID2_SF_PROGRESSIVE</span><span class="p">,</span>
+        <span class="cm">/**&lt; Progressive mode. */</span>
+    <span class="n">FVID2_SF_MAX</span>
+        <span class="cm">/**&lt; Should be the last value of this enumeration.</span>
+<span class="cm">         Will be used by driver for validating the input parameters. */</span>
+<span class="p">}</span> <span class="n">Fvid2_ScanFormat</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="fvid2-field-id">
+<h3>4.7.2.4. FVID2 Field ID<a class="headerlink" href="#fvid2-field-id" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div>Represents field ID of the buffer. For interlaced
+buffers field ID could be 0 or 1 depending upon the even and odd
+field buffer contains. For progressive displays field ID is same for
+all the frames.</div></blockquote>
+<div class="highlight-c"><div class="highlight"><pre><span class="k">typedef</span> <span class="k">enum</span>
+<span class="p">{</span>
+    <span class="n">FVID2_FID_TOP</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="cm">/**&lt; Top field. */</span>
+    <span class="n">FVID2_FID_BOTTOM</span><span class="p">,</span>
+        <span class="cm">/**&lt; Bottom field. */</span>
+    <span class="n">FVID2_FID_FRAME</span><span class="p">,</span>
+        <span class="cm">/**&lt; Frame mode - Contains both the fields or a progressive frame. */</span>
+    <span class="n">FVID2_FID_MAX</span>
+        <span class="cm">/**&lt; Should be the last value of this enumeration.</span>
+<span class="cm">         Will be used by driver for validating the input parameters. */</span>
+<span class="p">}</span> <span class="n">Fvid2_Fid</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="bits-per-pixel">
+<h3>4.7.2.5. Bits per Pixel<a class="headerlink" href="#bits-per-pixel" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div>Represents bits per pixel for buffer. For example
+for YUV422 interlaced format bit per pixel will be 16 and for YUV444
+it will be 24 and YUV420 it will be 12.</div></blockquote>
+<div class="highlight-c"><div class="highlight"><pre><span class="k">typedef</span> <span class="k">enum</span>
+<span class="p">{</span>
+    <span class="n">FVID2_BPP_BITS1</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="cm">/**&lt; 1 Bits per Pixel. */</span>
+    <span class="n">FVID2_BPP_BITS2</span><span class="p">,</span>
+    <span class="cm">/**&lt; 2 Bits per Pixel. */</span>
+    <span class="n">FVID2_BPP_BITS4</span><span class="p">,</span>
+    <span class="cm">/**&lt; 4 Bits per Pixel. */</span>
+    <span class="n">FVID2_BPP_BITS8</span><span class="p">,</span>
+    <span class="cm">/**&lt; 8 Bits per Pixel. */</span>
+    <span class="n">FVID2_BPP_BITS12</span><span class="p">,</span>
+    <span class="cm">/**&lt; 12 Bits per Pixel - used for YUV420 format. */</span>
+    <span class="n">FVID2_BPP_BITS16</span><span class="p">,</span>
+    <span class="cm">/**&lt; 16 Bits per Pixel. */</span>
+    <span class="n">FVID2_BPP_BITS24</span><span class="p">,</span>
+    <span class="cm">/**&lt; 24 Bits per Pixel. */</span>
+    <span class="n">FVID2_BPP_BITS32</span><span class="p">,</span>
+    <span class="cm">/**&lt; 32 Bits per Pixel. */</span>
+    <span class="n">FVID2_BPP_MAX</span>
+    <span class="cm">/**&lt; Should be the last value of this enumeration.</span>
+<span class="cm">         Will be used by driver for validating the input parameters. */</span>
+<span class="p">}</span> <span class="n">Fvid2_BitsPerPixel</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="fvid2-structures">
+<h2>4.7.3. FVID2 Structures<a class="headerlink" href="#fvid2-structures" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="fvid2-call-back-parameters-cbparams">
+<h3>4.7.3.1. FVID2 Call-back Parameters(CbParams)<a class="headerlink" href="#fvid2-call-back-parameters-cbparams" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div>FVID2 supports the driver call back. Driver call the application on specific
+events like, completion of buffer capture, displayed or process. Or in case
+of error where application needs to take some action. Following is the
+structure defined by the FVID2 API for the application to pass the callback
+functions to be invoked by the driver.</div></blockquote>
+<div class="highlight-c"><div class="highlight"><pre><span class="k">typedef</span> <span class="k">struct</span>
+<span class="p">{</span>
+    <span class="n">Fvid2_CbFxn</span>         <span class="n">cbFxn</span><span class="p">;</span>
+        <span class="cm">/**&lt; Application callback function used by the driver to intimate any</span>
+<span class="cm">             operation has completed or not. This is an optional parameter</span>
+<span class="cm">             in case application decides to use polling method and so could be</span>
+<span class="cm">             set to NULL. */</span>
+    <span class="n">Fvid2_ErrCbFxn</span>      <span class="n">errCbFxn</span><span class="p">;</span>
+        <span class="cm">/**&lt; Application error callback function used by the driver to intimate</span>
+<span class="cm">             any error occurs at the time of streaming. This is an optional</span>
+<span class="cm">             parameter in case application decides not to get any error callback</span>
+<span class="cm">             and so could be set to NULL. */</span>
+    <span class="n">Ptr</span>                 <span class="n">errList</span><span class="p">;</span>
+        <span class="cm">/**&lt; Pointer to a valid framelist (Fvid2_FrameList) in case of capture</span>
+<span class="cm">             and display drivers or a pointer to a valid processlist</span>
+<span class="cm">             (Fvid2_ProcessList) in case of M2M drivers where the driver copies</span>
+<span class="cm">             the aborted/error packet. The memory of this list should be</span>
+<span class="cm">             allocated by the application and provided to the driver at the time</span>
+<span class="cm">             of driver creation. When the application gets this callback, it has</span>
+<span class="cm">             to empty this list and taken necessary action like freeing up memories</span>
+<span class="cm">             etc. The driver will then reuse the same list for future error</span>
+<span class="cm">             callback.</span>
+<span class="cm">             This could be NULL if errCbFxn is NULL. Otherwise this should be</span>
+<span class="cm">             non-NULL. */</span>
+    <span class="n">Ptr</span>                 <span class="n">appData</span><span class="p">;</span>
+        <span class="cm">/**&lt; Application specific data which is returned in the callback function</span>
+<span class="cm">             as it is. This could be set to NULL if not used. */</span>
+    <span class="n">Ptr</span>                 <span class="n">reserved</span><span class="p">;</span>
+        <span class="cm">/**&lt; For future use. Not used currently. Set this to NULL. */</span>
+<span class="p">}</span> <span class="n">Fvid2_CbParams</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="fvid2-format">
+<h3>4.7.3.2. FVID2 Format<a class="headerlink" href="#fvid2-format" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div>Defines the format capabilities of the buffer like dataformat, scanFormat,
+width, height etc.</div></blockquote>
+<div class="highlight-c"><div class="highlight"><pre><span class="k">typedef</span> <span class="k">struct</span>
+<span class="p">{</span>
+    <span class="n">UInt32</span>              <span class="n">chNum</span><span class="p">;</span>
+    <span class="cm">/**&lt; Channel Number to which this format belongs to.</span>
+<span class="cm">         This is used in case of multiple buffers queuing/deqeuing using a</span>
+<span class="cm">         single call. This is not applicable for all the drivers. When not</span>
+<span class="cm">         used set it to zero. */</span>
+
+    <span class="n">UInt32</span>              <span class="n">width</span><span class="p">;</span>
+    <span class="cm">/**&lt; Width in pixels. */</span>
+
+    <span class="n">UInt32</span>              <span class="n">height</span><span class="p">;</span>
+    <span class="cm">/**&lt; Number of lines per frame. For interlaced mode, this should be set to</span>
+<span class="cm">         the frame size and not the field size. */</span>
+
+    <span class="n">UInt32</span>              <span class="n">pitch</span><span class="p">[</span><span class="n">FVID2_MAX_PLANES</span><span class="p">];</span>
+    <span class="cm">/**&lt; Pitch in bytes for each of the sub-buffers. This represents the</span>
+<span class="cm">         difference between two consecutive line address.</span>
+<span class="cm">         This is irrespective of whether the video is interlaced or</span>
+<span class="cm">         progressive and whether the fields are merged or separated for</span>
+<span class="cm">         interlaced video. */</span>
+    <span class="n">UInt32</span>              <span class="n">fieldMerged</span><span class="p">[</span><span class="n">FVID2_MAX_PLANES</span><span class="p">];</span>
+    <span class="cm">/**&lt; Whether both the fields have to be merged - line interleaved or not.</span>
+<span class="cm">         Used only for interlaced format. The effective pitch is calculated</span>
+<span class="cm">         based on this information along with pitch parameter. If fields are</span>
+<span class="cm">         merged, effective pitch = pitch * 2 else effective pitch = pitch. */</span>
+
+    <span class="n">UInt32</span>              <span class="n">dataFormat</span><span class="p">;</span>
+    <span class="cm">/**&lt; Frame data Format. For valid values see #Fvid2_DataFormat. */</span>
+    <span class="n">UInt32</span>              <span class="n">scanFormat</span><span class="p">;</span>
+    <span class="cm">/**&lt; Scan Format. For valid values see #Fvid2_ScanFormat. */</span>
+    <span class="n">UInt32</span>              <span class="n">bpp</span><span class="p">;</span>
+    <span class="cm">/**&lt; Number of bits per pixel. For valid values see #Fvid2_BitsPerPixel. */</span>
+    <span class="n">Ptr</span>                 <span class="n">reserved</span><span class="p">;</span>
+    <span class="cm">/**&lt; For future use. Not used currently. Set this to NULL. */</span>
+<span class="p">}</span> <span class="n">Fvid2_Format</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="fvid2-slice-information">
+<h3>4.7.3.3. FVID2 Slice information<a class="headerlink" href="#fvid2-slice-information" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div>Represents the slice information. Used in sliced bases processing like
+slice based capture and sliced based memory to memory driver</div></blockquote>
+<div class="highlight-c"><div class="highlight"><pre><span class="k">typedef</span> <span class="k">struct</span>
+<span class="p">{</span>
+    <span class="n">UInt32</span>              <span class="n">sliceNum</span><span class="p">;</span>
+        <span class="cm">/**&lt; Current slice Number in this frame,</span>
+<span class="cm">             range is from 0 to (NoOfSlicesInFrame-1)  */</span>
+    <span class="n">UInt32</span>              <span class="n">numSlcInLines</span><span class="p">;</span>
+        <span class="cm">/**&lt; Number of lines available in the frame at the end of this slice. */</span>
+    <span class="n">UInt32</span>              <span class="n">numSlcOutLines</span><span class="p">;</span>
+        <span class="cm">/**&lt; Number of lines generated in output buffer after processing</span>
+<span class="cm">             current slice */</span>
+<span class="p">}</span> <span class="n">Fvid2_SliceInfo</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="fvid2-frame">
+<h3>4.7.3.4. FVID2 Frame<a class="headerlink" href="#fvid2-frame" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div>Represents the attribute of one buffer in frame. Attributes like address of
+each planes and each fields. YUV420 semi-planar buffer with interlaced scan
+format will have two planes one each for Y data and UV data and odd and even
+fields. Below figure shows the manipulation of the addr field of the
+<em>Fvid2_Frame</em> structure for different data formats and scan formats.</div></blockquote>
+<p><strong>YUV420 Semiplanar</strong></p>
+<blockquote>
+<div>Below figure shows the <em>addr</em> field of the Fvid2_Frame structure for the
+YUV420 semi planar data in which the image is interlaced and fields are
+separate in two different buffers.</div></blockquote>
+<img alt="../_images/fvid2-YUV420-SP.PNG" src="../_images/fvid2-YUV420-SP.PNG" />
+<p><strong>YUV422 Interleaved</strong></p>
+<blockquote>
+<div>Below figure shows the <em>addr</em> field of the <em>Fvid2_Frame</em> structure for the
+YUV422 interleaved data in which the image is interlaced and fields are
+merged in single buffer. For the progressive image only the <em>addr[0][0]</em>
+needs to be initialized</div></blockquote>
+<img alt="../_images/fvid2-YUV422-I.PNG" src="../_images/fvid2-YUV422-I.PNG" />
+<p>Below figure shows the FVID2 frame structure in detail:</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="k">typedef</span> <span class="k">struct</span>
+<span class="p">{</span>
+    <span class="n">Ptr</span>                 <span class="n">addr</span><span class="p">[</span><span class="n">FVID2_MAX_FIELDS</span><span class="p">][</span><span class="n">FVID2_MAX_PLANES</span><span class="p">];</span>
+        <span class="cm">/**&lt; FVID2 buffer pointers for supporting multiple addresses like</span>
+<span class="cm">             y, u, v etc for a given frame. The interpretation of these pointers</span>
+<span class="cm">             depend on the format configured.</span>
+<span class="cm">             The first dimension represents the field and the second dimension</span>
+<span class="cm">             represents the plane. Not all pointers are valid for a given format.</span>
+
+<span class="cm">             Representation of YUV422 Planar Buffer:</span>
+<span class="cm">             Field 0 Y -&gt; addr[0][0], Field 1 Y -&gt; addr[1][0]</span>
+<span class="cm">             Field 0 U -&gt; addr[0][1], Field 1 U -&gt; addr[1][1]</span>
+<span class="cm">             Field 0 V -&gt; addr[0][2], Field 1 V -&gt; addr[1][2]</span>
+
+<span class="cm">             Representation of YUV422 Interleaved Buffer:</span>
+<span class="cm">             Field 0 YUV -&gt; addr[0][0], Field 1 YUV -&gt; addr[1][0]</span>
+<span class="cm">             Other pointers are not valid.</span>
+
+<span class="cm">             Representation of RGB888 Buffer (Assuming RGB is always progressive):</span>
+<span class="cm">             RGB -&gt; addr[0][0]</span>
+<span class="cm">             Other pointers are not valid.</span>
+
+<span class="cm">             Instead of using numerical for accessing the buffers, the application</span>
+<span class="cm">             can use the macros defined for each buffer formats like</span>
+<span class="cm">             FVID2_YUV_INT_ADDR_IDX, FVID2_RGB_ADDR_IDX, FVID2_FID_TOP etc.</span>
+
+<span class="cm">             [IN] for queue operation.</span>
+<span class="cm">             [OUT] for dequeue operation. */</span>
+    <span class="n">UInt32</span>              <span class="n">fid</span><span class="p">;</span>
+        <span class="cm">/**&lt; Indicates whether this frame belong to top or bottom field.</span>
+<span class="cm">             For valid values see #Fvid2_Fid.</span>
+<span class="cm">             [IN] for queue operation.</span>
+<span class="cm">             [OUT] for dequeue operation. */</span>
+    <span class="n">UInt32</span>              <span class="n">channelNum</span><span class="p">;</span>
+        <span class="cm">/**&lt; Channel number to which this FVID2 frame belongs to.</span>
+<span class="cm">             This is used in case of multiple buffers queuing/deqeuing using a</span>
+<span class="cm">             single call.</span>
+<span class="cm">             If only one channel is supported, then this should be set to zero.</span>
+<span class="cm">             [IN] for queue operation.</span>
+<span class="cm">             [OUT] for dequeue operation. */</span>
+
+    <span class="n">UInt32</span>              <span class="n">timeStamp</span><span class="p">;</span>
+        <span class="cm">/**&lt; Time Stamp for captured or displayed frame.</span>
+<span class="cm">             [OUT] for dequeue operation. Not valid for queue operation. */</span>
+    <span class="n">Ptr</span>                 <span class="n">appData</span><span class="p">;</span>
+        <span class="cm">/**&lt; Additional application parameter per frame. This is not modified by</span>
+<span class="cm">             driver. */</span>
+    <span class="n">Ptr</span>                 <span class="n">perFrameCfg</span><span class="p">;</span>
+        <span class="cm">/**&lt; Per frame configuration parameters like scaling ratio, positioning,</span>
+<span class="cm">             cropping etc...</span>
+<span class="cm">             This could be set to NULL if not used.</span>
+<span class="cm">             [IN] for queue operation. Dequeue returns the same pointer back to</span>
+<span class="cm">             the application. */</span>
+    <span class="n">Ptr</span>                 <span class="n">blankData</span><span class="p">;</span>
+        <span class="cm">/**&lt; Blanking data.</span>
+<span class="cm">             This could be set to NULL if not used.</span>
+<span class="cm">             [IN] for queue operation.</span>
+<span class="cm">             [OUT] for dequeue operation. */</span>
+    <span class="n">Ptr</span>                 <span class="n">drvData</span><span class="p">;</span>
+        <span class="cm">/**&lt; Used by driver. Application should not modify this. */</span>
+    <span class="n">Fvid2_SliceInfo</span>    <span class="o">*</span><span class="n">sliceInfo</span><span class="p">;</span>
+        <span class="cm">/**&lt; Used for Slice level processing information exchange between</span>
+<span class="cm">             application and driver.</span>
+<span class="cm">             This could be set to NULL if slice level processing is not used. */</span>
+    <span class="n">Ptr</span>                 <span class="n">reserved</span><span class="p">;</span>
+        <span class="cm">/**&lt; For future use. Not used currently. Set this to NULL. */</span>
+<span class="p">}</span> <span class="n">Fvid2_Frame</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="fvid2-framelist">
+<h3>4.7.3.5. FVID2 FrameList<a class="headerlink" href="#fvid2-framelist" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div>Framelist represents <em>N</em> frames. For display <em>N</em> frames represent buffer
+address of each window in a multi-window mode. For capture it represents
+different channel buffers for the multiplexed channels. Currently
+<em>Fvid2_Framelist</em> can handle maximum of <strong>FVID2_MAX_FVID_FRAME_PTR</strong>
+frame pointers.</div></blockquote>
+<div class="highlight-c"><div class="highlight"><pre><span class="k">typedef</span> <span class="k">struct</span>
+<span class="p">{</span>
+    <span class="n">Fvid2_Frame</span>        <span class="o">*</span><span class="n">frames</span><span class="p">[</span><span class="n">FVID2_MAX_FVID_FRAME_PTR</span><span class="p">];</span>
+        <span class="cm">/**&lt; An array of FVID2 frame pointers.</span>
+<span class="cm">             [IN] The content of the pointer array i.e Fvid2_Frame pointer is input</span>
+<span class="cm">             for queue operation</span>
+<span class="cm">             [OUT] Output for dequeue operation. */</span>
+    <span class="n">UInt32</span>              <span class="n">numFrames</span><span class="p">;</span>
+        <span class="cm">/**&lt; Number of frames - Size of the array containing FVID2 pointers.</span>
+<span class="cm">             [IN] for queue operation.</span>
+<span class="cm">             [OUT] for dequeue operation. */</span>
+    <span class="n">Ptr</span>                 <span class="n">perListCfg</span><span class="p">;</span>
+        <span class="cm">/**&lt; Per list configuration parameters like scaling ratio, positioning,</span>
+<span class="cm">             cropping etc for all the frames together.</span>
+<span class="cm">             This could be set to NULL if not used. In this case, the driver will</span>
+<span class="cm">             use the previous configuration.</span>
+<span class="cm">             [IN] for queue operation. Dequeue returns the same pointer back to</span>
+<span class="cm">             the application. */</span>
+    <span class="n">Ptr</span>                 <span class="n">drvData</span><span class="p">;</span>
+        <span class="cm">/**&lt; Used by driver. Application should not modify this. */</span>
+    <span class="n">Ptr</span>                 <span class="n">reserved</span><span class="p">;</span>
+        <span class="cm">/**&lt; For future use. Not used currently. Set this to NULL. */</span>
+<span class="p">}</span> <span class="n">Fvid2_FrameList</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Below figure shows the framelist containing <em>Fvid2_Frame</em> in case of
+display and capture drivers.</p>
+<img alt="../_images/fvid2-FrameList.PNG" src="../_images/fvid2-FrameList.PNG" />
+</div>
+<div class="section" id="fvid2-processlist">
+<h3>4.7.3.6. FVID2 ProcessList<a class="headerlink" href="#fvid2-processlist" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div>FVID2 process list containing frame list used to exchange multiple
+input/output buffers in M2M (memory to memory) operation. Each of the
+frame list in turn have multiple frames/request.</div></blockquote>
+<div class="highlight-c"><div class="highlight"><pre><span class="k">typedef</span> <span class="k">struct</span>
+<span class="p">{</span>
+    <span class="n">Fvid2_FrameList</span>    <span class="o">*</span><span class="n">inFrameList</span><span class="p">[</span><span class="n">FVID2_MAX_IN_OUT_PROCESS_LISTS</span><span class="p">];</span>
+    <span class="cm">/**&lt; Pointer to an array of FVID2 frame list pointers for input nodes.</span>
+<span class="cm">         [IN] for both queue and dequeue operation.</span>
+<span class="cm">         The content of the pointer array i.e Fvid2_FrameList pointer is</span>
+<span class="cm">         input for queue operation and is output for dequeue operation. */</span>
+    <span class="n">Fvid2_FrameList</span>    <span class="o">*</span><span class="n">outFrameList</span><span class="p">[</span><span class="n">FVID2_MAX_IN_OUT_PROCESS_LISTS</span><span class="p">];</span>
+    <span class="cm">/**&lt; Pointer to an array of FVID2 frame list pointers for output nodes.</span>
+<span class="cm">         [IN] for both queue and dequeue operation.</span>
+<span class="cm">         The content of the pointer array i.e Fvid2_FrameList pointer is</span>
+<span class="cm">         input for queue operation and is output for dequeue operation. */</span>
+    <span class="n">UInt32</span>              <span class="n">numInLists</span><span class="p">;</span>
+    <span class="cm">/**&lt; Number of input frame list valid in inFrameList.</span>
+<span class="cm">         [IN] for queue operation.</span>
+<span class="cm">         [OUT] for dequeue operation. */</span>
+    <span class="n">UInt32</span>              <span class="n">numOutLists</span><span class="p">;</span>
+    <span class="cm">/**&lt; Number of output frame list valid in outFrameList.</span>
+<span class="cm">         [IN] for queue operation.</span>
+<span class="cm">         [OUT] for dequeue operation. */</span>
+    <span class="n">Ptr</span>                 <span class="n">drvData</span><span class="p">;</span>
+    <span class="cm">/**&lt; Used by driver. Application should not modify this. */</span>
+    <span class="n">Ptr</span>                 <span class="n">reserved</span><span class="p">;</span>
+    <span class="cm">/**&lt; For future use. Not used currently. Set this to NULL. */</span>
+<span class="p">}</span> <span class="n">Fvid2_ProcessList</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Below figure shows the processlist containing <em>Fvid2_FrameList</em> which in
+turn will point to <em>Fvid2_Frame</em></p>
+<img alt="../_images/fvid2-ProcessList.PNG" src="../_images/fvid2-ProcessList.PNG" />
+</div>
+</div>
+<div class="section" id="fvid2-apis">
+<h2>4.7.4. FVID2 APIs<a class="headerlink" href="#fvid2-apis" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="fvid2-init">
+<h3>4.7.4.1. FVID2 Init<a class="headerlink" href="#fvid2-init" title="Permalink to this headline">¶</a></h3>
+<p>This API should be called before calling any of the FVID2 APIs. This API
+initializes the underlying hardware/software sub-system built on top of
+FVID2 APIs. This should be called once during the system initialization
+time in the task context. This function should not be called from the ISR
+context.</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="n">Int32</span> <span class="nf">Fvid2_init</span><span class="p">(</span><span class="n">Ptr</span> <span class="n">args</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><strong>args</strong> - <em>NULL</em> currently not used.</li>
+</ul>
+</div>
+<div class="section" id="fvid2-deinit">
+<h3>4.7.4.2. FVID2 DeInit<a class="headerlink" href="#fvid2-deinit" title="Permalink to this headline">¶</a></h3>
+<p>This function should be called during the system de-Initialization.
+De-Initializes the hardware/software sub-system built on top of FVID2 APIs.
+This should be called only once from the task context.</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="n">Int32</span> <span class="nf">Fvid2_deInit</span><span class="p">(</span><span class="n">Ptr</span> <span class="n">args</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><strong>args</strong> - Not used</li>
+</ul>
+</div>
+<div class="section" id="fvid2-create">
+<h3>4.7.4.3. FVID2 Create<a class="headerlink" href="#fvid2-create" title="Permalink to this headline">¶</a></h3>
+<p>This API is used to open the FVID2 driver. drvId and InstanceId pair represents
+the hardware on which driver operates. It initializes the hardware supported
+by the driver and configures it according to the parameters provided by open.
+Some of the FVID2 driver supports multiple creates/open on the same drvId and
+instanceId. Requests from the different handles of the multiple opens is
+serialize by the driver and is operated upon the same hardware one by one.</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="n">Fvid2_Handle</span> <span class="nf">Fvid2_create</span><span class="p">(</span><span class="n">UInt32</span> <span class="n">drvId</span><span class="p">,</span>
+                          <span class="n">UInt32</span> <span class="n">instanceId</span><span class="p">,</span>
+                          <span class="n">Ptr</span> <span class="n">createArgs</span><span class="p">,</span>
+                          <span class="n">Ptr</span> <span class="n">createStatusArgs</span><span class="p">,</span>
+                          <span class="k">const</span> <span class="n">Fvid2_CbParams</span> <span class="o">*</span><span class="n">cbParams</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><strong>drvId</strong> - [IN] Used to find a matching ID in the device driver table</li>
+<li><strong>instanceId</strong> - [IN] Instance ID of the driver to open and is used
+to differentiate multiple instance support on a single driver.</li>
+<li><strong>createArgs</strong> - [IN] Pointer to the create argument structure.
+The type of the structure is defined by the specific driver.
+This parameter could be NULL depending on whether the actual driver
+forces it or not.</li>
+<li><strong>createStatusArgs</strong> - [OUT] Pointer to status argument structure where the driver
+returns any status information. The type of the structure is
+defined by the specific driver. This parameter could be <em>NULL</em>
+depending on whether the actual driver forces it or not.</li>
+<li><strong>cbParams</strong> - Application callback parameters <em>Fvid2_CbParams</em>. This parameter could
+be <em>NULL</em> depending on whether the actual driver forces it or not.</li>
+<li><strong>return</strong> - Returns a non-NULL <em>Fvid2_Handle</em> object on success else
+returns <em>NULL</em> on error.</li>
+</ul>
+</div>
+<div class="section" id="fvid2-set-format">
+<h3>4.7.4.4. FVID2 Set Format<a class="headerlink" href="#fvid2-set-format" title="Permalink to this headline">¶</a></h3>
+<p>Sets the format information for the already opened driver for a given channel.
+This function should be called from the task context.</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="n">Int32</span> <span class="n">Fvid2_setFormat</span><span class="p">(</span><span class="n">Fvid2_Handle</span> <span class="n">handle</span><span class="p">,</span> <span class="n">Fvid2_Format</span> <span class="o">*</span><span class="n">fmt</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><strong>handle</strong> - [IN] FVID2 handle returned by FVID2 Create call.</li>
+<li><strong>fmt</strong> - [IN] Pointer to the FVID2 Create structure.</li>
+<li><strong>return</strong> - <em>FVID2_SOK</em> on success, else appropriate FVID2 Error Code on failure</li>
+</ul>
+</div>
+<div class="section" id="fvid2-get-format">
+<h3>4.7.4.5. FVID2 Get Format<a class="headerlink" href="#fvid2-get-format" title="Permalink to this headline">¶</a></h3>
+<p>Returns the format already set for the opened driver for a given channel.
+This function should be called from the task context.</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="n">Int32</span> <span class="n">Fvid2_getFormat</span><span class="p">(</span><span class="n">Fvid2_Handle</span> <span class="n">handle</span><span class="p">,</span> <span class="n">Fvid2_Format</span> <span class="o">*</span><span class="n">fmt</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><strong>handle</strong> - [IN] FVID2 handle returned by FVID2 Create call.</li>
+<li><strong>fmt</strong> - [OUT] Pointer to the FVID2 Create structure.</li>
+<li><strong>return</strong> - <em>FVID2_SOK</em> on success, else appropriate FVID2 Error Code on failure.</li>
+</ul>
+</div>
+<div class="section" id="fvid2-control">
+<h3>4.7.4.6. FVID2 Control<a class="headerlink" href="#fvid2-control" title="Permalink to this headline">¶</a></h3>
+<p>Driver exposes the custom control commands specific to the driver and hardware
+through this interface. All the FVID2 control commands are blocking.
+These control commands should be called from the task context unless
+specified otherwise by the specific drivers. Example of the control
+commands exposed by different drivers are creation/selection of the
+different multi window layout in case of display driver, programming of
+coefficients in case of memory drivers involving scalars.</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="n">Int32</span> <span class="nf">Fvid2_control</span><span class="p">(</span><span class="n">Fvid2_Handle</span> <span class="n">handle</span><span class="p">,</span>
+                    <span class="n">UInt32</span> <span class="n">cmd</span><span class="p">,</span>
+                    <span class="n">Ptr</span> <span class="n">cmdArgs</span><span class="p">,</span>
+                    <span class="n">Ptr</span> <span class="n">cmdStatusArgs</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><strong>handle</strong> - [IN] FVID2 handle returned by FVID2 Create call.</li>
+<li><strong>cmd</strong> - [IN] IOCTL command. The type of command supported is defined by the
+specific driver.</li>
+<li><strong>cmdArgs</strong> - [IN] Pointer to the command argument structure.
+The type of the structure is defined by the specific driver for
+each of the supported IOCTL. This parameter could be <em>NULL</em>
+depending on whether the actual driver forces it or not.</li>
+<li><strong>cmdStatusArgs</strong> - [OUT]Pointer to status argument structure where the
+driver returns any status information. The type of the
+structure is defined by the specific driver for each of the
+supported IOCTL. This parameter could be <em>NULL</em> depending on
+whether the actual driver forces it or not.</li>
+<li><strong>return</strong> - <em>FVID2_SOK</em> on success, else appropriate FVID2 Error Code on failure.</li>
+</ul>
+</div>
+<div class="section" id="fvid2-start">
+<h3>4.7.4.7. FVID2 Start<a class="headerlink" href="#fvid2-start" title="Permalink to this headline">¶</a></h3>
+<p>An application calls FVID2 start to request the video device driver to
+start the video display or capture operation. Most of the control commands
+and start FVID2 commands like <em>Fvid2_setFormat,Fvid2_getFormat</em> cannot be
+called unless specified otherwise by driver. This function should be called
+from the task context.</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="n">Int32</span> <span class="n">Fvid2_start</span><span class="p">(</span><span class="n">Fvid2_Handle</span> <span class="n">handle</span><span class="p">,</span> <span class="n">Ptr</span> <span class="n">cmdArgs</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><strong>handle</strong> - [IN] FVID2 handle returned by FVID2 Create call.</li>
+<li><strong>cmdArgs</strong> - [IN] Pointer to the start argument structure.
+The type of the structure is defined by the specific driver.
+This parameter could be NULL depending on whether the actual
+driver forces it or not.</li>
+<li><strong>return</strong> - <em>FVID2_SOK</em> on success, else appropriate
+FVID2 Error Code on failure.</li>
+</ul>
+</div>
+<div class="section" id="fvid2-stop">
+<h3>4.7.4.8. FVID2 Stop<a class="headerlink" href="#fvid2-stop" title="Permalink to this headline">¶</a></h3>
+<p>An application calls the FVID2 stop to request the video device driver to
+stop the video display or capture operation. FVID2 Stop may be called by
+application to change the setting of the driver like format,
+encoder/decoder mode etc. After doing the required operation
+driver can be start again.
+.. warning:: If driver settings are called after Fvid2_Stop, then remaining
+buffers in the queue should be de-queued before starting the
+driver again.</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="n">Int32</span> <span class="n">Fvid2_stop</span><span class="p">(</span><span class="n">Fvid2_Handle</span> <span class="n">handle</span><span class="p">,</span> <span class="n">Ptr</span> <span class="n">cmdArgs</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><strong>handle</strong> - [IN] FVID2 handle returned by FVID2 Create call.</li>
+<li><strong>cmdArgs</strong> - [IN] Pointer to the start argument structure.
+The type of the structure is defined by the specific driver.
+This parameter could be NULL depending on whether the actual
+driver forces it or not.</li>
+<li><strong>return</strong> - <em>FVID2_SOK</em> on success, else appropriate
+FVID2 Error Code on failure.</li>
+</ul>
+</div>
+<div class="section" id="fvid2-queue">
+<h3>4.7.4.9. FVID2 Queue<a class="headerlink" href="#fvid2-queue" title="Permalink to this headline">¶</a></h3>
+<p>This is used to submit a video buffer to the video device driver.
+This is used in capture/display drivers. This function should be
+called from task context unless driver specifies that it can be called
+from the interrupt context as well. This is a non blocking API unless
+the specific driver specifies otherwise.</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="n">Int32</span> <span class="nf">Fvid2_queue</span><span class="p">(</span><span class="n">Fvid2_Handle</span> <span class="n">handle</span><span class="p">,</span>
+                  <span class="n">Fvid2_FrameList</span> <span class="o">*</span><span class="n">frameList</span><span class="p">,</span>
+                  <span class="n">UInt32</span> <span class="n">streamId</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><strong>handle</strong> - [IN] FVID2 handle returned by FVID2 Create call.</li>
+<li><strong>frameList</strong> - [IN] Pointer to the FVID2 FrameList structure containing the
+information about the FVID2 frames that has to be queued in
+the driver.</li>
+<li><strong>streamId</strong> - [IN]Stream ID to which the frames should be queued.
+This is used in drivers where they could support multiple
+streams for the same handle. Otherwise this should be set to zero.</li>
+<li><strong>return</strong> - <em>FVID2_SOK</em> on success, else appropriate
+FVID2 Error Code on failure.</li>
+</ul>
+</div>
+<div class="section" id="fvid2-de-queue">
+<h3>4.7.4.10. FVID2 De-Queue<a class="headerlink" href="#fvid2-de-queue" title="Permalink to this headline">¶</a></h3>
+<p>An application calls Fvid2_dequeue to request the video device driver to
+give ownership of a video buffer. This is used in the capture and display driver.
+This is a non-blocking API if timeout is <em>FVID2_TIMEOUT_NONE</em> and could be
+called by task context as well as interrupt context unless specific
+driver mentions otherwise. This is blocking API if timeout is
+<em>FVID2_TIMEOUT_FOREVER</em> if supported by specific driver implementation.</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="n">Int32</span> <span class="nf">Fvid2_dequeue</span><span class="p">(</span><span class="n">Fvid2_Handle</span> <span class="n">handle</span><span class="p">,</span>
+                    <span class="n">Fvid2_FrameList</span> <span class="o">*</span><span class="n">frameList</span><span class="p">,</span>
+                    <span class="n">UInt32</span> <span class="n">streamId</span><span class="p">,</span>
+                    <span class="n">UInt32</span> <span class="n">timeout</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><strong>handle</strong> - [IN] FVID2 handle returned by FVID2 Create call.</li>
+<li><strong>frameList</strong> - [OUT] Pointer to the FVID2 FrameList structure where the
+de-queued frame pointers will be stored</li>
+<li><strong>streamId</strong> - [IN]Stream ID to which the frames should be queued.
+This is used in drivers where they could support multiple
+streams for the same handle. Otherwise this should be set to zero.</li>
+<li><strong>timeout</strong> - [IN] FVID2 timeout in units of OS ticks. T
+his will determine the timeout value till the driver will
+block for a free or completed buffer is available.
+For non-blocking drivers this parameter might be ignored.
+return - <em>FVID2_SOK</em> on success, else appropriate
+FVID2 Error Code on failure.</li>
+</ul>
+</div>
+<div class="section" id="fvid2-queue-and-de-queue">
+<h3>4.7.4.11. FVID2 Queue and De-Queue<a class="headerlink" href="#fvid2-queue-and-de-queue" title="Permalink to this headline">¶</a></h3>
+<p><strong>Single Queue and Single De-Queue</strong>
+Single queue and corresponding single de-queue of the <em>framelist</em> is used in the
+display driver. Where the single <em>framelist</em> can contain the single buffer for
+the whole frame or can contain multiple buffers in case of multiple window
+configuration. Below figure shows how FVID2 FrameList and FVID2 Frames are
+initialized in case of multiple window configuration</p>
+<img alt="../_images/fvid2-SingleQSingleDQ.PNG" src="../_images/fvid2-SingleQSingleDQ.PNG" />
+<p>As shown in above figure
+- One Fvid2_Frame is pointing to one buffer each.
+- All the FVID2 frames to be display as a part of single video frame is
+pointed by the FVID2 Frame pointers inside FVID2 FrameList.</p>
+<p>Below sequence shows how the FVID2 Frame pointers inside the <em>Fvid2_Frame</em> list
+are exchanged between the driver and the application in the
+FVID2 Queue and FVID2 De-Queue calls.
+- FVID2 FrameList contains 4 FVID2 Frames.
+- Its submitted through single FVID2 Queue and will be displayed as single video frame.
+- Driver copies all the content inside the FVID2 FrameList into the driver&#8217;s
+FVID2 FrameList and application can&#8217;t touch it till driver returns it back.
+Now the application FVID2 FrameList is free to load new FVID2 Frames.
+- Driver gives the callback to the application on successfully displaying
+the video frames inside FVID2 FrameList
+- Application calls the FVID2 De-Queue with the empty FVID2 FrameList.
+Driver copied back all the FVID2 Frames back.
+- In display case application always queues all the frames required to
+display one video frame and driver gives it back once it completes
+displaying that video frame.
+- Hence always single FVID2 Queue call results in single FVID2 De-Queue call.</p>
+<p><strong>Single Queue and Single De-Queue</strong>
+This is used in case of multiple channel case. While priming of the buffers
+before the capture starts application submits buffers for all the channels
+using a single FVID2 Queue call. Since the capture is multiplexed input frames
+from the different sources could complete at different time for each input
+and application wants to process buffer as soon as its captured. This concept
+allows buffers to be de-queued as they are complete without waiting for
+other channels to be completed. This results in single queue where buffers
+for all the channels are queued in single called and de-queued as the
+channels are completed capturing.</p>
+<p>Below sequence shows the single queue and multiple de-queue used in
+capture driver:
+- FVID2 FrameList contains 4 FVID2 Frames one for each channel in case of 4
+channels multiplexed capture.
+- Capture driver gives callback to the application with two frames
+completed capturing.
+- Application calls FVID2 De-Queue with empty FVID2 FrameList.
+- Capture driver returns pointers to both completed FVID2 Frames
+- Again capture driver gives callback to application with the rest of the
+two frames captured.
+- Application calls FVID2 De-Queue with empty FVID2 FrameList.
+- Again capture driver returns pointers to both completed FVID2 Frames</p>
+<p>So this results in the singe call to FVID2 Queue to submit frames related to
+all channels, and driver giving multiple callbacks to the application for the
+number of frames captured which results in the multiple de-queue calls
+for a single queue call.</p>
+<p>Application can also opt to wait for the multiple callback and call
+FVID2 Queue which will return all the frames capture till then.</p>
+</div>
+<div class="section" id="fvid2-processframes">
+<h3>4.7.4.12. FVID2 ProcessFrames<a class="headerlink" href="#fvid2-processframes" title="Permalink to this headline">¶</a></h3>
+<p>An application calls this function to submit a video buffer to the
+video device driver. This API is very similar to FVID2 Queue API except
+that this work in M2M drivers. This function can be called from the task
+context unless driver specifies that it can be called from the interrupt
+context as well. This is a non blocking API unless driver specifies otherwise.</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="n">Int32</span> <span class="nf">Fvid2_processFrames</span><span class="p">(</span><span class="n">Fvid2_Handle</span> <span class="n">handle</span><span class="p">,</span>
+                          <span class="n">Fvid2_ProcessList</span> <span class="o">*</span><span class="n">processList</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><strong>handle</strong> - [IN] FVID2 handle returned by FVID2 Create call.</li>
+<li><strong>processList</strong> - [OUT] Pointer to the FVID2 ProcessList structure containing
+the information about the FVID2 frame lists and frames that
+has to be queued to the driver for processing.
+return - <em>FVID2_SOK</em> on success, else appropriate
+FVID2 Error Code on failure.</li>
+</ul>
+</div>
+<div class="section" id="fvid2-getprocessedframes">
+<h3>4.7.4.13. FVID2 GetProcessedFrames<a class="headerlink" href="#fvid2-getprocessedframes" title="Permalink to this headline">¶</a></h3>
+<p>An application calls this function to request the video device driver to
+give ownership of a video buffer.This API is very similar to the
+<em>Fvid2_dequeue</em> API except that this is used in M2M drivers only.
+This is a non-blocking API if timeout is <strong>FVID2_TIMEOUT_NONE</strong> and could be
+called by task and ISR context unless the driver specifies otherwise.
+his is blocking API if timeout is <strong>FVID2_TIMEOUT_FOREVER</strong> if supported
+by specific driver implementation.</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="n">Int32</span> <span class="nf">Fvid2_getProcessedFrames</span><span class="p">(</span><span class="n">Fvid2_Handle</span> <span class="n">handle</span><span class="p">,</span>
+                               <span class="n">Fvid2_ProcessList</span> <span class="o">*</span><span class="n">processList</span><span class="p">,</span>
+                               <span class="n">UInt32</span> <span class="n">timeout</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><strong>handle</strong> - [IN] FVID2 handle returned by FVID2 Create call.</li>
+<li><strong>processList</strong> - [OUT] Pointer to the FVID2 ProcessList structure where
+the driver will copy the references to the dequeued FVID2
+frame lists and frames.</li>
+<li><strong>timeout</strong> - [IN] FVID2 timeout. This will determine the timeout value
+till the driver will block for a free or completed buffer is
+available. For non-blocking drivers this parameter might be ignored.</li>
+</ul>
+<p>Below figure shows how FVID2 FrameList pointers and FVID2 Frame pointers are
+initialized inside FVID2 ProcessList:</p>
+<img alt="../_images/fvid2-ProcessListFlowDiag.PNG" src="../_images/fvid2-ProcessListFlowDiag.PNG" />
+<p>As shown in above figure:
+- Input Framelist pointer is initialized with one Framelist and output
+Framelist pointers are initialized with two FrameLists.
+- So numInLists is set to 1 and numOutLists is set to 2
+- In inputFramelist 3 Frame pointers are initialized with Frames.
+- In outputFrameLists Frame pointers of both the framelists are
+intialized with three Frames each.</p>
+<p>Below figure shows how FVID2 ProcessList are exchanged between the driver and
+application in the FVID2 ProcessFrames and FVID2 GetProcessedFrames APIs.</p>
+<img alt="../_images/fvid2-ProcessListQDQ.PNG" src="../_images/fvid2-ProcessListQDQ.PNG" />
+<p>As show in figure Fvid2_processFrames and Fvid2_GetProcessedFrames is same
+like FVID2 Queue and FVID2 De-Queue in a single Queue and single De-Queue
+case except here the FVID2 ProcessList acts as containers instead
+of FVID2 FrameList</p>
+</div>
+<div class="section" id="id1">
+<h3>4.7.4.14. FVID2 GetProcessedFrames<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Function to get the information about various FVID2 standards.
+Returns <em>FVID2_SOK</em> on success, else appropriate FVID2 error code on failure.</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="n">Int32</span> <span class="nf">Fvid2_getStandardInfo</span><span class="p">(</span><span class="n">Fvid2_StandardInfo</span> <span class="o">*</span><span class="n">stdInfo</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><strong>stdInfo</strong> - [OUT] Pointer to #Fvid2_StandardInfo structure where
+the information is filled</li>
+</ul>
+</div>
+</div>
+<div class="section" id="fvid2-error-codes">
+<h2>4.7.5. FVID2 Error Codes<a class="headerlink" href="#fvid2-error-codes" title="Permalink to this headline">¶</a></h2>
+<p>Following is the list of error codes that FVID2 APIs returns on successful
+or on the failure of the API.
+Each of the error codes is explained in the below code snapshot.</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="cp">#define FVID2_SOK                       ((Int32) 0)</span>
+<span class="cm">/* FVID2 API call successful. */</span>
+<span class="cp">#define FVID2_EFAIL                     ((Int32) -1)</span>
+    <span class="cm">/*  FVID2 API call returned with error as failed. It may be some</span>
+<span class="cm">     *  hardware failure or software failure */</span>
+<span class="cp">#define FVID2_EBADARGS                  ((Int32) -2)</span>
+    <span class="cm">/*  FVID2 API call returned with error as bad arguments. Typically</span>
+<span class="cm">     *  NULL pointer passed to the FVID2 API where its not expected. */</span>
+<span class="cp">#define FVID2_EINVALID_PARAMS           ((Int32) -3)</span>
+    <span class="cm">/* FVID2 API call returned with error as invalid parameters. Typically</span>
+<span class="cm">     *  when parameters are not valid. */</span>
+<span class="cp">#define FVID2_EDEVICE_INUSE             ((Int32) -4)</span>
+    <span class="cm">/*  FVID2 API call returned with error as device already in use. Tried</span>
+<span class="cm">     *  to open the driver maximum + 1 times.  Display and Capture driver suppports</span>
+<span class="cm">     *  single open, while M2M driver supports multiple open. */</span>
+<span class="cp">#define FVID2_ETIMEOUT                  ((Int32) -5)</span>
+    <span class="cm">/*  FVID2 API call returned with error as timed out. Typically API is</span>
+<span class="cm">     *  waiting for some condition and returned as condition not happened</span>
+<span class="cm">     *  in the timeout period. */</span>
+<span class="cp">#define FVID2_EALLOC                    ((Int32) -6)</span>
+    <span class="cm">/*  FVID2 API call returned with error as allocation failure. Typically</span>
+<span class="cm">     *  memory or resource allocation failure. */</span>
+<span class="cp">#define FVID2_EOUT_OF_RANGE             ((Int32) -7)</span>
+    <span class="cm">/*  FVID2 API call returned with error as out of range. Typically when</span>
+<span class="cm">     *  API is called with some argument that is out of range for that API like</span>
+<span class="cm">     *  array index etc. */</span>
+<span class="cp">#define FVID2_EAGAIN                    ((Int32) -8)</span>
+     <span class="cm">/*  FVID2 API call returned with error as try again. Momentarily API is</span>
+<span class="cm">      *  not able to service request because of queue full or any other temporary</span>
+<span class="cm">      *  reason. */</span>
+<span class="cp">#define FVID2_EUNSUPPORTED_CMD          ((Int32) -9)</span>
+    <span class="cm">/*  FVID2 API call returned with unsupported command. Typically when</span>
+<span class="cm">     *  command is not supported by control API. */</span>
+<span class="cp">#define FVID2_ENO_MORE_BUFFERS          ((Int32) -10)</span>
+    <span class="cm">/*  FVID2 API call returned with error as no more buffers available.</span>
+<span class="cm">     *  Typically when no buffers are available. */</span>
+<span class="cp">#define FVID2_EUNSUPPORTED_OPS          ((Int32) -11)</span>
+    <span class="cm">/*  FVID2 API call returned with error as unsupported operation.</span>
+<span class="cm">     *  Typically when the specific operation is not supported by that API such</span>
+<span class="cm">     *  as IOCTL not supporting some specific functions. */</span>
+<span class="cp">#define FVID2_EDRIVER_INUSE             ((Int32) -12)</span>
+    <span class="cm">/* FVID2 API call returned with error as driver already in use. */</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="gpio.html" class="btn btn-neutral float-right" title="4.8. GPIO" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="enet_lwip_userguide.html" class="btn btn-neutral" title="4.6.3.1. lwIP User’s Guide" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="http://www.ti.com/corp/docs/legal/copyright.shtml">&copy; Copyright 1995-2020</a>, Texas Instruments Incorporated. All rights reserved. <br>
+      <a href="http://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="http://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="http://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="http://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'08_06_01',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

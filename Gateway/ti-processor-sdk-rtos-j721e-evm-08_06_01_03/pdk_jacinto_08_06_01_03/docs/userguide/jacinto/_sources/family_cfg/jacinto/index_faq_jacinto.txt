@@ -1,0 +1,15 @@
+Frequently Asked Questions
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. toctree::
+    :maxdepth: 3
+
+    ../../faq/faq_common.rst
+    ../../faq/faq_can.rst
+    ../../faq/faq_fvid2.rst
+    ../../faq/c7x_non_secure_mode.rst
+    ../../faq/resource_int_jacinto.rst
+    ../../faq/faq_binlist_jacinto.rst
+    ../../faq/faq_module_clocking.rst
+    ../../faq/apps_on_secure_devices.rst
+    ../../faq/faq_csi2rx.rst

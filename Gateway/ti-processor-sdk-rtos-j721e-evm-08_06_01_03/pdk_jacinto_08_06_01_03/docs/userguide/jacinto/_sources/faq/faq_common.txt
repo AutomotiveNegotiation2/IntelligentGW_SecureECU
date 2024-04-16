@@ -1,0 +1,167 @@
+FAQ - Common
+=============
+
+Generic
+-------
+
+What does PDK stand for?
+^^^^^^^^^^^^^^^^^^^^^^^^
+PDK stands for Platform Development Kit containing RTOS and baremetal drivers for various peripherals present in TI devices
+
+
+What do I get with PDK, and how do I get started?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Each PDK release is available as a full source release including:
+
+- Complete source code for all drivers, with associated build system
+- Sample applications and unit test applications demonstrating the usage of all modules
+- Documents: Release Notes, User Guide, API Guide, Test Report per platform, Static Analysis and MISRAC Reports
+
+Refer to PDK Userguide for high level information.
+The doxygen API documentation present in docs folder provides details on the APIs, and the
+sample examples provided with PDK demonstrate usage of the APIs.
+The sample application is present in examples folder of each of the components within PDK
+
+Build
+-----
+
+What are the common issues faced during the build?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- Windows Permissions
+    Sometimes there are issues with windows permissions. User should make sure that he has
+    full permissions/admin rights while trying the build.
+    User can use ls -l command to check the permissions and use chmod command to change the permissions.
+
+- Compiler Versions
+    PDK supports multiple CPUs and a particular PDK release is validated with a particular
+    versions of compilers for different CPUs.
+    It is not guaranteed that PDK examples/source code will work with different version of compilers.
+    It is recommended that user refers to PDK documentation for supported compiler versions and use the same in order to avoid any issues.
+
+- Compiler Paths
+    Different compiler paths are defined in Rules.make. User should make sure that
+    appropriate paths are set in case the make is not able to find compiler
+    executable while building.
+
+- Building with -j
+    This command is used to speed up the builds by invoking multiple builds at once and
+    is not 100% reliable in windows machine as dependnecies are not enforced in Windows make.
+    In case the build fails user should try to build without giving -j switch in the build command.
+
+Code Composer Studio
+--------------------
+
+Unable to connect to MCU 11 or MCU21
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+With CCS versionsed 10.X.X or later, the R5F in MCU domain and Main domain operate in lock-step mode.
+To be able to connect to MCU 11 or MCU 21 or run applications on these core (via CCS), one would require
+to operate these cores in split mode
+
+These cores could be configured to operate in split mode with following changes
+
+- In file <CCS Install Directory>ccs/ccs_base/emulation/gel/J7200_DRA821/J7VCL_SI.gel
+- Update function OnTargetConnect
+    - To configure MCU R5F to operate in split mode *MCU_R5_Cluster_0_split*
+    - To configure MAIN R5F to operate in split mode *MAIN_R5_Cluster_0_split*
+
+    .. code:: bash
+
+        --- a/ccs_base/emulation/gel/J7200_DRA821/J7VCL_SI.gel
+        +++ b/ccs_base/emulation/gel/J7200_DRA821/J7VCL_SI.gel
+        @@ -94,6 +94,9 @@ OnTargetConnect(){
+            {
+                J7ES_LPDDR4_Config();
+            }
+        +
+        +    MCU_R5_Cluster_0_split ();
+        +    MAIN_R5_Cluster_0_split ();
+        }
+
+CCS cannot resolve source or variables
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+User might face issues with control moving unexpectedly while doing single step debug even with debug 
+profile builds after Clang migration.
+This is because PDK debug profile build uses O1 level of optimization
+due to increase in binary size after CLANG migration.
+As per CLANG user guide, O1 optimization level enables restricted optimizations, providing a good trade-off 
+between code size and debug-ability.
+To resolve above issues and debug build to be more debug friendly in CCS, 
+the following compiler options can be set
+
+- Disable O1 optimization
+
+    - i.e., Remove -O1 option for debug profile builds
+
+- Encode symbolic debug information in generated object code
+
+    - Set "-g" compiler flag for this
+    - This generate debug information for a compilation unit in accordance with the DWARF standard 
+     
+To apply above, update the following line in ``packages/ti/build/makerules/rules_ti_cgt_arm.mk``
+
+.. code:: bash
+   
+   CFLAGS_INTERNAL += -D_DEBUG_=1 -O1
+
+to 
+
+.. code:: bash
+   
+    CFLAGS_INTERNAL += -D_DEBUG_=1 -g
+        
+and do a clean build.
+
+For more details on CLANG compiler optmizations, refer 
+`TI CLANG Migration Guide - Controlling Optimization <https://software-dl.ti.com/codegen/docs/tiarmclang/compiler_tools_user_guide/migration_guide/mapping_armcl_options_to_tiarmclang/controlling_optimization.html>`__ 
+
+.. Note::
+
+    TI has not tested PDK binaries after building with no optimization
+
+
+BoardCfg RM
+-----------
+
+.. _checkin_new_boardcfg_rm:
+
+How to integrate updated RM BoardCfg in PDK? 
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+K3 Resource Partitioning Tool is used to generate Linux and RTOS BoardCfg RM 
+files. Refer |__K3_RES_PART_TOOL_UG__| for more info on setup and usage.
+
+PDK package provides a utility script **boardcfg_update.sh** in sciclient to 
+integrate an updated BoardCfg RM file. 
+Run the script as mentioned below:- 
+
+.. ifconfig:: CONFIG_family in ('jacinto')
+
+    .. code:: bash
+
+        cd <PDK_PATH>/packages/ti/drv/sciclient/tools
+        ./boardcfg_update.sh j721e_evm --boardcfg=path/to/generated/j721e/sciclient/defaultBoardcfg/rm/c/file
+
+.. ifconfig:: CONFIG_family in ('j7200')
+
+    .. code:: bash
+
+        cd <PDK_PATH>/packages/ti/drv/sciclient/tools
+        ./boardcfg_update.sh j7200_evm --boardcfg=path/to/generated/j7200/sciclient/defaultBoardcfg/rm/c/file
+
+.. ifconfig:: CONFIG_family in ('j721s2')
+
+    .. code:: bash
+
+        cd <PDK_PATH>/packages/ti/drv/sciclient/tools
+        ./boardcfg_update.sh j721s2_evm --boardcfg=path/to/generated/j721s2/sciclient/defaultBoardcfg/rm/c/file
+
+.. ifconfig:: CONFIG_family in ('j784s4')
+
+    .. code:: bash
+
+        cd <PDK_PATH>/packages/ti/drv/sciclient/tools
+        ./boardcfg_update.sh j784s4_evm --boardcfg=path/to/generated/j784s4/sciclient/defaultBoardcfg/rm/c/file

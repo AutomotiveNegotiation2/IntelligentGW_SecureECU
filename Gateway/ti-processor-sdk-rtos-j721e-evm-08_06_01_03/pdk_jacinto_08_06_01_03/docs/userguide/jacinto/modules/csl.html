@@ -1,0 +1,408 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4.1. CSL &mdash; Platform Development Kit (PDK) - JACINTO User Guide</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Platform Development Kit (PDK) - JACINTO User Guide" href="../index.html"/>
+        <link rel="up" title="4. Modules" href="../family_cfg/jacinto/index_modules_jacinto.html"/>
+        <link rel="next" title="4.2. FreeRTOS" href="freertos.html"/>
+        <link rel="prev" title="4. Modules" href="../family_cfg/jacinto/index_modules_jacinto.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index_jacinto.html" class="icon icon-home"> Platform Development Kit (PDK) - JACINTO User Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                08_06_01
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">1. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_release_notes_jacinto.html">2. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">3. Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../family_cfg/jacinto/index_modules_jacinto.html">4. Modules</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="">4.1. CSL</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">4.1.1. Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#user-interface">4.1.2. User Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#application-integration">4.1.2.1. Application Integration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#application">4.1.3. Application</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#examples">4.1.3.1. Examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="freertos.html">4.2. FreeRTOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../family_cfg/jacinto/index_modules_safertos_jacinto.html">4.3. SafeRTOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="osal.html">4.4. OSAL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss.html">4.5. DSS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="enet.html">4.6. ENET</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fvid2.html">4.7. FVID2 User Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gpio.html">4.8. GPIO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i2c.html">4.9. I2C</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipc.html">4.10. IPC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mcasp.html">4.11. McASP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pm.html">4.12. PM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sa.html">4.13. SA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../family_cfg/jacinto/index_modules_sciclient_jacinto.html">4.14. SCICLIENT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="keywriter.html">4.15. OTP KEYWRITER</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spi.html">4.16. SPI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uart.html">4.17. UART</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../family_cfg/jacinto/index_modules_udma_jacinto.html">4.18. UDMA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pmic.html">4.19. PMIC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mmcsd.html">4.20. MMCSD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../family_cfg/jacinto/index_modules_lpm_jacinto.html">4.21. Low Power Manager (LPM)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_boot_jacinto.html">5. Bootloader (SBL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_board_jacinto.html">6. Board/EVM Abstraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_howto_jacinto.html">7. How to Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_faq_jacinto.html">8. Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_developer_notes_jacinto.html">9. Developer Notes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index_jacinto.html">Platform Development Kit (PDK) - JACINTO User Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index_jacinto.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../family_cfg/jacinto/index_modules_jacinto.html">4. Modules</a> &raquo;</li>
+      
+    <li>4.1. CSL</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="csl">
+<h1>4.1. CSL<a class="headerlink" href="#csl" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>4.1.1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>The Chip Support Library constitutes a set of well-defined APIs that
+abstract low-level details of the underlying SoC device so that a user
+can configure, control (start/stop, etc.) and have read/write access to
+peripherals without having to worry about register bit-field details.
+The CSL services are implemented as distinct modules that correspond
+with the underlying SoC device modules themselves. By design, CSL APIs
+follow a consistent style, uniformly across Processor Instruction Set
+Architecture and are independent of the OS. This helps in improving
+portability of code written using the CSL.</p>
+<p>CSL is realized as twin-layer – a basic register-layer and a more
+abstracted functional-layer. The lower register layer comprises of a
+very basic set of macros and type definitions. The upper functional
+layer comprises of “C” functions that provide an increased degree of
+abstraction, but intended to provide “directed” control of underlying
+hardware.</p>
+<p>It is important to note that CSL does not manage data-movement over
+underlying h/w devices. Such functionality is considered a prerogative
+of a device-driver and serious effort is made to not blur the boundary
+between device-driver and CSL services in this regard.</p>
+<p>CSL does not model the device state machine. However, should there exist
+a mandatory (hardware dictated) sequence (possibly atomically executed)
+of register reads/writes to setup the device in chosen “operating modes”
+as per the device data sheet, then CSL does indeed support services for
+such operations.</p>
+<p>The CSL services are decomposed into modules, each following the
+twin-layer of abstraction described above. The APIs of each such module
+are completely orthogonal (one module’s API does not internally call API
+of another module) and do not allocate memory dynamically from within.
+This is key to keeping CSL scalable to fit the specific usage scenarios
+and ease the effort to ROM a CSL based application.</p>
+<p>In general for application recommended interfaces to be used will be
+driver API. CSL Functional layer APIs could be used for low-level access
+when required. CSL Register layer memory map is available for being used
+under rare cases in application when required.</p>
+<p>The source code of the CSL is located under $(PDK_BASE_DIR)\packages\ti\csl directory.</p>
+</div>
+<div class="section" id="user-interface">
+<h2>4.1.2. User Interface<a class="headerlink" href="#user-interface" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="application-integration">
+<h3>4.1.2.1. Application Integration<a class="headerlink" href="#application-integration" title="Permalink to this headline">¶</a></h3>
+<p>CSL is common package supporting multiple devices.Software layer using
+CSL source would need to pass compile time define -DSOC_XXX. Refer
+ticslsoc.h for list of devices/SOC&#8217;s</p>
+<p>Refer list of APIs/interfaces available under &lt;PDK_INSTALL_DIR\packages\ti\csl&gt; directory.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="39%" />
+<col width="61%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2">Chip Support Library Summary</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Component Type</td>
+<td>Library</td>
+</tr>
+<tr class="row-odd"><td>Install Package</td>
+<td>PDK</td>
+</tr>
+<tr class="row-even"><td>Install Directory</td>
+<td>PDK_INSTALL_DIR\packages\ti\csl</td>
+</tr>
+<tr class="row-odd"><td>Endian Support</td>
+<td>Little</td>
+</tr>
+<tr class="row-even"><td>Linker Path</td>
+<td>PDK_INSTALL_DIR\packages\ti\csl</td>
+</tr>
+<tr class="row-odd"><td>Include Paths</td>
+<td>PDK_INSTALL_DIR\packages\</td>
+</tr>
+<tr class="row-even"><td>Reference Guides</td>
+<td>See docs under Install Directory</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="application">
+<h2>4.1.3. Application<a class="headerlink" href="#application" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="examples">
+<h3>4.1.3.1. Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
+<p>These are example projects to test the functionality of API in CSL-FL
+layers. The following is the list of CSL-FL test examples which are
+supported with the CSL library:</p>
+<p>CSL-FL examples are mostly baremetal examples. However, the applications
+can be built on top of SYSBIOS and hence can run on TI-RTOS. Note that the
+underneath CSL library is baremetal.</p>
+<ul class="simple">
+<li>DCAN</li>
+<li>EDMA</li>
+<li>GPIO</li>
+<li>MAILBOX</li>
+<li>I2C</li>
+<li>QSPI</li>
+<li>OSPI</li>
+<li>WDTIMER (WWDT)</li>
+<li>MMCSD</li>
+<li>MMU</li>
+<li>SPINLOCK</li>
+<li>UART</li>
+<li>ECC&nbsp;: Limited to applicable SOC&#8217;s/Boards:idkAM574x</li>
+<li>GPMC : Limited to a15 core on idkAM572 and evmAM572x</li>
+<li>ePWM : Duty Cycle example application - Limited to applicable SoC&#8217;s/Boards: am65xx_evm, j721e_evm</li>
+<li>VTM  : Voltage and Thermal Management application examples - Limited to applicable SoC&#8217;s/Boards: j721e_evm</li>
+<li>All the output binary files will be generated in common location i.e.
+PDK_INSTALL_DIR\packages\ti\binary\[EXAMPLE]\bin\[BOARD]\</li>
+<li>DCAN RTOS example</li>
+</ul>
+<p>TI RTOS support is available for CSL DCAN example on AM572x platform.
+Refer to the readme document at below path for more details.</p>
+<p>PDK_INSTALL_DIR/packages/ti/csl/example/dcan/dcanLoopback</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="freertos.html" class="btn btn-neutral float-right" title="4.2. FreeRTOS" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../family_cfg/jacinto/index_modules_jacinto.html" class="btn btn-neutral" title="4. Modules" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="http://www.ti.com/corp/docs/legal/copyright.shtml">&copy; Copyright 1995-2020</a>, Texas Instruments Incorporated. All rights reserved. <br>
+      <a href="http://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="http://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="http://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="http://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'08_06_01',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

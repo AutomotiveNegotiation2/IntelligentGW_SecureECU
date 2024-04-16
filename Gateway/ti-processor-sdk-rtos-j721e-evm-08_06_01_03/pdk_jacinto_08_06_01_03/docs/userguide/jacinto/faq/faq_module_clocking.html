@@ -1,0 +1,578 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>8.7. FAQ - How to set the clock for a given module and clock &mdash; Platform Development Kit (PDK) - JACINTO User Guide</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Platform Development Kit (PDK) - JACINTO User Guide" href="../index.html"/>
+        <link rel="up" title="8. Frequently Asked Questions" href="../family_cfg/jacinto/index_faq_jacinto.html"/>
+        <link rel="next" title="8.8. FAQ - Running Apps on secure devices" href="apps_on_secure_devices.html"/>
+        <link rel="prev" title="8.6. FAQ - Supported Cores by example applications" href="faq_binlist_jacinto.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index_jacinto.html" class="icon icon-home"> Platform Development Kit (PDK) - JACINTO User Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                08_06_01
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">1. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_release_notes_jacinto.html">2. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">3. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_modules_jacinto.html">4. Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_boot_jacinto.html">5. Bootloader (SBL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_board_jacinto.html">6. Board/EVM Abstraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_howto_jacinto.html">7. How to Guides</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../family_cfg/jacinto/index_faq_jacinto.html">8. Frequently Asked Questions</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="faq_common.html">8.1. FAQ - Common</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq_can.html">8.2. FAQ - CAN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq_fvid2.html">8.3. FAQ - FVID2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c7x_non_secure_mode.html">8.4. FAQ - C7x : Steps to switch C7x SysBIOS application from secure mode to non-secure mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resource_int_jacinto.html">8.5. FAQ - Used Resources - Interrupt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq_binlist_jacinto.html">8.6. FAQ - Supported Cores by example applications</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">8.7. FAQ - How to set the clock for a given module and clock</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">8.7.1. Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#default-clock-state-of-the-system">8.7.2. Default clock state of the system</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#setting-the-clock-for-a-device">8.7.3. Setting the clock for a device</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="apps_on_secure_devices.html">8.8. FAQ - Running Apps on secure devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq_csi2rx.html">8.9. FAQ - CSI2RX</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_developer_notes_jacinto.html">9. Developer Notes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index_jacinto.html">Platform Development Kit (PDK) - JACINTO User Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index_jacinto.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../family_cfg/jacinto/index_faq_jacinto.html">8. Frequently Asked Questions</a> &raquo;</li>
+      
+    <li>8.7. FAQ - How to set the clock for a given module and clock</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="toctree-wrapper compound" id="faq-module-clocking">
+<ul class="simple">
+</ul>
+</div>
+<div class="section" id="faq-how-to-set-the-clock-for-a-given-module-and-clock">
+<h1>8.7. FAQ - How to set the clock for a given module and clock<a class="headerlink" href="#faq-how-to-set-the-clock-for-a-given-module-and-clock" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>8.7.1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>Setting the clock frequency for a module can be a confusing activity especially
+if you do not know where to get started. This FAQ is written to address concerns
+you may have to know which clock for which module is running at what frequency
+and how to go about setting the clock frequency to the one you desire.</p>
+<p>Before we dive right in make sure you keep the following documents handy for
+you to navigate through the clocking infrastructure of the device you are
+working with.</p>
+<ul class="simple">
+<li><strong>System Firmware Documentation</strong>: This is definitely something you should
+bookmark and keep in your browser if not already done.
+<a class="reference external" href="https://software-dl.ti.com/tisci/esd/latest/index.html">https://software-dl.ti.com/tisci/esd/latest/index.html</a>
+Messages which are used to set the clock frequency for various modules:</li>
+</ul>
+<table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="18%" />
+<col width="61%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Sciclient API to use</th>
+<th class="head">TISCI Message</th>
+<th class="head">TISCI Message Documentation Link</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Sciclient_pmSetModuleClkParent</td>
+<td>TISCI_MSG_SET_CLOCK_PARENT</td>
+<td><a class="reference external" href="https://software-dl.ti.com/tisci/esd/latest/2_tisci_msgs/pm/clocks.html#pm-clocks-msg-set-clock-parent">https://software-dl.ti.com/tisci/esd/latest/2_tisci_msgs/pm/clocks.html#pm-clocks-msg-set-clock-parent</a></td>
+</tr>
+<tr class="row-odd"><td>Sciclient_pmGetModuleClkParent</td>
+<td>TISCI_MSG_GET_CLOCK_PARENT</td>
+<td><a class="reference external" href="https://software-dl.ti.com/tisci/esd/latest/2_tisci_msgs/pm/clocks.html#pm-clocks-msg-get-clock-parent">https://software-dl.ti.com/tisci/esd/latest/2_tisci_msgs/pm/clocks.html#pm-clocks-msg-get-clock-parent</a></td>
+</tr>
+<tr class="row-even"><td>Sciclient_pmGetModuleClkNumParent</td>
+<td>TISCI_MSG_GET_NUM_CLOCK_PARENTS</td>
+<td><a class="reference external" href="https://software-dl.ti.com/tisci/esd/latest/2_tisci_msgs/pm/clocks.html#pm-clocks-msg-get-num-clock-parents">https://software-dl.ti.com/tisci/esd/latest/2_tisci_msgs/pm/clocks.html#pm-clocks-msg-get-num-clock-parents</a></td>
+</tr>
+<tr class="row-odd"><td>Sciclient_pmSetModuleClkFreq</td>
+<td>TISCI_MSG_SET_FREQ</td>
+<td><a class="reference external" href="https://software-dl.ti.com/tisci/esd/latest/2_tisci_msgs/pm/clocks.html#pm-clocks-msg-set-freq">https://software-dl.ti.com/tisci/esd/latest/2_tisci_msgs/pm/clocks.html#pm-clocks-msg-set-freq</a></td>
+</tr>
+<tr class="row-even"><td>Sciclient_pmSetModuleClkFreqRange</td>
+<td>TISCI_MSG_SET_FREQ</td>
+<td><a class="reference external" href="https://software-dl.ti.com/tisci/esd/latest/2_tisci_msgs/pm/clocks.html#pm-clocks-msg-set-freq">https://software-dl.ti.com/tisci/esd/latest/2_tisci_msgs/pm/clocks.html#pm-clocks-msg-set-freq</a></td>
+</tr>
+<tr class="row-odd"><td>Sciclient_pmQueryModuleClkFreq</td>
+<td>TISCI_MSG_QUERY_FREQ</td>
+<td><a class="reference external" href="https://software-dl.ti.com/tisci/esd/latest/2_tisci_msgs/pm/clocks.html#pm-clocks-msg-query-freq">https://software-dl.ti.com/tisci/esd/latest/2_tisci_msgs/pm/clocks.html#pm-clocks-msg-query-freq</a></td>
+</tr>
+<tr class="row-even"><td>Sciclient_pmQueryModuleClkFreqRange</td>
+<td>TISCI_MSG_QUERY_FREQ</td>
+<td><a class="reference external" href="https://software-dl.ti.com/tisci/esd/latest/2_tisci_msgs/pm/clocks.html#pm-clocks-msg-query-freq">https://software-dl.ti.com/tisci/esd/latest/2_tisci_msgs/pm/clocks.html#pm-clocks-msg-query-freq</a></td>
+</tr>
+<tr class="row-odd"><td>Sciclient_pmGetModuleClkFreq</td>
+<td>TISCI_MSG_GET_FREQ</td>
+<td><a class="reference external" href="https://software-dl.ti.com/tisci/esd/latest/2_tisci_msgs/pm/clocks.html#pm-clocks-msg-get-freq">https://software-dl.ti.com/tisci/esd/latest/2_tisci_msgs/pm/clocks.html#pm-clocks-msg-get-freq</a></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><strong>Device Clocking tool</strong>: This is a tool which helps understand the clocking
+of the different modules and their sources: <a class="reference external" href="https://www.ti.com/tool/CLOCKTREETOOL">https://www.ti.com/tool/CLOCKTREETOOL</a></li>
+<li><strong>Device TRM</strong>: This document should be referred to for the different clock
+options for the different modules. Keep in mind the following chapters when
+trying to understand the clocking of the device:</li>
+</ul>
+<table border="1" class="docutils">
+<colgroup>
+<col width="18%" />
+<col width="82%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">TRM Chapter</th>
+<th class="head">What should you refer in this</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Clocking</td>
+<td>The &#8220;Clocking&#8221; Chapter under
+&#8220;Device Configuration&#8221; is your guide
+to the different clock sources available in the
+system. It gives details of the high level device
+clocking and the PLLs in the device.</td>
+</tr>
+<tr class="row-odd"><td>Integration</td>
+<td>In every module chapter you would find a section
+called &#8220;Integration&#8221;. Use this section of the TRM
+to see which clocks go to a particular module.
+For every module in the SoC, there could be one or more
+clocks supplies. There could be different options for
+the clocking as well. When multiple options are present
+there would be multiplexer or mux which sits in front of
+this clock. The mux options are highlighted in this
+chapter as well.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="default-clock-state-of-the-system">
+<h2>8.7.2. Default clock state of the system<a class="headerlink" href="#default-clock-state-of-the-system" title="Permalink to this headline">¶</a></h2>
+<p>There are some default clocks which are set during the device boot by the
+bootloader. This includes the clocks set by the Device Manager part of the
+System firmware and the Board library. Typically the sequence is:</p>
+<ul>
+<li><p class="first">Device manager will set the PLLs to a default value. Note the device manager
+does not set any multiplexers during initialization. Hence all clock options
+will be set to their hardware default.
+In order to know what is the device PLL defaults the Device manager is
+setting please refer to:</p>
+<ul class="simple">
+<li><strong>AM65x SR1.0</strong>: <a class="reference external" href="https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/am6x/pll_data.html">https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/am6x/pll_data.html</a></li>
+<li><strong>AM65x SR2.0</strong>: <a class="reference external" href="https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/am65x_sr2/pll_data.html">https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/am65x_sr2/pll_data.html</a></li>
+<li><strong>J721e</strong> (Both SR1.0 and SR1.1): <a class="reference external" href="https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/j721e/pll_data.html">https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/j721e/pll_data.html</a></li>
+<li><strong>J7200</strong> : <a class="reference external" href="https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/j7200/pll_data.html">https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/j7200/pll_data.html</a></li>
+<li><strong>For any future devices</strong>: Just go to <a class="reference external" href="https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/index.html">https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/index.html</a> and search for PLL defaults.</li>
+</ul>
+<p>The device manager looks the value of the CTRLMMR_WKUP_DEVSTAT to determine
+the oscillator connected to the device and then it will set up the PLLs based
+on the different tables given in the pages above.
+The device manager will set up the PLLs when the TISCI_MSG_BOARD_CONFIG_PM
+message as part of the Boot loader is sent. For more details on what happens
+when TISCI_MSG_BOARD_CONFIG_PM is sent refer:  <a class="reference external" href="https://software-dl.ti.com/tisci/esd/latest/3_boardcfg/BOARDCFG_PM.html#power-management-initialization-after-receiving-board-configuration">https://software-dl.ti.com/tisci/esd/latest/3_boardcfg/BOARDCFG_PM.html#power-management-initialization-after-receiving-board-configuration</a></p>
+</li>
+<li><p class="first">Board Library: will then use the Device Manager configuration and then also
+program the clocks for modules which require some multiplexer configurations
+or clocking which is different than the default.</p>
+<p>Refer the following files to see what does the board library set:</p>
+<ul class="simple">
+<li><strong>AM65x</strong>: pdk/packages/ti/board/src/evmKeystone3/board_pll.c</li>
+<li><strong>J721e</strong>: pdk/packages/ti/board/src/j721e_evm/board_pll.c</li>
+<li><strong>J7200</strong>: pdk/packages/ti/board/src/j7200_evm/board_pll.c</li>
+</ul>
+<p>In particular look at the function: Board_PLLInitAll or Board_PLLInitMcu or
+Board_PLLInitMain to see what clocks and what modules are set.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="setting-the-clock-for-a-device">
+<h2>8.7.3. Setting the clock for a device<a class="headerlink" href="#setting-the-clock-for-a-device" title="Permalink to this headline">¶</a></h2>
+<p>In order to set the clock for a device the first step is to identify the device
+ID which you want to set the clock for. There are 2 ways you can do this:</p>
+<ul>
+<li><p class="first"><strong>OPTION 1</strong>: Look at the source code:
+Here you can refer to the following files to see what is the device ID to use:</p>
+<ul class="simple">
+<li><strong>AM65x SR1.0</strong>: pdk/packages/ti/drv/sciclient/soc/sysfw/include/am65x/tisci_devices.h</li>
+<li><strong>AM65x SR2.0</strong>: pdk/packages/ti/drv/sciclient/soc/sysfw/include/am65x_sr2/tisci_devices.h</li>
+<li><strong>J721e</strong>: pdk/packages/ti/drv/sciclient/soc/sysfw/include/j721e/tisci_devices.h</li>
+<li><strong>J7200</strong>: pdk/packages/ti/drv/sciclient/soc/sysfw/include/j7200/tisci_devices.h</li>
+</ul>
+<p>In these files search for the device you would like to set the clock for.
+The advantage with this method is you would find the exact macro to be used
+with Sciclient APIs.</p>
+</li>
+<li><p class="first"><strong>OPTION 2</strong>: Look at the TISCI documentation.
+Here you can refer to the following files to see what is the device ID to use:</p>
+<ul class="simple">
+<li><strong>AM65x SR1.0</strong>: <a class="reference external" href="https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/am6x/devices.html">https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/am6x/devices.html</a></li>
+<li><strong>AM65x SR2.0</strong>: <a class="reference external" href="https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/am65x_sr2/devices.html">https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/am65x_sr2/devices.html</a></li>
+<li><strong>J721e</strong>: <a class="reference external" href="https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/j721e/devices.html">https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/j721e/devices.html</a></li>
+<li><strong>J7200</strong>: <a class="reference external" href="https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/j7200/devices.html">https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/j7200/devices.html</a></li>
+</ul>
+<p>In these files search for the device you would like to set the clock for.
+Once you find the device, in order to use this with the Sciclient APIs you
+would need to either use the exact number for the module ID or convert the name
+to a macro by doing the following substituion:</p>
+<ul class="simple">
+<li><strong>AM65x SR1.0</strong>: Replace AM6 with TISCI</li>
+<li><strong>AM65x SR2.0</strong>: Replace AM6 with TISCI</li>
+<li><strong>J721e</strong>: Replace J721E with TISCI</li>
+<li><strong>J7200</strong>: Replace J7200 with TISCI</li>
+</ul>
+</li>
+</ul>
+<p>Once you identify the device the next step is to identify the clock for that
+particular device you would like to set the frequency for. There are again 2
+ways you can do this:</p>
+<ul>
+<li><p class="first"><strong>OPTION 1</strong>: Look at the source code:
+Here you can refer to the following files to see what is the device ID to use:</p>
+<ul class="simple">
+<li><strong>AM65x SR1.0</strong>: pdk/packages/ti/drv/sciclient/soc/sysfw/include/am65x/tisci_clocks.h</li>
+<li><strong>AM65x SR2.0</strong>: pdk/packages/ti/drv/sciclient/soc/sysfw/include/am65x_sr2/tisci_clocks.h</li>
+<li><strong>J721e</strong>: pdk/packages/ti/drv/sciclient/soc/sysfw/include/j721e/tisci_clocks.h</li>
+<li><strong>J7200</strong>: pdk/packages/ti/drv/sciclient/soc/sysfw/include/j7200/tisci_clocks.h</li>
+</ul>
+<p>In these files search for the device you would like to set the clock for.
+The advantage with this method is you would find the exact macro to be used
+with Sciclient APIs.</p>
+</li>
+<li><p class="first"><strong>OPTION 2</strong>: Look at the TISCI documentation.
+Here you can refer to the following files to see what is the device ID to use:</p>
+<ul class="simple">
+<li><strong>AM65x SR1.0</strong>: <a class="reference external" href="https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/am6x/clocks.html">https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/am6x/clocks.html</a></li>
+<li><strong>AM65x SR2.0</strong>: <a class="reference external" href="https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/am65x_sr2/clocks.html">https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/am65x_sr2/clocks.html</a></li>
+<li><strong>J721e</strong>: <a class="reference external" href="https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/j721e/clocks.html">https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/j721e/clocks.html</a></li>
+<li><strong>J7200</strong>: <a class="reference external" href="https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/j7200/clocks.html">https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/j7200/clocks.html</a></li>
+</ul>
+<p>In these files search for the device you would like to set the clock for.
+Once you find the device, in order to use this with the Sciclient APIs you
+would need to either use the exact number for the module ID or convert the name
+to a macro by doing the following substitution:</p>
+<ul class="simple">
+<li><strong>AM65x SR1.0</strong>: Replace AM6 with TISCI</li>
+<li><strong>AM65x SR2.0</strong>: Replace AM6 with TISCI</li>
+<li><strong>J721e</strong>: Replace J721E with TISCI</li>
+<li><strong>J7200</strong>: Replace J7200 with TISCI</li>
+</ul>
+</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Clocks with the name _PARENT_ are special. They are clocks which are not
+directly fed to the module but feed into a multiplexer and then based
+on the value of the multiplexer will reach the module. When using the
+Sciclient_pmSetModuleClkFreq or Sciclient_pmQueryModuleClkFreq or
+Sciclient_pmGetModuleClkFreq do not use these clock IDs. Only use this
+for Sciclient_pmSetModuleClkParent or Sciclient_pmGetModuleClkParent APIs.</p>
+</div>
+<p>Now that you know the module ID and clock ID, the next step is to look at the
+TRM or the Clock tree tool to see if this clock has a multiplexer sitting before
+this. If yes, you need to make a choice of where this clock is going to be sourced from.</p>
+<p>For example,
+The GTC module in AM65xx can take the clock from multiple sources:
+Option 0 – Gives 200 MHz which is default.
+Option 1 – Gives 250 MHz.
+To set the clock to 250 MHz use the below API:</p>
+<div class="code highlight-cpp"><div class="highlight"><pre><span class="n">status</span> <span class="o">=</span> <span class="n">Sciclient_pmSetModuleClkParent</span><span class="p">(</span>
+                                <span class="n">TISCI_DEV_GTC0</span><span class="p">,</span>
+                                <span class="n">TISCI_DEV_GTC0_BUS_VBUSP_CLK</span><span class="p">,</span>
+                                <span class="n">TISCI_DEV_GTC0_BUS_VBUSP_CLK_PARENT_ADPLLLJM_HSDIV_WRAP_MAIN_0_BUS_HSDIV_CLKOUT3_CLK</span><span class="p">,</span>
+                                <span class="n">SCICLIENT_SERVICE_WAIT_FOREVER</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Let&#8217;s say now you have selected the parent for the clock input to the module
+the next step is to then see if the default PLL configuration given by Device
+Manager or Board Initilization is sufficient. If yes, you are done and can skip
+the rest of this FAQ.</p>
+<p>You can double confirm if the clock is set correctly by using:</p>
+<div class="code highlight-cpp"><div class="highlight"><pre><span class="n">status</span> <span class="o">=</span> <span class="n">Sciclient_pmGetModuleClkFreq</span><span class="p">(</span>
+                                <span class="n">TISCI_DEV_GTC0</span><span class="p">,</span>
+                                <span class="n">TISCI_DEV_GTC0_BUS_VBUSP_CLK</span><span class="p">,</span>
+                                <span class="o">&amp;</span><span class="n">currentFreq</span><span class="p">,</span>
+                                <span class="n">SCICLIENT_SERVICE_WAIT_FOREVER</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The API will return the current frequency in Hertz in the variable currentFreq.</p>
+<p>If the clock is not the frequency you would like to set even after setting the
+multiplexer or the clock does not have a multiplexer and the default is not what
+suits your usecase, then follow the next steps to set the clock.</p>
+<p><strong>STEP 1</strong>: Check if the clock frequency you are trying to set is possible or not.
+In this step we simply check if the PLLs and other modules which source their
+clocks from the same HSDIV or PLL allow you to set the frequency for this
+particular module clock to the desired clock. If possible, the API returns
+with CSL_PASS. If not the API will return with a CSL_EFAIL. The advantage of
+doing this is to make sure the registers are not programmed if the clock setup
+is not possible.</p>
+<p>Example:
+Let&#8217;s say you are trying to set the exact frequency of 250 MHz to GTC device,
+you would use the Query api as below to check if this is possible or not.</p>
+<div class="code highlight-cpp"><div class="highlight"><pre><span class="n">status</span> <span class="o">=</span> <span class="n">Sciclient_pmQueryModuleClkFreq</span> <span class="p">(</span>
+                                <span class="n">TISCI_DEV_GTC0</span><span class="p">,</span>
+                                <span class="n">TISCI_DEV_GTC0_BUS_VBUSP_CLK</span><span class="p">,</span>
+                                <span class="mi">250000000</span><span class="p">,</span>
+                                <span class="o">&amp;</span><span class="n">respFreq</span><span class="p">,</span>
+                                <span class="n">SCICLIENT_SERVICE_WAIT_FOREVER</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If you can tolerate a variance to the frequency then you can use the api
+Sciclient_pmQueryModuleClkFreqRange to set the min and max values of frequency
+you can tolerate and then the respFreqHz returned will contain the value
+of the frequency that the Sciclient_pmSetModuleClkFreq can set within this
+range. If the API returns fail then respFreqHz will be 0 Hz.</p>
+</div>
+<p><strong>STEP 2</strong>: If you find that setting the frequency is possible, go ahead and use
+Sciclient_pmSetModuleClkFreq to set the frequency of the clock.</p>
+<p>Example: If the query frequency has passed then set the clock as below for the
+GTC clock.</p>
+<div class="code highlight-cpp"><div class="highlight"><pre><span class="n">status</span> <span class="o">=</span> <span class="n">Sciclient_pmSetModuleClkFreq</span> <span class="p">(</span>
+                                <span class="n">TISCI_DEV_GTC0</span><span class="p">,</span>
+                                <span class="n">TISCI_DEV_GTC0_BUS_VBUSP_CLK</span><span class="p">,</span>
+                                <span class="mi">250000000</span><span class="p">,</span>
+                                <span class="n">TISCI_MSG_FLAG_CLOCK_ALLOW_FREQ_CHANGE</span><span class="p">,</span>
+                                <span class="n">SCICLIENT_SERVICE_WAIT_FOREVER</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>You can double confirm if the clock is set correctly by using:</p>
+<div class="code highlight-cpp"><div class="highlight"><pre><span class="n">status</span> <span class="o">=</span> <span class="n">Sciclient_pmGetModuleClkFreq</span><span class="p">(</span>
+                                <span class="n">TISCI_DEV_GTC0</span><span class="p">,</span>
+                                <span class="n">TISCI_DEV_GTC0_BUS_VBUSP_CLK</span><span class="p">,</span>
+                                <span class="o">&amp;</span><span class="n">currentFreq</span><span class="p">,</span>
+                                <span class="n">SCICLIENT_SERVICE_WAIT_FOREVER</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The API will return the current frequency in Hertz in the variable currentFreq.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="apps_on_secure_devices.html" class="btn btn-neutral float-right" title="8.8. FAQ - Running Apps on secure devices" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="faq_binlist_jacinto.html" class="btn btn-neutral" title="8.6. FAQ - Supported Cores by example applications" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="http://www.ti.com/corp/docs/legal/copyright.shtml">&copy; Copyright 1995-2020</a>, Texas Instruments Incorporated. All rights reserved. <br>
+      <a href="http://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="http://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="http://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="http://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'08_06_01',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

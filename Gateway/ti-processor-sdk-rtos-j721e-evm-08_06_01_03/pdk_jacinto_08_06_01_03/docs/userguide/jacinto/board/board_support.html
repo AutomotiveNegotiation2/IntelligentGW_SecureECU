@@ -1,0 +1,864 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>6.1. Board Support &mdash; Platform Development Kit (PDK) - JACINTO User Guide</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Platform Development Kit (PDK) - JACINTO User Guide" href="../index.html"/>
+        <link rel="up" title="6. Board/EVM Abstraction" href="../family_cfg/jacinto/index_board_jacinto.html"/>
+        <link rel="next" title="6.2. Board Diagnostic Overview" href="board_diag.html"/>
+        <link rel="prev" title="6. Board/EVM Abstraction" href="../family_cfg/jacinto/index_board_jacinto.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index_jacinto.html" class="icon icon-home"> Platform Development Kit (PDK) - JACINTO User Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                08_06_01
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">1. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_release_notes_jacinto.html">2. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">3. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_modules_jacinto.html">4. Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_boot_jacinto.html">5. Bootloader (SBL)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../family_cfg/jacinto/index_board_jacinto.html">6. Board/EVM Abstraction</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="">6.1. Board Support</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">6.1.1. Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#board-apis">6.1.1.1. Board APIs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#board-flash-apis">6.1.1.2. Board Flash APIs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lld-dependencies">6.1.1.3. LLD Dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#custom-board-addition">6.1.2. Custom Board Addition</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#board-configurations">6.1.2.1. Board Configurations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#creating-board-configurations">6.1.2.2. Creating Board Configurations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#updating-board-configurations">6.1.2.3. Updating Board Configurations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#platform-specific-configurations">6.1.2.4. Platform Specific Configurations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#creating-board-library-with-custom-name">6.1.2.5. Creating Board Library with Custom Name</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="board_diag.html">6.2. Board Diagnostic Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="board_diag_execution.html">6.3. Board Diagnostic Execution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uniflash.html">6.4. UNIFLASH</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_howto_jacinto.html">7. How to Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_faq_jacinto.html">8. Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_developer_notes_jacinto.html">9. Developer Notes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index_jacinto.html">Platform Development Kit (PDK) - JACINTO User Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index_jacinto.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../family_cfg/jacinto/index_board_jacinto.html">6. Board/EVM Abstraction</a> &raquo;</li>
+      
+    <li>6.1. Board Support</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="board-support">
+<h1>6.1. Board Support<a class="headerlink" href="#board-support" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>6.1.1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>Board library contains a set of general initialization and setup
+functions that are board-specific. This component includes libraries
+for boards supported in the SDK release. Refer to the
+package content for the list of supported boards.Board component also
+includes diagnostic software.</p>
+<div class="section" id="board-apis">
+<h3>6.1.1.1. Board APIs<a class="headerlink" href="#board-apis" title="Permalink to this headline">¶</a></h3>
+<p>The Board_init() API supports initialization of PLL, peripheral clocks,
+external DDR memory, pinmux and IO Delay configurations. API Reference
+for application:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#. include &lt;ti/board/board.h&gt;</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Example API pseudo code for Board_init() is as follows:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cm">/* Setting up for pinmux and uart */</span>
+<span class="n">Board_STATUS</span> <span class="n">ret</span><span class="p">;</span>
+<span class="n">Board_initCfg</span> <span class="n">boardCfg</span><span class="p">;</span>
+
+<span class="n">boardCfg</span> <span class="o">=</span> <span class="n">BOARD_INIT_MODULE_CLOCK</span> <span class="o">|</span> <span class="n">BOARD_INIT_PINMUX_CONFIG</span> <span class="o">|</span>
+           <span class="n">BOARD_INIT_UART_STDIO</span><span class="p">;</span>
+
+<span class="n">ret</span> <span class="o">=</span> <span class="n">Board_init</span><span class="p">(</span><span class="n">boardCfg</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="board-flash-apis">
+<h3>6.1.1.2. Board Flash APIs<a class="headerlink" href="#board-flash-apis" title="Permalink to this headline">¶</a></h3>
+<p>Board library provides flash APIs for the flash devices supported on the TI EVM.
+This helps to abstract the flash device specific implementation from the
+applications by providing standard set of APIs across the platforms and flash devices.</p>
+<div class="section" id="ospi-flash-tuning">
+<h4>6.1.1.2.1. OSPI Flash Tuning<a class="headerlink" href="#ospi-flash-tuning" title="Permalink to this headline">¶</a></h4>
+<p>Flash library implements a tuning algorithm to arrive at optimal timing parameters
+to use the OSPI controller in PHY mode.</p>
+<dl class="docutils">
+<dt>Below are the pre-requisites for the PHY algorithm to work properly on TI EVM</dt>
+<dd><ul class="first last simple">
+<li>PHY tuning pattern needs to be programmed to the OSPI flash. Tuning pattern is provided
+as part of RTOS SDK - pdk/packages/ti/board/src/flash/nor/ospi/nor_spi_patterns.bin and
+part of the Uniflash release &lt;Uniflash_Install_Dir&gt;/processors/FlashWriter/&lt;Board_Name&gt;/nor_spi_patterns.bin
+Tuning pattern should be flashed to last sector of the flash. This is the default
+location used by the flash library on TI EVM.</li>
+<li>Cache should be disabled for the FSS region where tuning data is stored.
+This should be the FSS data region offset based on the flash size.</li>
+</ul>
+</dd>
+</dl>
+<p>Please refer the <a class="reference external" href="https://www.ti.com/lit/an/spract2/spract2.pdf">OSPI Tuning AppNote</a>
+for more details on tuning algorithm.</p>
+</div>
+</div>
+<div class="section" id="lld-dependencies">
+<h3>6.1.1.3. LLD Dependencies<a class="headerlink" href="#lld-dependencies" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="i2c">
+<h4>6.1.1.3.1. I2C<a class="headerlink" href="#i2c" title="Permalink to this headline">¶</a></h4>
+<p>Application need to configure <strong>BOARD_INIT_MODULE_CLOCK</strong> option to have
+I2C operational. I2C is used to read EEPROM data. An I2C handle will be
+opened in polling mode, and closed after the board ID data is retrieved
+from EEPROM using Board_getIDInfo_v2() API.</p>
+</div>
+<div class="section" id="uart">
+<h4>6.1.1.3.2. UART<a class="headerlink" href="#uart" title="Permalink to this headline">¶</a></h4>
+<p>Application need to configure Board_init() with the
+<strong>BOARD_INIT_UART_STDIO</strong> option to use the UART stdio API.</p>
+<p>After Board_init() completes, application can invoke UART stdio
+functions such as UART_printf, UART_scanFmt, and etc.</p>
+</div>
+<div class="section" id="sciclient">
+<h4>6.1.1.3.3. SCICLIENT<a class="headerlink" href="#sciclient" title="Permalink to this headline">¶</a></h4>
+<p>Jacinto Board library uses sciclient APIs for configuring the PLL clocks.</p>
+</div>
+</div>
+</div>
+<div class="section" id="custom-board-addition">
+<h2>6.1.2. Custom Board Addition<a class="headerlink" href="#custom-board-addition" title="Permalink to this headline">¶</a></h2>
+<p>This section provides the guidelines for creating a custom board library.</p>
+<p>Below image shows the recommended sequence to be followed while porting SDK to custom board.</p>
+<img alt="../_images/pdk_custom_board_porting_steps.png" src="../_images/pdk_custom_board_porting_steps.png" />
+<div class="section" id="board-configurations">
+<h3>6.1.2.1. Board Configurations<a class="headerlink" href="#board-configurations" title="Permalink to this headline">¶</a></h3>
+<p>Board library supports different SoC and HW board specific configuration functions.
+Below table shows configurations supported by board library across different platforms.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="26%" />
+<col width="17%" />
+<col width="26%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Board Configuration</th>
+<th class="head">Description</th>
+<th class="head">References</th>
+<th class="head">J721E</th>
+<th class="head">J7200</th>
+<th class="head">J721S2</th>
+<th class="head">J784S4</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Pinmux</td>
+<td>Configures pinmux for
+interfaces on the HW
+board.</td>
+<td><a class="reference external" href="https://www.ti.com/tool/SYSCONFIG">SYSCONFIG Tool</a></td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr class="row-odd"><td>SoC Clock Settings</td>
+<td>Enables power domains
+and clocks for SoC
+peripherals</td>
+<td><a class="reference external" href="http://www.ti.com/tool/CLOCKTREETOOL">Clock Tree Tool</a></td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr class="row-even"><td>DDR Configuration</td>
+<td>Configures DDR/EMIF
+controller and DDR
+timing parameters.</td>
+<td>NA</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr class="row-odd"><td>PLL Configuration</td>
+<td>Configures PLL modules
+to generate various
+clocks used by the SoC.</td>
+<td>NA</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr class="row-even"><td>Ethernet Configuration</td>
+<td>Configures Ethernet
+PHYs on the board.</td>
+<td>NA</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr class="row-odd"><td>IO Instances</td>
+<td>Defines IO instances
+for HW interfaces.</td>
+<td>NA</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr class="row-even"><td>Board Detection</td>
+<td>EEPROM board ID for
+board detection.</td>
+<td>NA</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr class="row-odd"><td>Board Flash APIs</td>
+<td>Provides Common APIs for
+accessing flash devices.</td>
+<td>NA</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr class="row-even"><td>SerDes Configuration</td>
+<td>Configures SerDes
+interface internal
+muxing and basic setup.</td>
+<td>NA</td>
+<td>x</td>
+<td>x</td>
+<td>&nbsp;</td>
+<td>x</td>
+</tr>
+</tbody>
+</table>
+<p>Adding custom board library can follow two approaches as mentioned below</p>
+<div class="line-block">
+<div class="line"><strong>Approach 1</strong>: Update files in existing TI board library and modify for custom board.</div>
+<div class="line">This approach will be less time consuming since the board library setup is already existing
+in the SDK, but need to maintain TI board library separately for reference.</div>
+<div class="line"><br /></div>
+<div class="line"><strong>Approach 2</strong>: Add custom board to PDK build</div>
+<div class="line">This approach involves one time effort of setting up the custom board library but makes it easy
+to switch between custom board library and TI reference board library. In this approach during migration
+to updated SDK, review and selective updates from existing TI board reference source will need to be considered.</div>
+<div class="line"><br /></div>
+<div class="line">Refer the section <a class="reference internal" href="#creating-board-library-with-custom-name">Creating Board Library with Custom Name</a>
+for additional steps involved in creating board library with Approach 2.</div>
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="creating-board-configurations">
+<h3>6.1.2.2. Creating Board Configurations<a class="headerlink" href="#creating-board-configurations" title="Permalink to this headline">¶</a></h3>
+<p>Before updating the board library with configurations for custom board, it is recommended to use
+GEL file and CCS for validating the configurations.
+Follow the steps mentioned below</p>
+<ul class="simple">
+<li>Update the SoC clock configurations in the GEL file.
+TI provides <a class="reference external" href="http://www.ti.com/tool/CLOCKTREETOOL">Clock Tree Tool</a> to simulate the device clocks.</li>
+<li>Update the PLL clock configurations in GEL file if custom board uses a different input clock than the eval platform and/or needs different clock outputs.</li>
+<li>Update DDR PHY and timing configurations for custom board.</li>
+<li>After GEL file update is complete, connect to custom board using JTAG, run the GEL script to apply the modified configurations and verify the configured values.
+Load and run simple hello world example out of SoC internal memory and DDR memory.</li>
+</ul>
+</div>
+<div class="section" id="updating-board-configurations">
+<h3>6.1.2.3. Updating Board Configurations<a class="headerlink" href="#updating-board-configurations" title="Permalink to this headline">¶</a></h3>
+<p>Steps for updating the board library configurations for a custom board is described in this section.
+Updating some of the configurations may need additional steps based on the platform.
+Refer <a class="reference internal" href="#platform-specific-configurations">Platform Specific Configurations</a> section for more details.</p>
+<div class="section" id="pinmux">
+<h4>6.1.2.3.1. Pinmux<a class="headerlink" href="#pinmux" title="Permalink to this headline">¶</a></h4>
+<p>When the <strong>BOARD_INIT_PINMUX_CONFIG</strong> option is specified, the
+Board_init() API configures the pinmux for the board. If applicable,
+it will also configure IO delay values for those device pads, which
+ensures correct IO timings are met along with the pinmux settings.
+Refer SOC TRM for additional details.</p>
+<p>The pinmux data to be configured is generated by the TI SYSCONFIG tool.
+Refer to <a class="reference external" href="https://www.ti.com/tool/SYSCONFIG">TI SYSCONFIG
+Tool</a> for more information.</p>
+<p>Once the pinmux selection is done, Copy the pinmux tool generated files to your custom board library
+implementation folder.</p>
+<p>Refer <a class="reference internal" href="#platform-specific-configurations">Platform Specific Configurations</a> section for more details on the files generated
+by pinmux tool for different platforms.</p>
+</div>
+<div class="section" id="soc-clock-settings">
+<h4>6.1.2.3.2. SoC Clock Settings<a class="headerlink" href="#soc-clock-settings" title="Permalink to this headline">¶</a></h4>
+<p>The core clocks and module clocks used on the custom board library may
+vary based on the power requirements and external components used on the
+boards.</p>
+<p>&lt;Board&gt;_clock.c: Defines functions and structures for configuring the clock and power modules.
+Update this file based on the data from clock tree tool and GEL file validation.</p>
+</div>
+<div class="section" id="ddr-configuration">
+<h4>6.1.2.3.3. DDR Configuration<a class="headerlink" href="#ddr-configuration" title="Permalink to this headline">¶</a></h4>
+<p>The board library has the correct DDR initialization sequence to initialize
+the DDR memory on your board. You may need to make changes to the AC timings,
+hardware leveling, and DDR PHY configuration, some or all of which may be
+different than the TI supported platforms. GEL file can be used to verify
+the settings in CCS before modifying the source in the board library.</p>
+<p>&lt;Board&gt;_ddr.c: Defines functions and structures for configuring the DDR module.
+Update this file based on the DDR timing parameters specific to custom board.</p>
+</div>
+<div class="section" id="pll-configuration">
+<h4>6.1.2.3.4. PLL Configuration<a class="headerlink" href="#pll-configuration" title="Permalink to this headline">¶</a></h4>
+<p>The SOC board library in the PDK configures the SOC PLL and module clock
+settings to the nominal settings required to be used with the TI
+evaluation platform. If you want to use different clock settings due to
+power consideration, or if you are using a variant of the device that
+needs to be clocked differently, you can enter the PLL and clock
+settings in the board library. All of the PLL and module clock settings
+are consolidated in the following files:</p>
+<ul class="simple">
+<li>&lt;Board&gt;.c: Contains calls related to all board-level initialization.
+&lt;Board&gt; refers to the evaluation platform (For example, j721e_evm)</li>
+<li>&lt;Board&gt;_pll.c: Defines the Board_PLLInit() function that configures the
+dividers and multipliers for the clock tree.</li>
+</ul>
+</div>
+<div class="section" id="ethernet-configuration">
+<h4>6.1.2.3.5. Ethernet Configuration<a class="headerlink" href="#ethernet-configuration" title="Permalink to this headline">¶</a></h4>
+<p>The custom board may have external components (flash devices, Ethernet
+PHY, etc.) that are different from the components populated on the
+TI-supported EVM. These components and their support files need to be
+added to the
+pdk_xx_xx_xx_xx/packages/ti/board/src/&lt;customBoardName&gt;/device path
+and linked as part of the board library build.</p>
+</div>
+<div class="section" id="io-instances">
+<h4>6.1.2.3.6. IO Instances<a class="headerlink" href="#io-instances" title="Permalink to this headline">¶</a></h4>
+<p>If your custom board uses an IO instance different from the TI-supported
+board, the instance needs to be modified in the Pin Mux setup as well
+as in the board_cfg.h file in
+pdk_xx_xx_xx_xx/packages/ti/board/src/&lt;customBoardName&gt;/include</p>
+<div class="section" id="board-detection">
+<h5>6.1.2.3.6.1. Board Detection<a class="headerlink" href="#board-detection" title="Permalink to this headline">¶</a></h5>
+<blockquote>
+<div><ul class="simple">
+<li>TI defined board detect mechanism using structure stored in I2C EEPROM</li>
+<li>Board Lib APIs read and write Board ID to EEPROM on I2C address 0x50</li>
+<li>Application boards, if available, will have their own EEPROM with board information</li>
+<li>Structure typically defines:</li>
+</ul>
+</div></blockquote>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">Board</span> <span class="n">ID</span> <span class="p">(</span><span class="n">IDK</span> <span class="n">vs</span> <span class="n">GP</span> <span class="n">EVM</span> <span class="n">vs</span> <span class="n">custom</span><span class="p">)</span>
+<span class="n">Revision</span> <span class="n">number</span> <span class="p">(</span><span class="n">board</span> <span class="n">revision</span> <span class="n">to</span> <span class="n">address</span> <span class="n">board</span> <span class="n">level</span> <span class="n">issues</span><span class="p">)</span>
+<span class="n">Serial</span> <span class="n">Number</span> <span class="p">(</span><span class="n">internal</span> <span class="n">tracking</span><span class="p">)</span>
+<span class="n">MAC</span> <span class="n">ID</span>  <span class="p">(</span><span class="n">Custom</span> <span class="n">MAC</span> <span class="n">ID</span> <span class="n">use</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Board detection is TI defined mechanism to detect evaluation platform details.
+This needs to be removed/replicated from board based on customer board implementation.
+In case board detect mechanism is not used in custom board, check for the Board_getIDInfo_v2() API calls
+and make necessary changes in the code to avoid dependencies on board detect mechanism.</p>
+</div>
+</div>
+<div class="section" id="id2">
+<h5>6.1.2.3.6.2. Board Flash APIs<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h5>
+<p>Board library includes a dedicated flash library to abstract the HW flash interface access
+using a standard set of APIs. In case custom board uses flash devices that are different
+from eval platform, update to board flash APIs is required.
+Check the board flash library available at &lt;PDK_INSTALL_PATH&gt;/packages/ti/board/src/flash and
+make changes required for custom board as needed.</p>
+</div>
+</div>
+</div>
+<div class="section" id="platform-specific-configurations">
+<h3>6.1.2.4. Platform Specific Configurations<a class="headerlink" href="#platform-specific-configurations" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="part-default-soc-caps">
+<h4>6.1. J721E<a class="headerlink" href="#part-default-soc-caps" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="board-file-names">
+<h5>6.1. Board File Names<a class="headerlink" href="#board-file-names" title="Permalink to this headline">¶</a></h5>
+<p>Board library file names for J721E are different when compared with other platforms in SDK.
+This is to facilitate the easy migration of board library to custom platforms.
+Read the file name &lt;Board&gt;.c as board_init.c and &lt;Board&gt;_xxx.c/h as board_xxx.c/h in all the
+references in above sections.</p>
+</div>
+<div class="section" id="id3">
+<h5>6.1. Pinmux<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h5>
+<p>Follow below steps to update pinmux configuration for custom board on J721E platform.
+Pinmux project files provided under j721e_evm board folder can be used as reference for pinmux configuration.</p>
+<ul>
+<li><p class="first">Download the pinmux files J721E _pinmux.h and J721E _pinmux_data.c generated by pinmux tool
+and copy them to custom board folder.</p>
+</li>
+<li><p class="first">Open &#8216;packages/ti/board/src/ j721e_evm / j721e _pinmux.h&#8217; and make below modifications.</p>
+<blockquote>
+<div><ul class="simple">
+<li>Change #include &#8220;pinmux.h&#8221; to #include &lt;ti/board/src/ j721e_evm /include/pinmux.h&gt;</li>
+<li>Change #include &#8220;csl_types.h&#8221; to #include &lt;ti/csl/csl_types.h&gt;</li>
+<li>Modify &#8216; j721e_evm &#8216; in above step if a different name is used for custom board.</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<ul class="simple">
+<li>Modify the Board_pinmuxConfig() function in &#8216;packages/ti/board/src/ j721e_evm /board_pinmux.c&#8217; file to remove
+pinmux configurations specific to EVM addon boards.
+Look for the comment &#8220;Pinmux for Application cards&#8221; in the function Board_pinmuxConfig().
+All the code after this comment till end of the function and &#8216;i2cPinmux&#8217; variable can be removed.
+Board_pinmuxConfig function shall look as below after the update</li>
+</ul>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">Board_STATUS</span> <span class="nf">Board_pinmuxConfig</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+   <span class="n">Board_STATUS</span> <span class="n">status</span> <span class="o">=</span> <span class="n">BOARD_SOK</span><span class="p">;</span>
+
+   <span class="cm">/* Pinmux for baseboard */</span>
+   <span class="n">Board_pinmuxUpdate</span><span class="p">(</span><span class="n">gJ721E_MainPinmuxData</span><span class="p">,</span>
+                        <span class="n">BOARD_SOC_DOMAIN_MAIN</span><span class="p">);</span>
+   <span class="n">Board_pinmuxUpdate</span><span class="p">(</span><span class="n">gJ721E_WkupPinmuxData</span><span class="p">,</span>
+                        <span class="n">BOARD_SOC_DOMAIN_WKUP</span><span class="p">);</span>
+
+   <span class="k">return</span> <span class="n">status</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ul class="simple">
+<li>Rebuild the board library with new pinmux configurations</li>
+</ul>
+<p>Follow additional steps (optional) below to clean-up the TI EVM addon board specific files.</p>
+<ul>
+<li><p class="first">Remove below files from SRCS_COMMON build configuration in &#8216;packages/ti/board/src/j721e_evm/src_files_j721e_evm.mk&#8217;
+and remove the files from the board folder &#8216;packages/ti/board/src/j721e_evm&#8217;</p>
+<blockquote>
+<div><ul class="simple">
+<li>J721E_pinmux_data_gesi.c</li>
+<li>J721E_pinmux_data_gesi_cpsw9g.c</li>
+<li>J721E_pinmux_data_info.c</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+</div>
+<p>SerDes Configuration</p>
+<p>J721E board library includes SerDes module which configures the SerDes interface internal pinmux
+to route PCIe, USB and SGMII to different interfaces on the board. If custom board uses
+similar design, SerDes configurations (board_serdes_cfg.c) can be reused.
+Otherwise this configuration can be ignored.</p>
+</div>
+<div class="section" id="creating-board-library-with-custom-name">
+<h3>6.1.2.5. Creating Board Library with Custom Name<a class="headerlink" href="#creating-board-library-with-custom-name" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="instructions-to-add-custom-board-to-the-pdk-build">
+<h4>6.1.2.5.1. Instructions to add custom Board to the PDK build<a class="headerlink" href="#instructions-to-add-custom-board-to-the-pdk-build" title="Permalink to this headline">¶</a></h4>
+<p>Follow below steps for creating board library with custom name.
+AM572x platform is used as reference in the examples wherever needed.</p>
+<p><strong>Step 1: Creating new directory for custom board library</strong></p>
+<p>In &lt;PDK_INSTALL_PATH&gt;/packages/ti/board/src,
+Create new directory myCustomBoard and copy files from existing board
+library package which closely matches your custom board design.</p>
+<p><strong>Step 2: Updating names and makefile inside the customBoard package</strong></p>
+<p>In &lt;PDK_INSTALL_PATH&gt;/packages/ti/board/src/myCustomBoard, Rename file
+src_files_&lt;Board&gt;.mk to src_files_myCustomBoard.mk. This file will
+need a bit of work depending on what elements of board you need for your
+platform.</p>
+<p><strong>Step 3: Adding MACRO based inclusion of updated board_cfg.h
+corresponding to custom Board</strong></p>
+<p>In packages/ti/board/board_cfg.h, add the lines pointing to board_cfg.h
+file in your customBoard package so that updated peripheral instances
+and board specific defines can be picked up</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#if defined (myCustomBoard)</span>
+<span class="cp">#include</span> <span class="cpf">&lt;ti/board/src/myCustomBoard/include/board_cfg.h&gt;</span><span class="cp"></span>
+<span class="cp">#endif</span>
+</pre></div>
+</div>
+<p><strong>Step 4: Update top level board package makefile to include build for
+customBoard Library</strong> The makefile is used to include all relevant make
+files for including Low level driver(LLD), source files relevant to
+board and the common board.c file</p>
+<ul class="simple">
+<li>In packages/ti/board/build/makefile.mk, add board.c to the
+customBoard build:</li>
+</ul>
+<div class="highlight-cpp"><div class="highlight"><pre>ifeq ($(BOARD),$(filter $(BOARD),evmAM335x icev2AM335x skAM335x bbbAM335x evmAM437x idkAM437x skAM437x myCustomBoard evmAM572x idkAM571x idkAM572x evmK2H evmK2K evmK2E evmK2L evmK2G iceK2G evmC6678 evmC6657))
+# Common source files across all platforms and cores
+SRCS_COMMON += board.c
+endif
+</pre></div>
+</div>
+<ul class="simple">
+<li>Add board library source files and LLD files to the customBoard build</li>
+</ul>
+<p>In packages/ti/board/build/makefile.mk, change</p>
+<div class="highlight-cpp"><div class="highlight"><pre>ifeq ($(BOARD),$(filter $(BOARD), evmAM572x idkAM571x idkAM572x))
+include $(PDK_BOARD_COMP_PATH)/src/$(BOARD)/src_files_$(BOARD).mk
+include $(PDK_BOARD_COMP_PATH)/src/src_files_lld.mk
+endif
+</pre></div>
+</div>
+<p>to</p>
+<div class="highlight-cpp"><div class="highlight"><pre>ifeq ($(BOARD),$(filter $(BOARD), myCustomBoard evmAM572x idkAM571x idkAM572x))
+include $(PDK_BOARD_COMP_PATH)/src/$(BOARD)/src_files_$(BOARD).mk
+include $(PDK_BOARD_COMP_PATH)/src/src_files_lld.mk
+endif
+</pre></div>
+</div>
+<p><strong>Step 5: Update Global makerules</strong></p>
+<p>build_config.mk defines the global CFLAGS used to compile different PDK
+components. Add the following line in the BOARD Specific configurations.</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">CFLAGS_GLOBAL_myCustomBoard</span>  <span class="o">=</span> <span class="o">-</span><span class="n">DSOC_AM572x</span> <span class="o">-</span><span class="n">DmyCustomBoard</span><span class="o">=</span><span class="n">myCustomBoard</span>
+</pre></div>
+</div>
+<p>The SOC_AM572x macro ensures that the CSL applicable to this SOC will be
+included in the build. Use the SoC name that corresponds to the platform of your custom board.</p>
+<p><strong>Optional step to update RTSC platform definition</strong> If you have a
+custom RTSC platform definition for your custom board that updates the
+memory and platform configuration using RTSC Tool then you need to
+update the platform.mk file that associates the RTSC platform with the
+corresponding board library</p>
+<p>In packages/ti/build/makerules/platform.mk, add the following lines:</p>
+<div class="highlight-cpp"><div class="highlight"><pre>ifeq ($(BOARD),$(filter $(BOARD), evmAM572x))
+  PLATFORM_XDC = &quot;ti.platforms.evmAM572X&quot;
+endif
+</pre></div>
+</div>
+<div class="highlight-cpp"><div class="highlight"><pre>ifeq ($(BOARD),$(filter $(BOARD), myCustomBoard))
+  PLATFORM_XDC = &quot;evmAM572XCustom&quot;
+endif
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The SYSBIOS platforms follow the convention to consolidate all
+platform definitions under SYSBIOS_INSTALL_PATH/packages/ti/platforms/*
+hence the convention ti.platorms.&lt;platformName&gt; but for custom platform,
+users are not required to follow this convention.</p>
+</div>
+<p><strong>Step 6: Update source files corresponding to drivers used in board
+library</strong>. src_files_lld.mk file adds source files corresponding to LLD
+drivers used in the board library. Usually most boards utilitize control
+driver like I2C (for programming the PMIC or reading EEPROM), UART
+drivers (for IO) and boot media drivers like (SPI/QSPI, MMC or NAND). In
+the example below, we assume that the custom Board library has
+dependency on I2C, SPI and UART LLD drivers. Since the LLD drivers will
+be linked to the application along with board library, board library
+only needs &lt;driver&gt;_soc.c corresponding to SOC used on the custom Board.</p>
+<p>In packages/ti/board/src/src_files_lld.mk, add the following lines:</p>
+<div class="highlight-cpp"><div class="highlight"><pre>ifeq ($(BOARD),$(filter $(BOARD), myCustomBoard))
+SRCDIR +=  $(PDK_INSTALL_PATH)/ti/drv/i2c/soc/am572x \
+           $(PDK_INSTALL_PATH)/ti/drv/uart/soc/am572x \
+           $(PDK_INSTALL_PATH)/ti/drv/spi/soc/am572x
+</pre></div>
+</div>
+<div class="highlight-cpp"><div class="highlight"><pre>INCDIR +=  $(PDK_INSTALL_PATH)/ti/drv/i2c/soc/am572x \
+           $(PDK_INSTALL_PATH)/ti/drv/uart/soc/am572x \
+           $(PDK_INSTALL_PATH)/ti/drv/spi/soc/am572x
+</pre></div>
+</div>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp"># Common source files across all platforms and cores</span>
+<span class="n">SRCS_COMMON</span> <span class="o">+=</span> <span class="n">I2C_soc</span><span class="p">.</span><span class="n">c</span> <span class="n">UART_soc</span><span class="p">.</span><span class="n">c</span> <span class="n">SPI_soc</span><span class="p">.</span><span class="n">c</span>
+<span class="n">endif</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For all LLD drivers linked to the board library you need to include
+corresponding &lt;drv&gt;_soc.c file. For example if you include GPIO driver
+for setting board mux then GPIO_soc.c needs to be added to LLD source
+files.</p>
+</div>
+<p><strong>Step 7: Add custom Board to BOARDLIST and update CORELIST</strong></p>
+<p>In packages/ti/board/board_component.mk, modify the build to add your
+custom board and specify the cores for which you want to build the board
+library. Example to build board library for only A15 and C66x cores,
+limit the build by specify only a15_0 and C66x in the CORELIST</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">board_lib_BOARDLIST</span>       <span class="o">=</span> <span class="n">myCustomBoard</span> <span class="n">evmAM335x</span> <span class="n">icev2AM335x</span> <span class="n">skAM335x</span> <span class="n">bbbAM335x</span> <span class="n">evmAM437x</span> <span class="n">idkAM437x</span> <span class="n">skAM437x</span> <span class="n">evmAM572x</span> <span class="n">idkAM571x</span> <span class="n">idkAM572x</span> <span class="n">evmK2H</span> <span class="n">evmK2K</span> <span class="n">evmK2E</span> <span class="n">evmK2L</span> <span class="n">evmK2G</span> <span class="n">iceK2G</span> \
+</pre></div>
+</div>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#board_lib_am572x_CORELIST = c66x a15_0 ipu1_0</span>
+<span class="n">board_lib_am572x_CORELIST</span> <span class="o">=</span> <span class="n">a15_0</span> <span class="n">c66x</span>
+</pre></div>
+</div>
+<p><strong>Step 8: Update .bld files for XDCTOOL based build steps.</strong></p>
+<p>Make corresponding changes in packages/ti/board/config.bld, by adding
+the following lines:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">var</span> <span class="n">myCustomBoard</span> <span class="o">=</span> <span class="p">{</span>
+   <span class="nl">name</span><span class="p">:</span> <span class="s">&quot;myCustomBoard&quot;</span><span class="p">,</span>
+   <span class="nl">ccOpts</span><span class="p">:</span> <span class="s">&quot;-DmyCustomBoard -DSOC_AM572x&quot;</span><span class="p">,</span>
+   <span class="nl">targets</span><span class="p">:</span> <span class="p">[</span><span class="n">C66LE</span><span class="p">,</span><span class="n">A15LE</span> <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">var</span> <span class="n">boards</span> <span class="o">=</span> <span class="p">[</span> <span class="n">evmAM335x</span><span class="p">,</span> <span class="n">icev2AM335x</span><span class="p">,</span> <span class="n">skAM335x</span><span class="p">,</span> <span class="n">bbbAM335x</span><span class="p">,</span> <span class="n">evmAM437x</span><span class="p">,</span> <span class="n">idkAM437x</span><span class="p">,</span> <span class="n">skAM437x</span><span class="p">,</span> <span class="n">myCustomBoard</span><span class="p">,</span> <span class="n">evmAM572x</span><span class="p">,</span> <span class="n">idkAM571x</span><span class="p">,</span> <span class="n">idkAM572x</span><span class="p">,</span> <span class="n">evmK2H</span><span class="p">,</span> <span class="n">evmK2K</span><span class="p">,</span> <span class="n">evmK2E</span><span class="p">,</span> <span class="n">evmK2L</span><span class="p">,</span> <span class="n">evmK2G</span><span class="p">,</span> <span class="n">evmC6678</span><span class="p">,</span> <span class="n">evmC6657</span> <span class="p">];</span>
+</pre></div>
+</div>
+<p>Also, in packages/ti/board/package.bld, add the following line:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">Pkg</span><span class="p">.</span><span class="n">otherFiles</span><span class="p">[</span><span class="n">Pkg</span><span class="p">.</span><span class="n">otherFiles</span><span class="p">.</span><span class="n">length</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;src/myCustomBoard/src_files_myCustomBoard.mk&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><strong>Step 9: Setup Top level PDK build files to add the Custom board to
+setup environment.</strong></p>
+<p>Final setup involves updating the top level setup file for PDK package
+to update to setup the build environment to include the custom Board in
+setup. This can be done by commenting out the top line and adding in the
+bottom line in &lt;PDK_INSTALL_PATH&gt;/packages/Rules.make:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#export LIMIT_BOARDS ?= evmAM572x idkAM571x idkAM572x</span>
+<span class="k">export</span> <span class="n">LIMIT_BOARDS</span> <span class="o">?=</span> <span class="n">myCustomBoard</span>
+</pre></div>
+</div>
+<p><strong>Alternative:</strong> Invoke the build using command line options to limit
+the build to specific board, specific SOC and specific CORE. For
+example, if you want to build the A15 version of board library for
+AM572x EVM, you can invoke the build using:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">gmake</span> <span class="n">board_lib</span> <span class="n">LIMIT_SOCS</span><span class="o">=</span><span class="n">am572x</span> <span class="n">LIMIT_BOARDS</span><span class="o">=</span><span class="n">myCustomBoard</span> <span class="n">LIMIT_CORES</span><span class="o">=</span><span class="n">a15_0</span>
+</pre></div>
+</div>
+<p><strong>Step 10: Building the custom board with the updated settings</strong></p>
+<p>To build package change directory to
+&lt;SDK_INSTALL_PATH&gt;/&lt;PDK_INSTALL_PATH&gt;/packages, first run pdksetupenv.bat</p>
+<p>To make just the board library: gmake board_lib</p>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="board_diag.html" class="btn btn-neutral float-right" title="6.2. Board Diagnostic Overview" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../family_cfg/jacinto/index_board_jacinto.html" class="btn btn-neutral" title="6. Board/EVM Abstraction" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="http://www.ti.com/corp/docs/legal/copyright.shtml">&copy; Copyright 1995-2020</a>, Texas Instruments Incorporated. All rights reserved. <br>
+      <a href="http://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="http://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="http://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="http://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'08_06_01',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

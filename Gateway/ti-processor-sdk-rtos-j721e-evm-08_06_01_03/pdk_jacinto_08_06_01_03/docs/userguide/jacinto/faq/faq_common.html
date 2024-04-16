@@ -1,0 +1,442 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>8.1. FAQ - Common &mdash; Platform Development Kit (PDK) - JACINTO User Guide</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Platform Development Kit (PDK) - JACINTO User Guide" href="../index.html"/>
+        <link rel="up" title="8. Frequently Asked Questions" href="../family_cfg/jacinto/index_faq_jacinto.html"/>
+        <link rel="next" title="8.2. FAQ - CAN" href="faq_can.html"/>
+        <link rel="prev" title="8. Frequently Asked Questions" href="../family_cfg/jacinto/index_faq_jacinto.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index_jacinto.html" class="icon icon-home"> Platform Development Kit (PDK) - JACINTO User Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                08_06_01
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">1. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_release_notes_jacinto.html">2. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">3. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_modules_jacinto.html">4. Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_boot_jacinto.html">5. Bootloader (SBL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_board_jacinto.html">6. Board/EVM Abstraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_howto_jacinto.html">7. How to Guides</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../family_cfg/jacinto/index_faq_jacinto.html">8. Frequently Asked Questions</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="">8.1. FAQ - Common</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#generic">8.1.1. Generic</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#what-does-pdk-stand-for">8.1.1.1. What does PDK stand for?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#what-do-i-get-with-pdk-and-how-do-i-get-started">8.1.1.2. What do I get with PDK, and how do I get started?</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#build">8.1.2. Build</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#what-are-the-common-issues-faced-during-the-build">8.1.2.1. What are the common issues faced during the build?</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#code-composer-studio">8.1.3. Code Composer Studio</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#unable-to-connect-to-mcu-11-or-mcu21">8.1.3.1. Unable to connect to MCU 11 or MCU21</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ccs-cannot-resolve-source-or-variables">8.1.3.2. CCS cannot resolve source or variables</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#boardcfg-rm">8.1.4. BoardCfg RM</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#how-to-integrate-updated-rm-boardcfg-in-pdk">8.1.4.1. How to integrate updated RM BoardCfg in PDK?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="faq_can.html">8.2. FAQ - CAN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq_fvid2.html">8.3. FAQ - FVID2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c7x_non_secure_mode.html">8.4. FAQ - C7x : Steps to switch C7x SysBIOS application from secure mode to non-secure mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resource_int_jacinto.html">8.5. FAQ - Used Resources - Interrupt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq_binlist_jacinto.html">8.6. FAQ - Supported Cores by example applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq_module_clocking.html">8.7. FAQ - How to set the clock for a given module and clock</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apps_on_secure_devices.html">8.8. FAQ - Running Apps on secure devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq_csi2rx.html">8.9. FAQ - CSI2RX</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_developer_notes_jacinto.html">9. Developer Notes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index_jacinto.html">Platform Development Kit (PDK) - JACINTO User Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index_jacinto.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../family_cfg/jacinto/index_faq_jacinto.html">8. Frequently Asked Questions</a> &raquo;</li>
+      
+    <li>8.1. FAQ - Common</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="faq-common">
+<h1>8.1. FAQ - Common<a class="headerlink" href="#faq-common" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="generic">
+<h2>8.1.1. Generic<a class="headerlink" href="#generic" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="what-does-pdk-stand-for">
+<h3>8.1.1.1. What does PDK stand for?<a class="headerlink" href="#what-does-pdk-stand-for" title="Permalink to this headline">¶</a></h3>
+<p>PDK stands for Platform Development Kit containing RTOS and baremetal drivers for various peripherals present in TI devices</p>
+</div>
+<div class="section" id="what-do-i-get-with-pdk-and-how-do-i-get-started">
+<h3>8.1.1.2. What do I get with PDK, and how do I get started?<a class="headerlink" href="#what-do-i-get-with-pdk-and-how-do-i-get-started" title="Permalink to this headline">¶</a></h3>
+<p>Each PDK release is available as a full source release including:</p>
+<ul class="simple">
+<li>Complete source code for all drivers, with associated build system</li>
+<li>Sample applications and unit test applications demonstrating the usage of all modules</li>
+<li>Documents: Release Notes, User Guide, API Guide, Test Report per platform, Static Analysis and MISRAC Reports</li>
+</ul>
+<p>Refer to PDK Userguide for high level information.
+The doxygen API documentation present in docs folder provides details on the APIs, and the
+sample examples provided with PDK demonstrate usage of the APIs.
+The sample application is present in examples folder of each of the components within PDK</p>
+</div>
+</div>
+<div class="section" id="build">
+<h2>8.1.2. Build<a class="headerlink" href="#build" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="what-are-the-common-issues-faced-during-the-build">
+<h3>8.1.2.1. What are the common issues faced during the build?<a class="headerlink" href="#what-are-the-common-issues-faced-during-the-build" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><dl class="first docutils">
+<dt>Windows Permissions</dt>
+<dd><p class="first last">Sometimes there are issues with windows permissions. User should make sure that he has
+full permissions/admin rights while trying the build.
+User can use ls -l command to check the permissions and use chmod command to change the permissions.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Compiler Versions</dt>
+<dd><p class="first last">PDK supports multiple CPUs and a particular PDK release is validated with a particular
+versions of compilers for different CPUs.
+It is not guaranteed that PDK examples/source code will work with different version of compilers.
+It is recommended that user refers to PDK documentation for supported compiler versions and use the same in order to avoid any issues.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Compiler Paths</dt>
+<dd><p class="first last">Different compiler paths are defined in Rules.make. User should make sure that
+appropriate paths are set in case the make is not able to find compiler
+executable while building.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Building with -j</dt>
+<dd><p class="first last">This command is used to speed up the builds by invoking multiple builds at once and
+is not 100% reliable in windows machine as dependnecies are not enforced in Windows make.
+In case the build fails user should try to build without giving -j switch in the build command.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="code-composer-studio">
+<h2>8.1.3. Code Composer Studio<a class="headerlink" href="#code-composer-studio" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="unable-to-connect-to-mcu-11-or-mcu21">
+<h3>8.1.3.1. Unable to connect to MCU 11 or MCU21<a class="headerlink" href="#unable-to-connect-to-mcu-11-or-mcu21" title="Permalink to this headline">¶</a></h3>
+<p>With CCS versionsed 10.X.X or later, the R5F in MCU domain and Main domain operate in lock-step mode.
+To be able to connect to MCU 11 or MCU 21 or run applications on these core (via CCS), one would require
+to operate these cores in split mode</p>
+<p>These cores could be configured to operate in split mode with following changes</p>
+<ul>
+<li><p class="first">In file &lt;CCS Install Directory&gt;ccs/ccs_base/emulation/gel/J7200_DRA821/J7VCL_SI.gel</p>
+</li>
+<li><dl class="first docutils">
+<dt>Update function OnTargetConnect</dt>
+<dd><ul class="first simple">
+<li>To configure MCU R5F to operate in split mode <em>MCU_R5_Cluster_0_split</em></li>
+<li>To configure MAIN R5F to operate in split mode <em>MAIN_R5_Cluster_0_split</em></li>
+</ul>
+<div class="code bash last highlight-cpp"><div class="highlight"><pre>--- a/ccs_base/emulation/gel/J7200_DRA821/J7VCL_SI.gel
++++ b/ccs_base/emulation/gel/J7200_DRA821/J7VCL_SI.gel
+@@ -94,6 +94,9 @@ OnTargetConnect(){
+    {
+        J7ES_LPDDR4_Config();
+    }
++
++    MCU_R5_Cluster_0_split ();
++    MAIN_R5_Cluster_0_split ();
+}
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="ccs-cannot-resolve-source-or-variables">
+<h3>8.1.3.2. CCS cannot resolve source or variables<a class="headerlink" href="#ccs-cannot-resolve-source-or-variables" title="Permalink to this headline">¶</a></h3>
+<p>User might face issues with control moving unexpectedly while doing single step debug even with debug
+profile builds after Clang migration.
+This is because PDK debug profile build uses O1 level of optimization
+due to increase in binary size after CLANG migration.
+As per CLANG user guide, O1 optimization level enables restricted optimizations, providing a good trade-off
+between code size and debug-ability.
+To resolve above issues and debug build to be more debug friendly in CCS,
+the following compiler options can be set</p>
+<ul>
+<li><p class="first">Disable O1 optimization</p>
+<blockquote>
+<div><ul class="simple">
+<li>i.e., Remove -O1 option for debug profile builds</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">Encode symbolic debug information in generated object code</p>
+<blockquote>
+<div><ul class="simple">
+<li>Set &#8220;-g&#8221; compiler flag for this</li>
+<li>This generate debug information for a compilation unit in accordance with the DWARF standard</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<p>To apply above, update the following line in <code class="docutils literal"><span class="pre">packages/ti/build/makerules/rules_ti_cgt_arm.mk</span></code></p>
+<div class="code bash highlight-cpp"><div class="highlight"><pre><span class="n">CFLAGS_INTERNAL</span> <span class="o">+=</span> <span class="o">-</span><span class="n">D_DEBUG_</span><span class="o">=</span><span class="mi">1</span> <span class="o">-</span><span class="n">O1</span>
+</pre></div>
+</div>
+<p>to</p>
+<div class="code bash highlight-cpp"><div class="highlight"><pre><span class="n">CFLAGS_INTERNAL</span> <span class="o">+=</span> <span class="o">-</span><span class="n">D_DEBUG_</span><span class="o">=</span><span class="mi">1</span> <span class="o">-</span><span class="n">g</span>
+</pre></div>
+</div>
+<p>and do a clean build.</p>
+<p>For more details on CLANG compiler optmizations, refer
+<a class="reference external" href="https://software-dl.ti.com/codegen/docs/tiarmclang/compiler_tools_user_guide/migration_guide/mapping_armcl_options_to_tiarmclang/controlling_optimization.html">TI CLANG Migration Guide - Controlling Optimization</a></p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">TI has not tested PDK binaries after building with no optimization</p>
+</div>
+</div>
+</div>
+<div class="section" id="boardcfg-rm">
+<h2>8.1.4. BoardCfg RM<a class="headerlink" href="#boardcfg-rm" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="how-to-integrate-updated-rm-boardcfg-in-pdk">
+<span id="checkin-new-boardcfg-rm"></span><h3>8.1.4.1. How to integrate updated RM BoardCfg in PDK?<a class="headerlink" href="#how-to-integrate-updated-rm-boardcfg-in-pdk" title="Permalink to this headline">¶</a></h3>
+<p>K3 Resource Partitioning Tool is used to generate Linux and RTOS BoardCfg RM
+files. Refer <a class="reference external" href="https://software-dl.ti.com/jacinto7/esd/processor-sdk-linux-jacinto7/latest/exports/docs/linux/How_to_Guides/Host/K3_Resource_Partitioning_Tool.html">K3 Resource Partitioning Tool User Guide</a> for more info on setup and usage.</p>
+<p>PDK package provides a utility script <strong>boardcfg_update.sh</strong> in sciclient to
+integrate an updated BoardCfg RM file.
+Run the script as mentioned below:-</p>
+<div class="code bash highlight-cpp"><div class="highlight"><pre><span class="n">cd</span> <span class="o">&lt;</span><span class="n">PDK_PATH</span><span class="o">&gt;/</span><span class="n">packages</span><span class="o">/</span><span class="n">ti</span><span class="o">/</span><span class="n">drv</span><span class="o">/</span><span class="n">sciclient</span><span class="o">/</span><span class="n">tools</span>
+<span class="p">.</span><span class="o">/</span><span class="n">boardcfg_update</span><span class="p">.</span><span class="n">sh</span> <span class="n">j721e_evm</span> <span class="o">--</span><span class="n">boardcfg</span><span class="o">=</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">generated</span><span class="o">/</span><span class="n">j721e</span><span class="o">/</span><span class="n">sciclient</span><span class="o">/</span><span class="n">defaultBoardcfg</span><span class="o">/</span><span class="n">rm</span><span class="o">/</span><span class="n">c</span><span class="o">/</span><span class="n">file</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="faq_can.html" class="btn btn-neutral float-right" title="8.2. FAQ - CAN" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../family_cfg/jacinto/index_faq_jacinto.html" class="btn btn-neutral" title="8. Frequently Asked Questions" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="http://www.ti.com/corp/docs/legal/copyright.shtml">&copy; Copyright 1995-2020</a>, Texas Instruments Incorporated. All rights reserved. <br>
+      <a href="http://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="http://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="http://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="http://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'08_06_01',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

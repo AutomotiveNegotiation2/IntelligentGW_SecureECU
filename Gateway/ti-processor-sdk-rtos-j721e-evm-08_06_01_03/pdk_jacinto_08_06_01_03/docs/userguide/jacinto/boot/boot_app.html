@@ -1,0 +1,437 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>5.3. Boot App &mdash; Platform Development Kit (PDK) - JACINTO User Guide</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Platform Development Kit (PDK) - JACINTO User Guide" href="../index.html"/>
+        <link rel="up" title="5. Bootloader (SBL)" href="../family_cfg/jacinto/index_boot_jacinto.html"/>
+        <link rel="next" title="6. Board/EVM Abstraction" href="../family_cfg/jacinto/index_board_jacinto.html"/>
+        <link rel="prev" title="5.2. J721E SBL" href="boot_k3.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index_jacinto.html" class="icon icon-home"> Platform Development Kit (PDK) - JACINTO User Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                08_06_01
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">1. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_release_notes_jacinto.html">2. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">3. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_modules_jacinto.html">4. Modules</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../family_cfg/jacinto/index_boot_jacinto.html">5. Bootloader (SBL)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="boot.html">5.1. SBL Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="boot_k3.html">5.2. J721E SBL</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">5.3. Boot App</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#boot-stages">5.3.1. Boot stages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#steps-to-boot-different-os-via-different-boot-media">5.3.2. Steps to Boot Different OS via Different Boot Media</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#booting-in-hs-devices">5.3.3. Booting in HS devices</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_board_jacinto.html">6. Board/EVM Abstraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_howto_jacinto.html">7. How to Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_faq_jacinto.html">8. Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_developer_notes_jacinto.html">9. Developer Notes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index_jacinto.html">Platform Development Kit (PDK) - JACINTO User Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index_jacinto.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../family_cfg/jacinto/index_boot_jacinto.html">5. Bootloader (SBL)</a> &raquo;</li>
+      
+    <li>5.3. Boot App</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="boot-app">
+<span id="bootapp-usage-and-migration-guidelines"></span><h1>5.3. Boot App<a class="headerlink" href="#boot-app" title="Permalink to this headline">¶</a></h1>
+<p>Boot App is a tertiary bootloader which is booted by the SBL. It runs on mcu1_0, from mcu1_0 it boots other cores in different stages. It can boot high level OS like Linux or QNX on A72 cores via MMCSD or OSPI. This is supported on HS devices as well.</p>
+<div class="section" id="boot-stages">
+<h2>5.3.1. Boot stages<a class="headerlink" href="#boot-stages" title="Permalink to this headline">¶</a></h2>
+<p>This application boots the main domain cores. In default boot sequence there are 3 stages. It can RTOS in all the three stages or RTOS in the stage1, stage2 and high level OS like QNX, Linux in the stage3.
+The specification of the cores to be included in each stage is given by the arrays &#8220;boot_order_first_stage&#8221;, &#8220;boot_order_second_stage&#8221; and &#8220;boot_order_three_stage&#8221; found in &lt;PDK&gt;/packages/ti/boot/sbl/example/boot_app/soc/$SOC/boot_core_defs.c</p>
+</div>
+<div class="section" id="steps-to-boot-different-os-via-different-boot-media">
+<h2>5.3.2. Steps to Boot Different OS via Different Boot Media<a class="headerlink" href="#steps-to-boot-different-os-via-different-boot-media" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic">
+<li><p class="first">Booting lateapps via MMCSD</p>
+</li>
+<li><p class="first">Booting QNX via MMCSD</p>
+</li>
+<li><p class="first">Booting Linux via MMCSD</p>
+</li>
+<li><p class="first">Booting lateapps via OSPI</p>
+</li>
+<li><p class="first">Booting QNX via OSPI</p>
+</li>
+<li><p class="first">Booting Linux via OSPI</p>
+<p><strong>Booting lateapps via MMCSD</strong></p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Generate lateapps by using the following commands<ul>
+<li>goto &lt;PDK&gt;/packages/ti/boot/sbl/example/boot_app/scripts</li>
+<li>Run ./make_multicore_appimages.sh &lt;board_name&gt;</li>
+<li>Multicore images(lateapps) will be generated in &lt;PDK&gt;/packages/ti/boot/sbl/example/boot_app/multicore_images/$BOARD/.</li>
+<li>Stage1 image corresponds to lateapp1, stage2 image corresponds to lateapp2 and stage3 image corresponds to lateapp3.</li>
+</ul>
+</li>
+<li>Copy sbl_mmcsd_img_mcu1_0_release.tiimage as tiboot3.bin to the boot partition of SD card</li>
+<li>Copy tifs.bin to the boot partition of SD card</li>
+<li>Build boot_app_mmcsd by using the following command<ul>
+<li>make BOARD=&lt;board_name&gt; CORE=mcu1_0 boot_app_mmcsd -sj</li>
+</ul>
+</li>
+<li>Copy sbl_boot_app_mmcsd_&lt;board_name&gt;_mcu1_0_freertos_TestApp_release.appimage image as app to the boot partition of SD card</li>
+<li>Copy stage1 image as lateapp1, stage2 image as lateapp2 and stage3 image as lateapp3 to the boot partition of SD card</li>
+</ol>
+</div></blockquote>
+<p><strong>Booting QNX via MMCSD</strong></p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Generate lateapps by using the following commands<ul>
+<li>goto &lt;PDK&gt;/packages/ti/boot/sbl/example/boot_app/scripts</li>
+<li>Run ./make_multicore_appimages.sh &lt;board_name&gt;</li>
+<li>Multicore images(lateapps) will be generated in &lt;PDK&gt;/packages/ti/boot/sbl/example/boot_app/multicore_images/$BOARD/.</li>
+<li>Stage1 image corresponds to lateapp1, stage2 image corresponds to lateapp2 and stage3 image corresponds to lateapp3.</li>
+</ul>
+</li>
+<li>Copy sbl_mmcsd_img_mcu1_0_release.tiimage as tiboot3.bin to the boot partition of SD card</li>
+<li>Copy tifs.bin to the boot partition of SD card</li>
+<li>Build boot_app_mmcsd by using the following command<ul>
+<li>make BOARD=&lt;board_name&gt; CORE=mcu1_0 boot_app_mmcsd_qnx -sj</li>
+</ul>
+</li>
+<li>Copy sbl_boot_app_mmcsd_qnx_&lt;board_name&gt;_mcu1_0_freertos_TestApp_release.appimage image as app to the boot partition of SD card</li>
+<li>Copy stage1 image as lateapp1, stage2 image as lateapp2 to the boot partition of SD card</li>
+<li>Copy ifs_qnx.appimage, atf_optee.appimage to the boot partition of SD card. Please find these images in the QNX daily build <a class="reference external" href="https://jenkins-opbu1.dal.design.ti.com/job/J7ES_QNX_7.1_DB/">here</a></li>
+</ol>
+</div></blockquote>
+<p><strong>Booting Linux via MMCSD</strong></p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Generate lateapps by using the following commands<ul>
+<li>goto &lt;PDK&gt;/packages/ti/boot/sbl/example/boot_app/scripts</li>
+<li>Run ./make_multicore_appimages.sh &lt;board_name&gt;</li>
+<li>Multicore images(lateapps) will be generated in &lt;PDK&gt;/packages/ti/boot/sbl/example/boot_app/multicore_images/$BOARD/.</li>
+<li>Stage1 image corresponds to lateapp1, stage2 image corresponds to lateapp2 and stage3 image corresponds to lateapp3.</li>
+</ul>
+</li>
+<li>Copy sbl_mmcsd_img_mcu1_0_release.tiimage as tiboot3.bin to the boot partition of SD card</li>
+<li>Copy tifs.bin to the boot partition of SD card</li>
+<li>Build boot_app_mmcsd_linux by using the following command<ul>
+<li>make BOARD=&lt;board_name&gt; CORE=mcu1_0 boot_app_mmcsd_linux -sj</li>
+</ul>
+</li>
+<li>Copy sbl_boot_app_mmcsd_linux_&lt;board_name&gt;_mcu1_0_freertos_TestApp_release.appimage image as app to the boot partition of SD card</li>
+<li>Copy stage1 image as lateapp1, stage2 image as lateapp2 to the boot partition of SD card</li>
+<li>Copy atf_optee.appimage, tidtb_linux.appimage, tikernelimage_linux.appimage to the boot partition of SD card.</li>
+</ol>
+</div></blockquote>
+<p><strong>Booting lateapps via OSPI</strong></p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Generate lateapps by using the following commands<ul>
+<li>goto &lt;PDK&gt;/packages/ti/boot/sbl/example/boot_app/scripts</li>
+<li>Run ./make_multicore_appimages.sh &lt;board_name&gt;</li>
+<li>Multicore images(lateapps) will be generated in &lt;PDK&gt;/packages/ti/boot/sbl/example/boot_app/multicore_images/$BOARD/.</li>
+<li>Stage1 image corresponds to lateapp1, stage2 image corresponds to lateapp2 and stage3 image corresponds to lateapp3.</li>
+</ul>
+</li>
+<li>Build boot_app_ospi by using the following command<ul>
+<li>make BOARD=&lt;board_name&gt; CORE=mcu1_0 boot_app_mmcsd_linux -sj</li>
+</ul>
+</li>
+<li>Flash images to ospi flash memory at specified address using uniflash tool<ul>
+<li>sbl_cust_img_mcu1_0_release.tiimage at an offset of 0x0</li>
+<li>tifs.bin at an offset of 0x8000</li>
+<li>boot_app_ospi_&lt;board_name&gt;_mcu1_0_freertos_TestApp_release.appimage  at an offset of 0x100000</li>
+<li>stage1 image at an offset of 0x1fc0000</li>
+<li>stage2 image at an offset of 0x27c0000</li>
+<li>stage3 image at an offset of 0x37c0000</li>
+</ul>
+</li>
+</ol>
+</div></blockquote>
+<p><strong>Booting QNX via OSPI</strong></p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Generate lateapps by using the following commands<ul>
+<li>goto &lt;PDK&gt;/packages/ti/boot/sbl/example/boot_app/scripts</li>
+<li>Run ./make_multicore_appimages.sh &lt;board_name&gt;</li>
+<li>Multicore images(lateapps) will be generated in &lt;PDK&gt;/packages/ti/boot/sbl/example/boot_app/binary/$BOARD/. Stage1 image corresponds to lateapp1, stage2 image corresponds to lateapp2 and so on.</li>
+</ul>
+</li>
+<li>Build boot_app_ospi_qnx by using the following command<ul>
+<li>make BOARD=&lt;board_name&gt; CORE=mcu1_0 boot_app_mmcsd_qnx -sj</li>
+</ul>
+</li>
+<li>Flash images to ospi flash memory at specified address using uniflash tool<ul>
+<li>sbl_cust_img_mcu1_0_release.tiimage at an offset of 0x0</li>
+<li>tifs.bin at an offset of 8000</li>
+<li>boot_app_ospi_qnx_&lt;board_name&gt;_mcu1_0_freertos_TestApp_release.appimage at an offset of 0x100000</li>
+<li>stage1 image at an offset of 0x1fc0000</li>
+<li>stage2 image at an offset of 0x27c0000</li>
+<li>atf_optee.appimage at an offset of 0x1c0000</li>
+<li>ifs_qnx.appimage at an offset of 0x7c0000</li>
+</ul>
+</li>
+</ol>
+</div></blockquote>
+<p><strong>Booting Linux via OSPI</strong></p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Generate lateapps by using the following commands<ul>
+<li>goto &lt;PDK&gt;/packages/ti/boot/sbl/example/boot_app/scripts</li>
+<li>Run ./make_multicore_appimages.sh &lt;board_name&gt;</li>
+<li>Multicore images(lateapps) will be generated in &lt;PDK&gt;/packages/ti/boot/sbl/example/boot_app/binary/$BOARD/. Stage1 image corresponds to lateapp1, stage2 image corresponds to lateapp2 and so on.</li>
+</ul>
+</li>
+<li>Build boot_app_ospi by using the following command<ul>
+<li>make BOARD=&lt;board_name&gt; CORE=mcu1_0 boot_app_mmcsd_linux -sj</li>
+</ul>
+</li>
+<li>Flash images to ospi flash memory at specified address using uniflash tool<ul>
+<li>sbl_cust_img_mcu1_0_release.tiimage at an offset of 0x0</li>
+<li>tifs.bin at an offset of 0x8000</li>
+<li>boot_app_ospi_linux_&lt;board_name&gt;_mcu1_0_freertos_TestApp_release.appimage at an offset of 0x100000</li>
+<li>stage1 image at an offset of 0x1fc0000</li>
+<li>stage2 image at an offset of 0x27c0000</li>
+<li>atf_optee.appimage at an offset of 0x1c0000</li>
+<li>tidtb_linux.appimage at an offset of 0x7c0000</li>
+<li>tikernelimage_linux.appimage at an offset of 0x1ec0000</li>
+</ul>
+</li>
+</ol>
+</div></blockquote>
+</li>
+</ol>
+</div>
+<div class="section" id="booting-in-hs-devices">
+<h2>5.3.3. Booting in HS devices<a class="headerlink" href="#booting-in-hs-devices" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ol class="arabic simple">
+<li>To boot the boot app on HS devices add _hs while building boot app image i.e boot_app_mmcsd_hs or boot_app_ospi_hs.</li>
+<li>Use .appimage.signed images instead of .appimage for HS devices.</li>
+</ol>
+</div></blockquote>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../family_cfg/jacinto/index_board_jacinto.html" class="btn btn-neutral float-right" title="6. Board/EVM Abstraction" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="boot_k3.html" class="btn btn-neutral" title="5.2. J721E SBL" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="http://www.ti.com/corp/docs/legal/copyright.shtml">&copy; Copyright 1995-2020</a>, Texas Instruments Incorporated. All rights reserved. <br>
+      <a href="http://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="http://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="http://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="http://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'08_06_01',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

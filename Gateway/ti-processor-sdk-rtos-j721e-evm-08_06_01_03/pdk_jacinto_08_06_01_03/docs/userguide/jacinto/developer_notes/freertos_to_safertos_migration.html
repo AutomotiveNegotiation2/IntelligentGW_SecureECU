@@ -1,0 +1,379 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>9.7. SafeRTOS Usage and Migration Guidelines &mdash; Platform Development Kit (PDK) - JACINTO User Guide</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Platform Development Kit (PDK) - JACINTO User Guide" href="../index.html"/>
+        <link rel="up" title="9. Developer Notes" href="../family_cfg/jacinto/index_developer_notes_jacinto.html"/>
+        <link rel="prev" title="9.6. TI ARM CLANG Usage and Migration Guidelines" href="ticlang_Migrationguidelines.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index_jacinto.html" class="icon icon-home"> Platform Development Kit (PDK) - JACINTO User Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                08_06_01
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">1. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_release_notes_jacinto.html">2. Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">3. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_modules_jacinto.html">4. Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_boot_jacinto.html">5. Bootloader (SBL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_board_jacinto.html">6. Board/EVM Abstraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_howto_jacinto.html">7. How to Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../family_cfg/jacinto/index_faq_jacinto.html">8. Frequently Asked Questions</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../family_cfg/jacinto/index_developer_notes_jacinto.html">9. Developer Notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="freertos_guidelines.html">9.1. FreeRTOS Usage and Migration Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="freertos_ccs_rov.html">9.2. FreeRTOS Real-time Object View (ROV)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipc_lld_migration_guide.html">9.3. IPC LLD Migration Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xip_using_dummy_app.html">9.4. XIP Using Dummy App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xip_using_two_appimages.html">9.5. XIP Using Two Appimages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ticlang_Migrationguidelines.html">9.6. TI ARM CLANG Usage and Migration Guidelines</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">9.7. SafeRTOS Usage and Migration Guidelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#overview-of-safertos">9.7.1. Overview of SafeRTOS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#safertos-and-the-os-abstraction-layer">9.7.2. SafeRTOS and the OS Abstraction Layer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#safertos-migration-from-freertos">9.7.3. SafeRTOS migration from FreeRTOS</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#limitations">9.7.3.1. Limitations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index_jacinto.html">Platform Development Kit (PDK) - JACINTO User Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index_jacinto.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../family_cfg/jacinto/index_developer_notes_jacinto.html">9. Developer Notes</a> &raquo;</li>
+      
+    <li>9.7. SafeRTOS Usage and Migration Guidelines</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="safertos-usage-and-migration-guidelines">
+<span id="freertos-to-safertos-migration-guidelines"></span><h1>9.7. SafeRTOS Usage and Migration Guidelines<a class="headerlink" href="#safertos-usage-and-migration-guidelines" title="Permalink to this headline">¶</a></h1>
+<p>This section provides information on migrating to SafeRTOS from FreeRTOS on PDK.</p>
+<div class="section" id="overview-of-safertos">
+<h2>9.7.1. Overview of SafeRTOS<a class="headerlink" href="#overview-of-safertos" title="Permalink to this headline">¶</a></h2>
+<p>SafeRTOS is a functional safety, pre-certified, Real Time Operating System (RTOS) for embedded processors.
+It is a derivative of FreeRTOS. SafeRTOS is developped by WITTENSTEIN high integrity systems (WHIS) <sup>®</sup>.
+SafeRTOS is based on the functional model of FreeRTOS, however, it is not the FreeRTOS kernel,
+and therefore, migration to SaferRTOS from FreeRTOS should be thought of as integrating a whole new RTOS.</p>
+</div>
+<div class="section" id="safertos-and-the-os-abstraction-layer">
+<h2>9.7.2. SafeRTOS and the OS Abstraction Layer<a class="headerlink" href="#safertos-and-the-os-abstraction-layer" title="Permalink to this headline">¶</a></h2>
+<p>SDK had already taken care of SafeRTOS recommendations when using SafeRTOS APIs.
+All drivers in the SDK are OS agnostic with the usage of OSAL APIs.
+This make sure TI drivers and SW built on top of FreeRTOS can be reused with SafeRTOS.</p>
+<p>The Processor SDK provides an Operating System Abstraction Layer(OSAL).
+OSAL tries to take in all the OS specific function calls and provides a uniform view to the application.
+For the migration from FreeRTOS to SafeRTOS, OSAL takes in all the required changes.
+If OSAL is not used by the application, then the application needs to take care of the required changes
+for the migration to SafeRTOS. IF not using the OSAL, then please refer the WHIS documentation on
+FreeRTOS to SafeRTOS migration which can be found here:
+&lt;SAFERTOS_INSTALL_DIR&gt;/Documentation/Manuals/`Upgrading from FreeRTOS to SafeRTOS.pdf`.</p>
+<p>Following sections discuss about key care-abouts when migrating from FreeRTOS to SafeRTOS in Processor SDK using the OSAL.</p>
+</div>
+<div class="section" id="safertos-migration-from-freertos">
+<h2>9.7.3. SafeRTOS migration from FreeRTOS<a class="headerlink" href="#safertos-migration-from-freertos" title="Permalink to this headline">¶</a></h2>
+<p><strong>Changes in R5 Applications due to SafeRTOS migration</strong></p>
+<ul class="simple">
+<li>SafeRTOS provides Freedom From Interferance(FFI), by virtue of which tasks can be created in User Mode,
+or in Privileged Mode. Also, two task specific MPU regions can also be provided.</li>
+<li>To provide FFI support, SafeRTOS owns the MPU configuration.</li>
+</ul>
+<blockquote>
+<div><ul>
+<li><p class="first">This means, the application needs to use SafeRTOS APIs to configure various MPU regions.</p>
+</li>
+<li><p class="first">For programming the MPU regions in FreeRTOS, CSL structure, <code class="docutils literal"><span class="pre">`CSL_ArmR5MpuRegionCfg`</span></code> was used,
+which the applications could override and provide their own configurations.</p>
+<blockquote>
+<div><ul class="simple">
+<li>OSAL SafeRTOS provides a structure implementation for configuring the MPU regions that is very similar
+to the CSL counterpart in FreeRTOS: <code class="docutils literal"><span class="pre">`xMPU_CONFIG_PARAMETERS`</span></code>. The default MPU configurations is
+defined in <code class="docutils literal"><span class="pre">`gMPUConfigParms`</span></code>, which is weakly defined here: <strong>&lt;SDK_INSTALL_DIR&gt;/pdk/packages/ti/osal/src/safertos/SafeRTOS_mpu_r5f.c</strong>.
+This definition of the MPU table can also be overriden by the application.</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li>SafeRTOS applications have only 9 programmable MPU regions as opposed to 16 configurable MPU regions in FreeRTOS.</li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li>SafeRTOS reserves MPU configurations for the following:</li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li>1 Global region.</li>
+<li>3 Kernel specific regions.</li>
+<li>1 Task stack region.</li>
+<li>2 Task specific regions.</li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+<ul class="simple">
+<li>The task stack needs to be an entry in the MPU configuration table.
+This mandates the <strong>task stack to be aligned with the stack size</strong>.</li>
+<li>To enable CCS debugging, user needs to set permission for the portmpuREGION_SYS_CONFIGURATION
+to READ_WRITE in the &lt;SAFERTOS_INSTALL_DIR&gt;/source_code_and_projects/SafeRTOS/portable/199_TI_CR5/portmpu.h
+Refer WHIS Documentation at
+<cite>&lt;SAFERTOS_VERSION&gt; EVAL - TI CLANG &lt;BOARD&gt;-&lt;ISA&gt; readme.rtf</cite> in &lt;SAFERTOS_INSTALL_DIR&gt; for more details.</li>
+</ul>
+<p><strong>Changes in C66X Applications due to SafeRTOS migration</strong></p>
+<ul class="simple">
+<li>There are no changes related to SafeRTOS for C66x.</li>
+</ul>
+<p><strong>Changes in C7X Applications due to SafeRTOS migration</strong></p>
+<ul class="simple">
+<li>The SafeRTOS package for C7x uses <code class="docutils literal"><span class="pre">`.asmfunc`</span></code> and <code class="docutils literal"><span class="pre">`.endasmfunc`</span></code> directives.
+For this reason, <code class="docutils literal"><span class="pre">`--symdebug:dwarf`</span></code> compiler flag should be set.<ul>
+<li>The PDK build infrastructure already handles this. If users are using external compiler makefile, this update should be included.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Common changes due to SafeRTOS migration</strong></p>
+<ul class="simple">
+<li>For all the cores, the linker command files need to take care of the additional sections that SafeRTOS requires.<ul>
+<li>The common linker files can be found in &lt;PSDK_RTOS&gt;/pdk/packages/ti/build/&lt;SOC&gt;/linker_&lt;ISA&gt;_safertos.&lt;cmd or lds&gt;.</li>
+<li>User can refer this linker file as a reference for creating new linker command files.</li>
+<li>The SafeRTOS demo linker file can also be referred which can be found in:
+&lt;SAFERTOS_INSTALL_DIR&gt;/source_code_and_projects/demo_projects/SafeRTOS_&lt;BOARD&gt;_&lt;ISA&gt;_Demo/linker_core_&lt;ISA&gt;.lds</li>
+</ul>
+</li>
+</ul>
+<div class="section" id="limitations">
+<h3>9.7.3.1. Limitations<a class="headerlink" href="#limitations" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>OSAL FreeRTOS had an implemention for the LoadP API, which calculates the CPU and Task load.
+For SafeRTOS this implementation is not provided in the OSAL.<ul>
+<li>For Load measurements / run-time stats, please refer WHIS SafeRTOS User Guide, or contact WHIS.</li>
+</ul>
+</li>
+<li>CCS ROV is not supported for SafeRTOS.<ul>
+<li>SafeRTOS debug awareness is supported in Lauterbach.</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="ticlang_Migrationguidelines.html" class="btn btn-neutral" title="9.6. TI ARM CLANG Usage and Migration Guidelines" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="http://www.ti.com/corp/docs/legal/copyright.shtml">&copy; Copyright 1995-2020</a>, Texas Instruments Incorporated. All rights reserved. <br>
+      <a href="http://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="http://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="http://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="http://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'08_06_01',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

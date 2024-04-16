@@ -1,0 +1,69 @@
+=======================
+AM64X Host Descriptions
+=======================
+
+.. _soc_doc_am64x_public_host_desc_intro:
+
+Introduction
+============
+
+This chapter provides information of Host IDs that are permitted in
+the AM64X SoC. These host IDs represent processing entities (or PEs)
+which is mandatory identification of a Host in a processor.
+
+Typically a host is a 'compute entity' which may be an actual
+processor or even a virtual machine. We just use host or processing
+entity to indicate the same thing.
+
+.. _soc_doc_am64x_public_host_desc_host_list:
+
+Enumeration of Host IDs
+=======================
+
++-----------+-------------+-------------------+--------------------------------------------+
+|   Host ID | Host Name   | Security Status   | Description                                |
++===========+=============+===================+============================================+
+|         0 | DMSC        | Secure            | Device Management and Security Control     |
++-----------+-------------+-------------------+--------------------------------------------+
+|        10 | A53_0       | Secure            | Cortex a53 context 0 on Main island        |
++-----------+-------------+-------------------+--------------------------------------------+
+|        11 | A53_1       | Secure            | Cortex A53 context 1 on Main island        |
++-----------+-------------+-------------------+--------------------------------------------+
+|        12 | A53_2       | Non Secure        | Cortex A53 context 2 on Main island        |
++-----------+-------------+-------------------+--------------------------------------------+
+|        13 | A53_3       | Non Secure        | Cortex A53 context 3 on Main island        |
++-----------+-------------+-------------------+--------------------------------------------+
+|        14 | A53_4       | Non Secure        | Cortex A53 context 1 on Main island        |
++-----------+-------------+-------------------+--------------------------------------------+
+|        30 | M4_0        | Non Secure        | M4                                         |
++-----------+-------------+-------------------+--------------------------------------------+
+|        35 | MAIN_0_R5_0 | Secure            | Cortex R5_0 context 0 on Main island(BOOT) |
++-----------+-------------+-------------------+--------------------------------------------+
+|        36 | MAIN_0_R5_1 | Non Secure        | Cortex R5_0 context 1 on Main island       |
++-----------+-------------+-------------------+--------------------------------------------+
+|        37 | MAIN_0_R5_2 | Secure            | Cortex R5_0 context 2 on Main island       |
++-----------+-------------+-------------------+--------------------------------------------+
+|        38 | MAIN_0_R5_3 | Non Secure        | Cortex R5_0 context 3 on Main island       |
++-----------+-------------+-------------------+--------------------------------------------+
+|        40 | MAIN_1_R5_0 | Secure            | Cortex R5_1 context 0 on Main island       |
++-----------+-------------+-------------------+--------------------------------------------+
+|        41 | MAIN_1_R5_1 | Non Secure        | Cortex R5_1 context 1 on Main island       |
++-----------+-------------+-------------------+--------------------------------------------+
+|        42 | MAIN_1_R5_2 | Secure            | Cortex R5_1 context 2 on Main island       |
++-----------+-------------+-------------------+--------------------------------------------+
+|        43 | MAIN_1_R5_3 | Non Secure        | Cortex R5_1 context 3 on Main island       |
++-----------+-------------+-------------------+--------------------------------------------+
+|        50 | ICSSG_0     | Non Secure        | ICSSG context 0 on Main island             |
++-----------+-------------+-------------------+--------------------------------------------+
+|        51 | ICSSG_1     | Non Secure        | ICSSG context 1 on Main island             |
++-----------+-------------+-------------------+--------------------------------------------+
+
+.. note::
+
+   * Description provides an intended purpose
+     of the host ID, though on some systems,
+     this might be used differently, backing memory and
+     link allocations are made with the specified purpose
+     in mind
+   * Security Status provides an intended purpose for the
+     Host context

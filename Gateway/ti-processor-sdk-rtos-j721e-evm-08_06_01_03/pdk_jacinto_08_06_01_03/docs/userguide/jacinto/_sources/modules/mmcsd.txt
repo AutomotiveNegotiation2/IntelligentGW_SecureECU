@@ -1,0 +1,192 @@
+MMCSD
+-----
+
+Introduction
+^^^^^^^^^^^^
+
+MMCSD module provides an interface between CPU and any
+MMCSD-bus-compatible device that connects via MMCSD serial bus. External
+components attached to MMCSD bus can serially transmit/receive data
+to/from the CPU device through two-wire interface
+
+.. rubric:: Key Features
+   :name: key-features
+
+| Type of transfers
+
+   -   Read
+   -   Write
+   -   Write followed by read
+
+| Operating modes
+
+   -   Blocking(interrupt or Non interrupt)
+   -   Callback mode(interrupt)
+
+| Supports only master mode. Slave mode is not supported
+
+| 
+
+User Interface
+^^^^^^^^^^^^^^
+
+Driver Configuration
+~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: **Board Specific Configuration**
+   :name: board-specific-configuration
+
+All board specific configurations eg:enabling clock and pin-mux for
+UART pins are required before calling any driver APIs.By default
+Board_Init() API supports all initialization sequence for TI supported
+EVMs. In addition it initializes UART instance for Console/STDIO.
+Once board specific configuration is complete 
+MMCSD_init() API can be called to initialize driver.
+
+.. rubric:: **MMCSD Configuration Structure**
+   :name: mmcsd-configuration-structure
+
+The MMCSD_soc.c file binds driver with hardware attributes on the
+board through MMCSD_config structure. This structure must be 
+initialized before the MMCSD_init() function is called and cannot be
+changed afterwards. For details about the individual fields of this
+structure, see the API Guide.
+
+
+Application
+^^^^^^^^^^^^
+
+Examples & Unit tests
+~~~~~~~~~~~~~~~~~~~~~
+
++----------------------------------+-------------------------------+-----------------------+-----------------+--------------+
+| Name                             |   Description                 |  Expected Results     |  Supported SOCs | Build Type   |
++==================================+===============================+=======================+=================+==============+
+| MMCSD_TestApp                    |                               | Prints on console     |                 |              |
+|                                  |   Unit Test                   | All tests have passed |                 |              |
+|                                  |   application                 |                       |                 |              |
+|                                  |   demonstrating write         |                       |                 |              |
+|                                  |   and read a fixed            |                       |                 |              |
+|                                  |   number of bytes             |                       |  AM65x          | Makefile     |
+|                                  |   into MMCSD card.            |                       |  J721e          |              |
+|                                  |   Verifies written            |                       |  J7200          |              |
+|                                  |   data pattern to             |                       |  AM64x          |              |
+|                                  |   conclude PASS/FAIL.         |                       |                 |              |
++----------------------------------+-------------------------------+-----------------------+-----------------+--------------+
+|  MMCSD_DMA_TestApp               |   Functionally same           | Prints on console     |                 |              |
+|                                  |   as MMCSD_TestApp            | All tests have passed |                 |              |
+|                                  |   but with DMA enabled        |                       |  AM65x          | Makefile     |
+|                                  |                               |                       |  J721e          |              |
+|                                  |                               |                       |  J7200          |              |
+|                                  |                               |                       |  AM64x          |              |
++----------------------------------+-------------------------------+-----------------------+-----------------+--------------+
+| MMCSD_EMMC_TestApp               |                               |                       |                 |              |
+|                                  |   Unit Test                   | Prints  on console    |                 |              |
+|                                  |   application                 | All tests have passed |                 |              |
+|                                  |   demonstrating write         |                       |                 |              |
+|                                  |   and read a fixed            |                       |  AM65x          | Makefile     |
+|                                  |   number of bytes             |                       |  J721e          |              |
+|                                  |   into the onboard            |                       |  J7200          |              |
+|                                  |   EMMC.Verifies written       |                       |  AM64x          |              |
+|                                  |   data pattern to             |                       |                 |              |
+|                                  |   conclude PASS/FAIL.         |                       |                 |              |
++----------------------------------+-------------------------------+-----------------------+-----------------+--------------+
+| MMCSD_EMMC_DMA_TestApp           |   Functionally                | Prints on console     |  J7200          |              |
+|                                  |   Same as EMMC_TestApp        | All tests have passed |  AM65x          | Makefile     |
+|                                  |   but using  DMA mode         |                       |  J721e          |              |
+|                                  |                               |                       |  AM64x          |              |
++----------------------------------+-------------------------------+-----------------------+-----------------+--------------+
+| MMCSD_Baremetal_TestApp          |   Baremetal version of        | Prints on console     |                 |              |
+|                                  |   MMCSD_TestApp               | All tests have passed |  J7200          |              |
+|                                  |                               |                       |  AM65x          | Makefile     |
+|                                  |                               |                       |  J721e          |              |
+|                                  |                               |                       |  AM64x          |              |
++----------------------------------+-------------------------------+-----------------------+-----------------+--------------+
+| MMCSD_Baremetal_DMA_TestApp      |   Baremetal version of        | Prints on console     |                 |              |
+|                                  |   MMCSD_EMMC_TestApp          | All tests have passed |  J7200          |              |
+|                                  |                               |                       |  AM65x          | Makefile     |
+|                                  |                               |                       |  J721e          |              |
+|                                  |                               |                       |  AM64x          |              |
++----------------------------------+-------------------------------+-----------------------+-----------------+--------------+
+| MMCSD_Baremetal_EMMC_TestApp     |   Baremetal version of        | Prints on console     |                 |              |
+|                                  |   MMCSD_EMMC_TestApp          | All tests have passed |  J7200          |              |
+|                                  |                               |                       |  AM65x          | Makefile     |
+|                                  |                               |                       |  J721e          |              |
+|                                  |                               |                       |  AM64x          |              |
++----------------------------------+-------------------------------+-----------------------+-----------------+--------------+
+| MMCSD_Baremetal_EMMC_DMA_TestApp |   Functionally same as        | Prints on console     |                 |              |
+|                                  |   MMCSD_Baremetal_EMMC_TestApp| All tests have passed |  J7200          |              |
+|                                  |   but with DMA enabled        |                       |  AM65x          | Makefile     |
+|                                  |                               |                       |  J721e          |              |
+|                                  |                               |                       |  AM64x          |              |
++----------------------------------+-------------------------------+-----------------------+-----------------+--------------+
+| MMCSD_Regression_TestApp         |   Menu driven regression test | Prints on console     |  J7200          |              |
+|                                  |   which tests various         | All tests have passed |  AM65x          | Makefile     |
+|                                  |   configurations of SD card   |                       |  J721e          |              |
+|                                  |                               |                       |  AM64x          |              |
++----------------------------------+-------------------------------+-----------------------+-----------------+--------------+
+| MMCSD_EMMC_Regression_TestApp    |   Menu driven regression test | Prints on console     |  J7200          |              |
+|                                  |   which tests various         | All tests have passed |  AM65x          | Makefile     |
+|                                  |   configurations of EMMC      |                       |  J721e          |              |
+|                                  |                               |                       |  AM64x          |              |
++----------------------------------+-------------------------------+-----------------------+-----------------+--------------+
+
+.. ifconfig:: CONFIG_family in ('am65xx', 'jacinto')
+
+    Benchmarking Read/Write Performance on |__PART_DEFAULT_SOC_CAPS__|
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+    The MMCSD_<EMMC>_Regression_TestApp application (listed above) measures read/write throughput (in mega bytes per sec). 
+
+    It measures the following
+        - RAW read/write throughput:  This involves the reading/writing of a continuous block of data, say 1MB data buffer on 
+        to the SD/eMMC using MMCSD_Read()/MMCSD_Write().
+        - FATFS read/write (SD Only) throughput: This involves reading/writing of a 1MB buffer of data through f_read()/f_write(). 
+        Please note that FAT32 is tested with SD card only
+    `
+    Benchmarking Steps
+    ^^^^^^^^^^^^^^^^^^
+
+    The performance benchmarks on SD Read/Write can be done with the following steps
+
+        - Load the MMCSD_Regression_TestApp on A53/R5 core of AM65x or mpu1_0/mcu1_0 core of J721e
+        - Insert SD Card formatted with FAT32 format preferably with allocation size=4096 bytes for better performance.
+        - Run the application. It presents with a menu of various modes the SD card which can be run on the UART console
+        - Select the desired mode from the list (say HS mode) and press Enter
+        - The test will run RAW & FATFS read/writes of various buffer sizes 256K, 512K, 1024K and 2048K. 
+        This might take a minute or two to complete.
+        - Two tables are printed at the end of the test run for this mode with RAW & FATFS throughput numbers 
+        for each buffer size.
+        - Note: Instead of running each mode seperately, you can select "All non powercycle tests" option (-1)  
+        which runs all the supported modes along with the throughput numbers for each of them.
+
+
+    EMMC performance benchmarks can be measured with the following steps
+
+        - Load the MMCSD_EMMC_Regression_TestApp on A53/R5 core of AM65x or mpu1_0/mcu1_0 core of J721e
+        - Run the application. It presents with a menu of various eMMC modes which can be run on the UART console
+        - Select the desired mode from the list (say HS-DDR mode) and press Enter
+        - The test will run RAW read/writes of various buffer sizes 256K, 512K, 1024K and 2048K. 
+        This might take a minute or two to complete.
+        - A table is printed at the end of the test with the RAW throughput numbers for each buffer size.
+        - Note: Instead of running each mode seperately, you can select "All non powercycle tests" option (-1)  
+        which runs all the supported modes along with the throughput numbers for each of them.`
+
+Building MMCSD Test applications via makefiles
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+-  MMCSD Test applications and dependent libraries are built from the top level mmcsd makefile
+-  Refer to the `Processor SDK RTOS Getting Started Guide <index_overview.html#setup-environment>`__  for details
+   of how to setup the build environment. Once you have setup the build environment, issue the following commands:  
+   
+   -  cd <pdk>/packages/
+   -  To build: make mmcsd 
+   -  To clean: make mmcsd_clean 
+
+- Similarly, to build at the module level, issue the following commands for rebuilding :
+	
+  - cd <pdk>/packages/ti/drv/mmcsd
+  - To build: make all
+  - To clean: make clean
+
+
