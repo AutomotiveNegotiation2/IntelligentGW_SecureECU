@@ -17,7 +17,6 @@ build/armv7/
 docs/Doxyfile
 docs/doxygen/
 example/console/*/*/bios/src
-FATFSver.h
 lib/
 package.mak
 package/

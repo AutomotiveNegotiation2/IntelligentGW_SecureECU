@@ -61,7 +61,7 @@ ifneq ($(filter $(TARGET_OS),FREERTOS SAFERTOS),)
 endif
 
 # Comment out to disable QSGMII ports in J721E EVM
-DEFS += ENABLE_QSGMII_PORTS
+####DEFS += ENABLE_QSGMII_PORTS
 
 # MAC-only ports are not supported in QNX virtual MAC driver
 ifneq ($(BUILD_QNX_A72), yes)

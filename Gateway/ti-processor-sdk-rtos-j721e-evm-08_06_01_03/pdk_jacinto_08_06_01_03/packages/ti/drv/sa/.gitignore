@@ -39,7 +39,6 @@ Settings.xdc
 *.orig
 eclipse/.eclipseextension
 eclipse/sample.xml
-/makefile
 tmp/
 webgen/exports/
 *.bak
