@@ -1496,7 +1496,17 @@ static uint32_t EnetPhy_getLocalCaps(EnetPhy_Handle hPhy)
     uint16_t val  = 0U;
 
     /* Get 10/100 Mbps capabilities */
-    EnetPhy_readReg(hPhy, PHY_BMSR, &val);
+	if(hPhy->phyCfg.isPhyModeC45)
+	{
+		EnetPhy_readC45Reg(hPhy, 1, 0x0012, &val);
+		if(val & 3)
+			caps |= ENETPHY_LINK_CAP_FD1000;
+		ENETTRACE_DBG("PHY(%u) caps:0x%x\n", hPhy->addr, caps);
+		return caps;
+	}
+	
+	EnetPhy_readReg(hPhy, PHY_BMSR, &val);
+	
     if ((val & BMSR_100FD) != 0U)
     {
         caps |= ENETPHY_LINK_CAP_FD100;
@@ -1520,7 +1530,7 @@ static uint32_t EnetPhy_getLocalCaps(EnetPhy_Handle hPhy)
     /* Get extended (1 Gbps) capabilities if supported */
     if ((val & BMSR_GIGEXTSTS) != 0U)
     {
-        EnetPhy_readReg(hPhy, PHY_GIGESR, &val);
+		EnetPhy_readReg(hPhy, PHY_GIGESR, &val);
 
         if ((val & GIGESR_1000FD) != 0U)
         {
@@ -1541,7 +1551,11 @@ static uint32_t EnetPhy_findCommonCaps(EnetPhy_Handle hPhy)
     uint32_t localCaps = 0U;
     uint32_t partnerCaps = 0U;
     uint16_t val = 0U;
-
+	
+	if(hPhy->phyCfg.isPhyModeC45)
+	{
+		return (localCaps & partnerCaps);
+	}
     /* Get local device capabilities */
     EnetPhy_readReg(hPhy, PHY_ANAR, &val);
 
@@ -1604,6 +1618,13 @@ static uint32_t EnetPhy_findCommon1000Caps(EnetPhy_Handle hPhy)
     uint32_t localCaps = 0U;
     uint32_t partnerCaps = 0U;
     uint16_t val;
+	
+	if(hPhy->phyCfg.isPhyModeC45)
+	{
+		partnerCaps |= ENETPHY_LINK_CAP_FD1000;
+		localCaps |= ENETPHY_LINK_CAP_FD1000;
+		return (localCaps & partnerCaps);
+	}
 
     /* Get local device capabilities */
     EnetPhy_readReg(hPhy, PHY_GIGCR, &val);
