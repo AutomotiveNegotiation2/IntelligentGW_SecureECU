@@ -1432,8 +1432,11 @@ static void EnetPhy_linkWaitState(EnetPhy_Handle hPhy)
     uint32_t nwayCaps;
     uint16_t status;
 
-    EnetPhy_readReg(hPhy, PHY_BMSR, &status);
-
+	if(!hPhy->phyCfg.isPhyModeC45)
+		EnetPhy_readReg(hPhy, PHY_BMSR, &status);
+	else
+		EnetPhy_readC45Reg(hPhy, 3, 0x0901, &status);
+	
     if ((status & BMSR_LINKSTS) != 0U)
     {
         /* Populate FSM state now as most FSM states are bypassed for strapped PHYs */
