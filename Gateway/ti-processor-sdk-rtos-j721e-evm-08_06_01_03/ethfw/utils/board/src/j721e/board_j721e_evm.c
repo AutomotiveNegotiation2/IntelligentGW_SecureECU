@@ -631,6 +631,7 @@ int32_t EthFwBoard_setPortCfg(Enet_MacPort macPort,
         phyCfg->extendedCfgSize = portCfg->phyCfg.extendedCfgSize;
         memcpy(phyCfg->extendedCfg, portCfg->phyCfg.extendedCfg, portCfg->phyCfg.extendedCfgSize);
 
+		phyCfg->isPhyModeC45      = portCfg->phyCfg.isPhyModeC45;
         /* Set link configuration: speed and duplex */
         *linkCfg = portCfg->linkCfg;
 
