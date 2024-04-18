@@ -529,8 +529,22 @@ int32_t Mdio_ioctl(EnetMod_Handle hMod,
             {
                 uint8_t *phyAddr = (uint8_t *)prms->inArgs;
                 bool *alive = (bool *)prms->outArgs;
-
-                *alive = (CSL_MDIO_isPhyAlive(mdioRegs, *phyAddr) == 0U) ? false : true;
+#if 0
+                if (ENET_FEAT_IS_EN(hMod->features, MDIO_FEATURE_CLAUSE45))
+                {
+					uint16_t val = 0;
+                    status = Mdio_readRegC45(mdioRegs, 0, 1, *phyAddr, 0x0002, &val);
+					//*alive = ((val & 0x002B) == 0x002B) ? true : false;
+					*alive = (status == CSL_PASS) ? true : false;
+                }
+                else
+                {
+					*alive = (CSL_MDIO_isPhyAlive(mdioRegs, *phyAddr) == 0U) ? false : true;
+				}
+#else
+				*alive = (CSL_MDIO_isPhyAlive(mdioRegs, *phyAddr) == 0U) ? false : true;
+#endif
+				ENETTRACE_DBG(" ENET_MDIO_IOCTL_IS_ALIVE - PHY(%u), alive(%d)\n", *phyAddr, *alive);
             }
             break;
 
