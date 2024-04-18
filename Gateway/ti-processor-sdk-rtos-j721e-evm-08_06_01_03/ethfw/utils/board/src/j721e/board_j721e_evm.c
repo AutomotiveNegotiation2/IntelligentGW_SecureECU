@@ -608,7 +608,8 @@ static void EthFwBoard_detectDBs(void)
     {
         /* Assume expansion boards are present if detection not allowed */
         gEthFwBoard.gesiDetected  = true;
-        gEthFwBoard.qenetDetected = true;
+		//gEthFwBoard.qenetDetected = true;
+		gEthFwBoard.qenetDetected = false;
     }
 }
 
