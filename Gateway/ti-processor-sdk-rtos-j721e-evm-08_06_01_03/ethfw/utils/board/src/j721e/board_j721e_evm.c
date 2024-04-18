@@ -49,6 +49,7 @@
 
 #include <ti/drv/enet/enet.h>
 #include <ti/drv/enet/include/phy/dp83867.h>
+#include <ti/drv/enet/include/phy/mv88q2120.h>
 #include <ti/drv/enet/examples/utils/include/enet_apputils.h>
 
 #include <ti/board/board.h>
@@ -215,6 +216,74 @@ GPIO_v0_Config GPIO_v0_config =
     0,
 };
 
+#define PHY_88Q2120  1
+#if PHY_88Q2120
+// +mcbae : Marvell 88q2120 1G base t1 phy
+static EthFwBoard_MacPortCfg gEthFw_gesiMacPortCfg[] =
+{
+    {   /* "PRG1_RGMII1_B" */
+        .macPort   = ENET_MAC_PORT_1,
+        .mii       = { ENET_MAC_LAYER_GMII, ENET_MAC_SUBLAYER_REDUCED },
+        .phyCfg    =
+        {
+            .phyAddr         = 4U,
+            .isStrapped      = false,
+            .skipExtendedCfg = false,
+            .extendedCfg     = NULL,
+            .extendedCfgSize = 0,
+			.isPhyModeC45    = true,
+        },
+        .sgmiiMode = ENET_MAC_SGMIIMODE_INVALID,
+        .linkCfg   = { ENET_SPEED_AUTO, ENET_DUPLEX_AUTO },
+    },
+    {   /* "PRG1_RGMII2_T" */
+        .macPort   = ENET_MAC_PORT_8,
+        .mii       = { ENET_MAC_LAYER_GMII, ENET_MAC_SUBLAYER_REDUCED },
+        .phyCfg    =
+        {
+            .phyAddr         = 7U,
+            .isStrapped      = false,
+            .skipExtendedCfg = false,
+            .extendedCfg     = NULL,
+            .extendedCfgSize = 0,
+			.isPhyModeC45    = true,
+        },
+        .sgmiiMode = ENET_MAC_SGMIIMODE_INVALID,
+        .linkCfg   = { ENET_SPEED_AUTO, ENET_DUPLEX_AUTO },
+    },
+    {   /* "PRG0_RGMII1_B" */
+        .macPort   = ENET_MAC_PORT_3,
+        .mii       = { ENET_MAC_LAYER_GMII, ENET_MAC_SUBLAYER_REDUCED },
+        .phyCfg    =
+        {
+            .phyAddr         = 0U,
+            .isStrapped      = false,
+            .skipExtendedCfg = false,
+            .extendedCfg     = NULL,
+            .extendedCfgSize = 0,
+			.isPhyModeC45    = true,
+        },
+        .sgmiiMode = ENET_MAC_SGMIIMODE_INVALID,
+        .linkCfg   = { ENET_SPEED_AUTO, ENET_DUPLEX_AUTO },
+    },
+    {   /* "PRG0_RGMII02_T" */
+        .macPort   = ENET_MAC_PORT_4,
+        .mii       = { ENET_MAC_LAYER_GMII, ENET_MAC_SUBLAYER_REDUCED },
+        .phyCfg    =
+        {
+            .phyAddr         = 3U,
+            .isStrapped      = false,
+            .skipExtendedCfg = false,
+            .extendedCfg     = NULL,
+            .extendedCfgSize = 0,
+			.isPhyModeC45    = true,
+        },
+        .sgmiiMode = ENET_MAC_SGMIIMODE_INVALID,
+        .linkCfg   = { ENET_SPEED_AUTO, ENET_DUPLEX_AUTO },
+    },
+};
+
+#else
 /* GESI board's DP83867 PHY configuration */
 static const Dp83867_Cfg gEnetGesiBoard_dp83867PhyCfg =
 {
@@ -296,6 +365,7 @@ static EthFwBoard_MacPortCfg gEthFw_gesiMacPortCfg[] =
         .linkCfg   = { ENET_SPEED_AUTO, ENET_DUPLEX_AUTO },
     },
 };
+#endif
 
 /* 4 x QSGMII ports in QEnet expansion board */
 static EthFwBoard_MacPortCfg gEthFw_qenetMacPortCfg[] =
@@ -595,6 +665,7 @@ static void EthFwBoard_configPinmux(void)
 
 static void EthFwBoard_detectDBs(void)
 {
+	appLogPrintf("EthFwBoard_detectDBs - i2cAllowed(%d)\n", gEthFwBoard.i2cAllowed);
     if (gEthFwBoard.i2cAllowed)
     {
         gEthFwBoard.gesiDetected  = Board_detectBoard(BOARD_ID_GESI);
