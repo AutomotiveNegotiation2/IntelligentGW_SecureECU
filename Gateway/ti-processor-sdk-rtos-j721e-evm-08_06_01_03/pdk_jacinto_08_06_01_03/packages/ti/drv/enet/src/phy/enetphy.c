@@ -1480,6 +1480,11 @@ static bool EnetPhy_isNwayCapable(EnetPhy_Handle hPhy)
     uint16_t val = 0U;
 
     /* Get the PHY Status */
+	if(hPhy->phyCfg.isPhyModeC45)
+	{
+		// Auto nego disable
+		return false;
+	}	
     EnetPhy_readReg(hPhy, PHY_BMSR, &val);
 
     return ((val & BMSR_ANCAPABLE) != 0U);
