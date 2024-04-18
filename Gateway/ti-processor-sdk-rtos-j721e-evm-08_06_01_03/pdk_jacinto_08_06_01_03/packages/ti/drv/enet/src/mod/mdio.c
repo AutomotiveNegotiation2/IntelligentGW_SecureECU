@@ -553,7 +553,17 @@ int32_t Mdio_ioctl(EnetMod_Handle hMod,
                 uint8_t *phyAddr = (uint8_t *)prms->inArgs;
                 bool *linked = (bool *)prms->outArgs;
 
-                *linked = (CSL_MDIO_isPhyLinked(mdioRegs, *phyAddr) == 0) ? false : true;
+                if (ENET_FEAT_IS_EN(hMod->features, MDIO_FEATURE_CLAUSE45))
+                {
+					uint16_t val = 0;
+                    status = Mdio_readRegC45(mdioRegs, 0, 3, *phyAddr, 0x0901, &val);
+					*linked = ((val & 0x0004) == 0x0004) ? true : false;
+                }
+                else
+                {
+					*linked = (CSL_MDIO_isPhyLinked(mdioRegs, *phyAddr) == 0) ? false : true;
+				}
+				ENETTRACE_DBG(" ENET_MDIO_IOCTL_IS_LINKED - linked(%d)\n", *linked);
             }
             break;
 
