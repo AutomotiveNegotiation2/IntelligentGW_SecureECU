@@ -1226,25 +1226,30 @@ static void EnetPhy_setupNway(EnetPhy_Handle hPhy)
         {
             nway1000Advertise |= GIGCR_1000HD;
         }
-
-        EnetPhy_rmwReg(hPhy, PHY_ANAR, ANAR_100 | ANAR_10, nwayAdvertise);
+		
+		if(!hPhy->phyCfg.isPhyModeC45)
+			EnetPhy_rmwReg(hPhy, PHY_ANAR, ANAR_100 | ANAR_10, nwayAdvertise);
 
         if ((state->phyLinkCaps & ENETPHY_LINK_CAP_1000) != 0U)
         {
-            EnetPhy_rmwReg(hPhy, PHY_GIGCR, GIGCR_1000, nway1000Advertise);
+			if(!hPhy->phyCfg.isPhyModeC45)
+				EnetPhy_rmwReg(hPhy, PHY_GIGCR, GIGCR_1000, nway1000Advertise);
         }
 
         state->needsNwayCfg = false;
     }
 
-    /* Restart auto-negotiation */
-    ENETTRACE_DBG("PHY %u: restart autonegotiation\n", hPhy->addr);
-    EnetPhy_rmwReg(hPhy, PHY_BMCR, BMCR_ANEN, BMCR_ANEN);
+	if(!hPhy->phyCfg.isPhyModeC45)
+	{
+		/* Restart auto-negotiation */
+		ENETTRACE_DBG("PHY %u: restart autonegotiation\n", hPhy->addr);
+		EnetPhy_rmwReg(hPhy, PHY_BMCR, BMCR_ANEN, BMCR_ANEN);
 
-    /* TODO: is MII_ENETPHY_FD needed for auto-negotiation? */
-    EnetPhy_rmwReg(hPhy, PHY_BMCR,
-                   BMCR_ANRESTART | BMCR_FD,
-                   BMCR_ANRESTART | BMCR_FD);
+		/* TODO: is MII_ENETPHY_FD needed for auto-negotiation? */
+		EnetPhy_rmwReg(hPhy, PHY_BMCR,
+					   BMCR_ANRESTART | BMCR_FD,
+					   BMCR_ANRESTART | BMCR_FD);
+	}
 }
 
 static void EnetPhy_setupManual(EnetPhy_Handle hPhy,
@@ -1261,7 +1266,8 @@ static void EnetPhy_setupManual(EnetPhy_Handle hPhy,
         if (state->isNwayCapable)
         {
             ENETTRACE_DBG("PHY %u: disable NWAY\n", hPhy->addr);
-            EnetPhy_rmwReg(hPhy, PHY_BMCR, BMCR_ANEN, 0U);
+			if(!hPhy->phyCfg.isPhyModeC45)
+				EnetPhy_rmwReg(hPhy, PHY_BMCR, BMCR_ANEN, 0U);
         }
 
         switch (state->linkCaps)
@@ -1296,22 +1302,25 @@ static void EnetPhy_setupManual(EnetPhy_Handle hPhy,
         {
             val |= BMCR_LOOPBACK;
         }
-
-        EnetPhy_rmwReg(hPhy, PHY_BMCR,
+		
+		if(!hPhy->phyCfg.isPhyModeC45)
+			EnetPhy_rmwReg(hPhy, PHY_BMCR,
                        BMCR_LOOPBACK | BMCR_SPEED1000 | BMCR_SPEED100 | BMCR_FD,
                        val);
 
         /* Clear advertised capabilities values if supported */
-        if (state->isNwayCapable)
-        {
-            EnetPhy_rmwReg(hPhy, PHY_ANAR, ANAR_100 | ANAR_10, 0U);
+		if(!hPhy->phyCfg.isPhyModeC45)
+		{
+			if (state->isNwayCapable)
+			{
+				EnetPhy_rmwReg(hPhy, PHY_ANAR, ANAR_100 | ANAR_10, 0U);
 
-            if ((state->phyLinkCaps & ENETPHY_LINK_CAP_1000) != 0U)
-            {
-                EnetPhy_rmwReg(hPhy, PHY_GIGCR, GIGCR_1000, 0U);
-            }
-        }
-
+				if ((state->phyLinkCaps & ENETPHY_LINK_CAP_1000) != 0U)
+				{
+					EnetPhy_rmwReg(hPhy, PHY_GIGCR, GIGCR_1000, 0U);
+				}
+			}
+		}
         state->needsManualCfg = false;
     }
 
