@@ -244,6 +244,8 @@ void EnetPhy_initCfg(EnetPhy_Cfg *phyCfg)
     phyCfg->timeoutCfg.nwayWaitStateTicks  = ENETPHY_TIMEOUT_NWAY_WAIT;
     phyCfg->timeoutCfg.linkWaitStateTicks  = ENETPHY_TIMEOUT_LINK_WAIT;
     phyCfg->timeoutCfg.mdixTicks           = ENETPHY_TIMEOUT_MDIX;
+	
+	phyCfg->isPhyModeC45 = false;
 }
 
 void EnetPhy_setExtendedCfg(EnetPhy_Cfg *phyCfg,

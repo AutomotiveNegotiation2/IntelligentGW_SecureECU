@@ -371,6 +371,8 @@ typedef struct EnetPhy_Cfg_s
 
     /*! Size of the extended configuration */
     uint32_t extendedCfgSize;
+
+    bool isPhyModeC45;
 } EnetPhy_Cfg;
 
 /*!

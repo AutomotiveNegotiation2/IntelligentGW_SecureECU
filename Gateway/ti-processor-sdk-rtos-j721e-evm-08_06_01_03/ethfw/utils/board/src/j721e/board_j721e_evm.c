@@ -134,6 +134,8 @@ typedef struct EthFwBoard_PhyCfg_s
 
     /*! Size of the extended configuration */
     uint32_t extendedCfgSize;
+	
+	bool isPhyModeC45;
 } EthFwBoard_PhyCfg;
 
 /*!
@@ -318,6 +320,7 @@ static EthFwBoard_MacPortCfg gEthFw_gesiMacPortCfg[] =
             .skipExtendedCfg = false,
             .extendedCfg     = &gEnetGesiBoard_dp83867PhyCfg,
             .extendedCfgSize = sizeof(gEnetGesiBoard_dp83867PhyCfg),
+			.isPhyModeC45    = false,
         },
         .sgmiiMode = ENET_MAC_SGMIIMODE_INVALID,
         .linkCfg   = { ENET_SPEED_AUTO, ENET_DUPLEX_AUTO },
@@ -332,6 +335,7 @@ static EthFwBoard_MacPortCfg gEthFw_gesiMacPortCfg[] =
             .skipExtendedCfg = false,
             .extendedCfg     = &gEnetGesiBoard_dp83867PhyCfg,
             .extendedCfgSize = sizeof(gEnetGesiBoard_dp83867PhyCfg),
+			.isPhyModeC45    = false,
         },
         .sgmiiMode = ENET_MAC_SGMIIMODE_INVALID,
         .linkCfg   = { ENET_SPEED_AUTO, ENET_DUPLEX_AUTO },
@@ -346,6 +350,7 @@ static EthFwBoard_MacPortCfg gEthFw_gesiMacPortCfg[] =
             .skipExtendedCfg = false,
             .extendedCfg     = &gEnetGesiBoard_dp83867PhyCfg,
             .extendedCfgSize = sizeof(gEnetGesiBoard_dp83867PhyCfg),
+			.isPhyModeC45    = false,
         },
         .sgmiiMode = ENET_MAC_SGMIIMODE_INVALID,
         .linkCfg   = { ENET_SPEED_AUTO, ENET_DUPLEX_AUTO },
@@ -360,6 +365,7 @@ static EthFwBoard_MacPortCfg gEthFw_gesiMacPortCfg[] =
             .skipExtendedCfg = false,
             .extendedCfg     = &gEnetGesiBoard_dp83867PhyCfg,
             .extendedCfgSize = sizeof(gEnetGesiBoard_dp83867PhyCfg),
+			.isPhyModeC45    = false,
         },
         .sgmiiMode = ENET_MAC_SGMIIMODE_INVALID,
         .linkCfg   = { ENET_SPEED_AUTO, ENET_DUPLEX_AUTO },
@@ -380,6 +386,7 @@ static EthFwBoard_MacPortCfg gEthFw_qenetMacPortCfg[] =
             .skipExtendedCfg = false,
             .extendedCfg     = NULL,
             .extendedCfgSize = 0U,
+			.isPhyModeC45    = false,
         },
         .sgmiiMode = ENET_MAC_SGMIIMODE_SGMII_WITH_PHY,
         .linkCfg   = { ENET_SPEED_AUTO, ENET_DUPLEX_AUTO },
@@ -394,6 +401,7 @@ static EthFwBoard_MacPortCfg gEthFw_qenetMacPortCfg[] =
             .skipExtendedCfg = false,
             .extendedCfg     = NULL,
             .extendedCfgSize = 0U,
+			.isPhyModeC45    = false,
         },
         .sgmiiMode = ENET_MAC_SGMIIMODE_SGMII_WITH_PHY,
         .linkCfg   = { ENET_SPEED_AUTO, ENET_DUPLEX_AUTO },
@@ -408,6 +416,7 @@ static EthFwBoard_MacPortCfg gEthFw_qenetMacPortCfg[] =
             .skipExtendedCfg = false,
             .extendedCfg     = NULL,
             .extendedCfgSize = 0U,
+			.isPhyModeC45    = false,
         },
         .sgmiiMode = ENET_MAC_SGMIIMODE_SGMII_WITH_PHY,
         .linkCfg   = { ENET_SPEED_AUTO, ENET_DUPLEX_AUTO },
@@ -422,6 +431,7 @@ static EthFwBoard_MacPortCfg gEthFw_qenetMacPortCfg[] =
             .skipExtendedCfg = false,
             .extendedCfg     = NULL,
             .extendedCfgSize = 0U,
+			.isPhyModeC45    = false,
         },
         .sgmiiMode = ENET_MAC_SGMIIMODE_SGMII_WITH_PHY,
         .linkCfg   = { ENET_SPEED_AUTO, ENET_DUPLEX_AUTO },
@@ -440,6 +450,7 @@ static EthFwBoard_MacPortCfg gEthFw_enetBridgeMacPortCfg =
         .skipExtendedCfg = false,
         .extendedCfg     = NULL,
         .extendedCfgSize = 0U,
+		.isPhyModeC45    = false,
     },
     .sgmiiMode = ENET_MAC_SGMIIMODE_SGMII_AUTONEG_MASTER,
     .linkCfg   = { ENET_SPEED_1GBIT, ENET_DUPLEX_FULL },
