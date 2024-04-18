@@ -66,6 +66,8 @@
 #include <ti/drv/enet/soc/j7x/icssg_soc.h>
 #include <ti/drv/enet/src/dma/udma/enet_udma_priv.h>
 
+#define PHY_88Q2120 1
+
 /* ========================================================================== */
 /*                           Macros & Typedefs                                */
 /* ========================================================================== */
@@ -601,7 +603,11 @@ Cpsw_Obj gEnetSoc_cpsw9g =
         {
             .name       = "cpsw9g.mdio",
             .physAddr   = (CSL_CPSW0_NUSS_BASE + CPSW_MDIO_OFFSET),
+#if PHY_88Q2120
             .features   = MDIO_FEATURE_CLAUSE45,
+#else
+            .features   = 0,
+#endif
             .errata     = ENET_ERRATA_NONE,
             .open       = &Mdio_open,
             .rejoin     = &Mdio_rejoin,
