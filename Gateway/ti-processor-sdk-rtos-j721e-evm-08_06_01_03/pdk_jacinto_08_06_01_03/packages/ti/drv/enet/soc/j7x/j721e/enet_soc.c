@@ -1691,7 +1691,7 @@ int32_t EnetSoc_mapPort2QsgmiiId(Enet_Type enetType,
 
     /* Translate portNum to QSGMII Id.
      * In QSGMII mode, first QSGMII main port used is QSGMII ID 0 and next  QSGMII ID 1.
-     * For example – if MAC port 0 and port 3 are configured in QSGMII mode. Port 0 is QSMII 0
+     * For example   if MAC port 0 and port 3 are configured in QSGMII mode. Port 0 is QSMII 0
      * and 3 QSGMII1. Software is transparent to this selection */
 
     status = EnetSoc_getQsgmiiCfg(enetType, instId,

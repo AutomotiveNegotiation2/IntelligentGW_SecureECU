@@ -175,6 +175,7 @@ static Enet_IoctlValidate gMdio_privIoctlValidate[] =
 /* ========================================================================== */
 /*                          Function Definitions                              */
 /* ========================================================================== */
+#define PHY_88Q2120			1
 
 void Mdio_initCfg(Mdio_Cfg *mdioCfg)
 {
@@ -183,12 +184,18 @@ void Mdio_initCfg(Mdio_Cfg *mdioCfg)
     mdioCfg->pollEnMask         = ENET_MDIO_PHY_ADDR_MASK_NONE;
 #else
     mdioCfg->mode               = MDIO_MODE_STATE_CHANGE_MON;
-    mdioCfg->pollEnMask         = ENET_MDIO_PHY_ADDR_MASK_ALL;
+    mdioCfg->pollEnMask         = 0x99;		// phy 0 3 4 7    // ENET_MDIO_PHY_ADDR_MASK_ALL;
 #endif
     mdioCfg->mdioBusFreqHz      = MDIO_MDIOBUS_DFLT_FREQ_HZ;
     mdioCfg->phyStatePollFreqHz = mdioCfg->mdioBusFreqHz;
+
+#if PHY_88Q2120
+	mdioCfg->c45EnMask          = 0x99;		// phy 0 3 4 7
+#else
     mdioCfg->c45EnMask          = ENET_MDIO_PHY_ADDR_MASK_NONE;
+#endif
     mdioCfg->isMaster           = true;
+	ENETTRACE_ERR(" - c45EnMask(%u), mdioBusFreqHz(%d), phyStatePollFreqHz(%d)\n", mdioCfg->c45EnMask, mdioCfg->mdioBusFreqHz, mdioCfg->phyStatePollFreqHz);
 }
 
 int32_t Mdio_open(EnetMod_Handle hMod,
@@ -219,6 +226,8 @@ int32_t Mdio_open(EnetMod_Handle hMod,
 
     hMdio->isMaster = mdioCfg->isMaster;
 
+	ENETTRACE_DBG(" name:%s, instId(%d) \n", hMod->name, instId);
+	
     /* Perform global MDIO configuration only for module in master role */
     if (hMdio->isMaster)
     {
@@ -295,8 +304,10 @@ int32_t Mdio_open(EnetMod_Handle hMod,
             CSL_MDIO_setClkDivVal(mdioRegs, (uint16_t)clkdiv);
             CSL_MDIO_enableStateMachine(mdioRegs);
 #if ENET_CFG_IS_ON(MDIO_CLAUSE45)
+			ENETTRACE_INFO(" hMod->features:0x%x\n", hMod->features);
             if (ENET_FEAT_IS_EN(hMod->features, MDIO_FEATURE_CLAUSE45))
             {
+				ENETTRACE_INFO(" clause45EnableMask:0x%x\n", mdioCfg->c45EnMask);
                 CSL_MDIO_setClause45EnableMask(mdioRegs, mdioCfg->c45EnMask);
             }
 #endif
