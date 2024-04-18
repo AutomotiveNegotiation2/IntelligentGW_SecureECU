@@ -1101,8 +1101,10 @@ static void EnetPhy_enableState(EnetPhy_Handle hPhy)
     {
         /* Set PHY in normal mode */
         ENETTRACE_DBG("PHY %u: enable\n", hPhy->addr);
-        EnetPhy_rmwReg(hPhy, PHY_BMCR, BMCR_ISOLATE | BMCR_PWRDOWN, 0U);
-
+		
+		if(!hPhy->phyCfg.isPhyModeC45)
+			EnetPhy_rmwReg(hPhy, PHY_BMCR, BMCR_ISOLATE | BMCR_PWRDOWN, 0U);
+		
         /* PHY-specific 'extended' configuration */
         if ((hPhy->hDrv->config != NULL) &&
             !hPhy->phyCfg.skipExtendedCfg)
