@@ -546,27 +546,48 @@ int32_t EnetPhy_getId(EnetPhy_Handle hPhy,
     {
         status = ENETPHY_EFAIL;
     }
-
+	
+	ENETTRACE_DBG(" isPhyModeC45:%d\n", hPhy->phyCfg.isPhyModeC45);
+	
     if (status == ENETPHY_SOK)
     {
-        status = EnetPhy_readReg(hPhy, PHY_PHYIDR1, &id1);
+		if(!hPhy->phyCfg.isPhyModeC45)
+			status = EnetPhy_readReg(hPhy, PHY_PHYIDR1, &id1);
+		else
+			status = EnetPhy_readC45Reg(hPhy, 1, PHY_PHYIDR1, &id1);
+	
         ENETTRACE_ERR_IF(status != ENETPHY_SOK,
                          "PHY %u: Failed to read ID1 register: %d\n", phyAddr, status);
     }
 
     if (status == ENETPHY_SOK)
     {
-        status = EnetPhy_readReg(hPhy, PHY_PHYIDR2, &id2);
+		if(!hPhy->phyCfg.isPhyModeC45)
+			status = EnetPhy_readReg(hPhy, PHY_PHYIDR2, &id2);
+		else
+			status = EnetPhy_readC45Reg(hPhy, 1, PHY_PHYIDR2, &id2);
+
         ENETTRACE_ERR_IF(status != ENETPHY_SOK,
                          "PHY %u: Failed to read ID2 register: %d\n", phyAddr, status);
     }
 
     if (status == ENETPHY_SOK)
     {
-        version->oui      = ((uint32_t)id1 << PHYIDR1_OUI_OFFSET);
-        version->oui     |= (id2 & PHYIDR2_OUI_MASK)  >> PHYIDR2_OUI_OFFSET;
-        version->model    = (id2 & PHYIDR2_VMDL_MASK) >> PHYIDR2_VMDL_OFFSET;
-        version->revision = (id2 & PHYIDR2_VREV_MASK) >> PHYIDR2_VREV_OFFSET;
+		if(!hPhy->phyCfg.isPhyModeC45)
+		{
+			version->oui      = ((uint32_t)id1 << PHYIDR1_OUI_OFFSET);
+			version->oui     |= (id2 & PHYIDR2_OUI_MASK)  >> PHYIDR2_OUI_OFFSET;
+			version->model    = (id2 & PHYIDR2_VMDL_MASK) >> PHYIDR2_VMDL_OFFSET;
+			version->revision = (id2 & PHYIDR2_VREV_MASK) >> PHYIDR2_VREV_OFFSET;
+		}
+		else
+		{
+			version->oui      = ((uint32_t)id1 << 16);
+			version->oui     |= (id2 & 0xFF0)  >> 4;
+			version->model    = (id2 & 0x0F);
+			version->revision = (id2 & 0x0F);
+			// Marvell 88q2120 oui : 0x002b0098
+		}
     }
 
     return status;
@@ -620,7 +641,7 @@ int32_t EnetPhy_readReg(EnetPhy_Handle hPhy,
     ENETTRACE_ERR_IF(status != ENETPHY_SOK,
                      "PHY %u: Failed to read reg %u: %d\n", phyAddr, reg, status);
     ENETTRACE_VERBOSE_IF(status == ENETPHY_SOK,
-                         "PHY %u: reg %u val 0x%04x %s\n", phyAddr, reg, *val);
+                         "PHY %u: reg %u val 0x%04x\n", phyAddr, reg, *val);
 
     return status;
 }
