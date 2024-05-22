@@ -1,1 +1,55 @@
-V2X Gateway Project
+
+1. SDK 다운로드 
+https://software-dl.ti.com/jacinto7/esd/processor-sdk-linux-jacinto7/08_06_01_02/exports/docs/linux/Overview_Getting_Started_Guide.html
+
+
+2. 빌드 환경 설정
+https://software-dl.ti.com/jacinto7/esd/processor-sdk-linux-jacinto7/08_06_01_02/exports/docs/linux/Overview_Building_the_SDK.html
+
+
+3. 우분투 18.04 에서 아래 명령으로 기본 SDK 빌드
+$ . conf/setenv
+$ export TOOLCHAIN_BASE=<PATH_TO_TOOLCHAIN>
+$ MACHINE=j7-evm bitbake tisdk-default-image
+
+
+4. GitHub 에서 Gateway 코드 colne
+$ git clone https://github.com/AutomotiveNegotiation2/IntelligentGW_SecureECU.git -b gateway
+
+
+5. 아래 폴더 Tree 와 같이 J7_v2x-mirror 폴더와 meta-v2x 폴더를 기본 설치한 SDK에 복사 
+
+<SDK TOP Folder>
+    | ...
+    |- J7_v2x-mirror
+    |       |- linux-ti-staging
+    |       |- ti-rtos-firmware
+    |       |- u-boot-ti-staging
+    | ...
+    |- yocto-build
+    |       |- build
+    |       | ...
+    |       |- sources
+    |             |- bitbake
+    |             | ...
+    |             |- meta-v2x
+    |             | ...
+
+
+6. <SDK TOP Folder>/yocto-build/build/conf/bblayers.conf 파일의 BBLAYERS 항목에 meta-v2x 추가
+
+BBLAYERS += " \
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    <SDK TOP Folder>/yocto-build/sources/meta-aws \
+    <SDK TOP Folder>/yocto-build/sources/meta-jupyter \
+    <SDK TOP Folder>/yocto-build/sources/meta-v2x \
+"
+
+
+7. <SDK TOP Folder>/yocto-build/build/conf/local.conf 에 아래 추가
+MACHINE = "j7-evm"
+
+
+8. Clean 후 재 빌드
+$ bitbake tisdk-default-image -c clean 
+$ bitbake tisdk-default-image
