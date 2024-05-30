@@ -1284,6 +1284,192 @@ Discarded input sections
  .debug_frame   0x00000000       0x4c ./source/init_enet.o
  .ARM.attributes
                 0x00000000       0x32 ./source/init_enet.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .text          0x00000000        0x0 ./source/main.o
+ .data          0x00000000        0x0 ./source/main.o
+ .bss           0x00000000        0x0 ./source/main.o
+ .text.BOARD_ENETFlexibleConfigure
+                0x00000000        0x6 ./source/main.o
+ .debug_macro   0x00000000      0xb74 ./source/main.o
+ .debug_macro   0x00000000       0x22 ./source/main.o
+ .debug_macro   0x00000000       0x5b ./source/main.o
+ .debug_macro   0x00000000       0x29 ./source/main.o
+ .debug_macro   0x00000000       0x5c ./source/main.o
+ .debug_macro   0x00000000       0x43 ./source/main.o
+ .debug_macro   0x00000000       0x34 ./source/main.o
+ .debug_macro   0x00000000       0x57 ./source/main.o
+ .debug_macro   0x00000000      0x385 ./source/main.o
+ .debug_macro   0x00000000       0x16 ./source/main.o
+ .debug_macro   0x00000000       0x43 ./source/main.o
+ .debug_macro   0x00000000       0x34 ./source/main.o
+ .debug_macro   0x00000000       0x10 ./source/main.o
+ .debug_macro   0x00000000       0x58 ./source/main.o
+ .debug_macro   0x00000000       0x8e ./source/main.o
+ .debug_macro   0x00000000       0x16 ./source/main.o
+ .debug_macro   0x00000000      0x177 ./source/main.o
+ .debug_macro   0x00000000       0x16 ./source/main.o
+ .debug_macro   0x00000000      0x12a ./source/main.o
+ .debug_macro   0x00000000       0xa2 ./source/main.o
+ .debug_macro   0x00000000       0x10 ./source/main.o
+ .debug_macro   0x00000000       0x22 ./source/main.o
+ .debug_macro   0x00000000      0x34e ./source/main.o
+ .debug_macro   0x00000000       0x16 ./source/main.o
+ .debug_macro   0x00000000       0x35 ./source/main.o
+ .debug_macro   0x00000000       0x16 ./source/main.o
+ .debug_macro   0x00000000       0x16 ./source/main.o
+ .debug_macro   0x00000000       0x22 ./source/main.o
+ .debug_macro   0x00000000       0x10 ./source/main.o
+ .debug_macro   0x00000000       0x71 ./source/main.o
+ .debug_macro   0x00000000       0x1c ./source/main.o
+ .debug_macro   0x00000000       0x22 ./source/main.o
+ .debug_macro   0x00000000       0xfb ./source/main.o
+ .debug_macro   0x00000000     0x1313 ./source/main.o
+ .debug_macro   0x00000000      0x11f ./source/main.o
+ .debug_macro   0x00000000       0x22 ./source/main.o
+ .debug_macro   0x00000000       0x22 ./source/main.o
+ .debug_macro   0x00000000    0x45b01 ./source/main.o
+ .debug_macro   0x00000000      0xa7c ./source/main.o
+ .debug_macro   0x00000000       0x7a ./source/main.o
+ .debug_macro   0x00000000       0xb6 ./source/main.o
+ .debug_macro   0x00000000      0x599 ./source/main.o
+ .debug_macro   0x00000000      0x75c ./source/main.o
+ .debug_macro   0x00000000       0x10 ./source/main.o
+ .debug_macro   0x00000000      0x242 ./source/main.o
+ .debug_macro   0x00000000      0x197 ./source/main.o
+ .debug_macro   0x00000000       0x16 ./source/main.o
+ .debug_macro   0x00000000       0x10 ./source/main.o
+ .debug_macro   0x00000000       0x22 ./source/main.o
+ .debug_macro   0x00000000       0x10 ./source/main.o
+ .debug_macro   0x00000000       0x6a ./source/main.o
+ .debug_macro   0x00000000       0x43 ./source/main.o
+ .debug_macro   0x00000000       0x16 ./source/main.o
+ .debug_macro   0x00000000       0x10 ./source/main.o
+ .debug_macro   0x00000000       0x41 ./source/main.o
+ .debug_macro   0x00000000       0x22 ./source/main.o
+ .debug_macro   0x00000000       0x70 ./source/main.o
+ .debug_macro   0x00000000       0x47 ./source/main.o
+ .debug_macro   0x00000000       0x16 ./source/main.o
+ .debug_macro   0x00000000       0x6d ./source/main.o
+ .debug_macro   0x00000000       0x16 ./source/main.o
+ .debug_macro   0x00000000       0x1c ./source/main.o
+ .debug_macro   0x00000000       0x16 ./source/main.o
+ .debug_macro   0x00000000       0x10 ./source/main.o
+ .debug_macro   0x00000000       0x11 ./source/main.o
+ .debug_macro   0x00000000      0x103 ./source/main.o
+ .debug_macro   0x00000000      0x3c6 ./source/main.o
+ .debug_macro   0x00000000      0x10c ./source/main.o
+ .debug_macro   0x00000000       0x6d ./source/main.o
+ .debug_macro   0x00000000      0x72c ./source/main.o
+ .debug_macro   0x00000000       0x6a ./source/main.o
+ .debug_macro   0x00000000      0x14f ./source/main.o
+ .debug_macro   0x00000000       0x1c ./source/main.o
+ .debug_macro   0x00000000       0x1c ./source/main.o
+ .debug_macro   0x00000000       0xbe ./source/main.o
+ .debug_macro   0x00000000       0x28 ./source/main.o
+ .debug_macro   0x00000000       0x16 ./source/main.o
+ .debug_macro   0x00000000       0x1c ./source/main.o
  .group         0x00000000        0xc ./source/mcuboot_app_support.o
  .group         0x00000000        0xc ./source/mcuboot_app_support.o
  .group         0x00000000        0xc ./source/mcuboot_app_support.o
@@ -1456,198 +1642,6 @@ Discarded input sections
  .debug_frame   0x00000000      0x16c ./source/mcuboot_app_support.o
  .ARM.attributes
                 0x00000000       0x32 ./source/mcuboot_app_support.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .group         0x00000000        0xc ./source/ota_mcuboot_client.o
- .text          0x00000000        0x0 ./source/ota_mcuboot_client.o
- .data          0x00000000        0x0 ./source/ota_mcuboot_client.o
- .bss           0x00000000        0x0 ./source/ota_mcuboot_client.o
- .text.BOARD_ENETFlexibleConfigure
-                0x00000000        0x6 ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000      0xb74 ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0x22 ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0x5b ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0x29 ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0x5c ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0x43 ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0x34 ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0x57 ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000      0x385 ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0x16 ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0x43 ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0x34 ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0x10 ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0x58 ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0x8e ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0x16 ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000      0x177 ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0x16 ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000      0x12a ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0xa2 ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0x10 ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0x22 ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000      0x34e ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0x16 ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0x35 ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0x16 ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0x16 ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0x22 ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0x10 ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0x71 ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0x1c ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0x22 ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0xfb ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000     0x1313 ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000      0x11f ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0x22 ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0x22 ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000    0x45b01 ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000      0xa7c ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0x7a ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0xb6 ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000      0x599 ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000      0x75c ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0x10 ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000      0x242 ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000      0x197 ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0x16 ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0x10 ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0x22 ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0x10 ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0x6a ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0x43 ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0x16 ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0x10 ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0x41 ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0x22 ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0x70 ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0x47 ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0x16 ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0x6d ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0x16 ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0x1c ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0x16 ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0x10 ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0x11 ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000      0x103 ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000      0x3c6 ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000      0x10c ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0x6d ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000      0x72c ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0x6a ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000      0x14f ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0x1c ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0x1c ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0xbe ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0x28 ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0x16 ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0x1c ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0x46 ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0x64 ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0x5f ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0x1c ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0x8e ./source/ota_mcuboot_client.o
- .debug_macro   0x00000000       0x1c ./source/ota_mcuboot_client.o
  .group         0x00000000        0xc ./source/semihost_hardfault.o
  .text          0x00000000        0x0 ./source/semihost_hardfault.o
  .data          0x00000000        0x0 ./source/semihost_hardfault.o
@@ -41689,7 +41683,7 @@ Discarded input sections
 Memory Configuration
 
 Name             Origin             Length             Attributes
-BOARD_FLASH      0x30401000         0x00100000         xr
+BOARD_FLASH      0x30401000         0x00400000         xr
 SRAM_OC1         0x20240000         0x00080000         xrw
 SRAM_OC2         0x202c0000         0x00040000         xrw
 NCACHE_REGION    0x20300000         0x00040000         xrw
@@ -41711,8 +41705,8 @@ LOAD ./startup/boot_multicore_slave.o
 LOAD ./startup/startup_mimxrt1176_cm7.o
 LOAD ./source/flash_helper.o
 LOAD ./source/init_enet.o
+LOAD ./source/main.o
 LOAD ./source/mcuboot_app_support.o
-LOAD ./source/ota_mcuboot_client.o
 LOAD ./source/semihost_hardfault.o
 LOAD ./source/sfw.o
 LOAD ./mbedtls/port/ksdk/aes_alt.o
@@ -41959,8 +41953,8 @@ LOAD c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32
 END GROUP
                 0x30401000                        __base_BOARD_FLASH = 0x30401000
                 0x30401000                        __base_Flash = 0x30401000
-                0x30501000                        __top_BOARD_FLASH = 0x30501000
-                0x30501000                        __top_Flash = 0x30501000
+                0x30801000                        __top_BOARD_FLASH = 0x30801000
+                0x30801000                        __top_Flash = 0x30801000
                 0x20240000                        __base_SRAM_OC1 = 0x20240000
                 0x20240000                        __base_RAM = 0x20240000
                 0x202c0000                        __top_SRAM_OC1 = 0x202c0000
@@ -42271,23 +42265,23 @@ END GROUP
  .text.PrintCheckFlags
                 0x304017c8       0x90 ./utilities/fsl_str.o
  .text.__NVIC_EnableIRQ
-                0x30401858       0x1c ./source/ota_mcuboot_client.o
+                0x30401858       0x1c ./source/main.o
  .text.CLOCK_ControlGate
-                0x30401874       0x48 ./source/ota_mcuboot_client.o
+                0x30401874       0x48 ./source/main.o
  .text.CLOCK_SetRootClock
-                0x304018bc       0x54 ./source/ota_mcuboot_client.o
+                0x304018bc       0x54 ./source/main.o
  .text.CLOCK_GetRootClockFreq
-                0x30401910       0x4c ./source/ota_mcuboot_client.o
+                0x30401910       0x4c ./source/main.o
  .text.MDIO_Write
-                0x3040195c       0x14 ./source/ota_mcuboot_client.o
+                0x3040195c       0x14 ./source/main.o
  .text.MDIO_Read
-                0x30401970       0x14 ./source/ota_mcuboot_client.o
+                0x30401970       0x14 ./source/main.o
  .text.MDIO_Init
-                0x30401984       0x30 ./source/ota_mcuboot_client.o
+                0x30401984       0x30 ./source/main.o
  .text.IOMUXC_SelectENETClock
-                0x304019b4       0x10 ./source/ota_mcuboot_client.o
+                0x304019b4       0x10 ./source/main.o
                 0x304019b4                IOMUXC_SelectENETClock
- .text.main     0x304019c4      0x12c ./source/ota_mcuboot_client.o
+ .text.main     0x304019c4      0x12c ./source/main.o
                 0x304019c4                main
  .text.test_periodic_job_keti
                 0x30401af0       0x38 ./source/sfw.o
@@ -43311,7 +43305,7 @@ END GROUP
                 0x30409d42        0x8 ./startup/startup_mimxrt1176_cm7.o
                 0x30409d42                ENET_QOS_PMT_IRQHandler
  .text.BOARD_InitModuleClock
-                0x30409d4a       0x36 ./source/ota_mcuboot_client.o
+                0x30409d4a       0x36 ./source/main.o
                 0x30409d4a                BOARD_InitModuleClock
  .text.HardFault_Handler
                 0x30409d80       0x34 ./source/semihost_hardfault.o
@@ -43704,24 +43698,24 @@ END GROUP
                 0x3040bb68       0x3e ./utilities/fsl_assert.o
  *fill*         0x3040bba6        0x2 ff
  .rodata.CLOCK_SetRootClock.str1.4
-                0x3040bba8       0x65 ./source/ota_mcuboot_client.o
+                0x3040bba8       0x65 ./source/main.o
                                  0x6d (size before relaxing)
  *fill*         0x3040bc0d        0x3 ff
  .rodata.CLOCK_GetRootClockFreq.str1.4
-                0x3040bc10        0x5 ./source/ota_mcuboot_client.o
+                0x3040bc10        0x5 ./source/main.o
  *fill*         0x3040bc15        0x3 ff
  .rodata.main.str1.4
-                0x3040bc18       0x16 ./source/ota_mcuboot_client.o
+                0x3040bc18       0x16 ./source/main.o
                                  0x1a (size before relaxing)
  *fill*         0x3040bc2e        0x2 ff
  .rodata.__func__.0
-                0x3040bc30       0x17 ./source/ota_mcuboot_client.o
+                0x3040bc30       0x17 ./source/main.o
  *fill*         0x3040bc47        0x1 ff
  .rodata.__func__.1
-                0x3040bc48       0x13 ./source/ota_mcuboot_client.o
+                0x3040bc48       0x13 ./source/main.o
  *fill*         0x3040bc5b        0x1 ff
  .rodata.s_clockSourceName
-                0x3040bc5c      0x278 ./source/ota_mcuboot_client.o
+                0x3040bc5c      0x278 ./source/main.o
  .rodata        0x3040bed4      0x3bb ./source/sfw.o
  *fill*         0x3040c28f        0x1 ff
  .rodata.CAAM_Init.str1.4
@@ -44187,7 +44181,7 @@ END GROUP
  .bss.s_debugConsoleState
                 0x202404e0       0x20 ./utilities/fsl_debug_console.o
  .bss.g_phy_resource
-                0x20240500        0x8 ./source/ota_mcuboot_client.o
+                0x20240500        0x8 ./source/main.o
                 0x20240500                g_phy_resource
  .bss.red_led_blink.0
                 0x20240508        0x4 ./source/sfw.o
@@ -44345,7 +44339,7 @@ END GROUP
                 0x3040ddac                        _image_end = (LOADADDR (.data) + SIZEOF (.data))
                 0x0000cdac                        _image_size = (_image_end - _image_start)
                 0x30401000                        _boot_loadaddr = ORIGIN (BOARD_FLASH)
-                0x00100000                        _boot_size = LENGTH (BOARD_FLASH)
+                0x00400000                        _boot_size = LENGTH (BOARD_FLASH)
 OUTPUT(MCUXpresso_IDE_FW.axf elf32-littlearm)
 LOAD linker stubs
 
@@ -44355,7 +44349,7 @@ LOAD linker stubs
  .debug_info    0x00001940       0x24 ./utilities/fsl_memcpy.o
  .debug_info    0x00001964     0x1c33 ./utilities/fsl_str.o
  .debug_info    0x00003597     0x2174 ./startup/startup_mimxrt1176_cm7.o
- .debug_info    0x0000570b     0x3cf8 ./source/ota_mcuboot_client.o
+ .debug_info    0x0000570b     0x3cf8 ./source/main.o
  .debug_info    0x00009403       0x3c ./source/semihost_hardfault.o
  .debug_info    0x0000943f     0x2161 ./source/sfw.o
  .debug_info    0x0000b5a0     0x78a3 ./mbedtls/port/ksdk/ksdk_mbedtls.o
@@ -44398,7 +44392,7 @@ LOAD linker stubs
  .debug_abbrev  0x000003f3       0x14 ./utilities/fsl_memcpy.o
  .debug_abbrev  0x00000407      0x34e ./utilities/fsl_str.o
  .debug_abbrev  0x00000755      0x25f ./startup/startup_mimxrt1176_cm7.o
- .debug_abbrev  0x000009b4      0x517 ./source/ota_mcuboot_client.o
+ .debug_abbrev  0x000009b4      0x517 ./source/main.o
  .debug_abbrev  0x00000ecb       0x31 ./source/semihost_hardfault.o
  .debug_abbrev  0x00000efc      0x42c ./source/sfw.o
  .debug_abbrev  0x00001328      0x477 ./mbedtls/port/ksdk/ksdk_mbedtls.o
@@ -44440,7 +44434,7 @@ LOAD linker stubs
  .debug_loc     0x000000d8      0x791 ./utilities/fsl_debug_console.o
  .debug_loc     0x00000869     0x1a0a ./utilities/fsl_str.o
  .debug_loc     0x00002273      0x32d ./startup/startup_mimxrt1176_cm7.o
- .debug_loc     0x000025a0      0x2f0 ./source/ota_mcuboot_client.o
+ .debug_loc     0x000025a0      0x2f0 ./source/main.o
  .debug_loc     0x00002890      0x8a1 ./source/sfw.o
  .debug_loc     0x00003131     0x405c ./mbedtls/port/ksdk/ksdk_mbedtls.o
  .debug_loc     0x0000718d       0xf4 ./lwip/port/sys_arch.o
@@ -44487,7 +44481,7 @@ LOAD linker stubs
  .debug_aranges
                 0x000001e8      0x750 ./startup/startup_mimxrt1176_cm7.o
  .debug_aranges
-                0x00000938       0x70 ./source/ota_mcuboot_client.o
+                0x00000938       0x70 ./source/main.o
  .debug_aranges
                 0x000009a8       0x20 ./source/semihost_hardfault.o
  .debug_aranges
@@ -44564,7 +44558,7 @@ LOAD linker stubs
  .debug_ranges  0x00000018       0x98 ./utilities/fsl_debug_console.o
  .debug_ranges  0x000000b0      0x100 ./utilities/fsl_str.o
  .debug_ranges  0x000001b0      0x740 ./startup/startup_mimxrt1176_cm7.o
- .debug_ranges  0x000008f0       0x60 ./source/ota_mcuboot_client.o
+ .debug_ranges  0x000008f0       0x60 ./source/main.o
  .debug_ranges  0x00000950       0x10 ./source/semihost_hardfault.o
  .debug_ranges  0x00000960       0x60 ./source/sfw.o
  .debug_ranges  0x000009c0      0x1d8 ./mbedtls/port/ksdk/ksdk_mbedtls.o
@@ -44601,7 +44595,7 @@ LOAD linker stubs
  .debug_ranges  0x000025c8       0x10 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard\libcr_newlib_nohost.a(_cr_sbrk.o)
  .debug_ranges  0x000025d8       0x10 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard\libcr_newlib_nohost.a(_cr_check_heap.o)
 
-.debug_macro    0x00000000     0x9f73
+.debug_macro    0x00000000     0xa142
  .debug_macro   0x00000000      0x23a ./utilities/fsl_assert.o
  .debug_macro   0x0000023a       0x70 ./utilities/fsl_assert.o
  .debug_macro   0x000002aa       0x47 ./utilities/fsl_assert.o
@@ -44623,143 +44617,149 @@ LOAD linker stubs
  .debug_macro   0x00000c09      0x242 ./utilities/fsl_str.o
  .debug_macro   0x00000e4b       0x16 ./utilities/fsl_str.o
  .debug_macro   0x00000e61       0xad ./startup/startup_mimxrt1176_cm7.o
- .debug_macro   0x00000f0e      0x56b ./source/ota_mcuboot_client.o
- .debug_macro   0x00001479       0x16 ./source/ota_mcuboot_client.o
- .debug_macro   0x0000148f       0x9e ./source/ota_mcuboot_client.o
- .debug_macro   0x0000152d      0x104 ./source/ota_mcuboot_client.o
- .debug_macro   0x00001631       0x10 ./source/ota_mcuboot_client.o
- .debug_macro   0x00001641       0x16 ./source/ota_mcuboot_client.o
- .debug_macro   0x00001657       0x8b ./source/ota_mcuboot_client.o
- .debug_macro   0x000016e2       0x52 ./source/ota_mcuboot_client.o
- .debug_macro   0x00001734       0x97 ./source/ota_mcuboot_client.o
- .debug_macro   0x000017cb      0x1cb ./source/ota_mcuboot_client.o
- .debug_macro   0x00001996       0x9a ./source/ota_mcuboot_client.o
- .debug_macro   0x00001a30       0x16 ./source/ota_mcuboot_client.o
- .debug_macro   0x00001a46       0x4e ./source/ota_mcuboot_client.o
- .debug_macro   0x00001a94       0xd1 ./source/ota_mcuboot_client.o
- .debug_macro   0x00001b65       0x34 ./source/ota_mcuboot_client.o
- .debug_macro   0x00001b99      0x143 ./source/ota_mcuboot_client.o
- .debug_macro   0x00001cdc       0x28 ./source/ota_mcuboot_client.o
- .debug_macro   0x00001d04       0x16 ./source/ota_mcuboot_client.o
- .debug_macro   0x00001d1a       0xb8 ./source/ota_mcuboot_client.o
- .debug_macro   0x00001dd2       0x6a ./source/ota_mcuboot_client.o
- .debug_macro   0x00001e3c       0x11 ./source/semihost_hardfault.o
- .debug_macro   0x00001e4d      0x3fc ./source/sfw.o
- .debug_macro   0x00002249       0x64 ./source/sfw.o
- .debug_macro   0x000022ad      0x379 ./source/sfw.o
- .debug_macro   0x00002626      0x3fc ./mbedtls/port/ksdk/ksdk_mbedtls.o
- .debug_macro   0x00002a22       0x75 ./mbedtls/port/ksdk/ksdk_mbedtls.o
- .debug_macro   0x00002a97       0x16 ./mbedtls/port/ksdk/ksdk_mbedtls.o
- .debug_macro   0x00002aad       0x28 ./mbedtls/port/ksdk/ksdk_mbedtls.o
- .debug_macro   0x00002ad5       0x5a ./mbedtls/port/ksdk/ksdk_mbedtls.o
- .debug_macro   0x00002b2f       0x10 ./mbedtls/port/ksdk/ksdk_mbedtls.o
- .debug_macro   0x00002b3f       0x10 ./mbedtls/port/ksdk/ksdk_mbedtls.o
- .debug_macro   0x00002b4f       0x20 ./mbedtls/port/ksdk/ksdk_mbedtls.o
- .debug_macro   0x00002b6f       0x10 ./mbedtls/port/ksdk/ksdk_mbedtls.o
- .debug_macro   0x00002b7f       0x10 ./mbedtls/port/ksdk/ksdk_mbedtls.o
- .debug_macro   0x00002b8f       0x20 ./mbedtls/port/ksdk/ksdk_mbedtls.o
- .debug_macro   0x00002baf      0x3f8 ./lwip/port/sys_arch.o
- .debug_macro   0x00002fa7      0x297 ./flash/mflash/mimxrt1170/mflash_drv.o
- .debug_macro   0x0000323e       0x16 ./flash/mflash/mimxrt1170/mflash_drv.o
- .debug_macro   0x00003254       0x16 ./flash/mflash/mimxrt1170/mflash_drv.o
- .debug_macro   0x0000326a       0x10 ./flash/mflash/mimxrt1170/mflash_drv.o
- .debug_macro   0x0000327a      0x24b ./flash/flash_api.o
- .debug_macro   0x000034c5      0x202 ./drivers/fsl_anatop_ai.o
- .debug_macro   0x000036c7      0x3a6 ./drivers/fsl_anatop_ai.o
- .debug_macro   0x00003a6d      0x327 ./drivers/fsl_caam.o
- .debug_macro   0x00003d94       0x3b ./drivers/fsl_caam.o
- .debug_macro   0x00003dcf      0x203 ./drivers/fsl_cache.o
- .debug_macro   0x00003fd2      0x285 ./drivers/fsl_clock.o
- .debug_macro   0x00004257       0x16 ./drivers/fsl_clock.o
- .debug_macro   0x0000426d      0x3ac ./drivers/fsl_clock.o
- .debug_macro   0x00004619      0x1f3 ./drivers/fsl_common_arm.o
- .debug_macro   0x0000480c      0x202 ./drivers/fsl_dcdc.o
- .debug_macro   0x00004a0e       0x22 ./drivers/fsl_dcdc.o
- .debug_macro   0x00004a30      0x21d ./drivers/fsl_enet.o
- .debug_macro   0x00004c4d       0xcb ./drivers/fsl_enet.o
- .debug_macro   0x00004d18      0x218 ./drivers/fsl_flexspi.o
- .debug_macro   0x00004f30      0x203 ./drivers/fsl_gpio.o
- .debug_macro   0x00005133      0x202 ./drivers/fsl_lpuart.o
- .debug_macro   0x00005335       0x10 ./drivers/fsl_lpuart.o
- .debug_macro   0x00005345      0x2cc ./drivers/fsl_pmu.o
- .debug_macro   0x00005611       0x10 ./drivers/fsl_pmu.o
- .debug_macro   0x00005621       0x9b ./device/system_MIMXRT1176_cm7.o
- .debug_macro   0x000056bc      0x221 ./component/uart/fsl_adapter_lpuart.o
- .debug_macro   0x000058dd       0x41 ./component/uart/fsl_adapter_lpuart.o
- .debug_macro   0x0000591e      0x26b ./component/serial_manager/fsl_component_serial_manager.o
- .debug_macro   0x00005b89       0x6a ./component/serial_manager/fsl_component_serial_manager.o
- .debug_macro   0x00005bf3      0x22f ./component/serial_manager/fsl_component_serial_port_uart.o
- .debug_macro   0x00005e22      0x216 ./component/gpio/fsl_adapter_igpio.o
- .debug_macro   0x00006038       0x22 ./component/gpio/fsl_adapter_igpio.o
- .debug_macro   0x0000605a      0x25e ./board/board.o
- .debug_macro   0x000062b8     0x2537 ./board/board.o
- .debug_macro   0x000087ef      0x237 ./board/clock_config.o
- .debug_macro   0x00008a26       0x28 ./board/clock_config.o
- .debug_macro   0x00008a4e      0x200 ./board/pin_mux.o
- .debug_macro   0x00008c4e      0x345 ./Crypto/test_src/src/test_src.o
- .debug_macro   0x00008f93       0x10 ./Crypto/test_src/src/test_src.o
- .debug_macro   0x00008fa3       0xac ./Crypto/test_src/src/test_src.o
- .debug_macro   0x0000904f       0x35 ./Crypto/test_src/src/test_src.o
- .debug_macro   0x00009084       0x10 ./Crypto/test_src/src/test_src.o
- .debug_macro   0x00009094      0x1ef ./Crypto/src/aursa.o
- .debug_macro   0x00009283      0x104 ./Crypto/src/aursa.o
- .debug_macro   0x00009387       0x28 ./Crypto/src/aursa.o
- .debug_macro   0x000093af       0x6b ./Crypto/src/aursa.o
- .debug_macro   0x0000941a       0xf4 ./Crypto/src/aursa.o
- .debug_macro   0x0000950e      0x1db ./Crypto/src/bignum.o
- .debug_macro   0x000096e9       0x19 ./Crypto/src/bignum.o
- .debug_macro   0x00009702      0x14a ./Crypto/src/md.o
- .debug_macro   0x0000984c      0x199 ./Crypto/src/md_wrap.o
- .debug_macro   0x000099e5       0x10 ./Crypto/src/md_wrap.o
- .debug_macro   0x000099f5      0x215 ./Crypto/src/rsa.o
- .debug_macro   0x00009c0a       0x10 ./Crypto/src/rsa.o
- .debug_macro   0x00009c1a      0x1c4 ./Crypto/src/sha1.o
- .debug_macro   0x00009dde      0x195 ./Crypto/src/sha2.o
+ .debug_macro   0x00000f0e      0x56b ./source/main.o
+ .debug_macro   0x00001479       0x16 ./source/main.o
+ .debug_macro   0x0000148f       0x9e ./source/main.o
+ .debug_macro   0x0000152d      0x104 ./source/main.o
+ .debug_macro   0x00001631       0x10 ./source/main.o
+ .debug_macro   0x00001641       0x16 ./source/main.o
+ .debug_macro   0x00001657       0x8b ./source/main.o
+ .debug_macro   0x000016e2       0x52 ./source/main.o
+ .debug_macro   0x00001734       0x97 ./source/main.o
+ .debug_macro   0x000017cb      0x1cb ./source/main.o
+ .debug_macro   0x00001996       0x9a ./source/main.o
+ .debug_macro   0x00001a30       0x16 ./source/main.o
+ .debug_macro   0x00001a46       0x4e ./source/main.o
+ .debug_macro   0x00001a94       0x46 ./source/main.o
+ .debug_macro   0x00001ada       0x64 ./source/main.o
+ .debug_macro   0x00001b3e       0x5f ./source/main.o
+ .debug_macro   0x00001b9d       0x1c ./source/main.o
+ .debug_macro   0x00001bb9       0x8e ./source/main.o
+ .debug_macro   0x00001c47       0x1c ./source/main.o
+ .debug_macro   0x00001c63       0xd1 ./source/main.o
+ .debug_macro   0x00001d34       0x34 ./source/main.o
+ .debug_macro   0x00001d68      0x143 ./source/main.o
+ .debug_macro   0x00001eab       0x28 ./source/main.o
+ .debug_macro   0x00001ed3       0x16 ./source/main.o
+ .debug_macro   0x00001ee9       0xb8 ./source/main.o
+ .debug_macro   0x00001fa1       0x6a ./source/main.o
+ .debug_macro   0x0000200b       0x11 ./source/semihost_hardfault.o
+ .debug_macro   0x0000201c      0x3fc ./source/sfw.o
+ .debug_macro   0x00002418       0x64 ./source/sfw.o
+ .debug_macro   0x0000247c      0x379 ./source/sfw.o
+ .debug_macro   0x000027f5      0x3fc ./mbedtls/port/ksdk/ksdk_mbedtls.o
+ .debug_macro   0x00002bf1       0x75 ./mbedtls/port/ksdk/ksdk_mbedtls.o
+ .debug_macro   0x00002c66       0x16 ./mbedtls/port/ksdk/ksdk_mbedtls.o
+ .debug_macro   0x00002c7c       0x28 ./mbedtls/port/ksdk/ksdk_mbedtls.o
+ .debug_macro   0x00002ca4       0x5a ./mbedtls/port/ksdk/ksdk_mbedtls.o
+ .debug_macro   0x00002cfe       0x10 ./mbedtls/port/ksdk/ksdk_mbedtls.o
+ .debug_macro   0x00002d0e       0x10 ./mbedtls/port/ksdk/ksdk_mbedtls.o
+ .debug_macro   0x00002d1e       0x20 ./mbedtls/port/ksdk/ksdk_mbedtls.o
+ .debug_macro   0x00002d3e       0x10 ./mbedtls/port/ksdk/ksdk_mbedtls.o
+ .debug_macro   0x00002d4e       0x10 ./mbedtls/port/ksdk/ksdk_mbedtls.o
+ .debug_macro   0x00002d5e       0x20 ./mbedtls/port/ksdk/ksdk_mbedtls.o
+ .debug_macro   0x00002d7e      0x3f8 ./lwip/port/sys_arch.o
+ .debug_macro   0x00003176      0x297 ./flash/mflash/mimxrt1170/mflash_drv.o
+ .debug_macro   0x0000340d       0x16 ./flash/mflash/mimxrt1170/mflash_drv.o
+ .debug_macro   0x00003423       0x16 ./flash/mflash/mimxrt1170/mflash_drv.o
+ .debug_macro   0x00003439       0x10 ./flash/mflash/mimxrt1170/mflash_drv.o
+ .debug_macro   0x00003449      0x24b ./flash/flash_api.o
+ .debug_macro   0x00003694      0x202 ./drivers/fsl_anatop_ai.o
+ .debug_macro   0x00003896      0x3a6 ./drivers/fsl_anatop_ai.o
+ .debug_macro   0x00003c3c      0x327 ./drivers/fsl_caam.o
+ .debug_macro   0x00003f63       0x3b ./drivers/fsl_caam.o
+ .debug_macro   0x00003f9e      0x203 ./drivers/fsl_cache.o
+ .debug_macro   0x000041a1      0x285 ./drivers/fsl_clock.o
+ .debug_macro   0x00004426       0x16 ./drivers/fsl_clock.o
+ .debug_macro   0x0000443c      0x3ac ./drivers/fsl_clock.o
+ .debug_macro   0x000047e8      0x1f3 ./drivers/fsl_common_arm.o
+ .debug_macro   0x000049db      0x202 ./drivers/fsl_dcdc.o
+ .debug_macro   0x00004bdd       0x22 ./drivers/fsl_dcdc.o
+ .debug_macro   0x00004bff      0x21d ./drivers/fsl_enet.o
+ .debug_macro   0x00004e1c       0xcb ./drivers/fsl_enet.o
+ .debug_macro   0x00004ee7      0x218 ./drivers/fsl_flexspi.o
+ .debug_macro   0x000050ff      0x203 ./drivers/fsl_gpio.o
+ .debug_macro   0x00005302      0x202 ./drivers/fsl_lpuart.o
+ .debug_macro   0x00005504       0x10 ./drivers/fsl_lpuart.o
+ .debug_macro   0x00005514      0x2cc ./drivers/fsl_pmu.o
+ .debug_macro   0x000057e0       0x10 ./drivers/fsl_pmu.o
+ .debug_macro   0x000057f0       0x9b ./device/system_MIMXRT1176_cm7.o
+ .debug_macro   0x0000588b      0x221 ./component/uart/fsl_adapter_lpuart.o
+ .debug_macro   0x00005aac       0x41 ./component/uart/fsl_adapter_lpuart.o
+ .debug_macro   0x00005aed      0x26b ./component/serial_manager/fsl_component_serial_manager.o
+ .debug_macro   0x00005d58       0x6a ./component/serial_manager/fsl_component_serial_manager.o
+ .debug_macro   0x00005dc2      0x22f ./component/serial_manager/fsl_component_serial_port_uart.o
+ .debug_macro   0x00005ff1      0x216 ./component/gpio/fsl_adapter_igpio.o
+ .debug_macro   0x00006207       0x22 ./component/gpio/fsl_adapter_igpio.o
+ .debug_macro   0x00006229      0x25e ./board/board.o
+ .debug_macro   0x00006487     0x2537 ./board/board.o
+ .debug_macro   0x000089be      0x237 ./board/clock_config.o
+ .debug_macro   0x00008bf5       0x28 ./board/clock_config.o
+ .debug_macro   0x00008c1d      0x200 ./board/pin_mux.o
+ .debug_macro   0x00008e1d      0x345 ./Crypto/test_src/src/test_src.o
+ .debug_macro   0x00009162       0x10 ./Crypto/test_src/src/test_src.o
+ .debug_macro   0x00009172       0xac ./Crypto/test_src/src/test_src.o
+ .debug_macro   0x0000921e       0x35 ./Crypto/test_src/src/test_src.o
+ .debug_macro   0x00009253       0x10 ./Crypto/test_src/src/test_src.o
+ .debug_macro   0x00009263      0x1ef ./Crypto/src/aursa.o
+ .debug_macro   0x00009452      0x104 ./Crypto/src/aursa.o
+ .debug_macro   0x00009556       0x28 ./Crypto/src/aursa.o
+ .debug_macro   0x0000957e       0x6b ./Crypto/src/aursa.o
+ .debug_macro   0x000095e9       0xf4 ./Crypto/src/aursa.o
+ .debug_macro   0x000096dd      0x1db ./Crypto/src/bignum.o
+ .debug_macro   0x000098b8       0x19 ./Crypto/src/bignum.o
+ .debug_macro   0x000098d1      0x14a ./Crypto/src/md.o
+ .debug_macro   0x00009a1b      0x199 ./Crypto/src/md_wrap.o
+ .debug_macro   0x00009bb4       0x10 ./Crypto/src/md_wrap.o
+ .debug_macro   0x00009bc4      0x215 ./Crypto/src/rsa.o
+ .debug_macro   0x00009dd9       0x10 ./Crypto/src/rsa.o
+ .debug_macro   0x00009de9      0x1c4 ./Crypto/src/sha1.o
+ .debug_macro   0x00009fad      0x195 ./Crypto/src/sha2.o
 
-.debug_line     0x00000000    0x2d981
+.debug_line     0x00000000    0x2d973
  .debug_line    0x00000000      0x7a1 ./utilities/fsl_assert.o
  .debug_line    0x000007a1      0xd2c ./utilities/fsl_debug_console.o
  .debug_line    0x000014cd       0x89 ./utilities/fsl_memcpy.o
  .debug_line    0x00001556     0x15fd ./utilities/fsl_str.o
  .debug_line    0x00002b53     0x1afd ./startup/startup_mimxrt1176_cm7.o
- .debug_line    0x00004650     0x167b ./source/ota_mcuboot_client.o
- .debug_line    0x00005ccb       0x58 ./source/semihost_hardfault.o
- .debug_line    0x00005d23     0x14e4 ./source/sfw.o
- .debug_line    0x00007207     0x1fe6 ./mbedtls/port/ksdk/ksdk_mbedtls.o
- .debug_line    0x000091ed      0xd02 ./lwip/port/sys_arch.o
- .debug_line    0x00009eef      0xcc1 ./flash/mflash/mimxrt1170/mflash_drv.o
- .debug_line    0x0000abb0      0xa52 ./flash/flash_api.o
- .debug_line    0x0000b602      0xc75 ./drivers/fsl_anatop_ai.o
- .debug_line    0x0000c277     0x5c33 ./drivers/fsl_caam.o
- .debug_line    0x00011eaa      0x848 ./drivers/fsl_cache.o
- .debug_line    0x000126f2     0x2466 ./drivers/fsl_clock.o
- .debug_line    0x00014b58      0x66b ./drivers/fsl_common_arm.o
- .debug_line    0x000151c3      0xdb3 ./drivers/fsl_dcdc.o
- .debug_line    0x00015f76     0x3224 ./drivers/fsl_enet.o
- .debug_line    0x0001919a     0x1a97 ./drivers/fsl_flexspi.o
- .debug_line    0x0001ac31      0x81a ./drivers/fsl_gpio.o
- .debug_line    0x0001b44b     0x26be ./drivers/fsl_lpuart.o
- .debug_line    0x0001db09     0x115e ./drivers/fsl_pmu.o
- .debug_line    0x0001ec67      0x400 ./device/system_MIMXRT1176_cm7.o
- .debug_line    0x0001f067      0x905 ./component/uart/fsl_adapter_lpuart.o
- .debug_line    0x0001f96c      0xe10 ./component/serial_manager/fsl_component_serial_manager.o
- .debug_line    0x0002077c      0x92f ./component/serial_manager/fsl_component_serial_port_uart.o
- .debug_line    0x000210ab     0x1085 ./component/gpio/fsl_adapter_igpio.o
- .debug_line    0x00022130      0xd93 ./board/board.o
- .debug_line    0x00022ec3     0x1782 ./board/clock_config.o
- .debug_line    0x00024645      0xb4e ./board/pin_mux.o
- .debug_line    0x00025193     0x18e8 ./Crypto/test_src/src/test_src.o
- .debug_line    0x00026a7b      0x66a ./Crypto/src/aursa.o
- .debug_line    0x000270e5     0x2536 ./Crypto/src/bignum.o
- .debug_line    0x0002961b      0x838 ./Crypto/src/md.o
- .debug_line    0x00029e53      0x83b ./Crypto/src/md_wrap.o
- .debug_line    0x0002a68e     0x172d ./Crypto/src/rsa.o
- .debug_line    0x0002bdbb      0xbe2 ./Crypto/src/sha1.o
- .debug_line    0x0002c99d      0xdb6 ./Crypto/src/sha2.o
- .debug_line    0x0002d753      0x1cd c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard\libcr_newlib_nohost.a(_cr_sbrk.o)
- .debug_line    0x0002d920       0x61 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard\libcr_newlib_nohost.a(_cr_check_heap.o)
+ .debug_line    0x00004650     0x166d ./source/main.o
+ .debug_line    0x00005cbd       0x58 ./source/semihost_hardfault.o
+ .debug_line    0x00005d15     0x14e4 ./source/sfw.o
+ .debug_line    0x000071f9     0x1fe6 ./mbedtls/port/ksdk/ksdk_mbedtls.o
+ .debug_line    0x000091df      0xd02 ./lwip/port/sys_arch.o
+ .debug_line    0x00009ee1      0xcc1 ./flash/mflash/mimxrt1170/mflash_drv.o
+ .debug_line    0x0000aba2      0xa52 ./flash/flash_api.o
+ .debug_line    0x0000b5f4      0xc75 ./drivers/fsl_anatop_ai.o
+ .debug_line    0x0000c269     0x5c33 ./drivers/fsl_caam.o
+ .debug_line    0x00011e9c      0x848 ./drivers/fsl_cache.o
+ .debug_line    0x000126e4     0x2466 ./drivers/fsl_clock.o
+ .debug_line    0x00014b4a      0x66b ./drivers/fsl_common_arm.o
+ .debug_line    0x000151b5      0xdb3 ./drivers/fsl_dcdc.o
+ .debug_line    0x00015f68     0x3224 ./drivers/fsl_enet.o
+ .debug_line    0x0001918c     0x1a97 ./drivers/fsl_flexspi.o
+ .debug_line    0x0001ac23      0x81a ./drivers/fsl_gpio.o
+ .debug_line    0x0001b43d     0x26be ./drivers/fsl_lpuart.o
+ .debug_line    0x0001dafb     0x115e ./drivers/fsl_pmu.o
+ .debug_line    0x0001ec59      0x400 ./device/system_MIMXRT1176_cm7.o
+ .debug_line    0x0001f059      0x905 ./component/uart/fsl_adapter_lpuart.o
+ .debug_line    0x0001f95e      0xe10 ./component/serial_manager/fsl_component_serial_manager.o
+ .debug_line    0x0002076e      0x92f ./component/serial_manager/fsl_component_serial_port_uart.o
+ .debug_line    0x0002109d     0x1085 ./component/gpio/fsl_adapter_igpio.o
+ .debug_line    0x00022122      0xd93 ./board/board.o
+ .debug_line    0x00022eb5     0x1782 ./board/clock_config.o
+ .debug_line    0x00024637      0xb4e ./board/pin_mux.o
+ .debug_line    0x00025185     0x18e8 ./Crypto/test_src/src/test_src.o
+ .debug_line    0x00026a6d      0x66a ./Crypto/src/aursa.o
+ .debug_line    0x000270d7     0x2536 ./Crypto/src/bignum.o
+ .debug_line    0x0002960d      0x838 ./Crypto/src/md.o
+ .debug_line    0x00029e45      0x83b ./Crypto/src/md_wrap.o
+ .debug_line    0x0002a680     0x172d ./Crypto/src/rsa.o
+ .debug_line    0x0002bdad      0xbe2 ./Crypto/src/sha1.o
+ .debug_line    0x0002c98f      0xdb6 ./Crypto/src/sha2.o
+ .debug_line    0x0002d745      0x1cd c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard\libcr_newlib_nohost.a(_cr_sbrk.o)
+ .debug_line    0x0002d912       0x61 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard\libcr_newlib_nohost.a(_cr_check_heap.o)
 
-.debug_str      0x00000000   0x2d27a7
+.debug_str      0x00000000   0x2d2799
  .debug_str     0x00000000   0x285d03 ./utilities/fsl_assert.o
                              0x285fd3 (size before relaxing)
  .debug_str     0x00285d03     0x16dc ./utilities/fsl_debug_console.o
@@ -44770,77 +44770,77 @@ LOAD linker stubs
                              0x28645b (size before relaxing)
  .debug_str     0x002882a7     0x1551 ./startup/startup_mimxrt1176_cm7.o
                              0x27fa83 (size before relaxing)
- .debug_str     0x002897f8     0xff75 ./source/ota_mcuboot_client.o
-                             0x296da4 (size before relaxing)
- .debug_str     0x0029976d       0x1f ./source/semihost_hardfault.o
+ .debug_str     0x002897f8     0xff67 ./source/main.o
+                             0x296d96 (size before relaxing)
+ .debug_str     0x0029975f       0x1f ./source/semihost_hardfault.o
                                0x312f (size before relaxing)
- .debug_str     0x0029978c      0x7bb ./source/sfw.o
+ .debug_str     0x0029977e      0x7bb ./source/sfw.o
                              0x28d9aa (size before relaxing)
- .debug_str     0x00299f47     0x4f12 ./mbedtls/port/ksdk/ksdk_mbedtls.o
+ .debug_str     0x00299f39     0x4f12 ./mbedtls/port/ksdk/ksdk_mbedtls.o
                              0x28c37b (size before relaxing)
- .debug_str     0x0029ee59     0x1456 ./lwip/port/sys_arch.o
+ .debug_str     0x0029ee4b     0x1456 ./lwip/port/sys_arch.o
                              0x28d6af (size before relaxing)
- .debug_str     0x002a02af      0xb9d ./flash/mflash/mimxrt1170/mflash_drv.o
+ .debug_str     0x002a02a1      0xb9d ./flash/mflash/mimxrt1170/mflash_drv.o
                              0x286b9c (size before relaxing)
- .debug_str     0x002a0e4c       0x88 ./flash/flash_api.o
+ .debug_str     0x002a0e3e       0x88 ./flash/flash_api.o
                              0x285bd5 (size before relaxing)
- .debug_str     0x002a0ed4     0x3231 ./drivers/fsl_anatop_ai.o
+ .debug_str     0x002a0ec6     0x3231 ./drivers/fsl_anatop_ai.o
                              0x288849 (size before relaxing)
- .debug_str     0x002a4105     0x294b ./drivers/fsl_caam.o
+ .debug_str     0x002a40f7     0x294b ./drivers/fsl_caam.o
                              0x28addb (size before relaxing)
- .debug_str     0x002a6a50      0x168 ./drivers/fsl_cache.o
+ .debug_str     0x002a6a42      0x168 ./drivers/fsl_cache.o
                              0x2856f9 (size before relaxing)
- .debug_str     0x002a6bb8     0x1814 ./drivers/fsl_clock.o
+ .debug_str     0x002a6baa     0x1814 ./drivers/fsl_clock.o
                              0x28be67 (size before relaxing)
- .debug_str     0x002a83cc      0x15a ./drivers/fsl_common_arm.o
+ .debug_str     0x002a83be      0x15a ./drivers/fsl_common_arm.o
                              0x285558 (size before relaxing)
- .debug_str     0x002a8526     0x1a60 ./drivers/fsl_dcdc.o
+ .debug_str     0x002a8518     0x1a60 ./drivers/fsl_dcdc.o
                              0x287b73 (size before relaxing)
- .debug_str     0x002a9f86     0x129f ./drivers/fsl_enet.o
+ .debug_str     0x002a9f78     0x129f ./drivers/fsl_enet.o
                              0x28a0db (size before relaxing)
- .debug_str     0x002ab225      0xd3e ./drivers/fsl_flexspi.o
+ .debug_str     0x002ab217      0xd3e ./drivers/fsl_flexspi.o
                              0x288b50 (size before relaxing)
- .debug_str     0x002abf63       0xb9 ./drivers/fsl_gpio.o
+ .debug_str     0x002abf55       0xb9 ./drivers/fsl_gpio.o
                              0x28636b (size before relaxing)
- .debug_str     0x002ac01c     0x11b0 ./drivers/fsl_lpuart.o
+ .debug_str     0x002ac00e     0x11b0 ./drivers/fsl_lpuart.o
                              0x288cc4 (size before relaxing)
- .debug_str     0x002ad1cc     0x242c ./drivers/fsl_pmu.o
+ .debug_str     0x002ad1be     0x242c ./drivers/fsl_pmu.o
                              0x28aabd (size before relaxing)
- .debug_str     0x002af5f8       0x79 ./device/system_MIMXRT1176_cm7.o
+ .debug_str     0x002af5ea       0x79 ./device/system_MIMXRT1176_cm7.o
                              0x27e896 (size before relaxing)
- .debug_str     0x002af671      0x385 ./component/uart/fsl_adapter_lpuart.o
+ .debug_str     0x002af663      0x385 ./component/uart/fsl_adapter_lpuart.o
                              0x286874 (size before relaxing)
- .debug_str     0x002af9f6      0x509 ./component/serial_manager/fsl_component_serial_manager.o
+ .debug_str     0x002af9e8      0x509 ./component/serial_manager/fsl_component_serial_manager.o
                              0x28716d (size before relaxing)
- .debug_str     0x002afeff       0x92 ./component/serial_manager/fsl_component_serial_port_uart.o
+ .debug_str     0x002afef1       0x92 ./component/serial_manager/fsl_component_serial_port_uart.o
                              0x286313 (size before relaxing)
- .debug_str     0x002aff91      0x633 ./component/gpio/fsl_adapter_igpio.o
+ .debug_str     0x002aff83      0x633 ./component/gpio/fsl_adapter_igpio.o
                              0x2877ae (size before relaxing)
- .debug_str     0x002b05c4    0x19455 ./board/board.o
+ .debug_str     0x002b05b6    0x19455 ./board/board.o
                              0x2a4f2c (size before relaxing)
- .debug_str     0x002c9a19     0x6170 ./board/clock_config.o
+ .debug_str     0x002c9a0b     0x6170 ./board/clock_config.o
                              0x2aa4cb (size before relaxing)
- .debug_str     0x002cfb89       0xa7 ./board/pin_mux.o
+ .debug_str     0x002cfb7b       0xa7 ./board/pin_mux.o
                              0x29f658 (size before relaxing)
- .debug_str     0x002cfc30      0x9d0 ./Crypto/test_src/src/test_src.o
+ .debug_str     0x002cfc22      0x9d0 ./Crypto/test_src/src/test_src.o
                              0x289740 (size before relaxing)
- .debug_str     0x002d0600      0xcb0 ./Crypto/src/aursa.o
+ .debug_str     0x002d05f2      0xcb0 ./Crypto/src/aursa.o
                                0x99b6 (size before relaxing)
- .debug_str     0x002d12b0      0x5bc ./Crypto/src/bignum.o
+ .debug_str     0x002d12a2      0x5bc ./Crypto/src/bignum.o
                                0x94a2 (size before relaxing)
- .debug_str     0x002d186c      0x1c4 ./Crypto/src/md.o
+ .debug_str     0x002d185e      0x1c4 ./Crypto/src/md.o
                                0x7092 (size before relaxing)
- .debug_str     0x002d1a30      0x3de ./Crypto/src/md_wrap.o
+ .debug_str     0x002d1a22      0x3de ./Crypto/src/md_wrap.o
                                0x8c73 (size before relaxing)
- .debug_str     0x002d1e0e      0x25c ./Crypto/src/rsa.o
+ .debug_str     0x002d1e00      0x25c ./Crypto/src/rsa.o
                                0x9d84 (size before relaxing)
- .debug_str     0x002d206a      0x31d ./Crypto/src/sha1.o
+ .debug_str     0x002d205c      0x31d ./Crypto/src/sha1.o
                                0x890b (size before relaxing)
- .debug_str     0x002d2387      0x237 ./Crypto/src/sha2.o
+ .debug_str     0x002d2379      0x237 ./Crypto/src/sha2.o
                                0x89a6 (size before relaxing)
- .debug_str     0x002d25be      0x1c4 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard\libcr_newlib_nohost.a(_cr_sbrk.o)
+ .debug_str     0x002d25b0      0x1c4 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard\libcr_newlib_nohost.a(_cr_sbrk.o)
                                 0x268 (size before relaxing)
- .debug_str     0x002d2782       0x25 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard\libcr_newlib_nohost.a(_cr_check_heap.o)
+ .debug_str     0x002d2774       0x25 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard\libcr_newlib_nohost.a(_cr_check_heap.o)
                                 0x1b3 (size before relaxing)
 
 .comment        0x00000000       0x45
@@ -44849,7 +44849,7 @@ LOAD linker stubs
  .comment       0x00000045       0x46 ./utilities/fsl_debug_console.o
  .comment       0x00000045       0x46 ./utilities/fsl_str.o
  .comment       0x00000045       0x46 ./startup/startup_mimxrt1176_cm7.o
- .comment       0x00000045       0x46 ./source/ota_mcuboot_client.o
+ .comment       0x00000045       0x46 ./source/main.o
  .comment       0x00000045       0x46 ./source/semihost_hardfault.o
  .comment       0x00000045       0x46 ./source/sfw.o
  .comment       0x00000045       0x46 ./mbedtls/port/ksdk/ksdk_mbedtls.o
@@ -44899,7 +44899,7 @@ LOAD linker stubs
  .ARM.attributes
                 0x000000b4       0x32 ./startup/startup_mimxrt1176_cm7.o
  .ARM.attributes
-                0x000000e6       0x32 ./source/ota_mcuboot_client.o
+                0x000000e6       0x32 ./source/main.o
  .ARM.attributes
                 0x00000118       0x32 ./source/semihost_hardfault.o
  .ARM.attributes
@@ -45008,7 +45008,7 @@ LOAD linker stubs
  .debug_frame   0x00000038      0x244 ./utilities/fsl_debug_console.o
  .debug_frame   0x0000027c      0x2b4 ./utilities/fsl_str.o
  .debug_frame   0x00000530     0x1568 ./startup/startup_mimxrt1176_cm7.o
- .debug_frame   0x00001a98      0x104 ./source/ota_mcuboot_client.o
+ .debug_frame   0x00001a98      0x104 ./source/main.o
  .debug_frame   0x00001b9c       0x20 ./source/semihost_hardfault.o
  .debug_frame   0x00001bbc      0x150 ./source/sfw.o
  .debug_frame   0x00001d0c      0x744 ./mbedtls/port/ksdk/ksdk_mbedtls.o
@@ -45116,23 +45116,23 @@ AURSA_pkcs1_verify_sha1                           ./Crypto/src/aursa.o
 AURSA_pkcs1_verify_sha256                         ./Crypto/src/aursa.o
                                                   ./Crypto/test_src/src/test_src.o
 BOARD_BootClockRUN                                ./board/clock_config.o
-                                                  ./source/ota_mcuboot_client.o
+                                                  ./source/main.o
 BOARD_BootClockRUN_800M                           ./board/clock_config.o
 BOARD_ConfigMPU                                   ./board/board.o
-                                                  ./source/ota_mcuboot_client.o
+                                                  ./source/main.o
 BOARD_DebugConsoleSrcFreq                         ./board/board.o
-BOARD_ENETFlexibleConfigure                       ./source/ota_mcuboot_client.o
+BOARD_ENETFlexibleConfigure                       ./source/main.o
                                                   ./lwip/port/enet_ethernetif_kinetis.o
 BOARD_InitBootClocks                              ./board/clock_config.o
 BOARD_InitBootPins                                ./board/pin_mux.o
 BOARD_InitDebugConsole                            ./board/board.o
-                                                  ./source/ota_mcuboot_client.o
+                                                  ./source/main.o
 BOARD_InitEnet1GPins                              ./board/pin_mux.o
-                                                  ./source/ota_mcuboot_client.o
+                                                  ./source/main.o
 BOARD_InitEnetPins                                ./board/pin_mux.o
-BOARD_InitModuleClock                             ./source/ota_mcuboot_client.o
+BOARD_InitModuleClock                             ./source/main.o
 BOARD_InitPins                                    ./board/pin_mux.o
-                                                  ./source/ota_mcuboot_client.o
+                                                  ./source/main.o
 BOARD_MMC_Pin_Config                              ./board/board.o
 BOARD_SD_Pin_Config                               ./board/board.o
 BusFault_Handler                                  ./startup/startup_mimxrt1176_cm7.o
@@ -45346,7 +45346,7 @@ CLOCK_GPC_SetVideoPllOutputFreq                   ./drivers/fsl_clock.o
 CLOCK_GetFreq                                     ./drivers/fsl_clock.o
                                                   ./board/clock_config.o
                                                   ./board/board.o
-                                                  ./source/ota_mcuboot_client.o
+                                                  ./source/main.o
                                                   ./source/init_enet.o
 CLOCK_GetFreqFromObs                              ./drivers/fsl_clock.o
 CLOCK_GetPfdFreq                                  ./drivers/fsl_clock.o
@@ -45359,7 +45359,7 @@ CLOCK_InitAudioPllWithFreq                        ./drivers/fsl_clock.o
 CLOCK_InitPfd                                     ./drivers/fsl_clock.o
                                                   ./board/clock_config.o
 CLOCK_InitSysPll1                                 ./drivers/fsl_clock.o
-                                                  ./source/ota_mcuboot_client.o
+                                                  ./source/main.o
 CLOCK_InitSysPll2                                 ./drivers/fsl_clock.o
                                                   ./board/clock_config.o
 CLOCK_InitSysPll3                                 ./drivers/fsl_clock.o
@@ -45402,7 +45402,7 @@ CM7_GPIO2_3_IRQHandler                            ./startup/startup_mimxrt1176_c
 CORE_DriverIRQHandler                             ./startup/startup_mimxrt1176_cm7.o
 CORE_IRQHandler                                   ./startup/startup_mimxrt1176_cm7.o
 CRYPTO_InitHardware                               ./mbedtls/port/ksdk/ksdk_mbedtls.o
-                                                  ./source/ota_mcuboot_client.o
+                                                  ./source/main.o
 CSI_DriverIRQHandler                              ./startup/startup_mimxrt1176_cm7.o
 CSI_IRQHandler                                    ./startup/startup_mimxrt1176_cm7.o
 CTI_TRIGGER_OUT0_DriverIRQHandler                 ./startup/startup_mimxrt1176_cm7.o
@@ -45519,8 +45519,8 @@ DbgConsole_Printf                                 ./utilities/fsl_debug_console.
                                                   ./mbedtls/library/aes.o
                                                   ./mbedtls/port/ksdk/ecp_alt.o
                                                   ./source/sfw.o
-                                                  ./source/ota_mcuboot_client.o
                                                   ./source/mcuboot_app_support.o
+                                                  ./source/main.o
                                                   ./source/init_enet.o
                                                   ./source/flash_helper.o
                                                   ./utilities/fsl_assert.o
@@ -45573,7 +45573,7 @@ ENET_ErrorIRQHandler                              ./drivers/fsl_enet.o
 ENET_GetDefaultConfig                             ./drivers/fsl_enet.o
                                                   ./lwip/port/enet_ethernetif_kinetis.o
 ENET_GetInstance                                  ./drivers/fsl_enet.o
-                                                  ./source/ota_mcuboot_client.o
+                                                  ./source/main.o
 ENET_GetMacAddr                                   ./drivers/fsl_enet.o
 ENET_GetRxErrBeforeReadFrame                      ./drivers/fsl_enet.o
 ENET_GetRxFrame                                   ./drivers/fsl_enet.o
@@ -45589,9 +45589,9 @@ ENET_MAC0_Rx_Tx_Done2_DriverIRQHandler            ./drivers/fsl_enet.o
 ENET_MDIOC45Read                                  ./drivers/fsl_enet.o
 ENET_MDIOC45Write                                 ./drivers/fsl_enet.o
 ENET_MDIORead                                     ./drivers/fsl_enet.o
-                                                  ./source/ota_mcuboot_client.o
+                                                  ./source/main.o
 ENET_MDIOWrite                                    ./drivers/fsl_enet.o
-                                                  ./source/ota_mcuboot_client.o
+                                                  ./source/main.o
 ENET_Ptp1588IRQHandler                            ./drivers/fsl_enet.o
 ENET_QOS_DriverIRQHandler                         ./startup/startup_mimxrt1176_cm7.o
 ENET_QOS_IRQHandler                               ./startup/startup_mimxrt1176_cm7.o
@@ -45608,7 +45608,7 @@ ENET_SetMII                                       ./drivers/fsl_enet.o
 ENET_SetMacAddr                                   ./drivers/fsl_enet.o
 ENET_SetRxISRHandler                              ./drivers/fsl_enet.o
 ENET_SetSMI                                       ./drivers/fsl_enet.o
-                                                  ./source/ota_mcuboot_client.o
+                                                  ./source/main.o
 ENET_SetTxISRHandler                              ./drivers/fsl_enet.o
 ENET_SetTxReclaim                                 ./drivers/fsl_enet.o
 ENET_StartTxFrame                                 ./drivers/fsl_enet.o
@@ -45704,13 +45704,13 @@ GPIO6_Combined_16_31_IRQHandler                   ./startup/startup_mimxrt1176_c
 GPIO_PinInit                                      ./drivers/fsl_gpio.o
                                                   ./component/gpio/fsl_adapter_igpio.o
                                                   ./source/sfw.o
-                                                  ./source/ota_mcuboot_client.o
+                                                  ./source/main.o
 GPIO_PinSetInterruptConfig                        ./drivers/fsl_gpio.o
                                                   ./component/gpio/fsl_adapter_igpio.o
 GPIO_PinWrite                                     ./drivers/fsl_gpio.o
                                                   ./component/gpio/fsl_adapter_igpio.o
                                                   ./source/sfw.o
-                                                  ./source/ota_mcuboot_client.o
+                                                  ./source/main.o
 GPR_IRQ_DriverIRQHandler                          ./startup/startup_mimxrt1176_cm7.o
 GPR_IRQ_IRQHandler                                ./startup/startup_mimxrt1176_cm7.o
 GPT1_DriverIRQHandler                             ./startup/startup_mimxrt1176_cm7.o
@@ -45753,7 +45753,7 @@ HAL_UartSendBlocking                              ./component/uart/fsl_adapter_l
 HardFault_Handler                                 ./source/semihost_hardfault.o
                                                   ./startup/startup_mimxrt1176_cm7.o
 ICACHE_InvalidateByRange                          ./drivers/fsl_cache.o
-IOMUXC_SelectENETClock                            ./source/ota_mcuboot_client.o
+IOMUXC_SelectENETClock                            ./source/main.o
 IntDefaultHandler                                 ./startup/startup_mimxrt1176_cm7.o
 KEY_MANAGER_DriverIRQHandler                      ./startup/startup_mimxrt1176_cm7.o
 KEY_MANAGER_IRQHandler                            ./startup/startup_mimxrt1176_cm7.o
@@ -46082,7 +46082,7 @@ SBL_EnableRemap                                   ./source/sfw.o
 SDK_DelayAtLeastUs                                ./drivers/fsl_common_arm.o
                                                   ./drivers/fsl_pmu.o
                                                   ./drivers/fsl_clock.o
-                                                  ./source/ota_mcuboot_client.o
+                                                  ./source/main.o
 SDK_Free                                          ./drivers/fsl_common.o
 SDK_Malloc                                        ./drivers/fsl_common.o
 SEMA4_CP0_DriverIRQHandler                        ./startup/startup_mimxrt1176_cm7.o
@@ -46253,7 +46253,7 @@ __assert_func                                     ./utilities/fsl_assert.o
                                                   ./drivers/fsl_common_arm.o
                                                   ./drivers/fsl_clock.o
                                                   ./drivers/fsl_caam.o
-                                                  ./source/ota_mcuboot_client.o
+                                                  ./source/main.o
                                                   ./source/init_enet.o
                                                   ./utilities/fsl_shell.o
 __base_NCACHE_REGION                              ./board/board.o
@@ -46660,7 +46660,7 @@ fsl_assert_hook                                   ./utilities/fsl_assert.o
 g_boot_data                                       ./xip/fsl_flexspi_nor_boot.o
 g_pfnVectors                                      ./startup/startup_mimxrt1176_cm7.o
                                                   ./device/system_MIMXRT1176_cm7.o
-g_phy_resource                                    ./source/ota_mcuboot_client.o
+g_phy_resource                                    ./source/main.o
                                                   ./source/init_enet.o
 g_serialHandle                                    ./utilities/fsl_debug_console.o
 header                                            ./Crypto/test_src/src/test_src.o
@@ -46762,7 +46762,7 @@ lwip_stricmp                                      ./lwip/src/core/def.o
 lwip_strnicmp                                     ./lwip/src/core/def.o
 lwip_strnistr                                     ./lwip/src/core/def.o
 lwip_strnstr                                      ./lwip/src/core/def.o
-main                                              ./source/ota_mcuboot_client.o
+main                                              ./source/main.o
                                                   ./startup/startup_mimxrt1176_cm7.o
 malloc                                            c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m+dp/hard\libc_nano.a(libc_a-malloc.o)
                                                   c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m+dp/hard\libc_nano.a(libc_a-rand.o)
@@ -49252,13 +49252,13 @@ rsa_rsassa_pkcs1_v15_verify                       ./Crypto/src/rsa.o
 rsa_rsassa_pss_sign                               ./Crypto/src/rsa.o
 rsa_rsassa_pss_verify                             ./Crypto/src/rsa.o
 s_enetClock                                       ./drivers/fsl_enet.o
-                                                  ./source/ota_mcuboot_client.o
+                                                  ./source/main.o
 s_lpuartHandle                                    ./drivers/fsl_lpuart.o
 s_lpuartIRQ                                       ./drivers/fsl_lpuart.o
 s_lpuartIsr                                       ./drivers/fsl_lpuart.o
 set_magic_field_on_remap_flag                     ./source/sfw.o
 sfw_main                                          ./source/sfw.o
-                                                  ./source/ota_mcuboot_client.o
+                                                  ./source/main.o
 sha                                               ./Crypto/src/rsa.o
 sha1                                              ./Crypto/src/sha1.o
                                                   ./Crypto/src/rsa.o

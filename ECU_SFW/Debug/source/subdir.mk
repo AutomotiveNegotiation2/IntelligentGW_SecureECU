@@ -6,24 +6,24 @@
 C_SRCS += \
 ../source/flash_helper.c \
 ../source/init_enet.c \
+../source/main.c \
 ../source/mcuboot_app_support.c \
-../source/ota_mcuboot_client.c \
 ../source/semihost_hardfault.c \
 ../source/sfw.c 
 
 C_DEPS += \
 ./source/flash_helper.d \
 ./source/init_enet.d \
+./source/main.d \
 ./source/mcuboot_app_support.d \
-./source/ota_mcuboot_client.d \
 ./source/semihost_hardfault.d \
 ./source/sfw.d 
 
 OBJS += \
 ./source/flash_helper.o \
 ./source/init_enet.o \
+./source/main.o \
 ./source/mcuboot_app_support.o \
-./source/ota_mcuboot_client.o \
 ./source/semihost_hardfault.o \
 ./source/sfw.o 
 
@@ -40,7 +40,7 @@ source/%.o: ../source/%.c source/subdir.mk
 clean: clean-source
 
 clean-source:
-	-$(RM) ./source/flash_helper.d ./source/flash_helper.o ./source/init_enet.d ./source/init_enet.o ./source/mcuboot_app_support.d ./source/mcuboot_app_support.o ./source/ota_mcuboot_client.d ./source/ota_mcuboot_client.o ./source/semihost_hardfault.d ./source/semihost_hardfault.o ./source/sfw.d ./source/sfw.o
+	-$(RM) ./source/flash_helper.d ./source/flash_helper.o ./source/init_enet.d ./source/init_enet.o ./source/main.d ./source/main.o ./source/mcuboot_app_support.d ./source/mcuboot_app_support.o ./source/semihost_hardfault.d ./source/semihost_hardfault.o ./source/sfw.d ./source/sfw.o
 
 .PHONY: clean-source
 
