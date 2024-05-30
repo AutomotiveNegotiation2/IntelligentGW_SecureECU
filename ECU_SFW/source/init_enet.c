@@ -15,7 +15,7 @@
 #include "ethernetif.h"
 #include "lwip/netifapi.h"
 #include "lwip/prot/dhcp.h"
-//#include "ethernetif.h"
+#include "ethernetif.h"
 
 #include "network_cfg.h"
 

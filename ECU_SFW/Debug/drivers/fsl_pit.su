@@ -1,0 +1,5 @@
+../drivers/fsl_clock.h:2178:20:CLOCK_ControlGate	0	static
+../drivers/fsl_pit.c:45:17:PIT_GetInstance	8	static
+../drivers/fsl_pit.c:72:6:PIT_Init	16	static
+../drivers/fsl_pit.c:110:6:PIT_Deinit	8	static
+../drivers/fsl_pit.c:138:10:PIT_GetLifetimeTimerCount	0	static
