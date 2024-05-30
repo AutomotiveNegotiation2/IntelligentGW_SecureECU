@@ -1,0 +1,3 @@
+../mbedtls/library/sha1.c:414:5:mbedtls_sha1_ret	360	static
+../mbedtls/library/sha1.c:445:6:mbedtls_sha1	8	static
+../mbedtls/library/sha1.c:489:5:mbedtls_sha1_self_test	1400	static

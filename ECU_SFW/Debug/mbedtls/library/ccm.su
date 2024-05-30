@@ -1,0 +1,4 @@
+../mbedtls/library/ccm.c:62:6:mbedtls_ccm_init	8	static
+../mbedtls/library/ccm.c:68:5:mbedtls_ccm_setkey	24	static
+../mbedtls/library/ccm.c:106:6:mbedtls_ccm_free	8	static
+../mbedtls/library/ccm.c:523:5:mbedtls_ccm_self_test	200	static

@@ -1,0 +1,5 @@
+../mbedtls/library/arc4.c:38:6:mbedtls_arc4_init	8	static
+../mbedtls/library/arc4.c:43:6:mbedtls_arc4_free	8	static
+../mbedtls/library/arc4.c:55:6:mbedtls_arc4_setup	12	static
+../mbedtls/library/arc4.c:87:5:mbedtls_arc4_crypt	24	static
+../mbedtls/library/arc4.c:147:5:mbedtls_arc4_self_test	296	static

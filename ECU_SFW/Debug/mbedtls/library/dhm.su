@@ -1,0 +1,15 @@
+../mbedtls/library/dhm.c:58:12:dhm_read_bignum	16	static
+../mbedtls/library/dhm.c:96:12:dhm_check_range	32	static
+../mbedtls/library/dhm.c:151:12:dhm_random_below	16	static
+../mbedtls/library/dhm.c:163:12:dhm_make_common	32	static
+../mbedtls/library/dhm.c:341:12:dhm_update_blinding	56	static
+../mbedtls/library/dhm.c:115:6:mbedtls_dhm_init	8	static
+../mbedtls/library/dhm.c:124:5:mbedtls_dhm_read_params	32	static
+../mbedtls/library/dhm.c:206:5:mbedtls_dhm_make_params	48	static
+../mbedtls/library/dhm.c:261:5:mbedtls_dhm_set_group	24	static
+../mbedtls/library/dhm.c:282:5:mbedtls_dhm_read_public	8	static
+../mbedtls/library/dhm.c:303:5:mbedtls_dhm_make_public	16	static
+../mbedtls/library/dhm.c:403:5:mbedtls_dhm_calc_secret	56	static
+../mbedtls/library/dhm.c:461:6:mbedtls_dhm_free	8	static
+../mbedtls/library/dhm.c:485:5:mbedtls_dhm_parse_dhm	80	static
+../mbedtls/library/dhm.c:689:5:mbedtls_dhm_self_test	144	static

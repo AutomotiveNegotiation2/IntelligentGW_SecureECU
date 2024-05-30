@@ -1,0 +1,8 @@
+../mbedtls/port/ksdk/des_alt.c:286:6:mbedtls_des_init	8	static
+../mbedtls/port/ksdk/des_alt.c:291:6:mbedtls_des_free	8	static
+../mbedtls/port/ksdk/des_alt.c:300:6:mbedtls_des3_init	8	static
+../mbedtls/port/ksdk/des_alt.c:305:6:mbedtls_des3_free	8	static
+../mbedtls/port/ksdk/des_alt.c:333:6:mbedtls_des_key_set_parity	0	static
+../mbedtls/port/ksdk/des_alt.c:345:5:mbedtls_des_key_check_key_parity	4	static
+../mbedtls/port/ksdk/des_alt.c:402:5:mbedtls_des_key_check_weak	16	static
+../mbedtls/port/ksdk/des_alt.c:416:6:mbedtls_des_setkey	24	static

@@ -1,0 +1,9 @@
+../mbedtls/library/pkwrite.c:66:12:pk_write_rsa_pubkey	48	static
+../mbedtls/library/pkwrite.c:108:12:pk_write_ec_pubkey	128	static
+../mbedtls/library/pkwrite.c:136:12:pk_write_ec_param	24	static
+../mbedtls/library/pkwrite.c:156:12:pk_write_ec_private	72	static
+../mbedtls/library/pkwrite.c:175:5:mbedtls_pk_write_pubkey	24	static
+../mbedtls/library/pkwrite.c:225:5:mbedtls_pk_write_pubkey_der	56	static
+../mbedtls/library/pkwrite.c:317:5:mbedtls_pk_write_key_der	48	static
+../mbedtls/library/pkwrite.c:574:5:mbedtls_pk_write_pubkey_pem	1104	static
+../mbedtls/library/pkwrite.c:597:5:mbedtls_pk_write_key_pem	2912	static

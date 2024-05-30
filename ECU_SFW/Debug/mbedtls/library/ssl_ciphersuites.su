@@ -1,0 +1,10 @@
+../mbedtls/library/ssl_ciphersuites.c:2199:12:ciphersuite_is_removed	0	static
+../mbedtls/library/ssl_ciphersuites.c:2247:34:mbedtls_ssl_ciphersuite_from_string	16	static
+../mbedtls/library/ssl_ciphersuites.c:2267:34:mbedtls_ssl_ciphersuite_from_id	0	static
+../mbedtls/library/ssl_ciphersuites.c:2219:12:mbedtls_ssl_list_ciphersuites	16	static
+../mbedtls/library/ssl_ciphersuites.c:2282:13:mbedtls_ssl_get_ciphersuite_name	8	static
+../mbedtls/library/ssl_ciphersuites.c:2295:5:mbedtls_ssl_get_ciphersuite_id	8	static
+../mbedtls/library/ssl_ciphersuites.c:2309:19:mbedtls_ssl_get_ciphersuite_sig_pk_alg	0	static
+../mbedtls/library/ssl_ciphersuites.c:2330:19:mbedtls_ssl_get_ciphersuite_sig_alg	0	static
+../mbedtls/library/ssl_ciphersuites.c:2350:5:mbedtls_ssl_ciphersuite_uses_ec	0	static
+../mbedtls/library/ssl_ciphersuites.c:2368:5:mbedtls_ssl_ciphersuite_uses_psk	0	static

@@ -1,0 +1,8 @@
+../mbedtls/library/ssl_ticket.c:97:12:ssl_ticket_update_keys	0	static
+../mbedtls/library/ssl_ticket.c:64:12:ssl_ticket_gen_key	48	static
+../mbedtls/library/ssl_ticket.c:301:32:ssl_ticket_select_key	16	static
+../mbedtls/library/ssl_ticket.c:36:6:mbedtls_ssl_ticket_init	8	static
+../mbedtls/library/ssl_ticket.c:122:5:mbedtls_ssl_ticket_setup	16	static
+../mbedtls/library/ssl_ticket.c:216:5:mbedtls_ssl_ticket_write	80	static
+../mbedtls/library/ssl_ticket.c:319:5:mbedtls_ssl_ticket_parse	72	static
+../mbedtls/library/ssl_ticket.c:416:6:mbedtls_ssl_ticket_free	8	static

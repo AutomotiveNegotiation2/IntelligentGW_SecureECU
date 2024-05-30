@@ -1,0 +1,2 @@
+D:\Work\Gateway\FW\NXP\ECU_NETIF\ECU_SFW\trunk\drivers/fsl_clock.h:2240:24:CLOCK_GetRootClockFreq	16	static
+../source/init_enet.c:58:5:initNetwork	80	static

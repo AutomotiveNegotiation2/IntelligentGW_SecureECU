@@ -1,0 +1,10 @@
+../component/phy/fsl_phyksz8081.c:157:10:PHY_KSZ8081_Write	8	static
+../component/phy/fsl_phyksz8081.c:162:10:PHY_KSZ8081_Read	8	static
+../component/phy/fsl_phyksz8081.c:357:10:PHY_KSZ8081_EnableLinkInterrupt	24	static
+../component/phy/fsl_phyksz8081.c:403:10:PHY_KSZ8081_ClearInterrupt	16	static
+../component/phy/fsl_phyksz8081.c:167:10:PHY_KSZ8081_GetAutoNegotiationStatus	16	static
+../component/phy/fsl_phyksz8081.c:188:10:PHY_KSZ8081_GetLinkStatus	16	static
+../component/phy/fsl_phyksz8081.c:213:10:PHY_KSZ8081_GetLinkSpeedDuplex	24	static
+../component/phy/fsl_phyksz8081.c:254:10:PHY_KSZ8081_SetLinkSpeedDuplex	24	static
+../component/phy/fsl_phyksz8081.c:69:10:PHY_KSZ8081_Init	24	static
+../component/phy/fsl_phyksz8081.c:288:10:PHY_KSZ8081_EnableLoopback	16	static

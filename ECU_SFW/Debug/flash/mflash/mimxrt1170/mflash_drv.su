@@ -1,0 +1,16 @@
+../flash/mflash/mimxrt1170/mflash_drv.c:185:17:flexspi_nor_write_enable	24	static
+../flash/mflash/mimxrt1170/mflash_drv.c:133:17:flexspi_nor_wait_bus_busy	32	static
+../flash/mflash/mimxrt1170/mflash_drv.c:236:17:flexspi_nor_flash_sector_erase	32	static
+../flash/mflash/mimxrt1170/mflash_drv.c:266:17:flexspi_nor_flash_page_program	32	static
+../flash/mflash/mimxrt1170/mflash_drv.c:299:17:flexspi_nor_read_data	24	static
+../flash/mflash/mimxrt1170/mflash_drv.c:458:16:mflash_drv_read_internal	16	static
+../flash/mflash/mimxrt1170/mflash_drv.c:321:16:mflash_drv_init_internal	16	static
+../flash/mflash/mimxrt1170/mflash_drv.c:381:16:mflash_drv_sector_erase_internal	24	static
+../flash/mflash/mimxrt1170/mflash_drv.c:419:16:mflash_drv_page_program_internal	24	static
+../flash/mflash/mimxrt1170/mflash_drv.c:202:10:flexspi_nor_enable_quad_mode	32	static
+../flash/mflash/mimxrt1170/mflash_drv.c:374:9:mflash_drv_init	8	static
+../flash/mflash/mimxrt1170/mflash_drv.c:410:9:mflash_drv_sector_erase	8	static
+../flash/mflash/mimxrt1170/mflash_drv.c:449:9:mflash_drv_page_program	8	static
+../flash/mflash/mimxrt1170/mflash_drv.c:483:9:mflash_drv_read	8	static
+../flash/mflash/mimxrt1170/mflash_drv.c:493:7:mflash_drv_phys2log	0	static
+../flash/mflash/mimxrt1170/mflash_drv.c:499:10:mflash_drv_log2phys	0	static

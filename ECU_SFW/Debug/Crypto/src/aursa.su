@@ -1,0 +1,7 @@
+../Crypto/src/aursa.c:31:5:myrand	8	static
+../Crypto/src/aursa.c:45:10:AURSA_oaep_encrypt	192	static
+../Crypto/src/aursa.c:67:9:AURSA_oaep_decrypt	184	static
+../Crypto/src/aursa.c:93:10:AURSA_pkcs1_sign_sha1	184	static
+../Crypto/src/aursa.c:116:10:AURSA_pkcs1_sign_sha256	184	static
+../Crypto/src/aursa.c:140:10:AURSA_pkcs1_verify_sha1	176	static
+../Crypto/src/aursa.c:162:10:AURSA_pkcs1_verify_sha256	176	static

@@ -1,0 +1,5 @@
+../source/httpsclient.c:74:12:lwipRecv	8	static
+../source/httpsclient.c:68:12:lwipSend	8	static
+../source/httpsclient.c:102:5:https_client_tls_init	80	static
+../source/httpsclient.c:308:6:https_client_tls_release	8	static
+../source/httpsclient.c:327:5:https_client_ota_download	200	static

@@ -1,0 +1,9 @@
+../mbedtls/library/gcm.c:189:13:gcm_mult	32	static
+../mbedtls/library/gcm.c:71:12:gcm_gen_table	64	static
+../mbedtls/library/gcm.c:57:6:mbedtls_gcm_init	8	static
+../mbedtls/library/gcm.c:131:5:mbedtls_gcm_setkey	24	static
+../mbedtls/library/gcm.c:244:5:mbedtls_gcm_starts	80	static
+../mbedtls/library/gcm.c:331:5:mbedtls_gcm_update	56	static
+../mbedtls/library/gcm.c:397:5:mbedtls_gcm_finish	48	static
+../mbedtls/library/gcm.c:522:6:mbedtls_gcm_free	8	static
+../mbedtls/library/gcm.c:770:5:mbedtls_gcm_self_test	568	static

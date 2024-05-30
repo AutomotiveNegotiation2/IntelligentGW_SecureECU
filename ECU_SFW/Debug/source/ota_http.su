@@ -1,0 +1,3 @@
+../source/ota_http.c:13:5:OtaHttp_FileRequestInit	24	static
+../source/ota_http.c:49:5:OtaHttp_GetFileContent	120	static
+../source/ota_http.c:112:5:OtaHttp_GetFileSize	128	static

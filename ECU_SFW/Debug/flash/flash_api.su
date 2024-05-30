@@ -1,0 +1,3 @@
+../flash/flash_api.c:25:5:boot_flash_area_read	24	static
+../flash/flash_api.c:67:5:boot_flash_area_write	32	static
+../flash/flash_api.c:126:5:boot_flash_area_erase	16	static

@@ -1,0 +1,2 @@
+../component/silicon_id/fsl_silicon_id.c:22:10:SILICONID_GetID	8	static
+../component/silicon_id/fsl_silicon_id.c:75:10:SILICONID_ConvertToMacAddr	32	static

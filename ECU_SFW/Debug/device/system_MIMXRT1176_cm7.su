@@ -1,0 +1,3 @@
+../device/system_MIMXRT1176_cm7.c:149:6:SystemCoreClockUpdate	0	static
+../device/system_MIMXRT1176_cm7.c:159:29:SystemInitHook	0	static
+../device/system_MIMXRT1176_cm7.c:67:6:SystemInit	8	static

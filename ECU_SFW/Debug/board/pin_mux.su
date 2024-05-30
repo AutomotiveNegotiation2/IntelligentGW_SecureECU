@@ -1,0 +1,5 @@
+D:\Work\Gateway\FW\NXP\ECU_NETIF\ECU_SFW\trunk\drivers/fsl_clock.h:2178:20:CLOCK_ControlGate	0	static
+../board/pin_mux.c:55:6:BOARD_InitPins	8	static
+../board/pin_mux.c:33:6:BOARD_InitBootPins	8	static
+../board/pin_mux.c:111:6:BOARD_InitEnetPins	8	static
+../board/pin_mux.c:196:6:BOARD_InitEnet1GPins	8	static

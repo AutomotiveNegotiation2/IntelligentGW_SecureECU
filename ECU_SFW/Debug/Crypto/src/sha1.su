@@ -1,0 +1,10 @@
+../Crypto/src/sha1.c:104:6:sha1_starts	0	static
+../Crypto/src/sha1.c:116:6:sha1_process	192	static
+../Crypto/src/sha1.c:275:6:sha1_update	32	static
+../Crypto/src/sha1.c:323:6:sha1_finish	24	static
+../Crypto/src/sha1.c:354:6:sha1	240	static
+../Crypto/src/sha1.c:402:6:sha1_hmac_starts	48	static
+../Crypto/src/sha1.c:432:6:sha1_hmac_update	8	static
+../Crypto/src/sha1.c:440:6:sha1_hmac_finish	40	static
+../Crypto/src/sha1.c:456:6:sha1_hmac_reset	8	static
+../Crypto/src/sha1.c:465:6:sha1_hmac	240	static

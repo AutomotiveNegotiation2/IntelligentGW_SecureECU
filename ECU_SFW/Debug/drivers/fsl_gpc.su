@@ -1,0 +1,11 @@
+../drivers/fsl_gpc.c:43:6:GPC_CM_EnableIrqWakeup	8	static
+../drivers/fsl_gpc.c:67:6:GPC_CM_GetIrqWakeupStatus	8	static
+../drivers/fsl_gpc.c:90:6:GPC_CM_ConfigCpuModeTransitionStep	8	static
+../drivers/fsl_gpc.c:128:6:GPC_CM_RequestSleepModeSetPointTransition	8	static
+../drivers/fsl_gpc.c:156:6:GPC_CM_RequestRunModeSetPointTransition	0	static
+../drivers/fsl_gpc.c:182:6:GPC_CM_SetCpuModeSetPointMapping	8	static
+../drivers/fsl_gpc.c:213:6:GPC_CM_RequestStandbyMode	8	static
+../drivers/fsl_gpc.c:240:6:GPC_CM_ClearStandbyModeRequest	8	static
+../drivers/fsl_gpc.c:267:6:GPC_CM_ClearInterruptStatusFlags	0	static
+../drivers/fsl_gpc.c:283:6:GPC_SP_ConfigSetPointTransitionStep	8	static
+../drivers/fsl_gpc.c:314:6:GPC_STBY_ConfigStandbyTransitionStep	8	static

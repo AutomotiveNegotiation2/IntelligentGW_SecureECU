@@ -1,0 +1,14 @@
+../mbedtls/library/md2.c:70:6:mbedtls_md2_init	8	static
+../mbedtls/library/md2.c:75:6:mbedtls_md2_free	8	static
+../mbedtls/library/md2.c:84:6:mbedtls_md2_clone	8	static
+../mbedtls/library/md2.c:93:5:mbedtls_md2_starts_ret	8	static
+../mbedtls/library/md2.c:104:6:mbedtls_md2_starts	8	static
+../mbedtls/library/md2.c:111:5:mbedtls_internal_md2_process	16	static
+../mbedtls/library/md2.c:147:6:mbedtls_md2_process	8	static
+../mbedtls/library/md2.c:157:5:mbedtls_md2_update_ret	24	static
+../mbedtls/library/md2.c:189:6:mbedtls_md2_update	8	static
+../mbedtls/library/md2.c:200:5:mbedtls_md2_finish_ret	16	static
+../mbedtls/library/md2.c:228:6:mbedtls_md2_finish	8	static
+../mbedtls/library/md2.c:240:5:mbedtls_md2_ret	112	static
+../mbedtls/library/md2.c:268:6:mbedtls_md2	8	static
+../mbedtls/library/md2.c:318:5:mbedtls_md2_self_test	32	static

@@ -1,0 +1,5 @@
+../lwip/port/ethernetif_mmac.c:93:5:ethernetif_mmac_get_idx	0	static
+../lwip/port/ethernetif_mmac.c:124:6:ethernetif_mmac_is_new	0	static
+../lwip/port/ethernetif_mmac.c:134:6:ethernetif_mmac_is_pending	0	static
+../lwip/port/ethernetif_mmac.c:144:10:ethernetif_mmac_ref_inc	0	static
+../lwip/port/ethernetif_mmac.c:178:10:ethernetif_mmac_ref_dec	0	static

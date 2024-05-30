@@ -1,0 +1,2 @@
+../lwip/port/enet_ethernetif.c:55:7:ethernetif_get_enet_base	8	static
+../lwip/port/enet_ethernetif.c:77:7:ethernetif_get_enet_qos_base	8	static

@@ -1,0 +1,13 @@
+../component/phy/fsl_phyrtl8211f.c:289:10:PHY_RTL8211F_Write	8	static
+../component/phy/fsl_phyrtl8211f.c:294:10:PHY_RTL8211F_Read	8	static
+../component/phy/fsl_phyrtl8211f.c:390:10:PHY_RTL8211F_SetLinkSpeedDuplex	24	static
+../component/phy/fsl_phyrtl8211f.c:511:10:PHY_RTL8211F_ClearInterrupt	16	static
+../component/phy/fsl_phyrtl8211f.c:520:17:PHY_RTL8211F_MMD_SetDevice	24	static
+../component/phy/fsl_phyrtl8211f.c:556:17:PHY_RTL8211F_MMD_Read	16	static
+../component/phy/fsl_phyrtl8211f.c:567:17:PHY_RTL8211F_MMD_Write	16	static
+../component/phy/fsl_phyrtl8211f.c:299:10:PHY_RTL8211F_GetAutoNegotiationStatus	16	static
+../component/phy/fsl_phyrtl8211f.c:320:10:PHY_RTL8211F_GetLinkStatus	16	static
+../component/phy/fsl_phyrtl8211f.c:345:10:PHY_RTL8211F_GetLinkSpeedDuplex	24	static
+../component/phy/fsl_phyrtl8211f.c:428:10:PHY_RTL8211F_EnableLoopback	16	static
+../component/phy/fsl_phyrtl8211f.c:466:10:PHY_RTL8211F_EnableLinkInterrupt	24	static
+../component/phy/fsl_phyrtl8211f.c:99:10:PHY_RTL8211F_Init	24	static

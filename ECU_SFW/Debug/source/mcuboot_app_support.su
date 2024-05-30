@@ -1,0 +1,12 @@
+../source/mcuboot_app_support.c:110:17:get_active_image	0	static
+../source/mcuboot_app_support.c:250:12:check_unset	0	static
+../source/mcuboot_app_support.c:137:16:mflash_drv_read_wrapper	32	static
+../source/mcuboot_app_support.c:203:16:flash_read	24	static
+../source/mcuboot_app_support.c:272:17:boot_swap_test	272	static
+../source/mcuboot_app_support.c:264:12:boot_img_magic_check	8	static
+../source/mcuboot_app_support.c:322:17:boot_swap_ok	280	static
+../source/mcuboot_app_support.c:421:9:bl_verify_image	56	static
+../source/mcuboot_app_support.c:545:13:bl_imgstate_to_str	0	static
+../source/mcuboot_app_support.c:562:10:bl_update_image_state	8	static
+../source/mcuboot_app_support.c:584:10:bl_get_image_state	104	static
+../source/mcuboot_app_support.c:506:10:bl_get_update_partition_info	24	static

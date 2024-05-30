@@ -1,0 +1,6 @@
+../mbedtls/library/xtea.c:33:6:mbedtls_xtea_init	8	static
+../mbedtls/library/xtea.c:38:6:mbedtls_xtea_free	8	static
+../mbedtls/library/xtea.c:50:6:mbedtls_xtea_setup	16	static
+../mbedtls/library/xtea.c:64:5:mbedtls_xtea_crypt_ecb	12	static
+../mbedtls/library/xtea.c:102:5:mbedtls_xtea_crypt_cbc	40	static
+../mbedtls/library/xtea.c:193:5:mbedtls_xtea_self_test	40	static

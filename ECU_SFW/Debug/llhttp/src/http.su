@@ -1,0 +1,5 @@
+../llhttp/src/http.c:11:5:llhttp__before_headers_complete	0	static
+../llhttp/src/http.c:108:5:llhttp_message_needs_eof	0	static
+../llhttp/src/http.c:37:5:llhttp__after_headers_complete	8	static
+../llhttp/src/http.c:135:5:llhttp_should_keep_alive	8	static
+../llhttp/src/http.c:95:5:llhttp__after_message_complete	8	static

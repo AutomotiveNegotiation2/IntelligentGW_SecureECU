@@ -1,0 +1,12 @@
+../Crypto/src/cipher.c:499:13:add_pkcs_padding	0	static
+../Crypto/src/cipher.c:509:12:get_pkcs_padding	8	static
+../Crypto/src/cipher.c:109:12:cipher_list	0	static
+../Crypto/src/cipher.c:114:22:cipher_info_from_type	0	static
+../Crypto/src/cipher.c:210:22:cipher_info_from_string	8	static
+../Crypto/src/cipher.c:302:5:cipher_init_ctx	16	static
+../Crypto/src/cipher.c:317:5:cipher_free_ctx	8	static
+../Crypto/src/cipher.c:327:5:cipher_setkey	8	static
+../Crypto/src/cipher.c:359:5:cipher_reset	8	static
+../Crypto/src/cipher.c:371:5:cipher_update	64	static
+../Crypto/src/cipher.c:531:5:cipher_finish	32	static
+../Crypto/src/cipher.c:592:5:cipher_self_test	0	static

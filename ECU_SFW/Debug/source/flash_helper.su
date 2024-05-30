@@ -1,0 +1,5 @@
+../source/flash_helper.c:17:6:hexdump	32	static
+../source/flash_helper.c:42:5:flash_verify_erase	144	static
+../source/flash_helper.c:82:5:flash_erase	16	static
+../source/flash_helper.c:114:5:flash_program	280	static
+../source/flash_helper.c:150:5:flash_md5	240	static

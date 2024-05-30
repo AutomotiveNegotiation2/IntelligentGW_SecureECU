@@ -1,0 +1,7 @@
+../Crypto/src/camellia.c:285:13:camellia_feistel	16	static
+../Crypto/src/camellia.c:312:5:camellia_setkey_enc	280	static
+../Crypto/src/camellia.c:416:5:camellia_setkey_dec	296	static
+../Crypto/src/camellia.c:467:5:camellia_crypt_ecb	40	static
+../Crypto/src/camellia.c:529:5:camellia_crypt_cbc	48	static
+../Crypto/src/camellia.c:630:5:camellia_crypt_ctr	40	static
+../Crypto/src/camellia.c:863:5:camellia_self_test	504	static

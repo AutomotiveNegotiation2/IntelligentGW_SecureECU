@@ -1,0 +1,10 @@
+../mbedtls/library/blowfish.c:54:17:F	0	static
+../mbedtls/library/blowfish.c:73:13:blowfish_enc	32	static
+../mbedtls/library/blowfish.c:101:13:blowfish_dec	32	static
+../mbedtls/library/blowfish.c:129:6:mbedtls_blowfish_init	8	static
+../mbedtls/library/blowfish.c:135:6:mbedtls_blowfish_free	8	static
+../mbedtls/library/blowfish.c:147:5:mbedtls_blowfish_setkey	32	static
+../mbedtls/library/blowfish.c:204:5:mbedtls_blowfish_crypt_ecb	16	static
+../mbedtls/library/blowfish.c:235:5:mbedtls_blowfish_crypt_cbc	40	static
+../mbedtls/library/blowfish.c:293:5:mbedtls_blowfish_crypt_cfb64	32	static
+../mbedtls/library/blowfish.c:351:5:mbedtls_blowfish_crypt_ctr	40	static

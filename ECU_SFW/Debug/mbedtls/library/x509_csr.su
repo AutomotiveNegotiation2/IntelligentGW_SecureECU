@@ -1,0 +1,6 @@
+../mbedtls/library/x509_csr.c:54:12:x509_csr_get_version	8	static
+../mbedtls/library/x509_csr.c:311:5:mbedtls_x509_csr_info	72	static
+../mbedtls/library/x509_csr.c:353:6:mbedtls_x509_csr_init	8	static
+../mbedtls/library/x509_csr.c:361:6:mbedtls_x509_csr_free	16	static
+../mbedtls/library/x509_csr.c:75:5:mbedtls_x509_csr_parse_der	56	static
+../mbedtls/library/x509_csr.c:237:5:mbedtls_x509_csr_parse	56	static

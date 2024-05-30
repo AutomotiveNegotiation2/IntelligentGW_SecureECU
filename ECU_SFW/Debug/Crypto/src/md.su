@@ -1,0 +1,15 @@
+../Crypto/src/md.c:74:12:md_list	0	static
+../Crypto/src/md.c:116:18:md_info_from_type	0	static
+../Crypto/src/md.c:79:18:md_info_from_string	8	static
+../Crypto/src/md.c:153:5:md_init_ctx	16	static
+../Crypto/src/md.c:170:5:md_free_ctx	8	static
+../Crypto/src/md.c:181:5:md_starts	8	static
+../Crypto/src/md.c:191:5:md_update	8	static
+../Crypto/src/md.c:201:5:md_finish	8	static
+../Crypto/src/md.c:211:5:md	8	static
+../Crypto/src/md.c:222:5:md_file	0	static
+../Crypto/src/md.c:245:5:md_hmac_starts	8	static
+../Crypto/src/md.c:255:5:md_hmac_update	8	static
+../Crypto/src/md.c:265:5:md_hmac_finish	8	static
+../Crypto/src/md.c:275:5:md_hmac_reset	8	static
+../Crypto/src/md.c:285:5:md_hmac	16	static

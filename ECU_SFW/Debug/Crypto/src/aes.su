@@ -1,0 +1,7 @@
+../Crypto/src/aes.c:370:13:aes_gen_tables	2064	static
+../Crypto/src/aes.c:451:5:aes_setkey_enc	24	static
+../Crypto/src/aes.c:561:5:aes_setkey_dec	304	static
+../Crypto/src/aes.c:668:5:aes_crypt_ecb	48	static
+../Crypto/src/aes.c:775:5:aes_crypt_cbc	48	static
+../Crypto/src/aes.c:888:5:aes_crypt_ctr	40	static
+../Crypto/src/aes.c:1102:5:aes_self_test	504	static

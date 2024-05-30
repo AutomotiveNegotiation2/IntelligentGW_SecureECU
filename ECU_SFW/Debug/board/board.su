@@ -1,0 +1,7 @@
+D:\Work\Gateway\FW\NXP\ECU_NETIF\ECU_SFW\trunk\CMSIS/mpu_armv7.h:204:22:ARM_MPU_Disable	0	static
+D:\Work\Gateway\FW\NXP\ECU_NETIF\ECU_SFW\trunk\drivers/fsl_clock.h:2240:24:CLOCK_GetRootClockFreq	16	static
+../board/board.c:24:10:BOARD_DebugConsoleSrcFreq	8	static
+../board/board.c:36:6:BOARD_InitDebugConsole	8	static
+../board/board.c:262:6:BOARD_ConfigMPU	32	static
+../board/board.c:662:6:BOARD_SD_Pin_Config	0	static
+../board/board.c:666:6:BOARD_MMC_Pin_Config	0	static

@@ -1,0 +1,14 @@
+../Crypto/src/cipher_wrap.c:56:5:aes_crypt_cbc_wrap	0	static
+../Crypto/src/cipher_wrap.c:62:5:aes_crypt_cfb128_wrap	0	static
+../Crypto/src/cipher_wrap.c:229:5:camellia_crypt_cbc_wrap	0	static
+../Crypto/src/cipher_wrap.c:235:5:camellia_crypt_cfb128_wrap	0	static
+../Crypto/src/cipher_wrap.c:273:5:camellia_setkey_dec_wrap	0	static
+../Crypto/src/cipher_wrap.c:278:5:camellia_setkey_enc_wrap	0	static
+../Crypto/src/cipher_wrap.c:80:5:aes_crypt_ctr_wrap	24	static
+../Crypto/src/cipher_wrap.c:100:5:aes_setkey_dec_wrap	8	static
+../Crypto/src/cipher_wrap.c:105:5:aes_setkey_enc_wrap	8	static
+../Crypto/src/cipher_wrap.c:115:13:aes_ctx_free	8	static
+../Crypto/src/cipher_wrap.c:288:13:camellia_ctx_free	8	static
+../Crypto/src/cipher_wrap.c:110:15:aes_ctx_alloc	8	static
+../Crypto/src/cipher_wrap.c:283:15:camellia_ctx_alloc	8	static
+../Crypto/src/cipher_wrap.c:253:5:camellia_crypt_ctr_wrap	24	static
