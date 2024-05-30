@@ -2,10 +2,10 @@ C:\Users\USER\Documents\MCUXpressoIDE_11.9.1_2170\workspace_fw\MCUXpresso_IDE_FW
 C:\Users\USER\Documents\MCUXpressoIDE_11.9.1_2170\workspace_fw\MCUXpresso_IDE_FW\drivers/fsl_clock.h:2178:20:CLOCK_ControlGate	0	static
 C:\Users\USER\Documents\MCUXpressoIDE_11.9.1_2170\workspace_fw\MCUXpresso_IDE_FW\drivers/fsl_clock.h:2157:20:CLOCK_SetRootClock	8	static
 C:\Users\USER\Documents\MCUXpressoIDE_11.9.1_2170\workspace_fw\MCUXpresso_IDE_FW\drivers/fsl_clock.h:2240:24:CLOCK_GetRootClockFreq	16	static
-../source/main.c:151:17:MDIO_Write	8	static
-../source/main.c:156:17:MDIO_Read	8	static
-../source/main.c:145:13:MDIO_Init	8	static
-../source/main.c:110:6:BOARD_InitModuleClock	24	static
-../source/main.c:126:6:IOMUXC_SelectENETClock	0	static
-../source/main.c:136:6:BOARD_ENETFlexibleConfigure	0	static
-../source/main.c:554:5:main	24	static
+../source/main.c:125:17:MDIO_Write	8	static
+../source/main.c:130:17:MDIO_Read	8	static
+../source/main.c:119:13:MDIO_Init	8	static
+../source/main.c:84:6:BOARD_InitModuleClock	24	static
+../source/main.c:100:6:IOMUXC_SelectENETClock	0	static
+../source/main.c:110:6:BOARD_ENETFlexibleConfigure	0	static
+../source/main.c:353:5:main	24	static

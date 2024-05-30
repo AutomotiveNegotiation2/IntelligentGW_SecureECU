@@ -44343,91 +44343,91 @@ END GROUP
 OUTPUT(MCUXpresso_IDE_FW.axf elf32-littlearm)
 LOAD linker stubs
 
-.debug_info     0x00000000    0x6327f
+.debug_info     0x00000000    0x63249
  .debug_info    0x00000000      0x51d ./utilities/fsl_assert.o
  .debug_info    0x0000051d     0x1423 ./utilities/fsl_debug_console.o
  .debug_info    0x00001940       0x24 ./utilities/fsl_memcpy.o
  .debug_info    0x00001964     0x1c33 ./utilities/fsl_str.o
  .debug_info    0x00003597     0x2174 ./startup/startup_mimxrt1176_cm7.o
- .debug_info    0x0000570b     0x3cf8 ./source/main.o
- .debug_info    0x00009403       0x3c ./source/semihost_hardfault.o
- .debug_info    0x0000943f     0x2161 ./source/sfw.o
- .debug_info    0x0000b5a0     0x78a3 ./mbedtls/port/ksdk/ksdk_mbedtls.o
- .debug_info    0x00012e43     0x164b ./lwip/port/sys_arch.o
- .debug_info    0x0001448e     0x16d5 ./flash/mflash/mimxrt1170/mflash_drv.o
- .debug_info    0x00015b63      0x7f2 ./flash/flash_api.o
- .debug_info    0x00016355      0xff5 ./drivers/fsl_anatop_ai.o
- .debug_info    0x0001734a    0x12a41 ./drivers/fsl_caam.o
- .debug_info    0x00029d8b      0xd76 ./drivers/fsl_cache.o
- .debug_info    0x0002ab01     0x55ab ./drivers/fsl_clock.o
- .debug_info    0x000300ac      0x7a2 ./drivers/fsl_common_arm.o
- .debug_info    0x0003084e     0x23f0 ./drivers/fsl_dcdc.o
- .debug_info    0x00032c3e     0x7468 ./drivers/fsl_enet.o
- .debug_info    0x0003a0a6     0x377e ./drivers/fsl_flexspi.o
- .debug_info    0x0003d824     0x1541 ./drivers/fsl_gpio.o
- .debug_info    0x0003ed65     0x4f8a ./drivers/fsl_lpuart.o
- .debug_info    0x00043cef     0x23e5 ./drivers/fsl_pmu.o
- .debug_info    0x000460d4      0xb19 ./device/system_MIMXRT1176_cm7.o
- .debug_info    0x00046bed     0x1379 ./component/uart/fsl_adapter_lpuart.o
- .debug_info    0x00047f66     0x1615 ./component/serial_manager/fsl_component_serial_manager.o
- .debug_info    0x0004957b      0x9a1 ./component/serial_manager/fsl_component_serial_port_uart.o
- .debug_info    0x00049f1c     0x288f ./component/gpio/fsl_adapter_igpio.o
- .debug_info    0x0004c7ab     0x1abe ./board/board.o
- .debug_info    0x0004e269     0x4f86 ./board/clock_config.o
- .debug_info    0x000531ef     0x2384 ./board/pin_mux.o
- .debug_info    0x00055573     0x3781 ./Crypto/test_src/src/test_src.o
- .debug_info    0x00058cf4      0xc19 ./Crypto/src/aursa.o
- .debug_info    0x0005990d     0x3362 ./Crypto/src/bignum.o
- .debug_info    0x0005cc6f      0x918 ./Crypto/src/md.o
- .debug_info    0x0005d587     0x11f0 ./Crypto/src/md_wrap.o
- .debug_info    0x0005e777     0x35db ./Crypto/src/rsa.o
- .debug_info    0x00061d52      0x95a ./Crypto/src/sha1.o
- .debug_info    0x000626ac      0xa24 ./Crypto/src/sha2.o
- .debug_info    0x000630d0      0x13e c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard\libcr_newlib_nohost.a(_cr_sbrk.o)
- .debug_info    0x0006320e       0x71 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard\libcr_newlib_nohost.a(_cr_check_heap.o)
+ .debug_info    0x0000570b     0x3cc2 ./source/main.o
+ .debug_info    0x000093cd       0x3c ./source/semihost_hardfault.o
+ .debug_info    0x00009409     0x2161 ./source/sfw.o
+ .debug_info    0x0000b56a     0x78a3 ./mbedtls/port/ksdk/ksdk_mbedtls.o
+ .debug_info    0x00012e0d     0x164b ./lwip/port/sys_arch.o
+ .debug_info    0x00014458     0x16d5 ./flash/mflash/mimxrt1170/mflash_drv.o
+ .debug_info    0x00015b2d      0x7f2 ./flash/flash_api.o
+ .debug_info    0x0001631f      0xff5 ./drivers/fsl_anatop_ai.o
+ .debug_info    0x00017314    0x12a41 ./drivers/fsl_caam.o
+ .debug_info    0x00029d55      0xd76 ./drivers/fsl_cache.o
+ .debug_info    0x0002aacb     0x55ab ./drivers/fsl_clock.o
+ .debug_info    0x00030076      0x7a2 ./drivers/fsl_common_arm.o
+ .debug_info    0x00030818     0x23f0 ./drivers/fsl_dcdc.o
+ .debug_info    0x00032c08     0x7468 ./drivers/fsl_enet.o
+ .debug_info    0x0003a070     0x377e ./drivers/fsl_flexspi.o
+ .debug_info    0x0003d7ee     0x1541 ./drivers/fsl_gpio.o
+ .debug_info    0x0003ed2f     0x4f8a ./drivers/fsl_lpuart.o
+ .debug_info    0x00043cb9     0x23e5 ./drivers/fsl_pmu.o
+ .debug_info    0x0004609e      0xb19 ./device/system_MIMXRT1176_cm7.o
+ .debug_info    0x00046bb7     0x1379 ./component/uart/fsl_adapter_lpuart.o
+ .debug_info    0x00047f30     0x1615 ./component/serial_manager/fsl_component_serial_manager.o
+ .debug_info    0x00049545      0x9a1 ./component/serial_manager/fsl_component_serial_port_uart.o
+ .debug_info    0x00049ee6     0x288f ./component/gpio/fsl_adapter_igpio.o
+ .debug_info    0x0004c775     0x1abe ./board/board.o
+ .debug_info    0x0004e233     0x4f86 ./board/clock_config.o
+ .debug_info    0x000531b9     0x2384 ./board/pin_mux.o
+ .debug_info    0x0005553d     0x3781 ./Crypto/test_src/src/test_src.o
+ .debug_info    0x00058cbe      0xc19 ./Crypto/src/aursa.o
+ .debug_info    0x000598d7     0x3362 ./Crypto/src/bignum.o
+ .debug_info    0x0005cc39      0x918 ./Crypto/src/md.o
+ .debug_info    0x0005d551     0x11f0 ./Crypto/src/md_wrap.o
+ .debug_info    0x0005e741     0x35db ./Crypto/src/rsa.o
+ .debug_info    0x00061d1c      0x95a ./Crypto/src/sha1.o
+ .debug_info    0x00062676      0xa24 ./Crypto/src/sha2.o
+ .debug_info    0x0006309a      0x13e c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard\libcr_newlib_nohost.a(_cr_sbrk.o)
+ .debug_info    0x000631d8       0x71 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard\libcr_newlib_nohost.a(_cr_check_heap.o)
 
-.debug_abbrev   0x00000000     0x73dc
+.debug_abbrev   0x00000000     0x73ca
  .debug_abbrev  0x00000000      0x134 ./utilities/fsl_assert.o
  .debug_abbrev  0x00000134      0x2bf ./utilities/fsl_debug_console.o
  .debug_abbrev  0x000003f3       0x14 ./utilities/fsl_memcpy.o
  .debug_abbrev  0x00000407      0x34e ./utilities/fsl_str.o
  .debug_abbrev  0x00000755      0x25f ./startup/startup_mimxrt1176_cm7.o
- .debug_abbrev  0x000009b4      0x517 ./source/main.o
- .debug_abbrev  0x00000ecb       0x31 ./source/semihost_hardfault.o
- .debug_abbrev  0x00000efc      0x42c ./source/sfw.o
- .debug_abbrev  0x00001328      0x477 ./mbedtls/port/ksdk/ksdk_mbedtls.o
- .debug_abbrev  0x0000179f      0x380 ./lwip/port/sys_arch.o
- .debug_abbrev  0x00001b1f      0x340 ./flash/mflash/mimxrt1170/mflash_drv.o
- .debug_abbrev  0x00001e5f      0x18d ./flash/flash_api.o
- .debug_abbrev  0x00001fec      0x1ec ./drivers/fsl_anatop_ai.o
- .debug_abbrev  0x000021d8      0x545 ./drivers/fsl_caam.o
- .debug_abbrev  0x0000271d      0x239 ./drivers/fsl_cache.o
- .debug_abbrev  0x00002956      0x44d ./drivers/fsl_clock.o
- .debug_abbrev  0x00002da3      0x1bc ./drivers/fsl_common_arm.o
- .debug_abbrev  0x00002f5f      0x2f2 ./drivers/fsl_dcdc.o
- .debug_abbrev  0x00003251      0x4e5 ./drivers/fsl_enet.o
- .debug_abbrev  0x00003736      0x4ab ./drivers/fsl_flexspi.o
- .debug_abbrev  0x00003be1      0x314 ./drivers/fsl_gpio.o
- .debug_abbrev  0x00003ef5      0x4f0 ./drivers/fsl_lpuart.o
- .debug_abbrev  0x000043e5      0x2cc ./drivers/fsl_pmu.o
- .debug_abbrev  0x000046b1      0x1b4 ./device/system_MIMXRT1176_cm7.o
- .debug_abbrev  0x00004865      0x262 ./component/uart/fsl_adapter_lpuart.o
- .debug_abbrev  0x00004ac7      0x2e6 ./component/serial_manager/fsl_component_serial_manager.o
- .debug_abbrev  0x00004dad      0x1cf ./component/serial_manager/fsl_component_serial_port_uart.o
- .debug_abbrev  0x00004f7c      0x4b8 ./component/gpio/fsl_adapter_igpio.o
- .debug_abbrev  0x00005434      0x3a5 ./board/board.o
- .debug_abbrev  0x000057d9      0x3ad ./board/clock_config.o
- .debug_abbrev  0x00005b86      0x1fd ./board/pin_mux.o
- .debug_abbrev  0x00005d83      0x3aa ./Crypto/test_src/src/test_src.o
- .debug_abbrev  0x0000612d      0x1ad ./Crypto/src/aursa.o
- .debug_abbrev  0x000062da      0x33f ./Crypto/src/bignum.o
- .debug_abbrev  0x00006619      0x283 ./Crypto/src/md.o
- .debug_abbrev  0x0000689c      0x1b7 ./Crypto/src/md_wrap.o
- .debug_abbrev  0x00006a53      0x3e0 ./Crypto/src/rsa.o
- .debug_abbrev  0x00006e33      0x21a ./Crypto/src/sha1.o
- .debug_abbrev  0x0000704d      0x21a ./Crypto/src/sha2.o
- .debug_abbrev  0x00007267      0x10a c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard\libcr_newlib_nohost.a(_cr_sbrk.o)
- .debug_abbrev  0x00007371       0x6b c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard\libcr_newlib_nohost.a(_cr_check_heap.o)
+ .debug_abbrev  0x000009b4      0x505 ./source/main.o
+ .debug_abbrev  0x00000eb9       0x31 ./source/semihost_hardfault.o
+ .debug_abbrev  0x00000eea      0x42c ./source/sfw.o
+ .debug_abbrev  0x00001316      0x477 ./mbedtls/port/ksdk/ksdk_mbedtls.o
+ .debug_abbrev  0x0000178d      0x380 ./lwip/port/sys_arch.o
+ .debug_abbrev  0x00001b0d      0x340 ./flash/mflash/mimxrt1170/mflash_drv.o
+ .debug_abbrev  0x00001e4d      0x18d ./flash/flash_api.o
+ .debug_abbrev  0x00001fda      0x1ec ./drivers/fsl_anatop_ai.o
+ .debug_abbrev  0x000021c6      0x545 ./drivers/fsl_caam.o
+ .debug_abbrev  0x0000270b      0x239 ./drivers/fsl_cache.o
+ .debug_abbrev  0x00002944      0x44d ./drivers/fsl_clock.o
+ .debug_abbrev  0x00002d91      0x1bc ./drivers/fsl_common_arm.o
+ .debug_abbrev  0x00002f4d      0x2f2 ./drivers/fsl_dcdc.o
+ .debug_abbrev  0x0000323f      0x4e5 ./drivers/fsl_enet.o
+ .debug_abbrev  0x00003724      0x4ab ./drivers/fsl_flexspi.o
+ .debug_abbrev  0x00003bcf      0x314 ./drivers/fsl_gpio.o
+ .debug_abbrev  0x00003ee3      0x4f0 ./drivers/fsl_lpuart.o
+ .debug_abbrev  0x000043d3      0x2cc ./drivers/fsl_pmu.o
+ .debug_abbrev  0x0000469f      0x1b4 ./device/system_MIMXRT1176_cm7.o
+ .debug_abbrev  0x00004853      0x262 ./component/uart/fsl_adapter_lpuart.o
+ .debug_abbrev  0x00004ab5      0x2e6 ./component/serial_manager/fsl_component_serial_manager.o
+ .debug_abbrev  0x00004d9b      0x1cf ./component/serial_manager/fsl_component_serial_port_uart.o
+ .debug_abbrev  0x00004f6a      0x4b8 ./component/gpio/fsl_adapter_igpio.o
+ .debug_abbrev  0x00005422      0x3a5 ./board/board.o
+ .debug_abbrev  0x000057c7      0x3ad ./board/clock_config.o
+ .debug_abbrev  0x00005b74      0x1fd ./board/pin_mux.o
+ .debug_abbrev  0x00005d71      0x3aa ./Crypto/test_src/src/test_src.o
+ .debug_abbrev  0x0000611b      0x1ad ./Crypto/src/aursa.o
+ .debug_abbrev  0x000062c8      0x33f ./Crypto/src/bignum.o
+ .debug_abbrev  0x00006607      0x283 ./Crypto/src/md.o
+ .debug_abbrev  0x0000688a      0x1b7 ./Crypto/src/md_wrap.o
+ .debug_abbrev  0x00006a41      0x3e0 ./Crypto/src/rsa.o
+ .debug_abbrev  0x00006e21      0x21a ./Crypto/src/sha1.o
+ .debug_abbrev  0x0000703b      0x21a ./Crypto/src/sha2.o
+ .debug_abbrev  0x00007255      0x10a c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard\libcr_newlib_nohost.a(_cr_sbrk.o)
+ .debug_abbrev  0x0000735f       0x6b c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard\libcr_newlib_nohost.a(_cr_check_heap.o)
 
 .debug_loc      0x00000000    0x36bd9
  .debug_loc     0x00000000       0xd8 ./utilities/fsl_assert.o
@@ -44716,50 +44716,50 @@ LOAD linker stubs
  .debug_macro   0x00009de9      0x1c4 ./Crypto/src/sha1.o
  .debug_macro   0x00009fad      0x195 ./Crypto/src/sha2.o
 
-.debug_line     0x00000000    0x2d973
+.debug_line     0x00000000    0x2d975
  .debug_line    0x00000000      0x7a1 ./utilities/fsl_assert.o
  .debug_line    0x000007a1      0xd2c ./utilities/fsl_debug_console.o
  .debug_line    0x000014cd       0x89 ./utilities/fsl_memcpy.o
  .debug_line    0x00001556     0x15fd ./utilities/fsl_str.o
  .debug_line    0x00002b53     0x1afd ./startup/startup_mimxrt1176_cm7.o
- .debug_line    0x00004650     0x166d ./source/main.o
- .debug_line    0x00005cbd       0x58 ./source/semihost_hardfault.o
- .debug_line    0x00005d15     0x14e4 ./source/sfw.o
- .debug_line    0x000071f9     0x1fe6 ./mbedtls/port/ksdk/ksdk_mbedtls.o
- .debug_line    0x000091df      0xd02 ./lwip/port/sys_arch.o
- .debug_line    0x00009ee1      0xcc1 ./flash/mflash/mimxrt1170/mflash_drv.o
- .debug_line    0x0000aba2      0xa52 ./flash/flash_api.o
- .debug_line    0x0000b5f4      0xc75 ./drivers/fsl_anatop_ai.o
- .debug_line    0x0000c269     0x5c33 ./drivers/fsl_caam.o
- .debug_line    0x00011e9c      0x848 ./drivers/fsl_cache.o
- .debug_line    0x000126e4     0x2466 ./drivers/fsl_clock.o
- .debug_line    0x00014b4a      0x66b ./drivers/fsl_common_arm.o
- .debug_line    0x000151b5      0xdb3 ./drivers/fsl_dcdc.o
- .debug_line    0x00015f68     0x3224 ./drivers/fsl_enet.o
- .debug_line    0x0001918c     0x1a97 ./drivers/fsl_flexspi.o
- .debug_line    0x0001ac23      0x81a ./drivers/fsl_gpio.o
- .debug_line    0x0001b43d     0x26be ./drivers/fsl_lpuart.o
- .debug_line    0x0001dafb     0x115e ./drivers/fsl_pmu.o
- .debug_line    0x0001ec59      0x400 ./device/system_MIMXRT1176_cm7.o
- .debug_line    0x0001f059      0x905 ./component/uart/fsl_adapter_lpuart.o
- .debug_line    0x0001f95e      0xe10 ./component/serial_manager/fsl_component_serial_manager.o
- .debug_line    0x0002076e      0x92f ./component/serial_manager/fsl_component_serial_port_uart.o
- .debug_line    0x0002109d     0x1085 ./component/gpio/fsl_adapter_igpio.o
- .debug_line    0x00022122      0xd93 ./board/board.o
- .debug_line    0x00022eb5     0x1782 ./board/clock_config.o
- .debug_line    0x00024637      0xb4e ./board/pin_mux.o
- .debug_line    0x00025185     0x18e8 ./Crypto/test_src/src/test_src.o
- .debug_line    0x00026a6d      0x66a ./Crypto/src/aursa.o
- .debug_line    0x000270d7     0x2536 ./Crypto/src/bignum.o
- .debug_line    0x0002960d      0x838 ./Crypto/src/md.o
- .debug_line    0x00029e45      0x83b ./Crypto/src/md_wrap.o
- .debug_line    0x0002a680     0x172d ./Crypto/src/rsa.o
- .debug_line    0x0002bdad      0xbe2 ./Crypto/src/sha1.o
- .debug_line    0x0002c98f      0xdb6 ./Crypto/src/sha2.o
- .debug_line    0x0002d745      0x1cd c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard\libcr_newlib_nohost.a(_cr_sbrk.o)
- .debug_line    0x0002d912       0x61 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard\libcr_newlib_nohost.a(_cr_check_heap.o)
+ .debug_line    0x00004650     0x166f ./source/main.o
+ .debug_line    0x00005cbf       0x58 ./source/semihost_hardfault.o
+ .debug_line    0x00005d17     0x14e4 ./source/sfw.o
+ .debug_line    0x000071fb     0x1fe6 ./mbedtls/port/ksdk/ksdk_mbedtls.o
+ .debug_line    0x000091e1      0xd02 ./lwip/port/sys_arch.o
+ .debug_line    0x00009ee3      0xcc1 ./flash/mflash/mimxrt1170/mflash_drv.o
+ .debug_line    0x0000aba4      0xa52 ./flash/flash_api.o
+ .debug_line    0x0000b5f6      0xc75 ./drivers/fsl_anatop_ai.o
+ .debug_line    0x0000c26b     0x5c33 ./drivers/fsl_caam.o
+ .debug_line    0x00011e9e      0x848 ./drivers/fsl_cache.o
+ .debug_line    0x000126e6     0x2466 ./drivers/fsl_clock.o
+ .debug_line    0x00014b4c      0x66b ./drivers/fsl_common_arm.o
+ .debug_line    0x000151b7      0xdb3 ./drivers/fsl_dcdc.o
+ .debug_line    0x00015f6a     0x3224 ./drivers/fsl_enet.o
+ .debug_line    0x0001918e     0x1a97 ./drivers/fsl_flexspi.o
+ .debug_line    0x0001ac25      0x81a ./drivers/fsl_gpio.o
+ .debug_line    0x0001b43f     0x26be ./drivers/fsl_lpuart.o
+ .debug_line    0x0001dafd     0x115e ./drivers/fsl_pmu.o
+ .debug_line    0x0001ec5b      0x400 ./device/system_MIMXRT1176_cm7.o
+ .debug_line    0x0001f05b      0x905 ./component/uart/fsl_adapter_lpuart.o
+ .debug_line    0x0001f960      0xe10 ./component/serial_manager/fsl_component_serial_manager.o
+ .debug_line    0x00020770      0x92f ./component/serial_manager/fsl_component_serial_port_uart.o
+ .debug_line    0x0002109f     0x1085 ./component/gpio/fsl_adapter_igpio.o
+ .debug_line    0x00022124      0xd93 ./board/board.o
+ .debug_line    0x00022eb7     0x1782 ./board/clock_config.o
+ .debug_line    0x00024639      0xb4e ./board/pin_mux.o
+ .debug_line    0x00025187     0x18e8 ./Crypto/test_src/src/test_src.o
+ .debug_line    0x00026a6f      0x66a ./Crypto/src/aursa.o
+ .debug_line    0x000270d9     0x2536 ./Crypto/src/bignum.o
+ .debug_line    0x0002960f      0x838 ./Crypto/src/md.o
+ .debug_line    0x00029e47      0x83b ./Crypto/src/md_wrap.o
+ .debug_line    0x0002a682     0x172d ./Crypto/src/rsa.o
+ .debug_line    0x0002bdaf      0xbe2 ./Crypto/src/sha1.o
+ .debug_line    0x0002c991      0xdb6 ./Crypto/src/sha2.o
+ .debug_line    0x0002d747      0x1cd c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard\libcr_newlib_nohost.a(_cr_sbrk.o)
+ .debug_line    0x0002d914       0x61 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard\libcr_newlib_nohost.a(_cr_check_heap.o)
 
-.debug_str      0x00000000   0x2d2799
+.debug_str      0x00000000   0x2d2768
  .debug_str     0x00000000   0x285d03 ./utilities/fsl_assert.o
                              0x285fd3 (size before relaxing)
  .debug_str     0x00285d03     0x16dc ./utilities/fsl_debug_console.o
@@ -44770,77 +44770,77 @@ LOAD linker stubs
                              0x28645b (size before relaxing)
  .debug_str     0x002882a7     0x1551 ./startup/startup_mimxrt1176_cm7.o
                              0x27fa83 (size before relaxing)
- .debug_str     0x002897f8     0xff67 ./source/main.o
-                             0x296d96 (size before relaxing)
- .debug_str     0x0029975f       0x1f ./source/semihost_hardfault.o
+ .debug_str     0x002897f8     0xff36 ./source/main.o
+                             0x296d65 (size before relaxing)
+ .debug_str     0x0029972e       0x1f ./source/semihost_hardfault.o
                                0x312f (size before relaxing)
- .debug_str     0x0029977e      0x7bb ./source/sfw.o
+ .debug_str     0x0029974d      0x7bb ./source/sfw.o
                              0x28d9aa (size before relaxing)
- .debug_str     0x00299f39     0x4f12 ./mbedtls/port/ksdk/ksdk_mbedtls.o
+ .debug_str     0x00299f08     0x4f12 ./mbedtls/port/ksdk/ksdk_mbedtls.o
                              0x28c37b (size before relaxing)
- .debug_str     0x0029ee4b     0x1456 ./lwip/port/sys_arch.o
+ .debug_str     0x0029ee1a     0x1456 ./lwip/port/sys_arch.o
                              0x28d6af (size before relaxing)
- .debug_str     0x002a02a1      0xb9d ./flash/mflash/mimxrt1170/mflash_drv.o
+ .debug_str     0x002a0270      0xb9d ./flash/mflash/mimxrt1170/mflash_drv.o
                              0x286b9c (size before relaxing)
- .debug_str     0x002a0e3e       0x88 ./flash/flash_api.o
+ .debug_str     0x002a0e0d       0x88 ./flash/flash_api.o
                              0x285bd5 (size before relaxing)
- .debug_str     0x002a0ec6     0x3231 ./drivers/fsl_anatop_ai.o
+ .debug_str     0x002a0e95     0x3231 ./drivers/fsl_anatop_ai.o
                              0x288849 (size before relaxing)
- .debug_str     0x002a40f7     0x294b ./drivers/fsl_caam.o
+ .debug_str     0x002a40c6     0x294b ./drivers/fsl_caam.o
                              0x28addb (size before relaxing)
- .debug_str     0x002a6a42      0x168 ./drivers/fsl_cache.o
+ .debug_str     0x002a6a11      0x168 ./drivers/fsl_cache.o
                              0x2856f9 (size before relaxing)
- .debug_str     0x002a6baa     0x1814 ./drivers/fsl_clock.o
+ .debug_str     0x002a6b79     0x1814 ./drivers/fsl_clock.o
                              0x28be67 (size before relaxing)
- .debug_str     0x002a83be      0x15a ./drivers/fsl_common_arm.o
+ .debug_str     0x002a838d      0x15a ./drivers/fsl_common_arm.o
                              0x285558 (size before relaxing)
- .debug_str     0x002a8518     0x1a60 ./drivers/fsl_dcdc.o
+ .debug_str     0x002a84e7     0x1a60 ./drivers/fsl_dcdc.o
                              0x287b73 (size before relaxing)
- .debug_str     0x002a9f78     0x129f ./drivers/fsl_enet.o
+ .debug_str     0x002a9f47     0x129f ./drivers/fsl_enet.o
                              0x28a0db (size before relaxing)
- .debug_str     0x002ab217      0xd3e ./drivers/fsl_flexspi.o
+ .debug_str     0x002ab1e6      0xd3e ./drivers/fsl_flexspi.o
                              0x288b50 (size before relaxing)
- .debug_str     0x002abf55       0xb9 ./drivers/fsl_gpio.o
+ .debug_str     0x002abf24       0xb9 ./drivers/fsl_gpio.o
                              0x28636b (size before relaxing)
- .debug_str     0x002ac00e     0x11b0 ./drivers/fsl_lpuart.o
+ .debug_str     0x002abfdd     0x11b0 ./drivers/fsl_lpuart.o
                              0x288cc4 (size before relaxing)
- .debug_str     0x002ad1be     0x242c ./drivers/fsl_pmu.o
+ .debug_str     0x002ad18d     0x242c ./drivers/fsl_pmu.o
                              0x28aabd (size before relaxing)
- .debug_str     0x002af5ea       0x79 ./device/system_MIMXRT1176_cm7.o
+ .debug_str     0x002af5b9       0x79 ./device/system_MIMXRT1176_cm7.o
                              0x27e896 (size before relaxing)
- .debug_str     0x002af663      0x385 ./component/uart/fsl_adapter_lpuart.o
+ .debug_str     0x002af632      0x385 ./component/uart/fsl_adapter_lpuart.o
                              0x286874 (size before relaxing)
- .debug_str     0x002af9e8      0x509 ./component/serial_manager/fsl_component_serial_manager.o
+ .debug_str     0x002af9b7      0x509 ./component/serial_manager/fsl_component_serial_manager.o
                              0x28716d (size before relaxing)
- .debug_str     0x002afef1       0x92 ./component/serial_manager/fsl_component_serial_port_uart.o
+ .debug_str     0x002afec0       0x92 ./component/serial_manager/fsl_component_serial_port_uart.o
                              0x286313 (size before relaxing)
- .debug_str     0x002aff83      0x633 ./component/gpio/fsl_adapter_igpio.o
+ .debug_str     0x002aff52      0x633 ./component/gpio/fsl_adapter_igpio.o
                              0x2877ae (size before relaxing)
- .debug_str     0x002b05b6    0x19455 ./board/board.o
+ .debug_str     0x002b0585    0x19455 ./board/board.o
                              0x2a4f2c (size before relaxing)
- .debug_str     0x002c9a0b     0x6170 ./board/clock_config.o
+ .debug_str     0x002c99da     0x6170 ./board/clock_config.o
                              0x2aa4cb (size before relaxing)
- .debug_str     0x002cfb7b       0xa7 ./board/pin_mux.o
+ .debug_str     0x002cfb4a       0xa7 ./board/pin_mux.o
                              0x29f658 (size before relaxing)
- .debug_str     0x002cfc22      0x9d0 ./Crypto/test_src/src/test_src.o
+ .debug_str     0x002cfbf1      0x9d0 ./Crypto/test_src/src/test_src.o
                              0x289740 (size before relaxing)
- .debug_str     0x002d05f2      0xcb0 ./Crypto/src/aursa.o
+ .debug_str     0x002d05c1      0xcb0 ./Crypto/src/aursa.o
                                0x99b6 (size before relaxing)
- .debug_str     0x002d12a2      0x5bc ./Crypto/src/bignum.o
+ .debug_str     0x002d1271      0x5bc ./Crypto/src/bignum.o
                                0x94a2 (size before relaxing)
- .debug_str     0x002d185e      0x1c4 ./Crypto/src/md.o
+ .debug_str     0x002d182d      0x1c4 ./Crypto/src/md.o
                                0x7092 (size before relaxing)
- .debug_str     0x002d1a22      0x3de ./Crypto/src/md_wrap.o
+ .debug_str     0x002d19f1      0x3de ./Crypto/src/md_wrap.o
                                0x8c73 (size before relaxing)
- .debug_str     0x002d1e00      0x25c ./Crypto/src/rsa.o
+ .debug_str     0x002d1dcf      0x25c ./Crypto/src/rsa.o
                                0x9d84 (size before relaxing)
- .debug_str     0x002d205c      0x31d ./Crypto/src/sha1.o
+ .debug_str     0x002d202b      0x31d ./Crypto/src/sha1.o
                                0x890b (size before relaxing)
- .debug_str     0x002d2379      0x237 ./Crypto/src/sha2.o
+ .debug_str     0x002d2348      0x237 ./Crypto/src/sha2.o
                                0x89a6 (size before relaxing)
- .debug_str     0x002d25b0      0x1c4 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard\libcr_newlib_nohost.a(_cr_sbrk.o)
+ .debug_str     0x002d257f      0x1c4 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard\libcr_newlib_nohost.a(_cr_sbrk.o)
                                 0x268 (size before relaxing)
- .debug_str     0x002d2774       0x25 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard\libcr_newlib_nohost.a(_cr_check_heap.o)
+ .debug_str     0x002d2743       0x25 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard\libcr_newlib_nohost.a(_cr_check_heap.o)
                                 0x1b3 (size before relaxing)
 
 .comment        0x00000000       0x45

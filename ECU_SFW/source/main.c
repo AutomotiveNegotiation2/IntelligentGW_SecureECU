@@ -52,12 +52,6 @@
 
 int initNetwork(void);
 
-#if 0
-static shell_status_t shellCmd_ota(shell_handle_t shellHandle, int32_t argc, char **argv);
-static shell_status_t shellCmd_image(shell_handle_t shellHandle, int32_t argc, char **argv);
-static shell_status_t shellCmd_reboot(shell_handle_t shellHandle, int32_t argc, char **argv);
-#endif
-
 #ifdef WIFI_MODE
 static shell_status_t shellCmd_wifi(shell_handle_t shellHandle, int32_t argc, char **argv);
 #endif
@@ -69,23 +63,6 @@ static shell_status_t shellCmd_wifi(shell_handle_t shellHandle, int32_t argc, ch
 phy_ksz8081_resource_t g_phy_resource;
 #else
 phy_rtl8211f_resource_t g_phy_resource;
-#endif
-
-#if 0
-static SHELL_COMMAND_DEFINE(ota,
-                            "\n\"ota <imageNumber> <filePath> <host> <port>\": Starts download of OTA image\n",
-                            shellCmd_ota,
-                            SHELL_IGNORE_PARAMETER_COUNT);
-
-static SHELL_COMMAND_DEFINE(image,
-                            "\n\"image [info]\"              : Print image information"
-                            "\n\"image test <imageNumber>\"  : Mark secondary image of given number as ready for test"
-                            "\n\"image accept <imageNumber>\": Mark primary image of given number as accepted"
-                            "\n",
-                            shellCmd_image,
-                            SHELL_IGNORE_PARAMETER_COUNT);
-
-static SHELL_COMMAND_DEFINE(reboot, "\n\"reboot\": Triggers software reset\n", shellCmd_reboot, 0);
 #endif
 
 #ifdef WIFI_MODE
@@ -100,9 +77,6 @@ static SHELL_COMMAND_DEFINE(wifi,
 static char wifi_ssid[32 + 1] = WIFI_SSID;
 static char wifi_pass[64 + 1] = WIFI_PASSWORD;
 #endif
-
-SDK_ALIGN(static uint8_t s_shellHandleBuffer[SHELL_HANDLE_SIZE], 4);
-static shell_handle_t s_shellHandle;
 
 /*******************************************************************************
  * Code
@@ -322,181 +296,6 @@ static shell_status_t shellCmd_wifi(shell_handle_t shellHandle, int32_t argc, ch
 #endif
 
 #if 0
-static shell_status_t shellCmd_ota(shell_handle_t shellHandle, int32_t argc, char **argv)
-{
-    int ret, image;
-    size_t image_size;
-    partition_t storage;
-
-    /* Initialized with default values */
-
-    char *path = OTA_IMAGE_PATH_DEFAULT;
-    char *host = OTA_SERVER_NAME_DEFAULT;
-    char *port = OTA_SERVER_PORT_DEFAULT;
-
-    if (argc < 2)
-    {
-        PRINTF("Image number must be specified; Use 'image' for image details.\n");
-        return kStatus_SHELL_Error;
-    }
-
-    if (!isdigit((int)argv[1][0]))
-    {
-        PRINTF("Bad image number\n");
-        return kStatus_SHELL_Error;
-    }
-    image = atoi(argv[1]);
-
-    if (argc > 2)
-        path = argv[2];
-    if (argc > 3)
-        host = argv[3];
-    if (argc > 4)
-        port = argv[4];
-
-    if (argc > 5)
-    {
-        PRINTF("Too many arguments.\n");
-        return kStatus_SHELL_Error;
-    }
-
-    if (image < 0 || image >= MCUBOOT_IMAGE_NUMBER)
-    {
-        PRINTF("Image number out of range.\n");
-        return kStatus_SHELL_Error;
-    }
-
-    if (bl_get_update_partition_info(image, &storage) != kStatus_Success)
-    {
-        PRINTF("FAILED to determine address for download\n");
-        return kStatus_SHELL_Error;
-    }
-
-    PRINTF(
-        "Started OTA with:\n"
-        "    image = %d\n"
-        "    file = %s\n"
-        "    host = %s\n"
-        "    port = %s\n",
-        image, path, host, port);
-
-    /* File Download Over TLS */
-
-    ret = https_client_tls_init(host, port);
-    if (ret != SUCCESS)
-    {
-        PRINTF("FAILED to init TLS (ret=%d)\n", ret);
-        goto cleanup;
-    }
-
-    ret = https_client_ota_download(host, path, storage.start, storage.size, &image_size);
-    if (ret != SUCCESS)
-    {
-        PRINTF("FAILED to download OTA image (ret=%d)\n", ret);
-        goto cleanup;
-    }
-
-    if (!bl_verify_image(storage.start, image_size))
-    {
-        PRINTF("FAILED to verify mcuboot image format\n");
-        goto cleanup;
-    }
-
-    PRINTF("OTA image was downloaded successfully.\n");
-
-cleanup:
-    https_client_tls_release();
-
-    return kStatus_SHELL_Success;
-}
-
-static shell_status_t shellCmd_image(shell_handle_t shellHandle, int32_t argc, char **argv)
-{
-    int image;
-    status_t status;
-    uint32_t imgstate;
-
-    if (argc > 3)
-    {
-        PRINTF("Too many arguments.\n");
-        return kStatus_SHELL_Error;
-    }
-
-    /* image [info] */
-
-    if (argc == 1 || (argc == 2 && !strcmp(argv[1], "info")))
-    {
-        print_image_info();
-        return kStatus_SHELL_Success;
-    }
-
-    if (argc != 3)
-    {
-        PRINTF("Wrong arguments. See 'help'\n");
-        return kStatus_SHELL_Error;
-    }
-
-    image = atoi(argv[2]);
-    if (image < 0 || image >= MCUBOOT_IMAGE_NUMBER)
-    {
-        PRINTF("Image number out of range.\n");
-        return kStatus_SHELL_Error;
-    }
-
-    status = bl_get_image_state(image, &imgstate);
-    if (status != kStatus_Success)
-    {
-        PRINTF("Failed to get state of image %u (status %d)", image, status);
-        return kStatus_SHELL_Error;
-    }
-
-    /* image test <imageNumber> */
-
-    if (!strcmp(argv[1], "test"))
-    {
-        status = bl_update_image_state(image, kSwapType_ReadyForTest);
-        if (status != kStatus_Success)
-        {
-            PRINTF("FAILED to mark image state as ReadyForTest (status=%d)\n", status);
-            return kStatus_SHELL_Error;
-        }
-    }
-
-    /* image accept <imageNumber> */
-
-    else if (!strcmp(argv[1], "accept"))
-    {
-        if (imgstate != kSwapType_Testing)
-        {
-            PRINTF("Image state is not set as Testing. Nothing to accept.\n", status);
-            return kStatus_SHELL_Error;
-        }
-
-        status = bl_update_image_state(image, kSwapType_Permanent);
-        if (status != kStatus_Success)
-        {
-            PRINTF("FAILED to accept image (status=%d)\n", status);
-            return kStatus_SHELL_Error;
-        }
-    }
-
-    else
-    {
-        PRINTF("Wrong arguments. See 'help'\n");
-        return kStatus_SHELL_Error;
-    }
-
-    return kStatus_SHELL_Success;
-}
-#endif
-static shell_status_t shellCmd_reboot(shell_handle_t shellHandle, int32_t argc, char **argv)
-{
-    PRINTF("System reset!\n");
-    NVIC_SystemReset();
-
-    /* return kStatus_SHELL_Success; */
-}
-#if 0
 static void ota_task(void *arg)
 {
     int ret;
@@ -593,28 +392,6 @@ int main(void)
 
     PRINTF("\r\n");
     PRINTF("MCUXpresso IDE FW! \r\n");
-#if 0
-    if (xTaskCreate(sfw_main, "sfw_main", 2048 /* x4 */, NULL, 3, NULL) != pdPASS)
-    {
-        PRINTF("sfw_main task creation failed!\r\n");
-        while (1)
-            ;
-    }
-
-#ifdef USE_SDK
-    /* start the shell */
-
-    if (xTaskCreate(ota_task, "ota_task", 2048 /* x4 */, NULL, SHELL_TASK_PRIORITY, NULL) != pdPASS)
-    {
-        PRINTF("Task creation failed!\r\n");
-        while (1)
-            ;
-    }
-#endif
-
-    /* Run RTOS */
-    vTaskStartScheduler();
-#endif
 
 	sfw_main();
 
