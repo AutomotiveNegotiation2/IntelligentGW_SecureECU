@@ -12,6 +12,12 @@
 
 #include "mcuboot_app_support.h"
 
+#define IMG_VERIFY_NONE     0
+#define IMG_VERIFY_DENYED   1
+#define IMG_VERIFY_PASSED   2
+#define IMG_VERIFY_FAILED   3
+#define IMG_VERIFY_UNKNOWN  4
+
 /* SFW error code definitions */
 #define OK                          0               /**< There is no error */
 #define ERROR                        1               /**< A generic error happens */

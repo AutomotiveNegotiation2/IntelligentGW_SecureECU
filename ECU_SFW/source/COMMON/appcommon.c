@@ -1,4 +1,5 @@
 #include "Includes.h"
+#include "sfw.h"
 
 #define	TIME_1S		1000U		
 #define	TIME_500MS	500U		
@@ -7,6 +8,35 @@
 static void Init_CanDriver(void);
 static void Init_EthDriver(void);
 static void Poll_EthDriver(void);
+
+static char McuVer[20] = "M0.001_20240118T";
+
+void SystemInfo(void)
+{
+	uint32_t freq=CLOCK_GetFreq(kCLOCK_CpuClk);
+
+	COMMON_PRINTF("\33[0m");	// normal
+	COMMON_PRINTF("\r\n");
+	COMMON_PRINTF("***********************************************************\r\n");
+	COMMON_PRINTF("***                     MIMX1170 MCU                    ***\r\n");
+	COMMON_PRINTF("***                                                     ***\r\n");
+	COMMON_PRINTF("*** SW Version : %s	                ***\r\n", McuVer);
+	COMMON_PRINTF("***                                                     ***\r\n");
+	COMMON_PRINTF("***                                                     ***\r\n");
+	COMMON_PRINTF("*** Core Clock = %dHz                            ***\r\n", freq);
+	//COMMON_PRINTF("*** CPU wakeup source = 0x%x...                      ***\r\n", SRC->SRSR);
+	COMMON_PRINTF("***                                                     ***\r\n");
+#if ((CAN3toCAN_EN == ON) && (CAN1toCANFD_EN == ON))
+	COMMON_PRINTF("*** CAN / CANFD NETWORK OPERATION                       ***\r\n");
+#elif (CAN3toCAN_EN == ON) 
+	COMMON_PRINTF("*** CAN NETWORK OPERATION                               ***\r\n");
+#elif (CAN1toCANFD_EN == ON)
+	COMMON_PRINTF("*** CANFD NETWORK OPERATION                             ***\r\n");
+#endif
+	COMMON_PRINTF("***                                                     ***\r\n");
+	COMMON_PRINTF("***********************************************************\r\n");
+	COMMON_PRINTF("\r\n");
+}
 
 void Init_CommonFunc(void)
 {
@@ -155,4 +185,63 @@ static void Poll_EthDriver(void)
 	{
 		sys_check_timeouts(); /* Handle all system timeouts for all core protocols */
 	}
+}
+
+void InitAppCommon(void)
+{
+	/* Init_****Func() : Initialize registers and variables */
+	Init_AutoCryptFunc();
+	Init_KorUnivFunc();
+	Init_KetiFunc();
+#if (DHAUTO_FUNC_EN == ON)
+	Init_DHAutoFunc();
+#endif
+
+	/* Initialize general drivers */
+	Init_CommonFunc();
+}
+
+extern void test_periodic_job_keti(void);
+extern void periodic_job_autocrypt(void);
+extern void test_periodic_job_koreaUniv(void);
+extern void test_periodic_job_dhautoware(void);
+
+void RunAppCommon(void)
+{
+#if (DHAUTO_FUNC_EN == ON)
+	SoftTimerSrv();
+#endif
+
+	CommonFunc();
+		
+#if (DHAUTO_FUNC_EN == ON)
+	SoftTimerSrv();
+#endif
+
+	test_periodic_job_keti();
+	//KetiFunc();
+	
+#if (DHAUTO_FUNC_EN == ON)
+	SoftTimerSrv();
+#endif
+
+	periodic_job_autocrypt();
+	//AutoCryptFunc();	
+		
+#if (DHAUTO_FUNC_EN == ON)
+	SoftTimerSrv();
+#endif
+
+	test_periodic_job_koreaUniv();
+	//KorUnivFunc();
+		
+#if (DHAUTO_FUNC_EN == ON)
+	extern uint8_t     f_img_verify_result;
+	extern uint8_t     f_img_downloaded;
+	test_periodic_job_dhautoware();
+	if ((f_img_verify_result == IMG_VERIFY_PASSED) /*&& (f_img_downloaded != 1)*/)
+	{
+		DHAutoFunc();
+	}
+#endif
 }

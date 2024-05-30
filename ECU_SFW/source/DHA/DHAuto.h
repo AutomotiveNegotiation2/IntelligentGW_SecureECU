@@ -52,7 +52,7 @@
 #define	IOCTRLINFO_PRINTF
 #endif
 
-void Init_DHAutoFunc();
-void DHAutoFunc();
+void Init_DHAutoFunc(void);
+void DHAutoFunc(void);
 
 #endif /* _DHAUTO_H_ */

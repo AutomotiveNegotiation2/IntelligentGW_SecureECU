@@ -1,6 +1,6 @@
 #include "Includes.h"
 
-void Init_DHAutoFunc()
+void Init_DHAutoFunc(void)
 {
 	GlobalSequence_Init();
 	
@@ -14,7 +14,7 @@ void Init_DHAutoFunc()
 #endif
 }
 
-void DHAutoFunc()
+void DHAutoFunc(void)
 {
 	GlobalSequence();
 	

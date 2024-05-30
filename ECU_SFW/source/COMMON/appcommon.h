@@ -22,5 +22,7 @@
 
 void Init_CommonFunc(void);
 void CommonFunc(void);
+void InitAppCommon(void);
+void RunAppCommon(void);
 
 #endif /* _COMMON_H_ */

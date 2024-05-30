@@ -81,11 +81,13 @@ extern const char* mypub_E;
 #define hello_autocrypt_PRIORITY (configMAX_PRIORITIES - 5)
 #define hello_dhauto_PRIORITY (configMAX_PRIORITIES - 6)
 
+#if 0
 #define IMG_VERIFY_NONE     0
 #define IMG_VERIFY_DENYED   1
 #define IMG_VERIFY_PASSED   2
 #define IMG_VERIFY_FAILED   3
 #define IMG_VERIFY_UNKNOWN  4
+#endif
 
 uint8_t     f_img_downloaded;
 uint8_t     f_img_verify_result;
@@ -375,12 +377,13 @@ __attribute__((optimize(0))) void time_delay_ms(uint32_t dtime)
 /*!
  * @brief Periodic job doing Image downloading or printing of "Hello KETI." message.
  */
-static void test_periodic_job_keti()
+//static void test_periodic_job_keti()
+void test_periodic_job_keti(void)
 {
     static uint32_t    cnt              = 0U;
     static uint32_t    f_oneshot_fired  = 0U;
 
-    PRINTF("Hello KETI.\r\n");
+    //PRINTF("Hello KETI.\r\n");
 
     /*
      * develop your own source code ...
@@ -392,7 +395,8 @@ static void test_periodic_job_keti()
     }
 }
 
-static void periodic_job_autocrypt()
+//static void periodic_job_autocrypt()
+void periodic_job_autocrypt(void)
 {
     static uint32_t         red_led_blink   = 0;
 
@@ -417,20 +421,20 @@ static void periodic_job_autocrypt()
     }
     else if( f_img_verify_result == IMG_VERIFY_NONE )
     {
-        PRINTF("Hello Autocrypt.\r\n");
+        //PRINTF("Hello Autocrypt.\r\n");
     }
     else if( f_img_verify_result == IMG_VERIFY_DENYED )
     {
-        PRINTF("Hello Autocrypt.\r\n");
+        //PRINTF("Hello Autocrypt.\r\n");
     }
     else if( f_img_verify_result == IMG_VERIFY_PASSED )
     {
-        PRINTF("Hello Autocrypt.\r\n");
+        //PRINTF("Hello Autocrypt.\r\n");
     }
     else if( f_img_verify_result == IMG_VERIFY_FAILED )
     {
-        PRINTF("Img Verification Failed.\r\n");
-
+        //PRINTF("Img Verification Failed.\r\n");
+#if 0
         if( red_led_blink & 0x00000001 ) {
             GPIO_PinWrite(GPIO13, 3u, 0u);      // 1st  Red  Off
             red_led_blink   &= 0x00000000;
@@ -440,14 +444,16 @@ static void periodic_job_autocrypt()
             GPIO_PinWrite(GPIO13, 3u, 1u);      // 1st  Red  On
             red_led_blink   |= 0x00000001;
         }
+#endif
     }
     else
     {
-        PRINTF("Hello Autocrypt.\r\n");
+        //PRINTF("Hello Autocrypt.\r\n");
     }
 }
 
-static void test_periodic_job_dhautoware()
+//static void test_periodic_job_dhautoware()
+void test_periodic_job_dhautoware(void)
 {
     if( f_img_verify_result == IMG_VERIFY_PASSED ) {
         // develop your own source code
@@ -466,14 +472,15 @@ static void test_periodic_job_dhautoware()
         f_img_verify_result = IMG_VERIFY_NONE;
     }
 
-    PRINTF("Hello DH AUTOWARE.\r\n");
+    //PRINTF("Hello DH AUTOWARE.\r\n");
 }
 
-static void test_periodic_job_koreaUniv()
+//static void test_periodic_job_koreaUniv()
+void test_periodic_job_koreaUniv(void)
 {
     // develop your own source code
 
-    PRINTF("Hello Korea University.\r\n");
+    //PRINTF("Hello Korea University.\r\n");
 }
 
 #define IOMUXC_GPR_GPR30_REG 0x400CC420 /* Flash remapping start address  */
@@ -559,7 +566,11 @@ void sfw_main(void)
     }
     PRINTF("run image verison: %c.%c.%c\r\n", run_img_ver->iv_major, run_img_ver->iv_minor, run_img_ver->iv_revision);
 
+	extern void InitAppCommon(void);
+	InitAppCommon();
+
     while( 1 ) {
+#if 0
         test_periodic_job_keti();
         periodic_job_autocrypt();
         test_periodic_job_dhautoware();
@@ -571,5 +582,9 @@ void sfw_main(void)
         {
             time_delay_ms(DLY_TIME);
         }
+#else
+		extern void RunAppCommon(void);
+		RunAppCommon();
+#endif
     }
 }

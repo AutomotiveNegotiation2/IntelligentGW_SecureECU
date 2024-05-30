@@ -356,46 +356,13 @@ extern void SBL_DisableRemap(void);
  */
 int main(void)
 {
-    gpio_pin_config_t gpio_config = {kGPIO_DigitalOutput, 0, kGPIO_NoIntmode};
+    /* Initialize board hardware. */
+	BOARD_ConfigMPU();
+	BOARD_InitPins();
+	BOARD_BootClockRUN();
+	BOARD_InitDebugConsole();
 
-    BOARD_ConfigMPU();
-    BOARD_InitPins();
-    BOARD_BootClockRUN();
-    BOARD_InitDebugConsole();
-    BOARD_InitModuleClock();
-
-    SCB_DisableDCache();
-
-    IOMUXC_SelectENETClock();
-
-#if BOARD_NETWORK_USE_100M_ENET_PORT
-    BOARD_InitEnetPins();
-    GPIO_PinInit(GPIO12, 12, &gpio_config);
-    GPIO_WritePinOutput(GPIO12, 12, 0);
-    SDK_DelayAtLeastUs(10000, CLOCK_GetFreq(kCLOCK_CpuClk));
-    GPIO_WritePinOutput(GPIO12, 12, 1);
-    SDK_DelayAtLeastUs(6, CLOCK_GetFreq(kCLOCK_CpuClk));
-#else
-    BOARD_InitEnet1GPins();
-    GPIO_PinInit(GPIO11, 14, &gpio_config);
-    /* For a complete PHY reset of RTL8211FDI-CG, this pin must be asserted low for at least 10ms. And
-     * wait for a further 30ms(for internal circuits settling time) before accessing the PHY register */
-    GPIO_WritePinOutput(GPIO11, 14, 0);
-    SDK_DelayAtLeastUs(10000, CLOCK_GetFreq(kCLOCK_CpuClk));
-    GPIO_WritePinOutput(GPIO11, 14, 1);
-    SDK_DelayAtLeastUs(30000, CLOCK_GetFreq(kCLOCK_CpuClk));
-
-    EnableIRQ(ENET_1G_MAC0_Tx_Rx_1_IRQn);
-    EnableIRQ(ENET_1G_MAC0_Tx_Rx_2_IRQn);
-#endif
-
-    MDIO_Init();
-    g_phy_resource.read  = MDIO_Read;
-    g_phy_resource.write = MDIO_Write;
     CRYPTO_InitHardware();
-
-    PRINTF("\r\n");
-    PRINTF("MCUXpresso IDE FW! \r\n");
 
 	sfw_main();
 
