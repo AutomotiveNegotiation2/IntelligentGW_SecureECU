@@ -24,9 +24,6 @@ RM := rm -rf
 -include lwip/contrib/apps/udpecho_raw/subdir.mk
 -include lwip/contrib/apps/tcpecho_raw/subdir.mk
 -include lwip/contrib/apps/ping/subdir.mk
--include freertos/freertos-kernel/portable/MemMang/subdir.mk
--include freertos/freertos-kernel/portable/GCC/ARM_CM4F/subdir.mk
--include freertos/freertos-kernel/subdir.mk
 -include flash/mflash/mimxrt1170/subdir.mk
 -include flash/subdir.mk
 -include drivers/subdir.mk

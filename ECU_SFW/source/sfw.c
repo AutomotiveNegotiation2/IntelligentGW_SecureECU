@@ -7,11 +7,14 @@
  */
 
 #include "sfw.h"
+
+#if USE_RTOS && defined(SDK_OS_FREE_RTOS)
 /* FreeRTOS kernel includes. */
 #include "FreeRTOS.h"
 #include "task.h"
 #include "queue.h"
 #include "timers.h"
+#endif
 
 /*
 #include <stddef.h>
@@ -564,7 +567,7 @@ void sfw_main(void)
         PRINTF("\r\n");
 
         //vTaskDelay(SWF_MAIN_TASK_DELAY_TIME);
-        for( ix = 0; ix < (DLY_ITER * 25UL); ix++ )
+        for( ix = 0; ix < (DLY_ITER * 20UL); ix++ )
         {
             time_delay_ms(DLY_TIME);
         }

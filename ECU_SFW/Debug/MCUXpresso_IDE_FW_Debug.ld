@@ -5,7 +5,7 @@
  * Generated linker script file for MIMXRT1176xxxxx
  * Created from linkscript.ldt by FMCreateLinkLibraries
  * Using Freemarker v2.3.30
- * MCUXpresso IDE v11.9.1 [Build 2170] [2024-04-19] on 2024. 4. 29. 오후 6:51:12
+ * MCUXpresso IDE v11.9.1 [Build 2170] [2024-04-19] on 2024. 4. 29. 오후 7:15:41
  */
 
 INCLUDE "MCUXpresso_IDE_FW_Debug_library.ld"

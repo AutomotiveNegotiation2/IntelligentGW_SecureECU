@@ -29,9 +29,6 @@ device \
 drivers \
 flash \
 flash/mflash/mimxrt1170 \
-freertos/freertos-kernel \
-freertos/freertos-kernel/portable/GCC/ARM_CM4F \
-freertos/freertos-kernel/portable/MemMang \
 lwip/contrib/apps/ping \
 lwip/contrib/apps/tcpecho_raw \
 lwip/contrib/apps/udpecho_raw \
