@@ -41,14 +41,11 @@ lwip/src/netif \
 lwip/src/netif/ppp \
 mbedtls/library \
 mbedtls/port/ksdk \
-source/AUTOCRYPT \
 source/COMMON/CAN \
 source/COMMON/ENET \
 source/COMMON \
 source/COMMON/UDP \
 source/DHA \
-source/KETI \
-source/KORU \
 source \
 startup \
 utilities \

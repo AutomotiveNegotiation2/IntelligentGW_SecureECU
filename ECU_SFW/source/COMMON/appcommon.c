@@ -190,9 +190,6 @@ static void Poll_EthDriver(void)
 void InitAppCommon(void)
 {
 	/* Init_****Func() : Initialize registers and variables */
-	Init_AutoCryptFunc();
-	Init_KorUnivFunc();
-	Init_KetiFunc();
 #if (DHAUTO_FUNC_EN == ON)
 	Init_DHAutoFunc();
 #endif
@@ -200,6 +197,10 @@ void InitAppCommon(void)
 	/* Initialize general drivers */
 	Init_CommonFunc();
 }
+
+extern uint8_t	   f_img_verify_result;
+extern uint8_t	   f_img_downloaded;
+extern uint8_t 	   f_app_start;
 
 extern void test_periodic_job_keti(void);
 extern void periodic_job_autocrypt(void);
@@ -209,37 +210,46 @@ extern void test_periodic_job_dhautoware(void);
 void RunAppCommon(void)
 {
 #if (DHAUTO_FUNC_EN == ON)
-	SoftTimerSrv();
+	if (f_app_start == 1)
+	{
+		SoftTimerSrv();
+	}
 #endif
 
 	CommonFunc();
 		
 #if (DHAUTO_FUNC_EN == ON)
-	SoftTimerSrv();
+	if (f_app_start == 1)
+	{
+		SoftTimerSrv();
+	}
 #endif
 
 	test_periodic_job_keti();
-	//KetiFunc();
 	
 #if (DHAUTO_FUNC_EN == ON)
-	SoftTimerSrv();
+	if (f_app_start == 1)
+	{
+		SoftTimerSrv();
+	}
 #endif
 
 	periodic_job_autocrypt();
-	//AutoCryptFunc();	
 		
 #if (DHAUTO_FUNC_EN == ON)
-	SoftTimerSrv();
+	if (f_app_start == 1)
+	{
+		SoftTimerSrv();
+	}
 #endif
 
 	test_periodic_job_koreaUniv();
-	//KorUnivFunc();
 		
 #if (DHAUTO_FUNC_EN == ON)
-	extern uint8_t     f_img_verify_result;
-	extern uint8_t     f_img_downloaded;
+
 	test_periodic_job_dhautoware();
-	if ((f_img_verify_result == IMG_VERIFY_PASSED) /*&& (f_img_downloaded != 1)*/)
+
+	if (f_app_start == 1)
 	{
 		DHAutoFunc();
 	}

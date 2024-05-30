@@ -224,31 +224,31 @@ int do_firmware_update(void)
                 {
                     PRINTF("Signature Verification passed\r\n");
                     PRINTF("Img Verification Successed. press power reset button to start new version-up Img.\r\n");
-                    GPIO_PinWrite(GPIO13, 3u, 0u);      // 1st  Red  LED Off
-                    GPIO_PinWrite(GPIO13, 4u, 1u);      // 1st Green LED On
+                    //GPIO_PinWrite(GPIO13, 3u, 0u);      // 1st  Red  LED Off
+                    //GPIO_PinWrite(GPIO13, 4u, 1u);      // 1st Green LED On
                     f_img_verify_result = IMG_VERIFY_PASSED;
                 }
                 else
                 {
                     PRINTF("Error happened during FlexSPI NOR Flash handling.\r\n");
-                    GPIO_PinWrite(GPIO13, 3u, 1u);      // 1st  Red  LED On
-                    GPIO_PinWrite(GPIO13, 4u, 1u);      // 1st Green LED On
+                    //GPIO_PinWrite(GPIO13, 3u, 1u);      // 1st  Red  LED On
+                    //GPIO_PinWrite(GPIO13, 4u, 1u);      // 1st Green LED On
                     f_img_verify_result = IMG_VERIFY_DENYED;
                 }
             }
             else
             {
                 PRINTF("Signature Verification failed\r\n");
-                GPIO_PinWrite(GPIO13, 3u, 0u);      // 1st  Red  LED Off
-                GPIO_PinWrite(GPIO13, 4u, 0u);      // 1st Green LED Off
+                //GPIO_PinWrite(GPIO13, 3u, 0u);      // 1st  Red  LED Off
+                //GPIO_PinWrite(GPIO13, 4u, 0u);      // 1st Green LED Off
                 f_img_verify_result = IMG_VERIFY_FAILED;
             }
         }
         else
         {
             PRINTF("Bad IITP-propritary secure firmware image formate.\r\n");
-            GPIO_PinWrite(GPIO13, 3u, 1u);      // 1st  Red  LED On
-            GPIO_PinWrite(GPIO13, 4u, 1u);      // 1st Green LED On
+            //GPIO_PinWrite(GPIO13, 3u, 1u);      // 1st  Red  LED On
+            //GPIO_PinWrite(GPIO13, 4u, 1u);      // 1st Green LED On
             f_img_verify_result = IMG_VERIFY_DENYED;
         }
     }
@@ -258,8 +258,8 @@ int do_firmware_update(void)
         PRINTF("Current running image verison: %c.%c.%c\r\n", run_img_ver->iv_major, run_img_ver->iv_minor, run_img_ver->iv_revision);
         PRINTF("OTA downloadeded image verison: %c.%c.%c\r\n", ota_img_ver->iv_major, ota_img_ver->iv_minor, ota_img_ver->iv_revision);
         PRINTF("Downloaded OTA image is denyed.\r\n");
-        GPIO_PinWrite(GPIO13, 3u, 1u);      // 1st  Red  LED On
-        GPIO_PinWrite(GPIO13, 4u, 1u);      // 1st Green LED On
+        //GPIO_PinWrite(GPIO13, 3u, 1u);      // 1st  Red  LED On
+        //GPIO_PinWrite(GPIO13, 4u, 1u);      // 1st Green LED On
         f_img_verify_result = IMG_VERIFY_DENYED;
     }
 
@@ -303,6 +303,11 @@ int set_magic_field_on_remap_flag(void)
         if( (status = boot_flash_area_write(REMAP_FLAG_SECTOR_OFFSET, sector_incl_remap_flag, SECTOR_SZ)) == kStatus_Success ) {
             EnableGlobalIRQ(primask);
             PRINTF("Remap Update End \r\n");
+#if 0
+			/* Restart MCU */
+			DisableGlobalIRQ();
+			NVIC_SystemReset();
+#endif
         }
         else
         {
@@ -396,6 +401,7 @@ void test_periodic_job_keti(void)
 }
 
 //static void periodic_job_autocrypt()
+uint8_t f_app_start = 0;
 void periodic_job_autocrypt(void)
 {
     static uint32_t         red_led_blink   = 0;
@@ -418,6 +424,7 @@ void periodic_job_autocrypt(void)
         }
 
         f_img_downloaded    = 0U;
+		f_app_start = 1U;
     }
     else if( f_img_verify_result == IMG_VERIFY_NONE )
     {
@@ -436,12 +443,12 @@ void periodic_job_autocrypt(void)
         //PRINTF("Img Verification Failed.\r\n");
 #if 0
         if( red_led_blink & 0x00000001 ) {
-            GPIO_PinWrite(GPIO13, 3u, 0u);      // 1st  Red  Off
+            //GPIO_PinWrite(GPIO13, 3u, 0u);      // 1st  Red  Off
             red_led_blink   &= 0x00000000;
         }
         else
         {
-            GPIO_PinWrite(GPIO13, 3u, 1u);      // 1st  Red  On
+            //GPIO_PinWrite(GPIO13, 3u, 1u);      // 1st  Red  On
             red_led_blink   |= 0x00000001;
         }
 #endif
@@ -525,6 +532,8 @@ void sfw_main(void)
 	struct image_version    *run_img_ver = NULL;
 	uint8_t                 run_img_version[8] = {0U};
     int         ix          = 0;
+
+#if 0
      gpio_pin_config_t gpio13_pinM13_config = {
         .direction = kGPIO_DigitalOutput,
         .outputLogic = 0U,
@@ -541,8 +550,9 @@ void sfw_main(void)
     GPIO_PinInit(GPIO13, 10u, &gpio13_pinM13_config);       // 4th Green LED off
     GPIO_PinInit(GPIO13, 11u, &gpio13_pinM13_config);       // 5th  Red  LED off
     GPIO_PinInit(GPIO13, 12u, &gpio13_pinM13_config);       // 5th Green LED off
+#endif
 
-    GPIO_PinWrite(GPIO13, 12, 1u);                          // 5th Green LED On
+    //GPIO_PinWrite(GPIO13, 12, 1u);                          // 5th Green LED On
 
     boot_flash_area_read(REMAP_FLAG_ADDRESS, &run_slot, sizeof(run_slot));
     PRINTF("Run Slot : %d \r\n", run_slot);

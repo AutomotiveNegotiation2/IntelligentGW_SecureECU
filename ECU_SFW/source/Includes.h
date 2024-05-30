@@ -19,9 +19,6 @@
 #include "fsl_enet.h"
 
 #include "appcommon.h"
-#include "AutoCrypt.h"
-#include "KorUniv.h"
-#include "KETI.h"
 #if (DHAUTO_FUNC_EN == ON)
 #include "DHAuto.h"
 #endif
