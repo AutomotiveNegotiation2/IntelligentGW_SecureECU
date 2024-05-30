@@ -1,8 +1,7 @@
 ../lwip/port/enet_ethernetif_kinetis.c:566:23:enet_get_tx_buffer	0	static
-../lwip/port/enet_ethernetif_kinetis.c:207:13:ethernet_callback	16	static
-../lwip/port/enet_ethernetif_kinetis.c:378:13:ethernetif_rx_free	24	static
+../lwip/port/enet_ethernetif_kinetis.c:378:13:ethernetif_rx_free	16	static
 ../lwip/port/enet_ethernetif_kinetis.c:616:13:ethernetif_rx_release	8	static
-../lwip/port/enet_ethernetif_kinetis.c:340:14:ethernetif_rx_alloc	16	static
+../lwip/port/enet_ethernetif_kinetis.c:340:14:ethernetif_rx_alloc	8	static
 ../lwip/port/enet_ethernetif_kinetis.c:626:21:ethernetif_rx_frame_to_pbufs	48	static
 ../lwip/port/enet_ethernetif_kinetis.c:575:14:enet_send_frame	40	static
 ../lwip/port/enet_ethernetif_kinetis.c:404:6:ethernetif_plat_init	112	static

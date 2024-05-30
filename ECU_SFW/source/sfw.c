@@ -507,7 +507,8 @@ void SBL_DisableRemap(void)
  * @brief Application main task entry point called by the main() in os abstract layer.
  */
 //int sfw_main(void)
-void sfw_main(void *arg)
+//void sfw_main(void *arg)
+void sfw_main(void)
 {
 	uint8_t run_slot = 0U;
 	uint8_t image_ok = 0U;
@@ -562,6 +563,10 @@ void sfw_main(void *arg)
         test_periodic_job_koreaUniv();
         PRINTF("\r\n");
 
-        vTaskDelay(SWF_MAIN_TASK_DELAY_TIME);
+        //vTaskDelay(SWF_MAIN_TASK_DELAY_TIME);
+        for( ix = 0; ix < (DLY_ITER * 25UL); ix++ )
+        {
+            time_delay_ms(DLY_TIME);
+        }
     }
 }

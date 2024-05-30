@@ -1,0 +1,2 @@
+../lwip/contrib/apps/udpecho_raw/udpecho_raw.c:58:1:udpecho_raw_recv	8	static
+../lwip/contrib/apps/udpecho_raw/udpecho_raw.c:71:1:udpecho_raw_init	8	static

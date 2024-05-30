@@ -1,2 +1,0 @@
-../source/config/core_http_config.c:8:9:coreHttp_recv	8	static
-../source/config/core_http_config.c:31:9:coreHttp_send	8	static

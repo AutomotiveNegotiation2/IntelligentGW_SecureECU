@@ -29,11 +29,12 @@ device \
 drivers \
 flash \
 flash/mflash/mimxrt1170 \
-freertos/corehttp/source \
 freertos/freertos-kernel \
 freertos/freertos-kernel/portable/GCC/ARM_CM4F \
 freertos/freertos-kernel/portable/MemMang \
-llhttp/src \
+lwip/contrib/apps/ping \
+lwip/contrib/apps/tcpecho_raw \
+lwip/contrib/apps/udpecho_raw \
 lwip/port \
 lwip/src/api \
 lwip/src/core \
@@ -43,7 +44,6 @@ lwip/src/netif \
 lwip/src/netif/ppp \
 mbedtls/library \
 mbedtls/port/ksdk \
-source/config \
 source \
 startup \
 utilities \

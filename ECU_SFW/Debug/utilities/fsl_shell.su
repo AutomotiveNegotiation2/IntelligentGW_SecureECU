@@ -16,8 +16,8 @@
 ../utilities/fsl_shell.c:638:23:SHELL_ExitCommand	16	static
 ../utilities/fsl_shell.c:1121:5:SHELL_Printf	20	static
 ../utilities/fsl_shell.c:647:13:SHELL_ProcessCommand	552	static
-../utilities/fsl_shell.c:1166:16:SHELL_WriteSynchronization	24	static
-../utilities/fsl_shell.c:1180:5:SHELL_PrintfSynchronization	28	static
+../utilities/fsl_shell.c:1166:16:SHELL_WriteSynchronization	8	static
+../utilities/fsl_shell.c:1180:5:SHELL_PrintfSynchronization	20	static
 ../utilities/fsl_shell.c:1213:6:SHELL_PrintPrompt	16	static
 ../utilities/fsl_shell.c:802:13:SHELL_AutoComplete	32	static
 ../utilities/fsl_shell.c:372:13:SHELL_MoveCursorToBeginningLine	16	static

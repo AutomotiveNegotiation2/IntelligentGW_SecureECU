@@ -13,7 +13,6 @@
 #include <stdio.h>
 #include <ctype.h>
 
-#include "httpsclient.h"
 #include "pin_mux.h"
 #include "board.h"
 #include "lwip/netifapi.h"
@@ -53,9 +52,11 @@
 
 int initNetwork(void);
 
+#if 0
 static shell_status_t shellCmd_ota(shell_handle_t shellHandle, int32_t argc, char **argv);
 static shell_status_t shellCmd_image(shell_handle_t shellHandle, int32_t argc, char **argv);
 static shell_status_t shellCmd_reboot(shell_handle_t shellHandle, int32_t argc, char **argv);
+#endif
 
 #ifdef WIFI_MODE
 static shell_status_t shellCmd_wifi(shell_handle_t shellHandle, int32_t argc, char **argv);
@@ -70,6 +71,7 @@ phy_ksz8081_resource_t g_phy_resource;
 phy_rtl8211f_resource_t g_phy_resource;
 #endif
 
+#if 0
 static SHELL_COMMAND_DEFINE(ota,
                             "\n\"ota <imageNumber> <filePath> <host> <port>\": Starts download of OTA image\n",
                             shellCmd_ota,
@@ -84,6 +86,7 @@ static SHELL_COMMAND_DEFINE(image,
                             SHELL_IGNORE_PARAMETER_COUNT);
 
 static SHELL_COMMAND_DEFINE(reboot, "\n\"reboot\": Triggers software reset\n", shellCmd_reboot, 0);
+#endif
 
 #ifdef WIFI_MODE
 static SHELL_COMMAND_DEFINE(wifi,
@@ -318,6 +321,7 @@ static shell_status_t shellCmd_wifi(shell_handle_t shellHandle, int32_t argc, ch
 }
 #endif
 
+#if 0
 static shell_status_t shellCmd_ota(shell_handle_t shellHandle, int32_t argc, char **argv)
 {
     int ret, image;
@@ -484,7 +488,7 @@ static shell_status_t shellCmd_image(shell_handle_t shellHandle, int32_t argc, c
 
     return kStatus_SHELL_Success;
 }
-
+#endif
 static shell_status_t shellCmd_reboot(shell_handle_t shellHandle, int32_t argc, char **argv)
 {
     PRINTF("System reset!\n");
@@ -492,7 +496,7 @@ static shell_status_t shellCmd_reboot(shell_handle_t shellHandle, int32_t argc, 
 
     /* return kStatus_SHELL_Success; */
 }
-
+#if 0
 static void ota_task(void *arg)
 {
     int ret;
@@ -515,7 +519,7 @@ static void ota_task(void *arg)
         PRINTF("FAILED to init network (ret=%d). Reboot the board and try again.\n", ret);
         goto failed_init;
     }
-
+#if 0
     /* shell init */
 
     ret = SHELL_Init(s_shellHandle, g_serialHandle, "$ ");
@@ -531,7 +535,7 @@ static void ota_task(void *arg)
 #ifdef WIFI_MODE
     SHELL_RegisterCommand(s_shellHandle, SHELL_COMMAND(wifi));
 #endif
-
+#endif
     while (1)
     {
 #if !(defined(SHELL_NON_BLOCKING_MODE) && (SHELL_NON_BLOCKING_MODE > 0U))
@@ -542,7 +546,7 @@ static void ota_task(void *arg)
 failed_init:
     vTaskDelete(NULL);
 }
-
+#endif
 extern void SBL_DisableRemap(void);
 /*!
  * @brief Main function.
@@ -589,7 +593,7 @@ int main(void)
 
     PRINTF("\r\n");
     PRINTF("MCUXpresso IDE FW! \r\n");
-
+#if 0
     if (xTaskCreate(sfw_main, "sfw_main", 2048 /* x4 */, NULL, 3, NULL) != pdPASS)
     {
         PRINTF("sfw_main task creation failed!\r\n");
@@ -610,6 +614,9 @@ int main(void)
 
     /* Run RTOS */
     vTaskStartScheduler();
+#endif
+
+	sfw_main();
 
     /* Should not reach this statement */
     for (;;)

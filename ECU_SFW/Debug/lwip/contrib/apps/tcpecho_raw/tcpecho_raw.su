@@ -1,0 +1,9 @@
+../lwip/contrib/apps/tcpecho_raw/tcpecho_raw.c:248:1:tcpecho_raw_accept	16	static
+../lwip/contrib/apps/tcpecho_raw/tcpecho_raw.c:98:1:tcpecho_raw_send	24	static
+../lwip/contrib/apps/tcpecho_raw/tcpecho_raw.c:71:1:tcpecho_raw_free	8	static
+../lwip/contrib/apps/tcpecho_raw/tcpecho_raw.c:84:1:tcpecho_raw_close	16	static
+../lwip/contrib/apps/tcpecho_raw/tcpecho_raw.c:172:1:tcpecho_raw_sent	16	static
+../lwip/contrib/apps/tcpecho_raw/tcpecho_raw.c:134:1:tcpecho_raw_error	8	static
+../lwip/contrib/apps/tcpecho_raw/tcpecho_raw.c:146:1:tcpecho_raw_poll	8	static
+../lwip/contrib/apps/tcpecho_raw/tcpecho_raw.c:195:1:tcpecho_raw_recv	24	static
+../lwip/contrib/apps/tcpecho_raw/tcpecho_raw.c:283:1:tcpecho_raw_init	8	static

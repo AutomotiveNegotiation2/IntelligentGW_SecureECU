@@ -32,7 +32,8 @@
 
 #define SWF_MAIN_TASK_DELAY_TIME		1000
 
-void sfw_main(void *arg);
+//void sfw_main(void *arg);
+void sfw_main(void);
 void print_image_version(void);
 
 #endif

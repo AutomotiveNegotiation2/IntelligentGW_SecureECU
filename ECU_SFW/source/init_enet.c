@@ -15,7 +15,7 @@
 #include "ethernetif.h"
 #include "lwip/netifapi.h"
 #include "lwip/prot/dhcp.h"
-#include "ethernetif.h"
+//#include "ethernetif.h"
 
 #include "network_cfg.h"
 
@@ -84,10 +84,15 @@ int initNetwork(void)
     ip4addr_aton(GW_ADDR, &netif_gw);
 #endif
 
-    tcpip_init(NULL, NULL);
+    //tcpip_init(NULL, NULL);
+    lwip_init();
 
+#if 0
     netifapi_netif_add(&netif, &netif_ipaddr, &netif_netmask, &netif_gw, &enet_config, EXAMPLE_NETIF_INIT_FN,
                        tcpip_input);
+#else
+	netif_add(&netif, &netif_ipaddr, &netif_netmask, &netif_gw, &enet_config, EXAMPLE_NETIF_INIT_FN, ethernetif_input);
+#endif
     netifapi_netif_set_default(&netif);
     netifapi_netif_set_up(&netif);
 

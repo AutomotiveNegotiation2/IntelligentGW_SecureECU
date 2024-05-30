@@ -8,4 +8,4 @@
 ../source/sfw.c:319:5:clear_imageOK_and_magic_if_set	4112	static
 ../source/sfw.c:480:6:SBL_EnableRemap	0	static
 ../source/sfw.c:491:6:SBL_DisableRemap	0	static
-../source/sfw.c:510:6:sfw_main	32	static
+../source/sfw.c:511:6:sfw_main	32	static

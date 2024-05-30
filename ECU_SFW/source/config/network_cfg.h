@@ -14,7 +14,7 @@
  * Definitions
  ******************************************************************************/
 
-#define IP_USE_DHCP
+//#define IP_USE_DHCP
 
 /* IP address configuration. */
 #ifndef IP_ADDR

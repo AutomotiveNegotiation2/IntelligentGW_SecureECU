@@ -1,5 +1,5 @@
-D:\Work\Gateway\FW\NXP\ECU_NETIF\ECU_SFW\trunk\mbedtls\include/mbedtls/ssl_internal.h:1149:35:mbedtls_ssl_own_key	0	static
-D:\Work\Gateway\FW\NXP\ECU_NETIF\ECU_SFW\trunk\mbedtls\include/mbedtls/ssl_internal.h:1162:33:mbedtls_ssl_own_cert	0	static
+C:\Users\USER\Documents\MCUXpressoIDE_11.9.1_2170\workspace_fw\MCUXpresso_IDE_FW\mbedtls\include/mbedtls/ssl_internal.h:1149:35:mbedtls_ssl_own_key	0	static
+C:\Users\USER\Documents\MCUXpressoIDE_11.9.1_2170\workspace_fw\MCUXpresso_IDE_FW\mbedtls\include/mbedtls/ssl_internal.h:1162:33:mbedtls_ssl_own_cert	0	static
 ../mbedtls/library/ssl_cli.c:51:12:ssl_conf_has_static_psk	0	static
 ../mbedtls/library/ssl_cli.c:378:12:ssl_write_supported_point_formats_ext	0	static
 ../mbedtls/library/ssl_cli.c:526:12:ssl_write_max_fragment_length_ext	4	static

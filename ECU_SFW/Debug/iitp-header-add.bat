@@ -10,7 +10,7 @@ echo %img_sz_str_len%
 set /a hdr_img_sz_pad_len=0x80 - %img_sz_str_len%
 srec_cat hdr_0.bin -Binary -fill 0xFF %img_sz_str_len% 0x80 -o image_size.bin -Binary
 
->hdr_1.bin echo 1.0.0
+>hdr_1.bin echo 1.4.0
 
 FOR %%I in (hdr_1.bin) do set /A version_str_len=%%~zI
 echo %version_str_len%
