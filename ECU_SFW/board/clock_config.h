@@ -1,9 +1,3 @@
-/*
- * Copyright 2022-2023 NXP
- *
- * SPDX-License-Identifier: BSD-3-Clause
- */
-
 #ifndef _CLOCK_CONFIG_H_
 #define _CLOCK_CONFIG_H_
 
@@ -163,7 +157,7 @@ void BOARD_InitBootClocks(void);
 #define BOARD_BOOTCLOCKRUN_SAI4_CLK_ROOT              24000000UL     /* Clock consumers of SAI4_CLK_ROOT output : ASRC, SPDIF */
 #define BOARD_BOOTCLOCKRUN_SAI4_MCLK1                 24000000UL     /* Clock consumers of SAI4_MCLK1 output : SAI4 */
 #define BOARD_BOOTCLOCKRUN_SAI4_MCLK2                 0UL            /* Clock consumers of SAI4_MCLK2 output : SAI4 */
-#define BOARD_BOOTCLOCKRUN_SEMC_CLK_ROOT              198000000UL    /* Clock consumers of SEMC_CLK_ROOT output : SEMC, XECC_FLEXSPI1, XECC_FLEXSPI2, XECC_SEMC, XRDC2_D0, XRDC2_D1 */
+#define BOARD_BOOTCLOCKRUN_SEMC_CLK_ROOT              166736842UL    /* Clock consumers of SEMC_CLK_ROOT output : SEMC, XECC_FLEXSPI1, XECC_FLEXSPI2, XECC_SEMC, XRDC2_D0, XRDC2_D1 */
 #define BOARD_BOOTCLOCKRUN_SPDIF_CLK_ROOT             24000000UL     /* Clock consumers of SPDIF_CLK_ROOT output : SPDIF */
 #define BOARD_BOOTCLOCKRUN_SPDIF_EXTCLK_OUT           0UL            /* Clock consumers of SPDIF_EXTCLK_OUT output : N/A */
 #define BOARD_BOOTCLOCKRUN_SYS_PLL1_CLK               0UL            /* Clock consumers of SYS_PLL1_CLK output : N/A */
@@ -173,14 +167,14 @@ void BOARD_InitBootClocks(void);
 #define BOARD_BOOTCLOCKRUN_SYS_PLL1_SS_RANGE          0UL            /* Clock consumers of SYS_PLL1_SS_RANGE output : N/A */
 #define BOARD_BOOTCLOCKRUN_SYS_PLL2_CLK               528000000UL    /* Clock consumers of SYS_PLL2_CLK output : N/A */
 #define BOARD_BOOTCLOCKRUN_SYS_PLL2_PFD0_CLK          352000000UL    /* Clock consumers of SYS_PLL2_PFD0_CLK output : N/A */
-#define BOARD_BOOTCLOCKRUN_SYS_PLL2_PFD1_CLK          594000000UL    /* Clock consumers of SYS_PLL2_PFD1_CLK output : N/A */
+#define BOARD_BOOTCLOCKRUN_SYS_PLL2_PFD1_CLK          500210526UL    /* Clock consumers of SYS_PLL2_PFD1_CLK output : N/A */
 #define BOARD_BOOTCLOCKRUN_SYS_PLL2_PFD2_CLK          396000000UL    /* Clock consumers of SYS_PLL2_PFD2_CLK output : N/A */
 #define BOARD_BOOTCLOCKRUN_SYS_PLL2_PFD3_CLK          297000000UL    /* Clock consumers of SYS_PLL2_PFD3_CLK output : N/A */
 #define BOARD_BOOTCLOCKRUN_SYS_PLL2_SS_MODULATION     0UL            /* Clock consumers of SYS_PLL2_SS_MODULATION output : N/A */
 #define BOARD_BOOTCLOCKRUN_SYS_PLL2_SS_RANGE          0UL            /* Clock consumers of SYS_PLL2_SS_RANGE output : N/A */
 #define BOARD_BOOTCLOCKRUN_SYS_PLL3_CLK               480000000UL    /* Clock consumers of SYS_PLL3_CLK output : N/A */
 #define BOARD_BOOTCLOCKRUN_SYS_PLL3_DIV2_CLK          240000000UL    /* Clock consumers of SYS_PLL3_DIV2_CLK output : N/A */
-#define BOARD_BOOTCLOCKRUN_SYS_PLL3_PFD0_CLK          664615384UL    /* Clock consumers of SYS_PLL3_PFD0_CLK output : N/A */
+#define BOARD_BOOTCLOCKRUN_SYS_PLL3_PFD0_CLK          392727272UL    /* Clock consumers of SYS_PLL3_PFD0_CLK output : N/A */
 #define BOARD_BOOTCLOCKRUN_SYS_PLL3_PFD1_CLK          508235294UL    /* Clock consumers of SYS_PLL3_PFD1_CLK output : N/A */
 #define BOARD_BOOTCLOCKRUN_SYS_PLL3_PFD2_CLK          270000000UL    /* Clock consumers of SYS_PLL3_PFD2_CLK output : N/A */
 #define BOARD_BOOTCLOCKRUN_SYS_PLL3_PFD3_CLK          392727272UL    /* Clock consumers of SYS_PLL3_PFD3_CLK output : N/A */

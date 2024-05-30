@@ -1,10 +1,4 @@
 /*
- * Copyright 2022-2023 NXP
- *
- * SPDX-License-Identifier: BSD-3-Clause
- */
-
-/*
  * How to setup clock using clock driver functions:
  *
  * 1. Call CLOCK_InitXXXPLL() to configure corresponding PLL clock.
@@ -17,11 +11,11 @@
 
 /* TEXT BELOW IS USED AS SETTING FOR TOOLS *************************************
 !!GlobalInfo
-product: Clocks v11.0
+product: Clocks v13.0
 processor: MIMXRT1176xxxxx
 package_id: MIMXRT1176DVMAA
 mcu_data: ksdk2_0
-processor_version: 0.14.8
+processor_version: 15.0.1
 board: MIMXRT1170-EVK
  * BE CAREFUL MODIFYING THIS COMMENT - IT IS YAML SETTINGS FOR TOOLS **********/
 
@@ -179,16 +173,16 @@ outputs:
 - {id: SAI3_MCLK3.outFreq, value: 24 MHz}
 - {id: SAI4_CLK_ROOT.outFreq, value: 24 MHz}
 - {id: SAI4_MCLK1.outFreq, value: 24 MHz}
-- {id: SEMC_CLK_ROOT.outFreq, value: 198 MHz}
+- {id: SEMC_CLK_ROOT.outFreq, value: 3168/19 MHz}
 - {id: SPDIF_CLK_ROOT.outFreq, value: 24 MHz}
 - {id: SYS_PLL2_CLK.outFreq, value: 528 MHz}
 - {id: SYS_PLL2_PFD0_CLK.outFreq, value: 352 MHz}
-- {id: SYS_PLL2_PFD1_CLK.outFreq, value: 594 MHz}
+- {id: SYS_PLL2_PFD1_CLK.outFreq, value: 9504/19 MHz}
 - {id: SYS_PLL2_PFD2_CLK.outFreq, value: 396 MHz}
 - {id: SYS_PLL2_PFD3_CLK.outFreq, value: 297 MHz}
 - {id: SYS_PLL3_CLK.outFreq, value: 480 MHz}
 - {id: SYS_PLL3_DIV2_CLK.outFreq, value: 240 MHz}
-- {id: SYS_PLL3_PFD0_CLK.outFreq, value: 8640/13 MHz}
+- {id: SYS_PLL3_PFD0_CLK.outFreq, value: 4320/11 MHz}
 - {id: SYS_PLL3_PFD1_CLK.outFreq, value: 8640/17 MHz}
 - {id: SYS_PLL3_PFD2_CLK.outFreq, value: 270 MHz}
 - {id: SYS_PLL3_PFD3_CLK.outFreq, value: 4320/11 MHz}
@@ -207,7 +201,11 @@ settings:
 - {id: ANADIG_PLL.SYS_PLL2.denom, value: '268435455'}
 - {id: ANADIG_PLL.SYS_PLL2.div, value: '22'}
 - {id: ANADIG_PLL.SYS_PLL2.num, value: '0'}
+- {id: ANADIG_PLL.SYS_PLL2_PFD1_DIV.scale, value: '19', locked: true}
+- {id: ANADIG_PLL.SYS_PLL2_PFD1_MUL.scale, value: '18', locked: true}
 - {id: ANADIG_PLL.SYS_PLL2_SS_DIV.scale, value: '268435455'}
+- {id: ANADIG_PLL.SYS_PLL3_PFD0_DIV.scale, value: '22', locked: true}
+- {id: ANADIG_PLL.SYS_PLL3_PFD0_MUL.scale, value: '18', locked: true}
 - {id: ANADIG_PLL.SYS_PLL3_PFD3_DIV.scale, value: '22', locked: true}
 - {id: ANADIG_PLL.SYS_PLL3_PFD3_MUL.scale, value: '18', locked: true}
 - {id: ANADIG_PLL_ARM_PLL_CTRL_POWERUP_CFG, value: Enabled}
@@ -395,7 +393,7 @@ void BOARD_BootClockRUN(void)
     CLOCK_InitPfd(kCLOCK_PllSys2, kCLOCK_Pfd0, 27);
 
     /* Init System Pll2 pfd1. */
-    CLOCK_InitPfd(kCLOCK_PllSys2, kCLOCK_Pfd1, 16);
+    CLOCK_InitPfd(kCLOCK_PllSys2, kCLOCK_Pfd1, 19);
 
     /* Init System Pll2 pfd2. */
     CLOCK_InitPfd(kCLOCK_PllSys2, kCLOCK_Pfd2, 24);
@@ -407,7 +405,7 @@ void BOARD_BootClockRUN(void)
     CLOCK_InitSysPll3();
 
     /* Init System Pll3 pfd0. */
-    CLOCK_InitPfd(kCLOCK_PllSys3, kCLOCK_Pfd0, 13);
+    CLOCK_InitPfd(kCLOCK_PllSys3, kCLOCK_Pfd0, 22);
 
     /* Init System Pll3 pfd1. */
     CLOCK_InitPfd(kCLOCK_PllSys3, kCLOCK_Pfd1, 17);

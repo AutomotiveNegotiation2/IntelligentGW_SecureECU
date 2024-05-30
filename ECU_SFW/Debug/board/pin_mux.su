@@ -1,5 +1,9 @@
 C:\Users\USER\Documents\MCUXpressoIDE_11.9.1_2170\workspace_fw\MCUXpresso_IDE_FW\drivers/fsl_clock.h:2178:20:CLOCK_ControlGate	0	static
-../board/pin_mux.c:55:6:BOARD_InitPins	8	static
-../board/pin_mux.c:33:6:BOARD_InitBootPins	8	static
-../board/pin_mux.c:111:6:BOARD_InitEnetPins	8	static
-../board/pin_mux.c:196:6:BOARD_InitEnet1GPins	8	static
+../board/pin_mux.c:70:6:BOARD_InitPins	16	static
+../board/pin_mux.c:47:6:BOARD_InitBootPins	8	static
+../board/pin_mux.c:130:6:BOARD_InitCanPins	8	static
+../board/pin_mux.c:157:6:BOARD_InitCanFdPins	8	static
+../board/pin_mux.c:194:6:BOARD_InitEnetPins	16	static
+../board/pin_mux.c:277:6:BOARD_InitEnet1GPins	16	static
+../board/pin_mux.c:364:6:BOARD_InitFuncIoPins	72	static
+../board/pin_mux.c:557:6:BOARD_InitFuncLightingGrillPins	24	static

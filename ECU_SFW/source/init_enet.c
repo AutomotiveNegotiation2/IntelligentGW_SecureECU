@@ -20,6 +20,9 @@
 #include "network_cfg.h"
 
 #include "fsl_silicon_id.h"
+
+#include "lwip/init.h"
+
 /*${header:end}*/
 
 /*******************************************************************************
@@ -86,7 +89,7 @@ int initNetwork(void)
 
     //tcpip_init(NULL, NULL);
     lwip_init();
-
+#if 0
 #if 0
     netifapi_netif_add(&netif, &netif_ipaddr, &netif_netmask, &netif_gw, &enet_config, EXAMPLE_NETIF_INIT_FN,
                        tcpip_input);
@@ -95,7 +98,7 @@ int initNetwork(void)
 #endif
     netifapi_netif_set_default(&netif);
     netifapi_netif_set_up(&netif);
-
+#endif
     while (ethernetif_wait_linkup(&netif, 5000) != ERR_OK)
     {
         PRINTF("PHY Auto-negotiation failed. Please check the cable connection and link partner setting.\r\n");

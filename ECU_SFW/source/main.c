@@ -41,6 +41,8 @@
 #include "mcuboot_app_support.h"
 #include "sfw.h"
 
+#include "enet.h"
+
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
@@ -60,9 +62,9 @@ static shell_status_t shellCmd_wifi(shell_handle_t shellHandle, int32_t argc, ch
  * Variables
  ******************************************************************************/
 #if BOARD_NETWORK_USE_100M_ENET_PORT
-phy_ksz8081_resource_t g_phy_resource;
+extern phy_ksz8081_resource_t g_phy_resource;
 #else
-phy_rtl8211f_resource_t g_phy_resource;
+extern phy_rtl8211f_resource_t g_phy_resource;
 #endif
 
 #ifdef WIFI_MODE
@@ -81,6 +83,7 @@ static char wifi_pass[64 + 1] = WIFI_PASSWORD;
 /*******************************************************************************
  * Code
  ******************************************************************************/
+#if 0
 void BOARD_InitModuleClock(void)
 {
     const clock_sys_pll1_config_t sysPll1Config = {
@@ -115,6 +118,7 @@ void BOARD_ENETFlexibleConfigure(enet_config_t *config)
     config->miiMode = kENET_RgmiiMode;
 #endif
 }
+#endif
 
 static void MDIO_Init(void)
 {

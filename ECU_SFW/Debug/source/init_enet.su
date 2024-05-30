@@ -1,2 +1,2 @@
 C:\Users\USER\Documents\MCUXpressoIDE_11.9.1_2170\workspace_fw\MCUXpresso_IDE_FW\drivers/fsl_clock.h:2240:24:CLOCK_GetRootClockFreq	16	static
-../source/init_enet.c:58:5:initNetwork	72	static
+../source/init_enet.c:61:5:initNetwork	64	static

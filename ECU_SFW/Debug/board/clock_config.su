@@ -1,5 +1,5 @@
 C:\Users\USER\Documents\MCUXpressoIDE_11.9.1_2170\workspace_fw\MCUXpresso_IDE_FW\drivers/fsl_clock.h:2157:20:CLOCK_SetRootClock	8	static
 C:\Users\USER\Documents\MCUXpressoIDE_11.9.1_2170\workspace_fw\MCUXpresso_IDE_FW\drivers/fsl_clock.h:2240:24:CLOCK_GetRootClockFreq	16	static
-../board/clock_config.c:280:6:BOARD_BootClockRUN	40	static
-../board/clock_config.c:45:6:BOARD_InitBootClocks	8	static
-../board/clock_config.c:1095:6:BOARD_BootClockRUN_800M	40	static
+../board/clock_config.c:278:6:BOARD_BootClockRUN	40	static
+../board/clock_config.c:39:6:BOARD_InitBootClocks	8	static
+../board/clock_config.c:1093:6:BOARD_BootClockRUN_800M	40	static
