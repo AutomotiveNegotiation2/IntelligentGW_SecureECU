@@ -1272,7 +1272,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x16 ./source/DHA/DHAutoApp.o
  .debug_macro   0x00000000       0x52 ./source/DHA/DHAutoApp.o
  .debug_macro   0x00000000       0x1c ./source/DHA/DHAutoApp.o
- .debug_macro   0x00000000       0x5e ./source/DHA/DHAutoApp.o
+ .debug_macro   0x00000000       0x64 ./source/DHA/DHAutoApp.o
  .debug_macro   0x00000000       0xbe ./source/DHA/DHAutoApp.o
  .debug_macro   0x00000000       0xd1 ./source/DHA/DHAutoApp.o
  .debug_macro   0x00000000      0x117 ./source/DHA/DHAutoApp.o
@@ -1438,6 +1438,14 @@ Discarded input sections
  .text          0x00000000        0x0 ./source/DHA/DHAutoApp_lightingGrill.o
  .data          0x00000000        0x0 ./source/DHA/DHAutoApp_lightingGrill.o
  .bss           0x00000000        0x0 ./source/DHA/DHAutoApp_lightingGrill.o
+ .text.DHADemoApp_LG_TURN_RIGHT
+                0x00000000        0xe ./source/DHA/DHAutoApp_lightingGrill.o
+ .text.DHADemoApp_LG_TURN_LEFT
+                0x00000000        0xe ./source/DHA/DHAutoApp_lightingGrill.o
+ .text.DHADemoApp_LG_EMERGENCY
+                0x00000000        0xe ./source/DHA/DHAutoApp_lightingGrill.o
+ .text.DHADemoApp_LG_WELCOME
+                0x00000000        0xe ./source/DHA/DHAutoApp_lightingGrill.o
  .debug_macro   0x00000000      0xb80 ./source/DHA/DHAutoApp_lightingGrill.o
  .debug_macro   0x00000000       0x22 ./source/DHA/DHAutoApp_lightingGrill.o
  .debug_macro   0x00000000       0x5b ./source/DHA/DHAutoApp_lightingGrill.o
@@ -1497,7 +1505,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x16 ./source/DHA/DHAutoApp_lightingGrill.o
  .debug_macro   0x00000000       0x52 ./source/DHA/DHAutoApp_lightingGrill.o
  .debug_macro   0x00000000       0x1c ./source/DHA/DHAutoApp_lightingGrill.o
- .debug_macro   0x00000000       0x5e ./source/DHA/DHAutoApp_lightingGrill.o
+ .debug_macro   0x00000000       0x64 ./source/DHA/DHAutoApp_lightingGrill.o
  .debug_macro   0x00000000       0xbe ./source/DHA/DHAutoApp_lightingGrill.o
  .debug_macro   0x00000000       0xd1 ./source/DHA/DHAutoApp_lightingGrill.o
  .debug_macro   0x00000000      0x117 ./source/DHA/DHAutoApp_lightingGrill.o
@@ -1756,7 +1764,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x16 ./source/DHA/DHAutoCan.o
  .debug_macro   0x00000000       0x52 ./source/DHA/DHAutoCan.o
  .debug_macro   0x00000000       0x1c ./source/DHA/DHAutoCan.o
- .debug_macro   0x00000000       0x5e ./source/DHA/DHAutoCan.o
+ .debug_macro   0x00000000       0x64 ./source/DHA/DHAutoCan.o
  .debug_macro   0x00000000       0xbe ./source/DHA/DHAutoCan.o
  .debug_macro   0x00000000       0xd1 ./source/DHA/DHAutoCan.o
  .debug_macro   0x00000000      0x117 ./source/DHA/DHAutoCan.o
@@ -1985,7 +1993,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x16 ./source/DHA/DHAutoCan_il.o
  .debug_macro   0x00000000       0x52 ./source/DHA/DHAutoCan_il.o
  .debug_macro   0x00000000       0x1c ./source/DHA/DHAutoCan_il.o
- .debug_macro   0x00000000       0x5e ./source/DHA/DHAutoCan_il.o
+ .debug_macro   0x00000000       0x64 ./source/DHA/DHAutoCan_il.o
  .debug_macro   0x00000000       0xbe ./source/DHA/DHAutoCan_il.o
  .debug_macro   0x00000000       0xd1 ./source/DHA/DHAutoCan_il.o
  .debug_macro   0x00000000      0x117 ./source/DHA/DHAutoCan_il.o
@@ -2288,7 +2296,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x16 ./source/DHA/DHAutoCan_il_par.o
  .debug_macro   0x00000000       0x52 ./source/DHA/DHAutoCan_il_par.o
  .debug_macro   0x00000000       0x1c ./source/DHA/DHAutoCan_il_par.o
- .debug_macro   0x00000000       0x5e ./source/DHA/DHAutoCan_il_par.o
+ .debug_macro   0x00000000       0x64 ./source/DHA/DHAutoCan_il_par.o
  .debug_macro   0x00000000       0xbe ./source/DHA/DHAutoCan_il_par.o
  .debug_macro   0x00000000       0xd1 ./source/DHA/DHAutoCan_il_par.o
  .debug_macro   0x00000000      0x117 ./source/DHA/DHAutoCan_il_par.o
@@ -2533,7 +2541,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x16 ./source/DHA/DHAutoCan_par.o
  .debug_macro   0x00000000       0x52 ./source/DHA/DHAutoCan_par.o
  .debug_macro   0x00000000       0x1c ./source/DHA/DHAutoCan_par.o
- .debug_macro   0x00000000       0x5e ./source/DHA/DHAutoCan_par.o
+ .debug_macro   0x00000000       0x64 ./source/DHA/DHAutoCan_par.o
  .debug_macro   0x00000000       0xbe ./source/DHA/DHAutoCan_par.o
  .debug_macro   0x00000000       0xd1 ./source/DHA/DHAutoCan_par.o
  .debug_macro   0x00000000      0x117 ./source/DHA/DHAutoCan_par.o
@@ -2758,7 +2766,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x16 ./source/DHA/DHAutoEnet.o
  .debug_macro   0x00000000       0x52 ./source/DHA/DHAutoEnet.o
  .debug_macro   0x00000000       0x1c ./source/DHA/DHAutoEnet.o
- .debug_macro   0x00000000       0x5e ./source/DHA/DHAutoEnet.o
+ .debug_macro   0x00000000       0x64 ./source/DHA/DHAutoEnet.o
  .debug_macro   0x00000000       0xbe ./source/DHA/DHAutoEnet.o
  .debug_macro   0x00000000       0xd1 ./source/DHA/DHAutoEnet.o
  .debug_macro   0x00000000      0x117 ./source/DHA/DHAutoEnet.o
@@ -2985,7 +2993,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x16 ./source/DHA/DHAutoIoctrl.o
  .debug_macro   0x00000000       0x52 ./source/DHA/DHAutoIoctrl.o
  .debug_macro   0x00000000       0x1c ./source/DHA/DHAutoIoctrl.o
- .debug_macro   0x00000000       0x5e ./source/DHA/DHAutoIoctrl.o
+ .debug_macro   0x00000000       0x64 ./source/DHA/DHAutoIoctrl.o
  .debug_macro   0x00000000       0xbe ./source/DHA/DHAutoIoctrl.o
  .debug_macro   0x00000000       0xd1 ./source/DHA/DHAutoIoctrl.o
  .debug_macro   0x00000000      0x117 ./source/DHA/DHAutoIoctrl.o
@@ -3220,7 +3228,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x16 ./source/DHA/DHAutoQueue.o
  .debug_macro   0x00000000       0x52 ./source/DHA/DHAutoQueue.o
  .debug_macro   0x00000000       0x1c ./source/DHA/DHAutoQueue.o
- .debug_macro   0x00000000       0x5e ./source/DHA/DHAutoQueue.o
+ .debug_macro   0x00000000       0x64 ./source/DHA/DHAutoQueue.o
  .debug_macro   0x00000000       0xbe ./source/DHA/DHAutoQueue.o
  .debug_macro   0x00000000       0xd1 ./source/DHA/DHAutoQueue.o
  .debug_macro   0x00000000      0x117 ./source/DHA/DHAutoQueue.o
@@ -3447,7 +3455,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x16 ./source/DHA/DHAutoRtc.o
  .debug_macro   0x00000000       0x52 ./source/DHA/DHAutoRtc.o
  .debug_macro   0x00000000       0x1c ./source/DHA/DHAutoRtc.o
- .debug_macro   0x00000000       0x5e ./source/DHA/DHAutoRtc.o
+ .debug_macro   0x00000000       0x64 ./source/DHA/DHAutoRtc.o
  .debug_macro   0x00000000       0xbe ./source/DHA/DHAutoRtc.o
  .debug_macro   0x00000000       0xd1 ./source/DHA/DHAutoRtc.o
  .debug_macro   0x00000000      0x117 ./source/DHA/DHAutoRtc.o
@@ -3672,7 +3680,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x16 ./source/DHA/DHAutoSequence.o
  .debug_macro   0x00000000       0x52 ./source/DHA/DHAutoSequence.o
  .debug_macro   0x00000000       0x1c ./source/DHA/DHAutoSequence.o
- .debug_macro   0x00000000       0x5e ./source/DHA/DHAutoSequence.o
+ .debug_macro   0x00000000       0x64 ./source/DHA/DHAutoSequence.o
  .debug_macro   0x00000000       0xbe ./source/DHA/DHAutoSequence.o
  .debug_macro   0x00000000       0xd1 ./source/DHA/DHAutoSequence.o
  .debug_macro   0x00000000      0x117 ./source/DHA/DHAutoSequence.o
@@ -3897,7 +3905,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x16 ./source/DHA/DHAutoTimer.o
  .debug_macro   0x00000000       0x52 ./source/DHA/DHAutoTimer.o
  .debug_macro   0x00000000       0x1c ./source/DHA/DHAutoTimer.o
- .debug_macro   0x00000000       0x5e ./source/DHA/DHAutoTimer.o
+ .debug_macro   0x00000000       0x64 ./source/DHA/DHAutoTimer.o
  .debug_macro   0x00000000       0xbe ./source/DHA/DHAutoTimer.o
  .debug_macro   0x00000000       0xd1 ./source/DHA/DHAutoTimer.o
  .debug_macro   0x00000000      0x117 ./source/DHA/DHAutoTimer.o
@@ -4322,7 +4330,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x16 ./source/COMMON/ENET/enet.o
  .debug_macro   0x00000000       0x52 ./source/COMMON/ENET/enet.o
  .debug_macro   0x00000000       0x1c ./source/COMMON/ENET/enet.o
- .debug_macro   0x00000000       0x5e ./source/COMMON/ENET/enet.o
+ .debug_macro   0x00000000       0x64 ./source/COMMON/ENET/enet.o
  .debug_macro   0x00000000       0xbe ./source/COMMON/ENET/enet.o
  .debug_macro   0x00000000       0xd1 ./source/COMMON/ENET/enet.o
  .debug_macro   0x00000000      0x117 ./source/COMMON/ENET/enet.o
@@ -4551,7 +4559,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x16 ./source/COMMON/CAN/can.o
  .debug_macro   0x00000000       0x52 ./source/COMMON/CAN/can.o
  .debug_macro   0x00000000       0x1c ./source/COMMON/CAN/can.o
- .debug_macro   0x00000000       0x5e ./source/COMMON/CAN/can.o
+ .debug_macro   0x00000000       0x64 ./source/COMMON/CAN/can.o
  .debug_macro   0x00000000       0xbe ./source/COMMON/CAN/can.o
  .debug_macro   0x00000000       0xd1 ./source/COMMON/CAN/can.o
  .debug_macro   0x00000000      0x117 ./source/COMMON/CAN/can.o
@@ -4776,7 +4784,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x16 ./source/COMMON/EnetApp.o
  .debug_macro   0x00000000       0x52 ./source/COMMON/EnetApp.o
  .debug_macro   0x00000000       0x1c ./source/COMMON/EnetApp.o
- .debug_macro   0x00000000       0x5e ./source/COMMON/EnetApp.o
+ .debug_macro   0x00000000       0x64 ./source/COMMON/EnetApp.o
  .debug_macro   0x00000000       0xbe ./source/COMMON/EnetApp.o
  .debug_macro   0x00000000       0xd1 ./source/COMMON/EnetApp.o
  .debug_macro   0x00000000      0x117 ./source/COMMON/EnetApp.o
@@ -5004,7 +5012,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x16 ./source/COMMON/appcommon.o
  .debug_macro   0x00000000       0x52 ./source/COMMON/appcommon.o
  .debug_macro   0x00000000       0x1c ./source/COMMON/appcommon.o
- .debug_macro   0x00000000       0x5e ./source/COMMON/appcommon.o
+ .debug_macro   0x00000000       0x64 ./source/COMMON/appcommon.o
  .debug_macro   0x00000000       0xbe ./source/COMMON/appcommon.o
  .debug_macro   0x00000000       0xd1 ./source/COMMON/appcommon.o
  .debug_macro   0x00000000      0x117 ./source/COMMON/appcommon.o
@@ -5247,7 +5255,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x16 ./source/COMMON/softtimer.o
  .debug_macro   0x00000000       0x52 ./source/COMMON/softtimer.o
  .debug_macro   0x00000000       0x1c ./source/COMMON/softtimer.o
- .debug_macro   0x00000000       0x5e ./source/COMMON/softtimer.o
+ .debug_macro   0x00000000       0x64 ./source/COMMON/softtimer.o
  .debug_macro   0x00000000       0xbe ./source/COMMON/softtimer.o
  .debug_macro   0x00000000       0xd1 ./source/COMMON/softtimer.o
  .debug_macro   0x00000000      0x117 ./source/COMMON/softtimer.o
@@ -51058,7 +51066,7 @@ END GROUP
 OUTPUT(MCUXpresso_IDE_FW.axf elf32-littlearm)
 LOAD linker stubs
 
-.debug_info     0x00000000    0xafb05
+.debug_info     0x00000000    0xafbbd
  .debug_info    0x00000000      0x51d ./utilities/fsl_assert.o
  .debug_info    0x0000051d     0x1423 ./utilities/fsl_debug_console.o
  .debug_info    0x00001940       0x24 ./utilities/fsl_memcpy.o
@@ -51066,86 +51074,86 @@ LOAD linker stubs
  .debug_info    0x00003597     0x2174 ./startup/startup_mimxrt1176_cm7.o
  .debug_info    0x0000570b      0x4fb ./source/DHA/DHAuto.o
  .debug_info    0x00005c06      0x90e ./source/DHA/DHAutoApp.o
- .debug_info    0x00006514     0x2212 ./source/DHA/DHAutoApp_lightingGrill.o
- .debug_info    0x00008726     0x37c8 ./source/DHA/DHAutoCan.o
- .debug_info    0x0000beee     0x184a ./source/DHA/DHAutoCan_il.o
- .debug_info    0x0000d738     0x438f ./source/DHA/DHAutoCan_il_par.o
- .debug_info    0x00011ac7     0x1bb9 ./source/DHA/DHAutoCan_par.o
- .debug_info    0x00013680      0x817 ./source/DHA/DHAutoEnet.o
- .debug_info    0x00013e97     0x1641 ./source/DHA/DHAutoIoctrl.o
- .debug_info    0x000154d8      0x89a ./source/DHA/DHAutoQueue.o
- .debug_info    0x00015d72     0x165d ./source/DHA/DHAutoRtc.o
- .debug_info    0x000173cf      0xce1 ./source/DHA/DHAutoSequence.o
- .debug_info    0x000180b0      0xa88 ./source/DHA/DHAutoTimer.o
- .debug_info    0x00018b38     0x123c ./source/COMMON/UDP/udpClientRAW.o
- .debug_info    0x00019d74     0x3b3c ./source/COMMON/ENET/enet.o
- .debug_info    0x0001d8b0     0x3446 ./source/COMMON/CAN/can.o
- .debug_info    0x00020cf6      0x8ea ./source/COMMON/EnetApp.o
- .debug_info    0x000215e0     0x1c4e ./source/COMMON/appcommon.o
- .debug_info    0x0002322e     0x25cb ./source/COMMON/softtimer.o
- .debug_info    0x000257f9      0x49a ./source/main.o
- .debug_info    0x00025c93       0x3c ./source/semihost_hardfault.o
- .debug_info    0x00025ccf     0x1c07 ./source/sfw.o
- .debug_info    0x000278d6     0x78a3 ./mbedtls/port/ksdk/ksdk_mbedtls.o
- .debug_info    0x0002f179      0xf75 ./lwip/src/netif/ethernet.o
- .debug_info    0x000300ee     0x1daa ./lwip/src/core/ipv4/etharp.o
- .debug_info    0x00031e98     0x10ed ./lwip/src/core/ipv4/icmp.o
- .debug_info    0x00032f85     0x1483 ./lwip/src/core/ipv4/ip4.o
- .debug_info    0x00034408      0xe3e ./lwip/src/core/ipv4/ip4_addr.o
- .debug_info    0x00035246     0x1c65 ./lwip/src/core/ipv4/ip4_frag.o
- .debug_info    0x00036eab      0x88a ./lwip/src/core/def.o
- .debug_info    0x00037735      0xbed ./lwip/src/core/inet_chksum.o
- .debug_info    0x00038322      0x493 ./lwip/src/core/init.o
- .debug_info    0x000387b5      0xb71 ./lwip/src/core/ip.o
- .debug_info    0x00039326     0x1161 ./lwip/src/core/mem.o
- .debug_info    0x0003a487      0xedd ./lwip/src/core/memp.o
- .debug_info    0x0003b364     0x1eb3 ./lwip/src/core/netif.o
- .debug_info    0x0003d217     0x218c ./lwip/src/core/pbuf.o
- .debug_info    0x0003f3a3     0x34b8 ./lwip/src/core/tcp.o
- .debug_info    0x0004285b     0x260d ./lwip/src/core/tcp_in.o
- .debug_info    0x00044e68     0x32d0 ./lwip/src/core/tcp_out.o
- .debug_info    0x00048138     0x15e2 ./lwip/src/core/timeouts.o
- .debug_info    0x0004971a     0x1d16 ./lwip/src/core/udp.o
- .debug_info    0x0004b430     0x2453 ./lwip/port/enet_ethernetif.o
- .debug_info    0x0004d883     0x2d5b ./lwip/port/enet_ethernetif_kinetis.o
- .debug_info    0x000505de     0x1459 ./lwip/port/ethernetif.o
- .debug_info    0x00051a37     0x164b ./lwip/port/sys_arch.o
- .debug_info    0x00053082     0x16d5 ./flash/mflash/mimxrt1170/mflash_drv.o
- .debug_info    0x00054757      0x7f2 ./flash/flash_api.o
- .debug_info    0x00054f49      0xff5 ./drivers/fsl_anatop_ai.o
- .debug_info    0x00055f3e    0x12a41 ./drivers/fsl_caam.o
- .debug_info    0x0006897f      0xd76 ./drivers/fsl_cache.o
- .debug_info    0x000696f5     0x55ab ./drivers/fsl_clock.o
- .debug_info    0x0006eca0      0x7a2 ./drivers/fsl_common_arm.o
- .debug_info    0x0006f442     0x23f0 ./drivers/fsl_dcdc.o
- .debug_info    0x00071832     0x7468 ./drivers/fsl_enet.o
- .debug_info    0x00078c9a     0x7e3a ./drivers/fsl_flexcan.o
- .debug_info    0x00080ad4     0x377e ./drivers/fsl_flexspi.o
- .debug_info    0x00084252     0x1541 ./drivers/fsl_gpio.o
- .debug_info    0x00085793     0x4f8a ./drivers/fsl_lpuart.o
- .debug_info    0x0008a71d     0x145e ./drivers/fsl_pit.o
- .debug_info    0x0008bb7b     0x23e5 ./drivers/fsl_pmu.o
- .debug_info    0x0008df60     0x1281 ./drivers/fsl_snvs_hp.o
- .debug_info    0x0008f1e1      0xb19 ./device/system_MIMXRT1176_cm7.o
- .debug_info    0x0008fcfa     0x1379 ./component/uart/fsl_adapter_lpuart.o
- .debug_info    0x00091073     0x1615 ./component/serial_manager/fsl_component_serial_manager.o
- .debug_info    0x00092688      0x9a1 ./component/serial_manager/fsl_component_serial_port_uart.o
- .debug_info    0x00093029     0x1125 ./component/phy/fsl_phyksz8081.o
- .debug_info    0x0009414e     0x1561 ./component/phy/fsl_phyrtl8211f.o
- .debug_info    0x000956af     0x288f ./component/gpio/fsl_adapter_igpio.o
- .debug_info    0x00097f3e     0x1abe ./board/board.o
- .debug_info    0x000999fc     0x4f86 ./board/clock_config.o
- .debug_info    0x0009e982     0x3477 ./board/pin_mux.o
- .debug_info    0x000a1df9     0x3781 ./Crypto/test_src/src/test_src.o
- .debug_info    0x000a557a      0xc19 ./Crypto/src/aursa.o
- .debug_info    0x000a6193     0x3362 ./Crypto/src/bignum.o
- .debug_info    0x000a94f5      0x918 ./Crypto/src/md.o
- .debug_info    0x000a9e0d     0x11f0 ./Crypto/src/md_wrap.o
- .debug_info    0x000aaffd     0x35db ./Crypto/src/rsa.o
- .debug_info    0x000ae5d8      0x95a ./Crypto/src/sha1.o
- .debug_info    0x000aef32      0xa24 ./Crypto/src/sha2.o
- .debug_info    0x000af956      0x13e c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard\libcr_newlib_nohost.a(_cr_sbrk.o)
- .debug_info    0x000afa94       0x71 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard\libcr_newlib_nohost.a(_cr_check_heap.o)
+ .debug_info    0x00006514     0x22ca ./source/DHA/DHAutoApp_lightingGrill.o
+ .debug_info    0x000087de     0x37c8 ./source/DHA/DHAutoCan.o
+ .debug_info    0x0000bfa6     0x184a ./source/DHA/DHAutoCan_il.o
+ .debug_info    0x0000d7f0     0x438f ./source/DHA/DHAutoCan_il_par.o
+ .debug_info    0x00011b7f     0x1bb9 ./source/DHA/DHAutoCan_par.o
+ .debug_info    0x00013738      0x817 ./source/DHA/DHAutoEnet.o
+ .debug_info    0x00013f4f     0x1641 ./source/DHA/DHAutoIoctrl.o
+ .debug_info    0x00015590      0x89a ./source/DHA/DHAutoQueue.o
+ .debug_info    0x00015e2a     0x165d ./source/DHA/DHAutoRtc.o
+ .debug_info    0x00017487      0xce1 ./source/DHA/DHAutoSequence.o
+ .debug_info    0x00018168      0xa88 ./source/DHA/DHAutoTimer.o
+ .debug_info    0x00018bf0     0x123c ./source/COMMON/UDP/udpClientRAW.o
+ .debug_info    0x00019e2c     0x3b3c ./source/COMMON/ENET/enet.o
+ .debug_info    0x0001d968     0x3446 ./source/COMMON/CAN/can.o
+ .debug_info    0x00020dae      0x8ea ./source/COMMON/EnetApp.o
+ .debug_info    0x00021698     0x1c4e ./source/COMMON/appcommon.o
+ .debug_info    0x000232e6     0x25cb ./source/COMMON/softtimer.o
+ .debug_info    0x000258b1      0x49a ./source/main.o
+ .debug_info    0x00025d4b       0x3c ./source/semihost_hardfault.o
+ .debug_info    0x00025d87     0x1c07 ./source/sfw.o
+ .debug_info    0x0002798e     0x78a3 ./mbedtls/port/ksdk/ksdk_mbedtls.o
+ .debug_info    0x0002f231      0xf75 ./lwip/src/netif/ethernet.o
+ .debug_info    0x000301a6     0x1daa ./lwip/src/core/ipv4/etharp.o
+ .debug_info    0x00031f50     0x10ed ./lwip/src/core/ipv4/icmp.o
+ .debug_info    0x0003303d     0x1483 ./lwip/src/core/ipv4/ip4.o
+ .debug_info    0x000344c0      0xe3e ./lwip/src/core/ipv4/ip4_addr.o
+ .debug_info    0x000352fe     0x1c65 ./lwip/src/core/ipv4/ip4_frag.o
+ .debug_info    0x00036f63      0x88a ./lwip/src/core/def.o
+ .debug_info    0x000377ed      0xbed ./lwip/src/core/inet_chksum.o
+ .debug_info    0x000383da      0x493 ./lwip/src/core/init.o
+ .debug_info    0x0003886d      0xb71 ./lwip/src/core/ip.o
+ .debug_info    0x000393de     0x1161 ./lwip/src/core/mem.o
+ .debug_info    0x0003a53f      0xedd ./lwip/src/core/memp.o
+ .debug_info    0x0003b41c     0x1eb3 ./lwip/src/core/netif.o
+ .debug_info    0x0003d2cf     0x218c ./lwip/src/core/pbuf.o
+ .debug_info    0x0003f45b     0x34b8 ./lwip/src/core/tcp.o
+ .debug_info    0x00042913     0x260d ./lwip/src/core/tcp_in.o
+ .debug_info    0x00044f20     0x32d0 ./lwip/src/core/tcp_out.o
+ .debug_info    0x000481f0     0x15e2 ./lwip/src/core/timeouts.o
+ .debug_info    0x000497d2     0x1d16 ./lwip/src/core/udp.o
+ .debug_info    0x0004b4e8     0x2453 ./lwip/port/enet_ethernetif.o
+ .debug_info    0x0004d93b     0x2d5b ./lwip/port/enet_ethernetif_kinetis.o
+ .debug_info    0x00050696     0x1459 ./lwip/port/ethernetif.o
+ .debug_info    0x00051aef     0x164b ./lwip/port/sys_arch.o
+ .debug_info    0x0005313a     0x16d5 ./flash/mflash/mimxrt1170/mflash_drv.o
+ .debug_info    0x0005480f      0x7f2 ./flash/flash_api.o
+ .debug_info    0x00055001      0xff5 ./drivers/fsl_anatop_ai.o
+ .debug_info    0x00055ff6    0x12a41 ./drivers/fsl_caam.o
+ .debug_info    0x00068a37      0xd76 ./drivers/fsl_cache.o
+ .debug_info    0x000697ad     0x55ab ./drivers/fsl_clock.o
+ .debug_info    0x0006ed58      0x7a2 ./drivers/fsl_common_arm.o
+ .debug_info    0x0006f4fa     0x23f0 ./drivers/fsl_dcdc.o
+ .debug_info    0x000718ea     0x7468 ./drivers/fsl_enet.o
+ .debug_info    0x00078d52     0x7e3a ./drivers/fsl_flexcan.o
+ .debug_info    0x00080b8c     0x377e ./drivers/fsl_flexspi.o
+ .debug_info    0x0008430a     0x1541 ./drivers/fsl_gpio.o
+ .debug_info    0x0008584b     0x4f8a ./drivers/fsl_lpuart.o
+ .debug_info    0x0008a7d5     0x145e ./drivers/fsl_pit.o
+ .debug_info    0x0008bc33     0x23e5 ./drivers/fsl_pmu.o
+ .debug_info    0x0008e018     0x1281 ./drivers/fsl_snvs_hp.o
+ .debug_info    0x0008f299      0xb19 ./device/system_MIMXRT1176_cm7.o
+ .debug_info    0x0008fdb2     0x1379 ./component/uart/fsl_adapter_lpuart.o
+ .debug_info    0x0009112b     0x1615 ./component/serial_manager/fsl_component_serial_manager.o
+ .debug_info    0x00092740      0x9a1 ./component/serial_manager/fsl_component_serial_port_uart.o
+ .debug_info    0x000930e1     0x1125 ./component/phy/fsl_phyksz8081.o
+ .debug_info    0x00094206     0x1561 ./component/phy/fsl_phyrtl8211f.o
+ .debug_info    0x00095767     0x288f ./component/gpio/fsl_adapter_igpio.o
+ .debug_info    0x00097ff6     0x1abe ./board/board.o
+ .debug_info    0x00099ab4     0x4f86 ./board/clock_config.o
+ .debug_info    0x0009ea3a     0x3477 ./board/pin_mux.o
+ .debug_info    0x000a1eb1     0x3781 ./Crypto/test_src/src/test_src.o
+ .debug_info    0x000a5632      0xc19 ./Crypto/src/aursa.o
+ .debug_info    0x000a624b     0x3362 ./Crypto/src/bignum.o
+ .debug_info    0x000a95ad      0x918 ./Crypto/src/md.o
+ .debug_info    0x000a9ec5     0x11f0 ./Crypto/src/md_wrap.o
+ .debug_info    0x000ab0b5     0x35db ./Crypto/src/rsa.o
+ .debug_info    0x000ae690      0x95a ./Crypto/src/sha1.o
+ .debug_info    0x000aefea      0xa24 ./Crypto/src/sha2.o
+ .debug_info    0x000afa0e      0x13e c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard\libcr_newlib_nohost.a(_cr_sbrk.o)
+ .debug_info    0x000afb4c       0x71 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard\libcr_newlib_nohost.a(_cr_check_heap.o)
 
 .debug_abbrev   0x00000000    0x100aa
  .debug_abbrev  0x00000000      0x134 ./utilities/fsl_assert.o
@@ -51314,7 +51322,7 @@ LOAD linker stubs
  .debug_loc     0x00051266       0x5c c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard\libcr_newlib_nohost.a(_cr_sbrk.o)
  .debug_loc     0x000512c2       0x42 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard\libcr_newlib_nohost.a(_cr_check_heap.o)
 
-.debug_aranges  0x00000000     0x42b8
+.debug_aranges  0x00000000     0x42d8
  .debug_aranges
                 0x00000000       0x28 ./utilities/fsl_assert.o
  .debug_aranges
@@ -51330,253 +51338,253 @@ LOAD linker stubs
  .debug_aranges
                 0x00000960       0x38 ./source/DHA/DHAutoApp.o
  .debug_aranges
-                0x00000998       0x58 ./source/DHA/DHAutoApp_lightingGrill.o
+                0x00000998       0x78 ./source/DHA/DHAutoApp_lightingGrill.o
  .debug_aranges
-                0x000009f0      0x468 ./source/DHA/DHAutoCan.o
+                0x00000a10      0x468 ./source/DHA/DHAutoCan.o
  .debug_aranges
-                0x00000e58       0x48 ./source/DHA/DHAutoCan_il.o
+                0x00000e78       0x48 ./source/DHA/DHAutoCan_il.o
  .debug_aranges
-                0x00000ea0      0x440 ./source/DHA/DHAutoCan_il_par.o
+                0x00000ec0      0x440 ./source/DHA/DHAutoCan_il_par.o
  .debug_aranges
-                0x000012e0       0x18 ./source/DHA/DHAutoCan_par.o
+                0x00001300       0x18 ./source/DHA/DHAutoCan_par.o
  .debug_aranges
-                0x000012f8       0x40 ./source/DHA/DHAutoEnet.o
+                0x00001318       0x40 ./source/DHA/DHAutoEnet.o
  .debug_aranges
-                0x00001338       0x98 ./source/DHA/DHAutoIoctrl.o
+                0x00001358       0x98 ./source/DHA/DHAutoIoctrl.o
  .debug_aranges
-                0x000013d0       0x58 ./source/DHA/DHAutoQueue.o
+                0x000013f0       0x58 ./source/DHA/DHAutoQueue.o
  .debug_aranges
-                0x00001428       0x38 ./source/DHA/DHAutoRtc.o
+                0x00001448       0x38 ./source/DHA/DHAutoRtc.o
  .debug_aranges
-                0x00001460       0x38 ./source/DHA/DHAutoSequence.o
+                0x00001480       0x38 ./source/DHA/DHAutoSequence.o
  .debug_aranges
-                0x00001498       0x38 ./source/DHA/DHAutoTimer.o
+                0x000014b8       0x38 ./source/DHA/DHAutoTimer.o
  .debug_aranges
-                0x000014d0       0x50 ./source/COMMON/UDP/udpClientRAW.o
+                0x000014f0       0x50 ./source/COMMON/UDP/udpClientRAW.o
  .debug_aranges
-                0x00001520       0xd0 ./source/COMMON/ENET/enet.o
+                0x00001540       0xd0 ./source/COMMON/ENET/enet.o
  .debug_aranges
-                0x000015f0       0xa8 ./source/COMMON/CAN/can.o
+                0x00001610       0xa8 ./source/COMMON/CAN/can.o
  .debug_aranges
-                0x00001698       0x28 ./source/COMMON/EnetApp.o
+                0x000016b8       0x28 ./source/COMMON/EnetApp.o
  .debug_aranges
-                0x000016c0       0x60 ./source/COMMON/appcommon.o
+                0x000016e0       0x60 ./source/COMMON/appcommon.o
  .debug_aranges
-                0x00001720       0xc0 ./source/COMMON/softtimer.o
+                0x00001740       0xc0 ./source/COMMON/softtimer.o
  .debug_aranges
-                0x000017e0       0x20 ./source/main.o
+                0x00001800       0x20 ./source/main.o
  .debug_aranges
-                0x00001800       0x20 ./source/semihost_hardfault.o
+                0x00001820       0x20 ./source/semihost_hardfault.o
  .debug_aranges
-                0x00001820       0x70 ./source/sfw.o
+                0x00001840       0x70 ./source/sfw.o
  .debug_aranges
-                0x00001890      0x1e8 ./mbedtls/port/ksdk/ksdk_mbedtls.o
+                0x000018b0      0x1e8 ./mbedtls/port/ksdk/ksdk_mbedtls.o
  .debug_aranges
-                0x00001a78       0x28 ./lwip/src/netif/ethernet.o
+                0x00001a98       0x28 ./lwip/src/netif/ethernet.o
  .debug_aranges
-                0x00001aa0       0x88 ./lwip/src/core/ipv4/etharp.o
+                0x00001ac0       0x88 ./lwip/src/core/ipv4/etharp.o
  .debug_aranges
-                0x00001b28       0x38 ./lwip/src/core/ipv4/icmp.o
+                0x00001b48       0x38 ./lwip/src/core/ipv4/icmp.o
  .debug_aranges
-                0x00001b60       0x48 ./lwip/src/core/ipv4/ip4.o
+                0x00001b80       0x48 ./lwip/src/core/ipv4/ip4.o
  .debug_aranges
-                0x00001ba8       0x48 ./lwip/src/core/ipv4/ip4_addr.o
+                0x00001bc8       0x48 ./lwip/src/core/ipv4/ip4_addr.o
  .debug_aranges
-                0x00001bf0       0x70 ./lwip/src/core/ipv4/ip4_frag.o
+                0x00001c10       0x70 ./lwip/src/core/ipv4/ip4_frag.o
  .debug_aranges
-                0x00001c60       0x50 ./lwip/src/core/def.o
+                0x00001c80       0x50 ./lwip/src/core/def.o
  .debug_aranges
-                0x00001cb0       0x60 ./lwip/src/core/inet_chksum.o
+                0x00001cd0       0x60 ./lwip/src/core/inet_chksum.o
  .debug_aranges
-                0x00001d10       0x20 ./lwip/src/core/init.o
+                0x00001d30       0x20 ./lwip/src/core/init.o
  .debug_aranges
-                0x00001d30       0x18 ./lwip/src/core/ip.o
+                0x00001d50       0x18 ./lwip/src/core/ip.o
  .debug_aranges
-                0x00001d48       0x60 ./lwip/src/core/mem.o
+                0x00001d68       0x60 ./lwip/src/core/mem.o
  .debug_aranges
-                0x00001da8       0x58 ./lwip/src/core/memp.o
+                0x00001dc8       0x58 ./lwip/src/core/memp.o
  .debug_aranges
-                0x00001e00       0xf0 ./lwip/src/core/netif.o
+                0x00001e20       0xf0 ./lwip/src/core/netif.o
  .debug_aranges
-                0x00001ef0      0x130 ./lwip/src/core/pbuf.o
+                0x00001f10      0x130 ./lwip/src/core/pbuf.o
  .debug_aranges
-                0x00002020      0x1b8 ./lwip/src/core/tcp.o
+                0x00002040      0x1b8 ./lwip/src/core/tcp.o
  .debug_aranges
-                0x000021d8       0x68 ./lwip/src/core/tcp_in.o
+                0x000021f8       0x68 ./lwip/src/core/tcp_in.o
  .debug_aranges
-                0x00002240       0xf0 ./lwip/src/core/tcp_out.o
+                0x00002260       0xf0 ./lwip/src/core/tcp_out.o
  .debug_aranges
-                0x00002330       0x68 ./lwip/src/core/timeouts.o
+                0x00002350       0x68 ./lwip/src/core/timeouts.o
  .debug_aranges
-                0x00002398       0xa0 ./lwip/src/core/udp.o
+                0x000023b8       0xa0 ./lwip/src/core/udp.o
  .debug_aranges
-                0x00002438       0x28 ./lwip/port/enet_ethernetif.o
+                0x00002458       0x28 ./lwip/port/enet_ethernetif.o
  .debug_aranges
-                0x00002460       0xa8 ./lwip/port/enet_ethernetif_kinetis.o
+                0x00002480       0xa8 ./lwip/port/enet_ethernetif_kinetis.o
  .debug_aranges
-                0x00002508       0x60 ./lwip/port/ethernetif.o
+                0x00002528       0x60 ./lwip/port/ethernetif.o
  .debug_aranges
-                0x00002568       0x58 ./lwip/port/sys_arch.o
+                0x00002588       0x58 ./lwip/port/sys_arch.o
  .debug_aranges
-                0x000025c0       0x98 ./flash/mflash/mimxrt1170/mflash_drv.o
+                0x000025e0       0x98 ./flash/mflash/mimxrt1170/mflash_drv.o
  .debug_aranges
-                0x00002658       0x30 ./flash/flash_api.o
+                0x00002678       0x30 ./flash/flash_api.o
  .debug_aranges
-                0x00002688       0x38 ./drivers/fsl_anatop_ai.o
+                0x000026a8       0x38 ./drivers/fsl_anatop_ai.o
  .debug_aranges
-                0x000026c0      0x550 ./drivers/fsl_caam.o
+                0x000026e0      0x550 ./drivers/fsl_caam.o
  .debug_aranges
-                0x00002c10       0x58 ./drivers/fsl_cache.o
+                0x00002c30       0x58 ./drivers/fsl_cache.o
  .debug_aranges
-                0x00002c68      0x2a8 ./drivers/fsl_clock.o
+                0x00002c88      0x2a8 ./drivers/fsl_clock.o
  .debug_aranges
-                0x00002f10       0x38 ./drivers/fsl_common_arm.o
+                0x00002f30       0x38 ./drivers/fsl_common_arm.o
  .debug_aranges
-                0x00002f48       0xa8 ./drivers/fsl_dcdc.o
+                0x00002f68       0xa8 ./drivers/fsl_dcdc.o
  .debug_aranges
-                0x00002ff0      0x1e0 ./drivers/fsl_enet.o
+                0x00003010      0x1e0 ./drivers/fsl_enet.o
  .debug_aranges
-                0x000031d0      0x228 ./drivers/fsl_flexcan.o
+                0x000031f0      0x228 ./drivers/fsl_flexcan.o
  .debug_aranges
-                0x000033f8       0xd0 ./drivers/fsl_flexspi.o
+                0x00003418       0xd0 ./drivers/fsl_flexspi.o
  .debug_aranges
-                0x000034c8       0x40 ./drivers/fsl_gpio.o
+                0x000034e8       0x40 ./drivers/fsl_gpio.o
  .debug_aranges
-                0x00003508      0x190 ./drivers/fsl_lpuart.o
+                0x00003528      0x190 ./drivers/fsl_lpuart.o
  .debug_aranges
-                0x00003698       0x40 ./drivers/fsl_pit.o
+                0x000036b8       0x40 ./drivers/fsl_pit.o
  .debug_aranges
-                0x000036d8      0x130 ./drivers/fsl_pmu.o
+                0x000036f8      0x130 ./drivers/fsl_pmu.o
  .debug_aranges
-                0x00003808       0x98 ./drivers/fsl_snvs_hp.o
+                0x00003828       0x98 ./drivers/fsl_snvs_hp.o
  .debug_aranges
-                0x000038a0       0x30 ./device/system_MIMXRT1176_cm7.o
+                0x000038c0       0x30 ./device/system_MIMXRT1176_cm7.o
  .debug_aranges
-                0x000038d0       0x58 ./component/uart/fsl_adapter_lpuart.o
+                0x000038f0       0x58 ./component/uart/fsl_adapter_lpuart.o
  .debug_aranges
-                0x00003928       0x90 ./component/serial_manager/fsl_component_serial_manager.o
+                0x00003948       0x90 ./component/serial_manager/fsl_component_serial_manager.o
  .debug_aranges
-                0x000039b8       0x48 ./component/serial_manager/fsl_component_serial_port_uart.o
+                0x000039d8       0x48 ./component/serial_manager/fsl_component_serial_port_uart.o
  .debug_aranges
-                0x00003a00       0x68 ./component/phy/fsl_phyksz8081.o
+                0x00003a20       0x68 ./component/phy/fsl_phyksz8081.o
  .debug_aranges
-                0x00003a68       0x80 ./component/phy/fsl_phyrtl8211f.o
+                0x00003a88       0x80 ./component/phy/fsl_phyrtl8211f.o
  .debug_aranges
-                0x00003ae8      0x100 ./component/gpio/fsl_adapter_igpio.o
+                0x00003b08      0x100 ./component/gpio/fsl_adapter_igpio.o
  .debug_aranges
-                0x00003be8       0x50 ./board/board.o
+                0x00003c08       0x50 ./board/board.o
  .debug_aranges
-                0x00003c38       0x40 ./board/clock_config.o
+                0x00003c58       0x40 ./board/clock_config.o
  .debug_aranges
-                0x00003c78       0x60 ./board/pin_mux.o
+                0x00003c98       0x60 ./board/pin_mux.o
  .debug_aranges
-                0x00003cd8       0x70 ./Crypto/test_src/src/test_src.o
+                0x00003cf8       0x70 ./Crypto/test_src/src/test_src.o
  .debug_aranges
-                0x00003d48       0x50 ./Crypto/src/aursa.o
+                0x00003d68       0x50 ./Crypto/src/aursa.o
  .debug_aranges
-                0x00003d98      0x170 ./Crypto/src/bignum.o
+                0x00003db8      0x170 ./Crypto/src/bignum.o
  .debug_aranges
-                0x00003f08       0x90 ./Crypto/src/md.o
+                0x00003f28       0x90 ./Crypto/src/md.o
  .debug_aranges
-                0x00003f98      0x128 ./Crypto/src/md_wrap.o
+                0x00003fb8      0x128 ./Crypto/src/md_wrap.o
  .debug_aranges
-                0x000040c0       0xe8 ./Crypto/src/rsa.o
+                0x000040e0       0xe8 ./Crypto/src/rsa.o
  .debug_aranges
-                0x000041a8       0x68 ./Crypto/src/sha1.o
+                0x000041c8       0x68 ./Crypto/src/sha1.o
  .debug_aranges
-                0x00004210       0x68 ./Crypto/src/sha2.o
+                0x00004230       0x68 ./Crypto/src/sha2.o
  .debug_aranges
-                0x00004278       0x20 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard\libcr_newlib_nohost.a(_cr_sbrk.o)
+                0x00004298       0x20 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard\libcr_newlib_nohost.a(_cr_sbrk.o)
  .debug_aranges
-                0x00004298       0x20 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard\libcr_newlib_nohost.a(_cr_check_heap.o)
+                0x000042b8       0x20 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard\libcr_newlib_nohost.a(_cr_check_heap.o)
 
-.debug_ranges   0x00000000     0x4790
+.debug_ranges   0x00000000     0x47b0
  .debug_ranges  0x00000000       0x18 ./utilities/fsl_assert.o
  .debug_ranges  0x00000018       0x98 ./utilities/fsl_debug_console.o
  .debug_ranges  0x000000b0      0x100 ./utilities/fsl_str.o
  .debug_ranges  0x000001b0      0x740 ./startup/startup_mimxrt1176_cm7.o
  .debug_ranges  0x000008f0       0x18 ./source/DHA/DHAuto.o
  .debug_ranges  0x00000908       0x28 ./source/DHA/DHAutoApp.o
- .debug_ranges  0x00000930       0x48 ./source/DHA/DHAutoApp_lightingGrill.o
- .debug_ranges  0x00000978      0x470 ./source/DHA/DHAutoCan.o
- .debug_ranges  0x00000de8       0x50 ./source/DHA/DHAutoCan_il.o
- .debug_ranges  0x00000e38      0x430 ./source/DHA/DHAutoCan_il_par.o
- .debug_ranges  0x00001268       0x30 ./source/DHA/DHAutoEnet.o
- .debug_ranges  0x00001298       0x88 ./source/DHA/DHAutoIoctrl.o
- .debug_ranges  0x00001320       0x48 ./source/DHA/DHAutoQueue.o
- .debug_ranges  0x00001368       0x28 ./source/DHA/DHAutoRtc.o
- .debug_ranges  0x00001390       0x28 ./source/DHA/DHAutoSequence.o
- .debug_ranges  0x000013b8       0x28 ./source/DHA/DHAutoTimer.o
- .debug_ranges  0x000013e0       0x40 ./source/COMMON/UDP/udpClientRAW.o
- .debug_ranges  0x00001420       0xc0 ./source/COMMON/ENET/enet.o
- .debug_ranges  0x000014e0       0xc8 ./source/COMMON/CAN/can.o
- .debug_ranges  0x000015a8       0x18 ./source/COMMON/EnetApp.o
- .debug_ranges  0x000015c0       0x50 ./source/COMMON/appcommon.o
- .debug_ranges  0x00001610       0xb0 ./source/COMMON/softtimer.o
- .debug_ranges  0x000016c0       0x10 ./source/main.o
- .debug_ranges  0x000016d0       0x10 ./source/semihost_hardfault.o
- .debug_ranges  0x000016e0       0x60 ./source/sfw.o
- .debug_ranges  0x00001740      0x1d8 ./mbedtls/port/ksdk/ksdk_mbedtls.o
- .debug_ranges  0x00001918       0x18 ./lwip/src/netif/ethernet.o
- .debug_ranges  0x00001930       0xf0 ./lwip/src/core/ipv4/etharp.o
- .debug_ranges  0x00001a20       0x60 ./lwip/src/core/ipv4/icmp.o
- .debug_ranges  0x00001a80       0x58 ./lwip/src/core/ipv4/ip4.o
- .debug_ranges  0x00001ad8       0x38 ./lwip/src/core/ipv4/ip4_addr.o
- .debug_ranges  0x00001b10       0xa0 ./lwip/src/core/ipv4/ip4_frag.o
- .debug_ranges  0x00001bb0       0x70 ./lwip/src/core/def.o
- .debug_ranges  0x00001c20       0x50 ./lwip/src/core/inet_chksum.o
- .debug_ranges  0x00001c70       0x10 ./lwip/src/core/init.o
- .debug_ranges  0x00001c80       0x80 ./lwip/src/core/mem.o
- .debug_ranges  0x00001d00       0x48 ./lwip/src/core/memp.o
- .debug_ranges  0x00001d48       0xf8 ./lwip/src/core/netif.o
- .debug_ranges  0x00001e40      0x1e8 ./lwip/src/core/pbuf.o
- .debug_ranges  0x00002028      0x328 ./lwip/src/core/tcp.o
- .debug_ranges  0x00002350      0x108 ./lwip/src/core/tcp_in.o
- .debug_ranges  0x00002458      0x1e0 ./lwip/src/core/tcp_out.o
- .debug_ranges  0x00002638       0x58 ./lwip/src/core/timeouts.o
- .debug_ranges  0x00002690       0x90 ./lwip/src/core/udp.o
- .debug_ranges  0x00002720       0x18 ./lwip/port/enet_ethernetif.o
- .debug_ranges  0x00002738       0xb0 ./lwip/port/enet_ethernetif_kinetis.o
- .debug_ranges  0x000027e8       0x80 ./lwip/port/ethernetif.o
- .debug_ranges  0x00002868       0x48 ./lwip/port/sys_arch.o
- .debug_ranges  0x000028b0       0x88 ./flash/mflash/mimxrt1170/mflash_drv.o
- .debug_ranges  0x00002938       0x50 ./flash/flash_api.o
- .debug_ranges  0x00002988       0x28 ./drivers/fsl_anatop_ai.o
- .debug_ranges  0x000029b0      0x590 ./drivers/fsl_caam.o
- .debug_ranges  0x00002f40       0x48 ./drivers/fsl_cache.o
- .debug_ranges  0x00002f88      0x298 ./drivers/fsl_clock.o
- .debug_ranges  0x00003220       0x28 ./drivers/fsl_common_arm.o
- .debug_ranges  0x00003248       0x98 ./drivers/fsl_dcdc.o
- .debug_ranges  0x000032e0      0x290 ./drivers/fsl_enet.o
- .debug_ranges  0x00003570      0x308 ./drivers/fsl_flexcan.o
- .debug_ranges  0x00003878      0x1c8 ./drivers/fsl_flexspi.o
- .debug_ranges  0x00003a40       0x30 ./drivers/fsl_gpio.o
- .debug_ranges  0x00003a70      0x1b0 ./drivers/fsl_lpuart.o
- .debug_ranges  0x00003c20       0x48 ./drivers/fsl_pit.o
- .debug_ranges  0x00003c68      0x120 ./drivers/fsl_pmu.o
- .debug_ranges  0x00003d88       0xa0 ./drivers/fsl_snvs_hp.o
- .debug_ranges  0x00003e28       0x20 ./device/system_MIMXRT1176_cm7.o
- .debug_ranges  0x00003e48       0x48 ./component/uart/fsl_adapter_lpuart.o
- .debug_ranges  0x00003e90       0x80 ./component/serial_manager/fsl_component_serial_manager.o
- .debug_ranges  0x00003f10       0x38 ./component/serial_manager/fsl_component_serial_port_uart.o
- .debug_ranges  0x00003f48       0x58 ./component/phy/fsl_phyksz8081.o
- .debug_ranges  0x00003fa0       0x70 ./component/phy/fsl_phyrtl8211f.o
- .debug_ranges  0x00004010      0x120 ./component/gpio/fsl_adapter_igpio.o
- .debug_ranges  0x00004130       0x58 ./board/board.o
- .debug_ranges  0x00004188       0x30 ./board/clock_config.o
- .debug_ranges  0x000041b8       0x50 ./board/pin_mux.o
- .debug_ranges  0x00004208       0x60 ./Crypto/test_src/src/test_src.o
- .debug_ranges  0x00004268       0x40 ./Crypto/src/aursa.o
- .debug_ranges  0x000042a8      0x178 ./Crypto/src/bignum.o
- .debug_ranges  0x00004420       0x98 ./Crypto/src/md.o
- .debug_ranges  0x000044b8      0x118 ./Crypto/src/md_wrap.o
- .debug_ranges  0x000045d0       0xf0 ./Crypto/src/rsa.o
- .debug_ranges  0x000046c0       0x58 ./Crypto/src/sha1.o
- .debug_ranges  0x00004718       0x58 ./Crypto/src/sha2.o
- .debug_ranges  0x00004770       0x10 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard\libcr_newlib_nohost.a(_cr_sbrk.o)
- .debug_ranges  0x00004780       0x10 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard\libcr_newlib_nohost.a(_cr_check_heap.o)
+ .debug_ranges  0x00000930       0x68 ./source/DHA/DHAutoApp_lightingGrill.o
+ .debug_ranges  0x00000998      0x470 ./source/DHA/DHAutoCan.o
+ .debug_ranges  0x00000e08       0x50 ./source/DHA/DHAutoCan_il.o
+ .debug_ranges  0x00000e58      0x430 ./source/DHA/DHAutoCan_il_par.o
+ .debug_ranges  0x00001288       0x30 ./source/DHA/DHAutoEnet.o
+ .debug_ranges  0x000012b8       0x88 ./source/DHA/DHAutoIoctrl.o
+ .debug_ranges  0x00001340       0x48 ./source/DHA/DHAutoQueue.o
+ .debug_ranges  0x00001388       0x28 ./source/DHA/DHAutoRtc.o
+ .debug_ranges  0x000013b0       0x28 ./source/DHA/DHAutoSequence.o
+ .debug_ranges  0x000013d8       0x28 ./source/DHA/DHAutoTimer.o
+ .debug_ranges  0x00001400       0x40 ./source/COMMON/UDP/udpClientRAW.o
+ .debug_ranges  0x00001440       0xc0 ./source/COMMON/ENET/enet.o
+ .debug_ranges  0x00001500       0xc8 ./source/COMMON/CAN/can.o
+ .debug_ranges  0x000015c8       0x18 ./source/COMMON/EnetApp.o
+ .debug_ranges  0x000015e0       0x50 ./source/COMMON/appcommon.o
+ .debug_ranges  0x00001630       0xb0 ./source/COMMON/softtimer.o
+ .debug_ranges  0x000016e0       0x10 ./source/main.o
+ .debug_ranges  0x000016f0       0x10 ./source/semihost_hardfault.o
+ .debug_ranges  0x00001700       0x60 ./source/sfw.o
+ .debug_ranges  0x00001760      0x1d8 ./mbedtls/port/ksdk/ksdk_mbedtls.o
+ .debug_ranges  0x00001938       0x18 ./lwip/src/netif/ethernet.o
+ .debug_ranges  0x00001950       0xf0 ./lwip/src/core/ipv4/etharp.o
+ .debug_ranges  0x00001a40       0x60 ./lwip/src/core/ipv4/icmp.o
+ .debug_ranges  0x00001aa0       0x58 ./lwip/src/core/ipv4/ip4.o
+ .debug_ranges  0x00001af8       0x38 ./lwip/src/core/ipv4/ip4_addr.o
+ .debug_ranges  0x00001b30       0xa0 ./lwip/src/core/ipv4/ip4_frag.o
+ .debug_ranges  0x00001bd0       0x70 ./lwip/src/core/def.o
+ .debug_ranges  0x00001c40       0x50 ./lwip/src/core/inet_chksum.o
+ .debug_ranges  0x00001c90       0x10 ./lwip/src/core/init.o
+ .debug_ranges  0x00001ca0       0x80 ./lwip/src/core/mem.o
+ .debug_ranges  0x00001d20       0x48 ./lwip/src/core/memp.o
+ .debug_ranges  0x00001d68       0xf8 ./lwip/src/core/netif.o
+ .debug_ranges  0x00001e60      0x1e8 ./lwip/src/core/pbuf.o
+ .debug_ranges  0x00002048      0x328 ./lwip/src/core/tcp.o
+ .debug_ranges  0x00002370      0x108 ./lwip/src/core/tcp_in.o
+ .debug_ranges  0x00002478      0x1e0 ./lwip/src/core/tcp_out.o
+ .debug_ranges  0x00002658       0x58 ./lwip/src/core/timeouts.o
+ .debug_ranges  0x000026b0       0x90 ./lwip/src/core/udp.o
+ .debug_ranges  0x00002740       0x18 ./lwip/port/enet_ethernetif.o
+ .debug_ranges  0x00002758       0xb0 ./lwip/port/enet_ethernetif_kinetis.o
+ .debug_ranges  0x00002808       0x80 ./lwip/port/ethernetif.o
+ .debug_ranges  0x00002888       0x48 ./lwip/port/sys_arch.o
+ .debug_ranges  0x000028d0       0x88 ./flash/mflash/mimxrt1170/mflash_drv.o
+ .debug_ranges  0x00002958       0x50 ./flash/flash_api.o
+ .debug_ranges  0x000029a8       0x28 ./drivers/fsl_anatop_ai.o
+ .debug_ranges  0x000029d0      0x590 ./drivers/fsl_caam.o
+ .debug_ranges  0x00002f60       0x48 ./drivers/fsl_cache.o
+ .debug_ranges  0x00002fa8      0x298 ./drivers/fsl_clock.o
+ .debug_ranges  0x00003240       0x28 ./drivers/fsl_common_arm.o
+ .debug_ranges  0x00003268       0x98 ./drivers/fsl_dcdc.o
+ .debug_ranges  0x00003300      0x290 ./drivers/fsl_enet.o
+ .debug_ranges  0x00003590      0x308 ./drivers/fsl_flexcan.o
+ .debug_ranges  0x00003898      0x1c8 ./drivers/fsl_flexspi.o
+ .debug_ranges  0x00003a60       0x30 ./drivers/fsl_gpio.o
+ .debug_ranges  0x00003a90      0x1b0 ./drivers/fsl_lpuart.o
+ .debug_ranges  0x00003c40       0x48 ./drivers/fsl_pit.o
+ .debug_ranges  0x00003c88      0x120 ./drivers/fsl_pmu.o
+ .debug_ranges  0x00003da8       0xa0 ./drivers/fsl_snvs_hp.o
+ .debug_ranges  0x00003e48       0x20 ./device/system_MIMXRT1176_cm7.o
+ .debug_ranges  0x00003e68       0x48 ./component/uart/fsl_adapter_lpuart.o
+ .debug_ranges  0x00003eb0       0x80 ./component/serial_manager/fsl_component_serial_manager.o
+ .debug_ranges  0x00003f30       0x38 ./component/serial_manager/fsl_component_serial_port_uart.o
+ .debug_ranges  0x00003f68       0x58 ./component/phy/fsl_phyksz8081.o
+ .debug_ranges  0x00003fc0       0x70 ./component/phy/fsl_phyrtl8211f.o
+ .debug_ranges  0x00004030      0x120 ./component/gpio/fsl_adapter_igpio.o
+ .debug_ranges  0x00004150       0x58 ./board/board.o
+ .debug_ranges  0x000041a8       0x30 ./board/clock_config.o
+ .debug_ranges  0x000041d8       0x50 ./board/pin_mux.o
+ .debug_ranges  0x00004228       0x60 ./Crypto/test_src/src/test_src.o
+ .debug_ranges  0x00004288       0x40 ./Crypto/src/aursa.o
+ .debug_ranges  0x000042c8      0x178 ./Crypto/src/bignum.o
+ .debug_ranges  0x00004440       0x98 ./Crypto/src/md.o
+ .debug_ranges  0x000044d8      0x118 ./Crypto/src/md_wrap.o
+ .debug_ranges  0x000045f0       0xf0 ./Crypto/src/rsa.o
+ .debug_ranges  0x000046e0       0x58 ./Crypto/src/sha1.o
+ .debug_ranges  0x00004738       0x58 ./Crypto/src/sha2.o
+ .debug_ranges  0x00004790       0x10 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard\libcr_newlib_nohost.a(_cr_sbrk.o)
+ .debug_ranges  0x000047a0       0x10 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard\libcr_newlib_nohost.a(_cr_check_heap.o)
 
-.debug_macro    0x00000000    0x1c886
+.debug_macro    0x00000000    0x1c88c
  .debug_macro   0x00000000      0x23a ./utilities/fsl_assert.o
  .debug_macro   0x0000023a       0x70 ./utilities/fsl_assert.o
  .debug_macro   0x000002aa       0x47 ./utilities/fsl_assert.o
@@ -51609,226 +51617,226 @@ LOAD linker stubs
  .debug_macro   0x00001c99      0x756 ./source/DHA/DHAuto.o
  .debug_macro   0x000023ef       0x28 ./source/DHA/DHAuto.o
  .debug_macro   0x00002417       0x52 ./source/DHA/DHAuto.o
- .debug_macro   0x00002469       0x5e ./source/DHA/DHAuto.o
- .debug_macro   0x000024c7       0xbe ./source/DHA/DHAuto.o
- .debug_macro   0x00002585       0xd1 ./source/DHA/DHAuto.o
- .debug_macro   0x00002656      0x117 ./source/DHA/DHAuto.o
- .debug_macro   0x0000276d       0x10 ./source/DHA/DHAuto.o
- .debug_macro   0x0000277d       0x10 ./source/DHA/DHAuto.o
- .debug_macro   0x0000278d      0x197 ./source/DHA/DHAuto.o
- .debug_macro   0x00002924       0x16 ./source/DHA/DHAuto.o
- .debug_macro   0x0000293a       0x10 ./source/DHA/DHAuto.o
- .debug_macro   0x0000294a       0x22 ./source/DHA/DHAuto.o
- .debug_macro   0x0000296c       0x10 ./source/DHA/DHAuto.o
- .debug_macro   0x0000297c       0x6a ./source/DHA/DHAuto.o
- .debug_macro   0x000029e6       0x8b ./source/DHA/DHAuto.o
- .debug_macro   0x00002a71       0x43 ./source/DHA/DHAuto.o
- .debug_macro   0x00002ab4       0x16 ./source/DHA/DHAuto.o
- .debug_macro   0x00002aca       0x10 ./source/DHA/DHAuto.o
- .debug_macro   0x00002ada       0x41 ./source/DHA/DHAuto.o
- .debug_macro   0x00002b1b       0x22 ./source/DHA/DHAuto.o
- .debug_macro   0x00002b3d       0x16 ./source/DHA/DHAuto.o
- .debug_macro   0x00002b53       0x10 ./source/DHA/DHAuto.o
- .debug_macro   0x00002b63       0x11 ./source/DHA/DHAuto.o
- .debug_macro   0x00002b74      0x103 ./source/DHA/DHAuto.o
- .debug_macro   0x00002c77      0x3c6 ./source/DHA/DHAuto.o
- .debug_macro   0x0000303d      0x10c ./source/DHA/DHAuto.o
- .debug_macro   0x00003149       0x19 ./source/DHA/DHAuto.o
- .debug_macro   0x00003162       0xa2 ./source/DHA/DHAuto.o
- .debug_macro   0x00003204       0x82 ./source/DHA/DHAuto.o
- .debug_macro   0x00003286       0x6d ./source/DHA/DHAuto.o
- .debug_macro   0x000032f3      0x725 ./source/DHA/DHAuto.o
- .debug_macro   0x00003a18       0x6a ./source/DHA/DHAuto.o
- .debug_macro   0x00003a82      0x1d1 ./source/DHA/DHAuto.o
- .debug_macro   0x00003c53      0x177 ./source/DHA/DHAuto.o
- .debug_macro   0x00003dca       0x10 ./source/DHA/DHAuto.o
- .debug_macro   0x00003dda       0xb9 ./source/DHA/DHAuto.o
- .debug_macro   0x00003e93       0x10 ./source/DHA/DHAuto.o
- .debug_macro   0x00003ea3       0x10 ./source/DHA/DHAuto.o
- .debug_macro   0x00003eb3       0x3f ./source/DHA/DHAuto.o
- .debug_macro   0x00003ef2       0x25 ./source/DHA/DHAuto.o
- .debug_macro   0x00003f17       0x22 ./source/DHA/DHAuto.o
- .debug_macro   0x00003f39      0x15b ./source/DHA/DHAuto.o
- .debug_macro   0x00004094      0x128 ./source/DHA/DHAuto.o
- .debug_macro   0x000041bc       0x3a ./source/DHA/DHAuto.o
- .debug_macro   0x000041f6       0x5e ./source/DHA/DHAuto.o
- .debug_macro   0x00004254       0x16 ./source/DHA/DHAuto.o
- .debug_macro   0x0000426a       0x4c ./source/DHA/DHAuto.o
- .debug_macro   0x000042b6       0x88 ./source/DHA/DHAuto.o
- .debug_macro   0x0000433e       0x22 ./source/DHA/DHAuto.o
- .debug_macro   0x00004360       0x16 ./source/DHA/DHAuto.o
- .debug_macro   0x00004376       0x28 ./source/DHA/DHAuto.o
- .debug_macro   0x0000439e       0x34 ./source/DHA/DHAuto.o
- .debug_macro   0x000043d2       0x2e ./source/DHA/DHAuto.o
- .debug_macro   0x00004400       0x58 ./source/DHA/DHAuto.o
- .debug_macro   0x00004458      0x63a ./source/DHA/DHAutoApp.o
- .debug_macro   0x00004a92      0x6d0 ./source/DHA/DHAutoApp_lightingGrill.o
- .debug_macro   0x00005162      0x658 ./source/DHA/DHAutoCan.o
- .debug_macro   0x000057ba      0x640 ./source/DHA/DHAutoCan_il.o
- .debug_macro   0x00005dfa      0x63a ./source/DHA/DHAutoCan_il_par.o
- .debug_macro   0x00006434      0x646 ./source/DHA/DHAutoCan_par.o
- .debug_macro   0x00006a7a      0x63a ./source/DHA/DHAutoEnet.o
- .debug_macro   0x000070b4      0x6be ./source/DHA/DHAutoIoctrl.o
- .debug_macro   0x00007772      0x646 ./source/DHA/DHAutoQueue.o
- .debug_macro   0x00007db8      0x64c ./source/DHA/DHAutoRtc.o
- .debug_macro   0x00008404      0x63a ./source/DHA/DHAutoSequence.o
- .debug_macro   0x00008a3e      0x63a ./source/DHA/DHAutoTimer.o
- .debug_macro   0x00009078      0x58c ./source/COMMON/UDP/udpClientRAW.o
- .debug_macro   0x00009604       0x1c ./source/COMMON/UDP/udpClientRAW.o
- .debug_macro   0x00009620       0x99 ./source/COMMON/UDP/udpClientRAW.o
- .debug_macro   0x000096b9       0x10 ./source/COMMON/UDP/udpClientRAW.o
- .debug_macro   0x000096c9       0xb3 ./source/COMMON/UDP/udpClientRAW.o
- .debug_macro   0x0000977c       0xa0 ./source/COMMON/UDP/udpClientRAW.o
- .debug_macro   0x0000981c       0x28 ./source/COMMON/UDP/udpClientRAW.o
- .debug_macro   0x00009844       0x2e ./source/COMMON/UDP/udpClientRAW.o
- .debug_macro   0x00009872       0xf0 ./source/COMMON/UDP/udpClientRAW.o
- .debug_macro   0x00009962       0x10 ./source/COMMON/UDP/udpClientRAW.o
- .debug_macro   0x00009972       0x4d ./source/COMMON/UDP/udpClientRAW.o
- .debug_macro   0x000099bf       0x2e ./source/COMMON/UDP/udpClientRAW.o
- .debug_macro   0x000099ed       0x70 ./source/COMMON/UDP/udpClientRAW.o
- .debug_macro   0x00009a5d       0xf2 ./source/COMMON/UDP/udpClientRAW.o
- .debug_macro   0x00009b4f       0x10 ./source/COMMON/UDP/udpClientRAW.o
- .debug_macro   0x00009b5f       0x10 ./source/COMMON/UDP/udpClientRAW.o
- .debug_macro   0x00009b6f      0x682 ./source/COMMON/ENET/enet.o
- .debug_macro   0x0000a1f1      0x652 ./source/COMMON/CAN/can.o
- .debug_macro   0x0000a843      0x63a ./source/COMMON/EnetApp.o
- .debug_macro   0x0000ae7d      0x673 ./source/COMMON/appcommon.o
- .debug_macro   0x0000b4f0       0x8e ./source/COMMON/appcommon.o
- .debug_macro   0x0000b57e       0x1c ./source/COMMON/appcommon.o
- .debug_macro   0x0000b59a       0x82 ./source/COMMON/appcommon.o
- .debug_macro   0x0000b61c      0x682 ./source/COMMON/softtimer.o
- .debug_macro   0x0000bc9e      0x67d ./source/main.o
- .debug_macro   0x0000c31b       0x97 ./source/main.o
- .debug_macro   0x0000c3b2      0x1cb ./source/main.o
- .debug_macro   0x0000c57d       0x9a ./source/main.o
- .debug_macro   0x0000c617       0x16 ./source/main.o
- .debug_macro   0x0000c62d       0x4e ./source/main.o
- .debug_macro   0x0000c67b       0x46 ./source/main.o
- .debug_macro   0x0000c6c1       0x64 ./source/main.o
- .debug_macro   0x0000c725       0x5f ./source/main.o
- .debug_macro   0x0000c784       0x1c ./source/main.o
- .debug_macro   0x0000c7a0       0x34 ./source/main.o
- .debug_macro   0x0000c7d4      0x143 ./source/main.o
- .debug_macro   0x0000c917       0x28 ./source/main.o
- .debug_macro   0x0000c93f       0x16 ./source/main.o
- .debug_macro   0x0000c955       0xb8 ./source/main.o
- .debug_macro   0x0000ca0d       0x88 ./source/main.o
- .debug_macro   0x0000ca95       0x10 ./source/main.o
- .debug_macro   0x0000caa5       0x11 ./source/semihost_hardfault.o
- .debug_macro   0x0000cab6      0x3de ./source/sfw.o
- .debug_macro   0x0000ce94      0x379 ./source/sfw.o
- .debug_macro   0x0000d20d      0x3fc ./mbedtls/port/ksdk/ksdk_mbedtls.o
- .debug_macro   0x0000d609       0x75 ./mbedtls/port/ksdk/ksdk_mbedtls.o
- .debug_macro   0x0000d67e       0x16 ./mbedtls/port/ksdk/ksdk_mbedtls.o
- .debug_macro   0x0000d694       0x28 ./mbedtls/port/ksdk/ksdk_mbedtls.o
- .debug_macro   0x0000d6bc       0x5a ./mbedtls/port/ksdk/ksdk_mbedtls.o
- .debug_macro   0x0000d716       0x10 ./mbedtls/port/ksdk/ksdk_mbedtls.o
- .debug_macro   0x0000d726       0x10 ./mbedtls/port/ksdk/ksdk_mbedtls.o
- .debug_macro   0x0000d736       0x20 ./mbedtls/port/ksdk/ksdk_mbedtls.o
- .debug_macro   0x0000d756       0x10 ./mbedtls/port/ksdk/ksdk_mbedtls.o
- .debug_macro   0x0000d766       0x10 ./mbedtls/port/ksdk/ksdk_mbedtls.o
- .debug_macro   0x0000d776       0x20 ./mbedtls/port/ksdk/ksdk_mbedtls.o
- .debug_macro   0x0000d796      0x4b6 ./lwip/src/netif/ethernet.o
- .debug_macro   0x0000dc4c       0x3b ./lwip/src/netif/ethernet.o
- .debug_macro   0x0000dc87      0x4dd ./lwip/src/core/ipv4/etharp.o
- .debug_macro   0x0000e164       0x10 ./lwip/src/core/ipv4/etharp.o
- .debug_macro   0x0000e174      0x491 ./lwip/src/core/ipv4/icmp.o
- .debug_macro   0x0000e605       0x1c ./lwip/src/core/ipv4/icmp.o
- .debug_macro   0x0000e621      0x510 ./lwip/src/core/ipv4/ip4.o
- .debug_macro   0x0000eb31       0x16 ./lwip/src/core/ipv4/ip4.o
- .debug_macro   0x0000eb47       0x7c ./lwip/src/core/ipv4/ip4.o
- .debug_macro   0x0000ebc3      0x1dd ./lwip/src/core/ipv4/ip4.o
- .debug_macro   0x0000eda0      0x423 ./lwip/src/core/ipv4/ip4_addr.o
- .debug_macro   0x0000f1c3      0x4b8 ./lwip/src/core/ipv4/ip4_frag.o
- .debug_macro   0x0000f67b       0x10 ./lwip/src/core/ipv4/ip4_frag.o
- .debug_macro   0x0000f68b      0x381 ./lwip/src/core/def.o
- .debug_macro   0x0000fa0c      0x3db ./lwip/src/core/inet_chksum.o
- .debug_macro   0x0000fde7       0x16 ./lwip/src/core/inet_chksum.o
- .debug_macro   0x0000fdfd      0x57d ./lwip/src/core/init.o
- .debug_macro   0x0001037a      0x463 ./lwip/src/core/ip.o
- .debug_macro   0x000107dd      0x47c ./lwip/src/core/mem.o
- .debug_macro   0x00010c59      0x5b8 ./lwip/src/core/memp.o
- .debug_macro   0x00011211      0x122 ./lwip/src/core/memp.o
- .debug_macro   0x00011333      0x53c ./lwip/src/core/netif.o
- .debug_macro   0x0001186f      0x444 ./lwip/src/core/pbuf.o
- .debug_macro   0x00011cb3      0x4d8 ./lwip/src/core/tcp.o
- .debug_macro   0x0001218b      0x134 ./lwip/src/core/tcp.o
- .debug_macro   0x000122bf      0x4c5 ./lwip/src/core/tcp_in.o
- .debug_macro   0x00012784      0x4d3 ./lwip/src/core/tcp_out.o
- .debug_macro   0x00012c57      0x564 ./lwip/src/core/timeouts.o
- .debug_macro   0x000131bb       0x10 ./lwip/src/core/timeouts.o
- .debug_macro   0x000131cb      0x4d5 ./lwip/src/core/udp.o
- .debug_macro   0x000136a0      0x461 ./lwip/port/enet_ethernetif.o
- .debug_macro   0x00013b01       0x28 ./lwip/port/enet_ethernetif.o
- .debug_macro   0x00013b29      0x540 ./lwip/port/enet_ethernetif_kinetis.o
- .debug_macro   0x00014069      0x50a ./lwip/port/ethernetif.o
- .debug_macro   0x00014573       0xba ./lwip/port/ethernetif.o
- .debug_macro   0x0001462d      0x3f8 ./lwip/port/sys_arch.o
- .debug_macro   0x00014a25      0x296 ./flash/mflash/mimxrt1170/mflash_drv.o
- .debug_macro   0x00014cbb       0x16 ./flash/mflash/mimxrt1170/mflash_drv.o
- .debug_macro   0x00014cd1       0x16 ./flash/mflash/mimxrt1170/mflash_drv.o
- .debug_macro   0x00014ce7       0x10 ./flash/mflash/mimxrt1170/mflash_drv.o
- .debug_macro   0x00014cf7      0x24b ./flash/flash_api.o
- .debug_macro   0x00014f42      0x202 ./drivers/fsl_anatop_ai.o
- .debug_macro   0x00015144      0x3a6 ./drivers/fsl_anatop_ai.o
- .debug_macro   0x000154ea      0x327 ./drivers/fsl_caam.o
- .debug_macro   0x00015811       0x3b ./drivers/fsl_caam.o
- .debug_macro   0x0001584c      0x203 ./drivers/fsl_cache.o
- .debug_macro   0x00015a4f      0x285 ./drivers/fsl_clock.o
- .debug_macro   0x00015cd4       0x16 ./drivers/fsl_clock.o
- .debug_macro   0x00015cea      0x3ac ./drivers/fsl_clock.o
- .debug_macro   0x00016096      0x1f3 ./drivers/fsl_common_arm.o
- .debug_macro   0x00016289      0x202 ./drivers/fsl_dcdc.o
- .debug_macro   0x0001648b       0x22 ./drivers/fsl_dcdc.o
- .debug_macro   0x000164ad      0x21d ./drivers/fsl_enet.o
- .debug_macro   0x000166ca       0xcb ./drivers/fsl_enet.o
- .debug_macro   0x00016795      0x346 ./drivers/fsl_flexcan.o
- .debug_macro   0x00016adb      0x111 ./drivers/fsl_flexcan.o
- .debug_macro   0x00016bec      0x218 ./drivers/fsl_flexspi.o
- .debug_macro   0x00016e04      0x203 ./drivers/fsl_gpio.o
- .debug_macro   0x00017007      0x202 ./drivers/fsl_lpuart.o
- .debug_macro   0x00017209       0x10 ./drivers/fsl_lpuart.o
- .debug_macro   0x00017219      0x203 ./drivers/fsl_pit.o
- .debug_macro   0x0001741c      0x2cc ./drivers/fsl_pmu.o
- .debug_macro   0x000176e8       0x10 ./drivers/fsl_pmu.o
- .debug_macro   0x000176f8      0x226 ./drivers/fsl_snvs_hp.o
- .debug_macro   0x0001791e       0x2e ./drivers/fsl_snvs_hp.o
- .debug_macro   0x0001794c       0x9b ./device/system_MIMXRT1176_cm7.o
- .debug_macro   0x000179e7      0x221 ./component/uart/fsl_adapter_lpuart.o
- .debug_macro   0x00017c08       0x41 ./component/uart/fsl_adapter_lpuart.o
- .debug_macro   0x00017c49      0x26b ./component/serial_manager/fsl_component_serial_manager.o
- .debug_macro   0x00017eb4       0x6a ./component/serial_manager/fsl_component_serial_manager.o
- .debug_macro   0x00017f1e      0x22f ./component/serial_manager/fsl_component_serial_port_uart.o
- .debug_macro   0x0001814d      0x284 ./component/phy/fsl_phyksz8081.o
- .debug_macro   0x000183d1       0xb8 ./component/phy/fsl_phyksz8081.o
- .debug_macro   0x00018489      0x2b4 ./component/phy/fsl_phyrtl8211f.o
- .debug_macro   0x0001873d      0x216 ./component/gpio/fsl_adapter_igpio.o
- .debug_macro   0x00018953       0x22 ./component/gpio/fsl_adapter_igpio.o
- .debug_macro   0x00018975      0x25e ./board/board.o
- .debug_macro   0x00018bd3     0x2537 ./board/board.o
- .debug_macro   0x0001b10a      0x237 ./board/clock_config.o
- .debug_macro   0x0001b341       0x28 ./board/clock_config.o
- .debug_macro   0x0001b369      0x208 ./board/pin_mux.o
- .debug_macro   0x0001b571      0x345 ./Crypto/test_src/src/test_src.o
- .debug_macro   0x0001b8b6       0x10 ./Crypto/test_src/src/test_src.o
- .debug_macro   0x0001b8c6       0xac ./Crypto/test_src/src/test_src.o
- .debug_macro   0x0001b972       0x35 ./Crypto/test_src/src/test_src.o
- .debug_macro   0x0001b9a7      0x1ef ./Crypto/src/aursa.o
- .debug_macro   0x0001bb96      0x104 ./Crypto/src/aursa.o
- .debug_macro   0x0001bc9a       0x28 ./Crypto/src/aursa.o
- .debug_macro   0x0001bcc2       0x6b ./Crypto/src/aursa.o
- .debug_macro   0x0001bd2d       0xf4 ./Crypto/src/aursa.o
- .debug_macro   0x0001be21      0x1db ./Crypto/src/bignum.o
- .debug_macro   0x0001bffc       0x19 ./Crypto/src/bignum.o
- .debug_macro   0x0001c015      0x14a ./Crypto/src/md.o
- .debug_macro   0x0001c15f      0x199 ./Crypto/src/md_wrap.o
- .debug_macro   0x0001c2f8       0x10 ./Crypto/src/md_wrap.o
- .debug_macro   0x0001c308      0x215 ./Crypto/src/rsa.o
- .debug_macro   0x0001c51d       0x10 ./Crypto/src/rsa.o
- .debug_macro   0x0001c52d      0x1c4 ./Crypto/src/sha1.o
- .debug_macro   0x0001c6f1      0x195 ./Crypto/src/sha2.o
+ .debug_macro   0x00002469       0x64 ./source/DHA/DHAuto.o
+ .debug_macro   0x000024cd       0xbe ./source/DHA/DHAuto.o
+ .debug_macro   0x0000258b       0xd1 ./source/DHA/DHAuto.o
+ .debug_macro   0x0000265c      0x117 ./source/DHA/DHAuto.o
+ .debug_macro   0x00002773       0x10 ./source/DHA/DHAuto.o
+ .debug_macro   0x00002783       0x10 ./source/DHA/DHAuto.o
+ .debug_macro   0x00002793      0x197 ./source/DHA/DHAuto.o
+ .debug_macro   0x0000292a       0x16 ./source/DHA/DHAuto.o
+ .debug_macro   0x00002940       0x10 ./source/DHA/DHAuto.o
+ .debug_macro   0x00002950       0x22 ./source/DHA/DHAuto.o
+ .debug_macro   0x00002972       0x10 ./source/DHA/DHAuto.o
+ .debug_macro   0x00002982       0x6a ./source/DHA/DHAuto.o
+ .debug_macro   0x000029ec       0x8b ./source/DHA/DHAuto.o
+ .debug_macro   0x00002a77       0x43 ./source/DHA/DHAuto.o
+ .debug_macro   0x00002aba       0x16 ./source/DHA/DHAuto.o
+ .debug_macro   0x00002ad0       0x10 ./source/DHA/DHAuto.o
+ .debug_macro   0x00002ae0       0x41 ./source/DHA/DHAuto.o
+ .debug_macro   0x00002b21       0x22 ./source/DHA/DHAuto.o
+ .debug_macro   0x00002b43       0x16 ./source/DHA/DHAuto.o
+ .debug_macro   0x00002b59       0x10 ./source/DHA/DHAuto.o
+ .debug_macro   0x00002b69       0x11 ./source/DHA/DHAuto.o
+ .debug_macro   0x00002b7a      0x103 ./source/DHA/DHAuto.o
+ .debug_macro   0x00002c7d      0x3c6 ./source/DHA/DHAuto.o
+ .debug_macro   0x00003043      0x10c ./source/DHA/DHAuto.o
+ .debug_macro   0x0000314f       0x19 ./source/DHA/DHAuto.o
+ .debug_macro   0x00003168       0xa2 ./source/DHA/DHAuto.o
+ .debug_macro   0x0000320a       0x82 ./source/DHA/DHAuto.o
+ .debug_macro   0x0000328c       0x6d ./source/DHA/DHAuto.o
+ .debug_macro   0x000032f9      0x725 ./source/DHA/DHAuto.o
+ .debug_macro   0x00003a1e       0x6a ./source/DHA/DHAuto.o
+ .debug_macro   0x00003a88      0x1d1 ./source/DHA/DHAuto.o
+ .debug_macro   0x00003c59      0x177 ./source/DHA/DHAuto.o
+ .debug_macro   0x00003dd0       0x10 ./source/DHA/DHAuto.o
+ .debug_macro   0x00003de0       0xb9 ./source/DHA/DHAuto.o
+ .debug_macro   0x00003e99       0x10 ./source/DHA/DHAuto.o
+ .debug_macro   0x00003ea9       0x10 ./source/DHA/DHAuto.o
+ .debug_macro   0x00003eb9       0x3f ./source/DHA/DHAuto.o
+ .debug_macro   0x00003ef8       0x25 ./source/DHA/DHAuto.o
+ .debug_macro   0x00003f1d       0x22 ./source/DHA/DHAuto.o
+ .debug_macro   0x00003f3f      0x15b ./source/DHA/DHAuto.o
+ .debug_macro   0x0000409a      0x128 ./source/DHA/DHAuto.o
+ .debug_macro   0x000041c2       0x3a ./source/DHA/DHAuto.o
+ .debug_macro   0x000041fc       0x5e ./source/DHA/DHAuto.o
+ .debug_macro   0x0000425a       0x16 ./source/DHA/DHAuto.o
+ .debug_macro   0x00004270       0x4c ./source/DHA/DHAuto.o
+ .debug_macro   0x000042bc       0x88 ./source/DHA/DHAuto.o
+ .debug_macro   0x00004344       0x22 ./source/DHA/DHAuto.o
+ .debug_macro   0x00004366       0x16 ./source/DHA/DHAuto.o
+ .debug_macro   0x0000437c       0x28 ./source/DHA/DHAuto.o
+ .debug_macro   0x000043a4       0x34 ./source/DHA/DHAuto.o
+ .debug_macro   0x000043d8       0x2e ./source/DHA/DHAuto.o
+ .debug_macro   0x00004406       0x58 ./source/DHA/DHAuto.o
+ .debug_macro   0x0000445e      0x63a ./source/DHA/DHAutoApp.o
+ .debug_macro   0x00004a98      0x6d0 ./source/DHA/DHAutoApp_lightingGrill.o
+ .debug_macro   0x00005168      0x658 ./source/DHA/DHAutoCan.o
+ .debug_macro   0x000057c0      0x640 ./source/DHA/DHAutoCan_il.o
+ .debug_macro   0x00005e00      0x63a ./source/DHA/DHAutoCan_il_par.o
+ .debug_macro   0x0000643a      0x646 ./source/DHA/DHAutoCan_par.o
+ .debug_macro   0x00006a80      0x63a ./source/DHA/DHAutoEnet.o
+ .debug_macro   0x000070ba      0x6be ./source/DHA/DHAutoIoctrl.o
+ .debug_macro   0x00007778      0x646 ./source/DHA/DHAutoQueue.o
+ .debug_macro   0x00007dbe      0x64c ./source/DHA/DHAutoRtc.o
+ .debug_macro   0x0000840a      0x63a ./source/DHA/DHAutoSequence.o
+ .debug_macro   0x00008a44      0x63a ./source/DHA/DHAutoTimer.o
+ .debug_macro   0x0000907e      0x58c ./source/COMMON/UDP/udpClientRAW.o
+ .debug_macro   0x0000960a       0x1c ./source/COMMON/UDP/udpClientRAW.o
+ .debug_macro   0x00009626       0x99 ./source/COMMON/UDP/udpClientRAW.o
+ .debug_macro   0x000096bf       0x10 ./source/COMMON/UDP/udpClientRAW.o
+ .debug_macro   0x000096cf       0xb3 ./source/COMMON/UDP/udpClientRAW.o
+ .debug_macro   0x00009782       0xa0 ./source/COMMON/UDP/udpClientRAW.o
+ .debug_macro   0x00009822       0x28 ./source/COMMON/UDP/udpClientRAW.o
+ .debug_macro   0x0000984a       0x2e ./source/COMMON/UDP/udpClientRAW.o
+ .debug_macro   0x00009878       0xf0 ./source/COMMON/UDP/udpClientRAW.o
+ .debug_macro   0x00009968       0x10 ./source/COMMON/UDP/udpClientRAW.o
+ .debug_macro   0x00009978       0x4d ./source/COMMON/UDP/udpClientRAW.o
+ .debug_macro   0x000099c5       0x2e ./source/COMMON/UDP/udpClientRAW.o
+ .debug_macro   0x000099f3       0x70 ./source/COMMON/UDP/udpClientRAW.o
+ .debug_macro   0x00009a63       0xf2 ./source/COMMON/UDP/udpClientRAW.o
+ .debug_macro   0x00009b55       0x10 ./source/COMMON/UDP/udpClientRAW.o
+ .debug_macro   0x00009b65       0x10 ./source/COMMON/UDP/udpClientRAW.o
+ .debug_macro   0x00009b75      0x682 ./source/COMMON/ENET/enet.o
+ .debug_macro   0x0000a1f7      0x652 ./source/COMMON/CAN/can.o
+ .debug_macro   0x0000a849      0x63a ./source/COMMON/EnetApp.o
+ .debug_macro   0x0000ae83      0x673 ./source/COMMON/appcommon.o
+ .debug_macro   0x0000b4f6       0x8e ./source/COMMON/appcommon.o
+ .debug_macro   0x0000b584       0x1c ./source/COMMON/appcommon.o
+ .debug_macro   0x0000b5a0       0x82 ./source/COMMON/appcommon.o
+ .debug_macro   0x0000b622      0x682 ./source/COMMON/softtimer.o
+ .debug_macro   0x0000bca4      0x67d ./source/main.o
+ .debug_macro   0x0000c321       0x97 ./source/main.o
+ .debug_macro   0x0000c3b8      0x1cb ./source/main.o
+ .debug_macro   0x0000c583       0x9a ./source/main.o
+ .debug_macro   0x0000c61d       0x16 ./source/main.o
+ .debug_macro   0x0000c633       0x4e ./source/main.o
+ .debug_macro   0x0000c681       0x46 ./source/main.o
+ .debug_macro   0x0000c6c7       0x64 ./source/main.o
+ .debug_macro   0x0000c72b       0x5f ./source/main.o
+ .debug_macro   0x0000c78a       0x1c ./source/main.o
+ .debug_macro   0x0000c7a6       0x34 ./source/main.o
+ .debug_macro   0x0000c7da      0x143 ./source/main.o
+ .debug_macro   0x0000c91d       0x28 ./source/main.o
+ .debug_macro   0x0000c945       0x16 ./source/main.o
+ .debug_macro   0x0000c95b       0xb8 ./source/main.o
+ .debug_macro   0x0000ca13       0x88 ./source/main.o
+ .debug_macro   0x0000ca9b       0x10 ./source/main.o
+ .debug_macro   0x0000caab       0x11 ./source/semihost_hardfault.o
+ .debug_macro   0x0000cabc      0x3de ./source/sfw.o
+ .debug_macro   0x0000ce9a      0x379 ./source/sfw.o
+ .debug_macro   0x0000d213      0x3fc ./mbedtls/port/ksdk/ksdk_mbedtls.o
+ .debug_macro   0x0000d60f       0x75 ./mbedtls/port/ksdk/ksdk_mbedtls.o
+ .debug_macro   0x0000d684       0x16 ./mbedtls/port/ksdk/ksdk_mbedtls.o
+ .debug_macro   0x0000d69a       0x28 ./mbedtls/port/ksdk/ksdk_mbedtls.o
+ .debug_macro   0x0000d6c2       0x5a ./mbedtls/port/ksdk/ksdk_mbedtls.o
+ .debug_macro   0x0000d71c       0x10 ./mbedtls/port/ksdk/ksdk_mbedtls.o
+ .debug_macro   0x0000d72c       0x10 ./mbedtls/port/ksdk/ksdk_mbedtls.o
+ .debug_macro   0x0000d73c       0x20 ./mbedtls/port/ksdk/ksdk_mbedtls.o
+ .debug_macro   0x0000d75c       0x10 ./mbedtls/port/ksdk/ksdk_mbedtls.o
+ .debug_macro   0x0000d76c       0x10 ./mbedtls/port/ksdk/ksdk_mbedtls.o
+ .debug_macro   0x0000d77c       0x20 ./mbedtls/port/ksdk/ksdk_mbedtls.o
+ .debug_macro   0x0000d79c      0x4b6 ./lwip/src/netif/ethernet.o
+ .debug_macro   0x0000dc52       0x3b ./lwip/src/netif/ethernet.o
+ .debug_macro   0x0000dc8d      0x4dd ./lwip/src/core/ipv4/etharp.o
+ .debug_macro   0x0000e16a       0x10 ./lwip/src/core/ipv4/etharp.o
+ .debug_macro   0x0000e17a      0x491 ./lwip/src/core/ipv4/icmp.o
+ .debug_macro   0x0000e60b       0x1c ./lwip/src/core/ipv4/icmp.o
+ .debug_macro   0x0000e627      0x510 ./lwip/src/core/ipv4/ip4.o
+ .debug_macro   0x0000eb37       0x16 ./lwip/src/core/ipv4/ip4.o
+ .debug_macro   0x0000eb4d       0x7c ./lwip/src/core/ipv4/ip4.o
+ .debug_macro   0x0000ebc9      0x1dd ./lwip/src/core/ipv4/ip4.o
+ .debug_macro   0x0000eda6      0x423 ./lwip/src/core/ipv4/ip4_addr.o
+ .debug_macro   0x0000f1c9      0x4b8 ./lwip/src/core/ipv4/ip4_frag.o
+ .debug_macro   0x0000f681       0x10 ./lwip/src/core/ipv4/ip4_frag.o
+ .debug_macro   0x0000f691      0x381 ./lwip/src/core/def.o
+ .debug_macro   0x0000fa12      0x3db ./lwip/src/core/inet_chksum.o
+ .debug_macro   0x0000fded       0x16 ./lwip/src/core/inet_chksum.o
+ .debug_macro   0x0000fe03      0x57d ./lwip/src/core/init.o
+ .debug_macro   0x00010380      0x463 ./lwip/src/core/ip.o
+ .debug_macro   0x000107e3      0x47c ./lwip/src/core/mem.o
+ .debug_macro   0x00010c5f      0x5b8 ./lwip/src/core/memp.o
+ .debug_macro   0x00011217      0x122 ./lwip/src/core/memp.o
+ .debug_macro   0x00011339      0x53c ./lwip/src/core/netif.o
+ .debug_macro   0x00011875      0x444 ./lwip/src/core/pbuf.o
+ .debug_macro   0x00011cb9      0x4d8 ./lwip/src/core/tcp.o
+ .debug_macro   0x00012191      0x134 ./lwip/src/core/tcp.o
+ .debug_macro   0x000122c5      0x4c5 ./lwip/src/core/tcp_in.o
+ .debug_macro   0x0001278a      0x4d3 ./lwip/src/core/tcp_out.o
+ .debug_macro   0x00012c5d      0x564 ./lwip/src/core/timeouts.o
+ .debug_macro   0x000131c1       0x10 ./lwip/src/core/timeouts.o
+ .debug_macro   0x000131d1      0x4d5 ./lwip/src/core/udp.o
+ .debug_macro   0x000136a6      0x461 ./lwip/port/enet_ethernetif.o
+ .debug_macro   0x00013b07       0x28 ./lwip/port/enet_ethernetif.o
+ .debug_macro   0x00013b2f      0x540 ./lwip/port/enet_ethernetif_kinetis.o
+ .debug_macro   0x0001406f      0x50a ./lwip/port/ethernetif.o
+ .debug_macro   0x00014579       0xba ./lwip/port/ethernetif.o
+ .debug_macro   0x00014633      0x3f8 ./lwip/port/sys_arch.o
+ .debug_macro   0x00014a2b      0x296 ./flash/mflash/mimxrt1170/mflash_drv.o
+ .debug_macro   0x00014cc1       0x16 ./flash/mflash/mimxrt1170/mflash_drv.o
+ .debug_macro   0x00014cd7       0x16 ./flash/mflash/mimxrt1170/mflash_drv.o
+ .debug_macro   0x00014ced       0x10 ./flash/mflash/mimxrt1170/mflash_drv.o
+ .debug_macro   0x00014cfd      0x24b ./flash/flash_api.o
+ .debug_macro   0x00014f48      0x202 ./drivers/fsl_anatop_ai.o
+ .debug_macro   0x0001514a      0x3a6 ./drivers/fsl_anatop_ai.o
+ .debug_macro   0x000154f0      0x327 ./drivers/fsl_caam.o
+ .debug_macro   0x00015817       0x3b ./drivers/fsl_caam.o
+ .debug_macro   0x00015852      0x203 ./drivers/fsl_cache.o
+ .debug_macro   0x00015a55      0x285 ./drivers/fsl_clock.o
+ .debug_macro   0x00015cda       0x16 ./drivers/fsl_clock.o
+ .debug_macro   0x00015cf0      0x3ac ./drivers/fsl_clock.o
+ .debug_macro   0x0001609c      0x1f3 ./drivers/fsl_common_arm.o
+ .debug_macro   0x0001628f      0x202 ./drivers/fsl_dcdc.o
+ .debug_macro   0x00016491       0x22 ./drivers/fsl_dcdc.o
+ .debug_macro   0x000164b3      0x21d ./drivers/fsl_enet.o
+ .debug_macro   0x000166d0       0xcb ./drivers/fsl_enet.o
+ .debug_macro   0x0001679b      0x346 ./drivers/fsl_flexcan.o
+ .debug_macro   0x00016ae1      0x111 ./drivers/fsl_flexcan.o
+ .debug_macro   0x00016bf2      0x218 ./drivers/fsl_flexspi.o
+ .debug_macro   0x00016e0a      0x203 ./drivers/fsl_gpio.o
+ .debug_macro   0x0001700d      0x202 ./drivers/fsl_lpuart.o
+ .debug_macro   0x0001720f       0x10 ./drivers/fsl_lpuart.o
+ .debug_macro   0x0001721f      0x203 ./drivers/fsl_pit.o
+ .debug_macro   0x00017422      0x2cc ./drivers/fsl_pmu.o
+ .debug_macro   0x000176ee       0x10 ./drivers/fsl_pmu.o
+ .debug_macro   0x000176fe      0x226 ./drivers/fsl_snvs_hp.o
+ .debug_macro   0x00017924       0x2e ./drivers/fsl_snvs_hp.o
+ .debug_macro   0x00017952       0x9b ./device/system_MIMXRT1176_cm7.o
+ .debug_macro   0x000179ed      0x221 ./component/uart/fsl_adapter_lpuart.o
+ .debug_macro   0x00017c0e       0x41 ./component/uart/fsl_adapter_lpuart.o
+ .debug_macro   0x00017c4f      0x26b ./component/serial_manager/fsl_component_serial_manager.o
+ .debug_macro   0x00017eba       0x6a ./component/serial_manager/fsl_component_serial_manager.o
+ .debug_macro   0x00017f24      0x22f ./component/serial_manager/fsl_component_serial_port_uart.o
+ .debug_macro   0x00018153      0x284 ./component/phy/fsl_phyksz8081.o
+ .debug_macro   0x000183d7       0xb8 ./component/phy/fsl_phyksz8081.o
+ .debug_macro   0x0001848f      0x2b4 ./component/phy/fsl_phyrtl8211f.o
+ .debug_macro   0x00018743      0x216 ./component/gpio/fsl_adapter_igpio.o
+ .debug_macro   0x00018959       0x22 ./component/gpio/fsl_adapter_igpio.o
+ .debug_macro   0x0001897b      0x25e ./board/board.o
+ .debug_macro   0x00018bd9     0x2537 ./board/board.o
+ .debug_macro   0x0001b110      0x237 ./board/clock_config.o
+ .debug_macro   0x0001b347       0x28 ./board/clock_config.o
+ .debug_macro   0x0001b36f      0x208 ./board/pin_mux.o
+ .debug_macro   0x0001b577      0x345 ./Crypto/test_src/src/test_src.o
+ .debug_macro   0x0001b8bc       0x10 ./Crypto/test_src/src/test_src.o
+ .debug_macro   0x0001b8cc       0xac ./Crypto/test_src/src/test_src.o
+ .debug_macro   0x0001b978       0x35 ./Crypto/test_src/src/test_src.o
+ .debug_macro   0x0001b9ad      0x1ef ./Crypto/src/aursa.o
+ .debug_macro   0x0001bb9c      0x104 ./Crypto/src/aursa.o
+ .debug_macro   0x0001bca0       0x28 ./Crypto/src/aursa.o
+ .debug_macro   0x0001bcc8       0x6b ./Crypto/src/aursa.o
+ .debug_macro   0x0001bd33       0xf4 ./Crypto/src/aursa.o
+ .debug_macro   0x0001be27      0x1db ./Crypto/src/bignum.o
+ .debug_macro   0x0001c002       0x19 ./Crypto/src/bignum.o
+ .debug_macro   0x0001c01b      0x14a ./Crypto/src/md.o
+ .debug_macro   0x0001c165      0x199 ./Crypto/src/md_wrap.o
+ .debug_macro   0x0001c2fe       0x10 ./Crypto/src/md_wrap.o
+ .debug_macro   0x0001c30e      0x215 ./Crypto/src/rsa.o
+ .debug_macro   0x0001c523       0x10 ./Crypto/src/rsa.o
+ .debug_macro   0x0001c533      0x1c4 ./Crypto/src/sha1.o
+ .debug_macro   0x0001c6f7      0x195 ./Crypto/src/sha2.o
 
-.debug_line     0x00000000    0x6ec80
+.debug_line     0x00000000    0x6ece4
  .debug_line    0x00000000      0x7a1 ./utilities/fsl_assert.o
  .debug_line    0x000007a1      0xd2c ./utilities/fsl_debug_console.o
  .debug_line    0x000014cd       0x89 ./utilities/fsl_memcpy.o
@@ -51836,88 +51844,88 @@ LOAD linker stubs
  .debug_line    0x00002b53     0x1afd ./startup/startup_mimxrt1176_cm7.o
  .debug_line    0x00004650     0x1318 ./source/DHA/DHAuto.o
  .debug_line    0x00005968     0x13e9 ./source/DHA/DHAutoApp.o
- .debug_line    0x00006d51     0x17ff ./source/DHA/DHAutoApp_lightingGrill.o
- .debug_line    0x00008550     0x22e4 ./source/DHA/DHAutoCan.o
- .debug_line    0x0000a834     0x1513 ./source/DHA/DHAutoCan_il.o
- .debug_line    0x0000bd47     0x2686 ./source/DHA/DHAutoCan_il_par.o
- .debug_line    0x0000e3cd     0x12eb ./source/DHA/DHAutoCan_par.o
- .debug_line    0x0000f6b8     0x140c ./source/DHA/DHAutoEnet.o
- .debug_line    0x00010ac4     0x1802 ./source/DHA/DHAutoIoctrl.o
- .debug_line    0x000122c6     0x17bd ./source/DHA/DHAutoQueue.o
- .debug_line    0x00013a83     0x142b ./source/DHA/DHAutoRtc.o
- .debug_line    0x00014eae     0x13d1 ./source/DHA/DHAutoSequence.o
- .debug_line    0x0001627f     0x1448 ./source/DHA/DHAutoTimer.o
- .debug_line    0x000176c7     0x1198 ./source/COMMON/UDP/udpClientRAW.o
- .debug_line    0x0001885f     0x1800 ./source/COMMON/ENET/enet.o
- .debug_line    0x0001a05f     0x1cf0 ./source/COMMON/CAN/can.o
- .debug_line    0x0001bd4f     0x1318 ./source/COMMON/EnetApp.o
- .debug_line    0x0001d067     0x161a ./source/COMMON/appcommon.o
- .debug_line    0x0001e681     0x189d ./source/COMMON/softtimer.o
- .debug_line    0x0001ff1e     0x15f0 ./source/main.o
- .debug_line    0x0002150e       0x58 ./source/semihost_hardfault.o
- .debug_line    0x00021566     0x1471 ./source/sfw.o
- .debug_line    0x000229d7     0x1fe6 ./mbedtls/port/ksdk/ksdk_mbedtls.o
- .debug_line    0x000249bd      0xe78 ./lwip/src/netif/ethernet.o
- .debug_line    0x00025835     0x195b ./lwip/src/core/ipv4/etharp.o
- .debug_line    0x00027190      0xfb9 ./lwip/src/core/ipv4/icmp.o
- .debug_line    0x00028149     0x142e ./lwip/src/core/ipv4/ip4.o
- .debug_line    0x00029577      0xfa8 ./lwip/src/core/ipv4/ip4_addr.o
- .debug_line    0x0002a51f     0x184b ./lwip/src/core/ipv4/ip4_frag.o
- .debug_line    0x0002bd6a      0xd3e ./lwip/src/core/def.o
- .debug_line    0x0002caa8      0xf1a ./lwip/src/core/inet_chksum.o
- .debug_line    0x0002d9c2      0xd8c ./lwip/src/core/init.o
- .debug_line    0x0002e74e      0xbe0 ./lwip/src/core/ip.o
- .debug_line    0x0002f32e     0x1489 ./lwip/src/core/mem.o
- .debug_line    0x000307b7     0x10c4 ./lwip/src/core/memp.o
- .debug_line    0x0003187b     0x1979 ./lwip/src/core/netif.o
- .debug_line    0x000331f4     0x1f95 ./lwip/src/core/pbuf.o
- .debug_line    0x00035189     0x2f5d ./lwip/src/core/tcp.o
- .debug_line    0x000380e6     0x2868 ./lwip/src/core/tcp_in.o
- .debug_line    0x0003a94e     0x2c0e ./lwip/src/core/tcp_out.o
- .debug_line    0x0003d55c     0x10e7 ./lwip/src/core/timeouts.o
- .debug_line    0x0003e643     0x1a57 ./lwip/src/core/udp.o
- .debug_line    0x0004009a      0xd3f ./lwip/port/enet_ethernetif.o
- .debug_line    0x00040dd9     0x1623 ./lwip/port/enet_ethernetif_kinetis.o
- .debug_line    0x000423fc     0x1295 ./lwip/port/ethernetif.o
- .debug_line    0x00043691      0xd02 ./lwip/port/sys_arch.o
- .debug_line    0x00044393      0xcc1 ./flash/mflash/mimxrt1170/mflash_drv.o
- .debug_line    0x00045054      0xa52 ./flash/flash_api.o
- .debug_line    0x00045aa6      0xc75 ./drivers/fsl_anatop_ai.o
- .debug_line    0x0004671b     0x5c33 ./drivers/fsl_caam.o
- .debug_line    0x0004c34e      0x848 ./drivers/fsl_cache.o
- .debug_line    0x0004cb96     0x2466 ./drivers/fsl_clock.o
- .debug_line    0x0004effc      0x66b ./drivers/fsl_common_arm.o
- .debug_line    0x0004f667      0xdb3 ./drivers/fsl_dcdc.o
- .debug_line    0x0005041a     0x3224 ./drivers/fsl_enet.o
- .debug_line    0x0005363e     0x3d7f ./drivers/fsl_flexcan.o
- .debug_line    0x000573bd     0x1a97 ./drivers/fsl_flexspi.o
- .debug_line    0x00058e54      0x81a ./drivers/fsl_gpio.o
- .debug_line    0x0005966e     0x26be ./drivers/fsl_lpuart.o
- .debug_line    0x0005bd2c      0x77d ./drivers/fsl_pit.o
- .debug_line    0x0005c4a9     0x115e ./drivers/fsl_pmu.o
- .debug_line    0x0005d607      0xc71 ./drivers/fsl_snvs_hp.o
- .debug_line    0x0005e278      0x400 ./device/system_MIMXRT1176_cm7.o
- .debug_line    0x0005e678      0x905 ./component/uart/fsl_adapter_lpuart.o
- .debug_line    0x0005ef7d      0xe10 ./component/serial_manager/fsl_component_serial_manager.o
- .debug_line    0x0005fd8d      0x92f ./component/serial_manager/fsl_component_serial_port_uart.o
- .debug_line    0x000606bc      0xb64 ./component/phy/fsl_phyksz8081.o
- .debug_line    0x00061220      0xd0b ./component/phy/fsl_phyrtl8211f.o
- .debug_line    0x00061f2b     0x1085 ./component/gpio/fsl_adapter_igpio.o
- .debug_line    0x00062fb0      0xd93 ./board/board.o
- .debug_line    0x00063d43     0x1782 ./board/clock_config.o
- .debug_line    0x000654c5      0xfcd ./board/pin_mux.o
- .debug_line    0x00066492     0x18e8 ./Crypto/test_src/src/test_src.o
- .debug_line    0x00067d7a      0x66a ./Crypto/src/aursa.o
- .debug_line    0x000683e4     0x2536 ./Crypto/src/bignum.o
- .debug_line    0x0006a91a      0x838 ./Crypto/src/md.o
- .debug_line    0x0006b152      0x83b ./Crypto/src/md_wrap.o
- .debug_line    0x0006b98d     0x172d ./Crypto/src/rsa.o
- .debug_line    0x0006d0ba      0xbe2 ./Crypto/src/sha1.o
- .debug_line    0x0006dc9c      0xdb6 ./Crypto/src/sha2.o
- .debug_line    0x0006ea52      0x1cd c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard\libcr_newlib_nohost.a(_cr_sbrk.o)
- .debug_line    0x0006ec1f       0x61 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard\libcr_newlib_nohost.a(_cr_check_heap.o)
+ .debug_line    0x00006d51     0x1863 ./source/DHA/DHAutoApp_lightingGrill.o
+ .debug_line    0x000085b4     0x22e4 ./source/DHA/DHAutoCan.o
+ .debug_line    0x0000a898     0x1513 ./source/DHA/DHAutoCan_il.o
+ .debug_line    0x0000bdab     0x2686 ./source/DHA/DHAutoCan_il_par.o
+ .debug_line    0x0000e431     0x12eb ./source/DHA/DHAutoCan_par.o
+ .debug_line    0x0000f71c     0x140c ./source/DHA/DHAutoEnet.o
+ .debug_line    0x00010b28     0x1802 ./source/DHA/DHAutoIoctrl.o
+ .debug_line    0x0001232a     0x17bd ./source/DHA/DHAutoQueue.o
+ .debug_line    0x00013ae7     0x142b ./source/DHA/DHAutoRtc.o
+ .debug_line    0x00014f12     0x13d1 ./source/DHA/DHAutoSequence.o
+ .debug_line    0x000162e3     0x1448 ./source/DHA/DHAutoTimer.o
+ .debug_line    0x0001772b     0x1198 ./source/COMMON/UDP/udpClientRAW.o
+ .debug_line    0x000188c3     0x1800 ./source/COMMON/ENET/enet.o
+ .debug_line    0x0001a0c3     0x1cf0 ./source/COMMON/CAN/can.o
+ .debug_line    0x0001bdb3     0x1318 ./source/COMMON/EnetApp.o
+ .debug_line    0x0001d0cb     0x161a ./source/COMMON/appcommon.o
+ .debug_line    0x0001e6e5     0x189d ./source/COMMON/softtimer.o
+ .debug_line    0x0001ff82     0x15f0 ./source/main.o
+ .debug_line    0x00021572       0x58 ./source/semihost_hardfault.o
+ .debug_line    0x000215ca     0x1471 ./source/sfw.o
+ .debug_line    0x00022a3b     0x1fe6 ./mbedtls/port/ksdk/ksdk_mbedtls.o
+ .debug_line    0x00024a21      0xe78 ./lwip/src/netif/ethernet.o
+ .debug_line    0x00025899     0x195b ./lwip/src/core/ipv4/etharp.o
+ .debug_line    0x000271f4      0xfb9 ./lwip/src/core/ipv4/icmp.o
+ .debug_line    0x000281ad     0x142e ./lwip/src/core/ipv4/ip4.o
+ .debug_line    0x000295db      0xfa8 ./lwip/src/core/ipv4/ip4_addr.o
+ .debug_line    0x0002a583     0x184b ./lwip/src/core/ipv4/ip4_frag.o
+ .debug_line    0x0002bdce      0xd3e ./lwip/src/core/def.o
+ .debug_line    0x0002cb0c      0xf1a ./lwip/src/core/inet_chksum.o
+ .debug_line    0x0002da26      0xd8c ./lwip/src/core/init.o
+ .debug_line    0x0002e7b2      0xbe0 ./lwip/src/core/ip.o
+ .debug_line    0x0002f392     0x1489 ./lwip/src/core/mem.o
+ .debug_line    0x0003081b     0x10c4 ./lwip/src/core/memp.o
+ .debug_line    0x000318df     0x1979 ./lwip/src/core/netif.o
+ .debug_line    0x00033258     0x1f95 ./lwip/src/core/pbuf.o
+ .debug_line    0x000351ed     0x2f5d ./lwip/src/core/tcp.o
+ .debug_line    0x0003814a     0x2868 ./lwip/src/core/tcp_in.o
+ .debug_line    0x0003a9b2     0x2c0e ./lwip/src/core/tcp_out.o
+ .debug_line    0x0003d5c0     0x10e7 ./lwip/src/core/timeouts.o
+ .debug_line    0x0003e6a7     0x1a57 ./lwip/src/core/udp.o
+ .debug_line    0x000400fe      0xd3f ./lwip/port/enet_ethernetif.o
+ .debug_line    0x00040e3d     0x1623 ./lwip/port/enet_ethernetif_kinetis.o
+ .debug_line    0x00042460     0x1295 ./lwip/port/ethernetif.o
+ .debug_line    0x000436f5      0xd02 ./lwip/port/sys_arch.o
+ .debug_line    0x000443f7      0xcc1 ./flash/mflash/mimxrt1170/mflash_drv.o
+ .debug_line    0x000450b8      0xa52 ./flash/flash_api.o
+ .debug_line    0x00045b0a      0xc75 ./drivers/fsl_anatop_ai.o
+ .debug_line    0x0004677f     0x5c33 ./drivers/fsl_caam.o
+ .debug_line    0x0004c3b2      0x848 ./drivers/fsl_cache.o
+ .debug_line    0x0004cbfa     0x2466 ./drivers/fsl_clock.o
+ .debug_line    0x0004f060      0x66b ./drivers/fsl_common_arm.o
+ .debug_line    0x0004f6cb      0xdb3 ./drivers/fsl_dcdc.o
+ .debug_line    0x0005047e     0x3224 ./drivers/fsl_enet.o
+ .debug_line    0x000536a2     0x3d7f ./drivers/fsl_flexcan.o
+ .debug_line    0x00057421     0x1a97 ./drivers/fsl_flexspi.o
+ .debug_line    0x00058eb8      0x81a ./drivers/fsl_gpio.o
+ .debug_line    0x000596d2     0x26be ./drivers/fsl_lpuart.o
+ .debug_line    0x0005bd90      0x77d ./drivers/fsl_pit.o
+ .debug_line    0x0005c50d     0x115e ./drivers/fsl_pmu.o
+ .debug_line    0x0005d66b      0xc71 ./drivers/fsl_snvs_hp.o
+ .debug_line    0x0005e2dc      0x400 ./device/system_MIMXRT1176_cm7.o
+ .debug_line    0x0005e6dc      0x905 ./component/uart/fsl_adapter_lpuart.o
+ .debug_line    0x0005efe1      0xe10 ./component/serial_manager/fsl_component_serial_manager.o
+ .debug_line    0x0005fdf1      0x92f ./component/serial_manager/fsl_component_serial_port_uart.o
+ .debug_line    0x00060720      0xb64 ./component/phy/fsl_phyksz8081.o
+ .debug_line    0x00061284      0xd0b ./component/phy/fsl_phyrtl8211f.o
+ .debug_line    0x00061f8f     0x1085 ./component/gpio/fsl_adapter_igpio.o
+ .debug_line    0x00063014      0xd93 ./board/board.o
+ .debug_line    0x00063da7     0x1782 ./board/clock_config.o
+ .debug_line    0x00065529      0xfcd ./board/pin_mux.o
+ .debug_line    0x000664f6     0x18e8 ./Crypto/test_src/src/test_src.o
+ .debug_line    0x00067dde      0x66a ./Crypto/src/aursa.o
+ .debug_line    0x00068448     0x2536 ./Crypto/src/bignum.o
+ .debug_line    0x0006a97e      0x838 ./Crypto/src/md.o
+ .debug_line    0x0006b1b6      0x83b ./Crypto/src/md_wrap.o
+ .debug_line    0x0006b9f1     0x172d ./Crypto/src/rsa.o
+ .debug_line    0x0006d11e      0xbe2 ./Crypto/src/sha1.o
+ .debug_line    0x0006dd00      0xdb6 ./Crypto/src/sha2.o
+ .debug_line    0x0006eab6      0x1cd c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard\libcr_newlib_nohost.a(_cr_sbrk.o)
+ .debug_line    0x0006ec83       0x61 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard\libcr_newlib_nohost.a(_cr_check_heap.o)
 
-.debug_str      0x00000000   0x2eb6dc
+.debug_str      0x00000000   0x2eb757
  .debug_str     0x00000000   0x285d2e ./utilities/fsl_assert.o
                              0x285ffe (size before relaxing)
  .debug_str     0x00285d2e     0x16dc ./utilities/fsl_debug_console.o
@@ -51928,169 +51936,169 @@ LOAD linker stubs
                              0x286486 (size before relaxing)
  .debug_str     0x002882b9     0x1522 ./startup/startup_mimxrt1176_cm7.o
                              0x27faae (size before relaxing)
- .debug_str     0x002897db    0x118d1 ./source/DHA/DHAuto.o
-                             0x2979eb (size before relaxing)
- .debug_str     0x0029b0ac      0x548 ./source/DHA/DHAutoApp.o
-                             0x297e9b (size before relaxing)
- .debug_str     0x0029b5f4     0x18be ./source/DHA/DHAutoApp_lightingGrill.o
-                             0x299ff8 (size before relaxing)
- .debug_str     0x0029ceb2     0x2372 ./source/DHA/DHAutoCan.o
-                             0x29adff (size before relaxing)
- .debug_str     0x0029f224       0x92 ./source/DHA/DHAutoCan_il.o
-                             0x298bb2 (size before relaxing)
- .debug_str     0x0029f2b6     0x140f ./source/DHA/DHAutoCan_il_par.o
-                             0x29b8d1 (size before relaxing)
- .debug_str     0x002a06c5      0x75a ./source/DHA/DHAutoCan_par.o
-                             0x2997c9 (size before relaxing)
- .debug_str     0x002a0e1f       0x6c ./source/DHA/DHAutoEnet.o
-                             0x297c2d (size before relaxing)
- .debug_str     0x002a0e8b      0xc9c ./source/DHA/DHAutoIoctrl.o
-                             0x299709 (size before relaxing)
- .debug_str     0x002a1b27       0x92 ./source/DHA/DHAutoQueue.o
-                             0x297aec (size before relaxing)
- .debug_str     0x002a1bb9      0xf96 ./source/DHA/DHAutoRtc.o
-                             0x2998bb (size before relaxing)
- .debug_str     0x002a2b4f       0x6e ./source/DHA/DHAutoSequence.o
-                             0x29896a (size before relaxing)
- .debug_str     0x002a2bbd       0x5d ./source/DHA/DHAutoTimer.o
-                             0x29874d (size before relaxing)
- .debug_str     0x002a2c1a     0x1b39 ./source/COMMON/UDP/udpClientRAW.o
+ .debug_str     0x002897db    0x118ed ./source/DHA/DHAuto.o
+                             0x297a07 (size before relaxing)
+ .debug_str     0x0029b0c8      0x548 ./source/DHA/DHAutoApp.o
+                             0x297eb7 (size before relaxing)
+ .debug_str     0x0029b610     0x191d ./source/DHA/DHAutoApp_lightingGrill.o
+                             0x29a073 (size before relaxing)
+ .debug_str     0x0029cf2d     0x2372 ./source/DHA/DHAutoCan.o
+                             0x29ae1b (size before relaxing)
+ .debug_str     0x0029f29f       0x92 ./source/DHA/DHAutoCan_il.o
+                             0x298bce (size before relaxing)
+ .debug_str     0x0029f331     0x140f ./source/DHA/DHAutoCan_il_par.o
+                             0x29b8ed (size before relaxing)
+ .debug_str     0x002a0740      0x75a ./source/DHA/DHAutoCan_par.o
+                             0x2997e5 (size before relaxing)
+ .debug_str     0x002a0e9a       0x6c ./source/DHA/DHAutoEnet.o
+                             0x297c49 (size before relaxing)
+ .debug_str     0x002a0f06      0xc9c ./source/DHA/DHAutoIoctrl.o
+                             0x299725 (size before relaxing)
+ .debug_str     0x002a1ba2       0x92 ./source/DHA/DHAutoQueue.o
+                             0x297b08 (size before relaxing)
+ .debug_str     0x002a1c34      0xf96 ./source/DHA/DHAutoRtc.o
+                             0x2998d7 (size before relaxing)
+ .debug_str     0x002a2bca       0x6e ./source/DHA/DHAutoSequence.o
+                             0x298986 (size before relaxing)
+ .debug_str     0x002a2c38       0x5d ./source/DHA/DHAutoTimer.o
+                             0x298769 (size before relaxing)
+ .debug_str     0x002a2c95     0x1b39 ./source/COMMON/UDP/udpClientRAW.o
                              0x29539c (size before relaxing)
- .debug_str     0x002a4753     0x1b6a ./source/COMMON/ENET/enet.o
-                             0x29b092 (size before relaxing)
- .debug_str     0x002a62bd      0x9ba ./source/COMMON/CAN/can.o
-                             0x29a1f2 (size before relaxing)
- .debug_str     0x002a6c77       0x40 ./source/COMMON/EnetApp.o
-                             0x2986d0 (size before relaxing)
- .debug_str     0x002a6cb7      0x8cc ./source/COMMON/appcommon.o
-                             0x29a132 (size before relaxing)
- .debug_str     0x002a7583      0x428 ./source/COMMON/softtimer.o
-                             0x29a642 (size before relaxing)
- .debug_str     0x002a79ab     0x1799 ./source/main.o
+ .debug_str     0x002a47ce     0x1b6a ./source/COMMON/ENET/enet.o
+                             0x29b0ae (size before relaxing)
+ .debug_str     0x002a6338      0x9ba ./source/COMMON/CAN/can.o
+                             0x29a20e (size before relaxing)
+ .debug_str     0x002a6cf2       0x40 ./source/COMMON/EnetApp.o
+                             0x2986ec (size before relaxing)
+ .debug_str     0x002a6d32      0x8cc ./source/COMMON/appcommon.o
+                             0x29a14e (size before relaxing)
+ .debug_str     0x002a75fe      0x428 ./source/COMMON/softtimer.o
+                             0x29a65e (size before relaxing)
+ .debug_str     0x002a7a26     0x1799 ./source/main.o
                              0x297dc7 (size before relaxing)
- .debug_str     0x002a9144       0x1f ./source/semihost_hardfault.o
+ .debug_str     0x002a91bf       0x1f ./source/semihost_hardfault.o
                                0x315a (size before relaxing)
- .debug_str     0x002a9163      0x75d ./source/sfw.o
+ .debug_str     0x002a91de      0x75d ./source/sfw.o
                              0x28d846 (size before relaxing)
- .debug_str     0x002a98c0     0x4f07 ./mbedtls/port/ksdk/ksdk_mbedtls.o
+ .debug_str     0x002a993b     0x4f07 ./mbedtls/port/ksdk/ksdk_mbedtls.o
                              0x28c3a6 (size before relaxing)
- .debug_str     0x002ae7c7      0x8f1 ./lwip/src/netif/ethernet.o
+ .debug_str     0x002ae842      0x8f1 ./lwip/src/netif/ethernet.o
                              0x28fd6c (size before relaxing)
- .debug_str     0x002af0b8      0x4e4 ./lwip/src/core/ipv4/etharp.o
+ .debug_str     0x002af133      0x4e4 ./lwip/src/core/ipv4/etharp.o
                              0x28f91c (size before relaxing)
- .debug_str     0x002af59c      0x347 ./lwip/src/core/ipv4/icmp.o
+ .debug_str     0x002af617      0x347 ./lwip/src/core/ipv4/icmp.o
                              0x28ed2e (size before relaxing)
- .debug_str     0x002af8e3     0x1657 ./lwip/src/core/ipv4/ip4.o
+ .debug_str     0x002af95e     0x1657 ./lwip/src/core/ipv4/ip4.o
                              0x29163e (size before relaxing)
- .debug_str     0x002b0f3a       0xa4 ./lwip/src/core/ipv4/ip4_addr.o
+ .debug_str     0x002b0fb5       0xa4 ./lwip/src/core/ipv4/ip4_addr.o
                              0x28e575 (size before relaxing)
- .debug_str     0x002b0fde      0x454 ./lwip/src/core/ipv4/ip4_frag.o
+ .debug_str     0x002b1059      0x454 ./lwip/src/core/ipv4/ip4_frag.o
                              0x28fac4 (size before relaxing)
- .debug_str     0x002b1432       0x9d ./lwip/src/core/def.o
+ .debug_str     0x002b14ad       0x9d ./lwip/src/core/def.o
                              0x28a8fc (size before relaxing)
- .debug_str     0x002b14cf      0x128 ./lwip/src/core/inet_chksum.o
+ .debug_str     0x002b154a      0x128 ./lwip/src/core/inet_chksum.o
                              0x28c99a (size before relaxing)
- .debug_str     0x002b15f7      0x6e8 ./lwip/src/core/init.o
+ .debug_str     0x002b1672      0x6e8 ./lwip/src/core/init.o
                              0x29139e (size before relaxing)
- .debug_str     0x002b1cdf       0x16 ./lwip/src/core/ip.o
+ .debug_str     0x002b1d5a       0x16 ./lwip/src/core/ip.o
                              0x28f23d (size before relaxing)
- .debug_str     0x002b1cf5      0x439 ./lwip/src/core/mem.o
+ .debug_str     0x002b1d70      0x439 ./lwip/src/core/mem.o
                              0x28c824 (size before relaxing)
- .debug_str     0x002b212e      0x877 ./lwip/src/core/memp.o
+ .debug_str     0x002b21a9      0x877 ./lwip/src/core/memp.o
                              0x29245a (size before relaxing)
- .debug_str     0x002b29a5      0x43c ./lwip/src/core/netif.o
+ .debug_str     0x002b2a20      0x43c ./lwip/src/core/netif.o
                              0x292559 (size before relaxing)
- .debug_str     0x002b2de1      0x353 ./lwip/src/core/pbuf.o
+ .debug_str     0x002b2e5c      0x353 ./lwip/src/core/pbuf.o
                              0x28e607 (size before relaxing)
- .debug_str     0x002b3134      0x839 ./lwip/src/core/tcp.o
+ .debug_str     0x002b31af      0x839 ./lwip/src/core/tcp.o
                              0x291af8 (size before relaxing)
- .debug_str     0x002b396d      0x265 ./lwip/src/core/tcp_in.o
+ .debug_str     0x002b39e8      0x265 ./lwip/src/core/tcp_in.o
                              0x291923 (size before relaxing)
- .debug_str     0x002b3bd2      0x35c ./lwip/src/core/tcp_out.o
+ .debug_str     0x002b3c4d      0x35c ./lwip/src/core/tcp_out.o
                              0x290f7e (size before relaxing)
- .debug_str     0x002b3f2e      0x213 ./lwip/src/core/timeouts.o
+ .debug_str     0x002b3fa9      0x213 ./lwip/src/core/timeouts.o
                              0x291ef3 (size before relaxing)
- .debug_str     0x002b4141      0x20f ./lwip/src/core/udp.o
+ .debug_str     0x002b41bc      0x20f ./lwip/src/core/udp.o
                              0x290147 (size before relaxing)
- .debug_str     0x002b4350     0x1de6 ./lwip/port/enet_ethernetif.o
+ .debug_str     0x002b43cb     0x1de6 ./lwip/port/enet_ethernetif.o
                              0x290313 (size before relaxing)
- .debug_str     0x002b6136      0x88d ./lwip/port/enet_ethernetif_kinetis.o
+ .debug_str     0x002b61b1      0x88d ./lwip/port/enet_ethernetif_kinetis.o
                              0x291616 (size before relaxing)
- .debug_str     0x002b69c3      0x124 ./lwip/port/ethernetif.o
+ .debug_str     0x002b6a3e      0x124 ./lwip/port/ethernetif.o
                              0x28fc0c (size before relaxing)
- .debug_str     0x002b6ae7       0x8a ./lwip/port/sys_arch.o
+ .debug_str     0x002b6b62       0x8a ./lwip/port/sys_arch.o
                              0x28d6c9 (size before relaxing)
- .debug_str     0x002b6b71      0xb95 ./flash/mflash/mimxrt1170/mflash_drv.o
+ .debug_str     0x002b6bec      0xb95 ./flash/mflash/mimxrt1170/mflash_drv.o
                              0x28924d (size before relaxing)
- .debug_str     0x002b7706       0x72 ./flash/flash_api.o
+ .debug_str     0x002b7781       0x72 ./flash/flash_api.o
                              0x285c00 (size before relaxing)
- .debug_str     0x002b7778     0x322b ./drivers/fsl_anatop_ai.o
+ .debug_str     0x002b77f3     0x322b ./drivers/fsl_anatop_ai.o
                              0x288874 (size before relaxing)
- .debug_str     0x002ba9a3     0x2939 ./drivers/fsl_caam.o
+ .debug_str     0x002baa1e     0x2939 ./drivers/fsl_caam.o
                              0x28ae06 (size before relaxing)
- .debug_str     0x002bd2dc      0x168 ./drivers/fsl_cache.o
+ .debug_str     0x002bd357      0x168 ./drivers/fsl_cache.o
                              0x285724 (size before relaxing)
- .debug_str     0x002bd444     0x1800 ./drivers/fsl_clock.o
+ .debug_str     0x002bd4bf     0x1800 ./drivers/fsl_clock.o
                              0x28be92 (size before relaxing)
- .debug_str     0x002bec44      0x14e ./drivers/fsl_common_arm.o
+ .debug_str     0x002becbf      0x14e ./drivers/fsl_common_arm.o
                              0x285583 (size before relaxing)
- .debug_str     0x002bed92     0x1a38 ./drivers/fsl_dcdc.o
+ .debug_str     0x002bee0d     0x1a38 ./drivers/fsl_dcdc.o
                              0x287b9e (size before relaxing)
- .debug_str     0x002c07ca      0xf8a ./drivers/fsl_enet.o
+ .debug_str     0x002c0845      0xf8a ./drivers/fsl_enet.o
                              0x28a106 (size before relaxing)
- .debug_str     0x002c1754     0x1e3a ./drivers/fsl_flexcan.o
+ .debug_str     0x002c17cf     0x1e3a ./drivers/fsl_flexcan.o
                              0x28b444 (size before relaxing)
- .debug_str     0x002c358e      0xd2e ./drivers/fsl_flexspi.o
+ .debug_str     0x002c3609      0xd2e ./drivers/fsl_flexspi.o
                              0x288b7b (size before relaxing)
- .debug_str     0x002c42bc      0x1d6 ./drivers/fsl_gpio.o
+ .debug_str     0x002c4337      0x1d6 ./drivers/fsl_gpio.o
                              0x286396 (size before relaxing)
- .debug_str     0x002c4492      0xd2b ./drivers/fsl_lpuart.o
+ .debug_str     0x002c450d      0xd2b ./drivers/fsl_lpuart.o
                              0x288cef (size before relaxing)
- .debug_str     0x002c51bd       0x97 ./drivers/fsl_pit.o
+ .debug_str     0x002c5238       0x97 ./drivers/fsl_pit.o
                              0x28625d (size before relaxing)
- .debug_str     0x002c5254     0x242c ./drivers/fsl_pmu.o
+ .debug_str     0x002c52cf     0x242c ./drivers/fsl_pmu.o
                              0x28aae8 (size before relaxing)
- .debug_str     0x002c7680      0x2a6 ./drivers/fsl_snvs_hp.o
+ .debug_str     0x002c76fb      0x2a6 ./drivers/fsl_snvs_hp.o
                              0x285be2 (size before relaxing)
- .debug_str     0x002c7926       0x79 ./device/system_MIMXRT1176_cm7.o
+ .debug_str     0x002c79a1       0x79 ./device/system_MIMXRT1176_cm7.o
                              0x27e8c1 (size before relaxing)
- .debug_str     0x002c799f      0x385 ./component/uart/fsl_adapter_lpuart.o
+ .debug_str     0x002c7a1a      0x385 ./component/uart/fsl_adapter_lpuart.o
                              0x28689f (size before relaxing)
- .debug_str     0x002c7d24      0x509 ./component/serial_manager/fsl_component_serial_manager.o
+ .debug_str     0x002c7d9f      0x509 ./component/serial_manager/fsl_component_serial_manager.o
                              0x287198 (size before relaxing)
- .debug_str     0x002c822d       0x92 ./component/serial_manager/fsl_component_serial_port_uart.o
+ .debug_str     0x002c82a8       0x92 ./component/serial_manager/fsl_component_serial_port_uart.o
                              0x28633e (size before relaxing)
- .debug_str     0x002c82bf      0x547 ./component/phy/fsl_phyksz8081.o
+ .debug_str     0x002c833a      0x547 ./component/phy/fsl_phyksz8081.o
                              0x2861cf (size before relaxing)
- .debug_str     0x002c8806      0x696 ./component/phy/fsl_phyrtl8211f.o
+ .debug_str     0x002c8881      0x696 ./component/phy/fsl_phyrtl8211f.o
                              0x28632e (size before relaxing)
- .debug_str     0x002c8e9c      0x509 ./component/gpio/fsl_adapter_igpio.o
+ .debug_str     0x002c8f17      0x509 ./component/gpio/fsl_adapter_igpio.o
                              0x2877d9 (size before relaxing)
- .debug_str     0x002c93a5    0x19478 ./board/board.o
+ .debug_str     0x002c9420    0x19478 ./board/board.o
                              0x2a4f55 (size before relaxing)
- .debug_str     0x002e281d     0x6169 ./board/clock_config.o
+ .debug_str     0x002e2898     0x6169 ./board/clock_config.o
                              0x2aa4f6 (size before relaxing)
- .debug_str     0x002e8986      0x222 ./board/pin_mux.o
+ .debug_str     0x002e8a01      0x222 ./board/pin_mux.o
                              0x2a20a1 (size before relaxing)
- .debug_str     0x002e8ba8      0x9a7 ./Crypto/test_src/src/test_src.o
+ .debug_str     0x002e8c23      0x9a7 ./Crypto/test_src/src/test_src.o
                              0x28976b (size before relaxing)
- .debug_str     0x002e954f      0xcb0 ./Crypto/src/aursa.o
+ .debug_str     0x002e95ca      0xcb0 ./Crypto/src/aursa.o
                                0x99e1 (size before relaxing)
- .debug_str     0x002ea1ff      0x5a7 ./Crypto/src/bignum.o
+ .debug_str     0x002ea27a      0x5a7 ./Crypto/src/bignum.o
                                0x94cd (size before relaxing)
- .debug_str     0x002ea7a6      0x1c4 ./Crypto/src/md.o
+ .debug_str     0x002ea821      0x1c4 ./Crypto/src/md.o
                                0x70bd (size before relaxing)
- .debug_str     0x002ea96a      0x3de ./Crypto/src/md_wrap.o
+ .debug_str     0x002ea9e5      0x3de ./Crypto/src/md_wrap.o
                                0x8c9e (size before relaxing)
- .debug_str     0x002ead48      0x257 ./Crypto/src/rsa.o
+ .debug_str     0x002eadc3      0x257 ./Crypto/src/rsa.o
                                0x9daf (size before relaxing)
- .debug_str     0x002eaf9f      0x31d ./Crypto/src/sha1.o
+ .debug_str     0x002eb01a      0x31d ./Crypto/src/sha1.o
                                0x8936 (size before relaxing)
- .debug_str     0x002eb2bc      0x237 ./Crypto/src/sha2.o
+ .debug_str     0x002eb337      0x237 ./Crypto/src/sha2.o
                                0x89d1 (size before relaxing)
- .debug_str     0x002eb4f3      0x1c4 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard\libcr_newlib_nohost.a(_cr_sbrk.o)
+ .debug_str     0x002eb56e      0x1c4 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard\libcr_newlib_nohost.a(_cr_sbrk.o)
                                 0x268 (size before relaxing)
- .debug_str     0x002eb6b7       0x25 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard\libcr_newlib_nohost.a(_cr_check_heap.o)
+ .debug_str     0x002eb732       0x25 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard\libcr_newlib_nohost.a(_cr_check_heap.o)
                                 0x1b3 (size before relaxing)
 
 .comment        0x00000000       0x45
@@ -52407,111 +52415,111 @@ LOAD linker stubs
  .ARM.attributes
                 0x00001501       0x32 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard\libcr_newlib_nohost.a(_cr_check_heap.o)
 
-.debug_frame    0x00000000     0xcf0c
+.debug_frame    0x00000000     0xcf6c
  .debug_frame   0x00000000       0x38 ./utilities/fsl_assert.o
  .debug_frame   0x00000038      0x244 ./utilities/fsl_debug_console.o
  .debug_frame   0x0000027c      0x2b4 ./utilities/fsl_str.o
  .debug_frame   0x00000530     0x1568 ./startup/startup_mimxrt1176_cm7.o
  .debug_frame   0x00001a98       0x40 ./source/DHA/DHAuto.o
  .debug_frame   0x00001ad8       0x68 ./source/DHA/DHAutoApp.o
- .debug_frame   0x00001b40       0xf0 ./source/DHA/DHAutoApp_lightingGrill.o
- .debug_frame   0x00001c30      0xa80 ./source/DHA/DHAutoCan.o
- .debug_frame   0x000026b0       0x9c ./source/DHA/DHAutoCan_il.o
- .debug_frame   0x0000274c      0xa94 ./source/DHA/DHAutoCan_il_par.o
- .debug_frame   0x000031e0       0x78 ./source/DHA/DHAutoEnet.o
- .debug_frame   0x00003258      0x158 ./source/DHA/DHAutoIoctrl.o
- .debug_frame   0x000033b0       0xcc ./source/DHA/DHAutoQueue.o
- .debug_frame   0x0000347c       0x74 ./source/DHA/DHAutoRtc.o
- .debug_frame   0x000034f0       0x70 ./source/DHA/DHAutoSequence.o
- .debug_frame   0x00003560       0x78 ./source/DHA/DHAutoTimer.o
- .debug_frame   0x000035d8       0xc4 ./source/COMMON/UDP/udpClientRAW.o
- .debug_frame   0x0000369c      0x228 ./source/COMMON/ENET/enet.o
- .debug_frame   0x000038c4      0x1ec ./source/COMMON/CAN/can.o
- .debug_frame   0x00003ab0       0x40 ./source/COMMON/EnetApp.o
- .debug_frame   0x00003af0       0xec ./source/COMMON/appcommon.o
- .debug_frame   0x00003bdc      0x1b4 ./source/COMMON/softtimer.o
- .debug_frame   0x00003d90       0x28 ./source/main.o
- .debug_frame   0x00003db8       0x20 ./source/semihost_hardfault.o
- .debug_frame   0x00003dd8      0x134 ./source/sfw.o
- .debug_frame   0x00003f0c      0x744 ./mbedtls/port/ksdk/ksdk_mbedtls.o
- .debug_frame   0x00004650       0x50 ./lwip/src/netif/ethernet.o
- .debug_frame   0x000046a0      0x200 ./lwip/src/core/ipv4/etharp.o
- .debug_frame   0x000048a0       0x9c ./lwip/src/core/ipv4/icmp.o
- .debug_frame   0x0000493c       0xdc ./lwip/src/core/ipv4/ip4.o
- .debug_frame   0x00004a18       0xc0 ./lwip/src/core/ipv4/ip4_addr.o
- .debug_frame   0x00004ad8      0x168 ./lwip/src/core/ipv4/ip4_frag.o
- .debug_frame   0x00004c40       0xbc ./lwip/src/core/def.o
- .debug_frame   0x00004cfc      0x128 ./lwip/src/core/inet_chksum.o
- .debug_frame   0x00004e24       0x28 ./lwip/src/core/init.o
- .debug_frame   0x00004e4c      0x124 ./lwip/src/core/mem.o
- .debug_frame   0x00004f70       0xd4 ./lwip/src/core/memp.o
- .debug_frame   0x00005044      0x320 ./lwip/src/core/netif.o
- .debug_frame   0x00005364      0x420 ./lwip/src/core/pbuf.o
- .debug_frame   0x00005784      0x590 ./lwip/src/core/tcp.o
- .debug_frame   0x00005d14      0x148 ./lwip/src/core/tcp_in.o
- .debug_frame   0x00005e5c      0x39c ./lwip/src/core/tcp_out.o
- .debug_frame   0x000061f8      0x118 ./lwip/src/core/timeouts.o
- .debug_frame   0x00006310      0x204 ./lwip/src/core/udp.o
- .debug_frame   0x00006514       0x44 ./lwip/port/enet_ethernetif.o
- .debug_frame   0x00006558      0x1dc ./lwip/port/enet_ethernetif_kinetis.o
- .debug_frame   0x00006734      0x114 ./lwip/port/ethernetif.o
- .debug_frame   0x00006848       0xa8 ./lwip/port/sys_arch.o
- .debug_frame   0x000068f0      0x1d0 ./flash/mflash/mimxrt1170/mflash_drv.o
- .debug_frame   0x00006ac0       0x70 ./flash/flash_api.o
- .debug_frame   0x00006b30       0x7c ./drivers/fsl_anatop_ai.o
- .debug_frame   0x00006bac     0x18a4 ./drivers/fsl_caam.o
- .debug_frame   0x00008450       0xb0 ./drivers/fsl_cache.o
- .debug_frame   0x00008500      0x7c4 ./drivers/fsl_clock.o
- .debug_frame   0x00008cc4       0x64 ./drivers/fsl_common_arm.o
- .debug_frame   0x00008d28      0x1b0 ./drivers/fsl_dcdc.o
- .debug_frame   0x00008ed8      0x660 ./drivers/fsl_enet.o
- .debug_frame   0x00009538      0x734 ./drivers/fsl_flexcan.o
- .debug_frame   0x00009c6c      0x24c ./drivers/fsl_flexspi.o
- .debug_frame   0x00009eb8       0x8c ./drivers/fsl_gpio.o
- .debug_frame   0x00009f44      0x494 ./drivers/fsl_lpuart.o
- .debug_frame   0x0000a3d8       0x7c ./drivers/fsl_pit.o
- .debug_frame   0x0000a454      0x358 ./drivers/fsl_pmu.o
- .debug_frame   0x0000a7ac      0x184 ./drivers/fsl_snvs_hp.o
- .debug_frame   0x0000a930       0x48 ./device/system_MIMXRT1176_cm7.o
- .debug_frame   0x0000a978       0xd0 ./component/uart/fsl_adapter_lpuart.o
- .debug_frame   0x0000aa48      0x17c ./component/serial_manager/fsl_component_serial_manager.o
- .debug_frame   0x0000abc4       0xa0 ./component/serial_manager/fsl_component_serial_port_uart.o
- .debug_frame   0x0000ac64      0x150 ./component/phy/fsl_phyksz8081.o
- .debug_frame   0x0000adb4      0x1a4 ./component/phy/fsl_phyrtl8211f.o
- .debug_frame   0x0000af58      0x2f0 ./component/gpio/fsl_adapter_igpio.o
- .debug_frame   0x0000b248       0xb0 ./board/board.o
- .debug_frame   0x0000b2f8       0xbc ./board/clock_config.o
- .debug_frame   0x0000b3b4      0x110 ./board/pin_mux.o
- .debug_frame   0x0000b4c4      0x1a0 ./Crypto/test_src/src/test_src.o
- .debug_frame   0x0000b664      0x118 ./Crypto/src/aursa.o
- .debug_frame   0x0000b77c      0x588 ./Crypto/src/bignum.o
- .debug_frame   0x0000bd04      0x1c8 ./Crypto/src/md.o
- .debug_frame   0x0000becc      0x338 ./Crypto/src/md_wrap.o
- .debug_frame   0x0000c204      0x3e4 ./Crypto/src/rsa.o
- .debug_frame   0x0000c5e8      0x15c ./Crypto/src/sha1.o
- .debug_frame   0x0000c744      0x160 ./Crypto/src/sha2.o
- .debug_frame   0x0000c8a4       0x44 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m+dp/hard\libgcc.a(_aeabi_ldivmod.o)
- .debug_frame   0x0000c8e8       0x2c c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m+dp/hard\libgcc.a(_aeabi_uldivmod.o)
- .debug_frame   0x0000c914       0x34 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m+dp/hard\libgcc.a(_udivmoddi4.o)
- .debug_frame   0x0000c948       0x30 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m+dp/hard\libc_nano.a(libc_a-malloc.o)
- .debug_frame   0x0000c978       0x50 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m+dp/hard\libc_nano.a(libc_a-mallocr.o)
- .debug_frame   0x0000c9c8       0x30 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m+dp/hard\libc_nano.a(libc_a-mlock.o)
- .debug_frame   0x0000c9f8       0x6c c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m+dp/hard\libc_nano.a(libc_a-sprintf.o)
- .debug_frame   0x0000ca64       0x28 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m+dp/hard\libc_nano.a(libc_a-memcmp.o)
- .debug_frame   0x0000ca8c       0x28 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m+dp/hard\libc_nano.a(libc_a-memmove.o)
- .debug_frame   0x0000cab4       0x20 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m+dp/hard\libc_nano.a(libc_a-memset.o)
- .debug_frame   0x0000cad4       0x28 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m+dp/hard\libc_nano.a(libc_a-strncpy.o)
- .debug_frame   0x0000cafc       0x2c c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m+dp/hard\libc_nano.a(libc_a-sbrkr.o)
- .debug_frame   0x0000cb28       0x20 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m+dp/hard\libc_nano.a(libc_a-errno.o)
- .debug_frame   0x0000cb48       0xb0 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m+dp/hard\libc_nano.a(libc_a-lock.o)
- .debug_frame   0x0000cbf8       0x38 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m+dp/hard\libc_nano.a(libc_a-freer.o)
- .debug_frame   0x0000cc30       0x90 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m+dp/hard\libc_nano.a(libc_a-nano-svfprintf.o)
- .debug_frame   0x0000ccc0       0x60 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m+dp/hard\libc_nano.a(libc_a-nano-vfprintf_i.o)
- .debug_frame   0x0000cd20      0x144 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m+dp/hard\libc_nano.a(libc_a-findfp.o)
- .debug_frame   0x0000ce64       0x3c c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m+dp/hard\libc_nano.a(libc_a-reallocr.o)
- .debug_frame   0x0000cea0       0x20 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m+dp/hard\libc_nano.a(libc_a-msizer.o)
- .debug_frame   0x0000cec0       0x2c c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard\libcr_newlib_nohost.a(_cr_sbrk.o)
- .debug_frame   0x0000ceec       0x20 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard\libcr_newlib_nohost.a(_cr_check_heap.o)
+ .debug_frame   0x00001b40      0x150 ./source/DHA/DHAutoApp_lightingGrill.o
+ .debug_frame   0x00001c90      0xa80 ./source/DHA/DHAutoCan.o
+ .debug_frame   0x00002710       0x9c ./source/DHA/DHAutoCan_il.o
+ .debug_frame   0x000027ac      0xa94 ./source/DHA/DHAutoCan_il_par.o
+ .debug_frame   0x00003240       0x78 ./source/DHA/DHAutoEnet.o
+ .debug_frame   0x000032b8      0x158 ./source/DHA/DHAutoIoctrl.o
+ .debug_frame   0x00003410       0xcc ./source/DHA/DHAutoQueue.o
+ .debug_frame   0x000034dc       0x74 ./source/DHA/DHAutoRtc.o
+ .debug_frame   0x00003550       0x70 ./source/DHA/DHAutoSequence.o
+ .debug_frame   0x000035c0       0x78 ./source/DHA/DHAutoTimer.o
+ .debug_frame   0x00003638       0xc4 ./source/COMMON/UDP/udpClientRAW.o
+ .debug_frame   0x000036fc      0x228 ./source/COMMON/ENET/enet.o
+ .debug_frame   0x00003924      0x1ec ./source/COMMON/CAN/can.o
+ .debug_frame   0x00003b10       0x40 ./source/COMMON/EnetApp.o
+ .debug_frame   0x00003b50       0xec ./source/COMMON/appcommon.o
+ .debug_frame   0x00003c3c      0x1b4 ./source/COMMON/softtimer.o
+ .debug_frame   0x00003df0       0x28 ./source/main.o
+ .debug_frame   0x00003e18       0x20 ./source/semihost_hardfault.o
+ .debug_frame   0x00003e38      0x134 ./source/sfw.o
+ .debug_frame   0x00003f6c      0x744 ./mbedtls/port/ksdk/ksdk_mbedtls.o
+ .debug_frame   0x000046b0       0x50 ./lwip/src/netif/ethernet.o
+ .debug_frame   0x00004700      0x200 ./lwip/src/core/ipv4/etharp.o
+ .debug_frame   0x00004900       0x9c ./lwip/src/core/ipv4/icmp.o
+ .debug_frame   0x0000499c       0xdc ./lwip/src/core/ipv4/ip4.o
+ .debug_frame   0x00004a78       0xc0 ./lwip/src/core/ipv4/ip4_addr.o
+ .debug_frame   0x00004b38      0x168 ./lwip/src/core/ipv4/ip4_frag.o
+ .debug_frame   0x00004ca0       0xbc ./lwip/src/core/def.o
+ .debug_frame   0x00004d5c      0x128 ./lwip/src/core/inet_chksum.o
+ .debug_frame   0x00004e84       0x28 ./lwip/src/core/init.o
+ .debug_frame   0x00004eac      0x124 ./lwip/src/core/mem.o
+ .debug_frame   0x00004fd0       0xd4 ./lwip/src/core/memp.o
+ .debug_frame   0x000050a4      0x320 ./lwip/src/core/netif.o
+ .debug_frame   0x000053c4      0x420 ./lwip/src/core/pbuf.o
+ .debug_frame   0x000057e4      0x590 ./lwip/src/core/tcp.o
+ .debug_frame   0x00005d74      0x148 ./lwip/src/core/tcp_in.o
+ .debug_frame   0x00005ebc      0x39c ./lwip/src/core/tcp_out.o
+ .debug_frame   0x00006258      0x118 ./lwip/src/core/timeouts.o
+ .debug_frame   0x00006370      0x204 ./lwip/src/core/udp.o
+ .debug_frame   0x00006574       0x44 ./lwip/port/enet_ethernetif.o
+ .debug_frame   0x000065b8      0x1dc ./lwip/port/enet_ethernetif_kinetis.o
+ .debug_frame   0x00006794      0x114 ./lwip/port/ethernetif.o
+ .debug_frame   0x000068a8       0xa8 ./lwip/port/sys_arch.o
+ .debug_frame   0x00006950      0x1d0 ./flash/mflash/mimxrt1170/mflash_drv.o
+ .debug_frame   0x00006b20       0x70 ./flash/flash_api.o
+ .debug_frame   0x00006b90       0x7c ./drivers/fsl_anatop_ai.o
+ .debug_frame   0x00006c0c     0x18a4 ./drivers/fsl_caam.o
+ .debug_frame   0x000084b0       0xb0 ./drivers/fsl_cache.o
+ .debug_frame   0x00008560      0x7c4 ./drivers/fsl_clock.o
+ .debug_frame   0x00008d24       0x64 ./drivers/fsl_common_arm.o
+ .debug_frame   0x00008d88      0x1b0 ./drivers/fsl_dcdc.o
+ .debug_frame   0x00008f38      0x660 ./drivers/fsl_enet.o
+ .debug_frame   0x00009598      0x734 ./drivers/fsl_flexcan.o
+ .debug_frame   0x00009ccc      0x24c ./drivers/fsl_flexspi.o
+ .debug_frame   0x00009f18       0x8c ./drivers/fsl_gpio.o
+ .debug_frame   0x00009fa4      0x494 ./drivers/fsl_lpuart.o
+ .debug_frame   0x0000a438       0x7c ./drivers/fsl_pit.o
+ .debug_frame   0x0000a4b4      0x358 ./drivers/fsl_pmu.o
+ .debug_frame   0x0000a80c      0x184 ./drivers/fsl_snvs_hp.o
+ .debug_frame   0x0000a990       0x48 ./device/system_MIMXRT1176_cm7.o
+ .debug_frame   0x0000a9d8       0xd0 ./component/uart/fsl_adapter_lpuart.o
+ .debug_frame   0x0000aaa8      0x17c ./component/serial_manager/fsl_component_serial_manager.o
+ .debug_frame   0x0000ac24       0xa0 ./component/serial_manager/fsl_component_serial_port_uart.o
+ .debug_frame   0x0000acc4      0x150 ./component/phy/fsl_phyksz8081.o
+ .debug_frame   0x0000ae14      0x1a4 ./component/phy/fsl_phyrtl8211f.o
+ .debug_frame   0x0000afb8      0x2f0 ./component/gpio/fsl_adapter_igpio.o
+ .debug_frame   0x0000b2a8       0xb0 ./board/board.o
+ .debug_frame   0x0000b358       0xbc ./board/clock_config.o
+ .debug_frame   0x0000b414      0x110 ./board/pin_mux.o
+ .debug_frame   0x0000b524      0x1a0 ./Crypto/test_src/src/test_src.o
+ .debug_frame   0x0000b6c4      0x118 ./Crypto/src/aursa.o
+ .debug_frame   0x0000b7dc      0x588 ./Crypto/src/bignum.o
+ .debug_frame   0x0000bd64      0x1c8 ./Crypto/src/md.o
+ .debug_frame   0x0000bf2c      0x338 ./Crypto/src/md_wrap.o
+ .debug_frame   0x0000c264      0x3e4 ./Crypto/src/rsa.o
+ .debug_frame   0x0000c648      0x15c ./Crypto/src/sha1.o
+ .debug_frame   0x0000c7a4      0x160 ./Crypto/src/sha2.o
+ .debug_frame   0x0000c904       0x44 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m+dp/hard\libgcc.a(_aeabi_ldivmod.o)
+ .debug_frame   0x0000c948       0x2c c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m+dp/hard\libgcc.a(_aeabi_uldivmod.o)
+ .debug_frame   0x0000c974       0x34 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m+dp/hard\libgcc.a(_udivmoddi4.o)
+ .debug_frame   0x0000c9a8       0x30 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m+dp/hard\libc_nano.a(libc_a-malloc.o)
+ .debug_frame   0x0000c9d8       0x50 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m+dp/hard\libc_nano.a(libc_a-mallocr.o)
+ .debug_frame   0x0000ca28       0x30 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m+dp/hard\libc_nano.a(libc_a-mlock.o)
+ .debug_frame   0x0000ca58       0x6c c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m+dp/hard\libc_nano.a(libc_a-sprintf.o)
+ .debug_frame   0x0000cac4       0x28 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m+dp/hard\libc_nano.a(libc_a-memcmp.o)
+ .debug_frame   0x0000caec       0x28 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m+dp/hard\libc_nano.a(libc_a-memmove.o)
+ .debug_frame   0x0000cb14       0x20 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m+dp/hard\libc_nano.a(libc_a-memset.o)
+ .debug_frame   0x0000cb34       0x28 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m+dp/hard\libc_nano.a(libc_a-strncpy.o)
+ .debug_frame   0x0000cb5c       0x2c c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m+dp/hard\libc_nano.a(libc_a-sbrkr.o)
+ .debug_frame   0x0000cb88       0x20 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m+dp/hard\libc_nano.a(libc_a-errno.o)
+ .debug_frame   0x0000cba8       0xb0 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m+dp/hard\libc_nano.a(libc_a-lock.o)
+ .debug_frame   0x0000cc58       0x38 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m+dp/hard\libc_nano.a(libc_a-freer.o)
+ .debug_frame   0x0000cc90       0x90 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m+dp/hard\libc_nano.a(libc_a-nano-svfprintf.o)
+ .debug_frame   0x0000cd20       0x60 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m+dp/hard\libc_nano.a(libc_a-nano-vfprintf_i.o)
+ .debug_frame   0x0000cd80      0x144 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m+dp/hard\libc_nano.a(libc_a-findfp.o)
+ .debug_frame   0x0000cec4       0x3c c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m+dp/hard\libc_nano.a(libc_a-reallocr.o)
+ .debug_frame   0x0000cf00       0x20 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m+dp/hard\libc_nano.a(libc_a-msizer.o)
+ .debug_frame   0x0000cf20       0x2c c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard\libcr_newlib_nohost.a(_cr_sbrk.o)
+ .debug_frame   0x0000cf4c       0x20 c:/nxp/mcuxpressoide_11.9.1_2170/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.9.1.202402080819/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard\libcr_newlib_nohost.a(_cr_check_heap.o)
 
 .debug_line_str
                 0x00000000      0x1c9
@@ -53245,6 +53253,10 @@ DCIC1_DriverIRQHandler                            ./startup/startup_mimxrt1176_c
 DCIC1_IRQHandler                                  ./startup/startup_mimxrt1176_cm7.o
 DCIC2_DriverIRQHandler                            ./startup/startup_mimxrt1176_cm7.o
 DCIC2_IRQHandler                                  ./startup/startup_mimxrt1176_cm7.o
+DHADemoApp_LG_EMERGENCY                           ./source/DHA/DHAutoApp_lightingGrill.o
+DHADemoApp_LG_TURN_LEFT                           ./source/DHA/DHAutoApp_lightingGrill.o
+DHADemoApp_LG_TURN_RIGHT                          ./source/DHA/DHAutoApp_lightingGrill.o
+DHADemoApp_LG_WELCOME                             ./source/DHA/DHAutoApp_lightingGrill.o
 DHAutoFunc                                        ./source/DHA/DHAuto.o
                                                   ./source/COMMON/appcommon.o
 DMA0_DMA16_DriverIRQHandler                       ./startup/startup_mimxrt1176_cm7.o

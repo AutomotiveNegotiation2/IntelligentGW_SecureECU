@@ -75,6 +75,12 @@ ReadKeyInCallback keyInFunc[KEY_IN_MAX] =
 KeyFuncCallback keyFunc[KEY_IN_MAX] = 
 {
 	NULL,
+#if (LIGHTING_GRILL_KEY_DEMO == ON)
+	DHADemoApp_LG_TURN_RIGHT,
+	DHADemoApp_LG_TURN_LEFT,
+	DHADemoApp_LG_EMERGENCY,
+	DHADemoApp_LG_WELCOME,
+#else
 #if (CAN3toCAN_EN == ON)
 	ApplTxECU1_SystemPowerMode_TxComfirmation,
 	ApplTxECU1_Blind_Zone_Alert_Status_TxComfirmation,
@@ -88,6 +94,7 @@ KeyFuncCallback keyFunc[KEY_IN_MAX] =
 #else
 	NULL,
 	NULL
+#endif
 #endif
 };
 

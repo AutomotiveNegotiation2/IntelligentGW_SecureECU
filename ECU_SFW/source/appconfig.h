@@ -22,6 +22,7 @@
 
 /* Enable/Disable DHAUTO function. */
 #define	DHAUTO_FUNC_EN				ON
+#define	LIGHTING_GRILL_KEY_DEMO			OFF
 #define	LIGHTING_GRILL_INSTALLED	OFF
 
 /* Enable/Disable the output of execution time message. */

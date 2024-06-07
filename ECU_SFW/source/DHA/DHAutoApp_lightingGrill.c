@@ -579,6 +579,26 @@ static uint8_t calc_rev_poly(uint8_t poly);
 static void led_comm_init(void);
 static uint8_t led_disp_data(uint8_t led_pos, uint8_t dev_addr, uint8_t mem_addr, uint8_t num_words, uint16_t data);
 
+void DHADemoApp_LG_TURN_RIGHT(void)
+{
+	lightingGrill_OpStart(OP_LED_TURN_RIGHT, 5);
+}
+
+void DHADemoApp_LG_TURN_LEFT(void)
+{
+	lightingGrill_OpStart(OP_LED_TURN_LEFT, 5);
+}
+
+void DHADemoApp_LG_EMERGENCY(void)
+{
+	lightingGrill_OpStart(OP_LED_EMERGENCY, 5);
+}
+
+void DHADemoApp_LG_WELCOME(void)
+{
+	lightingGrill_OpStart(OP_LED_WELCOME, 5);
+}
+
 void lightingGrill_Init(void)
 {
 	led_comm_init();

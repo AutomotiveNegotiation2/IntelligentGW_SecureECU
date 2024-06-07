@@ -85,7 +85,7 @@ static void RUN_APP_UP_ACC_ON(void)
 			break;
 
 		case LO_SEQ_02:
-			lightingGrill_OpStart(OP_LED_EMERGENCY, 5);
+			lightingGrill_OpStart(OP_LED_WELCOME, 5);
 			
 			GlobalPocSeq.LSeq.B.SEQ_APP = LO_SEQ_03;
 			break;
