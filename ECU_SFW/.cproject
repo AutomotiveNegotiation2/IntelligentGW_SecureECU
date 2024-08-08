@@ -101,6 +101,7 @@
 									<listOptionValue builtIn="false" value="XIP_EXTERNAL_FLASH=1"/>
 									<listOptionValue builtIn="false" value="XIP_BOOT_HEADER_ENABLE=1"/>
 									<listOptionValue builtIn="false" value="FSL_FEATURE_PHYKSZ8081_USE_RMII50M_MODE"/>
+									<listOptionValue builtIn="false" value="BOARD_NETWORK_USE_1G_ENET_PORT=1"/>
 									<listOptionValue builtIn="false" value="LWIP_ENET_FLEXIBLE_CONFIGURATION"/>
 									<listOptionValue builtIn="false" value="FSL_SDK_ENABLE_DRIVER_CACHE_CONTROL=1"/>
 									<listOptionValue builtIn="false" value="PRINTF_ADVANCED_ENABLE=1"/>
@@ -812,7 +813,7 @@
 	<storageModule moduleId="com.nxp.mcuxpresso.core.datamodels">
 		<sdkName>SDK_2.x_MIMXRT1170-EVK</sdkName>
 		<sdkExample>evkmimxrt1170_ota_mcuboot_client_enet</sdkExample>
-		<sdkVersion>2.15.000</sdkVersion>
+		<sdkVersion>2.15.100</sdkVersion>
 		<sdkComponents>driver.phy-device-ksz8081.MIMXRT1176;driver.phy-device-rtl8211f.MIMXRT1176;platform.drivers.cache_armv7_m7.MIMXRT1176;middleware.mbedtls.MIMXRT1176;middleware.mbedtls.port.ksdk.MIMXRT1176;platform.drivers.enet.MIMXRT1176;middleware.lwip.kinetis_ethernetif.MIMXRT1176;middleware.lwip.MIMXRT1176;component.mflash.rt1170.MIMXRT1176;component.silicon_id_rt1170.MIMXRT1176;component.silicon_id.MIMXRT1176;middleware.freertos.corehttp.MIMXRT1176;platform.drivers.clock.MIMXRT1176;middleware.freertos-kernel.heap_4.MIMXRT1176;utility.shell.MIMXRT1176;platform.drivers.common.MIMXRT1176;platform.devices.MIMXRT1176_CMSIS.MIMXRT1176;utility.debug_console.MIMXRT1176;component.lpuart_adapter.MIMXRT1176;component.serial_manager_uart.MIMXRT1176;component.serial_manager.MIMXRT1176;platform.drivers.lpuart.MIMXRT1176;component.lists.MIMXRT1176;platform.devices.MIMXRT1176_startup.MIMXRT1176;platform.drivers.gpc_3.MIMXRT1176;platform.drivers.soc_src.MIMXRT1176;platform.drivers.mu.MIMXRT1176;platform.drivers.iomuxc.MIMXRT1176;platform.utilities.assert.MIMXRT1176;platform.drivers.igpio.MIMXRT1176;platform.drivers.pmu_1.MIMXRT1176;platform.drivers.dcdc_soc.MIMXRT1176;platform.utilities.misc_utilities.MIMXRT1176;driver.phy-common.MIMXRT1176;platform.drivers.caam.MIMXRT1176;platform.drivers.memory.MIMXRT1176;component.igpio_adapter.MIMXRT1176;component.mflash.common.MIMXRT1176;platform.drivers.flexspi.MIMXRT1176;middleware.llhttp.MIMXRT1176;platform.drivers.anatop_ai.MIMXRT1176;middleware.freertos-kernel.MIMXRT1176;middleware.freertos-kernel.extension.MIMXRT1176;utility.str.MIMXRT1176;CMSIS_Include_core_cm.MIMXRT1176;platform.devices.MIMXRT1176_system.MIMXRT1176;evkmimxrt1170_ota_mcuboot_client_enet;</sdkComponents>
 		<boardId>evkmimxrt1170</boardId>
 		<package>MIMXRT1176DVMAA</package>
@@ -831,7 +832,7 @@
 &lt;vendor&gt;NXP&lt;/vendor&gt;&#13;
 &lt;memory can_program="true" id="Flash" is_ro="true" size="0" type="Flash"/&gt;&#13;
 &lt;memory id="RAM" size="2048" type="RAM"/&gt;&#13;
-&lt;memoryInstance derived_from="Flash" driver="MIMXRT1170_SFDP_QSPI.cfx" edited="true" id="BOARD_FLASH" location="0x30401000" size="0x400000"/&gt;&#13;
+&lt;memoryInstance derived_from="Flash" driver="MIMXRT1170_SFDP_QSPI.cfx" edited="true" id="BOARD_FLASH" location="0x30000000" size="0x400000"/&gt;&#13;
 &lt;memoryInstance derived_from="RAM" edited="true" id="SRAM_OC1" location="0x20240000" size="0x80000"/&gt;&#13;
 &lt;memoryInstance derived_from="RAM" edited="true" id="SRAM_OC2" location="0x202c0000" size="0x40000"/&gt;&#13;
 &lt;memoryInstance derived_from="RAM" edited="true" id="NCACHE_REGION" location="0x20300000" size="0x40000"/&gt;&#13;

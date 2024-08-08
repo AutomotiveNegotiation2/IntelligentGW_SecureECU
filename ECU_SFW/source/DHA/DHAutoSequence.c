@@ -7,7 +7,11 @@ uint32_t gLO_ALL_FINISH;
 
 void GlobalSequence_Init(void)
 {
+#if ((CAN3toCAN_EN == ON) || (CAN1toCANFD_EN == ON))
 	gLO_ALL_FINISH = 0x0000FFFF;
+#else
+	gLO_ALL_FINISH = 0x0000FFF0;
+#endif
 
 	GlobalSeqSwitch(GB_SEQ_UP_ACC_OFF);
 	gFlagSystemActive = FALSE;

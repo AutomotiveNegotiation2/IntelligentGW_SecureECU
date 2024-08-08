@@ -1,9 +1,9 @@
-C:\Users\USER\Documents\MCUXpressoIDE_11.9.1_2170\workspace_fw\MCUXpresso_IDE_FW\CMSIS/core_cm7.h:1911:22:__NVIC_EnableIRQ	0	static
+C:\Users\USER\Documents\MCUXpressoIDE_11.9.1_2170\workspace\MCUXpresso_IDE_FW\CMSIS/core_cm7.h:1911:22:__NVIC_EnableIRQ	0	static
 ../component/gpio/fsl_adapter_igpio.c:56:13:HAL_GpioInterruptHandle	80	static
 ../component/gpio/fsl_adapter_igpio.c:190:26:HAL_GpioConflictSearch	0	static
 ../component/gpio/fsl_adapter_igpio.c:203:26:HAL_GpioAddItem	0	static
 ../component/gpio/fsl_adapter_igpio.c:233:26:HAL_GpioRemoveItem	0	static
-C:\Users\USER\Documents\MCUXpressoIDE_11.9.1_2170\workspace_fw\MCUXpresso_IDE_FW\drivers/fsl_gpio.h:176:24:GPIO_PinRead	8	static
+C:\Users\USER\Documents\MCUXpressoIDE_11.9.1_2170\workspace\MCUXpresso_IDE_FW\drivers/fsl_gpio.h:176:24:GPIO_PinRead	8	static
 ../component/gpio/fsl_adapter_igpio.c:86:6:GPIO1_Combined_0_15_IRQHandler	8	static
 ../component/gpio/fsl_adapter_igpio.c:93:6:GPIO1_Combined_16_31_IRQHandler	8	static
 ../component/gpio/fsl_adapter_igpio.c:103:6:GPIO2_Combined_0_15_IRQHandler	8	static

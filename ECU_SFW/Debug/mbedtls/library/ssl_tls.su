@@ -1,5 +1,5 @@
-C:\Users\USER\Documents\MCUXpressoIDE_11.9.1_2170\workspace_fw\MCUXpresso_IDE_FW\mbedtls\include/mbedtls/ssl_internal.h:1065:19:mbedtls_ssl_get_psk	4	static
-C:\Users\USER\Documents\MCUXpressoIDE_11.9.1_2170\workspace_fw\MCUXpresso_IDE_FW\mbedtls\include/mbedtls/ssl_internal.h:1162:33:mbedtls_ssl_own_cert	0	static
+C:\Users\USER\Documents\MCUXpressoIDE_11.9.1_2170\workspace\MCUXpresso_IDE_FW\mbedtls\include/mbedtls/ssl_internal.h:1065:19:mbedtls_ssl_get_psk	4	static
+C:\Users\USER\Documents\MCUXpressoIDE_11.9.1_2170\workspace\MCUXpresso_IDE_FW\mbedtls\include/mbedtls/ssl_internal.h:1162:33:mbedtls_ssl_own_cert	0	static
 ../mbedtls/library/ssl_tls.c:154:21:ssl_mfl_code_to_length	0	static
 ../mbedtls/library/ssl_tls.c:868:30:tls_prf_get_type	0	static
 ../mbedtls/library/ssl_tls.c:1492:12:ssl_set_handshake_prfs	0	static

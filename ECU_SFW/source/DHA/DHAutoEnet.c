@@ -75,10 +75,12 @@ static void RUN_ENET_UP_ACC_ON(void)
 
 static void RUN_ENET_ACC_ON(void)
 {
+#if BOARD_NETWORK_USE_1G_ENET_PORT == 1
 	if (Enet_GetLinkUp_1G() == TRUE)
 	{
 	}
 	else
+#endif
 	{
 	}
 }

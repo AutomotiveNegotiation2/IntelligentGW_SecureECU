@@ -5,7 +5,7 @@
  * Generated linker script file for MIMXRT1176xxxxx
  * Created from linkscript.ldt by FMCreateLinkLibraries
  * Using Freemarker v2.3.30
- * MCUXpresso IDE v11.9.1 [Build 2170] [2024-04-19] on 2024. 6. 7. 오전 9:39:39
+ * MCUXpresso IDE v11.9.1 [Build 2170] [2024-04-19] on 2024. 8. 8. 오후 4:03:03
  */
 
 INCLUDE "MCUXpresso_IDE_FW_Debug_library.ld"
@@ -15,7 +15,28 @@ ENTRY(ResetISR)
 
 SECTIONS
 {
-     /* MAIN TEXT SECTION */
+     /* Image Vector Table and Boot Data for booting from external flash */
+    .boot_hdr : ALIGN(4)
+    {
+        FILL(0xff)
+        . = 0x400 ;
+        __boot_hdr_start__ = ABSOLUTE(.) ;
+        KEEP(*(.boot_hdr.conf))
+        . = 0x1000 ;
+        __boot_hdr_ivt_loadaddr__  =  ABSOLUTE(.) ;
+        KEEP(*(.boot_hdr.ivt))
+        . = 0x1020 ;
+        __boot_hdr_boot_data_loadaddr__ = ABSOLUTE(.) ;
+        KEEP(*(.boot_hdr.boot_data))
+        . = 0x1030 ;
+        __boot_hdr_dcd_loadaddr__ = ABSOLUTE(.) ;
+        KEEP(*(.boot_hdr.dcd_data))
+        __boot_hdr_end__ = ABSOLUTE(.) ;
+        . = 0x2000 ;
+    } >BOARD_FLASH
+
+
+    /* MAIN TEXT SECTION */
     .text : ALIGN(4)
     {
         FILL(0xff)
@@ -63,7 +84,8 @@ SECTIONS
 
         *(.after_vectors*)
 
-        *(EXCLUDE_FILE(*mflash_drv.o *fsl_flexspi.o) .text*)       KEEP(*freertos*/tasks.o(.rodata*)) /* FreeRTOS Debug Config */
+       *(.text*)
+       KEEP(*freertos*/tasks.o(.rodata*)) /* FreeRTOS Debug Config */
        *(.rodata .rodata.* .constdata .constdata.*)
        . = ALIGN(4);
     } > BOARD_FLASH
@@ -197,9 +219,7 @@ SECTIONS
        KEEP(*(CodeQuickAccess))
        KEEP(*(DataQuickAccess))
        *(RamFunction)
-        *mflash_drv.o(.text .text* .rodata .rodata*)
-        *fsl_flexspi.o(.text .text* .rodata .rodata*)
-        *(.data*)        
+       *(.data*)
        . = ALIGN(4) ;
        _edata = . ;
        PROVIDE(__end_data_RAM = .) ;

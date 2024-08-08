@@ -1,4 +1,4 @@
-C:\Users\USER\Documents\MCUXpressoIDE_11.9.1_2170\workspace_fw\MCUXpresso_IDE_FW\drivers/fsl_clock.h:2178:20:CLOCK_ControlGate	0	static
+C:\Users\USER\Documents\MCUXpressoIDE_11.9.1_2170\workspace\MCUXpresso_IDE_FW\drivers/fsl_clock.h:2178:20:CLOCK_ControlGate	0	static
 ../board/pin_mux.c:70:6:BOARD_InitPins	16	static
 ../board/pin_mux.c:47:6:BOARD_InitBootPins	8	static
 ../board/pin_mux.c:130:6:BOARD_InitCanPins	8	static

@@ -1,5 +1,5 @@
-C:\Users\USER\Documents\MCUXpressoIDE_11.9.1_2170\workspace_fw\MCUXpresso_IDE_FW\CMSIS/mpu_armv7.h:204:22:ARM_MPU_Disable	0	static
-C:\Users\USER\Documents\MCUXpressoIDE_11.9.1_2170\workspace_fw\MCUXpresso_IDE_FW\drivers/fsl_clock.h:2240:24:CLOCK_GetRootClockFreq	16	static
+C:\Users\USER\Documents\MCUXpressoIDE_11.9.1_2170\workspace\MCUXpresso_IDE_FW\CMSIS/mpu_armv7.h:204:22:ARM_MPU_Disable	0	static
+C:\Users\USER\Documents\MCUXpressoIDE_11.9.1_2170\workspace\MCUXpresso_IDE_FW\drivers/fsl_clock.h:2240:24:CLOCK_GetRootClockFreq	16	static
 ../board/board.c:24:10:BOARD_DebugConsoleSrcFreq	8	static
 ../board/board.c:36:6:BOARD_InitDebugConsole	8	static
 ../board/board.c:262:6:BOARD_ConfigMPU	32	static

@@ -32,6 +32,8 @@ void SystemInfo(void)
 	COMMON_PRINTF("*** CAN NETWORK OPERATION                               ***\r\n");
 #elif (CAN1toCANFD_EN == ON)
 	COMMON_PRINTF("*** CANFD NETWORK OPERATION                             ***\r\n");
+#elif (BOARD_NETWORK_USE_1G_ENET_PORT == ON)
+	COMMON_PRINTF("*** ETHERNET 1G NETWORK OPERATION                       ***\r\n");
 #endif
 	COMMON_PRINTF("***                                                     ***\r\n");
 	COMMON_PRINTF("***********************************************************\r\n");
@@ -46,7 +48,10 @@ void Init_CommonFunc(void)
 	/* Count the global base timer value based on timer interrupt every 1ms */
 	SoftTimerInit();
 
+#if ((CAN3toCAN_EN == ON) || (CAN1toCANFD_EN == ON))
 	Init_CanDriver();
+#endif
+
 	Init_EthDriver();
 }
 

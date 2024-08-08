@@ -9,7 +9,7 @@
 #define	DEBUG_AUTOCRYPT	OFF
 #define	DEBUG_KORUNIV	OFF
 #define	DEBUG_KETI		OFF
-#define	DEBUG_DHAUTO	OFF
+#define	DEBUG_DHAUTO	ON
 
 //#define	ORGAN_FUNC_LOAD	OFF
 
@@ -17,7 +17,7 @@
    Enable CAN.
    Enable CAN-FD.
    Enable CAN & CAN-FD for only test */
-#define	CAN3toCAN_EN	ON
+#define	CAN3toCAN_EN	OFF
 #define	CAN1toCANFD_EN	OFF
 
 /* Enable/Disable DHAUTO function. */
@@ -41,8 +41,10 @@
 #define	EXECUTION_TIME_LOG_DHAUTO		OFF
 #endif
 
+#if 0
 #if ((CAN3toCAN_EN == OFF) && (CAN1toCANFD_EN == OFF))
 #error CAN function more than one channel must be activated
+#endif
 #endif
 
 #endif /* _CONFIG_H_ */

@@ -5,13 +5,13 @@
  * Generated linker script file for MIMXRT1176xxxxx
  * Created from memory.ldt by FMCreateLinkMemory
  * Using Freemarker v2.3.30
- * MCUXpresso IDE v11.9.1 [Build 2170] [2024-04-19] on 2024. 6. 7. 오전 9:39:39
+ * MCUXpresso IDE v11.9.1 [Build 2170] [2024-04-19] on 2024. 8. 8. 오후 4:03:03
  */
 
 MEMORY
 {
   /* Define each memory region */
-  BOARD_FLASH (rx) : ORIGIN = 0x30401000, LENGTH = 0x400000 /* 4M bytes (alias Flash) */  
+  BOARD_FLASH (rx) : ORIGIN = 0x30000000, LENGTH = 0x400000 /* 4M bytes (alias Flash) */  
   SRAM_OC1 (rwx) : ORIGIN = 0x20240000, LENGTH = 0x80000 /* 512K bytes (alias RAM) */  
   SRAM_OC2 (rwx) : ORIGIN = 0x202c0000, LENGTH = 0x40000 /* 256K bytes (alias RAM2) */  
   NCACHE_REGION (rwx) : ORIGIN = 0x20300000, LENGTH = 0x40000 /* 256K bytes (alias RAM3) */  
@@ -21,10 +21,10 @@ MEMORY
 }
 
   /* Define a symbol for the top of each memory region */
-  __base_BOARD_FLASH = 0x30401000  ; /* BOARD_FLASH */  
-  __base_Flash = 0x30401000 ; /* Flash */  
-  __top_BOARD_FLASH = 0x30401000 + 0x400000 ; /* 4M bytes */  
-  __top_Flash = 0x30401000 + 0x400000 ; /* 4M bytes */  
+  __base_BOARD_FLASH = 0x30000000  ; /* BOARD_FLASH */  
+  __base_Flash = 0x30000000 ; /* Flash */  
+  __top_BOARD_FLASH = 0x30000000 + 0x400000 ; /* 4M bytes */  
+  __top_Flash = 0x30000000 + 0x400000 ; /* 4M bytes */  
   __base_SRAM_OC1 = 0x20240000  ; /* SRAM_OC1 */  
   __base_RAM = 0x20240000 ; /* RAM */  
   __top_SRAM_OC1 = 0x20240000 + 0x80000 ; /* 512K bytes */  

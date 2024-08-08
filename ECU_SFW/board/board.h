@@ -228,7 +228,7 @@ extern button_config_t g_buttonConfig[];
 #define BOARD_BT_UART_IRQ_HANDLER LPUART7_IRQHandler
 
 #ifndef BOARD_NETWORK_USE_1G_ENET_PORT
-#define BOARD_NETWORK_USE_1G_ENET_PORT (1U)
+#define BOARD_NETWORK_USE_1G_ENET_PORT (0U)
 #endif
 
 /* Timer Manager definition. */
