@@ -93,6 +93,21 @@ typedef union _c_ECU1_Blind_Zone_Alert_Status_bufTag
 	_c_Blind_Zone_Alert_Status_msgType Blind_Zone_Alert_Status;
 } _c_Blind_Zone_Alert_Status_buf;
 
+typedef struct _c_ECU1_Lighting_Grill_Operation_Mode_msgTypeTag
+{
+	uint8_t unused0 : 4;
+	uint8_t LampWelcomeOperation : 1;
+	uint8_t LampEmergencyOperation : 1;
+	uint8_t TurnLampRightOperation : 1;
+	uint8_t TurnLampLeftOperation : 1;
+} _c_Lighting_Grill_Operation_Mode_msgType;
+
+typedef union _c_ECU1_Lighting_Grill_Operation_Mode_bufTag
+{
+	uint8_t _c[1];
+	_c_Lighting_Grill_Operation_Mode_msgType Blind_Zone_Alert_Status;
+} _c_Lighting_Grill_Operation_Mode_buf;
+
 typedef struct _c_System_Power_Mode_msgTypeTag
 {
 	uint8_t unused0 : 5;
@@ -320,6 +335,7 @@ extern _c_Pedestrain_Friendly_Alert_Status_buf ECU2_ROUTED_Pedestrain_Friendly_A
 
 extern _c_System_Power_Mode_buf ECU1_System_Power_Mode_Tx0;
 extern _c_Blind_Zone_Alert_Status_buf ECU1_Blind_Zone_Alert_Status_Tx1;
+extern _c_Lighting_Grill_Operation_Mode_buf ECU1_Lighting_Grill_Operation_Mode_Tx2;
 extern _c_V2V_Warning_buf ECU1_ROUTED_V2V_Warning_Rx2;
 extern _c_Pedestrain_Friendly_Alert_Status_buf ECU1_ROUTED_Pedestrain_Friendly_Alert_Status_Rx3;
 extern _c_Drive_Status_buf ECU1_ROUTED_Drive_Status_Rx1;

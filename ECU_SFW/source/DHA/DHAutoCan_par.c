@@ -15,6 +15,7 @@ _c_NACU_Diag_Tx_buf NACU_Diag_Tx1;
 _c_NACU_Diag_Tx_buf NACU_Diag_Tx2;
 _c_System_Power_Mode_buf ECU1_System_Power_Mode_Tx0;
 _c_Blind_Zone_Alert_Status_buf ECU1_Blind_Zone_Alert_Status_Tx1;
+_c_Lighting_Grill_Operation_Mode_buf ECU1_Lighting_Grill_Operation_Mode_Tx2;
 _c_NACU_Diag_Tx_buf NACU_Diag_Tx3;
 _c_NACU_Diag_Tx_buf NACU_Diag_Tx4;
 _c_NACU_Diag_Tx_buf NACU_Diag_Tx5;
@@ -286,7 +287,7 @@ uint8_t CanTxDLC2[CAN3_NO_OF_TX_OBJECT] =
 {
 	1,
 	2,
-	8,
+	1,
 	8,
 	8
 };
@@ -295,7 +296,7 @@ uint8_t * CanTxDataPtr2[CAN3_NO_OF_TX_OBJECT] =
 {
 	(uint8_t *) ECU1_System_Power_Mode_Tx0._c,
 	(uint8_t *) ECU1_Blind_Zone_Alert_Status_Tx1._c,
-	(uint8_t *) NACU_Diag_Tx3._c,
+	(uint8_t *) ECU1_Lighting_Grill_Operation_Mode_Tx2._c,
 	(uint8_t *) NACU_Diag_Tx4._c,
 	(uint8_t *) NACU_Diag_Tx5._c
 };

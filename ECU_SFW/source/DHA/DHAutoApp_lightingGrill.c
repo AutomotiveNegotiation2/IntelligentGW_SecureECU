@@ -581,21 +581,37 @@ static uint8_t led_disp_data(uint8_t led_pos, uint8_t dev_addr, uint8_t mem_addr
 
 void DHADemoApp_LG_TURN_RIGHT(void)
 {
+#if CAN3toCAN_EN == ON
+	uint8_t data = ON;
+	IlSetECU1_TurnLampRightOperationSig(&data);
+#endif
 	lightingGrill_OpStart(OP_LED_TURN_RIGHT, 5);
 }
 
 void DHADemoApp_LG_TURN_LEFT(void)
 {
+#if CAN3toCAN_EN == ON
+	uint8_t data = ON;
+	IlSetECU1_TurnLampLeftOperationSig(&data);
+#endif
 	lightingGrill_OpStart(OP_LED_TURN_LEFT, 5);
 }
 
 void DHADemoApp_LG_EMERGENCY(void)
 {
+#if CAN3toCAN_EN == ON
+	uint8_t data = ON;
+	IlSetECU1_LampEmergencyOperationSig(&data);
+#endif
 	lightingGrill_OpStart(OP_LED_EMERGENCY, 5);
 }
 
 void DHADemoApp_LG_WELCOME(void)
 {
+#if CAN3toCAN_EN == ON
+	uint8_t data = ON;
+	IlSetECU1_LampWelcomeOperationSig(&data);
+#endif
 	lightingGrill_OpStart(OP_LED_WELCOME, 5);
 }
 
