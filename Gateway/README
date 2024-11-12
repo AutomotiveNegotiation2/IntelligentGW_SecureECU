@@ -48,7 +48,7 @@ BBLAYERS += " \
 
 7. <SDK TOP Folder>/yocto-build/build/conf/local.conf 에 아래 추가
 MACHINE = "j7-evm"
-
+BBMASK = "/oe-core/meta/recipes-support/curl"
 
 8. Clean 후 재 빌드
 $ bitbake tisdk-default-image -c clean 
